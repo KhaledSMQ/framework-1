@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A9AAE087-D85E-4042-B5B7-C1DA7315DF28}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Framework.Core</RootNamespace>
+    <AssemblyName>Framework.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <!-- BUILD-TARGETS -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <!-- END-BUILD-TARGETS -->
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collections\Generic\PagedIndexList.cs" />
+    <Compile Include="Collections\Specialized\Table.cs" />
+    <Compile Include="Collections\Specialized\TableCol.cs" />
+    <Compile Include="Collections\Specialized\TableRow.cs" />
+    <Compile Include="Extensions\AuditableExtensions.cs" />
+    <Compile Include="Extensions\CreatedExtensions.cs" />
+    <Compile Include="Extensions\ModifiedExtensions.cs" />
+    <Compile Include="Extensions\UrlExtensions.cs" />
+    <Compile Include="Extensions\ViewStateExtensions.cs" />
+    <Compile Include="Extensions\XslQueryStringExtension.cs" />
+    <Compile Include="Extensions\XslUrlExtension.cs" />
+    <Compile Include="Helpers\PathHelper.cs" />
+    <Compile Include="Helpers\UrlHelper.cs" />
+    <Compile Include="Helpers\JSONHelper.cs" />
+    <Compile Include="MIME\MimeTypes.cs" />
+    <Compile Include="Patterns\IAuditable.cs" />
+    <Compile Include="Patterns\IConfigList.cs" />
+    <Compile Include="Patterns\IConfigSetting.cs" />
+    <Compile Include="Patterns\IProvider.cs" />
+    <Compile Include="Patterns\IConfigMap.cs" />
+    <Compile Include="Patterns\ICreated.cs" />
+    <Compile Include="Patterns\IDescription.cs" />
+    <Compile Include="Patterns\IHashReady.cs" />
+    <Compile Include="Patterns\IJSONReady.cs" />
+    <Compile Include="Patterns\IModified.cs" />
+    <Compile Include="Patterns\ITypeName.cs" />
+    <Compile Include="Patterns\IRef.cs" />
+    <Compile Include="Patterns\ITimeStamp.cs" />
+    <Compile Include="Patterns\IUrlResolver.cs" />
+    <Compile Include="Patterns\IUrlResolverSet.cs" />
+    <Compile Include="Patterns\IVariation.cs" />
+    <Compile Include="Patterns\IVisible.cs" />
+    <Compile Include="Reflection\Activator.cs" />
+    <Compile Include="Reflection\AssemblyUtils.cs" />
+    <Compile Include="Reflection\Attributes.cs" />
+    <Compile Include="Reflection\Converter.cs" />
+    <Compile Include="Reflection\Fields.cs" />
+    <Compile Include="Reflection\Parsing.cs" />
+    <Compile Include="Reflection\Properties.cs" />
+    <Compile Include="Reflection\ReflectionAttributeUtils.cs" />
+    <Compile Include="Reflection\ReflectionHelper.cs" />
+    <Compile Include="Reflection\ReflectionTypeChecker.cs" />
+    <Compile Include="Reflection\ReflectionUtils.cs" />
+    <Compile Include="Types\Specialized\AssemblyInfo.cs" />
+    <Compile Include="Types\Specialized\NamespaceInfo.cs" />
+    <Compile Include="Types\Specialized\Setting.cs" />
+    <Compile Include="Types\Specialized\WebResource.cs" />
+    <Compile Include="Types\Specialized\Thing.cs" />
+    <Compile Include="Collections\Specialized\ThingSet.cs" />
+    <Compile Include="Patterns\ILocale.cs" />
+    <Compile Include="Patterns\IXsltExtensionObject.cs" />
+    <Compile Include="Patterns\IThing.cs" />
+    <Compile Include="Patterns\IThingSet.cs" />
+    <Compile Include="Helpers\DirectoryHelper.cs" />
+    <Compile Include="Helpers\EnvHelper.cs" />
+    <Compile Include="Helpers\MathHelper.cs" />
+    <Compile Include="Helpers\XmlHelper.cs" />
+    <Compile Include="Helpers\IndexSpan.cs" />
+    <Compile Include="Patterns\IIndexedComponent.cs" />
+    <Compile Include="Patterns\IIndexedLookUp.cs" />
+    <Compile Include="Patterns\ITreeNode.cs" />
+    <Compile Include="Collections\Generic\ObservableKeyMap.cs" />
+    <Compile Include="Collections\Generic\ObservableGenericMap.cs" />
+    <Compile Include="Collections\Generic\ObservableDictionary.cs" />
+    <Compile Include="Collections\Generic\ObservableQueue.cs" />
+    <Compile Include="Collections\Generic\ObservableSortedDictionary.cs" />
+    <Compile Include="Collections\Generic\TreeNode.cs" />
+    <Compile Include="Error\Throw.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Patterns\IEnumCountable.cs" />
+    <Compile Include="Patterns\IName.cs" />
+    <Compile Include="Patterns\IID.cs" />
+    <Compile Include="Patterns\IXmlDocReady.cs" />
+    <Compile Include="Patterns\IStringReady.cs" />
+    <Compile Include="Patterns\IXmlReadyParameterized.cs" />
+    <Compile Include="Patterns\IXRef.cs" />
+    <Compile Include="Patterns\ISet.cs" />
+    <Compile Include="Collections\Generic\TreeNodeKey.cs" />
+    <Compile Include="Types\Specialized\Tuple.cs" />
+    <Compile Include="Helpers\MimeTypeHelper.cs" />
+    <Compile Include="Types\Specialized\Percentage.cs" />
+    <Compile Include="Patterns\IXmlReady.cs" />
+    <Compile Include="Types\Specialized\XRef.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="Collections\Generic\EnumCountable.cs" />
+    <Compile Include="Collections\Generic\DictBidirectional.cs" />
+    <Compile Include="Collections\Generic\DictMultiValue.cs" />
+    <Compile Include="Collections\Generic\DictReadOnly.cs" />
+    <Compile Include="Collections\Generic\DictSet.cs" />
+    <Compile Include="Collections\Generic\DictTypeConversion.cs" />
+    <Compile Include="Collections\Generic\EnumMulti.cs" />
+    <Compile Include="Collections\Generic\ListBase.cs" />
+    <Compile Include="Collections\Generic\IndexedLookUp.cs" />
+    <Compile Include="Helpers\IterationSplitter.cs" />
+    <Compile Include="Helpers\PropertyKey.cs" />
+    <Compile Include="Helpers\SetHelper.cs" />
+    <Compile Include="Types\Specialized\EnumValue.cs" />
+    <Compile Include="Collections\Specialized\EnumCollection.cs" />
+    <Compile Include="Extensions\DecimalExtensions.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\IntegerExtensions.cs" />
+    <Compile Include="Extensions\LatinWordExtensions.cs" />
+    <Compile Include="Extensions\NameValueCollectionExtensions.cs" />
+    <Compile Include="Helpers\EnumerableHelper.cs" />
+    <Compile Include="Helpers\ExpressionHelper.cs" />
+    <Compile Include="Helpers\FileHelper.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
+    <Compile Include="Helpers\TypeHelper.cs" />
+    <Compile Include="Collections\Generic\ObjectKeyMap.cs" />
+    <Compile Include="Collections\Generic\ObjectGenericMap.cs" />
+    <Compile Include="Patterns\IKeyGenerator.cs" />
+    <Compile Include="Patterns\IKey.cs" />
+    <Compile Include="Patterns\IObjectMapTransform.cs" />
+    <Compile Include="Patterns\IObjectMap.cs" />
+    <Compile Include="Collections\Generic\ObjectMapTransform.cs" />
+    <Compile Include="Collections\Generic\ObjectMap.cs" />
+    <Compile Include="Collections\Generic\TreeAvl.cs" />
+    <Compile Include="Collections\Generic\DictOrdered.cs" />
+    <Compile Include="Collections\Generic\ListFast.cs" />
+    <Compile Include="Collections\Generic\DictAvl.cs" />
+    <Compile Include="Collections\WalkerOptions.cs" />
+    <Compile Include="Types\Generic\Triple.cs" />
+    <Compile Include="Types\Generic\Pair.cs" />
+    <Compile Include="Collections\Generic\Dict2D.cs" />
+    <Compile Include="Error\ErrorInfo.cs" />
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Helpers\EnumHelper.cs" />
+    <Compile Include="Helpers\Guard.cs" />
+    <Compile Include="Types\Generic\KeyValue.cs" />
+    <Compile Include="Patterns\RegexPattern.cs" />
+    <Compile Include="Error\Handling.cs" />
+    <Compile Include="Extensions\XExtensions.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Collections\Generic\Graph.cs" />
+    <Compile Include="Extensions\XslDateExtension.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Helpers\XslHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Framework.Core.nuspec" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

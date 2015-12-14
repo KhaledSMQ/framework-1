@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A6A024F6-4B1C-44A3-A66B-C73EDD58B3FC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Framework.Drawing</RootNamespace>
+    <AssemblyName>Framework.Drawing</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <!-- BUILD-TARGETS -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <!-- END-BUILD-TARGETS -->
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NuGet|AnyCPU'">
+    <OutputPath>bin\NuGet\</OutputPath>
+    <DefineConstants>NET35</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dot\DOM\dotAssign.cs" />
+    <Compile Include="Dot\DOM\dotGraph.cs" />
+    <Compile Include="Dot\DOM\dotNodeID.cs" />
+    <Compile Include="Dot\DOM\dotPort.cs" />
+    <Compile Include="Dot\DOM\dotStmt.cs" />
+    <Compile Include="Dot\DOM\dotStmtAssign.cs" />
+    <Compile Include="Dot\DOM\dotStmtAttr.cs" />
+    <Compile Include="Dot\DOM\dotStmtEdge.cs" />
+    <Compile Include="Dot\DOM\dotStmtNode.cs" />
+    <Compile Include="Dot\DOM\dotStmtSubGraph.cs" />
+    <Compile Include="Dot\Engines\StringUnparser.cs" />
+    <Compile Include="Geom\Engines\Unparsing.cs" />
+    <Compile Include="Geom\Engines\Parsing.cs" />
+    <Compile Include="Geom\Layouts\ILayout.cs" />
+    <Compile Include="Geom\Layouts\IRegion.cs" />
+    <Compile Include="Geom\Layouts\Layout.cs" />
+    <Compile Include="Geom\Layouts\Region.cs" />
+    <Compile Include="Geom\Projections\AProjection.cs" />
+    <Compile Include="Geom\Projections\IProjectionV2A.cs" />
+    <Compile Include="Geom\Projections\IProjectionR2A.cs" />
+    <Compile Include="Geom\Projections\IProjectionV2P.cs" />
+    <Compile Include="Geom\Projections\IProjectionP2V.cs" />
+    <Compile Include="Geom\Projections\Projection.cs" />
+    <Compile Include="Geom\Projections\IProjection.cs" />
+    <Compile Include="Geom\Projections\IProjectionP2R.cs" />
+    <Compile Include="Geom\Projections\IProjectionR2P.cs" />
+    <Compile Include="Geom\Projections\IProjectionR2V.cs" />
+    <Compile Include="Geom\Projections\IProjectionV2R.cs" />
+    <Compile Include="Geom\Shapes\fRect.cs" />
+    <Compile Include="Geom\Shapes\dLine.cs" />
+    <Compile Include="Geom\Shapes\dPoint.cs" />
+    <Compile Include="Geom\Shapes\dRect.cs" />
+    <Compile Include="Geom\Shapes\dSize.cs" />
+    <Compile Include="Geom\Shapes\Funcs.cs" />
+    <Compile Include="Geom\Shapes\pRect.cs" />
+    <Compile Include="Geom\_Config.cs" />
+    <Compile Include="Extensions\ImageExtension.cs" />
+    <Compile Include="SVG\DOM\Basic Shapes\SvgCircle.cs" />
+    <Compile Include="SVG\DOM\Basic Shapes\SvgEllipse.cs" />
+    <Compile Include="SVG\DOM\Basic Shapes\SvgLine.cs" />
+    <Compile Include="SVG\DOM\Basic Shapes\SvgPolygon.cs" />
+    <Compile Include="SVG\DOM\Basic Shapes\SvgPolyline.cs" />
+    <Compile Include="SVG\DOM\Basic Shapes\SvgRectangle.cs" />
+    <Compile Include="SVG\DOM\Basic Shapes\SvgVisualElement.cs" />
+    <Compile Include="SVG\DOM\Basic Shapes\SvgVisualElementStyle.cs" />
+    <Compile Include="SVG\DOM\Clipping and Masking\ISvgClipable.cs" />
+    <Compile Include="SVG\DOM\Clipping and Masking\SvgClipPath.cs" />
+    <Compile Include="SVG\DOM\Clipping and Masking\SvgClipRule.cs" />
+    <Compile Include="SVG\DOM\Clipping and Masking\SvgMask.cs" />
+    <Compile Include="SVG\DOM\DataTypes\ISvgViewPort.cs" />
+    <Compile Include="SVG\DOM\DataTypes\SvgCoordinateUnits.cs" />
+    <Compile Include="SVG\DOM\DataTypes\SvgElementStyle.cs" />
+    <Compile Include="SVG\DOM\DataTypes\SvgPoint.cs" />
+    <Compile Include="SVG\DOM\DataTypes\SvgUnit.cs" />
+    <Compile Include="SVG\DOM\DataTypes\SvgUnitCollection.cs" />
+    <Compile Include="SVG\DOM\DataTypes\SvgUnitConverter.cs" />
+    <Compile Include="SVG\DOM\DataTypes\SvgViewBox.cs" />
+    <Compile Include="SVG\DOM\Document Structure\SvgDefinitionList.cs" />
+    <Compile Include="SVG\DOM\Document Structure\SvgDescription.cs" />
+    <Compile Include="SVG\DOM\Document Structure\SvgFragment.cs" />
+    <Compile Include="SVG\DOM\Document Structure\SvgGroup.cs" />
+    <Compile Include="SVG\DOM\Document Structure\SvgStyle.cs" />
+    <Compile Include="SVG\DOM\Document Structure\SvgUse.cs" />
+    <Compile Include="SVG\DOM\Exceptions\SvgException.cs" />
+    <Compile Include="SVG\DOM\Filter Effects\feGaussianBlur\RawBitmap.cs" />
+    <Compile Include="SVG\DOM\Filter Effects\feGaussianBlur\SvgGaussianBlur.cs" />
+    <Compile Include="SVG\DOM\Filter Effects\feMerge\SvgMerge.cs" />
+    <Compile Include="SVG\DOM\Filter Effects\ISvgFilterable.cs" />
+    <Compile Include="SVG\DOM\Filter Effects\SvgFilter.cs" />
+    <Compile Include="SVG\DOM\Filter Effects\SvgFilterPrimitive.cs" />
+    <Compile Include="SVG\DOM\Image\SvgImage.cs" />
+    <Compile Include="SVG\DOM\Pathing\ISvgStylable.cs" />
+    <Compile Include="SVG\DOM\Pathing\SvgColourConverter.cs" />
+    <Compile Include="SVG\DOM\Pathing\SvgColourServer.cs" />
+    <Compile Include="SVG\DOM\Pathing\SvgFillRule.cs" />
+    <Compile Include="SVG\DOM\Pathing\SvgGradientServer.cs" />
+    <Compile Include="SVG\DOM\Pathing\SvgGradientSpreadMethod.cs" />
+    <Compile Include="SVG\DOM\Pathing\SvgGradientStop.cs" />
+    <Compile Include="SVG\DOM\Pathing\SvgLinearGradientServer.cs" />
+    <Compile Include="SVG\DOM\Pathing\SvgPaintServer.cs" />
+    <Compile Include="SVG\DOM\Pathing\SvgPaintServerFactory.cs" />
+    <Compile Include="SVG\DOM\Pathing\SvgPatternServer.cs" />
+    <Compile Include="SVG\DOM\Pathing\SvgRadialGradientServer.cs" />
+    <Compile Include="SVG\DOM\Pathing\SvgStrokeLineCap.cs" />
+    <Compile Include="SVG\DOM\Pathing\SvgStrokeLineJoin.cs" />
+    <Compile Include="SVG\DOM\Paths\SvgArcSegment.cs" />
+    <Compile Include="SVG\DOM\Paths\SvgClosePathSegment.cs" />
+    <Compile Include="SVG\DOM\Paths\SvgCubicCurveSegment.cs" />
+    <Compile Include="SVG\DOM\Paths\SvgLineSegment.cs" />
+    <Compile Include="SVG\DOM\Paths\SvgMoveToSegment.cs" />
+    <Compile Include="SVG\DOM\Paths\SvgPath.cs" />
+    <Compile Include="SVG\DOM\Paths\SvgPathBuilder.cs" />
+    <Compile Include="SVG\DOM\Paths\SvgPathSegment.cs" />
+    <Compile Include="SVG\DOM\Paths\SvgPathSegmentList.cs" />
+    <Compile Include="SVG\DOM\Paths\SvgQuadraticCurveSegment.cs" />
+    <Compile Include="SVG\DOM\SMIL\SvgAnimate.cs" />
+    <Compile Include="SVG\DOM\SMIL\SvgSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SVG\DOM\SvgAttributeAttribute.cs" />
+    <Compile Include="SVG\DOM\SvgAttributeCollection.cs" />
+    <Compile Include="SVG\DOM\SvgDocument.cs" />
+    <Compile Include="SVG\DOM\SvgDtdResolver.cs" />
+    <Compile Include="SVG\DOM\SvgElement.cs" />
+    <Compile Include="SVG\DOM\SvgElementAttribute.cs" />
+    <Compile Include="SVG\DOM\SvgElementCollection.cs" />
+    <Compile Include="SVG\DOM\SvgElementFactory.cs" />
+    <Compile Include="SVG\DOM\SvgElementIdManager.cs" />
+    <Compile Include="SVG\DOM\SvgRenderer.cs" />
+    <Compile Include="SVG\DOM\SvgTextReader.cs" />
+    <Compile Include="SVG\DOM\Text\SvgText.cs" />
+    <Compile Include="SVG\DOM\Text\SvgTextAnchor.cs" />
+    <Compile Include="SVG\DOM\Text\SvgTextPath.cs" />
+    <Compile Include="SVG\DOM\Text\SvgTextSpan.cs" />
+    <Compile Include="SVG\DOM\Transforms\ISvgTransformable.cs" />
+    <Compile Include="SVG\DOM\Transforms\SvgMatrix.cs" />
+    <Compile Include="SVG\DOM\Transforms\SvgRotate.cs" />
+    <Compile Include="SVG\DOM\Transforms\SvgScale.cs" />
+    <Compile Include="SVG\DOM\Transforms\SvgShear.cs" />
+    <Compile Include="SVG\DOM\Transforms\SvgSkew.cs" />
+    <Compile Include="SVG\DOM\Transforms\SvgTransform.cs" />
+    <Compile Include="SVG\DOM\Transforms\SvgTransformCollection.cs" />
+    <Compile Include="SVG\DOM\Transforms\SvgTransformConverter.cs" />
+    <Compile Include="SVG\DOM\Transforms\SvgTranslate.cs" />
+    <Compile Include="SVG\Engines\Svg2Image.cs" />
+    <Compile Include="SVG\Engines\SvgXmlUnparser.cs" />
+    <Compile Include="SVG\Engines\SvgXmlParser.cs" />
+    <Compile Include="SVG\Triangle\Algorithm\Dwyer.cs" />
+    <Compile Include="SVG\Triangle\Algorithm\Incremental.cs" />
+    <Compile Include="SVG\Triangle\Algorithm\ITriangulator.cs" />
+    <Compile Include="SVG\Triangle\Algorithm\SweepLine.cs" />
+    <Compile Include="SVG\Triangle\BadTriQueue.cs" />
+    <Compile Include="SVG\Triangle\Behavior.cs" />
+    <Compile Include="SVG\Triangle\Carver.cs" />
+    <Compile Include="SVG\Triangle\Data\BadSubseg.cs" />
+    <Compile Include="SVG\Triangle\Data\BadTriangle.cs" />
+    <Compile Include="SVG\Triangle\Data\Osub.cs" />
+    <Compile Include="SVG\Triangle\Data\Otri.cs" />
+    <Compile Include="SVG\Triangle\Data\Segment.cs" />
+    <Compile Include="SVG\Triangle\Data\Triangle.cs" />
+    <Compile Include="SVG\Triangle\Data\Vertex.cs" />
+    <Compile Include="SVG\Triangle\Enums.cs" />
+    <Compile Include="SVG\Triangle\Geometry\BoundingBox.cs" />
+    <Compile Include="SVG\Triangle\Geometry\Edge.cs" />
+    <Compile Include="SVG\Triangle\Geometry\EdgeEnumerator.cs" />
+    <Compile Include="SVG\Triangle\Geometry\InputGeometry.cs" />
+    <Compile Include="SVG\Triangle\Geometry\ISegment.cs" />
+    <Compile Include="SVG\Triangle\Geometry\ITriangle.cs" />
+    <Compile Include="SVG\Triangle\Geometry\Point.cs" />
+    <Compile Include="SVG\Triangle\Geometry\RegionPointer.cs" />
+    <Compile Include="SVG\Triangle\IO\DataReader.cs" />
+    <Compile Include="SVG\Triangle\IO\DebugWriter.cs" />
+    <Compile Include="SVG\Triangle\IO\FileReader.cs" />
+    <Compile Include="SVG\Triangle\IO\FileWriter.cs" />
+    <Compile Include="SVG\Triangle\IO\IGeometryFormat.cs" />
+    <Compile Include="SVG\Triangle\IO\IMeshFormat.cs" />
+    <Compile Include="SVG\Triangle\IO\InputTriangle.cs" />
+    <Compile Include="SVG\Triangle\IO\Triangulate.cs" />
+    <Compile Include="SVG\Triangle\IO\TriangleFormat.cs" />
+    <Compile Include="SVG\Triangle\Log\ILog.cs" />
+    <Compile Include="SVG\Triangle\Log\ILogItem.cs" />
+    <Compile Include="SVG\Triangle\Log\SimpleLog.cs" />
+    <Compile Include="SVG\Triangle\Log\SimpleLogItem.cs" />
+    <Compile Include="SVG\Triangle\Mesh.cs" />
+    <Compile Include="SVG\Triangle\NewLocation.cs" />
+    <Compile Include="SVG\Triangle\Primitives.cs" />
+    <Compile Include="SVG\Triangle\Quality.cs" />
+    <Compile Include="SVG\Triangle\Sampler.cs" />
+    <Compile Include="SVG\Triangle\Smoothing\ISmoother.cs" />
+    <Compile Include="SVG\Triangle\Smoothing\SimpleSmoother.cs" />
+    <Compile Include="SVG\Triangle\Tools\AdjacencyMatrix.cs" />
+    <Compile Include="SVG\Triangle\Tools\BoundedVoronoi.cs" />
+    <Compile Include="SVG\Triangle\Tools\CuthillMcKee.cs" />
+    <Compile Include="SVG\Triangle\Tools\IVoronoi.cs" />
+    <Compile Include="SVG\Triangle\Tools\QualityMeasure.cs" />
+    <Compile Include="SVG\Triangle\Tools\RegionIterator.cs" />
+    <Compile Include="SVG\Triangle\Tools\Statistic.cs" />
+    <Compile Include="SVG\Triangle\Tools\Voronoi.cs" />
+    <Compile Include="SVG\Triangle\Tools\VoronoiRegion.cs" />
+    <Compile Include="SVG\Triangle\Util.cs" />
+    <Compile Include="SVG\Web\SvgHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Config.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Framework.Drawing.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
+      <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>
+      <Name>Framework.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
