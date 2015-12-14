@@ -26,7 +26,7 @@ namespace Framework.Data.Model
         public string Name { get; set; }
         public string Description { get; set; }
         public string TypeName { get; set; }
-        public virtual ICollection<Setting> Settings { get; set; }
+        public ICollection<Setting> Settings { get; set; }
 
         //
         // Audits
