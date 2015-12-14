@@ -15,38 +15,6 @@ namespace Framework.Data.Patterns
     public interface IProviderDataModel : IProvider
     {
         //
-        // DATA-SOURCE-REGISTRY
-        //
-
-        void AddDataSet<T>();
-
-        void AddDataSet(Type type);
-
-        void AddDataSet(string type);
-
-        void AddDataObject<T>();
-
-        void AddDataObject(Type type);
-
-        void AddDataObject(string type);
-
-        //
-        // DATA-SOURCE-QUERY
-        //
-
-        bool HasDataSet<T>();
-
-        bool HasDataSet(Type type);
-
-        bool HasDataSet(string type);
-
-        bool HasDataObject<T>();
-
-        bool HasDataObject(Type type);
-
-        bool HasDataObject(string type);
-
-        //
         // MODEL-BUILD-HANDLER
         //
 

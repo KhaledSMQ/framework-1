@@ -7,13 +7,8 @@
 // Description:
 // ============================================================================
 
-using Framework.Core.Patterns;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Data.Entity;
-using System.Data;
 using Framework.Core.Collections.Generic;
 
 namespace Framework.Data.Query.Linq
