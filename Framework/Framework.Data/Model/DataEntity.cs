@@ -28,7 +28,7 @@ namespace Framework.Data.Model
         public ICollection<Setting> Settings { get; set; }
 
         //
-        // Audits
+        // AUDITS
         //
 
         public string CreatedBy { get; set; }

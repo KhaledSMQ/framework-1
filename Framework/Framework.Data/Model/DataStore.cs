@@ -16,7 +16,7 @@ namespace Framework.Data.Model
     public class DataStore : IDataStore<DataCluster, DataContext, DataModel, DataEntity, Setting>
     {
         //
-        // Info
+        // PROPERTIES
         //
 
         public ICollection<DataCluster> Clusters { get; set; }

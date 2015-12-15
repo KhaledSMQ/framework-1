@@ -1,6 +1,6 @@
 ﻿// ============================================================================
-// Project:
-// Name/Class: 
+// Project: Framework
+// Name/Class: Paging
 // Author: Joao Carreiro (jao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2016
 // Company: Cybermap Lta.
