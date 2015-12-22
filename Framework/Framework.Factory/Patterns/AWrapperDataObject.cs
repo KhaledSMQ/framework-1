@@ -19,6 +19,7 @@ namespace Framework.Factory.Patterns
         // 
 
         public IConfigMap Src { get; set; }
+
         protected IProviderDataObject<TItem> DataLayer { get; set; }
 
         //

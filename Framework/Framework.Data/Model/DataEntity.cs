@@ -22,9 +22,13 @@ namespace Framework.Data.Model
         //
 
         public int ID { get; set; }
+
         public string Name { get; set; }
+
         public string Description { get; set; }
+
         public string TypeName { get; set; }
+
         public ICollection<Setting> Settings { get; set; }
 
         //
@@ -32,8 +36,11 @@ namespace Framework.Data.Model
         //
 
         public string CreatedBy { get; set; }
+
         public DateTime CreatedDate { get; set; }
+
         public string ModifiedBy { get; set; }
+
         public DateTime ModifiedDate { get; set; }
 
         //

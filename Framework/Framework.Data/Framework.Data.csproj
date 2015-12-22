@@ -36,6 +36,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Net.Http" />
@@ -78,6 +79,8 @@
     <Compile Include="Query\Linq\Take.cs" />
     <Compile Include="Query\Linq\Paging.cs" />
     <Compile Include="Query\Linq\Where.cs" />
+    <Compile Include="Runtime\ManagerConfiguration.cs" />
+    <Compile Include="Runtime\Manager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
