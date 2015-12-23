@@ -59,7 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config.cs" />
+    <Compile Include="Config\BaseConfiguration.cs" />
+    <Compile Include="Config\SettingsConfiguration.cs" />
+    <Compile Include="Config\DataContextConfiguration.cs" />
+    <Compile Include="Config\ClusterConfiguration.cs" />
+    <Compile Include="Config\Property.cs" />
+    <Compile Include="Lib.cs" />
     <Compile Include="Model\DataStore.cs" />
     <Compile Include="Model\DataCluster.cs" />
     <Compile Include="Model\DataContext.cs" />
@@ -79,7 +84,7 @@
     <Compile Include="Query\Linq\Take.cs" />
     <Compile Include="Query\Linq\Paging.cs" />
     <Compile Include="Query\Linq\Where.cs" />
-    <Compile Include="Runtime\ManagerConfiguration.cs" />
+    <Compile Include="Config\ManagerConfiguration.cs" />
     <Compile Include="Runtime\Manager.cs" />
   </ItemGroup>
   <ItemGroup>

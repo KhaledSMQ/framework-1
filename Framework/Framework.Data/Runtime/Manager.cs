@@ -14,8 +14,8 @@ namespace Framework.Data.Runtime
     public static class Manager
     {
         //
-        // The runtime store where all data related specification
-        // data is stored.
+        // The runtime store where all data 
+        // related specification is stored.
         //
 
         public static DataStore Store { get; private set; }
@@ -24,8 +24,24 @@ namespace Framework.Data.Runtime
         // CONSTRUCTORS
         //
 
-        static Manager()
+        static Manager() { }
+
+        //
+        // Initialize the data manager services.
+        // 
+
+        public static void Init()
         {
+            LoadConfig();
+        }
+
+        //
+        // Load the initial configuration for the data manager.
+        //
+
+        public static void LoadConfig()
+        {
+
         }
     }
 }
