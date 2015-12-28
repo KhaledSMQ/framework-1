@@ -7,7 +7,9 @@
 // Description: Runtime data store implementation.
 // ============================================================================
 
+using Framework.Data.Config;
 using Framework.Data.Model;
+using Owin;
 
 namespace Framework.Data.Runtime
 {
@@ -30,7 +32,7 @@ namespace Framework.Data.Runtime
         // Initialize the data manager services.
         // 
 
-        public static void Init()
+        public static void Init(IAppBuilder app)
         {
             LoadConfig();
         }
@@ -41,6 +43,7 @@ namespace Framework.Data.Runtime
 
         public static void LoadConfig()
         {
+            ManagerConfiguration config = (ManagerConfiguration)System.Configuration.ConfigurationManager.GetSection("frameworkDataStore");
 
         }
     }
