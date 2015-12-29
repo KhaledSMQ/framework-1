@@ -44,6 +44,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net" />
@@ -75,6 +76,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\Interface\IService.cs" />
+    <Compile Include="Config\BaseConfiguration.cs" />
+    <Compile Include="Config\ServiceConfiguration.cs" />
+    <Compile Include="Config\Constants.cs" />
+    <Compile Include="Config\ManagerConfiguration.cs" />
+    <Compile Include="Config\SettingsConfiguration.cs" />
+    <Compile Include="Config\Transforms.cs" />
     <Compile Include="Patterns\ACommon.cs" />
     <Compile Include="Patterns\AControllerServiceWrapper.cs" />
     <Compile Include="Patterns\ICommon.cs" />
