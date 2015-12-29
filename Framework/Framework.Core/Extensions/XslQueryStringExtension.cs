@@ -28,7 +28,7 @@ namespace Framework.Core.Extensions
         // PROPERTIES
         //
 
-        public string NamespaceUri { get { return Config.DEFAULT_XML_NAMESPACE + "/xsl/qs"; } }
+        public string NamespaceUri { get { return Lib.DEFAULT_XML_NAMESPACE + "/xsl/qs"; } }
 
         //
         // CONSTRCUTORS

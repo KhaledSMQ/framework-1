@@ -8,11 +8,9 @@
 // ============================================================================
 
 using Framework.CMS.Api.Interface;
-using Framework.Factory.Patterns;
+using Framework.Web.Patterns;
 
 namespace Framework.CMS.Api.Controllers
 {
-    public class CmsDMLController : AControllerServiceWrapper<IDML>
-    {
-    }
+    public class CmsDMLController : AControllerServiceWrapper<IDML> { }
 }

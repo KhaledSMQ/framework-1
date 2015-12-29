@@ -133,14 +133,14 @@ namespace Framework.Core.Helpers
                         break;
                     default:
                         {
-                            throw new Exception(String.Format("{0} invalid type identifier '{1}' in type definition", Config.DEFAULT_ERROR_MSG_PREFIX, identifier));
+                            throw new Exception(String.Format("{0} invalid type identifier '{1}' in type definition", Lib.DEFAULT_ERROR_MSG_PREFIX, identifier));
                         }
                 }
             }
 
             if (tail.isNotNullAndEmpty())
             {
-                throw new Exception(String.Format("{0} invalid type definition, invalid characters at the end '{1}'", Config.DEFAULT_ERROR_MSG_PREFIX, tail));
+                throw new Exception(String.Format("{0} invalid type definition, invalid characters at the end '{1}'", Lib.DEFAULT_ERROR_MSG_PREFIX, tail));
             }
 
             return type;

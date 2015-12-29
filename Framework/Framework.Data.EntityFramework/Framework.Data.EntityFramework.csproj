@@ -65,7 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config.cs" />
+    <Compile Include="Lib.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\Linq\Include.cs" />
   </ItemGroup>

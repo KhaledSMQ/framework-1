@@ -43,6 +43,10 @@
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -83,7 +87,6 @@
     <Compile Include="Config\SettingsConfiguration.cs" />
     <Compile Include="Config\Transforms.cs" />
     <Compile Include="Patterns\ACommon.cs" />
-    <Compile Include="Patterns\AControllerServiceWrapper.cs" />
     <Compile Include="Patterns\ICommon.cs" />
     <Compile Include="Patterns\IExecutionUnit.cs" />
     <Compile Include="API\Interface\IHub.cs" />
@@ -93,7 +96,6 @@
     <Compile Include="API\Default\SrvHub.cs" />
     <Compile Include="Runtime\Manager.cs" />
     <Compile Include="API\Default\SrvScope.cs" />
-    <Compile Include="Patterns\AController.cs" />
     <Compile Include="Lib.cs" />
   </ItemGroup>
   <ItemGroup>

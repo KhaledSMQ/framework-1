@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\Interface\IBlobSet.cs" />
-    <Compile Include="Config.cs" />
+    <Compile Include="Lib.cs" />
     <Compile Include="Model\Blob.cs" />
     <Compile Include="Model\Drive.cs" />
     <Compile Include="Model\File.cs" />

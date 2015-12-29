@@ -87,7 +87,7 @@
     <Compile Include="API\Interface\IView.cs" />
     <Compile Include="API\Interface\IEntity.cs" />
     <Compile Include="API\Query\Filter.cs" />
-    <Compile Include="Config.cs" />
+    <Compile Include="Lib.cs" />
     <Compile Include="Data\EFContext.cs" />
     <Compile Include="Model\Entities\Form.cs" />
     <Compile Include="Model\Entities\Schema.cs" />
@@ -126,6 +126,10 @@
     <ProjectReference Include="..\Framework.FileSystem\Framework.FileSystem.csproj">
       <Project>{c0630c47-92d3-482d-859f-86e0ab8d3e6f}</Project>
       <Name>Framework.FileSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Web\Framework.Web.csproj">
+      <Project>{ab6ab9f2-e765-4cb6-aede-a5cb3bcc8794}</Project>
+      <Name>Framework.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -246,7 +246,7 @@
     <Compile Include="SVG\Triangle\Util.cs" />
     <Compile Include="SVG\Web\SvgHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Config.cs" />
+    <Compile Include="Lib.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Framework.Drawing.nuspec" />

@@ -238,22 +238,22 @@ namespace Framework.Core.Collections.Generic
 
             internal override TK1 Key
             {
-                get { Throw.WithMessage(Config.DEFAULT_ERROR_MSG_PREFIX, "AVL tree is empty"); return default(TK1); }
+                get { Throw.WithMessage(Lib.DEFAULT_ERROR_MSG_PREFIX, "AVL tree is empty"); return default(TK1); }
             }
 
             internal override TV1 Value
             {
-                get { Throw.WithMessage(Config.DEFAULT_ERROR_MSG_PREFIX, "AVL tree is empty"); return default(TV1); }
+                get { Throw.WithMessage(Lib.DEFAULT_ERROR_MSG_PREFIX, "AVL tree is empty"); return default(TV1); }
             }
 
             internal override TreeAvl<TK1, TV1> Left
             {
-                get { Throw.WithMessage(Config.DEFAULT_ERROR_MSG_PREFIX, "AVL tree is empty"); return null; }
+                get { Throw.WithMessage(Lib.DEFAULT_ERROR_MSG_PREFIX, "AVL tree is empty"); return null; }
             }
 
             internal override TreeAvl<TK1, TV1> Right
             {
-                get { Throw.WithMessage(Config.DEFAULT_ERROR_MSG_PREFIX, "AVL tree is empty"); return null; }
+                get { Throw.WithMessage(Lib.DEFAULT_ERROR_MSG_PREFIX, "AVL tree is empty"); return null; }
             }
 
             internal override bool IsEmpty
@@ -276,7 +276,7 @@ namespace Framework.Core.Collections.Generic
 
             internal override TreeAvl<TK1, TV1> Remove(TK1 key)
             {
-                Throw.WithMessage(Config.DEFAULT_ERROR_MSG_PREFIX, "AVL tree is empty");
+                Throw.WithMessage(Lib.DEFAULT_ERROR_MSG_PREFIX, "AVL tree is empty");
                 return null;
             }
 

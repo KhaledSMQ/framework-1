@@ -22,10 +22,11 @@ namespace Framework.App.SingleWebApp.Server.Start
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 
             //
-            // Initialize the framework data store.
+            // Initialize framework services.
             //
 
             Data.Runtime.Manager.Init(app);
+            Factory.Runtime.Manager.Init(app);
 
             //
             // Set a new data directory path.

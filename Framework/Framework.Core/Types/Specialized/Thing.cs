@@ -46,7 +46,7 @@ namespace Framework.Core.Types.Specialized
         {
             if (string.IsNullOrEmpty(name) || !ContainsKey(name))
             {
-                throw new Exception(string.Format("{0}: invalid property name '{1}' in get property", Config.DEFAULT_ERROR_MSG_PREFIX, name));
+                throw new Exception(string.Format("{0}: invalid property name '{1}' in get property", Lib.DEFAULT_ERROR_MSG_PREFIX, name));
             }
 
             return this[name];
@@ -72,7 +72,7 @@ namespace Framework.Core.Types.Specialized
         {
             if (string.IsNullOrEmpty(name) || !ContainsKey(name))
             {
-                throw new Exception(string.Format("{0}: invalid property name '{1}' in set property", Config.DEFAULT_ERROR_MSG_PREFIX, name));
+                throw new Exception(string.Format("{0}: invalid property name '{1}' in set property", Lib.DEFAULT_ERROR_MSG_PREFIX, name));
             }
 
             this[name] = value;
@@ -110,7 +110,7 @@ namespace Framework.Core.Types.Specialized
 
         public void ParseFromXml(XElement elm)
         {
-            ParseFromXml(elm, Config.DEFAULT_XML_NAMESPACE, XML_ELM_THING);
+            ParseFromXml(elm, Lib.DEFAULT_XML_NAMESPACE, XML_ELM_THING);
         }
 
         public void ParseFromXml(XElement elm, string ns, string tag)
@@ -150,7 +150,7 @@ namespace Framework.Core.Types.Specialized
 
         public XElement UnparseToXml()
         {
-            return UnparseToXml(Config.DEFAULT_XML_NAMESPACE, XML_ELM_THING);
+            return UnparseToXml(Lib.DEFAULT_XML_NAMESPACE, XML_ELM_THING);
         }
 
         public XElement UnparseToXml(string ns, string tag)
@@ -196,7 +196,7 @@ namespace Framework.Core.Types.Specialized
 
             if (!args.Length.IsEven())
             {
-                throw new Exception(string.Format("{0}: invalid number of parameters '{1}' to item value variant create method", Config.DEFAULT_ERROR_MSG_PREFIX, args.Length));
+                throw new Exception(string.Format("{0}: invalid number of parameters '{1}' to item value variant create method", Lib.DEFAULT_ERROR_MSG_PREFIX, args.Length));
             }
 
             for (int i = 0; i < args.Length; i = i + 2)
@@ -208,7 +208,7 @@ namespace Framework.Core.Types.Specialized
                 }
                 else
                 {
-                    throw new Exception(string.Format("{0}: invalid type for name of property '{1}' to item value variant create method", Config.DEFAULT_ERROR_MSG_PREFIX, args[i].GetType()));
+                    throw new Exception(string.Format("{0}: invalid type for name of property '{1}' to item value variant create method", Lib.DEFAULT_ERROR_MSG_PREFIX, args[i].GetType()));
                 }
             }
 

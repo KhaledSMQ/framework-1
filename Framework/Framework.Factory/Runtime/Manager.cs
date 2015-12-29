@@ -10,6 +10,7 @@
 using Framework.Factory.API.Interface;
 using Framework.Factory.Config;
 using Framework.Factory.Model;
+using Owin;
 
 namespace Framework.Factory.Runtime
 {
@@ -29,15 +30,25 @@ namespace Framework.Factory.Runtime
         // CONSTRUCTORS
         //
 
-        static Manager()
-        {
-        }
+        static Manager() { }
 
         public static IScope Get()
         {
-            IScope scope = Hub.Get<IScope>();
+            return null;
 
+            /*
+            IScope scope = Hub.Get<IScope>();
             return scope;
+            */
+        }
+
+        //
+        // Initialize the data manager services.
+        // 
+
+        public static void Init(IAppBuilder app)
+        {
+            LoadConfig();
         }
 
         //

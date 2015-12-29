@@ -149,7 +149,7 @@
     <Compile Include="Types\Specialized\Percentage.cs" />
     <Compile Include="Patterns\IXmlReady.cs" />
     <Compile Include="Types\Specialized\XRef.cs" />
-    <Compile Include="Config.cs" />
+    <Compile Include="Lib.cs" />
     <Compile Include="Collections\Generic\EnumCountable.cs" />
     <Compile Include="Collections\Generic\DictBidirectional.cs" />
     <Compile Include="Collections\Generic\DictMultiValue.cs" />

@@ -16,7 +16,7 @@ using Framework.CMS.Model;
 using Framework.CMS.Model.Entities;
 using Framework.CMS.Model.Types;
 using Framework.CMS.Model.Views;
-using Framework.Factory.Patterns;
+using Framework.Web.Patterns;
 
 namespace Framework.CMS.Api.Controllers
 {
