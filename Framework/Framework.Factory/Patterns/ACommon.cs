@@ -8,6 +8,7 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
+using Framework.Factory.API.Interface;
 
 namespace Framework.Factory.Patterns
 {
@@ -19,7 +20,7 @@ namespace Framework.Factory.Patterns
 
         public IConfigMap Cfg { get; set; }
 
-        public IScope Ctx { get; set; }
+        public IScope Scope { get; set; }
 
         //
         // INITIALIZATION

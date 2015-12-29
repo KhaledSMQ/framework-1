@@ -43,8 +43,27 @@ namespace Framework.Data.Runtime
 
         public static void LoadConfig()
         {
-            ManagerConfiguration config = (ManagerConfiguration)System.Configuration.ConfigurationManager.GetSection("frameworkDataStore");
+            //
+            // Initialize the data store placeholder.
+            //
 
+            if (null == Store)
+            {
+                Store = new DataStore();
+            }
+
+            //
+            // Load from the system configuration spec
+            // the data store elements.
+            //
+
+            ManagerConfiguration config = (ManagerConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
+
+            //
+            // Add to store.
+            //
+
+            Store.Clusters = Transforms.ToDataCluster(config.Clusters);
         }
     }
 }

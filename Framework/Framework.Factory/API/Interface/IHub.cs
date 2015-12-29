@@ -7,7 +7,7 @@
 // Description: Service hub interface.
 // ============================================================================
 
-using Framework.Factory.Model.Config;
+using Framework.Factory.Model;
 using Framework.Factory.Patterns;
 
 namespace Framework.Factory.API.Interface

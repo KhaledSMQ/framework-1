@@ -8,10 +8,11 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
+using Framework.Factory.Patterns;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Framework.Factory.Patterns
+namespace Framework.Data.Patterns
 {
     public interface IWrapperDataSet<TItem> : ICommon
     {

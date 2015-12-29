@@ -8,7 +8,7 @@
 // ============================================================================
 
 using Framework.CMS.Model.Types;
-using Framework.Factory.Patterns;
+using Framework.Data.Patterns;
 
 namespace Framework.CMS.Api.Interface
 {

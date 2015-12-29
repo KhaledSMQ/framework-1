@@ -9,12 +9,23 @@
 
 using Framework.Factory.API.Default;
 using Framework.Factory.API.Interface;
+using Framework.Factory.Model;
 using Framework.Factory.Patterns;
 
 namespace Framework.Factory.Runtime
 {
     public static class Manager
     {
+        //
+        // PROPERTIES
+        //
+
+        public static Service HubConfig { get; private set; }
+
+        public static Service ScopeConfig { get; private set; }
+
+        public static IHub Hub { get; private set; }
+
         //
         // CONSTRUCTORS
         //

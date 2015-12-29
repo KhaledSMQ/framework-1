@@ -7,15 +7,13 @@
 // Description: Cluster configuration interface.
 // ============================================================================
 
-using Framework.Factory.Model.Config;
-using Framework.Factory.Patterns;
+using Framework.Data.Model;
+using Framework.Data.Patterns;
 
-namespace Framework.Factory.API.Interface.Config
+namespace Framework.Data.API.Interface
 {
-    public interface ICluster : IWrapperDataSet<Cluster>
+    public interface ICluster : IWrapperDataSet<DataCluster>
     {
-        Cluster GetByName(string name);
-
-        Cluster GetByType(string type);
+        DataCluster GetByName(string name);
     }
 }

@@ -7,23 +7,18 @@
 // Description: 
 // ============================================================================
 
-using Framework.Factory.API.Interface.Config;
-using Framework.Factory.Patterns;
+using Framework.Data.API.Interface;
+using Framework.Data.Model;
+using Framework.Data.Patterns;
 using System.Linq;
-using CONFIG = Framework.Factory.Model.Config;
 
-namespace Framework.Factory.API.Default.Config
+namespace Framework.Data.API.Default
 {
-    public class SrvModel : AWrapperDataSet<CONFIG.Model>, IModel
+    public class SrvCluster : AWrapperDataSet<DataCluster>, ICluster
     {
-        public CONFIG.Model GetByName(string name)
+        public DataCluster GetByName(string name)
         {
             return DataLayer.Queryable().Where(i => i.Name == name).FirstOrDefault();
-        }
-
-        public CONFIG.Model GetByType(string type)
-        {
-            return DataLayer.Queryable().Where(i => i.TypeName == type).FirstOrDefault();
         }
     }
 }

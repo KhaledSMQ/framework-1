@@ -64,17 +64,38 @@ namespace Framework.Data.Config
         }
     }
 
-    public class ClusterElement : BaseElement
-    { 
+    public class ClusterElement : BaseElementWithSettings
+    {
         //
-        // Settings
+        // CONTEXT
         //
 
-        [ConfigurationProperty(Property.SETTINGS, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(SettingElementCollection))]
-        public SettingElementCollection Settings
+        [ConfigurationProperty(Constants.CONTEXT)]
+        public ContextElement Context
         {
-            get { return (SettingElementCollection)this[Property.SETTINGS]; }
+            get { return (ContextElement)this[Constants.CONTEXT]; }
+        }
+
+        //
+        // ENTITIES
+        //
+
+        [ConfigurationProperty(Constants.ENTITIES, IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(EntityElementCollection))]
+        public EntityElementCollection Entities
+        {
+            get { return (EntityElementCollection)this[Constants.ENTITIES]; }
+        }
+
+        //
+        // MODELS
+        //
+
+        [ConfigurationProperty(Constants.MODELS, IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(ModelElementCollection))]
+        public ModelElementCollection Models
+        {
+            get { return (ModelElementCollection)this[Constants.MODELS]; }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: AWrapperSourceSingle
+// Name/Class: AWrapperDataObject
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
 // Company: Cybermap Lta.
@@ -8,9 +8,10 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
-using Framework.Data.Patterns;
+using Framework.Data.API.Interface;
+using Framework.Factory.Patterns;
 
-namespace Framework.Factory.Patterns
+namespace Framework.Data.Patterns
 {
     public abstract class AWrapperDataObject<TItem> : ACommon, IWrapperDataObject<TItem>
     {
@@ -38,7 +39,7 @@ namespace Framework.Factory.Patterns
             // Initialize the inner source layer.
             //
 
-            DataLayer = Ctx.Store.GetDataObject<TItem>(Src);
+            DataLayer = Scope.Hub.Get<IStore>().GetDataObject<TItem>(Src);
         }
 
         //

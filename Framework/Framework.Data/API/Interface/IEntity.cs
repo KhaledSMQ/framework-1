@@ -1,21 +1,21 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: ICnntext
+// Name/Class: IEntity
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
 // Company: Cybermap Lta.
 // Description: Entity configuration interface.
 // ============================================================================
 
-using Framework.Factory.Model.Config;
-using Framework.Factory.Patterns;
+using Framework.Data.Model;
+using Framework.Data.Patterns;
 
-namespace Framework.Factory.API.Interface.Config
+namespace Framework.Data.API.Interface
 {
-    public interface IContext : IWrapperDataSet<Context>
+    public interface IEntity : IWrapperDataSet<DataEntity>
     {
-        Context GetByName(string name);
+        DataEntity GetByName(string name);
 
-        Context GetByType(string type);
+        DataEntity GetByType(string type);
     }
 }

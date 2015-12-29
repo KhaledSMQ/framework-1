@@ -7,21 +7,21 @@
 // Description: 
 // ============================================================================
 
-using Framework.Factory.API.Interface.Config;
-using Framework.Factory.Model.Config;
-using Framework.Factory.Patterns;
+using Framework.Data.API.Interface;
+using Framework.Data.Model;
+using Framework.Data.Patterns;
 using System.Linq;
 
 namespace Framework.Factory.API.Default.Config
 {
-    public class SrvEntity : AWrapperDataSet<Entity>, IEntity
+    public class SrvModel : AWrapperDataSet<DataModel>, IModel
     {
-        public Entity GetByName(string name)
+        public DataModel GetByName(string name)
         {
             return DataLayer.Queryable().Where(i => i.Name == name).FirstOrDefault();
         }
 
-        public Entity GetByType(string type)
+        public DataModel GetByType(string type)
         {
             return DataLayer.Queryable().Where(i => i.TypeName == type).FirstOrDefault();
         }

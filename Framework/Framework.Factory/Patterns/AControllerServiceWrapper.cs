@@ -35,7 +35,7 @@ namespace Framework.Factory.Patterns
             // Service initialization.
             //
 
-            Srv = Ctx.Hub.Get<TSrv>();
+            Srv = Scope.Hub.Get<TSrv>();
         }
     }
 }

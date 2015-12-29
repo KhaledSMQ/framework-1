@@ -7,17 +7,22 @@
 // Description: 
 // ============================================================================
 
-using Framework.Factory.API.Interface.Config;
+using Framework.Data.Patterns;
+using Framework.Factory.API.Interface;
 using Framework.Factory.Model;
-using Framework.Factory.Model.Config;
-using Framework.Factory.Patterns;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Framework.Factory.API.Default.Config
 {
     public class SrvService : AWrapperDataSet<Service>, IService
     {
+        public override object Create(Service srv)
+        {
+            return DataLayer.Create(srv);
+        }
+
         public Service GetByName(string name)
         {
             return DataLayer.Queryable().Where(i => i.Name == name).FirstOrDefault();
@@ -30,7 +35,7 @@ namespace Framework.Factory.API.Default.Config
 
         public Service GetByType(string type)
         {
-            return DataLayer.Queryable().Where(i => i.Type == type).FirstOrDefault();
+            return DataLayer.Queryable().Where(i => i.TypeName == type).FirstOrDefault();
         }
     }
 }

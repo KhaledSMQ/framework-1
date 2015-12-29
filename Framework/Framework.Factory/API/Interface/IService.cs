@@ -7,14 +7,16 @@
 // Description: Service configuration interface.
 // ============================================================================
 
-using Framework.Factory.Model.Config;
+using Framework.Factory.Model;
 using Framework.Factory.Patterns;
 using System.Collections.Generic;
 
-namespace Framework.Factory.API.Interface.Config
+namespace Framework.Factory.API.Interface
 {
-    public interface IService : IWrapperDataSet<Service>
+    public interface IService : ICommon
     {
+        object Create(Service srv);
+
         Service GetByName(string name);
 
         IEnumerable<Service> GetByContract(string contract);

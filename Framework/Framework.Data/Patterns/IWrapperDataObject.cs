@@ -8,7 +8,9 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
-namespace Framework.Factory.Patterns
+using Framework.Factory.Patterns;
+
+namespace Framework.Data.Patterns
 {
     public interface IWrapperDataObject<TItem> : ICommon
     {

@@ -74,38 +74,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\Default\Config\SrvCluster.cs" />
-    <Compile Include="API\Default\Config\SrvContext.cs" />
-    <Compile Include="API\Default\Config\SrvEntity.cs" />
-    <Compile Include="API\Default\Config\SrvModel.cs" />
-    <Compile Include="API\Default\Config\SrvService.cs" />
-    <Compile Include="API\Interface\Config\ICluster.cs" />
-    <Compile Include="API\Interface\Config\IContext.cs" />
-    <Compile Include="API\Interface\Config\IModel.cs" />
-    <Compile Include="API\Interface\Config\IEntity.cs" />
-    <Compile Include="API\Interface\IStore.cs" />
-    <Compile Include="API\Interface\Config\IService.cs" />
-    <Compile Include="Model\Config\Context.cs" />
-    <Compile Include="Model\Config\Cluster.cs" />
-    <Compile Include="Model\Config\Entity.cs" />
-    <Compile Include="Model\Config\Model.cs" />
+    <Compile Include="API\Interface\IService.cs" />
     <Compile Include="Patterns\ACommon.cs" />
+    <Compile Include="Patterns\AControllerServiceWrapper.cs" />
     <Compile Include="Patterns\ICommon.cs" />
     <Compile Include="Patterns\IExecutionUnit.cs" />
     <Compile Include="API\Interface\IHub.cs" />
-    <Compile Include="Model\Config\Service.cs" />
-    <Compile Include="Patterns\AControllerServiceWrapper.cs" />
-    <Compile Include="Patterns\IScope.cs" />
+    <Compile Include="Model\Service.cs" />
+    <Compile Include="API\Interface\IScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Patterns\AWrapperDataSet.cs" />
-    <Compile Include="Patterns\AWrapperDataObject.cs" />
-    <Compile Include="Patterns\IWrapperDataSet.cs" />
-    <Compile Include="Patterns\IWrapperDataObject.cs" />
+    <Compile Include="API\Default\SrvHub.cs" />
     <Compile Include="Runtime\Manager.cs" />
-    <Compile Include="Runtime\Scope.cs" />
-    <Compile Include="API\Default\Hub.cs" />
+    <Compile Include="API\Default\SrvScope.cs" />
     <Compile Include="Patterns\AController.cs" />
-    <Compile Include="Config.cs" />
+    <Compile Include="Lib.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -119,10 +101,6 @@
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>
       <Name>Framework.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Data\Framework.Data.csproj">
-      <Project>{ec35466a-241c-4cbc-990c-c3695fd29a22}</Project>
-      <Name>Framework.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

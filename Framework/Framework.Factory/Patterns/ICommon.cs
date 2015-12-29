@@ -8,6 +8,7 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
+using Framework.Factory.API.Interface;
 
 namespace Framework.Factory.Patterns
 {
@@ -17,6 +18,6 @@ namespace Framework.Factory.Patterns
         // PROPERTIES
         //
 
-        IScope Ctx { get; set; }
+        IScope Scope { get; set; }
     }
 }

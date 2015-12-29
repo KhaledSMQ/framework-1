@@ -1,24 +1,21 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: IScope
+// Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
 // Company: Cybermap Lta.
 // Description: 
 // ============================================================================
 
-using Framework.Factory.API.Interface;
+using Framework.Data.Model;
+using Framework.Data.Patterns;
 
-namespace Framework.Factory.Patterns
+namespace Framework.Data.API.Interface
 {
-    public interface IScope
+    public interface IModel : IWrapperDataSet<DataModel>
     {
-        //
-        // PROPERTIES
-        //
+        DataModel GetByName(string name);
 
-        IHub Hub { get; set; }
-
-        IStore Store { get; set; }
+        DataModel GetByType(string type);
     }
 }

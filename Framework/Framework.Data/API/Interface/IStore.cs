@@ -11,7 +11,7 @@ using Framework.Core.Patterns;
 using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
 
-namespace Framework.Factory.API.Interface
+namespace Framework.Data.API.Interface
 {
     public interface IStore : ICommon
     {

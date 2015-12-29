@@ -9,20 +9,19 @@
 
 using Framework.Factory.API.Interface;
 using Framework.Factory.Model;
-using Framework.Factory.Model.Config;
 using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;
 
 namespace Framework.Factory.API.Default
 {
-    public class Hub : ACommon, IHub
+    public class SrvHub : ACommon, IHub
     {
         //
         // CONSTRUCTORS
         //
 
-        public Hub()
+        public SrvHub()
         {
             _Instances = new SortedDictionary<string, ICommon>();
         }
@@ -109,7 +108,7 @@ namespace Framework.Factory.API.Default
                     // Create service instance.
                     //
 
-                    service = Framework.Core.Reflection.Activator.CreateInstance<T>(config.Type);
+                    service = Core.Reflection.Activator.CreateInstance<T>(config.TypeName);
 
                     //
                     // Initialize the service.

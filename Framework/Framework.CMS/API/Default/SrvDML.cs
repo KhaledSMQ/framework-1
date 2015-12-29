@@ -8,6 +8,7 @@
 // ============================================================================
 
 using Framework.CMS.Api.Interface;
+using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;

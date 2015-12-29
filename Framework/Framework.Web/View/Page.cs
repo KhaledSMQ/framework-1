@@ -7,7 +7,7 @@
 // Description: Base page definition.
 // ============================================================================
 
-using Framework.Factory.Patterns;
+using Framework.Factory.API.Interface;
 using System;
 
 namespace Framework.Web.View
@@ -19,7 +19,7 @@ namespace Framework.Web.View
         // Control properties for subclasses.
         //
 
-        public IScope Ctx { get; protected set; }
+        public IScope Scope { get; protected set; }
 
         //
         // ONINIT
@@ -38,7 +38,7 @@ namespace Framework.Web.View
             // Get the context for the control.
             //
 
-            Ctx = Framework.Factory.Runtime.Manager.Get();
+            Scope = Factory.Runtime.Manager.Get();
         }
     }
 }

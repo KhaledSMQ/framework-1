@@ -7,6 +7,7 @@
 // Description: Base Api controller class.
 // ============================================================================
 
+using Framework.Factory.API.Interface;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 
@@ -19,7 +20,7 @@ namespace Framework.Factory.Patterns
         // Page properties for subclasses.
         //
 
-        public IScope Ctx { get; private set; }
+        public IScope Scope { get; private set; }
 
         //
         // CONSTRUCTORS

@@ -8,7 +8,6 @@
 // ============================================================================
 
 using Framework.Core.Extensions;
-using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
 using Framework.Data.Patterns;
 using System;
@@ -27,8 +26,6 @@ namespace Framework.Data.Model
         public string Name { get; set; }
 
         public string Description { get; set; }
-
-        public string TypeName { get; set; }
 
         public DataContext Context { get; set; }
 
@@ -63,7 +60,6 @@ namespace Framework.Data.Model
             ID = -1;
             Name = string.Empty;
             Description = string.Empty;
-            TypeName = string.Empty;
             Context = null;
             Entities = null;
             Models = null;

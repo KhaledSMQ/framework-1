@@ -30,35 +30,35 @@ namespace Framework.CMS.Api.Controllers
         [HttpPost]
         public IHttpActionResult Cluster_Create([FromBody] Cluster item)
         {
-            return Ok(Srv.Create<Cluster>(item, Ctx.Hub.Get<ICluster>()));
+            return Ok(Srv.Create<Cluster>(item, Scope.Hub.Get<ICluster>()));
         }
 
         [ActionName("cluster-get")]
         [HttpGet]
         public IHttpActionResult Cluster_Get(int id)
         {
-            return Ok(Srv.Get<Cluster>(from => from.Visible().ByID(id), Ctx.Hub.Get<ICluster>()));
+            return Ok(Srv.Get<Cluster>(from => from.Visible().ByID(id), Scope.Hub.Get<ICluster>()));
         }
 
         [ActionName("cluster-get-by-ref")]
         [HttpGet]
         public IHttpActionResult Cluster_GetByRef(string id)
         {
-            return Ok(Srv.Get<Cluster>(from => from.Visible().ByRef(id), Ctx.Hub.Get<ICluster>()));
+            return Ok(Srv.Get<Cluster>(from => from.Visible().ByRef(id), Scope.Hub.Get<ICluster>()));
         }
 
         [ActionName("cluster-list")]
         [HttpGet]
         public IHttpActionResult Cluster_List()
         {
-            return Ok(Srv.GetList<Cluster>(from => from.Visible(), Ctx.Hub.Get<ICluster>()));
+            return Ok(Srv.GetList<Cluster>(from => from.Visible(), Scope.Hub.Get<ICluster>()));
         }
 
         [ActionName("cluster-list-of-entities")]
         [HttpGet]
         public IHttpActionResult Cluster_ListOfEntities(string id)
         {
-            return Ok(Srv.GetList<Entity>(from => from.Visible().Include(item => item.Owner).Where(item => item.Owner.Ref == id), Ctx.Hub.Get<IEntity>()));
+            return Ok(Srv.GetList<Entity>(from => from.Visible().Include(item => item.Owner).Where(item => item.Owner.Ref == id), Scope.Hub.Get<IEntity>()));
         }
 
         //
@@ -69,7 +69,7 @@ namespace Framework.CMS.Api.Controllers
         [HttpPost]
         public IHttpActionResult Entity_Create([FromBody] Entity item)
         {
-            return Ok(Srv.Create<Entity>(item, Ctx.Hub.Get<IEntity>()));
+            return Ok(Srv.Create<Entity>(item, Scope.Hub.Get<IEntity>()));
         }
 
         [ActionName("entity-get")]
@@ -82,7 +82,7 @@ namespace Framework.CMS.Api.Controllers
                     .Include(e => e.Definition)
                     .Include(e => e.Views)
                     .Include(e => e.Schemas)
-                    .Include(e => e.Forms), Ctx.Hub.Get<IEntity>()));
+                    .Include(e => e.Forms), Scope.Hub.Get<IEntity>()));
         }
 
         [ActionName("entity-get-by-ref")]
@@ -95,21 +95,21 @@ namespace Framework.CMS.Api.Controllers
                     .Include(e => e.Definition)
                     .Include(e => e.Views)
                     .Include(e => e.Schemas)
-                    .Include(e => e.Forms), Ctx.Hub.Get<IEntity>()));
+                    .Include(e => e.Forms), Scope.Hub.Get<IEntity>()));
         }
 
         [ActionName("entity-list")]
         [HttpGet]
         public IHttpActionResult Entity_List()
         {
-            return Ok(Srv.GetList<Entity>(from => from.Visible(), Ctx.Hub.Get<IEntity>()));
+            return Ok(Srv.GetList<Entity>(from => from.Visible(), Scope.Hub.Get<IEntity>()));
         }
 
         [ActionName("entity-list-by-cluster")]
         [HttpGet]
         public IHttpActionResult Entity_ListByCluster(string id)
         {
-            return Ok(Srv.GetList<Entity>(from => from.Visible().Include(item => item.Owner).Where(item => item.Owner.Ref == id), Ctx.Hub.Get<IEntity>()));
+            return Ok(Srv.GetList<Entity>(from => from.Visible().Include(item => item.Owner).Where(item => item.Owner.Ref == id), Scope.Hub.Get<IEntity>()));
         }
 
         //
@@ -120,28 +120,28 @@ namespace Framework.CMS.Api.Controllers
         [HttpPost]
         public IHttpActionResult View_Create([FromBody] View item)
         {
-            return Ok(Srv.Create<View>(item, Ctx.Hub.Get<IView>()));
+            return Ok(Srv.Create<View>(item, Scope.Hub.Get<IView>()));
         }
 
         [ActionName("view-get")]
         [HttpGet]
         public IHttpActionResult View_Get(int id)
         {
-            return Ok(Srv.Get<View>(from => from.Visible().ByID(id), Ctx.Hub.Get<IView>()));
+            return Ok(Srv.Get<View>(from => from.Visible().ByID(id), Scope.Hub.Get<IView>()));
         }
 
         [ActionName("view-get-by-ref")]
         [HttpGet]
         public IHttpActionResult View_GetByRef(string id)
         {
-            return Ok(Srv.Get<View>(from => from.Visible().ByRef(id), Ctx.Hub.Get<IView>()));
+            return Ok(Srv.Get<View>(from => from.Visible().ByRef(id), Scope.Hub.Get<IView>()));
         }
 
         [ActionName("view-list")]
         [HttpGet]
         public IHttpActionResult View_List()
         {
-            return Ok(Srv.GetList<View>(from => from.Visible(), Ctx.Hub.Get<IView>()));
+            return Ok(Srv.GetList<View>(from => from.Visible(), Scope.Hub.Get<IView>()));
         }
 
         [ActionName("view-list-by-entity")]
@@ -151,7 +151,7 @@ namespace Framework.CMS.Api.Controllers
             return Ok(Srv.GetList<Entity>(from =>
                  from.Visible()
                 .Include(item => item.Owner)
-                .Where(item => item.Owner.Ref == id), Ctx.Hub.Get<IEntity>()));
+                .Where(item => item.Owner.Ref == id), Scope.Hub.Get<IEntity>()));
         }
 
         //
@@ -162,35 +162,35 @@ namespace Framework.CMS.Api.Controllers
         [HttpPost]
         public IHttpActionResult ContentType_Create([FromBody] ContentType item)
         {
-            return Ok(Srv.Create<ContentType>(item, Ctx.Hub.Get<IContentType>()));
+            return Ok(Srv.Create<ContentType>(item, Scope.Hub.Get<IContentType>()));
         }
 
         [ActionName("ctype-get")]
         [HttpGet]
         public IHttpActionResult ContentType_Get(int id)
         {
-            return Ok(Srv.Get<ContentType>(from => from.Visible().ByID(id), Ctx.Hub.Get<IContentType>()));
+            return Ok(Srv.Get<ContentType>(from => from.Visible().ByID(id), Scope.Hub.Get<IContentType>()));
         }
 
         [ActionName("ctype-get-by-ref")]
         [HttpGet]
         public IHttpActionResult ContentType_GetByRef(string id)
         {
-            return Ok(Srv.Get<View>(from => from.Visible().ByRef(id), Ctx.Hub.Get<IView>()));
+            return Ok(Srv.Get<View>(from => from.Visible().ByRef(id), Scope.Hub.Get<IView>()));
         }
 
         [ActionName("ctype-list")]
         [HttpGet]
         public IHttpActionResult ContentType_List()
         {
-            return Ok(Srv.GetList<ContentType>(from => from.Visible(), Ctx.Hub.Get<IContentType>()));
+            return Ok(Srv.GetList<ContentType>(from => from.Visible(), Scope.Hub.Get<IContentType>()));
         }
 
         [ActionName("ctype-list-by-cluster")]
         [HttpGet]
         public IHttpActionResult ContentType_ListByCluster(string id)
         {
-            return Ok(Srv.GetList<ContentType>(from => from.Visible().Include(item => item.Owner).Where(item => item.Owner.Ref == id), Ctx.Hub.Get<IContentType>()));
+            return Ok(Srv.GetList<ContentType>(from => from.Visible().Include(item => item.Owner).Where(item => item.Owner.Ref == id), Scope.Hub.Get<IContentType>()));
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Configuration for Settings.
+// Name/Class: Configuration for Models.
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
 // Company: Cybermap Lta.
@@ -11,13 +11,13 @@ using System.Configuration;
 
 namespace Framework.Data.Config
 {
-    public class SettingElementCollection : ConfigurationElementCollection
+    public class ModelElementCollection : ConfigurationElementCollection
     {
-        public SettingElementCollection() { }
+        public ModelElementCollection() { }
 
-        public SettingElement this[int index]
+        public ModelElement this[int index]
         {
-            get { return (SettingElement)BaseGet(index); }
+            get { return (ModelElement)BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -28,7 +28,7 @@ namespace Framework.Data.Config
             }
         }
 
-        public void Add(SettingElement serviceConfig)
+        public void Add(ModelElement serviceConfig)
         {
             BaseAdd(serviceConfig);
         }
@@ -40,15 +40,15 @@ namespace Framework.Data.Config
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new SettingElement();
+            return new ModelElement();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((SettingElement)element).Name;
+            return ((ModelElement)element).Name;
         }
 
-        public void Remove(SettingElement serviceConfig)
+        public void Remove(ModelElement serviceConfig)
         {
             BaseRemove(serviceConfig.Name);
         }
@@ -64,17 +64,5 @@ namespace Framework.Data.Config
         }
     }
 
-    public class SettingElement : BaseElementWithType {
-
-        //
-        // Value
-        //
-
-        [ConfigurationProperty(Constants.VALUE, DefaultValue = "", IsRequired = true)]
-        public string Value
-        {
-            get { return (string)this[Constants.VALUE]; }
-            set { this[Constants.VALUE] = value; }
-        }
-    }
+    public class ModelElement : BaseElementWithTypeAndSettings { }
 }

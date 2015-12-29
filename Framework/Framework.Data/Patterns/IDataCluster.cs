@@ -16,7 +16,6 @@ namespace Framework.Data.Patterns
         IID<int>, 
         IName<string>, 
         IDescription<string>, 
-        ITypeName<string>, 
         IAuditable<string>,  
         IConfigList<TSetting>
         where TContext : IDataContext<TSetting>

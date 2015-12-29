@@ -9,7 +9,7 @@
 
 using Framework.CMS.Api.Interface;
 using Framework.CMS.Model.Views;
-using Framework.Factory.Patterns;
+using Framework.Data.Patterns;
 
 namespace Framework.CMS.Api.Default
 {

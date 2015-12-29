@@ -12,7 +12,7 @@ using System.Reflection;
 
 namespace Framework.Factory
 {
-    public static class Config
+    public static class Lib
     {
         // 
         // Default Xml namespace.

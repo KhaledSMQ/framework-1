@@ -9,11 +9,12 @@
 
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
-using Framework.Data.Patterns;
+using Framework.Data.API.Interface;
+using Framework.Factory.Patterns;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Framework.Factory.Patterns
+namespace Framework.Data.Patterns
 {
     public abstract class AWrapperDataSet<TItem> : ACommon, IWrapperDataSet<TItem>
     {
@@ -41,7 +42,7 @@ namespace Framework.Factory.Patterns
             // Initialize the inner source layer.
             //
 
-            DataLayer = Ctx.Store.GetDataSet<TItem>(Src);
+            DataLayer = Scope.Hub.Get<IStore>().GetDataSet<TItem>(Src);
         }
 
         //

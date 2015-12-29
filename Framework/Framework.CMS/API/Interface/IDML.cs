@@ -7,7 +7,7 @@
 // Description: (DML) Data manipulation layer interface.
 // ============================================================================
 
-using Framework.Core.Patterns;
+using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;

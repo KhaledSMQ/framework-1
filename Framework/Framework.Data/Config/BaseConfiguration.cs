@@ -14,36 +14,67 @@ namespace Framework.Data.Config
     public class BaseElement : ConfigurationElement
     { 
         //
-        // Name
+        // NAME
         //
 
-        [ConfigurationProperty(Property.NAME, DefaultValue = "", IsRequired = true)]
+        [ConfigurationProperty(Constants.NAME, DefaultValue = "", IsRequired = true)]
         public string Name
         {
-            get { return (string)this[Property.NAME]; }
-            set { this[Property.NAME] = value; }
+            get { return (string)this[Constants.NAME]; }
+            set { this[Constants.NAME] = value; }
         }
 
         //
-        // Description
+        // DESCRIPTION
         //
 
-        [ConfigurationProperty(Property.DESCRIPTION, DefaultValue = "", IsRequired = true)]
+        [ConfigurationProperty(Constants.DESCRIPTION, DefaultValue = "", IsRequired = false)]
         public string Description
         {
-            get { return (string)this[Property.DESCRIPTION]; }
-            set { this[Property.DESCRIPTION] = value; }
-        }
+            get { return (string)this[Constants.DESCRIPTION]; }
+            set { this[Constants.DESCRIPTION] = value; }
+        }  
+    }
 
+    public class BaseElementWithType : BaseElement
+    {
         //
-        // Type Name
+        // TYPE-NAME
         //
 
-        [ConfigurationProperty(Property.TYPE, DefaultValue = "", IsRequired = true)]
+        [ConfigurationProperty(Constants.TYPE, DefaultValue = "", IsRequired = true)]
         public string Type
         {
-            get { return (string)this[Property.TYPE]; }
-            set { this[Property.TYPE] = value; }
+            get { return (string)this[Constants.TYPE]; }
+            set { this[Constants.TYPE] = value; }
+        }
+    }
+
+    public class BaseElementWithSettings : BaseElement
+    {
+        //
+        // SETTINGS
+        //
+
+        [ConfigurationProperty(Constants.SETTINGS, IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(SettingElementCollection))]
+        public SettingElementCollection Settings
+        {
+            get { return (SettingElementCollection)this[Constants.SETTINGS]; }
+        }
+    }
+
+    public class BaseElementWithTypeAndSettings : BaseElementWithType
+    {
+        //
+        // SETTINGS
+        //
+
+        [ConfigurationProperty(Constants.SETTINGS, IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(SettingElementCollection))]
+        public SettingElementCollection Settings
+        {
+            get { return (SettingElementCollection)this[Constants.SETTINGS]; }
         }
     }
 }
