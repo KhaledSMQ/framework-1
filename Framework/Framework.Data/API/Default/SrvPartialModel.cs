@@ -14,14 +14,14 @@ using System.Linq;
 
 namespace Framework.Factory.API.Default.Config
 {
-    public class SrvModel : AWrapperDataSet<DataModel>, IModel
+    public class SrvPartialModel : AWrapperDataSet<PartialModel>, IPartialModel
     {
-        public DataModel GetByName(string name)
+        public PartialModel GetByName(string name)
         {
             return DataLayer.Queryable().Where(i => i.Name == name).FirstOrDefault();
         }
 
-        public DataModel GetByType(string type)
+        public PartialModel GetByType(string type)
         {
             return DataLayer.Queryable().Where(i => i.TypeName == type).FirstOrDefault();
         }

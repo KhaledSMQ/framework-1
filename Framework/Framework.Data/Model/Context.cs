@@ -8,14 +8,20 @@
 // ============================================================================
 
 using Framework.Core.Extensions;
+using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
-using Framework.Data.Patterns;
 using System;
 using System.Collections.Generic;
 
 namespace Framework.Data.Model
 {
-    public class DataCluster : IDataCluster<DataContext, DataModel, DataEntity, Setting>
+    public class Context : 
+        IID<int>,
+        IName<string>,
+        IDescription<string>,
+        ITypeName<string>,
+        IConfigList<Setting>,
+        IAuditable<string>
     {
         //
         // Info
@@ -27,11 +33,7 @@ namespace Framework.Data.Model
 
         public string Description { get; set; }
 
-        public DataContext Context { get; set; }
-
-        public ICollection<DataEntity> Entities { get; set; }
-
-        public ICollection<DataModel> Models { get; set; }
+        public string TypeName { get; set; }
 
         public ICollection<Setting> Settings { get; set; }
 
@@ -51,7 +53,7 @@ namespace Framework.Data.Model
         // CONSTRUCTORS
         // 
 
-        public DataCluster()
+        public Context()
         {
             //
             // Info
@@ -60,9 +62,6 @@ namespace Framework.Data.Model
             ID = -1;
             Name = string.Empty;
             Description = string.Empty;
-            Context = null;
-            Entities = null;
-            Models = null;
             Settings = null;
 
             //

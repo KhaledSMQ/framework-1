@@ -21,7 +21,7 @@ namespace Framework.Data.Patterns
 
         public IConfigMap Src { get; set; }
 
-        protected IProviderDataObject<TItem> DataLayer { get; set; }
+        protected IDataObject<TItem> DataLayer { get; set; }
 
         //
         // INIT

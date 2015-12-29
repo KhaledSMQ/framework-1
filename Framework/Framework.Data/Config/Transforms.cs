@@ -19,9 +19,9 @@ namespace Framework.Data.Config
         // DATA-CLUSTER
         //
 
-        public static ICollection<DataCluster> ToDataCluster(this ClusterElementCollection collection)
+        public static ICollection<Cluster> ToDataCluster(this ClusterElementCollection collection)
         {
-            List<DataCluster> dataClusterCollection = new List<DataCluster>();
+            List<Cluster> dataClusterCollection = new List<Cluster>();
             if (null != collection)
             {
                 foreach (ClusterElement clusterElm in collection)
@@ -32,9 +32,9 @@ namespace Framework.Data.Config
             return dataClusterCollection;
         }
 
-        public static DataCluster ToDataCluster(this ClusterElement clusterElm)
+        public static Cluster ToDataCluster(this ClusterElement clusterElm)
         {
-            DataCluster dataCluster = new DataCluster();
+            Cluster dataCluster = new Cluster();
             dataCluster.Name = clusterElm.Name;
             dataCluster.Description = clusterElm.Description;
             dataCluster.Context = ToDataContext(clusterElm.Context);
@@ -48,12 +48,12 @@ namespace Framework.Data.Config
         // DATA-CONTEXT
         //
 
-        public static DataContext ToDataContext(this ContextElement contextElm)
+        public static Context ToDataContext(this ContextElement contextElm)
         {
-            DataContext dataContext = null;
+            Context dataContext = null;
             if (null != contextElm)
             {
-                dataContext = new DataContext();
+                dataContext = new Context();
                 dataContext.Name = contextElm.Name;
                 dataContext.Description = contextElm.Description;
                 dataContext.TypeName = contextElm.Type;
@@ -66,9 +66,9 @@ namespace Framework.Data.Config
         // DATA-ENTITY
         //
 
-        public static ICollection<DataEntity> ToDataEntity(this EntityElementCollection collection)
+        public static ICollection<Entity> ToDataEntity(this EntityElementCollection collection)
         {
-            List<DataEntity> dataEntityCollection = new List<DataEntity>();
+            List<Entity> dataEntityCollection = new List<Entity>();
             if (null != collection)
             {
                 foreach (EntityElement entityElm in collection)
@@ -79,9 +79,9 @@ namespace Framework.Data.Config
             return dataEntityCollection;
         }
 
-        public static DataEntity ToDataEntity(this EntityElement entityElm)
+        public static Entity ToDataEntity(this EntityElement entityElm)
         {
-            DataEntity dataEntity = new DataEntity();
+            Entity dataEntity = new Entity();
             dataEntity.Name = entityElm.Name;
             dataEntity.Description = entityElm.Description;
             dataEntity.TypeName = entityElm.Type;
@@ -93,9 +93,9 @@ namespace Framework.Data.Config
         // DATA-MODELS
         //
 
-        public static ICollection<DataModel> ToDataModel(this ModelElementCollection collection)
+        public static ICollection<PartialModel> ToDataModel(this ModelElementCollection collection)
         {
-            List<DataModel> dataModelCollection = new List<DataModel>();
+            List<PartialModel> dataModelCollection = new List<PartialModel>();
             if (null != collection)
             {
                 foreach (ModelElement entityElm in collection)
@@ -106,9 +106,9 @@ namespace Framework.Data.Config
             return dataModelCollection;
         }
 
-        public static DataModel ToDataModel(this ModelElement entityElm)
+        public static PartialModel ToDataModel(this ModelElement entityElm)
         {
-            DataModel dataModel = new DataModel();
+            PartialModel dataModel = new PartialModel();
             dataModel.Name = entityElm.Name;
             dataModel.Description = entityElm.Description;
             dataModel.TypeName = entityElm.Type;

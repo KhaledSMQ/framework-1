@@ -14,9 +14,9 @@ using System.Linq;
 
 namespace Framework.Data.API.Default
 {
-    public class SrvCluster : AWrapperDataSet<DataCluster>, ICluster
+    public class SrvCluster : AWrapperDataSet<Cluster>, ICluster
     {
-        public DataCluster GetByName(string name)
+        public Cluster GetByName(string name)
         {
             return DataLayer.Queryable().Where(i => i.Name == name).FirstOrDefault();
         }

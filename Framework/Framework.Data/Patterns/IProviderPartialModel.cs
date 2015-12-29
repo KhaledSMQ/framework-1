@@ -12,12 +12,12 @@ using System;
 
 namespace Framework.Data.Patterns
 {
-    public interface IProviderDataModel : IProvider
+    public interface IProviderPartialModel : IProvider
     {
         //
         // MODEL-BUILD-HANDLER
         //
 
-        void OnModelCreate(object context, IConfigMap config);
+        void OnModelCreating(object context, IConfigMap config);
     }
 }

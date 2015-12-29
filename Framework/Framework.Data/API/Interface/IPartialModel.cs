@@ -12,10 +12,10 @@ using Framework.Data.Patterns;
 
 namespace Framework.Data.API.Interface
 {
-    public interface IModel : IWrapperDataSet<DataModel>
+    public interface IPartialModel : IWrapperDataSet<PartialModel>
     {
-        DataModel GetByName(string name);
+        PartialModel GetByName(string name);
 
-        DataModel GetByType(string type);
+        PartialModel GetByType(string type);
     }
 }

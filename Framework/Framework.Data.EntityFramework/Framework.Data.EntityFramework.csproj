@@ -80,6 +80,7 @@
     <Folder Include="API\Interface\" />
     <Folder Include="Data\" />
     <Folder Include="Model\" />
+    <Folder Include="Providers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">

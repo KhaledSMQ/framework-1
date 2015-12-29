@@ -20,7 +20,7 @@ namespace Framework.Data.Runtime
         // related specification is stored.
         //
 
-        public static DataStore Store { get; private set; }
+        public static Store Store { get; private set; }
 
         //
         // CONSTRUCTORS
@@ -49,7 +49,7 @@ namespace Framework.Data.Runtime
 
             if (null == Store)
             {
-                Store = new DataStore();
+                Store = new Store();
             }
 
             //

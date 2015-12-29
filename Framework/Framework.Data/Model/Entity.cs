@@ -1,10 +1,10 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: 
+// Name/Class: Service
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 03/Aug/2015
 // Company: Cybermap Lta.
-// Description: 
+// Description: Service specification class.
 // ============================================================================
 
 using Framework.Core.Extensions;
@@ -16,7 +16,13 @@ using System.Collections.Generic;
 
 namespace Framework.Data.Model
 {
-    public class DataModel : IDataModel<Setting>
+    public class Entity :
+        IID<int>,
+        IName<string>,
+        IDescription<string>,
+        ITypeName<string>,
+        IConfigList<Setting>,
+        IAuditable<string>
     {
         //
         // PROPERTIES
@@ -48,12 +54,8 @@ namespace Framework.Data.Model
         // CONSTRUCTORS
         // 
 
-        public DataModel()
+        public Entity()
         {
-            //
-            // Info
-            //
-
             ID = -1;
             Name = string.Empty;
             Description = string.Empty;

@@ -14,14 +14,14 @@ using System.Linq;
 
 namespace Framework.Data.API.Default
 {
-    public class SrvEntity : AWrapperDataSet<DataEntity>, IEntity
+    public class SrvEntity : AWrapperDataSet<Entity>, IEntity
     {
-        public DataEntity GetByName(string name)
+        public Entity GetByName(string name)
         {
             return DataLayer.Queryable().Where(i => i.Name == name).FirstOrDefault();
         }
 
-        public DataEntity GetByType(string type)
+        public Entity GetByType(string type)
         {
             return DataLayer.Queryable().Where(i => i.TypeName == type).FirstOrDefault();
         }

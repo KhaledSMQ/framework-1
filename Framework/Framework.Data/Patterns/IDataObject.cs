@@ -11,7 +11,7 @@ using Framework.Core.Patterns;
 
 namespace Framework.Data.Patterns
 {
-    public interface IProviderDataObject<TItem> : IProvider
+    public interface IDataObject<TItem> : IProvider
     {
         //
         // Set the object value.

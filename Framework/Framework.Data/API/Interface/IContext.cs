@@ -12,10 +12,10 @@ using Framework.Data.Patterns;
 
 namespace Framework.Data.API.Interface
 {
-    public interface IContext : IWrapperDataSet<DataContext>
+    public interface IContext : IWrapperDataSet<Context>
     {
-        DataContext GetByName(string name);
+        Context GetByName(string name);
 
-        DataContext GetByType(string type);
+        Context GetByType(string type);
     }
 }

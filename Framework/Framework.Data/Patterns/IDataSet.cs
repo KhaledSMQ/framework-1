@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace Framework.Data.Patterns
 {
-    public interface IProviderDataSet<TItem> : IProvider
+    public interface IDataSet<TItem> : IProvider
     {
         //
         // CREATE

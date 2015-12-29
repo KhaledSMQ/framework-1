@@ -8,6 +8,7 @@
 // ============================================================================
 
 using Framework.Core.Extensions;
+using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
 using Framework.Data.Patterns;
 using System;
@@ -15,7 +16,12 @@ using System.Collections.Generic;
 
 namespace Framework.Data.Model
 {
-    public class DataContext : IDataContext<Setting>
+    public class Cluster : 
+        IID<int>,
+        IName<string>,
+        IDescription<string>,
+        IAuditable<string>,
+        IConfigList<Setting>
     {
         //
         // Info
@@ -27,7 +33,11 @@ namespace Framework.Data.Model
 
         public string Description { get; set; }
 
-        public string TypeName { get; set; }
+        public Context Context { get; set; }
+
+        public ICollection<Entity> Entities { get; set; }
+
+        public ICollection<PartialModel> Models { get; set; }
 
         public ICollection<Setting> Settings { get; set; }
 
@@ -47,7 +57,7 @@ namespace Framework.Data.Model
         // CONSTRUCTORS
         // 
 
-        public DataContext()
+        public Cluster()
         {
             //
             // Info
@@ -56,6 +66,9 @@ namespace Framework.Data.Model
             ID = -1;
             Name = string.Empty;
             Description = string.Empty;
+            Context = null;
+            Entities = null;
+            Models = null;
             Settings = null;
 
             //

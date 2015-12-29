@@ -13,13 +13,13 @@ using System.Collections.Generic;
 
 namespace Framework.Data.Model
 {
-    public class DataStore : IDataStore<DataCluster, DataContext, DataModel, DataEntity, Setting>
+    public class Store 
     {
         //
         // PROPERTIES
         //
 
-        public ICollection<DataCluster> Clusters { get; set; }
+        public ICollection<Cluster> Clusters { get; set; }
 
         public ICollection<Setting> Settings { get; set; }
 
@@ -27,7 +27,7 @@ namespace Framework.Data.Model
         // CONSTRUCTORS
         // 
 
-        public DataStore()
+        public Store()
         {
             Clusters = null;
             Settings = null;

@@ -15,12 +15,12 @@ namespace Framework.Data.API.Interface
 {
     public interface IStore : ICommon
     {
-        IProviderDataSet<T> GetDataSet<T>();
+        IDataSet<T> GetDataSet<T>();
 
-        IProviderDataSet<T> GetDataSet<T>(IConfigMap cfg);
+        IDataSet<T> GetDataSet<T>(IConfigMap cfg);
 
-        IProviderDataObject<T> GetDataObject<T>();
+        IDataObject<T> GetDataObject<T>();
 
-        IProviderDataObject<T> GetDataObject<T>(IConfigMap cfg);
+        IDataObject<T> GetDataObject<T>(IConfigMap cfg);
     }
 }

@@ -12,7 +12,7 @@ using System;
 
 namespace Framework.Data.Patterns
 {
-    public interface IProviderDataContext : IProvider
+    public interface IProviderContext : IProvider
     {
         //
         // DATA-SOURCE-REGISTRY
@@ -50,18 +50,18 @@ namespace Framework.Data.Patterns
         // DATA-SOURCE-FACTORIES
         //
 
-        IProviderDataSet<T> GetDataSet<T>();
+        IDataSet<T> GetDataSet<T>();
 
-        IProviderDataSet<T> GetDataSet<T>(IConfigMap cfg);
+        IDataSet<T> GetDataSet<T>(IConfigMap cfg);
 
-        IProviderDataObject<T> GetDataObject<T>();
+        IDataObject<T> GetDataObject<T>();
 
-        IProviderDataObject<T> GetDataObject<T>(IConfigMap cfg);
+        IDataObject<T> GetDataObject<T>(IConfigMap cfg);
 
         //
         // Model create handler.
         //
 
-        void OnModelBuild(object context);
+        void OnModelCreating(object context);
     }
 }
