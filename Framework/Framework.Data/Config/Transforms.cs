@@ -16,7 +16,7 @@ namespace Framework.Data.Config
     public static class Transforms
     {       
         //
-        // DATA-CLUSTER
+        // CLUSTERS
         //
 
         public static ICollection<Cluster> ToDataCluster(this ClusterElementCollection collection)
@@ -45,7 +45,7 @@ namespace Framework.Data.Config
         }
 
         //
-        // DATA-CONTEXT
+        // CONTEXT
         //
 
         public static Context ToDataContext(this ContextElement contextElm)
@@ -63,7 +63,7 @@ namespace Framework.Data.Config
         }
 
         //
-        // DATA-ENTITY
+        // ENTITY
         //
 
         public static ICollection<Entity> ToDataEntity(this EntityElementCollection collection)
@@ -90,7 +90,7 @@ namespace Framework.Data.Config
         }
 
         //
-        // DATA-MODELS
+        // PARTIAL-MODELS
         //
 
         public static ICollection<PartialModel> ToDataModel(this ModelElementCollection collection)
@@ -117,7 +117,7 @@ namespace Framework.Data.Config
         }
 
         //
-        // SETTING
+        // SETTINGS
         //
 
         public static ICollection<Setting> ToSetting(this SettingElementCollection collection)
