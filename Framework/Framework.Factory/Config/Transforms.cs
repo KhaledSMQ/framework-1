@@ -14,14 +14,28 @@ using System.Collections.Generic;
 namespace Framework.Factory.Config
 {
     public static class Transforms
-    {       
+    {
         //
-        // SERVICE
+        // SERVICES
         //
+
+        public static IEnumerable<ServiceEntry> ToService(this ServiceElementCollection collection)
+        {
+            List<ServiceEntry> coll = new List<ServiceEntry>();
+            if (null != collection)
+            {
+                foreach (ServiceElement elm in collection)
+                {
+                    coll.Add(ToService(elm));
+                }
+            }
+            return coll;
+        }
 
         public static ServiceEntry ToService(this ServiceElement serviceElm)
         {
             ServiceEntry service = new ServiceEntry();
+            service.Unique = serviceElm.Unique;
             service.Name = serviceElm.Name;
             service.Description = serviceElm.Description;
             service.Contract = serviceElm.Contract;

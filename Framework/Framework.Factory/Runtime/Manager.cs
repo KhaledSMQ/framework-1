@@ -7,11 +7,16 @@
 // Description: Runtime context implementation.
 // ============================================================================
 
+using Framework.Core.Collections.Specialized;
+using Framework.Core.Patterns;
+using Framework.Core.Types.Specialized;
 using Framework.Factory.API.Interface;
 using Framework.Factory.Config;
 using Framework.Factory.Model;
 using Framework.Factory.Patterns;
 using Owin;
+using System.Collections.Generic;
+using Framework.Core.Extensions;
 
 namespace Framework.Factory.Runtime
 {
@@ -21,17 +26,7 @@ namespace Framework.Factory.Runtime
         // PROPERTIES
         //
 
-        public static ServiceEntry HubConfig { get; private set; }
-
-        public static ServiceEntry EntryConfig { get; private set; }
-
-        public static ServiceEntry ScopeConfig { get; private set; }
-
-        public static IHub Hub { get { return __GetCoreService<IHub>(__Hub, HubConfig); } }
-
-        public static IServiceEntry Entry { get { return __GetCoreService<IServiceEntry>(__Entry, EntryConfig); } }
-
-        public static IScope Scope { get { return __GetCoreService<IScope>(__Scope, ScopeConfig); } }
+        public static IHub Hub { get { return __Hub; } }
 
         //
         // CONSTRUCTORS
@@ -49,16 +44,7 @@ namespace Framework.Factory.Runtime
             // Load base configuration.
             //
 
-            LoadConfig();
-
-            //
-            // Startup the service hub.
-            //
-
-            //
-            // Initialize the service entry.
-            //
-
+            LoadConfig();       
         }
 
         //
@@ -74,33 +60,36 @@ namespace Framework.Factory.Runtime
             ManagerConfiguration config = (ManagerConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
 
             //
-            // Transform it.
-            // Base services are now in memory.
+            // Load configuration for the service hub.
+            // If this is not found then no frameowrk exists.
+            // This class will be the heart of the framework services.
+            //            
+
+            __HubEntry = Transforms.ToService(config.Hub);
+            __CoreServices = Transforms.ToService(config.Services);
+
+            //
+            // Instantiate the hub service.
+            // Load the hub service entry into the hub... :-)
+            // 
+
+            __HubEntry.Unique = true;
+            __Hub = Core.Reflection.Activator.CreateGenericInstance<IHub>(__HubEntry.TypeName);
+            __Hub.Load(__HubEntry);
+
+            //
+            // Load core services into hub.
             //
 
-            HubConfig = Transforms.ToService(config.Hub);
-            ScopeConfig = Transforms.ToService(config.Scope);
-            EntryConfig = Transforms.ToService(config.Entry);
+            __Hub.Load(__CoreServices);
         }
 
         //
-        // HELPERS for core services.
-        //
-
-        private static T __GetCoreService<T>(T memValue, ServiceEntry config) where T : ICommon
-        {
-            T output = default(T);
-
-            if (null != memValue)
-            {
-                return memValue;
-            }
-
-            return output;
-        }
+        // HELPERS 
+        //     
 
         private static IHub __Hub = null;
-        private static IServiceEntry __Entry = null;
-        private static IScope __Scope = null;
+        private static ServiceEntry __HubEntry = null;
+        private static IEnumerable<ServiceEntry> __CoreServices = null;
     }
 }

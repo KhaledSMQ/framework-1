@@ -15,6 +15,22 @@ namespace Framework.Data.API.Interface
 {
     public interface IStore : ICommon
     {
+        //
+        // Data Ecosystem Services.
+        //
+
+        ICluster Clusters { get; set; }
+
+        IContext Contexts { get; set; }
+
+        IEntity Entities { get; set; }
+
+        IPartialModel Models { get; set; }
+
+        //
+        // Data Set/Object CRUD layers.
+        //
+
         IDataSet<T> GetDataSet<T>();
 
         IDataSet<T> GetDataSet<T>(IConfigMap cfg);

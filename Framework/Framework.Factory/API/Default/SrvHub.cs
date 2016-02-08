@@ -10,83 +10,58 @@
 using Framework.Factory.API.Interface;
 using Framework.Factory.Model;
 using Framework.Factory.Patterns;
-using System;
+using System.Linq;
 using System.Collections.Generic;
+using Framework.Core.Extensions;
 
 namespace Framework.Factory.API.Default
 {
     public class SrvHub : ACommon, IHub
     {
-        //
-        // CONSTRUCTORS
-        //
-
         public SrvHub()
         {
             _Instances = new SortedDictionary<string, ICommon>();
+            _ByName = new SortedDictionary<string, ServiceEntry>();
+            _ByTypeName = new SortedDictionary<string, ServiceEntry>();
+            _ByContract = new SortedDictionary<string, IList<ServiceEntry>>();
         }
 
-        //
-        // GET SERVICE METHOD
-        // Create Instance for Service.
-        // @type (T) Is the full type for service.
-        //
-
-        public T Get<T>() where T : ICommon
+        public T GetUnique<T>() where T : ICommon
         {
-            //
-            // Get the input type full name.
-            //
-
-            string fullTypeName = typeof(T).FullName;
-
-            //
-            // Based on the type full name, fetch the service configuration.
-            //
-
-            ServiceEntry service = null;
-
-            //
-            // Return the service instance.
-            //
-
-            return Get<T>(service);
+            return GetByContract<T>().FirstOrDefault();
         }
 
-        //
-        // GET SERVICE METHOD
-        // Create Instance for Service.
-        // @key Is the name of the service as specified in application settings.
-        //
-
-        private T Get<T>(string key) where T : ICommon
+        public T GetByName<T>(string name) where T : ICommon
         {
-            //
-            // Based on the key argument, fetch the object instane for the service. 
-            // First check the key argument.
-            //
-
-            if (string.IsNullOrWhiteSpace(key))
+            if (!_ByName.ContainsKey(name))
             {
-                throw new Exception(string.Format("{0}:{1} key argument is null or empty, please specify a valid value!", "", "ServiceLayer"));
+                Load(_Entries.GetByName(name));
             }
 
-            //
-            // Get the service configuration object.
-            //            
-
-            ServiceEntry cfg = null;
-
-            //
-            // Instantiate it.
-            //
-
-            return Get<T>(cfg);
+            return Get<T>(_ByName[name]);
         }
 
-        //
-        // GET SERVICE METHOD
-        //
+        public T GetByTypeName<T>(string typeName) where T : ICommon
+        {
+            if (!_ByTypeName.ContainsKey(typeName))
+            {
+                Load(_Entries.GetByTypeName(typeName));
+            }
+
+            return Get<T>(_ByTypeName[typeName]);
+        }
+
+        public IEnumerable<T> GetByContract<T>() where T : ICommon
+        {
+            string contractTypeName = typeof(T).FullName;
+
+            if (!_ByContract.ContainsKey(contractTypeName))
+            {
+                Load(_Entries.GetByContract(contractTypeName));
+            }
+
+            return _ByContract[contractTypeName].Map(new List<T>(), Get<T>);
+        }
 
         public T Get<T>(ServiceEntry config) where T : ICommon
         {
@@ -108,13 +83,13 @@ namespace Framework.Factory.API.Default
                     // Create service instance.
                     //
 
-                    service = Core.Reflection.Activator.CreateInstance<T>(config.TypeName);
+                    service = Core.Reflection.Activator.CreateGenericInstance<T>(config.TypeName);
 
                     //
                     // Initialize the service.
                     //
 
-                    // service.Init(config, Ctx);
+                    service.Init();
 
                     //
                     // Add service to the already defined instances.
@@ -131,10 +106,35 @@ namespace Framework.Factory.API.Default
             return service;
         }
 
+        public void Load(ServiceEntry entry)
+        {
+            if (!_ByName.ContainsKey(entry.Name))
+            {
+                _ByName.Add(entry.Name, entry);
+                _ByTypeName.Add(entry.TypeName, entry);
+
+                if (!_ByContract.ContainsKey(entry.Contract))
+                {
+                    _ByContract.Add(entry.Contract, new List<ServiceEntry>());
+                }
+
+                _ByContract[entry.Contract].Add(entry);
+            }
+        }
+
+        public void Load(IEnumerable<ServiceEntry> lst)
+        {
+            lst.Apply(Load);
+        }
+
         //
         // PRIVATE FIELDS
         //
 
+        private IServiceEntry _Entries { get { return GetUnique<IServiceEntry>(); } }
         private IDictionary<string, ICommon> _Instances = null;
+        private IDictionary<string, ServiceEntry> _ByName = null;
+        private IDictionary<string, ServiceEntry> _ByTypeName = null;
+        private IDictionary<string, IList<ServiceEntry>> _ByContract = null;
     }
 }

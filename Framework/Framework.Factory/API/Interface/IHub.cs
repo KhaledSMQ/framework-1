@@ -9,13 +9,24 @@
 
 using Framework.Factory.Model;
 using Framework.Factory.Patterns;
+using System.Collections.Generic;
 
 namespace Framework.Factory.API.Interface
 {
     public interface IHub : ICommon
     {
-        T Get<T>() where T : ICommon;
+        T GetUnique<T>() where T : ICommon;
+
+        T GetByName<T>(string name) where T : ICommon;
+
+        T GetByTypeName<T>(string typeName) where T : ICommon;
+
+        IEnumerable<T> GetByContract<T>() where T : ICommon;
 
         T Get<T>(ServiceEntry cfg) where T : ICommon;
+
+        void Load(ServiceEntry entry);
+
+        void Load(IEnumerable<ServiceEntry> lst);
     }
 }

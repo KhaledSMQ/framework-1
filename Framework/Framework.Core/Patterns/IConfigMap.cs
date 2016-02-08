@@ -17,7 +17,7 @@ namespace Framework.Core.Patterns
     // @param T The type of the configuration setting value.
     //
 
-    public interface IConfigMap<TID, TName, TDescription, TValue>
+    public interface ISettings<TID, TName, TDescription, TValue>
     {
         //
         // PROPERTIES
@@ -31,8 +31,5 @@ namespace Framework.Core.Patterns
     // Set the configuration setting to be a generic object.
     //
 
-    public interface IConfigMap 
-    {
-        IDictionary<string, Setting> Settings { get; set; }
-    }
+    public interface IConfigMap : IDictionary<string, Setting> { }
 }

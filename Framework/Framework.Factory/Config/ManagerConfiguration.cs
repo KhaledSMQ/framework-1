@@ -24,23 +24,14 @@ namespace Framework.Factory.Config
         }
 
         //
-        // HUB
+        // CORE SERVICES
         //
 
-        [ConfigurationProperty(Constants.ENTRY)]
-        public ServiceElement Entry
+        [ConfigurationProperty(Constants.SERVICES, IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(ServiceElementCollection))]
+        public ServiceElementCollection Services
         {
-            get { return (ServiceElement)this[Constants.ENTRY]; }
-        }
-
-        //
-        // SCOPE
-        //
-
-        [ConfigurationProperty(Constants.SCOPE)]
-        public ServiceElement Scope
-        {
-            get { return (ServiceElement)this[Constants.SCOPE]; }
+            get { return (ServiceElementCollection)this[Constants.SERVICES]; }
         }
     }
 }

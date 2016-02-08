@@ -21,7 +21,7 @@ namespace Framework.Core.Patterns
         // API
         //
 
-        void Init(IConfigMap config);
+        void Init();
 
         void Shutdown();
     }

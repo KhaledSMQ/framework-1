@@ -7,6 +7,7 @@
 // Description: Runtime data store implementation.
 // ============================================================================
 
+using Framework.Data.API.Interface;
 using Framework.Data.Config;
 using Framework.Data.Model;
 using Owin;
@@ -20,7 +21,7 @@ namespace Framework.Data.Runtime
         // related specification is stored.
         //
 
-        public static Store Store { get; private set; }
+        public static IStore Store { get; private set; }
 
         //
         // CONSTRUCTORS
@@ -44,26 +45,11 @@ namespace Framework.Data.Runtime
         public static void LoadConfig()
         {
             //
-            // Initialize the data store placeholder.
-            //
-
-            if (null == Store)
-            {
-                Store = new Store();
-            }
-
-            //
             // Load from the system configuration spec
             // the data store elements.
             //
 
-            ManagerConfiguration config = (ManagerConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
-
-            //
-            // Add to store.
-            //
-
-            Store.Clusters = Transforms.ToDataCluster(config.Clusters);
+            ManagerConfiguration config = (ManagerConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);           
         }
     }
 }

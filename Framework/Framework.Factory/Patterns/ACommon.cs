@@ -26,10 +26,7 @@ namespace Framework.Factory.Patterns
         // INITIALIZATION
         //
 
-        public virtual void Init(IConfigMap config)
-        {
-            Cfg = config;
-        }
+        public virtual void Init() { }
 
         //
         // SHUTDOWN

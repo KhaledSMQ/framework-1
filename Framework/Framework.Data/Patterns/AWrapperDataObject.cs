@@ -27,19 +27,19 @@ namespace Framework.Data.Patterns
         // INIT
         //
 
-        public override void Init(IConfigMap config)
+        public override void Init()
         {
             //
             // Base initialization.
             //
 
-            base.Init(config);
+            base.Init();
 
             //
             // Initialize the inner source layer.
             //
 
-            DataLayer = Scope.Hub.Get<IStore>().GetDataObject<TItem>(Src);
+            DataLayer = Scope.Hub.GetUnique<IStore>().GetDataObject<TItem>(Src);
         }
 
         //

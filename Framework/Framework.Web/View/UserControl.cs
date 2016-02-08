@@ -38,7 +38,7 @@ namespace Framework.Web.View
             // Set the context scope for the control.
             //
 
-            Scope = Factory.Runtime.Manager.Scope.New();
+            Scope = Factory.Runtime.Manager.Hub.GetUnique<IScope>().New();
         }
     }
 }

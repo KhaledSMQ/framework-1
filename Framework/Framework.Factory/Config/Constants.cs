@@ -12,12 +12,12 @@ namespace Framework.Factory.Config
     public static class Constants
     {
         public const string SECTION = "frameworkFactory";
+        public const string SERVICES = "services";
         public const string HUB = "hub";
-        public const string SCOPE = "scope";
-        public const string ENTRY = "entry";
         public const string NAME = "name";
         public const string CONTRACT = "contract";
         public const string DESCRIPTION = "description";
+        public const string UNIQUE = "unique";
         public const string TYPE = "type";
         public const string VALUE = "value";
         public const string SETTINGS = "settings";

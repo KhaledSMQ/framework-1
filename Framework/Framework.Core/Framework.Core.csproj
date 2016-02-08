@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\Generic\PagedIndexList.cs" />
+    <Compile Include="Collections\Specialized\ConfigMap.cs" />
     <Compile Include="Collections\Specialized\Table.cs" />
     <Compile Include="Collections\Specialized\TableCol.cs" />
     <Compile Include="Collections\Specialized\TableRow.cs" />

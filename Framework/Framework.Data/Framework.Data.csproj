@@ -87,7 +87,7 @@
     <Compile Include="Config\ClusterConfiguration.cs" />
     <Compile Include="Config\Constants.cs" />
     <Compile Include="Lib.cs" />
-    <Compile Include="Model\Store.cs" />
+    <Compile Include="API\Default\SrvStore.cs" />
     <Compile Include="Model\Cluster.cs" />
     <Compile Include="Model\Context.cs" />
     <Compile Include="Model\Entity.cs" />

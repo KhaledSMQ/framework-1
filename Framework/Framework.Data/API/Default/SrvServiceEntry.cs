@@ -32,7 +32,7 @@ namespace Framework.Factory.API.Default.Config
             return DataLayer.Queryable().Where(i => i.Contract == contract).ToList();
         }
 
-        public ServiceEntry GetByType(string type)
+        public ServiceEntry GetByTypeName(string type)
         {
             return DataLayer.Queryable().Where(i => i.TypeName == type).FirstOrDefault();
         }

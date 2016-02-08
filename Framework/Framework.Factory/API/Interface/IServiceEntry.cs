@@ -21,6 +21,6 @@ namespace Framework.Factory.API.Interface
 
         IEnumerable<ServiceEntry> GetByContract(string contract);
 
-        ServiceEntry GetByType(string type);
+        ServiceEntry GetByTypeName(string type);
     }
 }

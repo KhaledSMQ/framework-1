@@ -23,6 +23,8 @@ namespace Framework.Factory.Model
 
         public int ID { get; set; }
 
+        public bool Unique { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -56,6 +58,7 @@ namespace Framework.Factory.Model
             //
 
             ID = -1;
+            Unique = false;
             Name = string.Empty;
             Description = string.Empty;
             Contract = string.Empty;
