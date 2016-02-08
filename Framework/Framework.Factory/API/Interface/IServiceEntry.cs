@@ -4,7 +4,7 @@
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
 // Company: Cybermap Lta.
-// Description: Service configuration interface.
+// Description: 
 // ============================================================================
 
 using Framework.Factory.Model;
@@ -13,14 +13,14 @@ using System.Collections.Generic;
 
 namespace Framework.Factory.API.Interface
 {
-    public interface IService : ICommon
+    public interface IServiceEntry : ICommon
     {
-        object Create(Service srv);
+        object Create(ServiceEntry srv);
 
-        Service GetByName(string name);
+        ServiceEntry GetByName(string name);
 
-        IEnumerable<Service> GetByContract(string contract);
+        IEnumerable<ServiceEntry> GetByContract(string contract);
 
-        Service GetByType(string type);
+        ServiceEntry GetByType(string type);
     }
 }

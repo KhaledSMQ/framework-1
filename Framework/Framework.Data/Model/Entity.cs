@@ -10,7 +10,6 @@
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
-using Framework.Data.Patterns;
 using System;
 using System.Collections.Generic;
 

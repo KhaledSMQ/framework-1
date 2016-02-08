@@ -71,7 +71,7 @@
     <Compile Include="API\Default\SrvContext.cs" />
     <Compile Include="API\Default\SrvEntity.cs" />
     <Compile Include="API\Default\SrvPartialModel.cs" />
-    <Compile Include="API\Default\SrvService.cs" />
+    <Compile Include="API\Default\SrvServiceEntry.cs" />
     <Compile Include="API\Interface\ICluster.cs" />
     <Compile Include="API\Interface\IContext.cs" />
     <Compile Include="API\Interface\IEntity.cs" />

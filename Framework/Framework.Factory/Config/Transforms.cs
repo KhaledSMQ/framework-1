@@ -19,9 +19,9 @@ namespace Framework.Factory.Config
         // SERVICE
         //
 
-        public static Service ToService(this ServiceElement serviceElm)
+        public static ServiceEntry ToService(this ServiceElement serviceElm)
         {
-            Service service = new Service();
+            ServiceEntry service = new ServiceEntry();
             service.Name = serviceElm.Name;
             service.Description = serviceElm.Description;
             service.Contract = serviceElm.Contract;

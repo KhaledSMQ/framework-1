@@ -15,7 +15,7 @@ using System.Collections.Generic;
 
 namespace Framework.Factory.Model
 {
-    public class Service : IID<int>, IName<string>, ITypeName<string>, IAuditable<string>
+    public class ServiceEntry : IID<int>, IName<string>, ITypeName<string>, IAuditable<string>
     {
         //
         // PROPERTIES
@@ -49,8 +49,12 @@ namespace Framework.Factory.Model
         // CONSTRUCTORS
         // 
 
-        public Service()
+        public ServiceEntry()
         {
+            //
+            // Basic info.
+            //
+
             ID = -1;
             Name = string.Empty;
             Description = string.Empty;

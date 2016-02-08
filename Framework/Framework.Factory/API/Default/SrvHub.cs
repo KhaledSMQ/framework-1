@@ -44,7 +44,7 @@ namespace Framework.Factory.API.Default
             // Based on the type full name, fetch the service configuration.
             //
 
-            Service service = null;
+            ServiceEntry service = null;
 
             //
             // Return the service instance.
@@ -75,7 +75,7 @@ namespace Framework.Factory.API.Default
             // Get the service configuration object.
             //            
 
-            Service cfg = null;
+            ServiceEntry cfg = null;
 
             //
             // Instantiate it.
@@ -88,7 +88,7 @@ namespace Framework.Factory.API.Default
         // GET SERVICE METHOD
         //
 
-        public T Get<T>(Service config) where T : ICommon
+        public T Get<T>(ServiceEntry config) where T : ICommon
         {
             //
             // Check if service was already initialized.

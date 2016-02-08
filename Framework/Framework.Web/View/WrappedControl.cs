@@ -26,9 +26,13 @@ namespace Framework.Web.View
         //
 
         protected virtual void _OnInit(EventArgs e) { }
+
         protected virtual void _OnLoad(EventArgs e) { }
+
         protected virtual void _OnPreRender(EventArgs e) { }
+
         protected virtual void _Render(HtmlTextWriter writer) { }
+
         protected virtual void _OnUnload(EventArgs e) { }
 
         //

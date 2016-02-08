@@ -29,7 +29,7 @@ namespace Framework.CMS.Data
                 .HasKey(t => t.ID);
 
             modelBuilder.Entity<Framework.CMS.Model.Cluster>()
-                .HasMany<Framework.CMS.Model.Entities.Entity>(s => s.Entities)
+                .HasMany(s => s.Entities)
                 .WithRequired(c => c.Owner)
                 .WillCascadeOnDelete();
 

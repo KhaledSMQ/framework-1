@@ -19,7 +19,7 @@ namespace Framework.Web.View
         // Control properties for subclasses.
         //
 
-        public IScope Ctx { get; protected set; }
+        public IScope Scope { get; protected set; }
 
         //
         // ONINIT
@@ -35,10 +35,10 @@ namespace Framework.Web.View
             base.OnInit(e);
 
             //
-            // Get the context for the control.
+            // Set the context scope for the control.
             //
 
-            Ctx = Framework.Factory.Runtime.Manager.Get();
+            Scope = Factory.Runtime.Manager.Scope.New();
         }
     }
 }

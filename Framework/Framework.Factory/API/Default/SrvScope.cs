@@ -21,6 +21,17 @@ namespace Framework.Factory.Runtime
         public IHub Hub
         {
             get { return Manager.Hub; }
-        }        
+        }
+
+        //
+        // Mrthod to return a new scope based on 
+        // the current scope.
+        // @return A new derived runtime scope.
+        //
+
+        public IScope New()
+        {
+            return this;
+        }
     }
 }

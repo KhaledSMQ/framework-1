@@ -8,7 +8,6 @@
 // ============================================================================
 
 using Framework.Core.Types.Specialized;
-using Framework.Data.Patterns;
 using System.Collections.Generic;
 
 namespace Framework.Data.Model

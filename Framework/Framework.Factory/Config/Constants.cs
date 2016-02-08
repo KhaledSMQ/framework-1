@@ -14,6 +14,7 @@ namespace Framework.Factory.Config
         public const string SECTION = "frameworkFactory";
         public const string HUB = "hub";
         public const string SCOPE = "scope";
+        public const string ENTRY = "entry";
         public const string NAME = "name";
         public const string CONTRACT = "contract";
         public const string DESCRIPTION = "description";

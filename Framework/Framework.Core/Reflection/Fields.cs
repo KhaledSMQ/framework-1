@@ -17,12 +17,6 @@ namespace Framework.Core.Reflection
     public static class Fields
     {
         //
-        // GET-METHODS --------------------------------------------------------
-        //
-
-        #region Get Methods
-
-        //
         // Return the list of fields of an object that are instance
         // public fields.
         //
@@ -89,7 +83,5 @@ namespace Framework.Core.Reflection
 
             return fields;
         }
-
-        #endregion
     }
 }

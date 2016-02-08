@@ -16,6 +16,6 @@ namespace Framework.Factory.API.Interface
     {
         T Get<T>() where T : ICommon;
 
-        T Get<T>(Service cfg) where T : ICommon;
+        T Get<T>(ServiceEntry cfg) where T : ICommon;
     }
 }

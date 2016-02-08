@@ -15,24 +15,24 @@ using System.Linq;
 
 namespace Framework.Factory.API.Default.Config
 {
-    public class SrvService : AWrapperDataSet<Service>, IService
+    public class SrvService : AWrapperDataSet<ServiceEntry>, IServiceEntry
     {
-        public override object Create(Service srv)
+        public override object Create(ServiceEntry srv)
         {
             return DataLayer.Create(srv);
         }
 
-        public Service GetByName(string name)
+        public ServiceEntry GetByName(string name)
         {
             return DataLayer.Queryable().Where(i => i.Name == name).FirstOrDefault();
         }
 
-        public IEnumerable<Service> GetByContract(string contract)
+        public IEnumerable<ServiceEntry> GetByContract(string contract)
         {
             return DataLayer.Queryable().Where(i => i.Contract == contract).ToList();
         }
 
-        public Service GetByType(string type)
+        public ServiceEntry GetByType(string type)
         {
             return DataLayer.Queryable().Where(i => i.TypeName == type).FirstOrDefault();
         }

@@ -24,6 +24,16 @@ namespace Framework.Factory.Config
         }
 
         //
+        // HUB
+        //
+
+        [ConfigurationProperty(Constants.ENTRY)]
+        public ServiceElement Entry
+        {
+            get { return (ServiceElement)this[Constants.ENTRY]; }
+        }
+
+        //
         // SCOPE
         //
 
