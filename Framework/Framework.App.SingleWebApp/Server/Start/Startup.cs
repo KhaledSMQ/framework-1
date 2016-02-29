@@ -7,6 +7,7 @@
 // Description: Application startup class.
 // ============================================================================
 
+using Framework.Data.API.Interface;
 using Microsoft.Owin;
 using Owin;
 
@@ -24,8 +25,11 @@ namespace Framework.App.SingleWebApp.Server.Start
             // Initialize framework services.
             //
 
-            Data.Runtime.Manager.Init(app);
             Factory.Runtime.Manager.Init(app);
+            Data.Runtime.Manager.Init(app);
+
+            IStore srvDataStore = Factory.Runtime.Manager.Hub.GetUnique<IStore>();
+            // srvDataStore.GetDataSet<>();
 
             //
             // Set a new data directory path.

@@ -12,18 +12,13 @@ using Framework.Data.Model;
 using Framework.Data.Patterns;
 using System.Linq;
 
-namespace Framework.Factory.API.Default.Config
+namespace Framework.Data.API.Default
 {
-    public class SrvPartialModel : AWrapperDataSet<PartialModel>, IPartialModel
+    public class SrvDataClusterEntry : AWrapperDataSet<DataCluster>, IDataClusterEntry
     {
-        public PartialModel GetByName(string name)
+        public DataCluster GetByName(string name)
         {
             return DataLayer.Queryable().Where(i => i.Name == name).FirstOrDefault();
-        }
-
-        public PartialModel GetByType(string type)
-        {
-            return DataLayer.Queryable().Where(i => i.TypeName == type).FirstOrDefault();
         }
     }
 }

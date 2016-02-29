@@ -1,10 +1,10 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: 
+// Name/Class: ICnntext
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
 // Company: Cybermap Lta.
-// Description: 
+// Description: Entity configuration interface.
 // ============================================================================
 
 using Framework.Data.Model;
@@ -12,10 +12,10 @@ using Framework.Data.Patterns;
 
 namespace Framework.Data.API.Interface
 {
-    public interface IPartialModel : IWrapperDataSet<PartialModel>
+    public interface IDataContextEntry : IWrapperDataSet<DataContext>
     {
-        PartialModel GetByName(string name);
+        DataContext GetByName(string name);
 
-        PartialModel GetByType(string type);
+        DataContext GetByType(string type);
     }
 }

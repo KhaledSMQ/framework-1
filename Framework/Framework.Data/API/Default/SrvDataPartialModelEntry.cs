@@ -12,16 +12,16 @@ using Framework.Data.Model;
 using Framework.Data.Patterns;
 using System.Linq;
 
-namespace Framework.Data.API.Default
+namespace Framework.Factory.API.Default.Config
 {
-    public class SrvContext : AWrapperDataSet<Context>, IContext
+    public class SrvDataPartialModelEntry : AWrapperDataSet<DataPartialModel>, IDataPartialModelEntry
     {
-        public Context GetByName(string name)
+        public DataPartialModel GetByName(string name)
         {
             return DataLayer.Queryable().Where(i => i.Name == name).FirstOrDefault();
         }
 
-        public Context GetByType(string type)
+        public DataPartialModel GetByType(string type)
         {
             return DataLayer.Queryable().Where(i => i.TypeName == type).FirstOrDefault();
         }

@@ -67,15 +67,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\Default\SrvCluster.cs" />
-    <Compile Include="API\Default\SrvContext.cs" />
-    <Compile Include="API\Default\SrvEntity.cs" />
-    <Compile Include="API\Default\SrvPartialModel.cs" />
+    <Compile Include="API\Default\SrvDataClusterEntry.cs" />
+    <Compile Include="API\Default\SrvDataContextEntry.cs" />
+    <Compile Include="API\Default\SrvDataEntityEntry.cs" />
+    <Compile Include="API\Default\SrvDataPartialModelEntry.cs" />
     <Compile Include="API\Default\SrvServiceEntry.cs" />
-    <Compile Include="API\Interface\ICluster.cs" />
-    <Compile Include="API\Interface\IContext.cs" />
-    <Compile Include="API\Interface\IEntity.cs" />
-    <Compile Include="API\Interface\IPartialModel.cs" />
+    <Compile Include="API\Interface\IDataClusterEntry.cs" />
+    <Compile Include="API\Interface\IDataContextEntry.cs" />
+    <Compile Include="API\Interface\IDataEntityEntry.cs" />
+    <Compile Include="API\Interface\IDataPartialModelEntry.cs" />
     <Compile Include="API\Interface\IStore.cs" />
     <Compile Include="Config\BaseConfiguration.cs" />
     <Compile Include="Config\ContextConfiguration.cs" />
@@ -88,10 +88,11 @@
     <Compile Include="Config\Constants.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="API\Default\SrvStore.cs" />
-    <Compile Include="Model\Cluster.cs" />
-    <Compile Include="Model\Context.cs" />
-    <Compile Include="Model\Entity.cs" />
-    <Compile Include="Model\PartialModel.cs" />
+    <Compile Include="Model\DataCluster.cs" />
+    <Compile Include="Model\DataContext.cs" />
+    <Compile Include="Model\DataEntity.cs" />
+    <Compile Include="Model\DataPartialModel.cs" />
+    <Compile Include="Patterns\ADataSet.cs" />
     <Compile Include="Patterns\AWrapperDataObject.cs" />
     <Compile Include="Patterns\AWrapperDataSet.cs" />
     <Compile Include="Patterns\IProviderContext.cs" />

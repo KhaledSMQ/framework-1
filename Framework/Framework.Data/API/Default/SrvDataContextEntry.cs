@@ -14,11 +14,16 @@ using System.Linq;
 
 namespace Framework.Data.API.Default
 {
-    public class SrvCluster : AWrapperDataSet<Cluster>, ICluster
+    public class SrvDataContextEntry : AWrapperDataSet<DataContext>, IDataContextEntry
     {
-        public Cluster GetByName(string name)
+        public DataContext GetByName(string name)
         {
             return DataLayer.Queryable().Where(i => i.Name == name).FirstOrDefault();
+        }
+
+        public DataContext GetByType(string type)
+        {
+            return DataLayer.Queryable().Where(i => i.TypeName == type).FirstOrDefault();
         }
     }
 }

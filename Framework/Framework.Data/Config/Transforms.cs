@@ -19,12 +19,12 @@ namespace Framework.Data.Config
         // CLUSTERS
         //
 
-        public static ICollection<Cluster> ToDataCluster(this ClusterElementCollection collection)
+        public static ICollection<DataCluster> ToDataCluster(this ClusterElementCollection coll)
         {
-            List<Cluster> dataClusterCollection = new List<Cluster>();
-            if (null != collection)
+            List<DataCluster> dataClusterCollection = new List<DataCluster>();
+            if (null != coll)
             {
-                foreach (ClusterElement clusterElm in collection)
+                foreach (ClusterElement clusterElm in coll)
                 {
                     dataClusterCollection.Add(ToDataCluster(clusterElm));
                 }
@@ -32,15 +32,15 @@ namespace Framework.Data.Config
             return dataClusterCollection;
         }
 
-        public static Cluster ToDataCluster(this ClusterElement clusterElm)
+        public static DataCluster ToDataCluster(this ClusterElement elm)
         {
-            Cluster dataCluster = new Cluster();
-            dataCluster.Name = clusterElm.Name;
-            dataCluster.Description = clusterElm.Description;
-            dataCluster.Context = ToDataContext(clusterElm.Context);
-            dataCluster.Entities = ToDataEntity(clusterElm.Entities);
-            dataCluster.Models = ToDataModel(clusterElm.Models);
-            dataCluster.Settings = ToSetting(clusterElm.Settings);
+            DataCluster dataCluster = new DataCluster();
+            dataCluster.Name = elm.Name;
+            dataCluster.Description = elm.Description;
+            dataCluster.Context = ToDataContext(elm.Context);
+            dataCluster.Entities = ToDataEntity(elm.Entities);
+            dataCluster.Models = ToDataPartialModel(elm.Models);
+            dataCluster.Settings = ToSetting(elm.Settings);
             return dataCluster;
         }
 
@@ -48,16 +48,16 @@ namespace Framework.Data.Config
         // CONTEXT
         //
 
-        public static Context ToDataContext(this ContextElement contextElm)
+        public static DataContext ToDataContext(this ContextElement elm)
         {
-            Context dataContext = null;
-            if (null != contextElm)
+            DataContext dataContext = null;
+            if (null != elm)
             {
-                dataContext = new Context();
-                dataContext.Name = contextElm.Name;
-                dataContext.Description = contextElm.Description;
-                dataContext.TypeName = contextElm.Type;
-                dataContext.Settings = ToSetting(contextElm.Settings);
+                dataContext = new DataContext();
+                dataContext.Name = elm.Name;
+                dataContext.Description = elm.Description;
+                dataContext.TypeName = elm.Type;
+                dataContext.Settings = ToSetting(elm.Settings);
             }
             return dataContext;
         }
@@ -66,12 +66,12 @@ namespace Framework.Data.Config
         // ENTITY
         //
 
-        public static ICollection<Entity> ToDataEntity(this EntityElementCollection collection)
+        public static ICollection<DataEntity> ToDataEntity(this EntityElementCollection coll)
         {
-            List<Entity> dataEntityCollection = new List<Entity>();
-            if (null != collection)
+            List<DataEntity> dataEntityCollection = new List<DataEntity>();
+            if (null != coll)
             {
-                foreach (EntityElement entityElm in collection)
+                foreach (EntityElement entityElm in coll)
                 {
                     dataEntityCollection.Add(ToDataEntity(entityElm));
                 }
@@ -79,13 +79,13 @@ namespace Framework.Data.Config
             return dataEntityCollection;
         }
 
-        public static Entity ToDataEntity(this EntityElement entityElm)
+        public static DataEntity ToDataEntity(this EntityElement elm)
         {
-            Entity dataEntity = new Entity();
-            dataEntity.Name = entityElm.Name;
-            dataEntity.Description = entityElm.Description;
-            dataEntity.TypeName = entityElm.Type;
-            dataEntity.Settings = ToSetting(entityElm.Settings);
+            DataEntity dataEntity = new DataEntity();
+            dataEntity.Name = elm.Name;
+            dataEntity.Description = elm.Description;
+            dataEntity.TypeName = elm.Type;
+            dataEntity.Settings = ToSetting(elm.Settings);
             return dataEntity;
         }
 
@@ -93,26 +93,26 @@ namespace Framework.Data.Config
         // PARTIAL-MODELS
         //
 
-        public static ICollection<PartialModel> ToDataModel(this ModelElementCollection collection)
+        public static ICollection<DataPartialModel> ToDataPartialModel(this ModelElementCollection coll)
         {
-            List<PartialModel> dataModelCollection = new List<PartialModel>();
-            if (null != collection)
+            List<DataPartialModel> dataModelCollection = new List<DataPartialModel>();
+            if (null != coll)
             {
-                foreach (ModelElement entityElm in collection)
+                foreach (ModelElement entityElm in coll)
                 {
-                    dataModelCollection.Add(ToDataModel(entityElm));
+                    dataModelCollection.Add(ToDataPartialModel(entityElm));
                 }
             }
             return dataModelCollection;
         }
 
-        public static PartialModel ToDataModel(this ModelElement entityElm)
+        public static DataPartialModel ToDataPartialModel(this ModelElement elm)
         {
-            PartialModel dataModel = new PartialModel();
-            dataModel.Name = entityElm.Name;
-            dataModel.Description = entityElm.Description;
-            dataModel.TypeName = entityElm.Type;
-            dataModel.Settings = ToSetting(entityElm.Settings);
+            DataPartialModel dataModel = new DataPartialModel();
+            dataModel.Name = elm.Name;
+            dataModel.Description = elm.Description;
+            dataModel.TypeName = elm.Type;
+            dataModel.Settings = ToSetting(elm.Settings);
             return dataModel;
         }
 
@@ -120,12 +120,12 @@ namespace Framework.Data.Config
         // SETTINGS
         //
 
-        public static ICollection<Setting> ToSetting(this SettingElementCollection collection)
+        public static ICollection<Setting> ToSetting(this SettingElementCollection coll)
         {
             List<Setting> settingCollection = new List<Setting>();
-            if (null != collection)
+            if (null != coll)
             {
-                foreach (SettingElement settingElm in collection)
+                foreach (SettingElement settingElm in coll)
                 {
                     settingCollection.Add(ToSetting(settingElm));
                 }
@@ -133,11 +133,11 @@ namespace Framework.Data.Config
             return settingCollection;
         }
 
-        public static Setting ToSetting(this SettingElement settingElm)
+        public static Setting ToSetting(this SettingElement elm)
         {
             Setting setting = new Setting();
-            setting.Name = settingElm.Name;
-            setting.Value = settingElm.Value;
+            setting.Name = elm.Name;
+            setting.Value = elm.Value;
             return setting;
         }
     }

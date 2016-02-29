@@ -8,8 +8,10 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
+using Framework.Data.Model;
 using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
+using System.Collections.Generic;
 
 namespace Framework.Data.API.Interface
 {
@@ -19,14 +21,22 @@ namespace Framework.Data.API.Interface
         // Data Ecosystem Services.
         //
 
-        ICluster Clusters { get; set; }
+        IDataClusterEntry Clusters { get; }
 
-        IContext Contexts { get; set; }
+        IDataContextEntry Contexts { get; }
 
-        IEntity Entities { get; set; }
+        IDataEntityEntry Entities { get; }
 
-        IPartialModel Models { get; set; }
+        IDataPartialModelEntry Models { get; }
 
+        //
+        // Loading section.
+        //
+
+        void Load(IEnumerable<DataCluster> clusters);
+
+        void Load(DataCluster cluster);
+         
         //
         // Data Set/Object CRUD layers.
         //

@@ -12,8 +12,8 @@ using Framework.Data.Patterns;
 
 namespace Framework.Data.API.Interface
 {
-    public interface ICluster : IWrapperDataSet<Cluster>
+    public interface IDataClusterEntry : IWrapperDataSet<DataCluster>
     {
-        Cluster GetByName(string name);
+        DataCluster GetByName(string name);
     }
 }

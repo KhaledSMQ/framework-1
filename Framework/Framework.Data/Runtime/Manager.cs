@@ -9,7 +9,6 @@
 
 using Framework.Data.API.Interface;
 using Framework.Data.Config;
-using Framework.Data.Model;
 using Owin;
 
 namespace Framework.Data.Runtime
@@ -49,7 +48,14 @@ namespace Framework.Data.Runtime
             // the data store elements.
             //
 
-            ManagerConfiguration config = (ManagerConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);           
+            ManagerConfiguration config = (ManagerConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
+
+            //
+            // Load definitions into store.
+            //
+
+            Store = Factory.Runtime.Manager.Hub.GetUnique<IStore>();
+            Store.Load(Transforms.ToDataCluster(config.Clusters));
         }
     }
 }

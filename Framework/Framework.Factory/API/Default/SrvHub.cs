@@ -7,18 +7,23 @@
 // Description: Runtime service set.
 // ============================================================================
 
+using Framework.Core.Extensions;
 using Framework.Factory.API.Interface;
 using Framework.Factory.Model;
 using Framework.Factory.Patterns;
-using System.Linq;
+using System;
 using System.Collections.Generic;
-using Framework.Core.Extensions;
+using System.Linq;
 
 namespace Framework.Factory.API.Default
 {
     public class SrvHub : ACommon, IHub
     {
-        public SrvHub()
+        //
+        // PROPERTIES
+        //
+
+        public override void Init()
         {
             _Instances = new SortedDictionary<string, ICommon>();
             _ByName = new SortedDictionary<string, ServiceEntry>();
@@ -35,7 +40,7 @@ namespace Framework.Factory.API.Default
         {
             if (!_ByName.ContainsKey(name))
             {
-                Load(_Entries.GetByName(name));
+                Load(_ServiceEntry.GetByName(name));
             }
 
             return Get<T>(_ByName[name]);
@@ -45,7 +50,7 @@ namespace Framework.Factory.API.Default
         {
             if (!_ByTypeName.ContainsKey(typeName))
             {
-                Load(_Entries.GetByTypeName(typeName));
+                Load(_ServiceEntry.GetByTypeName(typeName));
             }
 
             return Get<T>(_ByTypeName[typeName]);
@@ -57,13 +62,13 @@ namespace Framework.Factory.API.Default
 
             if (!_ByContract.ContainsKey(contractTypeName))
             {
-                Load(_Entries.GetByContract(contractTypeName));
+                Load(_ServiceEntry.GetByContract(contractTypeName));
             }
 
             return _ByContract[contractTypeName].Map(new List<T>(), Get<T>);
         }
 
-        public T Get<T>(ServiceEntry config) where T : ICommon
+        public T Get<T>(ServiceEntry entry) where T : ICommon
         {
             //
             // Check if service was already initialized.
@@ -73,9 +78,9 @@ namespace Framework.Factory.API.Default
 
             lock (_Instances)
             {
-                if (_Instances.ContainsKey(config.Name))
+                if (_Instances.ContainsKey(entry.Name))
                 {
-                    service = (T)_Instances[config.Name];
+                    service = (T)_Instances[entry.Name];
                 }
                 else
                 {
@@ -83,19 +88,20 @@ namespace Framework.Factory.API.Default
                     // Create service instance.
                     //
 
-                    service = Core.Reflection.Activator.CreateGenericInstance<T>(config.TypeName);
+                    service = Core.Reflection.Activator.CreateGenericInstance<T>(entry.TypeName);
 
                     //
                     // Initialize the service.
                     //
 
+                    service.Scope = Scope;
                     service.Init();
 
                     //
                     // Add service to the already defined instances.
                     //
 
-                    _Instances.Add(config.Name, service);
+                    _Instances.Add(entry.Name, service);
                 }
             }
 
@@ -128,10 +134,46 @@ namespace Framework.Factory.API.Default
         }
 
         //
+        // HELPERS
+        //
+
+        private IServiceEntry _GetServiceEntry()
+        {
+            if (null == _ServiceEntryValue)
+            {
+                //
+                // Try to find the service entry definition.
+                // Search in the loaded services.
+                //
+
+                _ByName.Values.Apply(entry =>
+                {
+                    if (entry.Contract.Trim() == typeof(IServiceEntry).FullName)
+                    {
+                        _ServiceEntryValue = Get<IServiceEntry>(entry);
+                    }
+                });
+
+                //
+                // If service entry is still null, then 
+                // throw an error..
+                // 
+
+                if (null == _ServiceEntryValue)
+                {
+                    throw new Exception(string.Format("{0}: You must specifiy a valid '{1}' service", Lib.DEFAULT_ERROR_MSG_PREFIX, typeof(IServiceEntry).FullName));
+                }
+            }
+
+            return _ServiceEntryValue;
+        }
+
+        //
         // PRIVATE FIELDS
         //
 
-        private IServiceEntry _Entries { get { return GetUnique<IServiceEntry>(); } }
+        private IServiceEntry _ServiceEntry { get { return _GetServiceEntry(); } }
+        private IServiceEntry _ServiceEntryValue { get; set; }
         private IDictionary<string, ICommon> _Instances = null;
         private IDictionary<string, ServiceEntry> _ByName = null;
         private IDictionary<string, ServiceEntry> _ByTypeName = null;

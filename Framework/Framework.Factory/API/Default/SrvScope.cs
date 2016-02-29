@@ -10,7 +10,7 @@
 using Framework.Factory.API.Interface;
 using Framework.Factory.Patterns;
 
-namespace Framework.Factory.Runtime
+namespace Framework.Factory.API.Default
 {
     public class SrvScope : ACommon, IScope
     {
@@ -20,7 +20,7 @@ namespace Framework.Factory.Runtime
 
         public IHub Hub
         {
-            get { return Manager.Hub; }
+            get { return Runtime.Manager.Hub; }
         }
 
         //

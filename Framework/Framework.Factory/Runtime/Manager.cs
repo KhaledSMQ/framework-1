@@ -75,6 +75,7 @@ namespace Framework.Factory.Runtime
 
             __HubEntry.Unique = true;
             __Hub = Core.Reflection.Activator.CreateGenericInstance<IHub>(__HubEntry.TypeName);
+            __Hub.Init();
             __Hub.Load(__HubEntry);
 
             //

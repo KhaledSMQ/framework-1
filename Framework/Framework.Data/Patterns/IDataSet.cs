@@ -8,6 +8,7 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -28,6 +29,8 @@ namespace Framework.Data.Patterns
         TItem GetByID(object id);
 
         TItem Get(TItem item);
+
+        TItem Get(Func<IQueryable<TItem>, IQueryable<TItem>> query);
 
         //
         // QUERY
