@@ -15,7 +15,11 @@ using System.Collections.Generic;
 
 namespace Framework.Factory.Model
 {
-    public class ServiceEntry : IID<int>, IName<string>, ITypeName<string>, IAuditable<string>
+    public class ServiceEntry : 
+        IID<int>, 
+        IName<string>, 
+        ITypeName<string>, 
+        IAuditable<string>
     {
         //
         // PROPERTIES

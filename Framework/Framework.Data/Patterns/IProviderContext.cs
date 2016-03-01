@@ -8,11 +8,12 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
+using Framework.Factory.Patterns;
 using System;
 
 namespace Framework.Data.Patterns
 {
-    public interface IProviderContext : IProvider
+    public interface IProviderContext : ICommon
     {
         //
         // DATA-SOURCE-REGISTRY
