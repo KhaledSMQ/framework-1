@@ -85,7 +85,7 @@ namespace Framework.Data.Config
             dataEntity.Name = elm.Name;
             dataEntity.Kind = elm.Kind;
             dataEntity.Description = elm.Description;
-            dataEntity.Service = elm.Type;
+            dataEntity.TypeName = elm.Type;
             dataEntity.Settings = ToSetting(elm.Settings);
             return dataEntity;
         }
@@ -112,7 +112,7 @@ namespace Framework.Data.Config
             DataPartialModel dataModel = new DataPartialModel();
             dataModel.Name = elm.Name;
             dataModel.Description = elm.Description;
-            dataModel.Service = elm.Type;
+            dataModel.TypeName = elm.Type;
             dataModel.Settings = ToSetting(elm.Settings);
             return dataModel;
         }

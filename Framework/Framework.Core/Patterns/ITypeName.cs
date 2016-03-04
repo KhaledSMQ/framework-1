@@ -11,6 +11,6 @@ namespace Framework.Core.Patterns
 {
     public interface ITypeName<T>
     {
-        T Service { get; set; }
+        T TypeName { get; set; }
     }
 }

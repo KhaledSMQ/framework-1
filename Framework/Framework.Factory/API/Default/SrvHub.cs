@@ -7,13 +7,17 @@
 // Description: Runtime service set.
 // ============================================================================
 
+using Framework.Core.Collections.Specialized;
 using Framework.Core.Extensions;
+using Framework.Core.Patterns;
+using Framework.Core.Types.Specialized;
 using Framework.Factory.API.Interface;
 using Framework.Factory.Model;
 using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace Framework.Factory.API.Default
 {
@@ -93,7 +97,7 @@ namespace Framework.Factory.API.Default
                     // Create service instance.
                     //
 
-                    service = Core.Reflection.Activator.CreateGenericInstance<T>(entry.Service);
+                    service = Core.Reflection.Activator.CreateGenericInstance<T>(entry.TypeName);
 
                     //
                     // Initialize the service.
@@ -101,13 +105,15 @@ namespace Framework.Factory.API.Default
 
                     service.Scope = Scope;
                     service.Init();
-                    service.Cfg = entry.Settings;
+                    service.Cfg = _ProcessServiceSettings(entry.Settings);
 
                     //
                     // Load settings.
                     // Parse and set its values.
                     //
-                
+
+                    _LoadServiceSettings(service);
+
                     //
                     // Add service to the already defined instances.
                     //
@@ -123,12 +129,45 @@ namespace Framework.Factory.API.Default
             return service;
         }
 
+        private IConfigMap _ProcessServiceSettings(ICollection<Setting> settings)
+        {
+            ConfigMap setMap = new ConfigMap();
+            settings.Apply(setting => { setMap.Add(setting.Name, setting); });
+            return setMap;
+        }
+
+        private void _LoadServiceSettings(ICommon service)
+        {
+            IDictionary<string, KeyValuePair<Attributes.ServicePropertyAttribute, PropertyInfo>> setProperties = Core.Reflection.Attributes.GetPropsWithAttributes<Attributes.ServicePropertyAttribute>(service);
+
+            setProperties.Values.Apply(pair => 
+            {
+                Attributes.ServicePropertyAttribute attr = pair.Key;
+                PropertyInfo propInfo = pair.Value;
+
+
+                string settingName = attr.Name;
+                string settingValue = service.Cfg.GetRequired(settingName).Value;
+
+                string propertyName = propInfo.Name;
+                Type propertyType = propInfo.PropertyType;
+                object propertyValue = Core.Reflection.Parsing.ParseTypeValue(propertyType, settingValue);
+
+                Core.Reflection.Properties.SetProperty(service, propertyName, propertyValue);
+
+            });
+        }
+
+        //
+        // LOAD
+        //
+
         public void Load(ServiceEntry entry)
         {
             if (!_ByName.ContainsKey(entry.Name))
             {
                 _ByName.Add(entry.Name, entry);
-                _ByTypeName.Add(entry.Service, entry);
+                _ByTypeName.Add(entry.TypeName, entry);
 
                 if (!_ByContract.ContainsKey(entry.Contract))
                 {

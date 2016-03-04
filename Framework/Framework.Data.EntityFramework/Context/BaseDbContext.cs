@@ -63,7 +63,7 @@ namespace Framework.Data.EntityFramework.Context
 
                 if (null != dataEntity)
                 {
-                    Type type = Type.GetType(dataEntity.Service);
+                    Type type = Type.GetType(dataEntity.TypeName);
                     modelBuilder.RegisterEntityType(type);                    
                 }
             });

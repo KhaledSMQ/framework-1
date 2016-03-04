@@ -34,7 +34,7 @@ namespace Framework.Data.Model
 
         public string Description { get; set; }
 
-        public string Service { get; set; }
+        public string TypeName { get; set; }
 
         public ICollection<Setting> Settings { get; set; }
 
@@ -63,7 +63,7 @@ namespace Framework.Data.Model
             ID = -1;
             Name = string.Empty;
             Description = string.Empty;
-            Service = string.Empty;
+            TypeName = string.Empty;
             Settings = null;
 
             //

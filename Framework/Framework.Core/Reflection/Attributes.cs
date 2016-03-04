@@ -13,9 +13,6 @@ using System.Reflection;
 
 namespace Framework.Core.Reflection
 {
-    /// <summary>
-    /// Reflection utility class for attributes.
-    /// </summary>
     public class Attributes
     {
         /// <summary>
@@ -126,7 +123,7 @@ namespace Framework.Core.Reflection
         /// <typeparam name="T">Type of attribute to look for.</typeparam>
         /// <param name="obj">Object to search in.</param>
         /// <returns>List with property information.</returns>
-        public static List<PropertyInfo> GetPropsOnlyWithAttributes<T>(object obj) where T : Attribute
+        public static IEnumerable<PropertyInfo> GetPropsOnlyWithAttributes<T>(object obj) where T : Attribute
         {
             // Check
             if (obj == null) return new List<PropertyInfo>();

@@ -154,28 +154,28 @@ namespace Framework.Core.Reflection
                     }
                     else
                         if (currChar == closeGenericChar)
-                        {
-                            braceCount--;
+                    {
+                        braceCount--;
 
-                            if (0 == braceCount)
-                            {
-                                listOfGenericTypeName.Add(genericTypeName);
-                                genericTypeName = string.Empty;
-                            }
+                        if (0 == braceCount)
+                        {
+                            listOfGenericTypeName.Add(genericTypeName);
+                            genericTypeName = string.Empty;
                         }
-                        else
+                    }
+                    else
                             if (currChar == separatorChar)
-                            {
-                                if (0 == braceCount)
-                                {
-                                    listOfGenericTypeName.Add(genericTypeName);
-                                    genericTypeName = string.Empty;
-                                }
-                            }
-                            else
-                            {
-                                genericTypeName += currChar;
-                            }
+                    {
+                        if (0 == braceCount)
+                        {
+                            listOfGenericTypeName.Add(genericTypeName);
+                            genericTypeName = string.Empty;
+                        }
+                    }
+                    else
+                    {
+                        genericTypeName += currChar;
+                    }
                 }
 
                 if (genericTypeName.isNotNullAndEmpty())
@@ -224,6 +224,61 @@ namespace Framework.Core.Reflection
             // 
 
             return type;
+        }
+
+        //
+        // Parse from a string a type value.
+        // @param type the type of the value to parse.
+        // @param strValue The string value to parse
+        // @return the object value parsed from string.
+        //
+
+        public static object ParseTypeValue(Type type, string strValue)
+        {
+            object value = default(object);
+
+            if (type == typeof(int))
+            {
+                value = int.Parse(strValue);
+            }
+            else if (type == typeof(double))
+            {
+                value = double.Parse(strValue);
+            }
+            else if (type == typeof(long))
+            {
+                value = long.Parse(strValue);
+            }
+            else if (type == typeof(float))
+            {
+                value = float.Parse(strValue);
+            }
+            else if (type == typeof(bool))
+            {
+                value = bool.Parse(strValue);
+            }
+            else if (type == typeof(DateTime))
+            {
+                value = DateTime.Parse(strValue);
+            }
+            else if (type == typeof(string))
+            {
+                value = strValue;
+            }
+            else if (type.BaseType == typeof(Enum))
+            {
+                value = Enum.Parse(type, strValue, true);
+            }
+            else
+            {
+                //
+                // ERROR: Type is not supported.
+                // 
+
+                throw new Exception(string.Format("{0}: ParseTypeValue does not support type '{1}'!", Lib.DEFAULT_ERROR_MSG_PREFIX, type.FullName));
+            }
+
+            return value;
         }
     }
 }

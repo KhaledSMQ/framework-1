@@ -7,7 +7,7 @@
 // Description: 
 // ============================================================================
 
-namespace Framework.Factory.API.Attributes
+namespace Framework.Factory.Attributes
 {
     [System.AttributeUsage(System.AttributeTargets.Property)]
     public class ServicePropertyAttribute : System.Attribute

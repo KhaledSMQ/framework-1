@@ -95,6 +95,7 @@ namespace Framework.Core.Reflection
             //
 
             Guard.IsNotNull(obj, "Must provide object to get it's property.");
+
             if (null == propInfo)
             {
                 return null;
@@ -172,7 +173,10 @@ namespace Framework.Core.Reflection
             //
 
             propName = propName.Trim();
-            if (string.IsNullOrEmpty(propName)) { throw new ArgumentException("Property name is empty."); }
+            if (string.IsNullOrEmpty(propName))
+            {
+                throw new ArgumentException("Property name is empty.");
+            }
 
             Type type = obj.GetType();
             PropertyInfo propertyInfo = type.GetProperty(propName);

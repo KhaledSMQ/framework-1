@@ -7,9 +7,8 @@
 // Description:
 // ============================================================================
 
-using Framework.Core.Patterns;
 using Framework.Data.Patterns;
-using Framework.Factory.API.Attributes;
+using Framework.Factory.Attributes;
 using System.Data.Entity;
 
 namespace Framework.Data.EntityFramework.Context
@@ -38,6 +37,7 @@ namespace Framework.Data.EntityFramework.Context
         {
             _SetupDbInitializer();
             BaseDbContext initialDbContext = new BaseDbContext(ConnectionString, GetListOfEntities(), GetListOfPartialModels());
+            initialDbContext.Database.Initialize(true);
         }
 
         public void _SetupDbInitializer()
