@@ -30,13 +30,25 @@ namespace Framework.Data.API.Interface
         IDataPartialModelEntry Models { get; }
 
         //
-        // Loading section.
+        // INIT
+        //
+
+        void InitClusters();
+
+        //
+        // LOAD
         //
 
         void Load(IEnumerable<DataCluster> clusters);
 
         void Load(DataCluster cluster);
-         
+
+        //
+        // RETRIEVE
+        //
+
+        IEnumerable<DataCluster> GetListOfClusters();
+
         //
         // Data Set/Object CRUD layers.
         //

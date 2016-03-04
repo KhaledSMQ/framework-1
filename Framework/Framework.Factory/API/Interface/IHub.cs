@@ -9,6 +9,7 @@
 
 using Framework.Factory.Model;
 using Framework.Factory.Patterns;
+using System;
 using System.Collections.Generic;
 
 namespace Framework.Factory.API.Interface
@@ -20,6 +21,8 @@ namespace Framework.Factory.API.Interface
         T GetByName<T>(string name) where T : ICommon;
 
         T GetByTypeName<T>(string typeName) where T : ICommon;
+
+        T GetByType<T>(Type type) where T : ICommon;
 
         IEnumerable<T> GetByContract<T>() where T : ICommon;
 

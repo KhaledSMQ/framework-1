@@ -22,9 +22,11 @@ namespace Framework.Data.Config
         public const string ENTITIES = "entities";
         public const string CONTEXT = "context";
         public const string MODELS = "models";
+        public const string SERVICE = "service";
         public const string NAME = "name";
         public const string DESCRIPTION = "description";
         public const string TYPE = "type";
+        public const string KIND = "kind";
         public const string VALUE = "value";
         public const string SETTINGS = "settings";
     }

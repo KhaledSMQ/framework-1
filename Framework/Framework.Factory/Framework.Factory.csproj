@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\Interface\IServiceEntry.cs" />
+    <Compile Include="Attributes\ServicePropertyAttribute.cs" />
     <Compile Include="Config\BaseConfiguration.cs" />
     <Compile Include="Config\ServiceConfiguration.cs" />
     <Compile Include="Config\Constants.cs" />

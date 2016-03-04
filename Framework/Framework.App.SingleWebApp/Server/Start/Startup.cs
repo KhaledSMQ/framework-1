@@ -29,6 +29,8 @@ namespace Framework.App.SingleWebApp.Server.Start
             Data.Runtime.Manager.Init(app);
 
             IStore srvDataStore = Factory.Runtime.Manager.Hub.GetUnique<IStore>();
+            srvDataStore.InitClusters();           
+
             // srvDataStore.GetDataSet<>();
 
             //

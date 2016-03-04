@@ -1,22 +1,17 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: MAnager
+// Name/Class: Manager
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
 // Company: Cybermap Lta.
 // Description: Runtime context implementation.
 // ============================================================================
 
-using Framework.Core.Collections.Specialized;
-using Framework.Core.Patterns;
-using Framework.Core.Types.Specialized;
 using Framework.Factory.API.Interface;
 using Framework.Factory.Config;
 using Framework.Factory.Model;
-using Framework.Factory.Patterns;
 using Owin;
 using System.Collections.Generic;
-using Framework.Core.Extensions;
 
 namespace Framework.Factory.Runtime
 {
@@ -27,6 +22,8 @@ namespace Framework.Factory.Runtime
         //
 
         public static IHub Hub { get { return __Hub; } }
+
+        public static IScope Scope { get { return __Scope; } }
 
         //
         // CONSTRUCTORS
@@ -74,7 +71,7 @@ namespace Framework.Factory.Runtime
             // 
 
             __HubEntry.Unique = true;
-            __Hub = Core.Reflection.Activator.CreateGenericInstance<IHub>(__HubEntry.TypeName);
+            __Hub = Core.Reflection.Activator.CreateGenericInstance<IHub>(__HubEntry.Service);
             __Hub.Init();
             __Hub.Load(__HubEntry);
 
@@ -83,6 +80,14 @@ namespace Framework.Factory.Runtime
             //
 
             __Hub.Load(__CoreServices);
+
+            //
+            // Setup the Scope service, load it
+            // and set it on the hub.
+            //
+
+            __Scope = __Hub.GetUnique<IScope>();
+            __Hub.Scope = __Scope;
         }
 
         //
@@ -92,5 +97,6 @@ namespace Framework.Factory.Runtime
         private static IHub __Hub = null;
         private static ServiceEntry __HubEntry = null;
         private static IEnumerable<ServiceEntry> __CoreServices = null;
+        private static IScope __Scope = null;
     }
 }

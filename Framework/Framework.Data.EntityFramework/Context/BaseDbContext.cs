@@ -8,9 +8,12 @@
 // ============================================================================
 
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using Framework.Core.Extensions;
+using Framework.Data.Model;
 
-namespace Framework.Data.EntityFramework.Objects
+namespace Framework.Data.EntityFramework.Context
 {
     public class BaseDbContext : DbContext
     {
@@ -18,15 +21,15 @@ namespace Framework.Data.EntityFramework.Objects
         // CONSTRUCTORS
         //
 
-        public BaseDbContext(string connectionString, Action<object> seedHandler)
+        public BaseDbContext(string connectionString, IEnumerable<DataEntity> entities, IEnumerable<DataPartialModel> models)
             : base("name=" + connectionString)
         {
             //
-            // Set the initializer for the database.
-            //           
-            // Database.SetInitializer<UserBasedDbContext<TUser>>(new DbCreateAlways<UserBasedDbContext<TUser>>(seedHandler));
-            // Database.SetInitializer<UserBasedDbContext<TUser>>(new DbCreateIfModelChanges<UserBasedDbContext<TUser>>(seedHandler));
+            // Set the enitites and models for the context.
             //
+
+            _Entities = entities;
+            _Models = models;
 
             //
             // Ensure the the DLL is copied to the target bin folder.
@@ -36,12 +39,41 @@ namespace Framework.Data.EntityFramework.Objects
         }
 
         //
-        // ENTITY-CONFIGURATION
+        // MODEL-CONFIGURATION
         //
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //
+            // Always call the base model create method.
+            //
+
             base.OnModelCreating(modelBuilder);
+
+            //
+            // Add all entities in this data context to model.
+            // These were setup by its constructor.
+            //
+
+            _Entities.Apply(dataEntity =>
+            {
+                //
+                // Register the entity with the model builder.
+                //
+
+                if (null != dataEntity)
+                {
+                    Type type = Type.GetType(dataEntity.Service);
+                    modelBuilder.RegisterEntityType(type);                    
+                }
+            });
         }
+
+        //
+        // PRIVATE FIELDS
+        //
+
+        private IEnumerable<DataEntity> _Entities = null;
+        private IEnumerable<DataPartialModel> _Models = null;
     }
 }

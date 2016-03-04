@@ -7,7 +7,21 @@
 // Description: Configuration objects.
 // ============================================================================
 
+using System.Configuration;
+
 namespace Framework.Data.Config
 {
-    public class ContextElement : BaseElementWithTypeAndSettings { }
+    public class ContextElement : BaseElementWithSettings
+    {
+        //
+        // SERVICE
+        //
+
+        [ConfigurationProperty(Constants.SERVICE, DefaultValue = "", IsRequired = true)]
+        public string Service
+        {
+            get { return (string)this[Constants.SERVICE]; }
+            set { this[Constants.SERVICE] = value; }
+        }
+    }
 }

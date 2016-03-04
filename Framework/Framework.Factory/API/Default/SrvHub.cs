@@ -56,6 +56,11 @@ namespace Framework.Factory.API.Default
             return Get<T>(_ByTypeName[typeName]);
         }
 
+        public T GetByType<T>(Type type) where T : ICommon
+        {
+            return GetByTypeName<T>(type.FullName);
+        }
+
         public IEnumerable<T> GetByContract<T>() where T : ICommon
         {
             string contractTypeName = typeof(T).FullName;
@@ -88,7 +93,7 @@ namespace Framework.Factory.API.Default
                     // Create service instance.
                     //
 
-                    service = Core.Reflection.Activator.CreateGenericInstance<T>(entry.TypeName);
+                    service = Core.Reflection.Activator.CreateGenericInstance<T>(entry.Service);
 
                     //
                     // Initialize the service.
@@ -96,7 +101,13 @@ namespace Framework.Factory.API.Default
 
                     service.Scope = Scope;
                     service.Init();
+                    service.Cfg = entry.Settings;
 
+                    //
+                    // Load settings.
+                    // Parse and set its values.
+                    //
+                
                     //
                     // Add service to the already defined instances.
                     //
@@ -117,7 +128,7 @@ namespace Framework.Factory.API.Default
             if (!_ByName.ContainsKey(entry.Name))
             {
                 _ByName.Add(entry.Name, entry);
-                _ByTypeName.Add(entry.TypeName, entry);
+                _ByTypeName.Add(entry.Service, entry);
 
                 if (!_ByContract.ContainsKey(entry.Contract))
                 {

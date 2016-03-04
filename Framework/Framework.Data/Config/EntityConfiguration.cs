@@ -7,6 +7,7 @@
 // Description: Configuration objects.
 // ============================================================================
 
+using Framework.Data.Model;
 using System.Configuration;
 
 namespace Framework.Data.Config
@@ -64,5 +65,17 @@ namespace Framework.Data.Config
         }
     }
 
-    public class EntityElement : BaseElementWithTypeAndSettings { }
+    public class EntityElement : BaseElementWithTypeAndSettings
+    {
+        //
+        // KIND
+        //
+
+        [ConfigurationProperty(Constants.KIND, DefaultValue = TypeOfDataEntity.DATA_SET, IsRequired = false)]
+        public TypeOfDataEntity Kind
+        {
+            get { return (TypeOfDataEntity)this[Constants.KIND]; }
+            set { this[Constants.KIND] = value; }
+        }
+    }
 }

@@ -13,10 +13,12 @@ using System;
 
 namespace Framework.Core.Types.Specialized
 {
-    public class Setting : IConfigSetting<int, string, string, string>, IAuditable<string>
+    public class Setting : 
+        IConfigSetting<int, string, string, string>, 
+        IAuditable<string>
     {
         //
-        // Info
+        // INFO
         //
 
         public int ID { get; set; }
@@ -28,7 +30,7 @@ namespace Framework.Core.Types.Specialized
         public string Value { get; set; }
 
         //
-        // Audits
+        // AUDITS
         //
 
         public string CreatedBy { get; set; }
@@ -46,7 +48,7 @@ namespace Framework.Core.Types.Specialized
         public Setting()
         {
             //
-            // Info
+            // INFO
             //
 
             ID = -1;
@@ -55,7 +57,7 @@ namespace Framework.Core.Types.Specialized
             Value = string.Empty;
 
             //
-            // Audits
+            // AUDITS
             //
 
             AuditableExtensions.Init(this, string.Empty);

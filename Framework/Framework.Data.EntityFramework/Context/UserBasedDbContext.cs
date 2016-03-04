@@ -11,7 +11,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Data.Entity;
 
-namespace Framework.Data.EntityFramework.Objects
+namespace Framework.Data.EntityFramework.Context
 {
     public class UserBasedDbContext<TUser> : IdentityDbContext<TUser> where TUser : IdentityUser
     {

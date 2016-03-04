@@ -19,12 +19,11 @@ namespace Framework.Data.Model
         IID<int>,
         IName<string>,
         IDescription<string>,
-        ITypeName<string>,
         IConfigList<Setting>,
         IAuditable<string>
     {
         //
-        // Info
+        // INFO
         //
 
         public int ID { get; set; }
@@ -33,12 +32,12 @@ namespace Framework.Data.Model
 
         public string Description { get; set; }
 
-        public string TypeName { get; set; }
+        public string Service { get; set; }
 
         public ICollection<Setting> Settings { get; set; }
 
         //
-        // Audits
+        // AUDITS
         //
 
         public string CreatedBy { get; set; }
@@ -56,16 +55,17 @@ namespace Framework.Data.Model
         public DataContext()
         {
             //
-            // Info
+            // INFO
             //
 
             ID = -1;
             Name = string.Empty;
             Description = string.Empty;
+            Service = string.Empty;
             Settings = null;
 
             //
-            // Audits
+            // AUDITS
             //
 
             AuditableExtensions.Init(this, string.Empty);

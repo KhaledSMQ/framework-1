@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Service
+// Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 03/Aug/2015
 // Company: Cybermap Lta.
@@ -24,16 +24,18 @@ namespace Framework.Data.Model
         IAuditable<string>
     {
         //
-        // PROPERTIES
+        // INFO
         //
 
         public int ID { get; set; }
+
+        public TypeOfDataEntity Kind { get; set; }
 
         public string Name { get; set; }
 
         public string Description { get; set; }
 
-        public string TypeName { get; set; }
+        public string Service { get; set; }
 
         public ICollection<Setting> Settings { get; set; }
 
@@ -55,14 +57,19 @@ namespace Framework.Data.Model
 
         public DataEntity()
         {
+            //
+            // INFO
+            //
+
             ID = -1;
+            Kind = TypeOfDataEntity.DATA_SET;
             Name = string.Empty;
             Description = string.Empty;
-            TypeName = string.Empty;
+            Service = string.Empty;
             Settings = null;
 
             //
-            // Audits
+            // AUDITS
             //
 
             AuditableExtensions.Init(this, string.Empty);

@@ -17,9 +17,9 @@ namespace Framework.Data.Patterns
         // Data context related methods.
         //
 
-        void SetDataContext(IProviderContext context);
+        void SetDataContext(IProviderDataContext context);
 
-        IProviderContext GetDataContext();
+        IProviderDataContext GetDataContext();
 
         //
         // Entity storage factory methods.

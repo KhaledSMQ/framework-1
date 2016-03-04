@@ -39,7 +39,7 @@ namespace Framework.Factory.Config
             service.Name = serviceElm.Name;
             service.Description = serviceElm.Description;
             service.Contract = serviceElm.Contract;
-            service.TypeName = serviceElm.Type;
+            service.Service = serviceElm.Type;
             service.Settings = ToSetting(serviceElm.Settings);
             return service;
         }

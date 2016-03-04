@@ -35,7 +35,7 @@ namespace Framework.Factory.Model
 
         public string Contract { get; set; }
 
-        public string TypeName { get; set; }
+        public string Service { get; set; }
 
         public virtual ICollection<Setting> Settings { get; set; }
 
@@ -66,7 +66,7 @@ namespace Framework.Factory.Model
             Name = string.Empty;
             Description = string.Empty;
             Contract = string.Empty;
-            TypeName = string.Empty;
+            Service = string.Empty;
             Settings = null;
 
             //

@@ -8,44 +8,26 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
+using Framework.Data.Model;
 using Framework.Factory.Patterns;
 using System;
+using System.Collections.Generic;
 
 namespace Framework.Data.Patterns
 {
-    public interface IProviderContext : ICommon
+    public interface IProviderDataContext : ICommon
     {
         //
-        // DATA-SOURCE-REGISTRY
+        // CRUDs
         //
 
-        void AddDataSet<T>();
+        void Load(IEnumerable<DataEntity> entities);
 
-        void AddDataSet(Type type);
+        void Load(IEnumerable<DataPartialModel> models);
 
-        void AddDataSet(string type);
+        IEnumerable<DataEntity> GetListOfEntities();
 
-        void AddDataObject<T>();
-
-        void AddDataObject(Type type);
-
-        void AddDataObject(string type);
-
-        //
-        // DATA-SOURCE-QUERY
-        //
-
-        bool HasDataSet<T>();
-
-        bool HasDataSet(Type type);
-
-        bool HasDataSet(string type);
-
-        bool HasDataObject<T>();
-
-        bool HasDataObject(Type type);
-
-        bool HasDataObject(string type);
+        IEnumerable<DataPartialModel> GetListOfPartialModels();
 
         //
         // DATA-SOURCE-FACTORIES
@@ -53,16 +35,12 @@ namespace Framework.Data.Patterns
 
         IDataSet<T> GetDataSet<T>();
 
-        IDataSet<T> GetDataSet<T>(IConfigMap cfg);
-
         IDataObject<T> GetDataObject<T>();
-
-        IDataObject<T> GetDataObject<T>(IConfigMap cfg);
 
         //
         // Model create handler.
         //
 
-        void OnModelCreating(object context);
+        void CreateModel();
     }
 }

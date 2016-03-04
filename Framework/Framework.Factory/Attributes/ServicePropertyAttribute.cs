@@ -1,15 +1,17 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Configuration for Data Contextx.
+// Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Create date: 26/Nov/2015
+// Create date: 4/Mar/2016
 // Company: Cybermap Lta.
-// Description: Configuration objects.
+// Description: 
 // ============================================================================
 
-using System.Configuration;
-
-namespace Framework.Data.Config
+namespace Framework.Factory.API.Attributes
 {
-    public class DataContextElement : BaseElementWithTypeAndSettings { }
+    [System.AttributeUsage(System.AttributeTargets.Property)]
+    public class ServicePropertyAttribute : System.Attribute
+    {
+        public string Name;
+    }
 }

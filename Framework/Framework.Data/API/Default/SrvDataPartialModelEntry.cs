@@ -23,7 +23,7 @@ namespace Framework.Factory.API.Default.Config
 
         public DataPartialModel GetByType(string type)
         {
-            return DataLayer.Queryable().Where(i => i.TypeName == type).FirstOrDefault();
+            return DataLayer.Queryable().Where(i => i.Service == type).FirstOrDefault();
         }
     }
 }

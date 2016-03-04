@@ -73,8 +73,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\DbCreateAlways.cs" />
+    <Compile Include="Context\DbCreateIfModelChanges.cs" />
+    <Compile Include="Context\DbCreateIfNotExists.cs" />
+    <Compile Include="Context\EFBaseDataContextProvider.cs" />
     <Compile Include="Context\BaseDbContext.cs" />
     <Compile Include="Context\UserBasedDbContext.cs" />
+    <Compile Include="Context\_Enums.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="Objects\ADataSetWithKey.cs" />
     <Compile Include="Objects\ADataSet.cs" />

@@ -64,7 +64,7 @@ namespace Framework.Factory.Config
         }
     }
 
-    public class SettingElement : BaseElementWithType {
+    public class SettingElement : BaseElement {
 
         //
         // Value

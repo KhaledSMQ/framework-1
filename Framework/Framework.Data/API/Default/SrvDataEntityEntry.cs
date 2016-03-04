@@ -23,7 +23,7 @@ namespace Framework.Data.API.Default
 
         public DataEntity GetByType(string type)
         {
-            return DataLayer.Queryable().Where(i => i.TypeName == type).FirstOrDefault();
+            return DataLayer.Queryable().Where(i => i.Service == type).FirstOrDefault();
         }
     }
 }
