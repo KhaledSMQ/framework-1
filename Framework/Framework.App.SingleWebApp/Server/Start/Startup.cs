@@ -10,6 +10,7 @@
 using Framework.Data.API.Interface;
 using Microsoft.Owin;
 using Owin;
+using System;
 
 [assembly: OwinStartup(typeof(Framework.App.SingleWebApp.Server.Start.Startup))]
 
@@ -29,7 +30,7 @@ namespace Framework.App.SingleWebApp.Server.Start
             Data.Runtime.Manager.Init(app);
 
             IStore srvDataStore = Factory.Runtime.Manager.Hub.GetUnique<IStore>();
-            srvDataStore.InitClusters();           
+            srvDataStore.InitClusters();
 
             // srvDataStore.GetDataSet<>();
 
@@ -38,7 +39,8 @@ namespace Framework.App.SingleWebApp.Server.Start
             //
 
             // string dataDirectory = Path.Combine(Framework.Apps.Web.Framework.Context.Host.AppContext.Config.Host.BasePhysicalFolder, "_data\\_db\\");
-            // AppDomain.CurrentDomain.SetData("DataDirectory", dataDirectory);
+            string dataDirectory = string.Empty;           
+            AppDomain.CurrentDomain.SetData("DataDirectory", dataDirectory);
         }
     }
 }

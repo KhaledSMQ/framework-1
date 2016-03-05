@@ -157,7 +157,7 @@
     <None Include="Web.Deploy [RELEASE].config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="_data\_seed\_seed.json" />
+    <Content Include="Data\Seed\_seed.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -172,15 +172,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Data\DB\" />
+    <Folder Include="Data\Images\" />
     <Folder Include="Server\API\Controllers\" />
     <Folder Include="Server\API\Default\" />
     <Folder Include="Server\API\Interface\" />
-    <Folder Include="Server\Auth\" />
-    <Folder Include="Server\Controls\" />
-    <Folder Include="Server\Data\EF\" />
     <Folder Include="Server\Model\" />
-    <Folder Include="_data\_db\" />
-    <Folder Include="_data\_images\_icon\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.APIs\Framework.APIs.csproj">

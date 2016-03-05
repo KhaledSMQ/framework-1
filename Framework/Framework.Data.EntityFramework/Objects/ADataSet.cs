@@ -16,7 +16,7 @@ using System.Linq;
 namespace Framework.Data.EntityFramework.Objects
 {
     public abstract class ADataSet<TItem> :
-        Framework.Data.Patterns.ADataSet<TItem>, 
+        Patterns.ADataSet<TItem>, 
         IDataSet<TItem> 
         where TItem : class
     { 
