@@ -62,15 +62,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\Default\SrvStartup.cs" />
     <Compile Include="API\Default\SrvHost.cs" />
     <Compile Include="API\Interface\IHost.cs" />
     <Compile Include="API\Interface\IStartup.cs" />
     <Compile Include="Config\BaseConfiguration.cs" />
     <Compile Include="Config\Constants.cs" />
+    <Compile Include="Config\StartupConfiguration.cs" />
+    <Compile Include="Config\MethodCallConfiguration.cs" />
     <Compile Include="Config\MetaConfiguration.cs" />
     <Compile Include="Config\HostConfiguration.cs" />
     <Compile Include="Config\Transforms.cs" />
     <Compile Include="Lib.cs" />
+    <Compile Include="Model\MethodCall.cs" />
     <Compile Include="Model\Meta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

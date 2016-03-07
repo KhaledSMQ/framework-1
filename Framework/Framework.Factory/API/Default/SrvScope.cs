@@ -20,7 +20,7 @@ namespace Framework.Factory.API.Default
 
         public IHub Hub
         {
-            get { return Runtime.Manager.Hub; }
+            get { return Runtime.Hub; }
         }
 
         //

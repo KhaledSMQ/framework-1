@@ -108,7 +108,6 @@
     <Compile Include="Query\Linq\Paging.cs" />
     <Compile Include="Query\Linq\Where.cs" />
     <Compile Include="Config\ManagerConfiguration.cs" />
-    <Compile Include="Runtime\Manager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

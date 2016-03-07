@@ -11,8 +11,13 @@ namespace Framework.Configuration.Config
 {
     public static class Constants
     {
-        public const string SECTION = "frameworkConfig";
+        public const string SECTION_HOST = "frameworkHost";
+        public const string SECTION_STARTUP = "frameworkStartup";
+
         public const string META = "meta";
+        public const string SERVICE = "service";
+        public const string METHOD = "method";
+        public const string SEQUENCE = "sequence";
         public const string NAME = "name";
         public const string VERSION = "version";
         public const string ICON = "icon";

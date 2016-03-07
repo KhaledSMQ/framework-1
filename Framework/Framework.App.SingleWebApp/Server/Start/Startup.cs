@@ -21,26 +21,29 @@ namespace Framework.App.SingleWebApp.Server.Start
     {
         public void Configuration(IAppBuilder app)
         {
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
-
             //
             // Initialize framework services.
             //
 
-            Factory.Runtime.Manager.Init(app);
-            Data.Runtime.Manager.Init(app);
+            Factory.Runtime.Init(app);
 
             //
             // Set a new data directory path.
             //
 
-            AppDomain.CurrentDomain.SetData("DataDirectory", Factory.Runtime.Manager.Hub.GetUnique<IHost>().GetAbsolutePhysicalPath("Data\\DB\\"));
+            AppDomain.CurrentDomain.SetData("DataDirectory", Factory.Runtime.Hub.GetUnique<IHost>().GetAbsolutePhysicalPath("Data\\DB\\"));
+
+            //
+            // Boot application.
+            //
+
+            Factory.Runtime.Hub.GetUnique<IStartup>().Startup(app);
 
             //
             // Initialize data clusters.
             // 
 
-            Factory.Runtime.Manager.Hub.GetUnique<IStore>().InitClusters();
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
         }
     }
 }

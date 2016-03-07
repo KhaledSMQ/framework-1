@@ -13,9 +13,9 @@ using Framework.Factory.Model;
 using Owin;
 using System.Collections.Generic;
 
-namespace Framework.Factory.Runtime
+namespace Framework.Factory
 {
-    public static class Manager
+    public static class Runtime
     {
         //
         // PROPERTIES
@@ -29,7 +29,7 @@ namespace Framework.Factory.Runtime
         // CONSTRUCTORS
         //
 
-        static Manager() { }
+        static Runtime() { }
 
         //
         // Initialize the data manager services.
