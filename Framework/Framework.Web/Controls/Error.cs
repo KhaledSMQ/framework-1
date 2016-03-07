@@ -1,10 +1,10 @@
 ﻿// ============================================================================
-// Project: Toolkit - Apps
-// Name/Class: AppLogo
+// Project: Framework
+// Name/Class: Error
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Create date: 06/Jun/2014
+// Create date: 06/Mar/2016
 // Company: Cybermap Lta.
-// Description: Display the application logo as an image tag.
+// Description: Display an error message.
 // ============================================================================
 
 using System;
@@ -13,7 +13,7 @@ using System.Web.UI;
 namespace Framework.Web.Controls
 {
     [ToolboxData("<{0}:Error runat=\"server\"></{0}:Error>")]
-    public class Error : Framework.Web.View.Control
+    public class Error : View.Control
     {
         //
         // PROPERTIES

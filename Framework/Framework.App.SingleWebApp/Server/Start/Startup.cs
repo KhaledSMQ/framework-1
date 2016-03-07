@@ -7,6 +7,7 @@
 // Description: Application startup class.
 // ============================================================================
 
+using Framework.Configuration.API.Interface;
 using Framework.Data.API.Interface;
 using Microsoft.Owin;
 using Owin;
@@ -29,18 +30,17 @@ namespace Framework.App.SingleWebApp.Server.Start
             Factory.Runtime.Manager.Init(app);
             Data.Runtime.Manager.Init(app);
 
-            IStore srvDataStore = Factory.Runtime.Manager.Hub.GetUnique<IStore>();
-            srvDataStore.InitClusters();
-
-            // srvDataStore.GetDataSet<>();
-
             //
             // Set a new data directory path.
             //
 
-            // string dataDirectory = Path.Combine(Framework.Apps.Web.Framework.Context.Host.AppContext.Config.Host.BasePhysicalFolder, "_data\\_db\\");
-            string dataDirectory = string.Empty;           
-            AppDomain.CurrentDomain.SetData("DataDirectory", dataDirectory);
+            AppDomain.CurrentDomain.SetData("DataDirectory", Factory.Runtime.Manager.Hub.GetUnique<IHost>().GetAbsolutePhysicalPath("Data\\DB\\"));
+
+            //
+            // Initialize data clusters.
+            // 
+
+            Factory.Runtime.Manager.Hub.GetUnique<IStore>().InitClusters();
         }
     }
 }

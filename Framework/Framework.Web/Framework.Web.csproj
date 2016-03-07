@@ -82,6 +82,7 @@
     <Folder Include="API\Interface\" />
     <Folder Include="Data\" />
     <Folder Include="Model\" />
+    <Folder Include="Routing\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">

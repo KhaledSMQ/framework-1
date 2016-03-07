@@ -10,7 +10,7 @@
 using Framework.Factory.Patterns;
 using Owin;
 
-namespace Framework.Data.API.Interface
+namespace Framework.Configuration.API.Interface
 {
     public interface IStartup : ICommon
     {
@@ -18,6 +18,7 @@ namespace Framework.Data.API.Interface
         // Method to execute when application starts.
         // @param app The application reference object.
         //
+
         void Startup(IAppBuilder app);        
     }
 }

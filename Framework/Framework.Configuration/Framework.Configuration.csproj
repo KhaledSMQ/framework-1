@@ -39,12 +39,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
@@ -60,8 +62,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\Default\SrvHost.cs" />
+    <Compile Include="API\Interface\IHost.cs" />
     <Compile Include="API\Interface\IStartup.cs" />
+    <Compile Include="Config\BaseConfiguration.cs" />
+    <Compile Include="Config\Constants.cs" />
+    <Compile Include="Config\MetaConfiguration.cs" />
+    <Compile Include="Config\HostConfiguration.cs" />
+    <Compile Include="Config\Transforms.cs" />
     <Compile Include="Lib.cs" />
+    <Compile Include="Model\Meta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,9 +81,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="API\Controllers\" />
-    <Folder Include="API\Default\" />
-    <Folder Include="Data\" />
-    <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
