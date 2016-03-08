@@ -128,6 +128,15 @@ namespace Framework.Core.Extensions
         }
 
         //
+        // Apply a specific action to all items in a enumerable.
+        //
+
+        public static void Apply<T>(this IEnumerable list, Action<T> handler)
+        {
+            if (null != handler && null != list) { foreach(T item in list) { handler(item); } }
+        }
+
+        //
         // Apply a specific action to all items in a list.
         //
 

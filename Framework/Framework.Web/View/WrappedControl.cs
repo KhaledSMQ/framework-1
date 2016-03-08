@@ -99,7 +99,7 @@ namespace Framework.Web.View
             {
                 Error errControl = (Error)Page.LoadControl(typeof(Error), null);
                 errControl.Exception = ex;
-                this.Controls.Add(errControl);
+                Controls.Add(errControl);
             }
         }
 

@@ -11,7 +11,8 @@ using Framework.Factory.Patterns;
 
 namespace Framework.Web.Patterns
 {
-    public abstract class AControllerServiceWrapper<TSrv> : AController
+    public abstract class AControllerServiceWrapper<TSrv> : 
+        AController
         where TSrv : ICommon
     {
         //
