@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using Microsoft.Owin;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 //
@@ -15,6 +16,12 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright © Cybermap 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+
+//
+// Owin application startup class.
+//
+
+[assembly: OwinStartup(typeof(Framework.Configuration.Startup))]
 
 //
 // Setting ComVisible to false makes the types in this assembly not visible 

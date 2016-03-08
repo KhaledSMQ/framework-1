@@ -2,20 +2,16 @@
 // Project: Framework
 // Name/Class: Startup
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Create date: 26/Nov/2015
+// Create date: 08/Mar/2016
 // Company: Cybermap
 // Description: Application startup class.
 // ============================================================================
 
 using Framework.Configuration.API.Interface;
-using Framework.Data.API.Interface;
-using Microsoft.Owin;
 using Owin;
 using System;
 
-[assembly: OwinStartup(typeof(Framework.App.SingleWebApp.Server.Start.Startup))]
-
-namespace Framework.App.SingleWebApp.Server.Start
+namespace Framework.Configuration
 {
     public class Startup
     {
@@ -38,12 +34,6 @@ namespace Framework.App.SingleWebApp.Server.Start
             //
 
             Factory.Runtime.Hub.GetUnique<IStartup>().Startup(app);
-
-            //
-            // Initialize data clusters.
-            // 
-
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
         }
     }
 }
