@@ -7,6 +7,7 @@
 // Description: Collection extensions methods.
 // ============================================================================
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,6 +22,6 @@ namespace Framework.Core.Helpers
         public static bool NotEmpty<T>(ICollection<T> coll)
         {
             return ((null != coll) && (coll.Count() > 0));
-        }
+        }      
     }
 }

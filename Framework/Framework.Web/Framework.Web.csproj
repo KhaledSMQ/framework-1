@@ -58,13 +58,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\Default\SrvResolver.cs" />
     <Compile Include="API\Default\SrvRouting.cs" />
+    <Compile Include="API\Interface\IResolver.cs" />
     <Compile Include="Config\Routing\Constants.cs" />
     <Compile Include="Config\Routing\HttpRouteConfiguration.cs" />
     <Compile Include="Config\Routing\RoutingConfiguration.cs" />
     <Compile Include="Config\Routing\PageRouteConfiguration.cs" />
     <Compile Include="Config\Constants.cs" />
     <Compile Include="Config\WebConfiguration.cs" />
+    <Compile Include="Extensions\ErrorExtensions.cs" />
+    <Compile Include="Extensions\PageExtensions.cs" />
+    <Compile Include="Extensions\ViewStateExtensions.cs" />
+    <Compile Include="Extensions\WebResourceExtensions.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="Controls\Error.cs" />
     <Compile Include="API\Interface\IRouting.cs" />

@@ -23,6 +23,23 @@ namespace Framework.Core.Extensions
     public static class UrlExtensions
     {
         //
+        // Check if a certain string is a valid uri
+        // Valid uris are absolute uris and relative uris
+        // Returns true if the string is a valid absolute/relative uri, false otherwise.
+        //
+
+        public static bool IsUri(this string uri)
+        {
+            string encoded = uri.EncodeUrl();
+            if (!string.IsNullOrEmpty(uri) && Uri.IsWellFormedUriString(encoded, UriKind.RelativeOrAbsolute))
+            {
+                Uri tempValue;
+                return (Uri.TryCreate(encoded, UriKind.RelativeOrAbsolute, out tempValue));
+            }
+            return false;
+        }
+
+        //
         // Get the absolute path. If the path is alreay absolute, just 
         // return it, otherwise attachs the current server location and
         // host header
