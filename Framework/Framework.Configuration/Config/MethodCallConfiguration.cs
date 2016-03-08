@@ -45,12 +45,12 @@ namespace Framework.Configuration.Config
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((MethodCallElement)element).Name;
+            return ((MethodCallElement)element).GetHashCode();
         }
 
         public void Remove(MethodCallElement itemConfig)
         {
-            BaseRemove(itemConfig.Name);
+            BaseRemove(itemConfig.GetHashCode());
         }
 
         public void RemoveAt(int index)

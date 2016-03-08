@@ -11,6 +11,7 @@ using Framework.Configuration.API.Interface;
 using Framework.Configuration.Config;
 using Framework.Configuration.Model;
 using Framework.Core.Extensions;
+using Framework.Factory.API.Interface;
 using Framework.Factory.Patterns;
 using Owin;
 using System.Collections.Generic;
@@ -42,7 +43,10 @@ namespace Framework.Configuration.API.Default
             // Run all services and all methods defined in sequence.
             //         
 
-            __Sequence.Apply(call => { });
+            __Sequence.Apply(call =>
+            {
+                Scope.Hub.GetUnique<IReflected>().Run(call.Service, call.Method);
+            });
         }
 
         //
@@ -62,9 +66,9 @@ namespace Framework.Configuration.API.Default
                 if (null != config.Sequence)
                 {
                     __Sequence = Transforms.ToSequence(config.Sequence);
-                }                
-            }            
-        }      
+                }
+            }
+        }
 
         //
         // InMemory storage.

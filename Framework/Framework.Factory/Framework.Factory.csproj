@@ -79,6 +79,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\Default\SrvReflected.cs" />
+    <Compile Include="API\Interface\IReflected.cs" />
     <Compile Include="API\Interface\IServiceEntry.cs" />
     <Compile Include="Attributes\ServicePropertyAttribute.cs" />
     <Compile Include="Config\BaseConfiguration.cs" />
@@ -106,7 +108,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="API\Controllers\" />
-    <Folder Include="Runtime\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">

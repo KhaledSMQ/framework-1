@@ -1,16 +1,17 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Manager
+// Name/Class: Runtime
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
 // Company: Cybermap Lta.
-// Description: Runtime context implementation.
+// Description: Factory runtime static object.
 // ============================================================================
 
 using Framework.Factory.API.Interface;
 using Framework.Factory.Config;
 using Framework.Factory.Model;
 using Owin;
+using System;
 using System.Collections.Generic;
 
 namespace Framework.Factory
@@ -41,7 +42,7 @@ namespace Framework.Factory
             // Load base configuration.
             //
 
-            LoadConfig();       
+            LoadConfig();
         }
 
         //
@@ -62,32 +63,57 @@ namespace Framework.Factory
             // This class will be the heart of the framework services.
             //            
 
-            __HubEntry = Transforms.ToService(config.Hub);
-            __CoreServices = Transforms.ToService(config.Services);
+            if (null != config)
+            {
+                if (null != config.Hub)
+                {
+                    //
+                    // Instantiate the hub service.
+                    // Load the hub service entry into the hub... :-)
+                    // 
 
-            //
-            // Instantiate the hub service.
-            // Load the hub service entry into the hub... :-)
-            // 
+                    __HubEntry = Transforms.ToService(config.Hub);
+                    __HubEntry.Unique = true;
 
-            __HubEntry.Unique = true;
-            __Hub = Core.Reflection.Activator.CreateGenericInstance<IHub>(__HubEntry.TypeName);
-            __Hub.Init();
-            __Hub.Load(__HubEntry);
+                    __Hub = Core.Reflection.Activator.CreateGenericInstance<IHub>(__HubEntry.TypeName);
+                    __Hub.Init();
+                    __Hub.Load(__HubEntry);
 
-            //
-            // Load core services into hub.
-            //
+                    if (null != config.Services)
+                    {
+                        //
+                        // Load core services into hub.
+                        //
 
-            __Hub.Load(__CoreServices);
+                        __CoreServices = Transforms.ToService(config.Services);
+                        __Hub.Load(__CoreServices);
+                    }
 
-            //
-            // Setup the Scope service, load it
-            // and set it on the hub.
-            //
+                    //
+                    // Setup the Scope service, load it
+                    // and set it on the hub.
+                    //
 
-            __Scope = __Hub.GetUnique<IScope>();
-            __Hub.Scope = __Scope;
+                    __Scope = __Hub.GetUnique<IScope>();
+                    __Hub.Scope = __Scope;
+                }
+                else
+                {
+                    //
+                    // ERROR: Hub service specification was not found in factory configuration!
+                    //
+
+                    throw new Exception("Hub service specification was not found in factory configuration!");
+                }
+            }
+            else
+            {
+                //
+                // ERROR: Configuration section for factory not found!
+                //
+
+                throw new Exception("Configuration section for factory not found!");
+            }
         }
 
         //
