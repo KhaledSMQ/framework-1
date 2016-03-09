@@ -89,6 +89,8 @@
     <Compile Include="API\Default\SrvStore.cs" />
     <Compile Include="Model\DataCluster.cs" />
     <Compile Include="Model\DataContext.cs" />
+    <Compile Include="Model\DataQueryParam.cs" />
+    <Compile Include="Model\DataQuery.cs" />
     <Compile Include="Model\_Enums.cs" />
     <Compile Include="Model\DataEntity.cs" />
     <Compile Include="Model\DataPartialModel.cs" />

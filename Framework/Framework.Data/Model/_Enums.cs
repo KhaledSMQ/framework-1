@@ -17,7 +17,22 @@ namespace Framework.Data.Model
 
     public enum TypeOfDataEntity
     {
+        UNKNOWN,
         DATA_SET,
         DATA_OBJECT
+    }
+
+    //
+    // Caracterization of a data query.
+    // Queries can be defined by an expression
+    // or by an method. The method follows a 
+    // specific signature.
+    //
+
+    public enum TypeOfDataQuery
+    {
+        UNKNOWN,
+        EXPRESSION,
+        CALLBACK
     }
 }

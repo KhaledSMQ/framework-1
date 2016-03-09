@@ -24,16 +24,26 @@ namespace Framework.Factory.API.Default
     public class SrvHub : ACommon, IHub
     {
         //
-        // PROPERTIES
+        // INIT
         //
 
         public override void Init()
+        {
+            base.Init();
+            __InitInMemoryStorage();
+        }
+
+        private void __InitInMemoryStorage()
         {
             _Instances = new SortedDictionary<string, ICommon>();
             _ByName = new SortedDictionary<string, ServiceEntry>();
             _ByTypeName = new SortedDictionary<string, ServiceEntry>();
             _ByContract = new SortedDictionary<string, IList<ServiceEntry>>();
         }
+
+        //
+        // API
+        //
 
         public T GetUnique<T>() where T : ICommon
         {

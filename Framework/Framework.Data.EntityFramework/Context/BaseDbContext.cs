@@ -22,7 +22,7 @@ namespace Framework.Data.EntityFramework.Context
         //
 
         public BaseDbContext(string connectionString, IEnumerable<DataEntity> entities, IEnumerable<DataPartialModel> models)
-            : base("name=" + connectionString)
+            : base(connectionString)
         {
             //
             // Set the enitites and models for the context.
