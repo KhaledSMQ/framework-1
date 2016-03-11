@@ -76,7 +76,6 @@ namespace Framework.Data.API
             }
         }
 
-
         public void InitClusters()
         {
             GetListOfClusters().Apply(__InitCluster);
@@ -182,7 +181,6 @@ namespace Framework.Data.API
                     // ERROR: Entity definition is not valid, either the name or type is not defined!
                     //
                 }
-
             });
         }
 
@@ -202,19 +200,9 @@ namespace Framework.Data.API
         public IDataSet<T> GetDataSet<T>()
         {
             return null;
-        }
-
-        public IDataSet<T> GetDataSet<T>(IConfigMap cfg)
-        {
-            return null;
-        }
+        }     
 
         public IDataObject<T> GetDataObject<T>()
-        {
-            return null;
-        }
-
-        public IDataObject<T> GetDataObject<T>(IConfigMap cfg)
         {
             return null;
         }

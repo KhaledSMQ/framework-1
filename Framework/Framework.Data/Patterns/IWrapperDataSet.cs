@@ -17,12 +17,6 @@ namespace Framework.Data.Patterns
     public interface IWrapperDataSet<TItem> : ICommon
     {
         //
-        // PROPERTIES
-        //
-
-        IConfigMap Src { get; set; }
-
-        //
         // CREATE
         //
 

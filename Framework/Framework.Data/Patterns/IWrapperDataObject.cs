@@ -7,19 +7,12 @@
 // Description: Base service contract for single object sources.
 // ============================================================================
 
-using Framework.Core.Patterns;
 using Framework.Factory.Patterns;
 
 namespace Framework.Data.Patterns
 {
     public interface IWrapperDataObject<TItem> : ICommon
     {
-        //
-        // PROPERTIES
-        //
-
-        IConfigMap Src { get; set; }
-
         //
         // SET
         //

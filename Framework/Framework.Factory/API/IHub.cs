@@ -20,9 +20,9 @@ namespace Framework.Factory.API
 
         T GetByName<T>(string name) where T : ICommon;
 
-        T GetByTypeName<T>(string typeName) where T : ICommon;
+        IEnumerable<T> GetByTypeName<T>(string typeName) where T : ICommon;
 
-        T GetByType<T>(Type type) where T : ICommon;
+        IEnumerable<T> GetByType<T>(Type type) where T : ICommon;
 
         IEnumerable<T> GetByContract<T>() where T : ICommon;
 

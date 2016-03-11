@@ -54,10 +54,7 @@ namespace Framework.Data.Config
             if (null != elm)
             {
                 dataContext = new DataContext();
-                dataContext.Name = elm.Name;
-                dataContext.Description = elm.Description;
                 dataContext.Service = elm.Service;
-                dataContext.Settings = ToSetting(elm.Settings);
             }
             return dataContext;
         }

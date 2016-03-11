@@ -19,8 +19,6 @@ namespace Framework.Data.Patterns
         // PROPERTIES
         // 
 
-        public IConfigMap Src { get; set; }
-
         protected IDataObject<TItem> DataLayer { get; set; }
 
         //
@@ -39,7 +37,7 @@ namespace Framework.Data.Patterns
             // Initialize the inner source layer.
             //
 
-            DataLayer = Scope.Hub.GetUnique<IStore>().GetDataObject<TItem>(Src);
+            DataLayer = Scope.Hub.GetUnique<IStore>().GetDataObject<TItem>();
         }
 
         //

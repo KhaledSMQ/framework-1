@@ -13,7 +13,7 @@ using System.Data.Entity;
 
 namespace Framework.Data.EntityFramework.Context
 {
-    public class EFBaseDataContextProvider : AProviderDataContext, IProviderDataContext
+    public class BaseDataContextProvider : AProviderDataContext, IProviderDataContext
     {
         //
         // PROPERTIES

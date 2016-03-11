@@ -36,7 +36,7 @@ namespace Framework.Factory.API
         {
             _Instances = new SortedDictionary<string, ICommon>();
             _ByName = new SortedDictionary<string, ServiceEntry>();
-            _ByTypeName = new SortedDictionary<string, ServiceEntry>();
+            _ByTypeName = new SortedDictionary<string, IList<ServiceEntry>>();
             _ByContract = new SortedDictionary<string, IList<ServiceEntry>>();
         }
 
@@ -59,17 +59,17 @@ namespace Framework.Factory.API
             return Get<T>(_ByName[name]);
         }
 
-        public T GetByTypeName<T>(string typeName) where T : ICommon
+        public IEnumerable<T> GetByTypeName<T>(string typeName) where T : ICommon
         {
             if (!_ByTypeName.ContainsKey(typeName))
             {
                 Load(_ServiceEntry.GetByTypeName(typeName));
             }
 
-            return Get<T>(_ByTypeName[typeName]);
+            return _ByContract[typeName].Map(new List<T>(), Get<T>);
         }
 
-        public T GetByType<T>(Type type) where T : ICommon
+        public IEnumerable<T> GetByType<T>(Type type) where T : ICommon
         {
             return GetByTypeName<T>(type.FullName);
         }
@@ -176,13 +176,18 @@ namespace Framework.Factory.API
             if (!_ByName.ContainsKey(entry.Name))
             {
                 _ByName.Add(entry.Name, entry);
-                _ByTypeName.Add(entry.TypeName, entry);
+
+                if (!_ByTypeName.ContainsKey(entry.TypeName))
+                {
+                    _ByTypeName.Add(entry.TypeName, new List<ServiceEntry>());
+                }
 
                 if (!_ByContract.ContainsKey(entry.Contract))
                 {
                     _ByContract.Add(entry.Contract, new List<ServiceEntry>());
                 }
 
+                _ByTypeName[entry.TypeName].Add(entry);
                 _ByContract[entry.Contract].Add(entry);
             }
         }
@@ -235,7 +240,7 @@ namespace Framework.Factory.API
         private IServiceEntry _ServiceEntryValue { get; set; }
         private IDictionary<string, ICommon> _Instances = null;
         private IDictionary<string, ServiceEntry> _ByName = null;
-        private IDictionary<string, ServiceEntry> _ByTypeName = null;
+        private IDictionary<string, IList<ServiceEntry>> _ByTypeName = null;
         private IDictionary<string, IList<ServiceEntry>> _ByContract = null;
     }
 }

@@ -53,12 +53,8 @@ namespace Framework.Data.API
         // Data Set/Object CRUD layers.
         //
 
-        IDataSet<T> GetDataSet<T>();
-
-        IDataSet<T> GetDataSet<T>(IConfigMap cfg);
+        IDataSet<T> GetDataSet<T>();        
 
         IDataObject<T> GetDataObject<T>();
-
-        IDataObject<T> GetDataObject<T>(IConfigMap cfg);
     }
 }

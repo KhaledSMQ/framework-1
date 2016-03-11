@@ -11,7 +11,7 @@ using System.Configuration;
 
 namespace Framework.Data.Config
 {
-    public class ContextElement : BaseElementWithSettings
+    public class ContextElement : ConfigurationElement
     {
         //
         // SERVICE
