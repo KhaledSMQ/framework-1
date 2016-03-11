@@ -9,7 +9,7 @@
 
 using Framework.Factory.Patterns;
 
-namespace Framework.Factory.API.Default
+namespace Framework.Factory.API
 {
     public class SrvScope : ACommon, IScope
     {
