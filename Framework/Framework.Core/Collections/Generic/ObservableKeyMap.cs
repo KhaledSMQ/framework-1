@@ -7,13 +7,13 @@
 // Description: Mapping structure for key interface elements.
 // ============================================================================
 
+using Framework.Core.Extensions;
+using Framework.Core.Patterns;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
-using Framework.Core.Extensions;
-using Framework.Core.Patterns;
 
 namespace Framework.Core.Collections.Generic
 {
