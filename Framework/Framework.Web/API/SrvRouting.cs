@@ -9,7 +9,6 @@
 
 using Framework.Core.Extensions;
 using Framework.Factory.Patterns;
-using Framework.Web.API.Interface;
 using Framework.Web.Config;
 using Framework.Web.Config.Routing;
 using Framework.Web.Model.Routing;
@@ -18,7 +17,7 @@ using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Routing;
 
-namespace Framework.Web.API.Default
+namespace Framework.Web.API
 {
     public class SrvRouting : ACommon, IRouting
     {

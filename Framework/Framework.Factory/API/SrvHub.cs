@@ -11,7 +11,6 @@ using Framework.Core.Collections.Specialized;
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
-using Framework.Factory.API.Interface;
 using Framework.Factory.Model;
 using Framework.Factory.Patterns;
 using System;
@@ -19,7 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Framework.Factory.API.Default
+namespace Framework.Factory.API
 {
     public class SrvHub : ACommon, IHub
     {

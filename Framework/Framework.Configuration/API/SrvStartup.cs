@@ -7,16 +7,15 @@
 // Description: Host related properties and features.
 // ============================================================================
 
-using Framework.Configuration.API.Interface;
 using Framework.Configuration.Config;
 using Framework.Configuration.Model;
 using Framework.Core.Extensions;
-using Framework.Factory.API.Interface;
+using Framework.Factory.API;
 using Framework.Factory.Patterns;
 using Owin;
 using System.Collections.Generic;
 
-namespace Framework.Configuration.API.Default
+namespace Framework.Configuration.API
 {
     public class SrvStartup : ACommon, IStartup
     {

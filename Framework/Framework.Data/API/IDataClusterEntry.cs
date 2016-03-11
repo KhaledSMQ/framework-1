@@ -10,7 +10,7 @@
 using Framework.Data.Model;
 using Framework.Data.Patterns;
 
-namespace Framework.Data.API.Interface
+namespace Framework.Data.API
 {
     public interface IDataClusterEntry : IWrapperDataSet<DataCluster>
     {

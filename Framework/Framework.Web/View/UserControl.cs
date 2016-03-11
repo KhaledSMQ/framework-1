@@ -7,7 +7,7 @@
 // Description: Base user control definition.
 // ============================================================================
 
-using Framework.Factory.API.Interface;
+using Framework.Factory.API;
 using System;
 
 namespace Framework.Web.View

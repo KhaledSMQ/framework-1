@@ -13,7 +13,7 @@ using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
 using System.Collections.Generic;
 
-namespace Framework.Data.API.Interface
+namespace Framework.Data.API
 {
     public interface IStore : ICommon
     {

@@ -9,7 +9,7 @@
 
 using Framework.Factory.Patterns;
 
-namespace Framework.Web.API.Interface
+namespace Framework.Web.API
 {
     public interface IResolver : ICommon
     {

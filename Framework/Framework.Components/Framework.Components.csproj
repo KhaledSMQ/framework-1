@@ -65,9 +65,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="API\Controllers\" />
-    <Folder Include="API\Default\" />
-    <Folder Include="API\Interface\" />
+    <Folder Include="API\" />
     <Folder Include="Data\" />
     <Folder Include="Model\" />
   </ItemGroup>

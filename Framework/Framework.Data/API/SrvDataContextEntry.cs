@@ -7,18 +7,23 @@
 // Description: 
 // ============================================================================
 
-using Framework.Data.API.Interface;
+using Framework.Data.API;
 using Framework.Data.Model;
 using Framework.Data.Patterns;
 using System.Linq;
 
-namespace Framework.Data.API.Default
+namespace Framework.Data.API
 {
-    public class SrvDataClusterEntry : AWrapperDataSet<DataCluster>, IDataClusterEntry
+    public class SrvDataContextEntry : AWrapperDataSet<DataContext>, IDataContextEntry
     {
-        public DataCluster GetByName(string name)
+        public DataContext GetByName(string name)
         {
             return DataLayer.Queryable().Where(i => i.Name == name).FirstOrDefault();
+        }
+
+        public DataContext GetByType(string type)
+        {
+            return DataLayer.Queryable().Where(i => i.Service == type).FirstOrDefault();
         }
     }
 }

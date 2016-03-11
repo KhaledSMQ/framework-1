@@ -7,12 +7,11 @@
 // Description: 
 // ============================================================================
 
-using Framework.Data.API.Interface;
 using Framework.Data.Model;
 using Framework.Data.Patterns;
 using System.Linq;
 
-namespace Framework.Factory.API.Default.Config
+namespace Framework.Data.API
 {
     public class SrvDataPartialModelEntry : AWrapperDataSet<DataPartialModel>, IDataPartialModelEntry
     {

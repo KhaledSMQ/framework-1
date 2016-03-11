@@ -12,7 +12,7 @@ using Framework.Core.Patterns;
 using Framework.FileSystem.Patterns;
 using Framework.Factory.Patterns;
 
-namespace Framework.FileSystem.API.Interface
+namespace Framework.FileSystem.API
 {
     public interface IBlobSourceContext : ICommon, IID<string>, IStringReady, IXmlReadyParameterized, IXmlReady
     {

@@ -9,7 +9,7 @@
 
 using Framework.Factory.Patterns;
 
-namespace Framework.Factory.API.Interface
+namespace Framework.Factory.API
 {
     public interface IReflected : ICommon
     {

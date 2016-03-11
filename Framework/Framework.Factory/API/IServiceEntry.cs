@@ -11,7 +11,7 @@ using Framework.Factory.Model;
 using Framework.Factory.Patterns;
 using System.Collections.Generic;
 
-namespace Framework.Factory.API.Interface
+namespace Framework.Factory.API
 {
     public interface IServiceEntry : ICommon
     {

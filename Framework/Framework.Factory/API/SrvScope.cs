@@ -7,7 +7,6 @@
 // Description: Scope service implementation..
 // ============================================================================
 
-using Framework.Factory.API.Interface;
 using Framework.Factory.Patterns;
 
 namespace Framework.Factory.API.Default

@@ -8,14 +8,13 @@
 // ============================================================================
 
 using System;
-using Framework.Factory.API.Interface;
 using Framework.Factory.Patterns;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using Framework.Core.Extensions;
 
-namespace Framework.Factory.API.Default
+namespace Framework.Factory.API
 {
     public class SrvReflected : ACommon, IReflected
     {

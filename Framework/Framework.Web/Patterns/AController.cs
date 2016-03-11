@@ -7,7 +7,7 @@
 // Description: Base Api controller class.
 // ============================================================================
 
-using Framework.Factory.API.Interface;
+using Framework.Factory.API;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 

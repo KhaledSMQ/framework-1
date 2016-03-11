@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using Framework.Factory.Patterns;
 using Framework.Web.Model.Routing;
 
-namespace Framework.Web.API.Interface
+namespace Framework.Web.API
 {
     public interface IRouting : ICommon
     {

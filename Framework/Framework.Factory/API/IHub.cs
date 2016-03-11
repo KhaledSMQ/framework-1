@@ -12,7 +12,7 @@ using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;
 
-namespace Framework.Factory.API.Interface
+namespace Framework.Factory.API
 {
     public interface IHub : ICommon
     {

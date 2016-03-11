@@ -7,12 +7,12 @@
 // Description: 
 // ============================================================================
 
-using Framework.Data.API.Interface;
+using Framework.Data.API;
 using Framework.Data.Model;
 using Framework.Data.Patterns;
 using System.Linq;
 
-namespace Framework.Data.API.Default
+namespace Framework.Data.API
 {
     public class SrvDataEntityEntry : AWrapperDataSet<DataEntity>, IDataEntityEntry
     {

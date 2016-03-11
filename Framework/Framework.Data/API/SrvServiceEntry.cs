@@ -8,12 +8,12 @@
 // ============================================================================
 
 using Framework.Data.Patterns;
-using Framework.Factory.API.Interface;
+using Framework.Factory.API;
 using Framework.Factory.Model;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Framework.Factory.API.Default.Config
+namespace Framework.Data.API
 {
     public class SrvService : AWrapperDataSet<ServiceEntry>, IServiceEntry
     {

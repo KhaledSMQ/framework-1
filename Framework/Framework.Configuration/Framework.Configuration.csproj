@@ -66,10 +66,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\Default\SrvStartup.cs" />
-    <Compile Include="API\Default\SrvHost.cs" />
-    <Compile Include="API\Interface\IHost.cs" />
-    <Compile Include="API\Interface\IStartup.cs" />
+    <Compile Include="API\SrvStartup.cs" />
+    <Compile Include="API\SrvHost.cs" />
+    <Compile Include="API\IHost.cs" />
+    <Compile Include="API\IStartup.cs" />
     <Compile Include="Config\BaseConfiguration.cs" />
     <Compile Include="Config\Constants.cs" />
     <Compile Include="Config\StartupConfiguration.cs" />
@@ -88,9 +88,7 @@
     <None Include="Framework.Configuration.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="API\Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>

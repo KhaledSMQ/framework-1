@@ -1,24 +1,30 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: IStartup
+// Name/Class: IScope
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
 // Company: Cybermap Lta.
-// Description: Startup service contract.
+// Description: 
 // ============================================================================
 
 using Framework.Factory.Patterns;
-using Owin;
 
-namespace Framework.Configuration.API.Interface
+namespace Framework.Factory.API
 {
-    public interface IStartup : ICommon
+    public interface IScope : ICommon
     {
         //
-        // Method to execute when application starts.
-        // @param app The application reference object.
+        // PROPERTIES
         //
 
-        void Startup(IAppBuilder app);        
+        IHub Hub { get; }
+
+        //
+        // Mrthod to return a new scope based on 
+        // the current scope.
+        // @return A new derived runtime scope.
+        //
+
+        IScope New();
     }
 }

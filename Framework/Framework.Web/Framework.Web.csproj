@@ -58,9 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\Default\SrvResolver.cs" />
-    <Compile Include="API\Default\SrvRouting.cs" />
-    <Compile Include="API\Interface\IResolver.cs" />
+    <Compile Include="API\SrvResolver.cs" />
+    <Compile Include="API\SrvRouting.cs" />
+    <Compile Include="API\IResolver.cs" />
     <Compile Include="Config\Routing\Constants.cs" />
     <Compile Include="Config\Routing\HttpRouteConfiguration.cs" />
     <Compile Include="Config\Routing\RoutingConfiguration.cs" />
@@ -73,7 +73,7 @@
     <Compile Include="Extensions\WebResourceExtensions.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="Controls\Error.cs" />
-    <Compile Include="API\Interface\IRouting.cs" />
+    <Compile Include="API\IRouting.cs" />
     <Compile Include="Model\Routing\HttpRoute.cs" />
     <Compile Include="Model\Routing\PageRoute.cs" />
     <Compile Include="Patterns\AController.cs" />

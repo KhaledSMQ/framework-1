@@ -7,7 +7,7 @@
 // Description: Factory runtime static object.
 // ============================================================================
 
-using Framework.Factory.API.Interface;
+using Framework.Factory.API;
 using Framework.Factory.Config;
 using Framework.Factory.Model;
 using Owin;

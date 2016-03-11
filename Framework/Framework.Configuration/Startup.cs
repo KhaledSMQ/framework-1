@@ -7,7 +7,7 @@
 // Description: Application startup class.
 // ============================================================================
 
-using Framework.Configuration.API.Interface;
+using Framework.Configuration.API;
 using Owin;
 using System;
 

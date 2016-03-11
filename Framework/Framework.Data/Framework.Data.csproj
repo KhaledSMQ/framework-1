@@ -67,16 +67,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\Default\SrvDataClusterEntry.cs" />
-    <Compile Include="API\Default\SrvDataContextEntry.cs" />
-    <Compile Include="API\Default\SrvDataEntityEntry.cs" />
-    <Compile Include="API\Default\SrvDataPartialModelEntry.cs" />
-    <Compile Include="API\Default\SrvServiceEntry.cs" />
-    <Compile Include="API\Interface\IDataClusterEntry.cs" />
-    <Compile Include="API\Interface\IDataContextEntry.cs" />
-    <Compile Include="API\Interface\IDataEntityEntry.cs" />
-    <Compile Include="API\Interface\IDataPartialModelEntry.cs" />
-    <Compile Include="API\Interface\IStore.cs" />
+    <Compile Include="API\SrvDataClusterEntry.cs" />
+    <Compile Include="API\SrvDataContextEntry.cs" />
+    <Compile Include="API\SrvDataEntityEntry.cs" />
+    <Compile Include="API\SrvDataPartialModelEntry.cs" />
+    <Compile Include="API\SrvServiceEntry.cs" />
+    <Compile Include="API\IDataClusterEntry.cs" />
+    <Compile Include="API\IDataContextEntry.cs" />
+    <Compile Include="API\IDataEntityEntry.cs" />
+    <Compile Include="API\IDataPartialModelEntry.cs" />
+    <Compile Include="API\IStore.cs" />
     <Compile Include="Config\BaseConfiguration.cs" />
     <Compile Include="Config\ContextConfiguration.cs" />
     <Compile Include="Config\ModelConfiguration.cs" />
@@ -86,7 +86,7 @@
     <Compile Include="Config\ClusterConfiguration.cs" />
     <Compile Include="Config\Constants.cs" />
     <Compile Include="Lib.cs" />
-    <Compile Include="API\Default\SrvStore.cs" />
+    <Compile Include="API\SrvStore.cs" />
     <Compile Include="Model\DataCluster.cs" />
     <Compile Include="Model\DataContext.cs" />
     <Compile Include="Model\DataQueryParam.cs" />
@@ -116,9 +116,7 @@
     <None Include="Framework.Data.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="API\Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>

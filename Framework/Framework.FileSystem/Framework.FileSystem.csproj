@@ -56,7 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\Interface\IBlobSet.cs" />
+    <Compile Include="API\IBlobSet.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="Model\Blob.cs" />
     <Compile Include="Model\Drive.cs" />
@@ -77,8 +77,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="API\Controllers\" />
-    <Folder Include="API\Default\" />
     <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>

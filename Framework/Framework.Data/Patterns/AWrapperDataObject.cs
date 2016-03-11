@@ -8,7 +8,7 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
-using Framework.Data.API.Interface;
+using Framework.Data.API;
 using Framework.Factory.Patterns;
 
 namespace Framework.Data.Patterns

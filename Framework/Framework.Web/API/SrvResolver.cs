@@ -8,15 +8,14 @@
 // ============================================================================
 
 using Framework.Core.Collections.Generic;
-using Framework.Factory.Patterns;
-using Framework.Web.API.Interface;
-using Framework.Web.Extensions;
 using Framework.Core.Extensions;
+using Framework.Factory.Patterns;
+using Framework.Web.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Framework.Web.API.Default
+namespace Framework.Web.API
 {
     public class Resolver : ACommon, IResolver
     {
