@@ -67,16 +67,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\SrvDataClusterEntry.cs" />
-    <Compile Include="API\SrvDataContextEntry.cs" />
-    <Compile Include="API\SrvDataEntityEntry.cs" />
-    <Compile Include="API\SrvDataPartialModelEntry.cs" />
+    <Compile Include="API\IDataScope.cs" />
+    <Compile Include="API\Query.cs" />
+    <Compile Include="API\SrvDataScope.cs" />
     <Compile Include="API\SrvServiceEntry.cs" />
-    <Compile Include="API\IDataClusterEntry.cs" />
-    <Compile Include="API\IDataContextEntry.cs" />
-    <Compile Include="API\IDataEntityEntry.cs" />
-    <Compile Include="API\IDataPartialModelEntry.cs" />
-    <Compile Include="API\IStore.cs" />
+    <Compile Include="API\IDataStore.cs" />
     <Compile Include="Config\BaseConfiguration.cs" />
     <Compile Include="Config\ContextConfiguration.cs" />
     <Compile Include="Config\ModelConfiguration.cs" />
@@ -86,7 +81,7 @@
     <Compile Include="Config\ClusterConfiguration.cs" />
     <Compile Include="Config\Constants.cs" />
     <Compile Include="Lib.cs" />
-    <Compile Include="API\SrvStore.cs" />
+    <Compile Include="API\SrvDataStore.cs" />
     <Compile Include="Model\DataCluster.cs" />
     <Compile Include="Model\DataContext.cs" />
     <Compile Include="Model\DataQueryParam.cs" />
@@ -96,15 +91,11 @@
     <Compile Include="Model\DataPartialModel.cs" />
     <Compile Include="Patterns\AProviderDataContext.cs" />
     <Compile Include="Patterns\ADataSet.cs" />
-    <Compile Include="Patterns\AWrapperDataObject.cs" />
-    <Compile Include="Patterns\AWrapperDataSet.cs" />
     <Compile Include="Patterns\IProviderDataContext.cs" />
     <Compile Include="Patterns\IProviderPartialModel.cs" />
     <Compile Include="Patterns\IDataObject.cs" />
     <Compile Include="Patterns\IDataSet.cs" />
     <Compile Include="Patterns\IProviderCluster.cs" />
-    <Compile Include="Patterns\IWrapperDataObject.cs" />
-    <Compile Include="Patterns\IWrapperDataSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\Linq\Take.cs" />
     <Compile Include="Query\Linq\Paging.cs" />

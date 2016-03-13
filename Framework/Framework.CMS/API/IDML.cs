@@ -13,19 +13,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Framework.CMS.Api.Interface
+namespace Framework.CMS.API
 {
     public interface IDML : ICommon
     {
-        object Create<T>(T item, IWrapperDataSet<T> srv);
+        object Create<T>(T item, IDataSet<T> srv);
 
-        T Get<T>(Func<IQueryable<T>, IQueryable<T>> query, IWrapperDataSet<T> srv);
+        T Get<T>(Func<IQueryable<T>, IQueryable<T>> query, IDataSet<T> srv);
 
-        IEnumerable<T> GetList<T>(Func<IQueryable<T>, IQueryable<T>> query, IWrapperDataSet<T> srv);
+        IEnumerable<T> GetList<T>(Func<IQueryable<T>, IQueryable<T>> query, IDataSet<T> srv);
 
-        object Update<T>(T item, IWrapperDataSet<T> srv);
+        object Update<T>(T item, IDataSet<T> srv);
 
-        object Delete<T>(T item, IWrapperDataSet<T> srv);
+        object Delete<T>(T item, IDataSet<T> srv);
 
     }
 }

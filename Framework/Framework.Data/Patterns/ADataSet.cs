@@ -8,27 +8,20 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
+using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Framework.Data.Patterns
 {
-    public abstract class ADataSet<TItem> : IDataSet<TItem>
+    public abstract class ADataSet<TItem> : ACommon, IDataSet<TItem>
     {
         //
         // PROPERTIES
         //
 
-        public IConfigMap Cfg { get; set; }
-
-        //
-        // INIT/SHUTDOWN
-        //
-
-        public virtual void Init() { }
-
-        public virtual void Shutdown() { }
+        public IConfigMap Cfg { get; set; }   
 
         //
         // CRUD

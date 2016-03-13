@@ -10,14 +10,17 @@
 using Framework.Data.Patterns;
 using Framework.Factory.API;
 using Framework.Factory.Model;
+using Framework.Factory.Patterns;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Framework.Data.API
 {
-    public class SrvService : AWrapperDataSet<ServiceEntry>, IServiceEntry
+    public class SrvService : ACommon, IServiceEntry
     {
-        public override object Create(ServiceEntry srv)
+        private IDataSet<ServiceEntry> DataLayer = null;
+
+        public object Create(ServiceEntry srv)
         {
             return DataLayer.Create(srv);
         }

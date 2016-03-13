@@ -7,14 +7,14 @@
 // Description: Generic object data source.
 // ============================================================================
 
-using Framework.Core.Patterns;
+using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Framework.Data.Patterns
 {
-    public interface IDataSet<TItem> : IProvider
+    public interface IDataSet<TItem> : ICommon
     {
         //
         // CREATE

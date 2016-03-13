@@ -1,34 +1,20 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: IStore
+// Name/Class:
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Create date: 26/Nov/2015
+// Create date: 10/Mar/2016
 // Company: Cybermap Lta.
-// Description: Data store hub interface.
+// Description:
 // ============================================================================
 
-using Framework.Core.Patterns;
 using Framework.Data.Model;
-using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
 using System.Collections.Generic;
 
 namespace Framework.Data.API
 {
-    public interface IStore : ICommon
+    public interface IDataStore : ICommon
     {
-        //
-        // Data Ecosystem Services.
-        //
-
-        IDataClusterEntry Clusters { get; }
-
-        IDataContextEntry Contexts { get; }
-
-        IDataEntityEntry Entities { get; }
-
-        IDataPartialModelEntry Models { get; }
-
         //
         // INIT
         //
@@ -48,13 +34,5 @@ namespace Framework.Data.API
         //
 
         IEnumerable<DataCluster> GetListOfClusters();
-
-        //
-        // Data Set/Object CRUD layers.
-        //
-
-        IDataSet<T> GetDataSet<T>();        
-
-        IDataObject<T> GetDataObject<T>();
     }
 }

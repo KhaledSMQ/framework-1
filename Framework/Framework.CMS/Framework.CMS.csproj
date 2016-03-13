@@ -74,19 +74,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\Controllers\DMLController.cs" />
-    <Compile Include="API\Controllers\DDLController.cs" />
-    <Compile Include="API\Default\SrvDML.cs" />
-    <Compile Include="API\Default\SrvView.cs" />
-    <Compile Include="API\Default\SrvEntity.cs" />
-    <Compile Include="API\Default\SrvContentType.cs" />
-    <Compile Include="API\Default\SrvCluster.cs" />
-    <Compile Include="API\Interface\ICluster.cs" />
-    <Compile Include="API\Interface\IContentType.cs" />
-    <Compile Include="API\Interface\IDML.cs" />
-    <Compile Include="API\Interface\IView.cs" />
-    <Compile Include="API\Interface\IEntity.cs" />
-    <Compile Include="API\Query\Filter.cs" />
+    <Compile Include="API\DMLController.cs" />
+    <Compile Include="API\DDLController.cs" />
+    <Compile Include="API\SrvDML.cs" />
+    <Compile Include="API\IDML.cs" />
+    <Compile Include="API\Filter.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="Data\EFContext.cs" />
     <Compile Include="Model\Entities\Form.cs" />

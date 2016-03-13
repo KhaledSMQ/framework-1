@@ -8,7 +8,6 @@
 // ============================================================================
 
 using Framework.Core.Extensions;
-using Framework.Core.Patterns;
 using Framework.Data.Config;
 using Framework.Data.Model;
 using Framework.Data.Patterns;
@@ -18,20 +17,8 @@ using System.Linq;
 
 namespace Framework.Data.API
 {
-    public class SrvStore : ACommon, IStore
+    public class SrvDataStore : ACommon, IDataStore
     {
-        //
-        // Data Ecosystem Services.
-        //
-
-        public IDataClusterEntry Clusters { get { return Scope.Hub.GetUnique<IDataClusterEntry>(); } }
-
-        public IDataContextEntry Contexts { get; set; }
-
-        public IDataEntityEntry Entities { get; set; }
-
-        public IDataPartialModelEntry Models { get; set; }
-
         //
         // INIT
         //
@@ -45,9 +32,6 @@ namespace Framework.Data.API
 
         private void __InitInMemoryStorage()
         {
-            //
-            // Initialize the in-memory data stores.
-            //
 
             __ClusterNameClusterMap = new SortedDictionary<string, DataCluster>();
             __EntityNameClusterMap = new SortedDictionary<string, DataCluster>();
@@ -193,19 +177,6 @@ namespace Framework.Data.API
             return __ClusterNameClusterMap.Values.ToList();
         }
 
-        //
-        // Data Set/Object CRUD layers.
-        //
-
-        public IDataSet<T> GetDataSet<T>()
-        {
-            return null;
-        }     
-
-        public IDataObject<T> GetDataObject<T>()
-        {
-            return null;
-        }
 
         private IProviderDataContext _GetProviderContextForEntityBasedOnType<T>()
         {

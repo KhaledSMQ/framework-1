@@ -7,14 +7,13 @@
 // Description: 
 // ============================================================================
 
-using Framework.CMS.Api.Interface;
 using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Framework.CMS.Api.Default
+namespace Framework.CMS.API
 {
     public class SrvDML : ACommon, IDML
     {
@@ -22,27 +21,27 @@ namespace Framework.CMS.Api.Default
         // API
         //         
 
-        public object Create<T>(T item, IWrapperDataSet<T> srv)
+        public object Create<T>(T item, IDataSet<T> srv)
         {
             return srv.Create(item);
         }
 
-        public T Get<T>(Func<IQueryable<T>, IQueryable<T>> query, IWrapperDataSet<T> srv)
+        public T Get<T>(Func<IQueryable<T>, IQueryable<T>> query, IDataSet<T> srv)
         {
             return query(srv.Queryable()).SingleOrDefault();
         }
 
-        public IEnumerable<T> GetList<T>(Func<IQueryable<T>, IQueryable<T>> query, IWrapperDataSet<T> srv)
+        public IEnumerable<T> GetList<T>(Func<IQueryable<T>, IQueryable<T>> query, IDataSet<T> srv)
         {
             return query(srv.Queryable()).ToList();
         }
 
-        public object Update<T>(T item, IWrapperDataSet<T> srv)
+        public object Update<T>(T item, IDataSet<T> srv)
         {
             return srv.Update(item);
         }
 
-        public object Delete<T>(T item, IWrapperDataSet<T> srv)
+        public object Delete<T>(T item, IDataSet<T> srv)
         {
             return srv.Delete(item);
         }

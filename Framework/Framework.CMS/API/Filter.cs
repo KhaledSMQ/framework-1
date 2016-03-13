@@ -7,10 +7,10 @@
 // Description:
 // =========================================================================
 
-using System.Linq;
 using Framework.Core.Patterns;
+using System.Linq;
 
-namespace Framework.CMS.Api.Query
+namespace Framework.CMS.API
 {
     public static class Filter
     {

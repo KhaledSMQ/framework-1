@@ -7,11 +7,9 @@
 // Description:
 // ============================================================================
 
-using Framework.CMS.Api.Interface;
-using Framework.CMS.Model.Views;
-using Framework.Data.Patterns;
+using Framework.Web.Patterns;
 
-namespace Framework.CMS.Api.Default
+namespace Framework.CMS.API
 {
-    public class SrvView : AWrapperDataSet<View>, IView { }
+    public class CmsDMLController : AControllerServiceWrapper<IDML> { }
 }

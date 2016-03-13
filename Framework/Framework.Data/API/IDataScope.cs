@@ -2,20 +2,24 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Create date: 26/Nov/2015
+// Create date: 10/Mar/2016
 // Company: Cybermap Lta.
-// Description: 
+// Description:
 // ============================================================================
 
-using Framework.Data.Model;
 using Framework.Data.Patterns;
+using Framework.Factory.Patterns;
 
 namespace Framework.Data.API
 {
-    public interface IDataPartialModelEntry : IWrapperDataSet<DataPartialModel>
+    public interface IDataScope : ICommon
     {
-        DataPartialModel GetByName(string name);
+        //
+        // Data Set/Object CRUD layers.
+        //
 
-        DataPartialModel GetByType(string type);
+        IDataSet<T> GetDataSet<T>();        
+
+        IDataObject<T> GetDataObject<T>();
     }
 }

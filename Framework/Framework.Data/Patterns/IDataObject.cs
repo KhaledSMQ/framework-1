@@ -7,11 +7,11 @@
 // Description: Generic single object data source.
 // ============================================================================
 
-using Framework.Core.Patterns;
+using Framework.Factory.Patterns;
 
 namespace Framework.Data.Patterns
 {
-    public interface IDataObject<TItem> : IProvider
+    public interface IDataObject<TItem> : ICommon
     {
         //
         // Set the object value.
