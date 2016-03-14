@@ -71,6 +71,9 @@
     <Compile Include="Collections\Specialized\Table.cs" />
     <Compile Include="Collections\Specialized\TableCol.cs" />
     <Compile Include="Collections\Specialized\TableRow.cs" />
+    <Compile Include="Exceptions\InternalException.cs" />
+    <Compile Include="Exceptions\FatalException.cs" />
+    <Compile Include="Exceptions\UnauthorizedException.cs" />
     <Compile Include="Extensions\AuditableExtensions.cs" />
     <Compile Include="Extensions\CreatedExtensions.cs" />
     <Compile Include="Extensions\ModifiedExtensions.cs" />

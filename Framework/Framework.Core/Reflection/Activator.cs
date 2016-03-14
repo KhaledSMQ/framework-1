@@ -36,19 +36,19 @@ namespace Framework.Core.Reflection
             }
             else
                 if (segments.Length > 1)
-                {
-                    // 
-                    // extract assembly name.
-                    //
+            {
+                // 
+                // extract assembly name.
+                //
 
-                    assembly = fullname.Substring(0, fullname.LastIndexOf(','));
+                assembly = fullname.Substring(0, fullname.LastIndexOf(','));
 
-                    // 
-                    // type is last.
-                    //
+                // 
+                // type is last.
+                //
 
-                    typename = segments[segments.Length - 1];
-                }
+                typename = segments[segments.Length - 1];
+            }
 
             return Activator.CreateInstance<T>(assembly, typename);
         }
@@ -69,6 +69,20 @@ namespace Framework.Core.Reflection
             }
 
             return (T)System.Activator.CreateInstance(assembly, typename).Unwrap();
+        }
+
+        //
+        // Create a new instance of an object. Method tries to match
+        // the best constrcutor given a list of arguments. If no 
+        // arguments are defined then use the default constructor.
+        // @param type The type definition.
+        // @param args The list of arguments to send to the constructor.
+        // @return The object instance.
+        //
+
+        public static T CreateInstance<T>(Type type, params object[] args)
+        {
+            return (T)((null != args && args.Length > 0) ? System.Activator.CreateInstance(type, args) : System.Activator.CreateInstance(type));
         }
 
         //

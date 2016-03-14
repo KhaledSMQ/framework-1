@@ -90,7 +90,7 @@ namespace Framework.Core.Extensions
                 }
                 else
                 {
-                    Throw.WithMessage(Lib.DEFAULT_ERROR_MSG_PREFIX, "ApplyTemplate cannot find property with name '{0}'", property);
+                    Throw.WithPrefix(Lib.DEFAULT_ERROR_MSG_PREFIX, "ApplyTemplate cannot find property with name '{0}'", property);
                 }
 
                 return replaced;
@@ -143,7 +143,7 @@ namespace Framework.Core.Extensions
         {
             if (dict.ContainsKey(key))
             {
-                Throw.WithMessage(Lib.DEFAULT_ERROR_MSG_PREFIX, message, key);
+                Throw.WithPrefix(Lib.DEFAULT_ERROR_MSG_PREFIX, message, key);
             }
 
             dict.Add(key, value);
@@ -292,7 +292,7 @@ namespace Framework.Core.Extensions
         {
             if (!dict.ContainsKey(key))
             {
-                Throw.WithMessage(Lib.DEFAULT_ERROR_MSG_PREFIX, message, key);
+                Throw.WithPrefix(Lib.DEFAULT_ERROR_MSG_PREFIX, message, key);
             }
 
             return dict[key];
@@ -316,7 +316,7 @@ namespace Framework.Core.Extensions
         {
             if (!dict.ContainsKey(key))
             {
-                Throw.WithMessage(Lib.DEFAULT_ERROR_MSG_PREFIX, message, key);
+                Throw.WithPrefix(Lib.DEFAULT_ERROR_MSG_PREFIX, message, key);
             }
 
             return conv(dict[key]); ;
@@ -636,7 +636,7 @@ namespace Framework.Core.Extensions
                 string strValue = dict[name];
                 if (string.IsNullOrEmpty(strValue) && required)
                 {
-                    Throw.WithMessage(Lib.DEFAULT_ERROR_MSG_PREFIX, "Property '{0}' is required, but has an empty value!", name);
+                    Throw.WithPrefix(Lib.DEFAULT_ERROR_MSG_PREFIX, "Property '{0}' is required, but has an empty value!", name);
                 }
 
                 output = parseDelegate(strValue);
@@ -649,7 +649,7 @@ namespace Framework.Core.Extensions
 
                 if (required)
                 {
-                    Throw.WithMessage(Lib.DEFAULT_ERROR_MSG_PREFIX, "Property '{0}' is required, but was not found!", name);
+                    Throw.WithPrefix(Lib.DEFAULT_ERROR_MSG_PREFIX, "Property '{0}' is required, but was not found!", name);
                 }
             }
 
@@ -677,7 +677,7 @@ namespace Framework.Core.Extensions
 
                 if (required)
                 {
-                    Throw.WithMessage(Lib.DEFAULT_ERROR_MSG_PREFIX, "Property '{0}' is required, but was not found!", name);
+                    Throw.WithPrefix(Lib.DEFAULT_ERROR_MSG_PREFIX, "Property '{0}' is required, but was not found!", name);
                 }
             }
 

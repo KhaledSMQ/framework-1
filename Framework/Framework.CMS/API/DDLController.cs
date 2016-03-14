@@ -29,28 +29,28 @@ namespace Framework.CMS.API
         [HttpPost]
         public IHttpActionResult Cluster_Create([FromBody] Cluster item)
         {
-            return Ok(Srv.Create(item, Scope.Hub.GetUnique<IDataScope>().GetDataSet<Cluster>()));
+            return Ok(Scope.Hub.GetUnique<IDataScope>().GetDataSet<Cluster>().Create(item));
         }
 
         [ActionName("cluster-get")]
         [HttpGet]
         public IHttpActionResult Cluster_Get(int id)
         {
-            return Ok(Srv.Get<Cluster>(from => from.Visible().ByID(id), Scope.Hub.GetUnique<IDataScope>().GetDataSet<Cluster>()));
+            return Ok(Scope.Hub.GetUnique<IDataScope>().GetDataSet<Cluster>().Queryable().Visible().ByID(id).SingleOrDefault());
         }
 
         [ActionName("cluster-get-by-ref")]
         [HttpGet]
         public IHttpActionResult Cluster_GetByRef(string id)
         {
-            return Ok(Srv.Get<Cluster>(from => from.Visible().ByRef(id), Scope.Hub.GetUnique<IDataScope>().GetDataSet<Cluster>()));
+            return Ok(Scope.Hub.GetUnique<IDataScope>().GetDataSet<Cluster>().Queryable().Visible().ByRef(id).SingleOrDefault());
         }
 
         [ActionName("cluster-list")]
         [HttpGet]
         public IHttpActionResult Cluster_List()
         {
-            return Ok(Srv.GetList<Cluster>(from => from.Visible(), Scope.Hub.GetUnique<IDataScope>().GetDataSet<Cluster>()));
+            return Ok(Scope.Hub.GetUnique<IDataScope>().GetDataSet<Cluster>().Queryable().Visible().ToList());
         }
 
         [ActionName("cluster-list-of-entities")]

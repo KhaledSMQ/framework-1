@@ -170,7 +170,7 @@ namespace Framework.Core.Helpers
             {
                 if (!silent)
                 {
-                    Throw.WithMessage(Lib.DEFAULT_ERROR_MSG_PREFIX, "Unable to determine mime type for filename '{0}'", filename);
+                    Throw.WithPrefix(Lib.DEFAULT_ERROR_MSG_PREFIX, "Unable to determine mime type for filename '{0}'", filename);
                 }
             }
 
@@ -232,7 +232,7 @@ namespace Framework.Core.Helpers
             {
                 if (!silent)
                 {
-                    Throw.WithMessage(Lib.DEFAULT_ERROR_MSG_PREFIX, "Unable to determine file extension from mime type '{0}'", mimetype);
+                    Throw.WithPrefix(Lib.DEFAULT_ERROR_MSG_PREFIX, "Unable to determine file extension from mime type '{0}'", mimetype);
                 }
             }
 
