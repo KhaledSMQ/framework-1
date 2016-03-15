@@ -7,12 +7,10 @@
 // Description: Base service for single object sources.
 // ============================================================================
 
-using Framework.Core.Patterns;
 using Framework.Core.Extensions;
-using Framework.Factory.Patterns;
-using System;
-using System.Collections.Generic;
 using Framework.Data.Model;
+using Framework.Factory.Patterns;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Framework.Data.Patterns
