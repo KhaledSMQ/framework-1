@@ -67,14 +67,15 @@ namespace Framework.Data.Config
     public class ClusterElement : BaseElementWithSettings
     {
         //
-        // CONTEXT
+        // CONTEXTS
         //
 
-        [ConfigurationProperty(Constants.CONTEXT)]
-        public ContextElement Context
+        [ConfigurationProperty(Constants.CONTEXTS, IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(ContextElementCollection))]
+        public ContextElementCollection Contexts
         {
-            get { return (ContextElement)this[Constants.CONTEXT]; }
-        }
+            get { return (ContextElementCollection)this[Constants.CONTEXTS]; }
+        }      
 
         //
         // ENTITIES

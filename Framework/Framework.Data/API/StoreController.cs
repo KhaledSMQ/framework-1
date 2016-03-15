@@ -22,7 +22,7 @@ namespace Framework.Data.API
         {
             return __RunCode(() =>
             {
-                Type type = srvDataStore.GetEntityTypeByClusterAndName(cluster, entity);
+                Type type = srvDataStore.GetEntityType(cluster, entity);
                 string json = Request.Content.ReadAsStringAsync().Result;
                 object item = Core.Helpers.JSONHelper.ReadJSONObjectFromString(type, json);
                 return srvDataScope.Create(cluster, type, item);
@@ -35,7 +35,7 @@ namespace Framework.Data.API
         {
             return __RunCode(() =>
             {
-                Type type = srvDataStore.GetEntityTypeByClusterAndName(cluster, entity);
+                Type type = srvDataStore.GetEntityType(cluster, entity);
                 return srvDataScope.Query(cluster, type, name);
             });
         }
@@ -47,7 +47,7 @@ namespace Framework.Data.API
         {
             return __RunCode(() =>
             {
-                Type type = srvDataStore.GetEntityTypeByClusterAndName(cluster, entity);
+                Type type = srvDataStore.GetEntityType(cluster, entity);
                 string json = Request.Content.ReadAsStringAsync().Result;
                 object item = Core.Helpers.JSONHelper.ReadJSONObjectFromString(type, json);
                 return srvDataScope.Update(cluster, type, item);

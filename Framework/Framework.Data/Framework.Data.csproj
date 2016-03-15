@@ -81,12 +81,14 @@
     <Compile Include="API\IDataStore.cs" />
     <Compile Include="Config\BaseConfiguration.cs" />
     <Compile Include="Config\ContextConfiguration.cs" />
+    <Compile Include="Config\ModelRefConfiguration.cs" />
+    <Compile Include="Config\EntityRefConfiguration.cs" />
     <Compile Include="Config\ModelConfiguration.cs" />
     <Compile Include="Config\EntityConfiguration.cs" />
     <Compile Include="Config\Transforms.cs" />
     <Compile Include="Config\SettingsConfiguration.cs" />
     <Compile Include="Config\ClusterConfiguration.cs" />
-    <Compile Include="Config\Constants.cs" />
+    <Compile Include="Config\_Const.cs" />
     <Compile Include="Extensions\TypeNameExtensions.cs" />
     <Compile Include="Extensions\NameExtensions.cs" />
     <Compile Include="Extensions\VisibleExtensions.cs" />
@@ -95,6 +97,8 @@
     <Compile Include="API\SrvDataStore.cs" />
     <Compile Include="Model\DataCluster.cs" />
     <Compile Include="Model\DataContext.cs" />
+    <Compile Include="Model\DataPartialModelRef.cs" />
+    <Compile Include="Model\DataEntityRef.cs" />
     <Compile Include="Model\DataQueryParam.cs" />
     <Compile Include="Model\DataQuery.cs" />
     <Compile Include="Model\_Enums.cs" />

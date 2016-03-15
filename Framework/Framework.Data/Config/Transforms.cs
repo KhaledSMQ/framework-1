@@ -1,142 +1,115 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Transform
+// Name/Class: Transforms
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
 // Company: Cybermap Lta.
 // Description: Transform configuration objects into runtime objects.
 // ============================================================================
 
-using Framework.Data.Model;
+using Framework.Core.Extensions;
 using Framework.Core.Types.Specialized;
+using Framework.Data.Model;
 using System.Collections.Generic;
 
 namespace Framework.Data.Config
 {
     public static class Transforms
-    {       
+    {
         //
         // CLUSTERS
         //
 
-        public static ICollection<DataCluster> ToDataCluster(this ClusterElementCollection coll)
+        public static DataCluster Converter(this ClusterElement elm)
         {
-            List<DataCluster> dataClusterCollection = new List<DataCluster>();
-            if (null != coll)
-            {
-                foreach (ClusterElement clusterElm in coll)
-                {
-                    dataClusterCollection.Add(ToDataCluster(clusterElm));
-                }
-            }
-            return dataClusterCollection;
-        }
-
-        public static DataCluster ToDataCluster(this ClusterElement elm)
-        {
-            DataCluster dataCluster = new DataCluster();
-            dataCluster.Name = elm.Name;
-            dataCluster.Description = elm.Description;
-            dataCluster.Context = ToDataContext(elm.Context);
-            dataCluster.Entities = ToDataEntity(elm.Entities);
-            dataCluster.Models = ToDataPartialModel(elm.Models);
-            dataCluster.Settings = ToSetting(elm.Settings);
-            return dataCluster;
+            DataCluster ast = new DataCluster();
+            ast.Name = elm.Name;
+            ast.Description = elm.Description;
+            ast.Contexts = elm.Contexts.Map<ContextElement, DataContext>(new List<DataContext>(), Converter);
+            ast.Entities = elm.Entities.Map<EntityElement, DataEntity>(new List<DataEntity>(), Converter);
+            ast.Models = elm.Models.Map<ModelElement, DataPartialModel>(new List<DataPartialModel>(), Converter);
+            ast.Settings = elm.Settings.Map<SettingElement, Setting>(new List<Setting>(), Converter);
+            return ast;
         }
 
         //
         // CONTEXT
         //
 
-        public static DataContext ToDataContext(this ContextElement elm)
+        public static DataContext Converter(this ContextElement elm)
         {
-            DataContext dataContext = null;
-            if (null != elm)
-            {
-                dataContext = new DataContext();
-                dataContext.Service = elm.Service;
-            }
-            return dataContext;
+            DataContext ast = new DataContext();
+            ast.Service = elm.Service;
+            ast.Entities = elm.Entities.Map<EntityRefElement, DataEntityRef>(new List<DataEntityRef>(), Converter);
+            ast.Models = elm.Models.Map<ModelRefElement, DataPartialModelRef>(new List<DataPartialModelRef>(), Converter);
+            return ast;
+        }
+
+        //
+        // ENTITY-REF
+        // 
+
+        public static DataEntityRef Converter(this EntityRefElement elm)
+        {
+            DataEntityRef ast = new DataEntityRef();
+            ast.Name = elm.Name;
+            ast.Description = elm.Description;
+            ast.Settings = elm.Settings.Map<SettingElement, Setting>(new List<Setting>(), Converter);
+            return ast;
+        }
+
+        //
+        // MODEL-REF
+        // 
+
+        public static DataPartialModelRef Converter(this ModelRefElement elm)
+        {
+            DataPartialModelRef ast = new DataPartialModelRef();
+            ast.Name = elm.Name;
+            ast.Description = elm.Description;
+            ast.Settings = elm.Settings.Map<SettingElement, Setting>(new List<Setting>(), Converter);
+            return ast;
         }
 
         //
         // ENTITY
         //
 
-        public static ICollection<DataEntity> ToDataEntity(this EntityElementCollection coll)
+        public static DataEntity Converter(this EntityElement elm)
         {
-            List<DataEntity> dataEntityCollection = new List<DataEntity>();
-            if (null != coll)
-            {
-                foreach (EntityElement entityElm in coll)
-                {
-                    dataEntityCollection.Add(ToDataEntity(entityElm));
-                }
-            }
-            return dataEntityCollection;
-        }
-
-        public static DataEntity ToDataEntity(this EntityElement elm)
-        {
-            DataEntity dataEntity = new DataEntity();
-            dataEntity.Name = elm.Name;
-            dataEntity.Kind = elm.Kind;
-            dataEntity.Description = elm.Description;
-            dataEntity.TypeName = elm.Type;
-            dataEntity.Settings = ToSetting(elm.Settings);
-            return dataEntity;
+            DataEntity ast = new DataEntity();
+            ast.Name = elm.Name;
+            ast.Kind = elm.Kind;
+            ast.Description = elm.Description;
+            ast.TypeName = elm.Type;
+            ast.Settings = elm.Settings.Map<SettingElement, Setting>(new List<Setting>(), Converter);
+            return ast;
         }
 
         //
-        // PARTIAL-MODELS
-        //
+        // PARTIAL-MODEL
+        //     
 
-        public static ICollection<DataPartialModel> ToDataPartialModel(this ModelElementCollection coll)
+        public static DataPartialModel Converter(this ModelElement elm)
         {
-            List<DataPartialModel> dataModelCollection = new List<DataPartialModel>();
-            if (null != coll)
-            {
-                foreach (ModelElement entityElm in coll)
-                {
-                    dataModelCollection.Add(ToDataPartialModel(entityElm));
-                }
-            }
-            return dataModelCollection;
-        }
-
-        public static DataPartialModel ToDataPartialModel(this ModelElement elm)
-        {
-            DataPartialModel dataModel = new DataPartialModel();
-            dataModel.Name = elm.Name;
-            dataModel.Description = elm.Description;
-            dataModel.TypeName = elm.Type;
-            dataModel.Settings = ToSetting(elm.Settings);
-            return dataModel;
+            DataPartialModel ast = new DataPartialModel();
+            ast.Name = elm.Name;
+            ast.Description = elm.Description;
+            ast.TypeName = elm.Type;
+            ast.Settings = elm.Settings.Map<SettingElement, Setting>(new List<Setting>(), Converter);
+            return ast;
         }
 
         //
-        // SETTINGS
+        // SETTING
         //
 
-        public static ICollection<Setting> ToSetting(this SettingElementCollection coll)
+        public static Setting Converter(this SettingElement elm)
         {
-            List<Setting> settingCollection = new List<Setting>();
-            if (null != coll)
-            {
-                foreach (SettingElement settingElm in coll)
-                {
-                    settingCollection.Add(ToSetting(settingElm));
-                }
-            }
-            return settingCollection;
-        }
-
-        public static Setting ToSetting(this SettingElement elm)
-        {
-            Setting setting = new Setting();
-            setting.Name = elm.Name;
-            setting.Value = elm.Value;
-            return setting;
+            Setting ast = new Setting();
+            ast.Name = elm.Name;
+            ast.Value = elm.Value;
+            return ast;
         }
     }
 }

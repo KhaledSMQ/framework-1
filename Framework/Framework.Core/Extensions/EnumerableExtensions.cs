@@ -133,7 +133,7 @@ namespace Framework.Core.Extensions
 
         public static void Apply<T>(this IEnumerable list, Action<T> handler)
         {
-            if (null != handler && null != list) { foreach(T item in list) { handler(item); } }
+            if (null != handler && null != list) { foreach (T item in list) { handler(item); } }
         }
 
         //
@@ -182,6 +182,12 @@ namespace Framework.Core.Extensions
                     index++;
                 }
             }
+        }
+
+        public static IList<O> Map<I, O>(this IEnumerable list, IList<O> output, Func<I, O> handler)
+        {
+            list.Apply<I>(item => output.Add(handler(item)));
+            return output;
         }
 
         //

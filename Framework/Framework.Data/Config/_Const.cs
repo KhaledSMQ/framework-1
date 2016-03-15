@@ -7,12 +7,6 @@
 // Description: Runtime data store implementation.
 // ============================================================================
 
-using System;
-using System.Collections;
-using System.Text;
-using System.Configuration;
-using System.Xml;
-
 namespace Framework.Data.Config
 {
     public static class Constants
@@ -20,7 +14,7 @@ namespace Framework.Data.Config
         public const string SECTION = "frameworkDataStore";
         public const string CLUSTERS = "clusters";
         public const string ENTITIES = "entities";
-        public const string CONTEXT = "context";
+        public const string CONTEXTS = "contexts";
         public const string MODELS = "models";
         public const string SERVICE = "service";
         public const string NAME = "name";

@@ -8,6 +8,7 @@
 // ============================================================================
 
 using Framework.Data.Model;
+using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;
@@ -20,22 +21,34 @@ namespace Framework.Data.API
         // INIT
         //
 
-        void InitClusters();
+        void InitClusters();      
 
         //
-        // LOAD
-        //
+        // CLUSTERS
+        //    
 
-        void Load(IEnumerable<DataCluster> clusters);
+        void Add(DataCluster cluster);
 
-        void Load(DataCluster cluster);
+        void Init(DataCluster cluster);
 
-        //
-        // RETRIEVE
-        //
+        DataCluster GetCluster(string name);
 
         IEnumerable<DataCluster> GetListOfClusters();
 
-        Type GetEntityTypeByClusterAndName(string cluster, string entity);
+        //
+        // ENTITIES
+        //
+
+        DataEntity GetEntity(string entityID);
+
+        DataEntity GetEntity(string cluster, string entity);
+
+        Type GetEntityType(string entityID);
+
+        Type GetEntityType(string cluster, string entity);
+
+        IProviderDataContext GetEntityDataProviderContext(string fullname);
+
+        IProviderDataContext GetEntityDataProviderContext(string cluster, string entity);
     }
 }

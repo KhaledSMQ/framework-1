@@ -2,9 +2,9 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Create date: 26/Nov/2015
+// Create date: 03/Aug/2015
 // Company: Cybermap Lta.
-// Description: 
+// Description: Service specification class.
 // ============================================================================
 
 using Framework.Core.Extensions;
@@ -15,10 +15,9 @@ using System.Collections.Generic;
 
 namespace Framework.Data.Model
 {
-    public class DataContext : 
+    public class DataPartialModelRef :
         IID<int>,
-        IName<string>,
-        IDescription<string>,
+        IName<string>,     
         IConfigList<Setting>,
         IAuditable<string>
     {
@@ -31,12 +30,6 @@ namespace Framework.Data.Model
         public string Name { get; set; }
 
         public string Description { get; set; }
-
-        public string Service { get; set; }
-
-        public ICollection<DataEntityRef> Entities { get; set; }
-
-        public ICollection<DataPartialModelRef> Models { get; set; }
 
         public ICollection<Setting> Settings { get; set; }
 
@@ -56,7 +49,7 @@ namespace Framework.Data.Model
         // CONSTRUCTORS
         // 
 
-        public DataContext()
+        public DataPartialModelRef()
         {
             //
             // INFO
@@ -65,9 +58,6 @@ namespace Framework.Data.Model
             ID = -1;
             Name = string.Empty;
             Description = string.Empty;
-            Service = string.Empty;
-            Entities = null;
-            Models = null;
             Settings = null;
 
             //

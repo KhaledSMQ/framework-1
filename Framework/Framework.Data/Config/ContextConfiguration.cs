@@ -11,6 +11,59 @@ using System.Configuration;
 
 namespace Framework.Data.Config
 {
+    public class ContextElementCollection : ConfigurationElementCollection
+    {
+        public ContextElementCollection() { }
+
+        public ContextElement this[int index]
+        {
+            get { return (ContextElement)BaseGet(index); }
+            set
+            {
+                if (BaseGet(index) != null)
+                {
+                    BaseRemoveAt(index);
+                }
+                BaseAdd(index, value);
+            }
+        }
+
+        public void Add(ContextElement elm)
+        {
+            BaseAdd(elm);
+        }
+
+        public void Clear()
+        {
+            BaseClear();
+        }
+
+        protected override ConfigurationElement CreateNewElement()
+        {
+            return new ContextElement();
+        }
+
+        protected override object GetElementKey(ConfigurationElement elm)
+        {
+            return ((ContextElement)elm).Service;
+        }
+
+        public void Remove(ContextElement elm)
+        {
+            BaseRemove(elm.Service);
+        }
+
+        public void RemoveAt(int index)
+        {
+            BaseRemoveAt(index);
+        }
+
+        public void Remove(string name)
+        {
+            BaseRemove(name);
+        }
+    }
+
     public class ContextElement : ConfigurationElement
     {
         //
@@ -22,6 +75,28 @@ namespace Framework.Data.Config
         {
             get { return (string)this[Constants.SERVICE]; }
             set { this[Constants.SERVICE] = value; }
+        }
+
+        //
+        // ENTITY-REFS
+        //
+
+        [ConfigurationProperty(Constants.ENTITIES, IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(EntityRefElementCollection))]
+        public EntityRefElementCollection Entities
+        {
+            get { return (EntityRefElementCollection)this[Constants.ENTITIES]; }
+        }
+
+        //
+        // MODEL-REFS
+        //
+
+        [ConfigurationProperty(Constants.MODELS, IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(ModelRefElementCollection))]
+        public ModelRefElementCollection Models
+        {
+            get { return (ModelRefElementCollection)this[Constants.MODELS]; }
         }
     }
 }
