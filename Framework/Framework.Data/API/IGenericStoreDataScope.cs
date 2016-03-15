@@ -7,19 +7,21 @@
 // Description:
 // ============================================================================
 
-using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
+using System.Linq;
 
 namespace Framework.Data.API
 {
-    public interface IDataScope : ICommon
+    public interface IGenericStoreDataScope : ICommon
     {
-        //
-        // Data Set/Object CRUD layers.
-        //
+        object Create<T>(string cluster, T item);
 
-        IDataSet<T> GetDataSet<T>();        
+        IQueryable<T> Queryable<T>(string cluster);
 
-        IDataObject<T> GetDataObject<T>();
+        object Query<T>(string cluster, string name, params object[] args);
+
+        object Update<T>(string cluster, T item);
+
+        object Delete<T>(string cluster, T item);
     }
 }

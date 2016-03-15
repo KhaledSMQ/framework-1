@@ -74,11 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\DMLController.cs" />
     <Compile Include="API\DDLController.cs" />
-    <Compile Include="API\SrvDML.cs" />
-    <Compile Include="API\IDML.cs" />
-    <Compile Include="API\Filter.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="Data\EFContext.cs" />
     <Compile Include="Model\Entities\Form.cs" />

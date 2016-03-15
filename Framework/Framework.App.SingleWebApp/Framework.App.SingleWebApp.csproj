@@ -173,9 +173,7 @@
   <ItemGroup>
     <Folder Include="Data\DB\" />
     <Folder Include="Data\Images\" />
-    <Folder Include="Server\API\Controllers\" />
-    <Folder Include="Server\API\Default\" />
-    <Folder Include="Server\API\Interface\" />
+    <Folder Include="Server\API\" />
     <Folder Include="Server\Model\" />
   </ItemGroup>
   <ItemGroup>

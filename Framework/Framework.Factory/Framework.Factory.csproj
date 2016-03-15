@@ -90,8 +90,9 @@
     <Compile Include="Config\SettingsConfiguration.cs" />
     <Compile Include="Config\Transforms.cs" />
     <Compile Include="Patterns\ACommon.cs" />
+    <Compile Include="Patterns\AController.cs" />
+    <Compile Include="Patterns\AControllerServiceWrapper.cs" />
     <Compile Include="Patterns\ICommon.cs" />
-    <Compile Include="Patterns\IExecutionUnit.cs" />
     <Compile Include="API\IHub.cs" />
     <Compile Include="Model\ServiceEntry.cs" />
     <Compile Include="API\IScope.cs" />

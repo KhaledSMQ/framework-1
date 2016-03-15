@@ -87,6 +87,7 @@ namespace Framework.Data.Model
             Description = string.Empty;
             Expression = string.Empty;
             Params = null;
+            Callback = string.Empty;
 
             //
             // AUDITS

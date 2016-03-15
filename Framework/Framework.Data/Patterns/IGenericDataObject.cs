@@ -11,7 +11,7 @@ using Framework.Factory.Patterns;
 
 namespace Framework.Data.Patterns
 {
-    public interface IDataObject<TItem> : ICommon
+    public interface IGenericDataObject<TItem> : ICommon
     {
         //
         // Set the object value.

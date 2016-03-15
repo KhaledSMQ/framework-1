@@ -1,20 +1,18 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: IProviderDataSet
+// Name/Class: IGenericDataSet
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Create date: 26/Nov/2015
+// Create date: 14/Mar/2016
 // Company: Cybermap Lta.
 // Description: Generic object data source.
 // ============================================================================
 
 using Framework.Factory.Patterns;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Framework.Data.Patterns
 {
-    public interface IDataSet<TItem> : ICommon
+    public interface IGenericDataSet<TItem> : ICommon
     {
         //
         // CREATE
@@ -23,24 +21,12 @@ namespace Framework.Data.Patterns
         object Create(TItem item);
 
         //
-        // GET
-        //
-
-        TItem GetByID(object id);
-
-        TItem Get(TItem item);
-
-        TItem Get(Func<IQueryable<TItem>, IQueryable<TItem>> query);
-
-        //
         // QUERY
         //
 
         IQueryable<TItem> Queryable();
 
-        IEnumerable<TItem> Query(string query);
-
-        IEnumerable<TItem> Query(object query);
+        object Query(string name, params object[] args);
 
         //
         // UPDATE
@@ -51,8 +37,6 @@ namespace Framework.Data.Patterns
         //
         // DELETE
         //
-
-        object DeleteByID(object id);
 
         object Delete(TItem item);
 

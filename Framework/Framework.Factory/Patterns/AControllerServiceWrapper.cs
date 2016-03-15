@@ -7,9 +7,8 @@
 // Description: Service wrapper base controller.
 // ============================================================================
 
-using Framework.Factory.Patterns;
 
-namespace Framework.Web.Patterns
+namespace Framework.Factory.Patterns
 {
     public abstract class AControllerServiceWrapper<TSrv> : 
         AController

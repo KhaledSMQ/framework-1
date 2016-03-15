@@ -61,12 +61,12 @@ namespace Framework.Data.EntityFramework.Context
         // Retrieve the data access layers for this data context.
         //
 
-        public override IDataObject<T> GetDataObject<T>()
+        public override IGenericDataObject<T> GetDataObject<T>()
         {
             return null;
         }
 
-        public override IDataSet<T> GetDataSet<T>()
+        public override IGenericDataSet<T> GetDataSet<T>()
         {
             return null;
         }

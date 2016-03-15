@@ -209,12 +209,12 @@ namespace Framework.Core.Helpers
 
         public static T ReadJSONObjectFromString<T>(string value)
         {
-            T output = default(T);
+            return JToken.Parse(value).ToObject<T>();
+        }
 
-            JToken obj = JToken.Parse(value);
-            output = obj.ToObject<T>();
-
-            return output;
+        public static object ReadJSONObjectFromString(Type type, string value)
+        {
+            return JToken.Parse(value).ToObject(type);
         }
 
         // 

@@ -34,7 +34,7 @@ namespace Framework.CMS.Data
                 .WillCascadeOnDelete();
 
             modelBuilder.Entity<Framework.CMS.Model.Cluster>()
-                .HasMany<Framework.CMS.Model.Types.ContentType>(s => s.ContentTypes)
+                .HasMany(s => s.ContentTypes)
                 .WithRequired(c => c.Owner)
                 .WillCascadeOnDelete();
 

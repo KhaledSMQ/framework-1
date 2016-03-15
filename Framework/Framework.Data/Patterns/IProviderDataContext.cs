@@ -33,9 +33,9 @@ namespace Framework.Data.Patterns
         // DATA-SOURCE-FACTORIES
         //
 
-        IDataSet<T> GetDataSet<T>();
+        IGenericDataSet<T> GetDataSet<T>();
 
-        IDataObject<T> GetDataObject<T>();
+        IGenericDataObject<T> GetDataObject<T>();
 
         //
         // Model create handler.

@@ -9,6 +9,7 @@
 
 using Framework.Data.Model;
 using Framework.Factory.Patterns;
+using System;
 using System.Collections.Generic;
 
 namespace Framework.Data.API
@@ -34,5 +35,7 @@ namespace Framework.Data.API
         //
 
         IEnumerable<DataCluster> GetListOfClusters();
+
+        Type GetEntityTypeByClusterAndName(string cluster, string entity);
     }
 }

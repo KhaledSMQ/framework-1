@@ -67,9 +67,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\IDataScope.cs" />
-    <Compile Include="API\Query.cs" />
-    <Compile Include="API\SrvDataScope.cs" />
+    <Compile Include="API\StoreController.cs" />
+    <Compile Include="API\ADataEntityGenericController.cs" />
+    <Compile Include="API\IDynamicStoreDataScope.cs" />
+    <Compile Include="API\IDynamicClusterDataScope.cs" />
+    <Compile Include="API\IGenericStoreDataScope.cs" />
+    <Compile Include="API\IGenericClusterDataScope.cs" />
+    <Compile Include="API\SrvDynamicStoreDataScope.cs" />
+    <Compile Include="API\SrvDynamicClusterDataScope.cs" />
+    <Compile Include="API\SrvGenericStoreDataScope.cs" />
+    <Compile Include="API\SrvGenericClusterDataScope.cs" />
     <Compile Include="API\SrvServiceEntry.cs" />
     <Compile Include="API\IDataStore.cs" />
     <Compile Include="Config\BaseConfiguration.cs" />
@@ -80,6 +87,10 @@
     <Compile Include="Config\SettingsConfiguration.cs" />
     <Compile Include="Config\ClusterConfiguration.cs" />
     <Compile Include="Config\Constants.cs" />
+    <Compile Include="Extensions\TypeNameExtensions.cs" />
+    <Compile Include="Extensions\NameExtensions.cs" />
+    <Compile Include="Extensions\VisibleExtensions.cs" />
+    <Compile Include="Extensions\IDExtensions.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="API\SrvDataStore.cs" />
     <Compile Include="Model\DataCluster.cs" />
@@ -90,12 +101,14 @@
     <Compile Include="Model\DataEntity.cs" />
     <Compile Include="Model\DataPartialModel.cs" />
     <Compile Include="Patterns\AProviderDataContext.cs" />
-    <Compile Include="Patterns\ADataSet.cs" />
+    <Compile Include="Patterns\AGenericDataSet.cs" />
+    <Compile Include="Patterns\IDynamicDataSet.cs" />
+    <Compile Include="Patterns\ADynamicDataSet.cs" />
+    <Compile Include="Patterns\IDynamicDataObject.cs" />
     <Compile Include="Patterns\IProviderDataContext.cs" />
     <Compile Include="Patterns\IProviderPartialModel.cs" />
-    <Compile Include="Patterns\IDataObject.cs" />
-    <Compile Include="Patterns\IDataSet.cs" />
-    <Compile Include="Patterns\IProviderCluster.cs" />
+    <Compile Include="Patterns\IGenericDataObject.cs" />
+    <Compile Include="Patterns\IGenericDataSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\Linq\Take.cs" />
     <Compile Include="Query\Linq\Paging.cs" />

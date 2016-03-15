@@ -12,6 +12,7 @@ using Framework.Data.Config;
 using Framework.Data.Model;
 using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -32,10 +33,8 @@ namespace Framework.Data.API
 
         private void __InitInMemoryStorage()
         {
-
-            __ClusterNameClusterMap = new SortedDictionary<string, DataCluster>();
-            __EntityNameClusterMap = new SortedDictionary<string, DataCluster>();
-            __EntityTypeClusterMap = new SortedDictionary<string, DataCluster>();
+            __ClusterMap = new SortedDictionary<string, DataCluster>();
+            __EntityMap = new SortedDictionary<string, DataEntity>();
         }
 
         private void __LoadConfig()
@@ -142,61 +141,100 @@ namespace Framework.Data.API
 
         private void __LoadCluster(DataCluster cluster)
         {
-            __ClusterNameClusterMap.AddNonExistent(cluster.Name, cluster);
+            __ClusterMap.AddNonExistent(cluster.Name, cluster);
         }
 
         private void __LoadEntities(DataCluster cluster)
         {
-            //
-            // Load entities in cluster.
-            // Create a map between the entity and the parent cluster.
-            //
-
-            cluster.Entities.Apply(entity =>
+            if (null != cluster)
             {
-                if ((null != entity) && (entity.Name.isNotNullAndEmpty()) && (entity.TypeName.isNotNullAndEmpty()))
+                if (cluster.Name.isNotNullAndEmpty())
                 {
-                    __EntityNameClusterMap.AddNonExistent(entity.Name, cluster);
-                    __EntityTypeClusterMap.AddNonExistent(entity.TypeName, cluster);
+                    //
+                    // Load entities in cluster.
+                    // Create a map between the entity and the parent cluster.
+                    //
+
+                    cluster.Entities.Apply(entity =>
+                    {
+                        if ((null != entity) && (entity.Name.isNotNullAndEmpty()) && (entity.TypeName.isNotNullAndEmpty()))
+                        {
+                            string entityUniqueName = _BuildUniqueName(cluster.Name, entity.Name);
+                            __EntityMap.AddNonExistent(entityUniqueName, entity);
+                        }
+                        else
+                        {
+                            //
+                            // ERROR: Entity definition is not valid, either the name or type is not defined!
+                            //
+                        }
+                    });
                 }
                 else
                 {
                     //
-                    // ERROR: Entity definition is not valid, either the name or type is not defined!
+                    // ERROR: Cluster name is not valid.
                     //
                 }
-            });
+            }
+            else
+            {
+                //
+                // ERROR: Cluster is not defined!
+                //
+            }
         }
 
         //
         // RETRIEVE
         //
 
+        public DataCluster GetClusterByName(string name)
+        {
+            DataCluster cluster = default(DataCluster);
+
+            if (__ClusterMap.ContainsKey(name))
+            {
+                cluster = __ClusterMap[name];
+            }
+
+            return cluster;
+        }
+
         public IEnumerable<DataCluster> GetListOfClusters()
         {
-            return __ClusterNameClusterMap.Values.ToList();
+            return __ClusterMap.Values.ToList();
         }
 
-
-        private IProviderDataContext _GetProviderContextForEntityBasedOnType<T>()
+        public DataEntity GetEntityByClusterAndName(string cluster, string entity)
         {
-            return _GetProviderContextForEntityBasedOnType(typeof(T).FullName);
+            string entityName = _BuildUniqueName(cluster, entity);
+            return __EntityMap[entityName];
         }
 
-        private IProviderDataContext _GetProviderContextForEntityBasedOnType(string type)
+        public Type GetEntityTypeByClusterAndName(string cluster, string entity)
+        {
+            Type entityType = default(Type);
+            DataEntity entityDef = GetEntityByClusterAndName(cluster, entity);
+            if (null != entityDef)
+            {
+                entityType = Type.GetType(entityDef.TypeName);
+            }
+
+            return entityType;
+        }
+
+        private IProviderDataContext _GetProviderContextForEntity(string cluster, string entity)
         {
             IProviderDataContext runtimeDataContext = null;
 
-            if (type.isNotNullAndEmpty())
+            DataCluster clusterDef = __ClusterMap[cluster];
+            if (null != clusterDef)
             {
-                DataCluster cluster = __EntityTypeClusterMap[type];
-                if (null != cluster)
+                DataContext specdataContext = clusterDef.Context;
+                if (null != specdataContext)
                 {
-                    DataContext specdataContext = cluster.Context;
-                    if (null != specdataContext)
-                    {
-
-                    }
+                    runtimeDataContext = Scope.Hub.GetByName<IProviderDataContext>(specdataContext.Service);
                 }
             }
 
@@ -204,11 +242,20 @@ namespace Framework.Data.API
         }
 
         //
+        // HELPERS
+
+        //
+
+        private string _BuildUniqueName(string clusterName, string entityName)
+        {
+            return string.Concat(clusterName.Trim().ToLower(), ".", entityName.Trim().ToLower());
+        }
+
+        //
         // Memory storage.
         //
 
-        private IDictionary<string, DataCluster> __ClusterNameClusterMap = null;
-        private IDictionary<string, DataCluster> __EntityNameClusterMap = null;
-        private IDictionary<string, DataCluster> __EntityTypeClusterMap = null;
+        private IDictionary<string, DataCluster> __ClusterMap = null;
+        private IDictionary<string, DataEntity> __EntityMap = null;
     }
 }

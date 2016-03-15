@@ -9,17 +9,16 @@
 
 using Framework.Data.Patterns;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
 namespace Framework.Data.EntityFramework.Objects
 {
-    public abstract class ADataSet<TItem> :
-        Patterns.ADataSet<TItem>, 
-        IDataSet<TItem> 
+    public abstract class AGenericDataSet<TItem> :
+        Patterns.AGenericDataSet<TItem>,
+        IGenericDataSet<TItem>
         where TItem : class
-    { 
+    {
         //
         // PROPERTIES
         //
@@ -35,51 +34,19 @@ namespace Framework.Data.EntityFramework.Objects
             return DataContext.Set<TItem>().Add(item);
         }
 
-        public override TItem Get(TItem item)
-        {
-            throw new NotSupportedException();
-        }
-
-        public override TItem GetByID(object id)
-        {
-            return DataContext.Set<TItem>().Find(id);
-        }
-
-        public override IEnumerable<TItem> Query(object query)
-        {
-            if (null == query)
-            {
-                return Queryable().ToList();
-            }
-            else
-            {
-                //
-                // TODO: Perform query...
-                //
-
-                throw new NotImplementedException();
-            }            
-        }
-
-        public override IEnumerable<TItem> Query(string query)
-        {
-            object parsedQuery = null;
-            return Query(parsedQuery);
-        }
-
         public override IQueryable<TItem> Queryable()
         {
             return DataContext.Set<TItem>();
         }
 
+        public override object Query(string name, params object[] args)
+        {
+            return Queryable().ToList();
+        }
+
         public override object Update(TItem item)
         {
             throw new NotSupportedException();
-        }
-
-        public override object DeleteByID(object id)
-        {
-            return Delete(GetByID(id));
         }
 
         public override object Delete(TItem item)

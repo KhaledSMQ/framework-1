@@ -183,9 +183,11 @@ namespace Framework.Web.API
             // Register http routes.
             //
 
+            string baseUrl = HttpRouteBaseUrl.isNullOrEmpty() ? string.Empty : HttpRouteBaseUrl + "/";
+
             HttpRoutes.Values.Apply(route =>
             {
-                RouteTable.Routes.MapHttpRoute(route.Name, string.Concat(HttpRouteBaseUrl, route.Template), new { id = RouteParameter.Optional });
+                RouteTable.Routes.MapHttpRoute(route.Name, string.Concat(baseUrl, route.Template), new { id = RouteParameter.Optional });
             });
 
             //

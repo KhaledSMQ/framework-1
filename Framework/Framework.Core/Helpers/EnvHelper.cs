@@ -13,7 +13,7 @@
 
 using System;
 
-namespace Framework.Core.Helper
+namespace Framework.Core.Helpers
 {
     public class EnvHelper
     {

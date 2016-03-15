@@ -24,9 +24,9 @@ namespace Framework.Data.Patterns
         // To be implemented by data context providers.
         //
 
-        public abstract IDataObject<T> GetDataObject<T>();
+        public abstract IGenericDataObject<T> GetDataObject<T>();
 
-        public abstract IDataSet<T> GetDataSet<T>();
+        public abstract IGenericDataSet<T> GetDataSet<T>();
 
         public abstract void CreateModel();
 

@@ -10,28 +10,10 @@
 using Framework.Core.Patterns;
 using System.Linq;
 
-namespace Framework.CMS.API
+namespace Framework.Data.Extensions
 {
-    public static class Filter
+    public static class VisibleExtensions
     {
-        //
-        // By ID.
-        //
-
-        public static IQueryable<T> ByID<T>(this IQueryable<T> queryable, int id) where T : class, IID<int>
-        {
-            return queryable.Where(c => c.ID == id);
-        }
-
-        //
-        // By Ref.
-        //
-
-        public static IQueryable<T> ByRef<T>(this IQueryable<T> queryable, string reff) where T : class, IRef<string>
-        {
-            return queryable.Where(c => c.Ref == reff);
-        }
-
         //
         // By Visiblity.
         //

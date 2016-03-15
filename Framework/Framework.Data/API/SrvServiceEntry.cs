@@ -16,9 +16,9 @@ using System.Linq;
 
 namespace Framework.Data.API
 {
-    public class SrvService : ACommon, IServiceEntry
+    public class SrvServiceEntry : ACommon, IServiceEntry
     {
-        private IDataSet<ServiceEntry> DataLayer = null;
+        private IGenericDataSet<ServiceEntry> DataLayer = null;
 
         public object Create(ServiceEntry srv)
         {
