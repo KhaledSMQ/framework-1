@@ -39,7 +39,7 @@ namespace Framework.Data.Config
         public static DataContext Converter(this ContextElement elm)
         {
             DataContext ast = new DataContext();
-            ast.Service = elm.Service;
+            ast.Provider = Factory.Config.Transforms.Converter(elm.Provider);
             ast.Entities = elm.Entities.Map<EntityRefElement, DataEntityRef>(new List<DataEntityRef>(), Converter);
             ast.Models = elm.Models.Map<ModelRefElement, DataPartialModelRef>(new List<DataPartialModelRef>(), Converter);
             return ast;

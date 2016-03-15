@@ -10,6 +10,7 @@
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
+using Framework.Factory.Model;
 using System;
 using System.Collections.Generic;
 
@@ -32,7 +33,7 @@ namespace Framework.Data.Model
 
         public string Description { get; set; }
 
-        public string Service { get; set; }
+        public ServiceEntry Provider { get; set; }
 
         public ICollection<DataEntityRef> Entities { get; set; }
 
@@ -65,7 +66,7 @@ namespace Framework.Data.Model
             ID = -1;
             Name = string.Empty;
             Description = string.Empty;
-            Service = string.Empty;
+            Provider = null;
             Entities = null;
             Models = null;
             Settings = null;

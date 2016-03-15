@@ -286,11 +286,11 @@ namespace Framework.Data.API
                     // and create the model.
                     //
 
-                    string serviceName = context.Service;
+                    string serviceName = context.Provider.Name;
 
                     if (serviceName.isNotNullAndEmpty())
                     {
-                        IProviderDataContext srvProviderDataContext = Scope.Hub.GetByName<IProviderDataContext>(serviceName);
+                        IProviderDataContext srvProviderDataContext = Scope.Hub.Get<IProviderDataContext>(context.Provider);
 
                         if (null != srvProviderDataContext)
                         {
@@ -421,15 +421,15 @@ namespace Framework.Data.API
 
             if (null != dataContextForEntity)
             {
-                if (dataContextForEntity.Service.isNotNullAndEmpty())
+                if (dataContextForEntity.Provider.Name.isNotNullAndEmpty())
                 {
                     //
                     // found the service name, now we need to check
-                    // if this service already has an instance.
+                    // if this service already has an instance
                     // and return it.
                     //
 
-                    dataContextProvider = Scope.Hub.GetByName<IProviderDataContext>(dataContextForEntity.Service);
+                    dataContextProvider = Scope.Hub.Get<IProviderDataContext>(dataContextForEntity.Provider);
                 }
                 else
                 {

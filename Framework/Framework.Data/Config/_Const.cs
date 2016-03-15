@@ -17,6 +17,7 @@ namespace Framework.Data.Config
         public const string CONTEXTS = "contexts";
         public const string MODELS = "models";
         public const string SERVICE = "service";
+        public const string PROVIDER = "provider";
         public const string NAME = "name";
         public const string DESCRIPTION = "description";
         public const string TYPE = "type";
