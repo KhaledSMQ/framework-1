@@ -7,16 +7,11 @@
 // Description: 
 // ============================================================================
 
-using Framework.Data.Patterns;
-using Framework.Factory.API;
-using Framework.Factory.Model;
-using Framework.Factory.Patterns;
-using System.Collections.Generic;
-using System.Linq;
-using System;
+using Framework.Core.Extensions;
 using Framework.Data.Config;
 using Framework.Data.Model;
-using Framework.Core.Extensions;
+using Framework.Factory.Patterns;
+using System.Collections.Generic;
 
 namespace Framework.Data.API
 {
@@ -59,7 +54,7 @@ namespace Framework.Data.API
         {
             //
             // Load from the system configuration spec
-            // the data store elements.
+            // the data store elements, domains and settings.
             //
 
             ManagerConfiguration config = (ManagerConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
@@ -77,7 +72,7 @@ namespace Framework.Data.API
 
         //
         // Initialize all domains. 
-        // Initialize all loaded, (i.e. memory) domains.
+        // Initialize all loaded, (i.e. in memory) domains.
         //
 
         public void InitAllLoadedDomains()
