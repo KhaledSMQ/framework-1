@@ -67,6 +67,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\IStore.cs" />
+    <Compile Include="API\SrvStore.cs" />
     <Compile Include="API\StoreController.cs" />
     <Compile Include="API\ADataEntityGenericController.cs" />
     <Compile Include="API\IDynamicStoreDataScope.cs" />
@@ -78,8 +80,9 @@
     <Compile Include="API\SrvGenericStoreDataScope.cs" />
     <Compile Include="API\SrvGenericClusterDataScope.cs" />
     <Compile Include="API\SrvServiceEntry.cs" />
-    <Compile Include="API\IDataStore.cs" />
+    <Compile Include="API\IMemStore.cs" />
     <Compile Include="Config\BaseConfiguration.cs" />
+    <Compile Include="Config\DomainConfiguration.cs" />
     <Compile Include="Config\ContextConfiguration.cs" />
     <Compile Include="Config\ModelRefConfiguration.cs" />
     <Compile Include="Config\EntityRefConfiguration.cs" />
@@ -95,9 +98,10 @@
     <Compile Include="Extensions\VisibleExtensions.cs" />
     <Compile Include="Extensions\IDExtensions.cs" />
     <Compile Include="Lib.cs" />
-    <Compile Include="API\SrvDataStore.cs" />
+    <Compile Include="API\SrvMemStore.cs" />
     <Compile Include="Model\DataCluster.cs" />
     <Compile Include="Model\DataContext.cs" />
+    <Compile Include="Model\DataDomain.cs" />
     <Compile Include="Model\DataPartialModelRef.cs" />
     <Compile Include="Model\DataEntityRef.cs" />
     <Compile Include="Model\DataQueryParam.cs" />

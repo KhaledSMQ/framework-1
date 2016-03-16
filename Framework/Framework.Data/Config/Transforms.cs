@@ -17,7 +17,20 @@ namespace Framework.Data.Config
     public static class Transforms
     {
         //
-        // CLUSTERS
+        // DOMAIN
+        //
+
+        public static DataDomain Converter(this DomainElement elm)
+        {
+            DataDomain ast = new DataDomain();
+            ast.Name = elm.Name;
+            ast.Description = elm.Description;
+            ast.Clusters = elm.Contexts.Map<ClusterElement, DataCluster>(new List<DataCluster>(), Converter);
+            return ast;
+        }
+
+        //
+        // CLUSTER
         //
 
         public static DataCluster Converter(this ClusterElement elm)

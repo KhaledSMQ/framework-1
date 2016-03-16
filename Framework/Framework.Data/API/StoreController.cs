@@ -62,7 +62,7 @@ namespace Framework.Data.API
         protected override void Initialize(HttpControllerContext controllerContext)
         {
             base.Initialize(controllerContext);
-            srvDataStore = Scope.Hub.GetUnique<IDataStore>();
+            srvDataStore = Scope.Hub.GetUnique<IMemStore>();
             srvDataScope = Scope.Hub.GetUnique<IDynamicStoreDataScope>();
         }
 
@@ -71,7 +71,7 @@ namespace Framework.Data.API
         // Dependency services.
         //
 
-        protected IDataStore srvDataStore = null;
+        protected IMemStore srvDataStore = null;
         protected IDynamicStoreDataScope srvDataScope = null;
     }
 }

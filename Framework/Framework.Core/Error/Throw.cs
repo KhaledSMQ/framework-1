@@ -109,7 +109,7 @@ namespace Framework.Core.Error
 
             if (null != args && args.Length > 0)
             {
-                msgArgs = new object[args.Length - 1];
+                msgArgs = new string[args.Length];
                 msg = (string) args[0];
 
                 args.CopyTo(msgArgs, 1);
