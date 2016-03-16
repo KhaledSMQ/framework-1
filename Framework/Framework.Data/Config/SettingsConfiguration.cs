@@ -64,7 +64,7 @@ namespace Framework.Data.Config
         }
     }
 
-    public class SettingElement : BaseElementWithType {
+    public class SettingElement : BaseElement {
 
         //
         // Value

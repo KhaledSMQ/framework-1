@@ -7,7 +7,6 @@
 // Description: Configuration objects.
 // ============================================================================
 
-using Framework.Factory.Config;
 using System.Configuration;
 
 namespace Framework.Data.Config
@@ -46,12 +45,12 @@ namespace Framework.Data.Config
 
         protected override object GetElementKey(ConfigurationElement elm)
         {
-            return ((ContextElement)elm).Provider.Name;
+            return ((ContextElement)elm).Name;
         }
 
         public void Remove(ContextElement elm)
         {
-            BaseRemove(elm.Provider.Name);
+            BaseRemove(elm.Name);
         }
 
         public void RemoveAt(int index)
@@ -65,17 +64,18 @@ namespace Framework.Data.Config
         }
     }
 
-    public class ContextElement : ConfigurationElement
+    public class ContextElement : BaseElement
     { 
         //
         // PROVIDER
         //
 
         [ConfigurationProperty(Constants.PROVIDER, IsRequired = true)]
-        public ServiceElement Provider
+        public ProviderElement Provider
         {
-            get { return (ServiceElement)this[Constants.PROVIDER]; }
+            get { return (ProviderElement)this[Constants.PROVIDER]; }
         }
+
         //
         // ENTITY-REFS
         //

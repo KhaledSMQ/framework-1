@@ -85,6 +85,7 @@
     <Compile Include="Config\EntityRefConfiguration.cs" />
     <Compile Include="Config\ModelConfiguration.cs" />
     <Compile Include="Config\EntityConfiguration.cs" />
+    <Compile Include="Config\ProviderConfiguration.cs" />
     <Compile Include="Config\Transforms.cs" />
     <Compile Include="Config\SettingsConfiguration.cs" />
     <Compile Include="Config\ClusterConfiguration.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Model\DataEntityRef.cs" />
     <Compile Include="Model\DataQueryParam.cs" />
     <Compile Include="Model\DataQuery.cs" />
+    <Compile Include="Model\DataProvider.cs" />
     <Compile Include="Model\_Enums.cs" />
     <Compile Include="Model\DataEntity.cs" />
     <Compile Include="Model\DataPartialModel.cs" />

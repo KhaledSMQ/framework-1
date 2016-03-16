@@ -7,15 +7,16 @@
 // Description: 
 // ============================================================================
 
+using Framework.Core.Error;
 using Framework.Core.Extensions;
 using Framework.Data.Config;
 using Framework.Data.Model;
 using Framework.Data.Patterns;
+using Framework.Factory.Model;
 using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Framework.Core.Error;
 using System.Text.RegularExpressions;
 
 namespace Framework.Data.API
@@ -35,11 +36,10 @@ namespace Framework.Data.API
 
         private void __InitInMemoryStorage()
         {
-            __ClusterMap = new SortedDictionary<string, DataCluster>();
-            __EntityMap = new SortedDictionary<string, DataEntity>();
-            __ModelMap = new SortedDictionary<string, DataPartialModel>();
-            __EntityContextMap = new SortedDictionary<string, DataContext>();
-            __ModelContextMap = new SortedDictionary<string, DataContext>();
+            __Clusters = new SortedDictionary<string, pClusterInfo>();
+            __Contexts = new SortedDictionary<string, pContextInfo>();
+            __Entities = new SortedDictionary<string, pEntityInfo>();
+            __Models = new SortedDictionary<string, pModelInfo>();
         }
 
         public void LoadConfig()
@@ -58,7 +58,9 @@ namespace Framework.Data.API
 
             if (null != config)
             {
-                config.Clusters.Map<ClusterElement, DataCluster>(new List<DataCluster>(), Transforms.Converter).Apply(Add);
+                config.Clusters
+                    .Map<ClusterElement, DataCluster>(new List<DataCluster>(), Transforms.Converter)
+                    .Apply(Load);
             }
         }
 
@@ -66,7 +68,7 @@ namespace Framework.Data.API
         // CLUSTERS
         //
 
-        public void Add(DataCluster cluster)
+        public void Load(DataCluster cluster)
         {
             if (null != cluster)
             {
@@ -74,21 +76,27 @@ namespace Framework.Data.API
                 {
                     if (VerifyParcel(cluster.Name))
                     {
-                        if (!__ClusterMap.ContainsKey(cluster.Name))
+                        //
+                        // Build the unique cluster identifier.
+                        //
+
+                        string clusterID = cluster.Name;
+
+                        if (!__Clusters.ContainsKey(clusterID))
                         {
                             //
-                            // Add the cluster to map.
-                            // No duplicate names are allowed.
+                            // Build the cluster runtime object.
                             //
 
-                            __ClusterMap.AddNonExistent(cluster.Name, cluster);
+                            pClusterInfo clusterInfo = new pClusterInfo()
+                            {
+                                ID = clusterID,
+                                Original = cluster,
+                                Contexts = new List<pContextInfo>()
+                            };
 
                             //
-                            // Load the entities from the cluster definition 
-                            // create the mapping between the full entity name 
-                            // its definition. Take the oportunity to check if 
-                            // cluster has entities with the same unique name,
-                            // but also check if entity naem is valid.
+                            // PROCESS: Cluster Entities.
                             //
 
                             cluster.Entities.Apply(entity =>
@@ -97,11 +105,29 @@ namespace Framework.Data.API
                                 {
                                     if (VerifyParcel(entity.Name))
                                     {
+                                        //
+                                        // Build the full entity identifier.
+                                        //
+
                                         string entityID = BuildComplexIdentifier(cluster.Name, entity.Name);
 
-                                        if (!__EntityMap.ContainsKey(entityID))
+                                        if (!__Entities.ContainsKey(entityID))
                                         {
-                                            __EntityMap.AddNonExistent(entityID, entity);
+                                            //
+                                            // Build the entity map runtime information.                                            
+                                            //
+
+                                            pEntityInfo entityInfo = new pEntityInfo()
+                                            {
+                                                ID = entityID,
+                                                Original = entity
+                                            };
+
+                                            //
+                                            // Add entity to runtime.
+                                            //
+
+                                            __Entities.AddNonExistent(entityID, entityInfo);
                                         }
                                         else
                                         {
@@ -132,10 +158,10 @@ namespace Framework.Data.API
                             });
 
                             //
-                            // Process all partial data models.
+                            // PROCESS: Cluster Partial Models.
                             //
 
-                            cluster.Models.Apply(model => 
+                            cluster.Models.Apply(model =>
                             {
                                 if ((null != model) && (model.Name.isNotNullAndEmpty()) && (model.TypeName.isNotNullAndEmpty()))
                                 {
@@ -143,9 +169,23 @@ namespace Framework.Data.API
                                     {
                                         string modelID = BuildComplexIdentifier(cluster.Name, model.Name);
 
-                                        if (!__ModelMap.ContainsKey(modelID))
+                                        if (!__Models.ContainsKey(modelID))
                                         {
-                                            __ModelMap.AddNonExistent(modelID, model);
+                                            //
+                                            // Build the entity map runtime information.                                            
+                                            //
+
+                                            pModelInfo modelInfo = new pModelInfo()
+                                            {
+                                                ID = modelID,
+                                                Original = model
+                                            };
+
+                                            //
+                                            // Add model to runtime.
+                                            //
+
+                                            __Models.AddNonExistent(modelID, modelInfo);
                                         }
                                         else
                                         {
@@ -176,61 +216,189 @@ namespace Framework.Data.API
                             });
 
                             //
-                            // Process the list of data contexts.
-                            // Create the map between the entity and 
-                            // the data context definition.
+                            // PROCESS: Cluster Contexts.
                             //
 
                             cluster.Contexts.Apply(context =>
                             {
                                 if (null != context)
                                 {
-                                    //
-                                    // Process context entity references.
-                                    //
-
-                                    context.Entities.Apply(entityRef =>
+                                    if (VerifyParcel(context.Name))
                                     {
-                                        string entityID = BuildComplexIdentifier(cluster.Name, entityRef.Name);
+                                        //
+                                        // Build the context unique identifier.
+                                        //
 
-                                        if (__EntityMap.ContainsKey(entityID))
+                                        string contextID = BuildComplexIdentifier(cluster.Name, context.Name);
+
+                                        if (!__Contexts.ContainsKey(contextID))
                                         {
-                                            if (!__EntityContextMap.ContainsKey(entityID))
-                                            {
-                                                __EntityContextMap.Add(entityID, context);
-                                            }
-                                            else
-                                            {
-                                                //
-                                                // ERROR: Entity identifierwas already mapped for the context.
-                                                //
+                                            //
+                                            // Setup the provider service.
+                                            //
 
-                                                Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "entity reference '{0}' was already defined for this context ('{1}')", entityRef.Name, entityID);
-                                            }
+                                            ServiceEntry providerSrvEntry = new ServiceEntry()
+                                            {
+                                                Name = string.Empty,
+                                                Contract = typeof(IProviderDataContext).FullName,
+                                                TypeName = context.Provider.TypeName,
+                                                Settings = context.Provider.Settings
+                                            };
+
+                                            //
+                                            // Setup the data context mapping info.
+                                            //
+
+                                            pContextInfo contextInfo = new pContextInfo()
+                                            {
+                                                ID = contextID,
+                                                Original = context,
+                                                Provider = context.Provider,
+                                                ProviderServiceEntry = providerSrvEntry,
+                                                Entities = new List<pEntityInfo>(),
+                                                Models = new List<pModelInfo>()
+                                            };
+
+                                            //
+                                            // PROCESS: Context Entity Refs.
+                                            //
+
+                                            context.Entities.Apply(entityRef =>
+                                            {
+                                                string entityID = BuildComplexIdentifier(cluster.Name, entityRef.Name);
+
+                                                if (__Entities.ContainsKey(entityID))
+                                                {
+                                                    //
+                                                    // Get the current entity mapping info.
+                                                    //
+
+                                                    pEntityInfo entityInfo = __Entities[entityID];
+
+                                                    //
+                                                    // Associate the context info with entity.
+                                                    //
+
+                                                    entityInfo.Context = contextInfo;
+
+                                                    //
+                                                    // Instantiate the data entity for the context.
+                                                    //
+
+                                                    entityInfo.Instance = new DataEntity()
+                                                    {
+                                                        Name = entityInfo.Original.Name,
+                                                        Kind = entityInfo.Original.Kind,
+                                                        TypeName = entityInfo.Original.TypeName,
+
+                                                        Description = entityRef.Description,
+                                                        Settings = entityRef.Settings
+                                                    };
+
+                                                    //
+                                                    // Add the new entity info to the context runtime.
+                                                    //
+
+                                                    contextInfo.Entities.Add(entityInfo);
+                                                }
+                                                else
+                                                {
+                                                    //
+                                                    // ERROR: Entity reference is invalid, no entity exists with that name.
+                                                    //
+
+                                                    Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "entity reference '{0}' is not defined, cannot add it to data context ('{1}')", entityRef.Name, entityID);
+                                                }
+                                            });
+
+                                            //
+                                            // PROCESS: Context Model Refs.
+                                            //
+
+                                            context.Models.Apply(modelRef =>
+                                            {
+                                                string modelID = BuildComplexIdentifier(cluster.Name, modelRef.Name);
+
+                                                if (__Models.ContainsKey(modelID))
+                                                {
+                                                    //
+                                                    // Get the current model mapping info.
+                                                    //
+
+                                                    pModelInfo modelInfo = __Models[modelID];
+
+                                                    //
+                                                    // Associate the context runtime info.
+                                                    //
+
+                                                    modelInfo.Context = contextInfo;
+
+                                                    //
+                                                    // Instantiate the data partial model for the context.
+                                                    //
+
+                                                    modelInfo.Instance = new DataPartialModel()
+                                                    {
+                                                        Name = modelInfo.Original.Name,
+                                                        TypeName = modelInfo.Original.TypeName,
+
+                                                        Description = modelRef.Description,
+                                                        Settings = modelRef.Settings
+                                                    };
+
+                                                    //
+                                                    // Add the new model info to the context runtime.
+                                                    //
+
+                                                    contextInfo.Models.Add(modelInfo);
+                                                }
+                                                else
+                                                {
+                                                    //
+                                                    // ERROR: Model reference is invalid, no entity exists with that name.
+                                                    //
+
+                                                    Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "model reference '{0}' is not defined, cannot add it to data context ('{1}')", modelRef.Name, modelID);
+                                                }
+                                            });
+
+                                            //
+                                            // Load the context into memory.
+                                            //
+
+                                            __Contexts.AddNonExistent(contextID, contextInfo);
+
+                                            //
+                                            // Associate the context info with the cluster info.
+                                            //
+
+                                            clusterInfo.Contexts.Add(contextInfo);
                                         }
                                         else
                                         {
                                             //
-                                            // ERROR: Entity reference is invalid, no entity exists with that name.
+                                            // ERROR: Entity name is not valid.
                                             //
 
-                                            Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "entity reference '{0}' is not defined, cannot add it to data context ('{1}')", entityRef.Name, entityID);
+                                            Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "context name '{0}' was already defined! ({1})", context.Name, contextID);
                                         }
-                                    });
+                                    }
+                                    else
+                                    {
+                                        //
+                                        // ERROR: Entity name is not valid.
+                                        //
 
-                                    //
-                                    // Process context model references.
-                                    //
-                                }
-                                else
-                                {
-                                    //
-                                    // ERROR: Invalid data context for cluster.
-                                    //
-
-                                    Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "Invalid data context for cluster '{0}'", cluster.Name);
+                                        Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "context name '{0}' is not valid", context.Name);
+                                    }
                                 }
                             });
+
+                            //
+                            // Add the cluster to the runtime.
+                            //
+
+                            __Clusters.AddNonExistent(clusterID, clusterInfo);
                         }
                         else
                         {
@@ -256,7 +424,7 @@ namespace Framework.Data.API
                     // ERROR: Cluster name null or empty
                     //
 
-                    Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "cluster name null or empty");
+                    Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "cluster name is null or empty");
                 }
             }
             else
@@ -269,8 +437,14 @@ namespace Framework.Data.API
             }
         }
 
-        public void Init(DataCluster cluster)
+        public void Init(string clusterID)
         {
+            //
+            // Get a loaded cluster runtime info object.
+            //
+
+            pClusterInfo cluster = __Clusters[clusterID];
+
             //
             // Initialize all the data contexts found
             // in the cluster definition.
@@ -281,53 +455,40 @@ namespace Framework.Data.API
                 if (null != context)
                 {
                     //
-                    // Initialize data context provider.
-                    // This means load the service provider, initialize it
-                    // and create the model.
+                    // Initialize data context provider. This means load the service 
+                    // provider, initialize it and create the model.
                     //
 
-                    string serviceName = context.Provider.Name;
-
-                    if (serviceName.isNotNullAndEmpty())
+                    if (null != context.Provider)
                     {
-                        IProviderDataContext srvProviderDataContext = Scope.Hub.Get<IProviderDataContext>(context.Provider);
+                        //
+                        // Try to get the instance.
+                        // 
 
-                        if (null != srvProviderDataContext)
+                        context.ProviderService = Scope.Hub.Get<IProviderDataContext>(context.ProviderServiceEntry);
+
+                        if (null != context.ProviderService)
                         {
                             //
-                            // Get all the entities specs that are from this 
-                            // data context, i.e. Transform an entity reference
-                            // into an entity definition.
+                            // Get the context entities and model definitions.
                             //
 
-                            IEnumerable<DataEntity> entities = context.Entities.Map(new List<DataEntity>(), entityRef =>
-                            {
-                                return __EntityMap[BuildComplexIdentifier(cluster.Name, entityRef.Name)];
-                            });
-
-                            //
-                            // Get all the models that are part of the
-                            // current data context.
-                            //
-
-                            IEnumerable<DataPartialModel> models = context.Models.Map(new List<DataPartialModel>(), modelRef =>
-                            {
-                                return __ModelMap[BuildComplexIdentifier(cluster.Name, modelRef.Name)];
-                            });
+                            IEnumerable<DataEntity> entities = context.Entities.Map(new List<DataEntity>(), e => { return e.Instance; });
+                            IEnumerable<DataPartialModel> models = context.Models.Map(new List<DataPartialModel>(), e => { return e.Instance; });                          
 
                             //
                             // Load the entities and partial models in data context provider.
                             //
 
-                            srvProviderDataContext.Load(entities);
-                            srvProviderDataContext.Load(models);
+                            context.ProviderService.Load(entities);
+                            context.ProviderService.Load(models);
 
                             //
                             // Use the data context handler to create/setup the required 
                             // data model specification.
                             //
 
-                            srvProviderDataContext.CreateModel();
+                            context.ProviderService.CreateModel();
                         }
                         else
                         {
@@ -356,37 +517,20 @@ namespace Framework.Data.API
                     Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "Data context provider specification for cluster is invalid!");
                 }
             });
-        }
-
-        public DataCluster GetCluster(string name)
-        {
-            DataCluster cluster = default(DataCluster);
-
-            if (__ClusterMap.ContainsKey(name))
-            {
-                cluster = __ClusterMap[name];
-            }
-
-            return cluster;
-        }
-
-        public IEnumerable<DataCluster> GetListOfClusters()
-        {
-            return __ClusterMap.Values.ToList();
-        }
+        }     
 
         public void InitClusters()
         {
-            GetListOfClusters().Apply(Init);
+            __Clusters.Keys.Apply(Init);
         }
 
         //
         // ENTITIES
         //
 
-        public DataEntity GetEntity(string fullname)
+        public DataEntity GetEntity(string entityID)
         {
-            return __EntityMap[fullname];
+            return __Entities[entityID].Original;
         }
 
         public DataEntity GetEntity(string cluster, string entity)
@@ -394,9 +538,9 @@ namespace Framework.Data.API
             return GetEntity(BuildComplexIdentifier(cluster, entity));
         }
 
-        public Type GetEntityType(string fullname)
+        public Type GetEntityType(string entityID)
         {
-            DataEntity entityDef = GetEntity(fullname);
+            DataEntity entityDef = GetEntity(entityID);
             return null != entityDef ? Type.GetType(entityDef.TypeName) : default(Type);
         }
 
@@ -407,46 +551,7 @@ namespace Framework.Data.API
 
         public IProviderDataContext GetEntityDataProviderContext(string entityID)
         {
-            //
-            // Default value for data context provider service instance.
-            //
-
-            IProviderDataContext dataContextProvider = null;
-
-            //
-            // Get the data context definition that is associated with the entity.
-            //
-
-            DataContext dataContextForEntity = __EntityContextMap[entityID];
-
-            if (null != dataContextForEntity)
-            {
-                if (dataContextForEntity.Provider.Name.isNotNullAndEmpty())
-                {
-                    //
-                    // found the service name, now we need to check
-                    // if this service already has an instance
-                    // and return it.
-                    //
-
-                    dataContextProvider = Scope.Hub.Get<IProviderDataContext>(dataContextForEntity.Provider);
-                }
-                else
-                {
-                    Throw.Internal(Lib.DEFAULT_ERROR_MSG_PREFIX, "entity with fullname '{0}' does not define a valid data context service provider name", entityID);
-                }
-            }
-            else
-            {
-                Throw.Internal(Lib.DEFAULT_ERROR_MSG_PREFIX, "entity with fullname '{0}' is not associated with any data context definition", entityID);
-            }
-
-            //
-            // Return the data context provider 
-            // service instance to caller.
-            //
-
-            return dataContextProvider;
+            return __Entities[entityID].Context.ProviderService;
         }
 
         public IProviderDataContext GetEntityDataProviderContext(string cluster, string entity)
@@ -473,10 +578,201 @@ namespace Framework.Data.API
         // Memory storage.
         //
 
-        private IDictionary<string, DataCluster> __ClusterMap = null;
-        private IDictionary<string, DataPartialModel> __ModelMap = null;
-        private IDictionary<string, DataEntity> __EntityMap = null;
-        private IDictionary<string, DataContext> __EntityContextMap = null;
-        private IDictionary<string, DataContext> __ModelContextMap = null;
+        private IDictionary<string, pClusterInfo> __Clusters = null;
+        private IDictionary<string, pContextInfo> __Contexts = null;
+        private IDictionary<string, pEntityInfo> __Entities = null;
+        private IDictionary<string, pModelInfo> __Models = null;
+
+        //
+        // PRIVATE-CLASSES ----------------------------------------------------
+        // Used in memory related store operations.
+        //
+
+        //
+        // Class to map information about data clusters.
+        // This is used to map unique data cluster identifier
+        // to their runtime information.
+        //
+
+        private class pClusterInfo
+        {
+            //
+            // Complete identifier.
+            //
+
+            public string ID { get; set; }
+
+            //
+            // Original context specification.
+            //
+
+            public DataCluster Original { get; set; }
+
+            //
+            // List of data contexts.
+            //
+
+            public IList<pContextInfo> Contexts { get; set; }
+
+            //
+            // CONSTRUCTOR
+            //
+
+            public pClusterInfo()
+            {
+                ID = null;
+                Original = null;
+                Contexts = null;
+            }
+        }
+
+        //
+        // Class to map information about data contexts.
+        // This is used to map unique data context identifier
+        // to their runtime information.
+        //
+
+        private class pContextInfo
+        {
+            //
+            // Complete identifier, includes
+            // cluster name.
+            //
+
+            public string ID { get; set; }
+
+            //
+            // Original context specification.
+            //
+
+            public DataContext Original { get; set; }
+
+            //
+            // Provider related info.
+            //
+
+            public DataProvider Provider { get; set; }
+
+            public ServiceEntry ProviderServiceEntry { get; set; }
+
+            public IProviderDataContext ProviderService { get; set; }
+
+            //
+            // List of context runtime entities.
+            //
+
+            public IList<pEntityInfo> Entities { get; set; }
+
+            //
+            // List of context runtime partial models.
+            //
+
+            public IList<pModelInfo> Models { get; set; }
+
+            //
+            // CONSTRUCTOR
+            //
+
+            public pContextInfo()
+            {
+                ID = null;
+                Original = null;
+                Provider = null;
+                ProviderServiceEntry = null;
+                ProviderService = null;
+                Entities = null;
+                Models = null;
+            }
+        }
+
+        //
+        // Class to map information about data entities.
+        // Used to map unique entity identifiers to their
+        // runtime information.
+        //
+
+        private class pEntityInfo
+        {
+            //
+            // Complete identifier, includes
+            // cluster name.
+            //
+
+            public string ID { get; set; }
+
+            //
+            // Original entity specification.
+            //
+
+            public DataEntity Original { get; set; }
+
+            //
+            // Entity definition used in context.
+            //
+
+            public DataEntity Instance { get; set; }
+
+            //
+            // The data context runtime mapping information.
+            //
+            public pContextInfo Context { get; set; }
+
+            //
+            // CONSTRUCTOR
+            //
+
+            public pEntityInfo()
+            {
+                ID = null;
+                Original = null;
+                Instance = null;
+                Context = null;
+            }
+        }
+
+        //
+        // Class to map information about data models.
+        // Used to map unique model identifiers to their
+        // runtime information.
+        //
+
+        private class pModelInfo
+        {
+            //
+            // Complete identifier, includes cluster name.
+            //
+
+            public string ID { get; set; }
+
+            //
+            // Original model specification.
+            //
+
+            public DataPartialModel Original { get; set; }
+
+            //
+            // The partial model seen by a data context.
+            //
+
+            public DataPartialModel Instance { get; set; }
+
+            //
+            // The data context runtime mapping information.
+            //
+
+            public pContextInfo Context { get; set; }
+
+            //
+            // CONSTRUCTOR
+            //
+
+            public pModelInfo()
+            {
+                ID = null;
+                Original = null;
+                Instance = null;
+                Context = null;
+            }
+        }
     }
 }

@@ -39,7 +39,9 @@ namespace Framework.Data.Config
         public static DataContext Converter(this ContextElement elm)
         {
             DataContext ast = new DataContext();
-            ast.Provider = Factory.Config.Transforms.Converter(elm.Provider);
+            ast.Name = elm.Name;
+            ast.Description = elm.Description;
+            ast.Provider = elm.Provider.Converter();
             ast.Entities = elm.Entities.Map<EntityRefElement, DataEntityRef>(new List<DataEntityRef>(), Converter);
             ast.Models = elm.Models.Map<ModelRefElement, DataPartialModelRef>(new List<DataPartialModelRef>(), Converter);
             return ast;
@@ -101,6 +103,18 @@ namespace Framework.Data.Config
         }
 
         //
+        // PROVIDER
+        //     
+
+        public static DataProvider Converter(this ProviderElement elm)
+        {
+            DataProvider ast = new DataProvider();
+            ast.TypeName = elm.Type;
+            ast.Settings = elm.Settings.Map<SettingElement, Setting>(new List<Setting>(), Converter);
+            return ast;
+        }
+
+        //
         // SETTING
         //
 
@@ -108,6 +122,7 @@ namespace Framework.Data.Config
         {
             Setting ast = new Setting();
             ast.Name = elm.Name;
+            ast.Description = elm.Description;
             ast.Value = elm.Value;
             return ast;
         }

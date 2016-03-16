@@ -11,7 +11,6 @@ using Framework.Data.Model;
 using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
 using System;
-using System.Collections.Generic;
 
 namespace Framework.Data.API
 {
@@ -27,13 +26,9 @@ namespace Framework.Data.API
         // CLUSTERS
         //    
 
-        void Add(DataCluster cluster);
+        void Load(DataCluster cluster);
 
-        void Init(DataCluster cluster);
-
-        DataCluster GetCluster(string name);
-
-        IEnumerable<DataCluster> GetListOfClusters();
+        void Init(string clusterID);
 
         //
         // ENTITIES
@@ -47,7 +42,7 @@ namespace Framework.Data.API
 
         Type GetEntityType(string cluster, string entity);
 
-        IProviderDataContext GetEntityDataProviderContext(string fullname);
+        IProviderDataContext GetEntityDataProviderContext(string entityID);
 
         IProviderDataContext GetEntityDataProviderContext(string cluster, string entity);
     }

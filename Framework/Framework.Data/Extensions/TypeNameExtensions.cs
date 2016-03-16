@@ -15,10 +15,10 @@ namespace Framework.Data.Extensions
     public static class TypeNameExtensions
     {
         //
-        // By Name.
+        // By TypeName.
         //
 
-        public static IQueryable<T> ByName<T>(this IQueryable<T> queryable, string typeName) where T : class, ITypeName<string>
+        public static IQueryable<T> ByTypeName<T>(this IQueryable<T> queryable, string typeName) where T : class, ITypeName<string>
         {
             return queryable.Where(c => c.TypeName.Equals(typeName));
         }
