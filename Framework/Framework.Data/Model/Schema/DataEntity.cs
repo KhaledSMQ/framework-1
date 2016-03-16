@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Service
+// Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 03/Aug/2015
 // Company: Cybermap Lta.
@@ -13,29 +13,34 @@ using Framework.Core.Types.Specialized;
 using System;
 using System.Collections.Generic;
 
-namespace Framework.Data.Model
+namespace Framework.Data.Model.Schema
 {
-    public class DataProvider : 
-        IID<int>, 
-        ITypeName<string>, 
+    public class DataEntity :
+        IID<int>,
+        IName<string>,
+        IDescription<string>,
+        ITypeName<string>,
+        IConfigList<Setting>,
         IAuditable<string>
     {
         //
-        // PROPERTIES
+        // INFO
         //
 
         public int ID { get; set; }
 
-        public bool Unique { get; set; }
+        public TypeOfDataEntity Kind { get; set; }
+
+        public string Name { get; set; }
 
         public string Description { get; set; }
 
         public string TypeName { get; set; }
 
-        public virtual ICollection<Setting> Settings { get; set; }
+        public ICollection<Setting> Settings { get; set; }
 
         //
-        // Audits
+        // AUDITS
         //
 
         public string CreatedBy { get; set; }
@@ -50,20 +55,21 @@ namespace Framework.Data.Model
         // CONSTRUCTORS
         // 
 
-        public DataProvider()
+        public DataEntity()
         {
             //
-            // Basic info.
+            // INFO
             //
 
             ID = -1;
-            Unique = false;
+            Kind = TypeOfDataEntity.DATA_SET;
+            Name = string.Empty;
             Description = string.Empty;
             TypeName = string.Empty;
             Settings = null;
 
             //
-            // Audits
+            // AUDITS
             //
 
             AuditableExtensions.Init(this, string.Empty);

@@ -12,7 +12,7 @@ using Framework.Core.Patterns;
 using System;
 using System.Collections.Generic;
 
-namespace Framework.Data.Model
+namespace Framework.Data.Model.Schema
 {
     public class DataQuery :
         IID<int>,

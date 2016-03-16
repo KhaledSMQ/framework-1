@@ -7,7 +7,7 @@
 // Description:
 // ============================================================================
 
-using Framework.Data.Model;
+using Framework.Data.Model.Schema;
 using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
 using System;

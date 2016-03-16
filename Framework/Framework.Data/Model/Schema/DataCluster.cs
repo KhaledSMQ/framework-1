@@ -2,9 +2,9 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Create date: 03/Aug/2015
+// Create date: 26/Nov/2015
 // Company: Cybermap Lta.
-// Description: Service specification class.
+// Description: 
 // ============================================================================
 
 using Framework.Core.Extensions;
@@ -13,16 +13,17 @@ using Framework.Core.Types.Specialized;
 using System;
 using System.Collections.Generic;
 
-namespace Framework.Data.Model
+namespace Framework.Data.Model.Schema
 {
-    public class DataPartialModelRef :
+    public class DataCluster : 
         IID<int>,
-        IName<string>,     
-        IConfigList<Setting>,
-        IAuditable<string>
+        IName<string>,
+        IDescription<string>,
+        IAuditable<string>,
+        IConfigList<Setting>
     {
         //
-        // INFO
+        // Info
         //
 
         public int ID { get; set; }
@@ -31,10 +32,16 @@ namespace Framework.Data.Model
 
         public string Description { get; set; }
 
+        public ICollection<DataContext> Contexts { get; set; }
+
+        public ICollection<DataEntity> Entities { get; set; }
+
+        public ICollection<DataPartialModel> Models { get; set; }
+
         public ICollection<Setting> Settings { get; set; }
 
         //
-        // AUDITS
+        // Audits
         //
 
         public string CreatedBy { get; set; }
@@ -49,19 +56,22 @@ namespace Framework.Data.Model
         // CONSTRUCTORS
         // 
 
-        public DataPartialModelRef()
+        public DataCluster()
         {
             //
-            // INFO
+            // Info
             //
 
             ID = -1;
             Name = string.Empty;
             Description = string.Empty;
+            Contexts = null;
+            Entities = null;
+            Models = null;
             Settings = null;
 
             //
-            // AUDITS
+            // Audits
             //
 
             AuditableExtensions.Init(this, string.Empty);

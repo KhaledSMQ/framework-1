@@ -13,11 +13,12 @@ using Framework.Core.Types.Specialized;
 using System;
 using System.Collections.Generic;
 
-namespace Framework.Data.Model
+namespace Framework.Data.Model.Schema
 {
-    public class DataEntityRef :
+    public class DataDomain :
         IID<int>,
-        IName<string>,     
+        IName<string>,
+        IDescription<string>,
         IConfigList<Setting>,
         IAuditable<string>
     {
@@ -30,6 +31,8 @@ namespace Framework.Data.Model
         public string Name { get; set; }
 
         public string Description { get; set; }
+
+        public ICollection<DataCluster> Clusters { get; set; }
 
         public ICollection<Setting> Settings { get; set; }
 
@@ -49,7 +52,7 @@ namespace Framework.Data.Model
         // CONSTRUCTORS
         // 
 
-        public DataEntityRef()
+        public DataDomain()
         {
             //
             // INFO
@@ -58,6 +61,7 @@ namespace Framework.Data.Model
             ID = -1;
             Name = string.Empty;
             Description = string.Empty;
+            Clusters = null;
             Settings = null;
 
             //

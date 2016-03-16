@@ -9,8 +9,7 @@
 
 using Framework.Core.Error;
 using Framework.Core.Extensions;
-using Framework.Data.Config;
-using Framework.Data.Model;
+using Framework.Data.Model.Schema;
 using Framework.Data.Patterns;
 using Framework.Factory.Model;
 using Framework.Factory.Patterns;

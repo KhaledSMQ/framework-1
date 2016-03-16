@@ -7,11 +7,11 @@
 // Description:
 // ============================================================================
 
+using Framework.Core.Extensions;
+using Framework.Data.Model.Schema;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using Framework.Core.Extensions;
-using Framework.Data.Model;
 
 namespace Framework.Data.EntityFramework.Context
 {

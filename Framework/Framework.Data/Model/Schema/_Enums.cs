@@ -7,7 +7,7 @@
 // Description:
 // ============================================================================
 
-namespace Framework.Data.Model
+namespace Framework.Data.Model.Schema
 {
     //
     // Caracterization of a data entity.
