@@ -9,6 +9,7 @@
 
 using Framework.Core.Error;
 using Framework.Core.Extensions;
+using Framework.Data.Model.Diagnostics;
 using Framework.Data.Model.Schema;
 using Framework.Data.Patterns;
 using Framework.Factory.Model;
@@ -602,6 +603,27 @@ namespace Framework.Data.API
         }
 
         //
+        // CONTEXTS
+        //
+
+        private pContextInfo __GetContextInfo(params string[] parcels)
+        {
+            pContextInfo contextInfo = default(pContextInfo);
+            string contextID = BuildComplexIdentifier(parcels);
+
+            if (__Contexts.ContainsKey(contextID))
+            {
+                contextInfo = __Contexts[contextID];
+            }
+            else
+            {
+                Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "context with identifier '{0}' does not exist!", contextID);
+            }
+
+            return contextInfo;
+        }
+
+        //
         // ENTITIES
         //
 
@@ -635,6 +657,53 @@ namespace Framework.Data.API
             }
 
             return entityInfo;
+        }
+
+        //
+        // DIAGNOSTICS
+        //
+
+        public IEnumerable<MemDomain> GetListOfMemDomains()
+        {
+            return __Domains.Keys.Map(new List<MemDomain>(), e => { return __Converter(__GetDomainInfo(e)); });
+        }
+
+        public IEnumerable<MemContext> GetListOfMemContexts()
+        {
+            return __Contexts.Keys.Map(new List<MemContext>(), e => { return __Converter(__GetContextInfo(e)); });
+        }
+
+        public IEnumerable<MemEntity> GetListOfMemEntities()
+        {
+            return __Entities.Keys.Map(new List<MemEntity>(), e => { return __Converter(__GetEntityInfo(e)); });
+        }
+
+        private MemDomain __Converter(pDomainInfo info)
+        {
+            return new MemDomain()
+            {
+                ID = info.ID,
+                Name = info.Original.Name
+            };
+        }
+
+        private MemContext __Converter(pContextInfo info)
+        {
+            return new MemContext()
+            {
+                ID = info.ID,
+                Name = info.Original.Name
+            };
+        }
+
+        private MemEntity __Converter(pEntityInfo info)
+        {
+            return new MemEntity()
+            {
+                ID = info.ID,
+                Name = info.Original.Name,
+                TypeName = info.Original.TypeName
+            };
         }
 
         //

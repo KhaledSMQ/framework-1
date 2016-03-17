@@ -29,6 +29,28 @@ namespace Framework.Data.API
         // method multiple times.
         //
 
-        void InitAllLoadedDomains();         
+        void InitAllLoadedDomains();
+
+        //
+        // ENTITIES
+        // Data Access Layer Entities.
+        //
+
+        object Entity_Create(string entityID, object value);
+
+        object Entity_Query(string entityID, string name, object[] args);
+
+        object Entity_Update(string entityID, object value);
+
+        object Entity_Delete(string entityID, object value);
+
+        //
+        // DIAGNOSTICS
+        // Memory & Performance.
+        //
+
+        object Mem_GetDomains();
+        object Mem_GetContexts();
+        object Mem_GetEntities();
     }
 }

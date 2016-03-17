@@ -99,6 +99,9 @@
     <Compile Include="Extensions\IDExtensions.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="API\SrvMemStore.cs" />
+    <Compile Include="Model\Diagnostics\MemContext.cs" />
+    <Compile Include="Model\Diagnostics\MemDomain.cs" />
+    <Compile Include="Model\Diagnostics\MemEntity.cs" />
     <Compile Include="Model\Schema\DataCluster.cs" />
     <Compile Include="Model\Schema\DataContext.cs" />
     <Compile Include="Model\Schema\DataDomain.cs" />

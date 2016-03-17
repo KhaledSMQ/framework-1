@@ -8,70 +8,65 @@
 // ============================================================================
 
 using Framework.Factory.Patterns;
-using System;
 using System.Web.Http;
-using System.Web.Http.Controllers;
 
 namespace Framework.Data.API
 {
     public class StoreController : AController
     {
-        [ActionName("entity.create")]
-        [HttpPost]
-        public IHttpActionResult Create([FromUri] string cluster, [FromUri] string entity)
+        //
+        // ENTITIES
+        // Data Access Layer Entities.
+        //
+
+        [ActionName("entity.create"), HttpPost, HttpPut]
+        public IHttpActionResult Entity_Create([FromUri] string id)
         {
-            return __RunCode(() =>
-            {
-                Type type = srvDataStore.GetEntityType(cluster, entity);
-                string json = Request.Content.ReadAsStringAsync().Result;
-                object item = Core.Helpers.JSONHelper.ReadJSONObjectFromString(type, json);
-                return srvDataScope.Create(cluster, type, item);
-            });
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().Entity_Create(id, Request.Content.ReadAsStringAsync().Result); });
         }
 
-        [ActionName("entity.query")]
+        [ActionName("entity.query"), HttpGet]
+        public IHttpActionResult Entity_Query([FromUri] string id, [FromUri] string name)
+        {
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().Entity_Query(id, name, null); });
+        }
+
+        [ActionName("entity.update"), HttpPost]
+        public IHttpActionResult Entity_Update([FromUri] string id)
+        {
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().Entity_Update(id, Request.Content.ReadAsStringAsync().Result); });
+        }
+
+        [ActionName("entity.delete"), HttpDelete, HttpPost, HttpPut]
+        public IHttpActionResult Entity_Delete([FromUri] string id)
+        {
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().Entity_Delete(id, Request.Content.ReadAsStringAsync().Result); });
+        }
+
+        //
+        // DIAGNOSTICS
+        // Memory & Performance.
+        //
+
+        [ActionName("mem.domains")]
         [HttpGet]
-        public IHttpActionResult Query([FromUri] string cluster, [FromUri] string entity, [FromUri] string name)
+        public IHttpActionResult MemDomains()
         {
-            return __RunCode(() =>
-            {
-                Type type = srvDataStore.GetEntityType(cluster, entity);
-                return srvDataScope.Query(cluster, type, name);
-            });
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetDomains(); });
         }
 
-
-        [ActionName("entity.update")]
-        [HttpPost]
-        public IHttpActionResult Update([FromUri] string cluster, [FromUri] string entity)
+        [ActionName("mem.contexts")]
+        [HttpGet]
+        public IHttpActionResult MemContexts()
         {
-            return __RunCode(() =>
-            {
-                Type type = srvDataStore.GetEntityType(cluster, entity);
-                string json = Request.Content.ReadAsStringAsync().Result;
-                object item = Core.Helpers.JSONHelper.ReadJSONObjectFromString(type, json);
-                return srvDataScope.Update(cluster, type, item);
-            });
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetContexts(); });
         }
 
-        //
-        // Initialize the store controller.
-        // Starts the data store and data scope for data access layer.
-        //
-
-        protected override void Initialize(HttpControllerContext controllerContext)
+        [ActionName("mem.entities")]
+        [HttpGet]
+        public IHttpActionResult MemEntities()
         {
-            base.Initialize(controllerContext);
-            srvDataStore = Scope.Hub.GetUnique<IMemStore>();
-            srvDataScope = Scope.Hub.GetUnique<IDynamicStoreDataScope>();
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetEntities(); });
         }
-
-        //
-        // HELPERS
-        // Dependency services.
-        //
-
-        protected IMemStore srvDataStore = null;
-        protected IDynamicStoreDataScope srvDataScope = null;
     }
 }

@@ -12,6 +12,7 @@ using Framework.Data.Config;
 using Framework.Data.Model.Schema;
 using Framework.Factory.Patterns;
 using System.Collections.Generic;
+using System;
 
 namespace Framework.Data.API
 {
@@ -78,6 +79,90 @@ namespace Framework.Data.API
         public void InitAllLoadedDomains()
         {
             srvMemStore.GetListOfDomains().Apply(srvMemStore.InitDomain);
+        }
+
+        //
+        // ENTITIES
+        // Data Access Layer for Entities.
+        //
+
+        public object Entity_Create(string entityID, object value)
+        {
+            Type type = srvMemStore.GetEntityType(entityID);
+            object item = value;
+
+            //
+            // If value is a string, then we assume
+            // that is an object in JSON fprmat.
+            //
+
+            if (value.GetType() == typeof(string))
+            {
+                item = Core.Helpers.JSONHelper.ReadJSONObjectFromString(type, (string)value);
+            }
+            
+            return null;
+        }
+
+        public object Entity_Query(string entityID, string name, object[] args)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Entity_Update(string entityID, object value)
+        {
+            Type type = srvMemStore.GetEntityType(entityID);
+            object item = value;
+
+            //
+            // If value is a string, then we assume
+            // that is an object in JSON fprmat.
+            //
+
+            if (value.GetType() == typeof(string))
+            {
+                item = Core.Helpers.JSONHelper.ReadJSONObjectFromString(type, (string)value);
+            }
+
+            return null;
+        }
+
+        public object Entity_Delete(string entityID, object value)
+        {
+            Type type = srvMemStore.GetEntityType(entityID);
+            object item = value;
+
+            //
+            // If value is a string, then we assume
+            // that is an object in JSON fprmat.
+            //
+
+            if (value.GetType() == typeof(string))
+            {
+                item = Core.Helpers.JSONHelper.ReadJSONObjectFromString(type, (string)value);
+            }
+
+            return null;
+        }
+
+        //
+        // DIAGNOSTICS
+        // Memory & Performance.
+        //
+
+        public object Mem_GetDomains()
+        {
+            return srvMemStore.GetListOfMemDomains();
+        }
+
+        public object Mem_GetContexts()
+        {
+            return srvMemStore.GetListOfMemContexts();
+        }
+
+        public object Mem_GetEntities()
+        {
+            return srvMemStore.GetListOfMemEntities();
         }
     }
 }

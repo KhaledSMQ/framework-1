@@ -7,6 +7,7 @@
 // Description:
 // ============================================================================
 
+using Framework.Data.Model.Diagnostics;
 using Framework.Data.Model.Schema;
 using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
@@ -38,5 +39,15 @@ namespace Framework.Data.API
         Type GetEntityType(params string[] parcels);
 
         IProviderDataContext GetEntityDataProviderContext(params string[] parcels);
+
+        //
+        // DIAGNOSTICS
+        //
+
+        IEnumerable<MemDomain> GetListOfMemDomains();
+
+        IEnumerable<MemContext> GetListOfMemContexts();
+
+        IEnumerable<MemEntity> GetListOfMemEntities();
     }
 }

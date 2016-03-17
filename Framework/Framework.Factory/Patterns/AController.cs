@@ -45,7 +45,7 @@ namespace Framework.Factory.Patterns
         // HELPERS
         //
 
-        protected IHttpActionResult __RunCode(Func<object> handler)
+        protected IHttpActionResult Run(Func<object> handler)
         {
             IHttpActionResult output = default(IHttpActionResult);
 
