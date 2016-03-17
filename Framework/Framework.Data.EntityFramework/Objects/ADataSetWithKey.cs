@@ -14,7 +14,7 @@ using System;
 namespace Framework.Data.EntityFramework.Objects
 {
     public abstract class ADataSetWithKey<TItem, TID> : 
-        AGenericDataSet<TItem>, 
+        BaseGenericDataSet<TItem>, 
         IGenericDataSet<TItem> 
         where TItem : class, IID<TID>
     {    

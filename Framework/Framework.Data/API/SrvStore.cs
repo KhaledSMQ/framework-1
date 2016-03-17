@@ -118,7 +118,13 @@ namespace Framework.Data.API
 
         public object Entity_Query(string entityID, string name, object args)
         {
-            Type type = srvMemStore.Entity_GetType(entityID);
+            //
+            // Get the data layer for the entity.
+            //
+
+            IDynamicDataSet dataSet = __Entity_GetDynamicDataSet(entityID);
+
+            object output = dataSet.Query(name);
 
             //
             // If value is a string, then we assume
@@ -130,7 +136,7 @@ namespace Framework.Data.API
 
             }
 
-            return null;
+            return output;
         }
 
         public object Entity_Update(string entityID, object value)

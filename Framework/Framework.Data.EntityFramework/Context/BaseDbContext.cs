@@ -38,6 +38,16 @@ namespace Framework.Data.EntityFramework.Context
             var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
 
+        public BaseDbContext(string connectionString)
+            : base(connectionString)
+        {          
+            //
+            // Ensure the the DLL is copied to the target bin folder.
+            //
+
+            var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+        }
+
         //
         // MODEL-CONFIGURATION
         //

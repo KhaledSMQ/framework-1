@@ -14,8 +14,8 @@ using System.Linq;
 
 namespace Framework.Data.EntityFramework.Objects
 {
-    public abstract class AGenericDataSet<TItem> :
-        Patterns.AGenericDataSet<TItem>,
+    public class BaseGenericDataSet<TItem> :
+        AGenericDataSet<TItem>,
         IGenericDataSet<TItem>
         where TItem : class
     {

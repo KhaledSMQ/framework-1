@@ -7,6 +7,7 @@
 // Description:
 // ============================================================================
 
+using Framework.Data.EntityFramework.Objects;
 using Framework.Data.Patterns;
 using Framework.Factory.Attributes;
 using System;
@@ -14,7 +15,7 @@ using System.Data.Entity;
 
 namespace Framework.Data.EntityFramework.Context
 {
-    public class BaseDataContextProvider : AProviderDataContext, IProviderDataContext
+    public class BaseDbContextProvider : AProviderDataContext, IProviderDataContext
     {
         //
         // PROPERTIES
@@ -79,7 +80,11 @@ namespace Framework.Data.EntityFramework.Context
 
         public override IDynamicDataSet GetDataSet(Type type)
         {
-            return null;
+            BaseDynamicDataSet dataSet = new BaseDynamicDataSet();
+            dataSet.Entity = type;
+            dataSet.DataContext = new BaseDbContext(ConnectionString);
+
+            return dataSet;
         }
 
     }

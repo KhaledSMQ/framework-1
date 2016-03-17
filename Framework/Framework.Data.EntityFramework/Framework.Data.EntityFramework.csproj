@@ -76,14 +76,14 @@
     <Compile Include="Context\DbCreateAlways.cs" />
     <Compile Include="Context\DbCreateIfModelChanges.cs" />
     <Compile Include="Context\DbCreateIfNotExists.cs" />
-    <Compile Include="Context\BaseDataContextProvider.cs" />
+    <Compile Include="Context\BaseDbContextProvider.cs" />
     <Compile Include="Context\BaseDbContext.cs" />
     <Compile Include="Context\UserBasedDbContext.cs" />
     <Compile Include="Context\_Enums.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="Objects\ADataSetWithKey.cs" />
-    <Compile Include="Objects\ADynamicDataSet.cs" />
-    <Compile Include="Objects\AGenericDataSet.cs" />
+    <Compile Include="Objects\BaseDynamicDataSet.cs" />
+    <Compile Include="Objects\BaseGenericDataSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\Linq\Include.cs" />
   </ItemGroup>
