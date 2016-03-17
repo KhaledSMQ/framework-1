@@ -85,7 +85,7 @@
     <Compile Include="Attributes\ServicePropertyAttribute.cs" />
     <Compile Include="Config\BaseConfiguration.cs" />
     <Compile Include="Config\ServiceConfiguration.cs" />
-    <Compile Include="Config\Constants.cs" />
+    <Compile Include="Config\_Const.cs" />
     <Compile Include="Config\ManagerConfiguration.cs" />
     <Compile Include="Config\SettingsConfiguration.cs" />
     <Compile Include="Config\Transforms.cs" />

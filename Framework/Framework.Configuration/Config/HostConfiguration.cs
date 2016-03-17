@@ -17,10 +17,10 @@ namespace Framework.Configuration.Config
         // META (application meta info, name, version, etc...)
         //
 
-        [ConfigurationProperty(Constants.META)]
+        [ConfigurationProperty(_Const.META)]
         public MetaElement Meta
         {
-            get { return (MetaElement)this[Constants.META]; }
+            get { return (MetaElement)this[_Const.META]; }
         }
     }
 }

@@ -18,11 +18,11 @@ namespace Framework.Configuration.Config
         // Ordered list of services and method to run at startup.
         //
 
-        [ConfigurationProperty(Constants.SEQUENCE, IsDefaultCollection = false)]
+        [ConfigurationProperty(_Const.SEQUENCE, IsDefaultCollection = false)]
         [ConfigurationCollection(typeof(MethodCallElementCollection))]
         public MethodCallElementCollection Sequence
         {
-            get { return (MethodCallElementCollection)this[Constants.SEQUENCE]; }
+            get { return (MethodCallElementCollection)this[_Const.SEQUENCE]; }
         }
     }
 }

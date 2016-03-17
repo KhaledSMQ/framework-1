@@ -60,7 +60,7 @@ namespace Framework.Configuration.API
             // Load from configuration file the host config.
             //
 
-            HostConfiguration config = (HostConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION_HOST);
+            HostConfiguration config = (HostConfiguration)System.Configuration.ConfigurationManager.GetSection(_Const.SECTION_HOST);
             if (null != config)
             {
                 if (null != config.Meta)

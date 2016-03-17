@@ -11,7 +11,7 @@ namespace Framework.Web.Config
 {
     public static class Constants
     {
-        public const string SECTION = "frameworkWeb";
+        public const string SECTION = "framework.Web";
         public const string ROUTING = "routing";  
     }
 }

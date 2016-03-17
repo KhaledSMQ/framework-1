@@ -103,16 +103,20 @@ namespace Framework.Core.Error
             //
             // Preprocess message
             //
-
+            
             string msg = default(string);
             object[] msgArgs = null;
 
             if (null != args && args.Length > 0)
             {
-                msgArgs = new string[args.Length];
+                msgArgs = new string[args.Length - 1];
                 msg = (string) args[0];
 
-                args.CopyTo(msgArgs, 1);
+                //
+                // Copy all values that are not the exception message.
+                //
+
+                Array.Copy(args, 1, msgArgs, 0, args.Length - 1);
 
                 if (null != msgArgs && msgArgs.Length > 0)
                 {
@@ -125,8 +129,8 @@ namespace Framework.Core.Error
             //
 
             Exception ex = string.IsNullOrWhiteSpace(msg) 
-                ? Reflection.Activator.CreateInstance<Exception>(exType, msg) 
-                : Reflection.Activator.CreateInstance<Exception>(exType);
+                ? Reflection.Activator.CreateInstance<Exception>(exType) 
+                : Reflection.Activator.CreateInstance<Exception>(exType, msg);
 
             //
             // Throw the exception.

@@ -17,22 +17,22 @@ namespace Framework.Configuration.Config
         // NAME
         //
 
-        [ConfigurationProperty(Constants.NAME, DefaultValue = "", IsRequired = true)]
+        [ConfigurationProperty(_Const.NAME, DefaultValue = "", IsRequired = true)]
         public string Name
         {
-            get { return (string)this[Constants.NAME]; }
-            set { this[Constants.NAME] = value; }
+            get { return (string)this[_Const.NAME]; }
+            set { this[_Const.NAME] = value; }
         }
 
         //
         // DESCRIPTION
         //
 
-        [ConfigurationProperty(Constants.DESCRIPTION, DefaultValue = "", IsRequired = false)]
+        [ConfigurationProperty(_Const.DESCRIPTION, DefaultValue = "", IsRequired = false)]
         public string Description
         {
-            get { return (string)this[Constants.DESCRIPTION]; }
-            set { this[Constants.DESCRIPTION] = value; }
+            get { return (string)this[_Const.DESCRIPTION]; }
+            set { this[_Const.DESCRIPTION] = value; }
         }  
     }
 }

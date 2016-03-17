@@ -70,22 +70,22 @@ namespace Framework.Configuration.Config
         // SERVICE
         //
 
-        [ConfigurationProperty(Constants.SERVICE, DefaultValue = "", IsRequired = true)]
+        [ConfigurationProperty(_Const.SERVICE, DefaultValue = "", IsRequired = true)]
         public string Service
         {
-            get { return (string)this[Constants.SERVICE]; }
-            set { this[Constants.SERVICE] = value; }
+            get { return (string)this[_Const.SERVICE]; }
+            set { this[_Const.SERVICE] = value; }
         }
 
         //
         // METHOD
         //
 
-        [ConfigurationProperty(Constants.METHOD, DefaultValue = "", IsRequired = false)]
+        [ConfigurationProperty(_Const.METHOD, DefaultValue = "", IsRequired = false)]
         public string Method
         {
-            get { return (string)this[Constants.METHOD]; }
-            set { this[Constants.METHOD] = value; }
+            get { return (string)this[_Const.METHOD]; }
+            set { this[_Const.METHOD] = value; }
         }
     }
 }

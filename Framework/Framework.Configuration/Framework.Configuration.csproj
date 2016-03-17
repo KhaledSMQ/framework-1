@@ -71,7 +71,7 @@
     <Compile Include="API\IHost.cs" />
     <Compile Include="API\IStartup.cs" />
     <Compile Include="Config\BaseConfiguration.cs" />
-    <Compile Include="Config\Constants.cs" />
+    <Compile Include="Config\_Const.cs" />
     <Compile Include="Config\StartupConfiguration.cs" />
     <Compile Include="Config\MethodCallConfiguration.cs" />
     <Compile Include="Config\MetaConfiguration.cs" />

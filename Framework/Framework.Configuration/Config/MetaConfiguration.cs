@@ -17,33 +17,33 @@ namespace Framework.Configuration.Config
         // VERSION
         //
 
-        [ConfigurationProperty(Constants.VERSION, DefaultValue = "", IsRequired = false)]
+        [ConfigurationProperty(_Const.VERSION, DefaultValue = "", IsRequired = false)]
         public string Version
         {
-            get { return (string)this[Constants.VERSION]; }
-            set { this[Constants.VERSION] = value; }
+            get { return (string)this[_Const.VERSION]; }
+            set { this[_Const.VERSION] = value; }
         }
 
         //
         // ICON
         //
 
-        [ConfigurationProperty(Constants.ICON, DefaultValue = "", IsRequired = false)]
+        [ConfigurationProperty(_Const.ICON, DefaultValue = "", IsRequired = false)]
         public string Icon
         {
-            get { return (string)this[Constants.ICON]; }
-            set { this[Constants.ICON] = value; }
+            get { return (string)this[_Const.ICON]; }
+            set { this[_Const.ICON] = value; }
         }
 
         //
         // AUTHORS
         //
 
-        [ConfigurationProperty(Constants.AUTHORS, DefaultValue = "", IsRequired = false)]
+        [ConfigurationProperty(_Const.AUTHORS, DefaultValue = "", IsRequired = false)]
         public string Authors
         {
-            get { return (string)this[Constants.AUTHORS]; }
-            set { this[Constants.AUTHORS] = value; }
+            get { return (string)this[_Const.AUTHORS]; }
+            set { this[_Const.AUTHORS] = value; }
         }
     }
 }

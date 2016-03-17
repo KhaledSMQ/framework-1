@@ -65,7 +65,7 @@
     <Compile Include="Config\Routing\HttpRouteConfiguration.cs" />
     <Compile Include="Config\Routing\RoutingConfiguration.cs" />
     <Compile Include="Config\Routing\PageRouteConfiguration.cs" />
-    <Compile Include="Config\Constants.cs" />
+    <Compile Include="Config\_Const.cs" />
     <Compile Include="Config\WebConfiguration.cs" />
     <Compile Include="Extensions\ErrorExtensions.cs" />
     <Compile Include="Extensions\PageExtensions.cs" />

@@ -59,7 +59,7 @@ namespace Framework.Configuration.API
             // Load from configuration settings.
             //
 
-            StartupConfiguration config = (StartupConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION_STARTUP);
+            StartupConfiguration config = (StartupConfiguration)System.Configuration.ConfigurationManager.GetSection(_Const.SECTION_STARTUP);
             if (null != config)
             {
                 if (null != config.Sequence)

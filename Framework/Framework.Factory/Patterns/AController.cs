@@ -67,7 +67,7 @@ namespace Framework.Factory.Patterns
             }
             catch (Exception ex2)
             {
-                output = BadRequest(ex2.Message);
+                throw ex2;
             }
 
             return output;

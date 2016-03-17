@@ -11,7 +11,7 @@ namespace Framework.Factory.Config
 {
     public static class Constants
     {
-        public const string SECTION = "frameworkFactory";
+        public const string SECTION = "framework.Factory";
         public const string SERVICES = "services";
         public const string HUB = "hub";
         public const string NAME = "name";

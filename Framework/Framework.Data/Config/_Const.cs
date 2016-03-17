@@ -11,7 +11,7 @@ namespace Framework.Data.Config
 {
     public static class Constants
     {
-        public const string SECTION = "frameworkDataStore";
+        public const string SECTION = "framework.Data";
         public const string DOMAINS = "domains";
         public const string CLUSTERS = "clusters";
         public const string ENTITIES = "entities";

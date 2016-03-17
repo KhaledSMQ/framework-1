@@ -9,10 +9,10 @@
 
 namespace Framework.Configuration.Config
 {
-    public static class Constants
+    public static class _Const
     {
-        public const string SECTION_HOST = "frameworkHost";
-        public const string SECTION_STARTUP = "frameworkStartup";
+        public const string SECTION_HOST = "framework.Host";
+        public const string SECTION_STARTUP = "framework.Startup";
 
         public const string META = "meta";
         public const string SERVICE = "service";
