@@ -13,6 +13,8 @@ using Framework.Data.Model.Schema;
 using Framework.Factory.Patterns;
 using System.Collections.Generic;
 using System;
+using Framework.Data.Patterns;
+using Framework.Core.Error;
 
 namespace Framework.Data.API
 {
@@ -67,7 +69,7 @@ namespace Framework.Data.API
 
             if (null != config)
             {
-                config.Domains.Map<DomainElement, DataDomain>(new List<DataDomain>(), Transforms.Converter).Apply(srvMemStore.LoadDomain);
+                config.Domains.Map<DomainElement, DataDomain>(new List<DataDomain>(), Transforms.Converter).Apply(srvMemStore.Domain_Load);
             }
         }
 
@@ -78,7 +80,7 @@ namespace Framework.Data.API
 
         public void InitAllLoadedDomains()
         {
-            srvMemStore.GetListOfDomains().Apply(srvMemStore.InitDomain);
+            srvMemStore.Domain_GetListOfID().Apply(srvMemStore.Domain_Init);
         }
 
         //
@@ -88,48 +90,109 @@ namespace Framework.Data.API
 
         public object Entity_Create(string entityID, object value)
         {
-            Type type = srvMemStore.GetEntityType(entityID);
-            object item = value;
+            //
+            // Get the item to to process.
+            //
+
+            object item = __Entity_GetItem(entityID, value);
+
+            //
+            // Get the data layer for the entity.
+            //
+
+            IDynamicDataSet dataSet = __Entity_GetDynamicDataSet(entityID);
+
+            //
+            // Create and save changes.
+            //
+
+            object output = dataSet.Create(item);
+            dataSet.Save();
+
+            //
+            // Return output from create method to caller.
+            //
+
+            return output;
+        }
+
+        public object Entity_Query(string entityID, string name, object args)
+        {
+            Type type = srvMemStore.Entity_GetType(entityID);
 
             //
             // If value is a string, then we assume
             // that is an object in JSON fprmat.
             //
 
-            if (value.GetType() == typeof(string))
+            if (args.GetType() == typeof(string))
             {
-                item = Core.Helpers.JSONHelper.ReadJSONObjectFromString(type, (string)value);
-            }
-            
-            return null;
-        }
 
-        public object Entity_Query(string entityID, string name, object[] args)
-        {
-            throw new NotImplementedException();
+            }
+
+            return null;
         }
 
         public object Entity_Update(string entityID, object value)
         {
-            Type type = srvMemStore.GetEntityType(entityID);
-            object item = value;
-
             //
-            // If value is a string, then we assume
-            // that is an object in JSON fprmat.
+            // Get the item to to process.
             //
 
-            if (value.GetType() == typeof(string))
-            {
-                item = Core.Helpers.JSONHelper.ReadJSONObjectFromString(type, (string)value);
-            }
+            object item = __Entity_GetItem(entityID, value);
 
-            return null;
+            //
+            // Get the data layer for the entity.
+            //
+
+            IDynamicDataSet dataSet = __Entity_GetDynamicDataSet(entityID);
+
+            //
+            // Create and save changes.
+            //
+
+            object output = dataSet.Update(item);
+            dataSet.Save();
+
+            //
+            // Return output from create method to caller.
+            //
+
+            return output;
         }
 
         public object Entity_Delete(string entityID, object value)
         {
-            Type type = srvMemStore.GetEntityType(entityID);
+            //
+            // Get the item to to process.
+            //
+
+            object item = __Entity_GetItem(entityID, value);
+
+            //
+            // Get the data layer for the entity.
+            //
+
+            IDynamicDataSet dataSet = __Entity_GetDynamicDataSet(entityID);
+
+            //
+            // Create and save changes.
+            //
+
+            object output = dataSet.Delete(item);
+            dataSet.Save();
+
+            //
+            // Return output from create method to caller.
+            //
+
+            return output;
+        }
+
+        private object __Entity_GetItem(string entityID, object value)
+        {
+            Type type = srvMemStore.Entity_GetType(entityID);
+
             object item = value;
 
             //
@@ -142,7 +205,94 @@ namespace Framework.Data.API
                 item = Core.Helpers.JSONHelper.ReadJSONObjectFromString(type, (string)value);
             }
 
-            return null;
+            return item;
+        }
+
+        private IProviderDataContext __Entity_GetProviderDataContext(string entityID)
+        {
+            //
+            // Default return value for entity data set.
+            //            
+
+            IProviderDataContext provider = srvMemStore.Entity_GetProviderDataContext(entityID);
+
+            if (null == provider)
+            {
+                Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "could not get data context provider for entity '{0}'!", entityID);
+            }
+
+            //
+            // Return the infered data set for entity.
+            //
+
+            return provider;
+        }
+
+        private IDynamicDataSet __Entity_GetDynamicDataSet(string entityID)
+        {
+            //
+            // Default return value for entity data set.
+            //            
+
+            IDynamicDataSet dataSet = null;
+
+            IProviderDataContext provider = __Entity_GetProviderDataContext(entityID);
+
+            Type type = srvMemStore.Entity_GetType(entityID);
+
+            if (null != type)
+            {
+                dataSet = provider.GetDataSet(type);
+
+                if (null == dataSet)
+                {
+                    Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "could not get data set provider for entity '{0}'!", entityID);
+                }
+            }
+            else
+            {
+
+                Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "could not get type for entity '{0}'!", entityID);
+            }
+
+            //
+            // Return the infered data set for entity.
+            //
+
+            return dataSet;
+        }
+
+        private IDynamicDataObject __Entity_GetDynamicDataObject(string entityID)
+        {
+            //
+            // Default return value for entity data set.
+            //            
+
+            IDynamicDataObject dataObject = null;
+
+            IProviderDataContext provider = __Entity_GetProviderDataContext(entityID);
+
+            Type type = srvMemStore.Entity_GetType(entityID);
+
+            if (null != type)
+            {
+                dataObject = provider.GetDataObject(type);
+
+                if (null == dataObject)
+                {
+                    Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "could not get data set provider for entity '{0}'!", entityID);
+                }
+            }
+            else
+            {
+                Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "could not get type for entity '{0}'!", entityID);
+            }
+
+            //
+            // Return the infered data set for entity.
+            //
+
+            return dataObject;
         }
 
         //
@@ -152,17 +302,17 @@ namespace Framework.Data.API
 
         public object Mem_GetDomains()
         {
-            return srvMemStore.GetListOfMemDomains();
+            return srvMemStore.Mem_GetListOfDomains();
         }
 
         public object Mem_GetContexts()
         {
-            return srvMemStore.GetListOfMemContexts();
+            return srvMemStore.Mem_GetListOfContexts();
         }
 
         public object Mem_GetEntities()
         {
-            return srvMemStore.GetListOfMemEntities();
+            return srvMemStore.Mem_GetListOfEntities();
         }
     }
 }

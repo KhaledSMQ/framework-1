@@ -38,7 +38,7 @@ namespace Framework.Data.API
 
         object Entity_Create(string entityID, object value);
 
-        object Entity_Query(string entityID, string name, object[] args);
+        object Entity_Query(string entityID, string name, object args);
 
         object Entity_Update(string entityID, object value);
 

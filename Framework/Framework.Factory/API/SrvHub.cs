@@ -28,17 +28,21 @@ namespace Framework.Factory.API
 
         public override void Init()
         {
-            base.Init();
-            __InitInMemoryStorage();
-        }
+            //
+            // Initialize base service , if any.
+            //
 
-        private void __InitInMemoryStorage()
-        {
+            base.Init();
+
+            //
+            // In-memory service information.
+            //
+
             _Instances = new SortedDictionary<string, ICommon>();
             _ByName = new SortedDictionary<string, ServiceEntry>();
             _ByTypeName = new SortedDictionary<string, IList<ServiceEntry>>();
             _ByContract = new SortedDictionary<string, IList<ServiceEntry>>();
-        }
+        }      
 
         //
         // API
@@ -46,35 +50,60 @@ namespace Framework.Factory.API
 
         public T GetUnique<T>() where T : ICommon
         {
-            return GetByContract<T>().FirstOrDefault();
+            return GetUnique<T>(Scope);
+        }
+
+        public T GetUnique<T>(IScope whatScope) where T : ICommon
+        {
+            return GetByContract<T>(whatScope).FirstOrDefault();
         }
 
         public T GetByName<T>(string name) where T : ICommon
+        {
+            return GetByName<T>(name, Scope);
+        }
+
+        public T GetByName<T>(string name, IScope whatScope) where T : ICommon
         {
             if (!_ByName.ContainsKey(name))
             {
                 Load(_ServiceEntry.GetByName(name));
             }
 
-            return Get<T>(_ByName[name]);
+            return Get<T>(_ByName[name], whatScope);
         }
 
         public IEnumerable<T> GetByTypeName<T>(string typeName) where T : ICommon
+        {
+            return GetByTypeName<T>(typeName, Scope);
+        }
+
+        public IEnumerable<T> GetByTypeName<T>(string typeName, IScope whatScope) where T : ICommon
         {
             if (!_ByTypeName.ContainsKey(typeName))
             {
                 Load(_ServiceEntry.GetByTypeName(typeName));
             }
 
-            return _ByContract[typeName].Map(new List<T>(), Get<T>);
+            return _ByContract[typeName].Map(new List<T>(), e => Get<T>(e, whatScope));
         }
 
         public IEnumerable<T> GetByType<T>(Type type) where T : ICommon
         {
-            return GetByTypeName<T>(type.FullName);
+            return GetByType<T>(type, Scope);
+        }
+
+        public IEnumerable<T> GetByType<T>(Type type, IScope whatScope) where T : ICommon
+        {
+            return GetByTypeName<T>(type.FullName, whatScope);
         }
 
         public IEnumerable<T> GetByContract<T>() where T : ICommon
+        {
+            return GetByContract<T>(Scope);
+        }
+
+        public IEnumerable<T> GetByContract<T>(IScope whatScope) where T : ICommon
         {
             string contractTypeName = typeof(T).FullName;
 
@@ -83,10 +112,15 @@ namespace Framework.Factory.API
                 Load(_ServiceEntry.GetByContract(contractTypeName));
             }
 
-            return _ByContract[contractTypeName].Map(new List<T>(), Get<T>);
+            return _ByContract[contractTypeName].Map(new List<T>(), e => Get<T>(e, whatScope));
         }
 
         public T Get<T>(ServiceEntry entry) where T : ICommon
+        {
+            return Get<T>(entry, Scope);
+        }
+
+        public T Get<T>(ServiceEntry entry, IScope whatScope) where T : ICommon
         {
             //
             // Check if service was already initialized.
@@ -106,22 +140,7 @@ namespace Framework.Factory.API
                     // Create service instance.
                     //
 
-                    service = Core.Reflection.Activator.CreateGenericInstance<T>(entry.TypeName);
-
-                    //
-                    // Initialize the service.
-                    //
-
-                    service.Scope = Scope;
-                    service.Init();
-                    service.Cfg = _ProcessServiceSettings(entry.Settings);
-
-                    //
-                    // Load settings.
-                    // Parse and set its values.
-                    //
-
-                    _LoadServiceSettings(service);
+                    service = New<T>(entry, whatScope);
 
                     //
                     // Add service to the already defined instances.
@@ -138,18 +157,59 @@ namespace Framework.Factory.API
             return service;
         }
 
-        private IConfigMap _ProcessServiceSettings(ICollection<Setting> settings)
+        public T New<T>(ServiceEntry entry) where T : ICommon
+        {
+            return New<T>(entry, Scope);
+        }
+
+        public T New<T>(ServiceEntry entry, IScope whatScope) where T : ICommon
+        {
+            //
+            // Check if service was already initialized.
+            //
+
+            T service = default(T);
+
+            //
+            // Create service instance.
+            //
+
+            service = Core.Reflection.Activator.CreateGenericInstance<T>(entry.TypeName);
+
+            //
+            // Initialize the service.
+            //
+
+            service.Scope = whatScope;
+            service.Init();
+            service.Cfg = __ProcessServiceSettings(entry.Settings);
+
+            //
+            // Load settings.
+            // Parse and set its values.
+            //
+
+            __LoadServiceSettings(service);
+
+            //
+            // Return service instance to caller.
+            //
+
+            return service;
+        }
+
+        private IConfigMap __ProcessServiceSettings(ICollection<Setting> settings)
         {
             ConfigMap setMap = new ConfigMap();
             settings.Apply(setting => { setMap.Add(setting.Name, setting); });
             return setMap;
         }
 
-        private void _LoadServiceSettings(ICommon service)
+        private void __LoadServiceSettings(ICommon service)
         {
             IDictionary<string, KeyValuePair<Attributes.ServicePropertyAttribute, PropertyInfo>> setProperties = Core.Reflection.Attributes.GetPropsWithAttributes<Attributes.ServicePropertyAttribute>(service);
 
-            setProperties.Values.Apply(pair => 
+            setProperties.Values.Apply(pair =>
             {
                 Attributes.ServicePropertyAttribute attr = pair.Key;
                 PropertyInfo propInfo = pair.Value;

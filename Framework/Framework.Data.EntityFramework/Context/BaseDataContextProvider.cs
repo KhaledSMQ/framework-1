@@ -9,6 +9,7 @@
 
 using Framework.Data.Patterns;
 using Framework.Factory.Attributes;
+using System;
 using System.Data.Entity;
 
 namespace Framework.Data.EntityFramework.Context
@@ -70,5 +71,16 @@ namespace Framework.Data.EntityFramework.Context
         {
             return null;
         }
+
+        public override IDynamicDataObject GetDataObject(Type type)
+        {
+            return null;
+        }
+
+        public override IDynamicDataSet GetDataSet(Type type)
+        {
+            return null;
+        }
+
     }
 }

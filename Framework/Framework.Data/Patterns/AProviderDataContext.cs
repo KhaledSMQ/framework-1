@@ -10,6 +10,7 @@
 using Framework.Core.Extensions;
 using Framework.Data.Model.Schema;
 using Framework.Factory.Patterns;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,6 +27,10 @@ namespace Framework.Data.Patterns
 
         public abstract IGenericDataSet<T> GetDataSet<T>();
 
+        public abstract IDynamicDataObject GetDataObject(Type type);
+
+        public abstract IDynamicDataSet GetDataSet(Type type);
+
         public abstract void CreateModel();
 
         //
@@ -35,14 +40,8 @@ namespace Framework.Data.Patterns
         public override void Init()
         {
             base.Init();
-            _InitInMemoryStorage();
-
-        }
-
-        private void _InitInMemoryStorage()
-        {
-            _Entities = new SortedDictionary<string, DataEntity>();
-            _Models = new SortedDictionary<string, DataPartialModel>();
+            __Entities = new SortedDictionary<string, DataEntity>();
+            __Models = new SortedDictionary<string, DataPartialModel>();
         }
 
         //
@@ -60,9 +59,9 @@ namespace Framework.Data.Patterns
             {
                 if (entity.Name.isNotNullAndEmpty())
                 {
-                    if (!_Entities.ContainsKey(entity.Name))
+                    if (!__Entities.ContainsKey(entity.Name))
                     {
-                        _Entities.Add(entity.Name, entity);
+                        __Entities.Add(entity.Name, entity);
                     }
                     else
                     {
@@ -97,9 +96,9 @@ namespace Framework.Data.Patterns
             {
                 if (model.Name.isNotNullAndEmpty())
                 {
-                    if (!_Models.ContainsKey(model.Name))
+                    if (!__Models.ContainsKey(model.Name))
                     {
-                        _Models.Add(model.Name, model);
+                        __Models.Add(model.Name, model);
                     }
                     else
                     {
@@ -129,19 +128,19 @@ namespace Framework.Data.Patterns
 
         public IEnumerable<DataEntity> GetListOfEntities()
         {
-            return _Entities.Values.ToList();
+            return __Entities.Values.ToList();
         }
 
         public IEnumerable<DataPartialModel> GetListOfPartialModels()
         {
-            return _Models.Values.ToList(); ;
+            return __Models.Values.ToList(); ;
         }
 
         //
         // PRIVATE STATE
         //
 
-        private IDictionary<string, DataEntity> _Entities = null;
-        private IDictionary<string, DataPartialModel> _Models = null;
+        private IDictionary<string, DataEntity> __Entities = null;
+        private IDictionary<string, DataPartialModel> __Models = null;
     }
 }

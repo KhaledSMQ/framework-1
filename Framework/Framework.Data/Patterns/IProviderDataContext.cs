@@ -37,6 +37,10 @@ namespace Framework.Data.Patterns
 
         IGenericDataObject<T> GetDataObject<T>();
 
+        IDynamicDataSet GetDataSet(Type type);
+
+        IDynamicDataObject GetDataObject(Type type);
+
         //
         // Model create handler.
         //

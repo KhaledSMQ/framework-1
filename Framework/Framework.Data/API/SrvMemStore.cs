@@ -50,7 +50,7 @@ namespace Framework.Data.API
         // DOMAINS
         //
 
-        public void LoadDomain(DataDomain domain)
+        public void Domain_Load(DataDomain domain)
         {
             if (null != domain)
             {
@@ -499,19 +499,19 @@ namespace Framework.Data.API
             }
         }
 
-        public DataDomain GetDomain(params string[] parcels)
+        public DataDomain Domain_Get(params string[] parcels)
         {
-            return __GetDomainInfo(parcels).Original;
+            return __Domain_GetInfo(parcels).Original;
         }
 
-        public IEnumerable<string> GetListOfDomains()
+        public IEnumerable<string> Domain_GetListOfID()
         {
             return __Domains.Keys;
         }
 
-        public void InitDomain(string domainID)
+        public void Domain_Init(string domainID)
         {
-            pDomainInfo domain = __GetDomainInfo(domainID);
+            pDomainInfo domain = __Domain_GetInfo(domainID);
 
             domain.Clusters.Apply(cluster =>
             {
@@ -530,7 +530,7 @@ namespace Framework.Data.API
                             // Try to get the instance.
                             // 
 
-                            context.ProviderService = Scope.Hub.Get<IProviderDataContext>(context.ProviderServiceEntry);
+                            context.ProviderService = Scope.Hub.New<IProviderDataContext>(context.ProviderServiceEntry);
 
                             if (null != context.ProviderService)
                             {
@@ -585,7 +585,7 @@ namespace Framework.Data.API
             });
         }
 
-        private pDomainInfo __GetDomainInfo(params string[] parcels)
+        private pDomainInfo __Domain_GetInfo(params string[] parcels)
         {
             pDomainInfo domainInfo = default(pDomainInfo);
             string domainID = BuildComplexIdentifier(parcels);
@@ -606,7 +606,7 @@ namespace Framework.Data.API
         // CONTEXTS
         //
 
-        private pContextInfo __GetContextInfo(params string[] parcels)
+        private pContextInfo __Context_GetInfo(params string[] parcels)
         {
             pContextInfo contextInfo = default(pContextInfo);
             string contextID = BuildComplexIdentifier(parcels);
@@ -627,22 +627,22 @@ namespace Framework.Data.API
         // ENTITIES
         //
 
-        public DataEntity GetEntity(params string[] parcels)
+        public DataEntity Entity_Get(params string[] parcels)
         {
-            return __GetEntityInfo(parcels).Original;
+            return __Entity_GetInfo(parcels).Original;
         }
 
-        public Type GetEntityType(params string[] parcels)
+        public Type Entity_GetType(params string[] parcels)
         {
-            return Type.GetType(GetEntity(parcels).TypeName);
+            return Type.GetType(Entity_Get(parcels).TypeName);
         }
 
-        public IProviderDataContext GetEntityDataProviderContext(params string[] parcels)
+        public IProviderDataContext Entity_GetProviderDataContext(params string[] parcels)
         {
-            return __GetEntityInfo(parcels).Context.ProviderService;
+            return __Entity_GetInfo(parcels).Context.ProviderService;
         }
 
-        private pEntityInfo __GetEntityInfo(params string[] parcels)
+        private pEntityInfo __Entity_GetInfo(params string[] parcels)
         {
             pEntityInfo entityInfo = default(pEntityInfo);
             string entityID = BuildComplexIdentifier(parcels);
@@ -663,19 +663,19 @@ namespace Framework.Data.API
         // DIAGNOSTICS
         //
 
-        public IEnumerable<MemDomain> GetListOfMemDomains()
+        public IEnumerable<MemDomain> Mem_GetListOfDomains()
         {
-            return __Domains.Keys.Map(new List<MemDomain>(), e => { return __Converter(__GetDomainInfo(e)); });
+            return __Domains.Keys.Map(new List<MemDomain>(), e => { return __Converter(__Domain_GetInfo(e)); });
         }
 
-        public IEnumerable<MemContext> GetListOfMemContexts()
+        public IEnumerable<MemContext> Mem_GetListOfContexts()
         {
-            return __Contexts.Keys.Map(new List<MemContext>(), e => { return __Converter(__GetContextInfo(e)); });
+            return __Contexts.Keys.Map(new List<MemContext>(), e => { return __Converter(__Context_GetInfo(e)); });
         }
 
-        public IEnumerable<MemEntity> GetListOfMemEntities()
+        public IEnumerable<MemEntity> Mem_GetListOfEntities()
         {
-            return __Entities.Keys.Map(new List<MemEntity>(), e => { return __Converter(__GetEntityInfo(e)); });
+            return __Entities.Keys.Map(new List<MemEntity>(), e => { return __Converter(__Entity_GetInfo(e)); });
         }
 
         private MemDomain __Converter(pDomainInfo info)
@@ -733,7 +733,7 @@ namespace Framework.Data.API
 
         //
         // PRIVATE-CLASSES ----------------------------------------------------
-        // Used in memory related store operations.
+        // Used in memory related storage operations.
         //
 
         //

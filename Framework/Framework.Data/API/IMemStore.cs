@@ -22,32 +22,32 @@ namespace Framework.Data.API
         // DOMAINS
         //    
 
-        void LoadDomain(DataDomain domain);
+        void Domain_Load(DataDomain domain);
 
-        DataDomain GetDomain(params string[] parcels);
+        DataDomain Domain_Get(params string[] parcels);
 
-        IEnumerable<string> GetListOfDomains();
+        IEnumerable<string> Domain_GetListOfID();
 
-        void InitDomain(string domainID);
+        void Domain_Init(string domainID);
 
         //
         // ENTITIES
         //
 
-        DataEntity GetEntity(params string[] parcels);
+        DataEntity Entity_Get(params string[] parcels);
 
-        Type GetEntityType(params string[] parcels);
+        Type Entity_GetType(params string[] parcels);
 
-        IProviderDataContext GetEntityDataProviderContext(params string[] parcels);
+        IProviderDataContext Entity_GetProviderDataContext(params string[] parcels);
 
         //
         // DIAGNOSTICS
         //
 
-        IEnumerable<MemDomain> GetListOfMemDomains();
+        IEnumerable<MemDomain> Mem_GetListOfDomains();
 
-        IEnumerable<MemContext> GetListOfMemContexts();
+        IEnumerable<MemContext> Mem_GetListOfContexts();
 
-        IEnumerable<MemEntity> GetListOfMemEntities();
+        IEnumerable<MemEntity> Mem_GetListOfEntities();
     }
 }

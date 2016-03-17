@@ -28,7 +28,7 @@ namespace Framework.Data.API
         [ActionName("entity.query"), HttpGet]
         public IHttpActionResult Entity_Query([FromUri] string id, [FromUri] string name)
         {
-            return Run(() => { return Scope.Hub.GetUnique<IStore>().Entity_Query(id, name, null); });
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().Entity_Query(id, name, Request.Content.ReadAsStringAsync().Result); });
         }
 
         [ActionName("entity.update"), HttpPost]
@@ -48,22 +48,19 @@ namespace Framework.Data.API
         // Memory & Performance.
         //
 
-        [ActionName("mem.domains")]
-        [HttpGet]
+        [ActionName("mem.domains"), HttpGet]
         public IHttpActionResult MemDomains()
         {
             return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetDomains(); });
         }
 
-        [ActionName("mem.contexts")]
-        [HttpGet]
+        [ActionName("mem.contexts"), HttpGet]
         public IHttpActionResult MemContexts()
         {
             return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetContexts(); });
         }
 
-        [ActionName("mem.entities")]
-        [HttpGet]
+        [ActionName("mem.entities"), HttpGet]
         public IHttpActionResult MemEntities()
         {
             return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetEntities(); });

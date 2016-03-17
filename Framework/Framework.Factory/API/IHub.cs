@@ -18,15 +18,31 @@ namespace Framework.Factory.API
     {
         T GetUnique<T>() where T : ICommon;
 
+        T GetUnique<T>(IScope whatScope) where T : ICommon;
+
         T GetByName<T>(string name) where T : ICommon;
+
+        T GetByName<T>(string name, IScope whatScope) where T : ICommon;
 
         IEnumerable<T> GetByTypeName<T>(string typeName) where T : ICommon;
 
+        IEnumerable<T> GetByTypeName<T>(string typeName, IScope whatScope) where T : ICommon;
+
         IEnumerable<T> GetByType<T>(Type type) where T : ICommon;
+
+        IEnumerable<T> GetByType<T>(Type type, IScope whatScope) where T : ICommon;
 
         IEnumerable<T> GetByContract<T>() where T : ICommon;
 
+        IEnumerable<T> GetByContract<T>(IScope whatScope) where T : ICommon;
+
         T Get<T>(ServiceEntry cfg) where T : ICommon;
+
+        T Get<T>(ServiceEntry cfg, IScope whatScope) where T : ICommon;
+
+        T New<T>(ServiceEntry cfg) where T : ICommon;
+
+        T New<T>(ServiceEntry cfg, IScope whatScope) where T : ICommon;
 
         void Load(ServiceEntry entry);
 
