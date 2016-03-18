@@ -15,6 +15,8 @@ using System.Collections.Generic;
 using System;
 using Framework.Data.Patterns;
 using Framework.Core.Error;
+using System.Linq.Dynamic;
+using Framework.Data.Model.Mem;
 
 namespace Framework.Data.API
 {
@@ -69,7 +71,7 @@ namespace Framework.Data.API
 
             if (null != config)
             {
-                config.Domains.Map<DomainElement, DataDomain>(new List<DataDomain>(), Transforms.Converter).Apply(srvMemStore.Domain_Load);
+                config.Domains.Map<DomainElement, DataDomain>(new List<DataDomain>(), Transforms.Converter).Apply(srvMemStore.Domain_Import);
             }
         }
 
@@ -80,7 +82,7 @@ namespace Framework.Data.API
 
         public void InitAllLoadedDomains()
         {
-            srvMemStore.Domain_GetListOfID().Apply(srvMemStore.Domain_Init);
+            srvMemStore.Domain_GetList().Apply(srvMemStore.Domain_Init);
         }
 
         //
@@ -119,22 +121,31 @@ namespace Framework.Data.API
         public object Entity_Query(string entityID, string name, object args)
         {
             //
-            // Get the data layer for the entity.
+            // Get the query specification to run.
             //
 
-            IDynamicDataSet dataSet = __Entity_GetDynamicDataSet(entityID);
-
-            object output = dataSet.Query(name);
+            QueryInfo query = srvMemStore.Query_Get(entityID, name);
 
             //
-            // If value is a string, then we assume
-            // that is an object in JSON fprmat.
+            // Process arguments.
             //
 
             if (args.GetType() == typeof(string))
             {
 
             }
+
+            //
+            // Get the data layer for the entity.
+            //
+
+            IDynamicDataSet dataSet = __Entity_GetDynamicDataSet(entityID);
+
+            //
+            // Run query.
+            //
+
+            object output = dataSet.Queryable().Where(query.Query);
 
             return output;
         }
@@ -306,19 +317,46 @@ namespace Framework.Data.API
         // Memory & Performance.
         //
 
+        public object Mem_Dump()
+        {
+            return new {
+                Domains = Mem_GetDomains(),
+                Clusters = Mem_GetClusters(),
+                Contexts = Mem_GetContexts(),
+                Entities = Mem_GetEntities(),
+                Models = Mem_GetModels(),
+                Queries = Mem_GetQueries()
+            };
+        }
+
         public object Mem_GetDomains()
         {
-            return srvMemStore.Mem_GetListOfDomains();
+            return srvMemStore.Domain_GetList();
+        }
+
+        public object Mem_GetClusters()
+        {
+            return srvMemStore.Cluster_GetList();
         }
 
         public object Mem_GetContexts()
         {
-            return srvMemStore.Mem_GetListOfContexts();
+            return srvMemStore.Context_GetList();
         }
 
         public object Mem_GetEntities()
         {
-            return srvMemStore.Mem_GetListOfEntities();
+            return srvMemStore.Entity_GetList();
+        }
+
+        public object Mem_GetModels()
+        {
+            return srvMemStore.Model_GetList();
+        }
+
+        public object Mem_GetQueries()
+        {
+            return srvMemStore.Query_GetList();
         }
     }
 }

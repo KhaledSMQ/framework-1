@@ -7,7 +7,7 @@
 // Description:
 // ============================================================================
 
-using Framework.Data.Model.Diagnostics;
+using Framework.Data.Model.Mem;
 using Framework.Data.Model.Schema;
 using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
@@ -19,35 +19,77 @@ namespace Framework.Data.API
     public interface IMemStore : ICommon
     { 
         //
-        // DOMAINS
+        // DOMAIN
         //    
 
-        void Domain_Load(DataDomain domain);
-
-        DataDomain Domain_Get(params string[] parcels);
-
-        IEnumerable<string> Domain_GetListOfID();
+        void Domain_Import(DataDomain domain);
 
         void Domain_Init(string domainID);
 
+        void Domain_Init(DomainInfo domain);
+
+        DomainInfo Domain_Get(params string[] parcels);
+
+        IEnumerable<DomainInfo> Domain_GetList();
+
         //
-        // ENTITIES
+        // CLUSTER
         //
 
-        DataEntity Entity_Get(params string[] parcels);
+        string Cluster_Import(string domainID, DataCluster cluster);
+
+        ClusterInfo Cluster_Get(params string[] parcels);
+
+        IEnumerable<ClusterInfo> Cluster_GetList();
+
+        //
+        // CONTEXT
+        //
+
+        string Context_Import(string clusterID, DataContext context);
+
+        ContextInfo Context_Get(params string[] parcels);
+
+        IEnumerable<ContextInfo> Context_GetList();
+
+        //
+        // ENTITY
+        //
+
+        string Entity_Import(string clusterID, DataEntity entity);
+
+        EntityInfo Entity_Get(params string[] parcels);
 
         Type Entity_GetType(params string[] parcels);
+
+        IEnumerable<EntityInfo> Entity_GetList();
 
         IProviderDataContext Entity_GetProviderDataContext(params string[] parcels);
 
         //
-        // DIAGNOSTICS
+        // PARTIAL-MODEL
         //
 
-        IEnumerable<MemDomain> Mem_GetListOfDomains();
+        string Model_Import(string clusterID, DataPartialModel model);
 
-        IEnumerable<MemContext> Mem_GetListOfContexts();
+        ModelInfo Model_Get(params string[] parcels);
 
-        IEnumerable<MemEntity> Mem_GetListOfEntities();
+        IEnumerable<ModelInfo> Model_GetList();
+
+        //
+        // QUERY
+        //
+
+        string Query_Import(string entityID, DataQuery query);
+
+        QueryInfo Query_Get(params string[] parcels);
+
+        IEnumerable<QueryInfo> Query_GetList();
+
+        //
+        // IDENTIFIERS
+        //
+
+        string GetID(params string[] parcels);
     }
 }

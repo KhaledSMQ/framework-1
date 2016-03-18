@@ -7,6 +7,9 @@
 // Description:
 // ============================================================================
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 namespace Framework.Data.Model.Schema
 {
     //
@@ -15,6 +18,7 @@ namespace Framework.Data.Model.Schema
     // data object are single object values.
     //
 
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum TypeOfDataEntity
     {
         UNKNOWN,
@@ -29,6 +33,7 @@ namespace Framework.Data.Model.Schema
     // specific signature.
     //
 
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum TypeOfDataQuery
     {
         UNKNOWN,

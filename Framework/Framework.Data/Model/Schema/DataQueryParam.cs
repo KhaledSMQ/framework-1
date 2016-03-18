@@ -26,7 +26,11 @@ namespace Framework.Data.Model.Schema
 
         public string Description { get; set; }
 
-        public string Type { get; set; }
+        public string TypeName { get; set; }
+
+        public bool Required { get; set; }
+
+        public string Default { get; set; }
 
         //
         // CONSTRUCTORS
@@ -39,9 +43,11 @@ namespace Framework.Data.Model.Schema
             //
 
             ID = -1;
-            Name = string.Empty;
-            Description = string.Empty;
-            Type = string.Empty;          
+            Name = default(string);
+            Description = default(string);
+            TypeName = default(string);
+            Required = false;
+            Default = default(string);        
         }
     }
 }

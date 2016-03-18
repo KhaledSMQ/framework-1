@@ -45,7 +45,5 @@ namespace Framework.Factory.API
         T New<T>(ServiceEntry cfg, IScope whatScope) where T : ICommon;
 
         void Load(ServiceEntry entry);
-
-        void Load(IEnumerable<ServiceEntry> lst);
     }
 }

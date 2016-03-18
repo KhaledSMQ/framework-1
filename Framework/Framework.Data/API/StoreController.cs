@@ -48,22 +48,46 @@ namespace Framework.Data.API
         // Memory & Performance.
         //
 
+        [ActionName("mem.dump"), HttpGet]
+        public IHttpActionResult Mem_Dump()
+        {
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_Dump(); });
+        }
+
         [ActionName("mem.domains"), HttpGet]
-        public IHttpActionResult MemDomains()
+        public IHttpActionResult Mem_Domains()
         {
             return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetDomains(); });
         }
 
+        [ActionName("mem.clusters"), HttpGet]
+        public IHttpActionResult Mem_Clusters()
+        {
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetClusters(); });
+        }
+
         [ActionName("mem.contexts"), HttpGet]
-        public IHttpActionResult MemContexts()
+        public IHttpActionResult Mem_Contexts()
         {
             return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetContexts(); });
         }
 
         [ActionName("mem.entities"), HttpGet]
-        public IHttpActionResult MemEntities()
+        public IHttpActionResult Mem_Entities()
         {
             return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetEntities(); });
+        }
+
+        [ActionName("mem.models"), HttpGet]
+        public IHttpActionResult Mem_Models()
+        {
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetModels(); });
+        }
+
+        [ActionName("mem.queries"), HttpGet]
+        public IHttpActionResult Mem_Queries()
+        {
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetQueries(); });
         }
     }
 }

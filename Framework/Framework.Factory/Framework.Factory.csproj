@@ -82,6 +82,7 @@
     <Compile Include="API\SrvReflected.cs" />
     <Compile Include="API\IReflected.cs" />
     <Compile Include="API\IServiceEntry.cs" />
+    <Compile Include="Attributes\ServiceDependencyAttribute.cs" />
     <Compile Include="Attributes\ServicePropertyAttribute.cs" />
     <Compile Include="Config\BaseConfiguration.cs" />
     <Compile Include="Config\ServiceConfiguration.cs" />

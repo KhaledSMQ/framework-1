@@ -37,6 +37,8 @@ namespace Framework.Data.Model.Schema
 
         public string TypeName { get; set; }
 
+        public ICollection<DataQuery> Queries { get; set; }
+
         public ICollection<Setting> Settings { get; set; }
 
         //
@@ -66,6 +68,7 @@ namespace Framework.Data.Model.Schema
             Name = string.Empty;
             Description = string.Empty;
             TypeName = string.Empty;
+            Queries = null;
             Settings = null;
 
             //

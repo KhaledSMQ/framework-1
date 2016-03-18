@@ -97,7 +97,39 @@ namespace Framework.Data.Config
             ast.Kind = elm.Kind;
             ast.Description = elm.Description;
             ast.TypeName = elm.Type;
+            ast.Queries = elm.Queries.Map<QueryElement, DataQuery>(new List<DataQuery>(), Converter);
             ast.Settings = elm.Settings.Map<SettingElement, Setting>(new List<Setting>(), Converter);
+            return ast;
+        }
+
+        //
+        // QUERY
+        //
+
+        public static DataQuery Converter(this QueryElement elm)
+        {
+            DataQuery ast = new DataQuery();
+            ast.Name = elm.Name;
+            ast.Description = elm.Description;
+            ast.Kind = elm.Kind;
+            ast.Params = elm.Params.Map<QueryParamElement, DataQueryParam>(new List<DataQueryParam>(), Converter);
+            ast.Expression = elm.Expression;
+            ast.Callback = elm.Callback;
+            return ast;
+        }
+
+        //
+        // QUERY-PARAM
+        //
+
+        public static DataQueryParam Converter(this QueryParamElement elm)
+        {
+            DataQueryParam ast = new DataQueryParam();
+            ast.Name = elm.Name;
+            ast.Description = elm.Description;
+            ast.Required = elm.Required;
+            ast.Default = elm.Default;
+            ast.TypeName = elm.Type;
             return ast;
         }
 

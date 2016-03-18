@@ -16,9 +16,15 @@ namespace Framework.Data.Config
         public const string CLUSTERS = "clusters";
         public const string ENTITIES = "entities";
         public const string CONTEXTS = "contexts";
+        public const string QUERIES = "queries";
         public const string MODELS = "models";
         public const string SERVICE = "service";
         public const string PROVIDER = "provider";
+        public const string EXPRESSION = "query";
+        public const string CALLBACK = "callback";
+        public const string PARAMS = "params";
+        public const string DEFAULT = "default";
+        public const string REQUIRED = "required";
         public const string NAME = "name";
         public const string DESCRIPTION = "description";
         public const string TYPE = "type";

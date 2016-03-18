@@ -49,8 +49,18 @@ namespace Framework.Data.API
         // Memory & Performance.
         //
 
+        object Mem_Dump();
+
         object Mem_GetDomains();
+
+        object Mem_GetClusters();
+
         object Mem_GetContexts();
+
         object Mem_GetEntities();
+
+        object Mem_GetModels();
+
+        object Mem_GetQueries();
     }
 }

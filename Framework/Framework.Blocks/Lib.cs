@@ -1,10 +1,10 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Config
+// Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Create date: 26/Nov/2015
+// Create date: 18/Mar/2016
 // Company: Cybermap Lta.
-// Description: Configuration object.
+// Description: 
 // ============================================================================
 
 using System.Reflection;
@@ -15,15 +15,15 @@ namespace Framework.Blocks
     public static class Lib
     {
         // 
-        // Default Xml namespace.
-        //
-
-        public static string DEFAULT_XML_NAMESPACE = Framework.Lib.DEFAULT_XML_NAMESPACE + "/" + DEFAULT_ERROR_MSG_PREFIX.RightOf(".").Replace('.','/').ToLower();
-
-        // 
         // Error prefix for error messages in this library.
         //
 
         public static string DEFAULT_ERROR_MSG_PREFIX = Assembly.GetExecutingAssembly().GetName().Name;
+
+        // 
+        // Default Xml namespace.
+        //
+
+        public static string DEFAULT_XML_NAMESPACE = Framework.Lib.DEFAULT_XML_NAMESPACE + "/" + DEFAULT_ERROR_MSG_PREFIX.RightOf(".").Replace('.','/').ToLower();
     }
 }

@@ -20,7 +20,7 @@ namespace Framework.Factory.API
         IHub Hub { get; }
 
         //
-        // Mrthod to return a new scope based on 
+        // Method to return a new scope based on 
         // the current scope.
         // @return A new derived runtime scope.
         //

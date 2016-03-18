@@ -87,7 +87,7 @@ namespace Framework.Factory
                         //
                         
                         __CoreServices = config.Services.Map<ServiceElement, ServiceEntry>(new List<ServiceEntry>(), Transforms.Converter);
-                        __Hub.Load(__CoreServices);
+                        __CoreServices.Apply(__Hub.Load);                       
                     }
 
                     //

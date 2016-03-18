@@ -1,24 +1,23 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Configuration for Entities.
+// Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Create date: 26/Nov/2015
+// Create date: 18/Mar/2015
 // Company: Cybermap Lta.
-// Description: Configuration objects.
+// Description: 
 // ============================================================================
 
-using Framework.Data.Model.Schema;
 using System.Configuration;
 
 namespace Framework.Data.Config
 {
-    public class EntityElementCollection : ConfigurationElementCollection
+    public class QueryParamElementCollection : ConfigurationElementCollection
     {
-        public EntityElementCollection() { }
+        public QueryParamElementCollection() { }
 
-        public EntityElement this[int index]
+        public QueryParamElement this[int index]
         {
-            get { return (EntityElement)BaseGet(index); }
+            get { return (QueryParamElement)BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -29,7 +28,7 @@ namespace Framework.Data.Config
             }
         }
 
-        public void Add(EntityElement serviceConfig)
+        public void Add(QueryParamElement serviceConfig)
         {
             BaseAdd(serviceConfig);
         }
@@ -41,15 +40,15 @@ namespace Framework.Data.Config
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new EntityElement();
+            return new QueryParamElement();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((EntityElement)element).Name;
+            return ((QueryParamElement)element).Name;
         }
 
-        public void Remove(EntityElement serviceConfig)
+        public void Remove(QueryParamElement serviceConfig)
         {
             BaseRemove(serviceConfig.Name);
         }
@@ -65,28 +64,28 @@ namespace Framework.Data.Config
         }
     }
 
-    public class EntityElement : BaseElementWithTypeAndSettings
+    public class QueryParamElement : BaseElementWithType
     {
         //
-        // KIND
+        // REQUIRED
         //
 
-        [ConfigurationProperty(Constants.KIND, DefaultValue = TypeOfDataEntity.DATA_SET, IsRequired = false)]
-        public TypeOfDataEntity Kind
+        [ConfigurationProperty(Constants.REQUIRED, DefaultValue = false, IsRequired = false)]
+        public bool Required
         {
-            get { return (TypeOfDataEntity)this[Constants.KIND]; }
-            set { this[Constants.KIND] = value; }
+            get { return (bool)this[Constants.REQUIRED]; }
+            set { this[Constants.REQUIRED] = value; }
         }
 
         //
-        // QUERIES
+        // DEFAULT
         //
 
-        [ConfigurationProperty(Constants.QUERIES, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(QueryElementCollection))]
-        public QueryElementCollection Queries
+        [ConfigurationProperty(Constants.DEFAULT, DefaultValue = "", IsRequired = false)]
+        public string Default
         {
-            get { return (QueryElementCollection)this[Constants.QUERIES]; }
+            get { return (string)this[Constants.DEFAULT]; }
+            set { this[Constants.DEFAULT] = value; }
         }
     }
 }

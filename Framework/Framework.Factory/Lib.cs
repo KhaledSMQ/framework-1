@@ -1,10 +1,10 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Config
+// Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Create date: 26/Nov/2015
+// Create date: 18/Mar/2016
 // Company: Cybermap Lta.
-// Description: Configuration object.
+// Description: 
 // ============================================================================
 
 using Framework.Core.Extensions;
