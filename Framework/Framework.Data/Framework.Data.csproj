@@ -75,6 +75,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\SrvLinqQueryProcessor.cs" />
+    <Compile Include="API\IQueryProcessor.cs" />
     <Compile Include="API\IStore.cs" />
     <Compile Include="API\SrvStore.cs" />
     <Compile Include="API\StoreController.cs" />
@@ -109,11 +111,6 @@
     <Compile Include="Extensions\IDExtensions.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="API\SrvMemStore.cs" />
-    <Compile Include="Model\Diagnostics\MemContext.cs" />
-    <Compile Include="Model\Diagnostics\MemCluster.cs" />
-    <Compile Include="Model\Diagnostics\MemDomain.cs" />
-    <Compile Include="Model\Diagnostics\MemQuery.cs" />
-    <Compile Include="Model\Diagnostics\MemEntity.cs" />
     <Compile Include="Model\Mem\ClusterInfo.cs" />
     <Compile Include="Model\Mem\ContextInfo.cs" />
     <Compile Include="Model\Mem\QueryInfo.cs" />
@@ -151,7 +148,10 @@
     <None Include="Framework.Data.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Model\Diagnostics\" />
+    <Folder Include="Model\Query\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>
