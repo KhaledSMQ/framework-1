@@ -7,16 +7,11 @@
 // Description:
 // ============================================================================
 
-using Framework.Data.Model.Query;
 using Framework.Factory.Patterns;
 
-namespace Framework.Data.API
+namespace Framework.Data.Model.Query
 {
-    public class SrvLinqQueryProcessor : ACommon, IQueryProcessor
+    public class Expression
     {
-        public Expression Parse(string input)
-        {
-            return null;
-        }
     }
 }

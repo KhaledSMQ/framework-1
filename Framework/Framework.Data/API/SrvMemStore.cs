@@ -9,7 +9,6 @@
 
 using Framework.Core.Error;
 using Framework.Core.Extensions;
-using Framework.Data.Model.Diagnostics;
 using Framework.Data.Model.Mem;
 using Framework.Data.Model.Schema;
 using Framework.Data.Patterns;

@@ -117,6 +117,7 @@
     <Compile Include="Model\Mem\ModelInfo.cs" />
     <Compile Include="Model\Mem\EntityInfo.cs" />
     <Compile Include="Model\Mem\DomainInfo.cs" />
+    <Compile Include="Model\Query\Expression.cs" />
     <Compile Include="Model\Schema\DataCluster.cs" />
     <Compile Include="Model\Schema\DataContext.cs" />
     <Compile Include="Model\Schema\DataDomain.cs" />
@@ -150,7 +151,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\Diagnostics\" />
-    <Folder Include="Model\Query\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
