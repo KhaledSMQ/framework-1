@@ -12,30 +12,42 @@ using Framework.Core.Patterns;
 
 namespace Framework.Blocks.Model.Schema
 {
-    public class Edge : IID<int>
+    public class BlkEdge : IID<int>
     {
         //
-        // PROPERTIES
+        // Numeric identifier for connection/edge.
         //
 
         public int ID { get; set; }
 
+        //
+        // Name/identifier for source block.
+        //
+
         public string Source { get; set; }
+
+        //
+        // Name/identifier for target block.
+        //
 
         public string Target { get; set; }
 
-        public ICollection<Connector> Connections { get; set; }
+        //
+        // List of connections between the two blocks.
+        //
+
+        public ICollection<BlkConnector> Connections { get; set; }
 
         //
         // CONSTRUCTOR
         //
 
-        public Edge()
+        public BlkEdge()
         {
             ID = default(int);
             Source = default(string);
             Target = default(string);
-            Connections = default(ICollection<Connector>);
+            Connections = default(ICollection<BlkConnector>);
         }
     }
 }

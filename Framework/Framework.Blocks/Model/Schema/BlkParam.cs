@@ -8,43 +8,52 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
-using System.Collections.Generic;
 
 namespace Framework.Blocks.Model.Schema
 {
-    public class Flow : IID<int>
+    public class BlkParam : IID<int>
     {
         //
-        // PROPERTIES
+        // Numeric identifier for parameter/property.
         //
 
         public int ID { get; set; }
 
+        //
+        // Name for parameter/property.
+        // 
+
         public string Name { get; set; }
 
-        public ICollection<Block> Blocks { get; set; }
+        //
+        // Small description for property/parameter.
+        //
 
-        public ICollection<Edge> Edges { get; set; }
+        public string Description { get; set; }
 
-        public ICollection<Param> In { get; set; }
+        //
+        // Type name for property.
+        //
 
-        public ICollection<Param> Out { get; set; }
+        public string Type { get; set; }
 
-        public ICollection<Param> Properties { get; set; }
+        //
+        // States if propery value is required or not.
+        //
+
+        public bool Required { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public Flow()
+        public BlkParam()
         {
             ID = default(int);
             Name = default(string);
-            Blocks = default(ICollection<Block>);
-            Edges = default(ICollection<Edge>);
-            In = default(ICollection<Param>);
-            Out = default(ICollection<Param>);
-            Properties = default(ICollection<Param>);
+            Description = default(string);
+            Type = default(string);
+            Required = default(bool);
         }
     }
 }

@@ -56,13 +56,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\IMemStore.cs" />
+    <Compile Include="API\SrvMemStore.cs" />
     <Compile Include="Lib.cs" />
-    <Compile Include="Model\Schema\Block.cs" />
-    <Compile Include="Model\Schema\Connector.cs" />
-    <Compile Include="Model\Schema\Edge.cs" />
-    <Compile Include="Model\Schema\Flow.cs" />
-    <Compile Include="Model\Schema\Module.cs" />
-    <Compile Include="Model\Schema\Param.cs" />
+    <Compile Include="Model\Mem\MemConnector.cs" />
+    <Compile Include="Model\Mem\MemDomain.cs" />
+    <Compile Include="Model\Mem\MemParam.cs" />
+    <Compile Include="Model\Mem\MemComponent.cs" />
+    <Compile Include="Model\Mem\MemFlow.cs" />
+    <Compile Include="Model\Mem\MemBlock.cs" />
+    <Compile Include="Model\Mem\MemModule.cs" />
+    <Compile Include="Model\Patterns\IComponent.cs" />
+    <Compile Include="Model\Schema\BlkBlock.cs" />
+    <Compile Include="Model\Schema\BlkConnector.cs" />
+    <Compile Include="Model\Schema\BlkEdge.cs" />
+    <Compile Include="Model\Schema\BlkFlow.cs" />
+    <Compile Include="Model\Schema\BlkDomain.cs" />
+    <Compile Include="Model\Schema\BlkModule.cs" />
+    <Compile Include="Model\Schema\BlkParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,7 +82,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="API\" />
     <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>

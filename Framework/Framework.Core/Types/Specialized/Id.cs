@@ -100,6 +100,7 @@ namespace Framework.Core.Types.Specialized
         // OPERATORS
         //
 
+
         public static Id operator +(Id c1, string c2)
         {
             return new Id().Add(c1).Add(c2);

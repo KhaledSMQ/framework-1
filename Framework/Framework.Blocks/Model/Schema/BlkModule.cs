@@ -8,12 +8,11 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
-using Framework.Core.Types.Specialized;
 using System.Collections.Generic;
 
 namespace Framework.Blocks.Model.Schema
 {
-    public class Block : IID<int>
+    public class BlkModule : IID<int>
     {
         //
         // PROPERTIES
@@ -23,23 +22,23 @@ namespace Framework.Blocks.Model.Schema
 
         public string Name { get; set; }
 
-        public ICollection<Param> In { get; set; }
+        public ICollection<BlkFlow> Flows { get; set; }
 
-        public ICollection<Param> Out { get; set; }
+        public ICollection<BlkBlock> Blocks { get; set; }
 
-        public ICollection<Param> Properties { get; set; }
+        public ICollection<BlkModule> Modules { get; set; }
 
         //
-        // CONSTRUCTORS 
+        // CONSTRUCTORS
         //
 
-        public Block()
+        public BlkModule()
         {
-            ID = -1;
+            ID = default(int);
             Name = default(string);
-            In = default(ICollection<Param>);
-            Out = default(ICollection<Param>);
-            Properties = default(ICollection<Param>);
+            Flows = default(ICollection<BlkFlow>);
+            Blocks = default(ICollection<BlkBlock>);
+            Modules = default(ICollection<BlkModule>);
         }
     }
 }

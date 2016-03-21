@@ -8,30 +8,27 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
+using Framework.Core.Types.Specialized;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace Framework.Blocks.Model.Schema
+namespace Framework.Blocks.Model.Mem
 {
-    public class Connector : IID<int>
+    public class MemFlow : MemComponent, IID<Id>
     {
         //
         // PROPERTIES
         //
-
-        public int ID { get; set; }
-
-        public string Source { get; set; }
-
-        public string Target { get; set; }
-
         //
+
+        public IDictionary<Id, MemConnector> Connections { get; set; }
+
         // CONSTRUCTORS
         //
 
-        public Connector()
+        public MemFlow() : base()
         {
-            ID = default(int);
-            Source = default(string);
-            Target = default(string);
+            Connections = default(IDictionary<Id, MemConnector>);
         }
     }
 }

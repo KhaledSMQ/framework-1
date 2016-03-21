@@ -11,33 +11,35 @@ using Framework.Core.Patterns;
 
 namespace Framework.Blocks.Model.Schema
 {
-    public class Param : IID<int>
+    public class BlkConnector : IID<int>
     {
         //
-        // PROPERTIES
+        // Numeric identifier for connection.
         //
 
         public int ID { get; set; }
 
-        public string Name { get; set; }
+        //
+        // Property name from the source block.
+        //
 
-        public string Description { get; set; }
+        public string Source { get; set; }
 
-        public string Type { get; set; }
+        //
+        // Property name for the target block.
+        //
 
-        public bool Required { get; set; }
+        public string Target { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public Param()
+        public BlkConnector()
         {
             ID = default(int);
-            Name = default(string);
-            Description = default(string);
-            Type = default(string);
-            Required = default(bool);
+            Source = default(string);
+            Target = default(string);
         }
     }
 }
