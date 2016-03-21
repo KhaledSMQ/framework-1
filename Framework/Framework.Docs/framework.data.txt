@@ -1,0 +1,32 @@
+﻿
+	                           Framework.Data
+
+	----
+	
+	1. Introduction
+	2. Features
+
+	----
+
+	1. Introduction
+
+	----
+
+	2. Features
+
+
+		a) Domains
+			a.1 Multi-domain data model specifications
+
+		b) Entities		
+			b.1 Customized data operations (e.g. CRUD) pipeline.
+		
+		c) Queries
+			c.1 User defined queries (query language)
+			c.2 Query result cache (same arguments, same result, function memoization)
+
+			
+	----
+
+
+		

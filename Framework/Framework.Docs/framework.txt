@@ -1,0 +1,36 @@
+﻿
+	                           Framework
+
+	Modules:
+
+		 1. Factory
+		 2. Configuration
+		 3. Types
+		 4. Models
+		 5. Logging
+		 6. Data
+		 7. Content Management
+		 8. File System		
+		 9. Localization
+		10. Resources
+		11. Packages	
+	 	12. Blocks
+		13. Charts
+		14. Communication			 
+		15. Forms
+		16. Maps
+		17. Templates
+		18. Components
+		19. Pages
+		20. Reporting		
+		21. Web Request Broker (WRB)
+		22. Search
+		23. Ticker		
+		24. Users
+		25. Watcher
+		26. Web API
+		27. Scripting
+		28. Utils
+		29. Apps
+
+		

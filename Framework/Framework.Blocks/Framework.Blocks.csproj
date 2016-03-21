@@ -57,6 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Lib.cs" />
+    <Compile Include="Model\Schema\Block.cs" />
+    <Compile Include="Model\Schema\Connector.cs" />
+    <Compile Include="Model\Schema\Edge.cs" />
+    <Compile Include="Model\Schema\Flow.cs" />
+    <Compile Include="Model\Schema\Module.cs" />
+    <Compile Include="Model\Schema\Param.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,7 +73,6 @@
   <ItemGroup>
     <Folder Include="API\" />
     <Folder Include="Data\" />
-    <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">

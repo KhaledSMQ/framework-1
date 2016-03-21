@@ -12,7 +12,7 @@ using Framework.Core.Patterns;
 
 namespace Framework.CMS.Model.Entities
 {
-    public class Definition : IID<int>, ICreated<string>, IModified<string>
+    public class Definition : IID<int>, IAuditable<string>
     {
         //
         // Base

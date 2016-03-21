@@ -1,0 +1,22 @@
+﻿
+	                           Framework.Apps
+
+	----
+	
+	1. Introduction
+
+	----
+
+	1. Introduction
+
+	This module relates to the way applications are built. What type of 
+	information needs to be specified for their different components. We define an
+	application as something that solves a specific problem. The application can
+	be comprised of a variable set of components. These can be data models,
+	web services, user interfaces, etc. And can take the form of a web, desktop or
+	mobile application.
+
+	----
+
+
+		

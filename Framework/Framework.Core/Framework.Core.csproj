@@ -114,6 +114,7 @@
     <Compile Include="Reflection\ReflectionTypeChecker.cs" />
     <Compile Include="Reflection\ReflectionUtils.cs" />
     <Compile Include="Types\Specialized\AssemblyInfo.cs" />
+    <Compile Include="Types\Specialized\Id.cs" />
     <Compile Include="Types\Specialized\NamespaceInfo.cs" />
     <Compile Include="Types\Specialized\Setting.cs" />
     <Compile Include="Types\Specialized\WebResource.cs" />
