@@ -40,20 +40,20 @@ namespace Framework.Data.Patterns
         public override void Init()
         {
             base.Init();
-            __Entities = new SortedDictionary<string, DataEntity>();
-            __Models = new SortedDictionary<string, DataPartialModel>();
+            __Entities = new SortedDictionary<string, FW_DataEntity>();
+            __Models = new SortedDictionary<string, FW_DataPartialModel>();
         }
 
         //
         // LOAD
         //
 
-        public void Load(IEnumerable<DataEntity> entities)
+        public void Load(IEnumerable<FW_DataEntity> entities)
         {
             entities.Apply(Load);
         }
 
-        public void Load(DataEntity entity)
+        public void Load(FW_DataEntity entity)
         {
             if (null != entity)
             {
@@ -85,12 +85,12 @@ namespace Framework.Data.Patterns
             }
         }
 
-        public void Load(IEnumerable<DataPartialModel> models)
+        public void Load(IEnumerable<FW_DataPartialModel> models)
         {
             models.Apply(Load);
         }
 
-        public void Load(DataPartialModel model)
+        public void Load(FW_DataPartialModel model)
         {
             if (null != model)
             {
@@ -126,12 +126,12 @@ namespace Framework.Data.Patterns
         // RETRIEVE
         //
 
-        public IEnumerable<DataEntity> GetListOfEntities()
+        public IEnumerable<FW_DataEntity> GetListOfEntities()
         {
             return __Entities.Values.ToList();
         }
 
-        public IEnumerable<DataPartialModel> GetListOfPartialModels()
+        public IEnumerable<FW_DataPartialModel> GetListOfPartialModels()
         {
             return __Models.Values.ToList(); ;
         }
@@ -140,7 +140,7 @@ namespace Framework.Data.Patterns
         // PRIVATE STATE
         //
 
-        private IDictionary<string, DataEntity> __Entities = null;
-        private IDictionary<string, DataPartialModel> __Models = null;
+        private IDictionary<string, FW_DataEntity> __Entities = null;
+        private IDictionary<string, FW_DataPartialModel> __Models = null;
     }
 }

@@ -13,7 +13,7 @@ using System;
 
 namespace Framework.Data.Model.Mem
 {
-    public class EntityInfo
+    public class MemEntity
     {  
         public string ID { get; set; }
 
@@ -30,15 +30,15 @@ namespace Framework.Data.Model.Mem
         //
 
         [JsonIgnore]
-        public DataEntity Original { get; set; }
+        public FW_DataEntity Original { get; set; }
 
-        public DataEntity Instance { get; set; }
+        public FW_DataEntity Instance { get; set; }
 
         //
         // CONSTRUCTOR
         //
 
-        public EntityInfo()
+        public MemEntity()
         {
             ID = default(string);
             Type = default(Type);

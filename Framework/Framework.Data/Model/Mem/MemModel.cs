@@ -9,12 +9,21 @@
 
 using Framework.Data.Model.Schema;
 using Newtonsoft.Json;
+using System;
 
 namespace Framework.Data.Model.Mem
 {
-    public class QueryInfo
+    //
+    // Class to map information about data models.
+    // Used to map unique model identifiers to their
+    // runtime information.
+    //
+
+    public class MemModel
     {
         public string ID { get; set; }
+
+        public Type Type { get; set; }
 
         public string Domain { get; set; }
 
@@ -22,37 +31,29 @@ namespace Framework.Data.Model.Mem
 
         public string Context { get; set; }
 
-        public string Entity { get; set; }
-
-        public TypeOfDataQuery Kind { get; set; }
-
-        public string Query { get; set; }
-
-        public string Callback { get; set; }
-
         //
-        // Original query specification.
+        // Original model specification.
         //
 
         [JsonIgnore]
-        public DataQuery Original { get; set; }
+        public FW_DataPartialModel Original { get; set; }
+
+        public FW_DataPartialModel Instance { get; set; }
 
         //
         // CONSTRUCTOR
         //
 
-        public QueryInfo()
+        public MemModel()
         {
-            ID = null;
+            ID = default(string);
+            Type = default(Type);
             Domain = default(string);
             Cluster = default(string);
             Context = default(string);
-            Entity = default(string);
-            Kind = TypeOfDataQuery.UNKNOWN;
-            Query = default(string);
-            Callback = default(string);
 
-            Original = default(DataQuery);
+            Original = null;
+            Instance = null;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Framework.Blocks.API
         // DOMAIN
         //    
 
-        void Domain_Import(BlkDomain domain);
+        void Domain_Import(FW_BlkDomain domain);
 
         MemDomain Domain_Get(Id id);
 
@@ -31,7 +31,7 @@ namespace Framework.Blocks.API
         // MODULES
         //
 
-        Id Module_Import(Id domainID, BlkModule module);
+        Id Module_Import(Id domainID, FW_BlkModule module);
 
         MemModule Module_Get(Id id);
 
@@ -41,7 +41,7 @@ namespace Framework.Blocks.API
         // FLOWS
         //
 
-        Id Flow_Import(Id moduleID, BlkFlow flow);
+        Id Flow_Import(Id moduleID, FW_BlkFlow flow);
 
         MemFlow Flow_Get(Id id);
 
@@ -51,7 +51,7 @@ namespace Framework.Blocks.API
         // BLOCK
         //
 
-        Id Block_Import(Id moduleID, BlkBlock block);
+        Id Block_Import(Id moduleID, FW_BlkBlock block);
 
         MemBlock Block_Get(Id id);
 

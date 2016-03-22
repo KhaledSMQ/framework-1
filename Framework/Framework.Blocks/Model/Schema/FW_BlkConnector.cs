@@ -11,7 +11,7 @@ using Framework.Core.Patterns;
 
 namespace Framework.Blocks.Model.Schema
 {
-    public class BlkConnector : IID<int>
+    public class FW_BlkConnector : IID<int>
     {
         //
         // Numeric identifier for connection.
@@ -35,7 +35,7 @@ namespace Framework.Blocks.Model.Schema
         // CONSTRUCTORS
         //
 
-        public BlkConnector()
+        public FW_BlkConnector()
         {
             ID = default(int);
             Source = default(string);

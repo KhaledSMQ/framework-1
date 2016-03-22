@@ -1,10 +1,10 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Service
+// Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Create date: 03/Aug/2015
+// Create date: 26/Nov/2015
 // Company: Cybermap Lta.
-// Description: Service specification class.
+// Description: 
 // ============================================================================
 
 using Framework.Core.Extensions;
@@ -15,24 +15,30 @@ using System.Collections.Generic;
 
 namespace Framework.Data.Model.Schema
 {
-    public class DataProvider : 
-        IID<int>, 
-        ITypeName<string>, 
-        IAuditable<string>
+    public class FW_DataCluster : 
+        IID<int>,
+        IName<string>,
+        IDescription<string>,
+        IAuditable<string>,
+        IConfigList<Setting>
     {
         //
-        // PROPERTIES
+        // Info
         //
 
         public int ID { get; set; }
 
-        public bool Unique { get; set; }
+        public string Name { get; set; }
 
         public string Description { get; set; }
 
-        public string TypeName { get; set; }
+        public ICollection<FW_DataContext> Contexts { get; set; }
 
-        public virtual ICollection<Setting> Settings { get; set; }
+        public ICollection<FW_DataEntity> Entities { get; set; }
+
+        public ICollection<FW_DataPartialModel> Models { get; set; }
+
+        public ICollection<Setting> Settings { get; set; }
 
         //
         // Audits
@@ -50,16 +56,18 @@ namespace Framework.Data.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public DataProvider()
+        public FW_DataCluster()
         {
             //
-            // Basic info.
+            // Info
             //
 
             ID = -1;
-            Unique = false;
+            Name = string.Empty;
             Description = string.Empty;
-            TypeName = string.Empty;
+            Contexts = null;
+            Entities = null;
+            Models = null;
             Settings = null;
 
             //

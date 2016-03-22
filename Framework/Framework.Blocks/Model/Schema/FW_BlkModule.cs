@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 namespace Framework.Blocks.Model.Schema
 {
-    public class BlkDomain : IID<int>
+    public class FW_BlkModule : IID<int>
     {
         //
         // PROPERTIES
@@ -21,18 +21,24 @@ namespace Framework.Blocks.Model.Schema
         public int ID { get; set; }
 
         public string Name { get; set; }
-        
-        public ICollection<BlkModule> Modules { get; set; }
+
+        public ICollection<FW_BlkFlow> Flows { get; set; }
+
+        public ICollection<FW_BlkBlock> Blocks { get; set; }
+
+        public ICollection<FW_BlkModule> Modules { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public BlkDomain()
+        public FW_BlkModule()
         {
             ID = default(int);
             Name = default(string);
-            Modules = default(ICollection<BlkModule>);
+            Flows = default(ICollection<FW_BlkFlow>);
+            Blocks = default(ICollection<FW_BlkBlock>);
+            Modules = default(ICollection<FW_BlkModule>);
         }
     }
 }

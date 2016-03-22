@@ -11,7 +11,7 @@ using Framework.Core.Patterns;
 
 namespace Framework.Data.Model.Schema
 {
-    public class DataQueryParam :
+    public class FW_DataQueryParam :
         IID<int>,
         IName<string>,
         IDescription<string>
@@ -36,7 +36,7 @@ namespace Framework.Data.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public DataQueryParam()
+        public FW_DataQueryParam()
         {
             //
             // INFO

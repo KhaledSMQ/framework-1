@@ -71,7 +71,7 @@ namespace Framework.Data.API
 
             if (null != config)
             {
-                config.Domains.Map<DomainElement, DataDomain>(new List<DataDomain>(), Transforms.Converter).Apply(srvMemStore.Domain_Import);
+                config.Domains.Map<DomainElement, FW_DataDomain>(new List<FW_DataDomain>(), Transforms.Converter).Apply(srvMemStore.Domain_Import);
             }
         }
 
@@ -124,7 +124,7 @@ namespace Framework.Data.API
             // Get the query specification to run.
             //
 
-            QueryInfo query = srvMemStore.Query_Get(entityID, name);
+            MemQuery query = srvMemStore.Query_Get(entityID, name);
 
             //
             // Process arguments.

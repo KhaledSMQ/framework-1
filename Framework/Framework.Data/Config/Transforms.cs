@@ -20,12 +20,12 @@ namespace Framework.Data.Config
         // DOMAIN
         //
 
-        public static DataDomain Converter(this DomainElement elm)
+        public static FW_DataDomain Converter(this DomainElement elm)
         {
-            DataDomain ast = new DataDomain();
+            FW_DataDomain ast = new FW_DataDomain();
             ast.Name = elm.Name;
             ast.Description = elm.Description;
-            ast.Clusters = elm.Contexts.Map<ClusterElement, DataCluster>(new List<DataCluster>(), Converter);
+            ast.Clusters = elm.Contexts.Map<ClusterElement, FW_DataCluster>(new List<FW_DataCluster>(), Converter);
             return ast;
         }
 
@@ -33,14 +33,14 @@ namespace Framework.Data.Config
         // CLUSTER
         //
 
-        public static DataCluster Converter(this ClusterElement elm)
+        public static FW_DataCluster Converter(this ClusterElement elm)
         {
-            DataCluster ast = new DataCluster();
+            FW_DataCluster ast = new FW_DataCluster();
             ast.Name = elm.Name;
             ast.Description = elm.Description;
-            ast.Contexts = elm.Contexts.Map<ContextElement, DataContext>(new List<DataContext>(), Converter);
-            ast.Entities = elm.Entities.Map<EntityElement, DataEntity>(new List<DataEntity>(), Converter);
-            ast.Models = elm.Models.Map<ModelElement, DataPartialModel>(new List<DataPartialModel>(), Converter);
+            ast.Contexts = elm.Contexts.Map<ContextElement, FW_DataContext>(new List<FW_DataContext>(), Converter);
+            ast.Entities = elm.Entities.Map<EntityElement, FW_DataEntity>(new List<FW_DataEntity>(), Converter);
+            ast.Models = elm.Models.Map<ModelElement, FW_DataPartialModel>(new List<FW_DataPartialModel>(), Converter);
             ast.Settings = elm.Settings.Map<SettingElement, Setting>(new List<Setting>(), Converter);
             return ast;
         }
@@ -49,14 +49,14 @@ namespace Framework.Data.Config
         // CONTEXT
         //
 
-        public static DataContext Converter(this ContextElement elm)
+        public static FW_DataContext Converter(this ContextElement elm)
         {
-            DataContext ast = new DataContext();
+            FW_DataContext ast = new FW_DataContext();
             ast.Name = elm.Name;
             ast.Description = elm.Description;
             ast.Provider = elm.Provider.Converter();
-            ast.Entities = elm.Entities.Map<EntityRefElement, DataEntityRef>(new List<DataEntityRef>(), Converter);
-            ast.Models = elm.Models.Map<ModelRefElement, DataPartialModelRef>(new List<DataPartialModelRef>(), Converter);
+            ast.Entities = elm.Entities.Map<EntityRefElement, FW_DataEntityRef>(new List<FW_DataEntityRef>(), Converter);
+            ast.Models = elm.Models.Map<ModelRefElement, FW_DataPartialModelRef>(new List<FW_DataPartialModelRef>(), Converter);
             return ast;
         }
 
@@ -64,9 +64,9 @@ namespace Framework.Data.Config
         // ENTITY-REF
         // 
 
-        public static DataEntityRef Converter(this EntityRefElement elm)
+        public static FW_DataEntityRef Converter(this EntityRefElement elm)
         {
-            DataEntityRef ast = new DataEntityRef();
+            FW_DataEntityRef ast = new FW_DataEntityRef();
             ast.Name = elm.Name;
             ast.Description = elm.Description;
             ast.Settings = elm.Settings.Map<SettingElement, Setting>(new List<Setting>(), Converter);
@@ -77,9 +77,9 @@ namespace Framework.Data.Config
         // MODEL-REF
         // 
 
-        public static DataPartialModelRef Converter(this ModelRefElement elm)
+        public static FW_DataPartialModelRef Converter(this ModelRefElement elm)
         {
-            DataPartialModelRef ast = new DataPartialModelRef();
+            FW_DataPartialModelRef ast = new FW_DataPartialModelRef();
             ast.Name = elm.Name;
             ast.Description = elm.Description;
             ast.Settings = elm.Settings.Map<SettingElement, Setting>(new List<Setting>(), Converter);
@@ -90,14 +90,14 @@ namespace Framework.Data.Config
         // ENTITY
         //
 
-        public static DataEntity Converter(this EntityElement elm)
+        public static FW_DataEntity Converter(this EntityElement elm)
         {
-            DataEntity ast = new DataEntity();
+            FW_DataEntity ast = new FW_DataEntity();
             ast.Name = elm.Name;
             ast.Kind = elm.Kind;
             ast.Description = elm.Description;
             ast.TypeName = elm.Type;
-            ast.Queries = elm.Queries.Map<QueryElement, DataQuery>(new List<DataQuery>(), Converter);
+            ast.Queries = elm.Queries.Map<QueryElement, FW_DataQuery>(new List<FW_DataQuery>(), Converter);
             ast.Settings = elm.Settings.Map<SettingElement, Setting>(new List<Setting>(), Converter);
             return ast;
         }
@@ -106,13 +106,13 @@ namespace Framework.Data.Config
         // QUERY
         //
 
-        public static DataQuery Converter(this QueryElement elm)
+        public static FW_DataQuery Converter(this QueryElement elm)
         {
-            DataQuery ast = new DataQuery();
+            FW_DataQuery ast = new FW_DataQuery();
             ast.Name = elm.Name;
             ast.Description = elm.Description;
             ast.Kind = elm.Kind;
-            ast.Params = elm.Params.Map<QueryParamElement, DataQueryParam>(new List<DataQueryParam>(), Converter);
+            ast.Params = elm.Params.Map<QueryParamElement, FW_DataQueryParam>(new List<FW_DataQueryParam>(), Converter);
             ast.Expression = elm.Expression;
             ast.Callback = elm.Callback;
             return ast;
@@ -122,9 +122,9 @@ namespace Framework.Data.Config
         // QUERY-PARAM
         //
 
-        public static DataQueryParam Converter(this QueryParamElement elm)
+        public static FW_DataQueryParam Converter(this QueryParamElement elm)
         {
-            DataQueryParam ast = new DataQueryParam();
+            FW_DataQueryParam ast = new FW_DataQueryParam();
             ast.Name = elm.Name;
             ast.Description = elm.Description;
             ast.Required = elm.Required;
@@ -137,9 +137,9 @@ namespace Framework.Data.Config
         // PARTIAL-MODEL
         //     
 
-        public static DataPartialModel Converter(this ModelElement elm)
+        public static FW_DataPartialModel Converter(this ModelElement elm)
         {
-            DataPartialModel ast = new DataPartialModel();
+            FW_DataPartialModel ast = new FW_DataPartialModel();
             ast.Name = elm.Name;
             ast.Description = elm.Description;
             ast.TypeName = elm.Type;
@@ -151,9 +151,9 @@ namespace Framework.Data.Config
         // PROVIDER
         //     
 
-        public static DataProvider Converter(this ProviderElement elm)
+        public static FW_DataProvider Converter(this ProviderElement elm)
         {
-            DataProvider ast = new DataProvider();
+            FW_DataProvider ast = new FW_DataProvider();
             ast.TypeName = elm.Type;
             ast.Settings = elm.Settings.Map<SettingElement, Setting>(new List<Setting>(), Converter);
             return ast;

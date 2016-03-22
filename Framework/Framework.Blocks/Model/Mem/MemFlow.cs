@@ -9,7 +9,6 @@
 
 using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Framework.Blocks.Model.Mem

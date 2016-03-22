@@ -9,17 +9,15 @@
 
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
-using Framework.Core.Types.Specialized;
 using System;
 using System.Collections.Generic;
 
 namespace Framework.Data.Model.Schema
 {
-    public class DataDomain :
+    public class FW_DataQuery :
         IID<int>,
         IName<string>,
         IDescription<string>,
-        IConfigList<Setting>,
         IAuditable<string>
     {
         //
@@ -28,13 +26,38 @@ namespace Framework.Data.Model.Schema
 
         public int ID { get; set; }
 
+        public TypeOfDataQuery Kind { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }
 
-        public ICollection<DataCluster> Clusters { get; set; }
+        //
+        // Definition for query parameters.
+        // If empty then the query takes no
+        // parameters.
+        //
 
-        public ICollection<Setting> Settings { get; set; }
+        public ICollection<FW_DataQueryParam> Params { get; set; }
+
+        //
+        // In case the query is an expression,
+        // the following property contains the 
+        // expression.
+        //
+
+        public string Expression { get; set; }
+
+        //
+        // In case the query is a callback
+        // The following property contains
+        // The full name description, e.g.
+        // class and method of the static
+        // method to use. These methods
+        // have all the same signature.
+        //
+
+        public string Callback { get; set; }
 
         //
         // AUDITS
@@ -52,17 +75,19 @@ namespace Framework.Data.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public DataDomain()
+        public FW_DataQuery()
         {
             //
             // INFO
             //
 
             ID = -1;
+            Kind = TypeOfDataQuery.UNKNOWN;
             Name = string.Empty;
             Description = string.Empty;
-            Clusters = null;
-            Settings = null;
+            Expression = string.Empty;
+            Params = null;
+            Callback = string.Empty;
 
             //
             // AUDITS

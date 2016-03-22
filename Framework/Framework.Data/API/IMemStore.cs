@@ -22,47 +22,47 @@ namespace Framework.Data.API
         // DOMAIN
         //    
 
-        void Domain_Import(DataDomain domain);
+        void Domain_Import(FW_DataDomain domain);
 
         void Domain_Init(string domainID);
 
-        void Domain_Init(DomainInfo domain);
+        void Domain_Init(MemDomain domain);
 
-        DomainInfo Domain_Get(params string[] parcels);
+        MemDomain Domain_Get(params string[] parcels);
 
-        IEnumerable<DomainInfo> Domain_GetList();
+        IEnumerable<MemDomain> Domain_GetList();
 
         //
         // CLUSTER
         //
 
-        string Cluster_Import(string domainID, DataCluster cluster);
+        string Cluster_Import(string domainID, FW_DataCluster cluster);
 
-        ClusterInfo Cluster_Get(params string[] parcels);
+        MemCluster Cluster_Get(params string[] parcels);
 
-        IEnumerable<ClusterInfo> Cluster_GetList();
+        IEnumerable<MemCluster> Cluster_GetList();
 
         //
         // CONTEXT
         //
 
-        string Context_Import(string clusterID, DataContext context);
+        string Context_Import(string clusterID, FW_DataContext context);
 
-        ContextInfo Context_Get(params string[] parcels);
+        MemContext Context_Get(params string[] parcels);
 
-        IEnumerable<ContextInfo> Context_GetList();
+        IEnumerable<MemContext> Context_GetList();
 
         //
         // ENTITY
         //
 
-        string Entity_Import(string clusterID, DataEntity entity);
+        string Entity_Import(string clusterID, FW_DataEntity entity);
 
-        EntityInfo Entity_Get(params string[] parcels);
+        MemEntity Entity_Get(params string[] parcels);
 
         Type Entity_GetType(params string[] parcels);
 
-        IEnumerable<EntityInfo> Entity_GetList();
+        IEnumerable<MemEntity> Entity_GetList();
 
         IProviderDataContext Entity_GetProviderDataContext(params string[] parcels);
 
@@ -70,21 +70,21 @@ namespace Framework.Data.API
         // PARTIAL-MODEL
         //
 
-        string Model_Import(string clusterID, DataPartialModel model);
+        string Model_Import(string clusterID, FW_DataPartialModel model);
 
-        ModelInfo Model_Get(params string[] parcels);
+        MemModel Model_Get(params string[] parcels);
 
-        IEnumerable<ModelInfo> Model_GetList();
+        IEnumerable<MemModel> Model_GetList();
 
         //
         // QUERY
         //
 
-        string Query_Import(string entityID, DataQuery query);
+        string Query_Import(string entityID, FW_DataQuery query);
 
-        QueryInfo Query_Get(params string[] parcels);
+        MemQuery Query_Get(params string[] parcels);
 
-        IEnumerable<QueryInfo> Query_GetList();
+        IEnumerable<MemQuery> Query_GetList();
 
         //
         // IDENTIFIERS

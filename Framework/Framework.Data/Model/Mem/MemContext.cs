@@ -16,7 +16,7 @@ using System.Collections.Generic;
 
 namespace Framework.Data.Model.Mem
 {
-    public class ContextInfo
+    public class MemContext
     {
         public string ID { get; set; }
 
@@ -24,7 +24,7 @@ namespace Framework.Data.Model.Mem
 
         public IList<string> Models { get; set; }
 
-        public DataProvider Provider { get; set; }
+        public FW_DataProvider Provider { get; set; }
 
         public ServiceEntry ProviderServiceEntry { get; set; }
 
@@ -38,22 +38,22 @@ namespace Framework.Data.Model.Mem
         //
 
         [JsonIgnore]
-        public DataContext Original { get; set; }   
+        public FW_DataContext Original { get; set; }   
 
         //
         // CONSTRUCTOR
         //
 
-        public ContextInfo()
+        public MemContext()
         {
             ID = null;
             Entities = null;
             Models = null;
-            Provider = default(DataProvider);
+            Provider = default(FW_DataProvider);
             ProviderServiceEntry = default(ServiceEntry);
             ProviderService = default(IProviderDataContext);
 
-            Original = default(DataContext);
+            Original = default(FW_DataContext);
         }
     }  
 }

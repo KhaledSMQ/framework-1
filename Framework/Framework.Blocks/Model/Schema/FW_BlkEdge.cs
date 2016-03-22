@@ -12,7 +12,7 @@ using Framework.Core.Patterns;
 
 namespace Framework.Blocks.Model.Schema
 {
-    public class BlkEdge : IID<int>
+    public class FW_BlkEdge : IID<int>
     {
         //
         // Numeric identifier for connection/edge.
@@ -36,18 +36,18 @@ namespace Framework.Blocks.Model.Schema
         // List of connections between the two blocks.
         //
 
-        public ICollection<BlkConnector> Connections { get; set; }
+        public ICollection<FW_BlkConnector> Connections { get; set; }
 
         //
         // CONSTRUCTOR
         //
 
-        public BlkEdge()
+        public FW_BlkEdge()
         {
             ID = default(int);
             Source = default(string);
             Target = default(string);
-            Connections = default(ICollection<BlkConnector>);
+            Connections = default(ICollection<FW_BlkConnector>);
         }
     }
 }

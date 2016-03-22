@@ -13,27 +13,33 @@ using System.Collections.Generic;
 
 namespace Framework.Data.Model.Mem
 {
-    public class DomainInfo
+    public class MemCluster
     {
         public string ID { get; set; }
 
-        public IList<string> Clusters { get; set; }
+        public IList<string> Contexts { get; set; }
+
+        public IList<string> Entities { get; set; }
+
+        public IList<string> Models { get; set; }
 
         //
         // Original context specification.
         //
 
         [JsonIgnore]
-        public DataDomain Original { get; set; }   
+        public FW_DataCluster Original { get; set; }
 
         //
         // CONSTRUCTOR
         //
 
-        public DomainInfo()
+        public MemCluster()
         {
             ID = null;
-            Clusters = null;
+            Contexts = null;
+            Entities = null;
+            Models = null;
 
             Original = null;
         }

@@ -111,24 +111,24 @@
     <Compile Include="Extensions\IDExtensions.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="API\SrvMemStore.cs" />
-    <Compile Include="Model\Mem\ClusterInfo.cs" />
-    <Compile Include="Model\Mem\ContextInfo.cs" />
-    <Compile Include="Model\Mem\QueryInfo.cs" />
-    <Compile Include="Model\Mem\ModelInfo.cs" />
-    <Compile Include="Model\Mem\EntityInfo.cs" />
-    <Compile Include="Model\Mem\DomainInfo.cs" />
+    <Compile Include="Model\Mem\MemCluster.cs" />
+    <Compile Include="Model\Mem\MemContext.cs" />
+    <Compile Include="Model\Mem\MemQuery.cs" />
+    <Compile Include="Model\Mem\MemModel.cs" />
+    <Compile Include="Model\Mem\MemEntity.cs" />
+    <Compile Include="Model\Mem\MemDomain.cs" />
     <Compile Include="Model\Query\Expression.cs" />
-    <Compile Include="Model\Schema\DataCluster.cs" />
-    <Compile Include="Model\Schema\DataContext.cs" />
-    <Compile Include="Model\Schema\DataDomain.cs" />
-    <Compile Include="Model\Schema\DataPartialModelRef.cs" />
-    <Compile Include="Model\Schema\DataEntityRef.cs" />
-    <Compile Include="Model\Schema\DataQueryParam.cs" />
-    <Compile Include="Model\Schema\DataQuery.cs" />
-    <Compile Include="Model\Schema\DataProvider.cs" />
+    <Compile Include="Model\Schema\FW_DataCluster.cs" />
+    <Compile Include="Model\Schema\FW_DataContext.cs" />
+    <Compile Include="Model\Schema\FW_DataDomain.cs" />
+    <Compile Include="Model\Schema\FW_DataPartialModelRef.cs" />
+    <Compile Include="Model\Schema\FW_DataEntityRef.cs" />
+    <Compile Include="Model\Schema\FW_DataQueryParam.cs" />
+    <Compile Include="Model\Schema\FW_DataQuery.cs" />
+    <Compile Include="Model\Schema\FW_DataProvider.cs" />
     <Compile Include="Model\Schema\_Enums.cs" />
-    <Compile Include="Model\Schema\DataEntity.cs" />
-    <Compile Include="Model\Schema\DataPartialModel.cs" />
+    <Compile Include="Model\Schema\FW_DataEntity.cs" />
+    <Compile Include="Model\Schema\FW_DataPartialModel.cs" />
     <Compile Include="Patterns\AProviderDataContext.cs" />
     <Compile Include="Patterns\AGenericDataSet.cs" />
     <Compile Include="Patterns\IDynamicDataSet.cs" />
@@ -149,9 +149,7 @@
     <None Include="Framework.Data.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\Diagnostics\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>

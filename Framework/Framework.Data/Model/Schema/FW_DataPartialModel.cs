@@ -4,60 +4,39 @@
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 03/Aug/2015
 // Company: Cybermap Lta.
-// Description: Service specification class.
+// Description: 
 // ============================================================================
 
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
+using Framework.Core.Types.Specialized;
+using Framework.Data.Patterns;
 using System;
 using System.Collections.Generic;
 
 namespace Framework.Data.Model.Schema
 {
-    public class DataQuery :
+    public class FW_DataPartialModel : 
         IID<int>,
         IName<string>,
         IDescription<string>,
+        ITypeName<string>,
+        IConfigList<Setting>,
         IAuditable<string>
     {
         //
-        // INFO
+        // PROPERTIES
         //
 
         public int ID { get; set; }
-
-        public TypeOfDataQuery Kind { get; set; }
 
         public string Name { get; set; }
 
         public string Description { get; set; }
 
-        //
-        // Definition for query parameters.
-        // If empty then the query takes no
-        // parameters.
-        //
+        public string TypeName { get; set; }
 
-        public ICollection<DataQueryParam> Params { get; set; }
-
-        //
-        // In case the query is an expression,
-        // the following property contains the 
-        // expression.
-        //
-
-        public string Expression { get; set; }
-
-        //
-        // In case the query is a callback
-        // The following property contains
-        // The full name description, e.g.
-        // class and method of the static
-        // method to use. These methods
-        // have all the same signature.
-        //
-
-        public string Callback { get; set; }
+        public ICollection<Setting> Settings { get; set; }
 
         //
         // AUDITS
@@ -75,22 +54,20 @@ namespace Framework.Data.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public DataQuery()
+        public FW_DataPartialModel()
         {
             //
-            // INFO
+            // Info
             //
 
             ID = -1;
-            Kind = TypeOfDataQuery.UNKNOWN;
             Name = string.Empty;
             Description = string.Empty;
-            Expression = string.Empty;
-            Params = null;
-            Callback = string.Empty;
+            TypeName = string.Empty;
+            Settings = null;
 
             //
-            // AUDITS
+            // Audits
             //
 
             AuditableExtensions.Init(this, string.Empty);

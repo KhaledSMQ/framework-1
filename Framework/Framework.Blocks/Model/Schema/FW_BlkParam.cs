@@ -11,7 +11,7 @@ using Framework.Core.Patterns;
 
 namespace Framework.Blocks.Model.Schema
 {
-    public class BlkParam : IID<int>
+    public class FW_BlkParam : IID<int>
     {
         //
         // Numeric identifier for parameter/property.
@@ -47,7 +47,7 @@ namespace Framework.Blocks.Model.Schema
         // CONSTRUCTORS
         //
 
-        public BlkParam()
+        public FW_BlkParam()
         {
             ID = default(int);
             Name = default(string);

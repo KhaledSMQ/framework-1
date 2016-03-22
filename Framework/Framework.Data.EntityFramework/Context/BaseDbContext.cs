@@ -21,7 +21,7 @@ namespace Framework.Data.EntityFramework.Context
         // CONSTRUCTORS
         //
 
-        public BaseDbContext(string connectionString, IEnumerable<DataEntity> entities, IEnumerable<DataPartialModel> models)
+        public BaseDbContext(string connectionString, IEnumerable<FW_DataEntity> entities, IEnumerable<FW_DataPartialModel> models)
             : base(connectionString)
         {
             //
@@ -83,7 +83,7 @@ namespace Framework.Data.EntityFramework.Context
         // PRIVATE FIELDS
         //
 
-        private IEnumerable<DataEntity> _Entities = null;
-        private IEnumerable<DataPartialModel> _Models = null;
+        private IEnumerable<FW_DataEntity> _Entities = null;
+        private IEnumerable<FW_DataPartialModel> _Models = null;
     }
 }

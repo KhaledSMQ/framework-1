@@ -46,7 +46,7 @@ namespace Framework.Blocks.API
         // DOMAINS
         //
 
-        public void Domain_Import(BlkDomain import)
+        public void Domain_Import(FW_BlkDomain import)
         {
             if (null != import)
             {
@@ -78,7 +78,7 @@ namespace Framework.Blocks.API
         // MODULES
         //
 
-        public Id Module_Import(Id parentID, BlkModule import)
+        public Id Module_Import(Id parentID, FW_BlkModule import)
         {
             Id id = default(Id);
 
@@ -116,7 +116,7 @@ namespace Framework.Blocks.API
         // FLOWS
         //
 
-        public Id Flow_Import(Id parentID, BlkFlow import)
+        public Id Flow_Import(Id parentID, FW_BlkFlow import)
         {
             Id id = default(Id);
 
@@ -150,7 +150,7 @@ namespace Framework.Blocks.API
         // BLOCKS
         //
 
-        public Id Block_Import(Id parentID, BlkBlock import)
+        public Id Block_Import(Id parentID, FW_BlkBlock import)
         {
             Id id = default(Id);
 

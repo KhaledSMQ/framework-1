@@ -4,28 +4,25 @@
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 03/Aug/2015
 // Company: Cybermap Lta.
-// Description: 
+// Description: Service specification class.
 // ============================================================================
 
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
-using Framework.Data.Patterns;
 using System;
 using System.Collections.Generic;
 
 namespace Framework.Data.Model.Schema
 {
-    public class DataPartialModel : 
+    public class FW_DataEntityRef :
         IID<int>,
-        IName<string>,
-        IDescription<string>,
-        ITypeName<string>,
+        IName<string>,     
         IConfigList<Setting>,
         IAuditable<string>
     {
         //
-        // PROPERTIES
+        // INFO
         //
 
         public int ID { get; set; }
@@ -33,8 +30,6 @@ namespace Framework.Data.Model.Schema
         public string Name { get; set; }
 
         public string Description { get; set; }
-
-        public string TypeName { get; set; }
 
         public ICollection<Setting> Settings { get; set; }
 
@@ -54,20 +49,19 @@ namespace Framework.Data.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public DataPartialModel()
+        public FW_DataEntityRef()
         {
             //
-            // Info
+            // INFO
             //
 
             ID = -1;
             Name = string.Empty;
             Description = string.Empty;
-            TypeName = string.Empty;
             Settings = null;
 
             //
-            // Audits
+            // AUDITS
             //
 
             AuditableExtensions.Init(this, string.Empty);

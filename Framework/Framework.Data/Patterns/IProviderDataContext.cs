@@ -21,13 +21,13 @@ namespace Framework.Data.Patterns
         // CRUDs
         //
 
-        void Load(IEnumerable<DataEntity> entities);
+        void Load(IEnumerable<FW_DataEntity> entities);
 
-        void Load(IEnumerable<DataPartialModel> models);
+        void Load(IEnumerable<FW_DataPartialModel> models);
 
-        IEnumerable<DataEntity> GetListOfEntities();
+        IEnumerable<FW_DataEntity> GetListOfEntities();
 
-        IEnumerable<DataPartialModel> GetListOfPartialModels();
+        IEnumerable<FW_DataPartialModel> GetListOfPartialModels();
 
         //
         // DATA-SOURCE-FACTORIES

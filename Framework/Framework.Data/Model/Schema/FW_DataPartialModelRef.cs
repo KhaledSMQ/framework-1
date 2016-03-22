@@ -15,7 +15,7 @@ using System.Collections.Generic;
 
 namespace Framework.Data.Model.Schema
 {
-    public class DataPartialModelRef :
+    public class FW_DataPartialModelRef :
         IID<int>,
         IName<string>,     
         IConfigList<Setting>,
@@ -49,7 +49,7 @@ namespace Framework.Data.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public DataPartialModelRef()
+        public FW_DataPartialModelRef()
         {
             //
             // INFO

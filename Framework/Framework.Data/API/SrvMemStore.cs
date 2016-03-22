@@ -39,19 +39,19 @@ namespace Framework.Data.API
             // Initialize in-memory data structures.
             //
 
-            __Domains = new SortedDictionary<string, DomainInfo>();
-            __Clusters = new SortedDictionary<string, ClusterInfo>();
-            __Contexts = new SortedDictionary<string, ContextInfo>();
-            __Entities = new SortedDictionary<string, EntityInfo>();
-            __Queries = new SortedDictionary<string, QueryInfo>();
-            __Models = new SortedDictionary<string, ModelInfo>();
+            __Domains = new SortedDictionary<string, MemDomain>();
+            __Clusters = new SortedDictionary<string, MemCluster>();
+            __Contexts = new SortedDictionary<string, MemContext>();
+            __Entities = new SortedDictionary<string, MemEntity>();
+            __Queries = new SortedDictionary<string, MemQuery>();
+            __Models = new SortedDictionary<string, MemModel>();
         }
 
         //
         // DOMAINS
         //
 
-        public void Domain_Import(DataDomain domain)
+        public void Domain_Import(FW_DataDomain domain)
         {
             string domainID = default(string);
 
@@ -73,7 +73,7 @@ namespace Framework.Data.API
                             // Build the domain runtime object.
                             //
 
-                            DomainInfo domainInfo = new DomainInfo()
+                            MemDomain domainInfo = new MemDomain()
                             {
                                 ID = domainID,
                                 Original = domain,
@@ -128,15 +128,15 @@ namespace Framework.Data.API
             Domain_Init(Domain_Get(domainID));
         }
 
-        public void Domain_Init(DomainInfo domain)
+        public void Domain_Init(MemDomain domain)
         {
             domain.Clusters.Apply(clusterID =>
             {
-                ClusterInfo cluster = Cluster_Get(clusterID);
+                MemCluster cluster = Cluster_Get(clusterID);
 
                 cluster.Contexts.Apply(contextID =>
                 {
-                    ContextInfo context = Context_Get(contextID);
+                    MemContext context = Context_Get(contextID);
 
                     if (null != context)
                     {
@@ -159,8 +159,8 @@ namespace Framework.Data.API
                                 // Get the context entities and model definitions.
                                 //
 
-                                IEnumerable<DataEntity> entities = context.Entities.Map(new List<DataEntity>(), e => { return Entity_Get(e).Instance; });
-                                IEnumerable<DataPartialModel> models = context.Models.Map(new List<DataPartialModel>(), e => { return Model_Get(e).Instance; });
+                                IEnumerable<FW_DataEntity> entities = context.Entities.Map(new List<FW_DataEntity>(), e => { return Entity_Get(e).Instance; });
+                                IEnumerable<FW_DataPartialModel> models = context.Models.Map(new List<FW_DataPartialModel>(), e => { return Model_Get(e).Instance; });
 
                                 //
                                 // Load the entities and partial models in data context provider.
@@ -206,9 +206,9 @@ namespace Framework.Data.API
             });
         }
 
-        public DomainInfo Domain_Get(params string[] parcels)
+        public MemDomain Domain_Get(params string[] parcels)
         {
-            DomainInfo domainInfo = default(DomainInfo);
+            MemDomain domainInfo = default(MemDomain);
             string domainID = GetID(parcels);
 
             if (__Domains.ContainsKey(domainID))
@@ -223,7 +223,7 @@ namespace Framework.Data.API
             return domainInfo;
         }
 
-        public IEnumerable<DomainInfo> Domain_GetList()
+        public IEnumerable<MemDomain> Domain_GetList()
         {
             return __Domains.Values;
         }
@@ -232,7 +232,7 @@ namespace Framework.Data.API
         // CLUSTERS
         //
 
-        public string Cluster_Import(string domainID, DataCluster cluster)
+        public string Cluster_Import(string domainID, FW_DataCluster cluster)
         {
             string clusterID = default(string);
 
@@ -254,7 +254,7 @@ namespace Framework.Data.API
                             // Build the cluster runtime object.
                             //
 
-                            ClusterInfo clusterInfo = new ClusterInfo()
+                            MemCluster clusterInfo = new MemCluster()
                             {
                                 ID = clusterID,
                                 Original = cluster,
@@ -319,9 +319,9 @@ namespace Framework.Data.API
             return clusterID;
         }
 
-        public ClusterInfo Cluster_Get(params string[] parcels)
+        public MemCluster Cluster_Get(params string[] parcels)
         {
-            ClusterInfo info = default(ClusterInfo);
+            MemCluster info = default(MemCluster);
             string id = GetID(parcels);
 
             if (__Clusters.ContainsKey(id))
@@ -336,7 +336,7 @@ namespace Framework.Data.API
             return info;
         }
 
-        public IEnumerable<ClusterInfo> Cluster_GetList()
+        public IEnumerable<MemCluster> Cluster_GetList()
         {
             return __Clusters.Values;
         }
@@ -345,7 +345,7 @@ namespace Framework.Data.API
         // CONTEXTS
         //
 
-        public string Context_Import(string clusterID, DataContext context)
+        public string Context_Import(string clusterID, FW_DataContext context)
         {
             string contextID = default(string);
 
@@ -377,7 +377,7 @@ namespace Framework.Data.API
                         // Setup the data context mapping info.
                         //
 
-                        ContextInfo contextInfo = new ContextInfo()
+                        MemContext contextInfo = new MemContext()
                         {
                             ID = contextID,
                             Original = context,
@@ -401,7 +401,7 @@ namespace Framework.Data.API
                                 // Get the current entity mapping info.
                                 //
 
-                                EntityInfo entityInfo = Entity_Get(entityID);
+                                MemEntity entityInfo = Entity_Get(entityID);
 
                                 //
                                 // Associate the context info with entity.
@@ -413,7 +413,7 @@ namespace Framework.Data.API
                                 // Instantiate the data entity for the context.
                                 //
 
-                                entityInfo.Instance = new DataEntity()
+                                entityInfo.Instance = new FW_DataEntity()
                                 {
                                     Name = entityInfo.Original.Name,
                                     Kind = entityInfo.Original.Kind,
@@ -453,7 +453,7 @@ namespace Framework.Data.API
                                 // Get the current model mapping info.
                                 //
 
-                                ModelInfo modelInfo = Model_Get(modelID);
+                                MemModel modelInfo = Model_Get(modelID);
 
                                 //
                                 // Associate the context runtime info.
@@ -465,7 +465,7 @@ namespace Framework.Data.API
                                 // Instantiate the data partial model for the context.
                                 //
 
-                                modelInfo.Instance = new DataPartialModel()
+                                modelInfo.Instance = new FW_DataPartialModel()
                                 {
                                     Name = modelInfo.Original.Name,
                                     TypeName = modelInfo.Original.TypeName,
@@ -518,9 +518,9 @@ namespace Framework.Data.API
             return contextID;
         }
 
-        public ContextInfo Context_Get(params string[] parcels)
+        public MemContext Context_Get(params string[] parcels)
         {
-            ContextInfo info = default(ContextInfo);
+            MemContext info = default(MemContext);
             string id = GetID(parcels);
 
             if (__Contexts.ContainsKey(id))
@@ -535,7 +535,7 @@ namespace Framework.Data.API
             return info;
         }
 
-        public IEnumerable<ContextInfo> Context_GetList()
+        public IEnumerable<MemContext> Context_GetList()
         {
             return __Contexts.Values;
         }
@@ -544,7 +544,7 @@ namespace Framework.Data.API
         // ENTITIES
         //
 
-        public string Entity_Import(string clusterID, DataEntity entity)
+        public string Entity_Import(string clusterID, FW_DataEntity entity)
         {
             string entityID = default(string);
 
@@ -564,7 +564,7 @@ namespace Framework.Data.API
                         // Build the entity map runtime information.                                            
                         //
 
-                        EntityInfo entityInfo = new EntityInfo()
+                        MemEntity entityInfo = new MemEntity()
                         {
                             ID = entityID,
                             Cluster = clusterID,
@@ -614,9 +614,9 @@ namespace Framework.Data.API
             return entityID;
         }
 
-        public EntityInfo Entity_Get(params string[] parcels)
+        public MemEntity Entity_Get(params string[] parcels)
         {
-            EntityInfo info = default(EntityInfo);
+            MemEntity info = default(MemEntity);
             string id = GetID(parcels);
 
             if (__Entities.ContainsKey(id))
@@ -636,7 +636,7 @@ namespace Framework.Data.API
             return Entity_Get(parcels).Type;
         }
 
-        public IEnumerable<EntityInfo> Entity_GetList()
+        public IEnumerable<MemEntity> Entity_GetList()
         {
             return __Entities.Values;
         }
@@ -650,7 +650,7 @@ namespace Framework.Data.API
         // MODELS
         //
 
-        public string Model_Import(string clusterID, DataPartialModel model)
+        public string Model_Import(string clusterID, FW_DataPartialModel model)
         {
             string modelID = default(string);
 
@@ -666,7 +666,7 @@ namespace Framework.Data.API
                         // Build the entity map runtime information.                                            
                         //
 
-                        ModelInfo modelInfo = new ModelInfo()
+                        MemModel modelInfo = new MemModel()
                         {
                             ID = modelID,
                             Original = model
@@ -708,9 +708,9 @@ namespace Framework.Data.API
             return modelID;
         }
 
-        public ModelInfo Model_Get(params string[] parcels)
+        public MemModel Model_Get(params string[] parcels)
         {
-            ModelInfo info = default(ModelInfo);
+            MemModel info = default(MemModel);
             string id = GetID(parcels);
 
             if (__Models.ContainsKey(id))
@@ -725,7 +725,7 @@ namespace Framework.Data.API
             return info;
         }
 
-        public IEnumerable<ModelInfo> Model_GetList()
+        public IEnumerable<MemModel> Model_GetList()
         {
             return __Models.Values;
         }
@@ -734,7 +734,7 @@ namespace Framework.Data.API
         // QUERIES
         //
 
-        public string Query_Import(string entityID, DataQuery query)
+        public string Query_Import(string entityID, FW_DataQuery query)
         {
             string queryID = default(string);
 
@@ -750,7 +750,7 @@ namespace Framework.Data.API
                         // Build query info runtime.
                         //
 
-                        QueryInfo queryInfo = new QueryInfo()
+                        MemQuery queryInfo = new MemQuery()
                         {
                             ID = queryID,
                             Original = query,
@@ -783,9 +783,9 @@ namespace Framework.Data.API
             return queryID;
         }
 
-        public QueryInfo Query_Get(params string[] parcels)
+        public MemQuery Query_Get(params string[] parcels)
         {
-            QueryInfo info = default(QueryInfo);
+            MemQuery info = default(MemQuery);
             string id = GetID(parcels);
 
             if (__Queries.ContainsKey(id))
@@ -800,7 +800,7 @@ namespace Framework.Data.API
             return info;
         }
 
-        public IEnumerable<QueryInfo> Query_GetList()
+        public IEnumerable<MemQuery> Query_GetList()
         {
             return __Queries.Values;
         }
@@ -824,11 +824,11 @@ namespace Framework.Data.API
         // Memory storage.
         //
 
-        private IDictionary<string, DomainInfo> __Domains = null;
-        private IDictionary<string, ClusterInfo> __Clusters = null;
-        private IDictionary<string, ContextInfo> __Contexts = null;
-        private IDictionary<string, EntityInfo> __Entities = null;
-        private IDictionary<string, QueryInfo> __Queries = null;
-        private IDictionary<string, ModelInfo> __Models = null;
+        private IDictionary<string, MemDomain> __Domains = null;
+        private IDictionary<string, MemCluster> __Clusters = null;
+        private IDictionary<string, MemContext> __Contexts = null;
+        private IDictionary<string, MemEntity> __Entities = null;
+        private IDictionary<string, MemQuery> __Queries = null;
+        private IDictionary<string, MemModel> __Models = null;
     }
 }
