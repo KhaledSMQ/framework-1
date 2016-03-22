@@ -1,10 +1,10 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class:
+// Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Create date: 10/Mar/2016
+// Create date: 20/Mar/2016
 // Company: Cybermap Lta.
-// Description:
+// Description: 
 // ============================================================================
 
 using Framework.Blocks.Model.Mem;

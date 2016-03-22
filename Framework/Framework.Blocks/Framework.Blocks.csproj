@@ -57,7 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\IMemStore.cs" />
+    <Compile Include="API\IStore.cs" />
     <Compile Include="API\SrvMemStore.cs" />
+    <Compile Include="API\SrvStore.cs" />
+    <Compile Include="API\BlocksController.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="Model\Mem\MemConnector.cs" />
     <Compile Include="Model\Mem\MemDomain.cs" />

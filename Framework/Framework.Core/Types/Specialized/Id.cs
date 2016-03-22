@@ -7,9 +7,9 @@
 // Description: 
 // ============================================================================
 
+using Framework.Core.Extensions;
 using System;
 using System.Collections.Generic;
-using Framework.Core.Extensions;
 
 namespace Framework.Core.Types.Specialized
 {

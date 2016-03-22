@@ -1,25 +1,20 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class:
+// Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Create date: 26/Nov/2015
+// Create date: 20/Mar/2016
 // Company: Cybermap Lta.
 // Description: 
 // ============================================================================
 
 using Framework.Blocks.Model.Mem;
+using Framework.Blocks.Model.Schema;
 using Framework.Core.Error;
 using Framework.Core.Extensions;
-using Framework.Core.Types.Specialized;
-using Framework.Data.Model.Mem;
-using Framework.Data.Model.Schema;
-using Framework.Data.Patterns;
-using Framework.Factory.Model;
-using Framework.Factory.Patterns;
-using System;
-using System.Collections.Generic;
-using Framework.Blocks.Model.Schema;
 using Framework.Core.Patterns;
+using Framework.Core.Types.Specialized;
+using Framework.Factory.Patterns;
+using System.Collections.Generic;
 
 namespace Framework.Blocks.API
 {
