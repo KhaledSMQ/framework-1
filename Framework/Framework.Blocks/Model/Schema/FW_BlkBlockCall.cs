@@ -10,16 +10,20 @@
 namespace Framework.Blocks.Model.Schema
 {
     //
-    // Block: NATIVE
-    // These types of blocks execute a static function found
-    // somewhere in the server referenced assemblies.
+    // Block: CALL
+    // These types of blocks call a method in a service somewhere.
+    // The block instantiates the service and calls the specified
+    // method with the block input parameters.
     //
 
-    public class FW_BlkBlockNative : FW_BlkABlock
+    public class FW_BlkBlockCall : FW_BlkABlock
     {
         //
-        // Method to call, full location: assembly, namespace and name.
+        // Name and method of service to call.
+        // Service should be defined in factory store.
         //
+
+        public string Service { get; set; }
 
         public string Method { get; set; }
 
@@ -27,8 +31,9 @@ namespace Framework.Blocks.Model.Schema
         // CONSTRUCTORS 
         //
 
-        public FW_BlkBlockNative() : base()
+        public FW_BlkBlockCall() : base()
         {
+            Service = default(string);
             Method = default(string);
         }
     }

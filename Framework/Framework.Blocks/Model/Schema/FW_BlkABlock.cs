@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 namespace Framework.Blocks.Model.Schema
 {
-    public abstract class FW_BlkABlock : IComponent
+    public abstract class FW_BlkABlock
     {
         //
         // Numeric identifier for block.
@@ -21,10 +21,16 @@ namespace Framework.Blocks.Model.Schema
         public int ID { get; set; }
      
         //
-        // Name for block.
+        // Simple name for block.
         //
 
         public string Name { get; set; }
+
+        //
+        // Type of the block implementation.
+        //
+
+        public string TypeName { get; set; }
 
         //
         // Definition for block input parameters.
@@ -36,13 +42,7 @@ namespace Framework.Blocks.Model.Schema
         // Definition for block output parameters.
         //
 
-        public ICollection<FW_BlkParam> Out { get; set; }
-
-        //
-        // Configuration properties for block.
-        //
-
-        public ICollection<FW_BlkParam> Properties { get; set; }        
+        public ICollection<FW_BlkParam> Out { get; set; }       
 
         //
         // CONSTRUCTORS 
@@ -54,7 +54,6 @@ namespace Framework.Blocks.Model.Schema
             Name = default(string);
             In = default(ICollection<FW_BlkParam>);
             Out = default(ICollection<FW_BlkParam>);
-            Properties = default(ICollection<FW_BlkParam>);
         }
     }
 }

@@ -12,11 +12,17 @@ using System.Collections.Generic;
 
 namespace Framework.Blocks.Model.Schema
 {
+    //
+    // Block: CUSTOM
+    // These types of blocks are composed of inner
+    // block references inter-connected. They are
+    // defined by user.
+    //
+
     public class FW_BlkBlockCustom : FW_BlkABlock
     {
         //
-        // Block internal wiring.
-        // For CUSTOM blocks.
+        // Wiring of internal block references.
         //
 
         public ICollection<FW_BlkConnector> Connections { get; set; }
@@ -26,7 +32,7 @@ namespace Framework.Blocks.Model.Schema
         //
 
         public FW_BlkBlockCustom() : base()
-        { 
+        {
             Connections = default(ICollection<FW_BlkConnector>);
         }
     }

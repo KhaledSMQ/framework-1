@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\IBlock.cs" />
     <Compile Include="API\IMemStore.cs" />
     <Compile Include="API\IStore.cs" />
     <Compile Include="API\SrvMemStore.cs" />
@@ -67,7 +68,11 @@
     <Compile Include="Model\Mem\MemParam.cs" />
     <Compile Include="Model\Mem\MemBlock.cs" />
     <Compile Include="Model\Mem\MemModule.cs" />
-    <Compile Include="Model\Patterns\IComponent.cs" />
+    <Compile Include="Model\Runtime\Context.cs" />
+    <Compile Include="Model\Runtime\Block.cs" />
+    <Compile Include="Model\Runtime\Output.cs" />
+    <Compile Include="Model\Runtime\Input.cs" />
+    <Compile Include="Model\Schema\FW_BlkBlockCall.cs" />
     <Compile Include="Model\Schema\FW_BlkBlockNative.cs" />
     <Compile Include="Model\Schema\FW_BlkBlockCustom.cs" />
     <Compile Include="Model\Schema\FW_BlkABlock.cs" />
