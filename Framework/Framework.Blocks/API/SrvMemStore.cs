@@ -38,7 +38,6 @@ namespace Framework.Blocks.API
 
             __Domains = new SortedDictionary<Id, MemDomain>();
             __Modules = new SortedDictionary<Id, MemModule>();
-            __Flows = new SortedDictionary<Id, MemFlow>();
             __Blocks = new SortedDictionary<Id, MemBlock>();
         }
 
@@ -91,7 +90,6 @@ namespace Framework.Blocks.API
                 __Add(__Modules, memModule, "module '{0}' already defined!");
 
                 import.Modules.Apply(mod => Module_Import(id, mod));
-                import.Flows.Apply(flow => Flow_Import(id, flow));
                 import.Blocks.Apply(block => Block_Import(id, block));
             }
             else
@@ -110,47 +108,13 @@ namespace Framework.Blocks.API
         public IEnumerable<MemModule> Module_GetList()
         {
             return __GetList(__Modules);
-        }
+        } 
 
         //
-        // FLOWS
+        // BLOCK
         //
 
-        public Id Flow_Import(Id parentID, FW_BlkFlow import)
-        {
-            Id id = default(Id);
-
-            if (null != import)
-            {
-                id = parentID + import.Name;
-
-                MemFlow memFlow = new MemFlow() { ID = id };
-
-                __Add(__Flows, memFlow, "flow '{0}' already defined!");
-            }
-            else
-            {
-                Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "invalid module object to import");
-            }
-
-            return id;
-        }
-
-        public MemFlow Flow_Get(Id id)
-        {
-            return __Get(__Flows, id, "flow '{0}' is not defined!");
-        }
-
-        public IEnumerable<MemFlow> Flow_GetList()
-        {
-            return __GetList(__Flows);
-        }
-
-        //
-        // BLOCKS
-        //
-
-        public Id Block_Import(Id parentID, FW_BlkBlock import)
+        public Id Block_Import(Id parentID, FW_BlkABlock import)
         {
             Id id = default(Id);
 
@@ -219,7 +183,6 @@ namespace Framework.Blocks.API
 
         private IDictionary<Id, MemDomain> __Domains = null;
         private IDictionary<Id, MemModule> __Modules = null;
-        private IDictionary<Id, MemFlow> __Flows = null;
         private IDictionary<Id, MemBlock> __Blocks = null;
     }
 }

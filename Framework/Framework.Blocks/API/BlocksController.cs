@@ -16,16 +16,10 @@ namespace Framework.Blocks.API
     {
         //
         // EVALUATE
-        // Execute components.
+        // Execute blocks.
         //
 
-        [ActionName("flow.evaluate"), HttpPost, HttpPut]
-        public IHttpActionResult Entity_Create([FromUri] string id)
-        {
-            return Run(() => { return Scope.Hub.GetUnique<IStore>().Flow_Evaluate(id, Request.Content.ReadAsStringAsync().Result); });
-        }
-
-        [ActionName("block.evaluate"), HttpGet]
+        [ActionName("eval"), HttpGet]
         public IHttpActionResult Entity_Query([FromUri] string id)
         {
             return Run(() => { return Scope.Hub.GetUnique<IStore>().Block_Evalute(id, Request.Content.ReadAsStringAsync().Result); });
@@ -52,12 +46,6 @@ namespace Framework.Blocks.API
         public IHttpActionResult Mem_Modules()
         {
             return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetModules(); });
-        }
-
-        [ActionName("mem.flows"), HttpGet]
-        public IHttpActionResult Mem_Flows()
-        {
-            return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetFlows(); });
         }
 
         [ActionName("mem.blocks"), HttpGet]

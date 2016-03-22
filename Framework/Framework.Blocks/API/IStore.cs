@@ -24,10 +24,8 @@ namespace Framework.Blocks.API
 
         //
         // EVALUATE
-        // Execute components.
+        // Evaluate components.
         //
-
-        object Flow_Evaluate(string flowID, object args);
 
         object Block_Evalute(string blockID, object args);
 
@@ -41,8 +39,6 @@ namespace Framework.Blocks.API
         object Mem_GetDomains();
 
         object Mem_GetModules();
-
-        object Mem_GetFlows();
 
         object Mem_GetBlocks();
     }

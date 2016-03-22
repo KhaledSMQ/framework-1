@@ -7,27 +7,27 @@
 // Description: 
 // ============================================================================
 
-using Framework.Core.Patterns;
-using Framework.Core.Types.Specialized;
+using Framework.Blocks.Model.Patterns;
 using System.Collections.Generic;
 
-namespace Framework.Blocks.Model.Mem
+namespace Framework.Blocks.Model.Schema
 {
-    public class MemFlow : MemComponent, IID<Id>
+    public class FW_BlkBlockCustom : FW_BlkABlock
     {
         //
-        // PROPERTIES
-        //
-        //
-
-        public IDictionary<Id, MemConnector> Connections { get; set; }
-
-        // CONSTRUCTORS
+        // Block internal wiring.
+        // For CUSTOM blocks.
         //
 
-        public MemFlow() : base()
-        {
-            Connections = default(IDictionary<Id, MemConnector>);
+        public ICollection<FW_BlkConnector> Connections { get; set; }
+
+        //
+        // CONSTRUCTORS 
+        //
+
+        public FW_BlkBlockCustom() : base()
+        { 
+            Connections = default(ICollection<FW_BlkConnector>);
         }
     }
 }

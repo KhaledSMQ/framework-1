@@ -65,18 +65,17 @@
     <Compile Include="Model\Mem\MemConnector.cs" />
     <Compile Include="Model\Mem\MemDomain.cs" />
     <Compile Include="Model\Mem\MemParam.cs" />
-    <Compile Include="Model\Mem\MemComponent.cs" />
-    <Compile Include="Model\Mem\MemFlow.cs" />
     <Compile Include="Model\Mem\MemBlock.cs" />
     <Compile Include="Model\Mem\MemModule.cs" />
     <Compile Include="Model\Patterns\IComponent.cs" />
-    <Compile Include="Model\Schema\FW_BlkBlock.cs" />
+    <Compile Include="Model\Schema\FW_BlkBlockNative.cs" />
+    <Compile Include="Model\Schema\FW_BlkBlockCustom.cs" />
+    <Compile Include="Model\Schema\FW_BlkABlock.cs" />
     <Compile Include="Model\Schema\FW_BlkConnector.cs" />
-    <Compile Include="Model\Schema\FW_BlkEdge.cs" />
-    <Compile Include="Model\Schema\FW_BlkFlow.cs" />
     <Compile Include="Model\Schema\FW_BlkDomain.cs" />
     <Compile Include="Model\Schema\FW_BlkModule.cs" />
     <Compile Include="Model\Schema\FW_BlkParam.cs" />
+    <Compile Include="Model\Schema\_Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

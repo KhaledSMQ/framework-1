@@ -55,11 +55,6 @@ namespace Framework.Blocks.API
         // Execute components.
         //
 
-        public object Flow_Evaluate(string flowID, object args)
-        {
-            return null;
-        }
-
         public object Block_Evalute(string blockID, object args)
         {
             return null;
@@ -75,7 +70,6 @@ namespace Framework.Blocks.API
             return new {
                 Domains = Mem_GetDomains(),
                 Modules = Mem_GetModules(),
-                Flows = Mem_GetFlows(),
                 Blocks = Mem_GetBlocks()
             };
         }
@@ -88,11 +82,6 @@ namespace Framework.Blocks.API
         public object Mem_GetModules()
         {
             return srvMemStore.Module_GetList();
-        }
-
-        public object Mem_GetFlows()
-        {
-            return srvMemStore.Flow_GetList();
         }
 
         public object Mem_GetBlocks()

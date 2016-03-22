@@ -35,23 +35,13 @@ namespace Framework.Blocks.API
 
         MemModule Module_Get(Id id);
 
-        IEnumerable<MemModule> Module_GetList();
-
-        //
-        // FLOWS
-        //
-
-        Id Flow_Import(Id moduleID, FW_BlkFlow flow);
-
-        MemFlow Flow_Get(Id id);
-
-        IEnumerable<MemFlow> Flow_GetList();
+        IEnumerable<MemModule> Module_GetList();     
 
         //
         // BLOCK
         //
 
-        Id Block_Import(Id moduleID, FW_BlkBlock block);
+        Id Block_Import(Id moduleID, FW_BlkABlock block);
 
         MemBlock Block_Get(Id id);
 

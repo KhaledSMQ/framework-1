@@ -12,14 +12,14 @@ using System.Collections.Generic;
 
 namespace Framework.Blocks.Model.Schema
 {
-    public class FW_BlkBlock : IComponent
+    public abstract class FW_BlkABlock : IComponent
     {
         //
         // Numeric identifier for block.
         //
 
         public int ID { get; set; }
-
+     
         //
         // Name for block.
         //
@@ -42,13 +42,13 @@ namespace Framework.Blocks.Model.Schema
         // Configuration properties for block.
         //
 
-        public ICollection<FW_BlkParam> Properties { get; set; }
+        public ICollection<FW_BlkParam> Properties { get; set; }        
 
         //
         // CONSTRUCTORS 
         //
 
-        public FW_BlkBlock()
+        public FW_BlkABlock()
         {
             ID = -1;
             Name = default(string);
