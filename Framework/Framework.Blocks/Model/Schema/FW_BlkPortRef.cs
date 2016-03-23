@@ -11,7 +11,7 @@ using Framework.Core.Patterns;
 
 namespace Framework.Blocks.Model.Schema
 {
-    public class FW_BlkParam : IID<int>
+    public class FW_BlkPortRef : IID<int>
     {
         //
         // Numeric identifier for parameter/property.
@@ -20,40 +20,28 @@ namespace Framework.Blocks.Model.Schema
         public int ID { get; set; }
 
         //
-        // Name for parameter/property.
+        // Identifier for block referecne.
+        // If value is null then it means that the
+        // port references the block that we are defining.
+        //
+
+        public string BlockRef { get; set; }  
+
+        //
+        // Name for port.
         // 
 
         public string Name { get; set; }
 
         //
-        // Small description for property/parameter.
-        //
-
-        public string Description { get; set; }
-
-        //
-        // Type name for property.
-        //
-
-        public string Type { get; set; }
-
-        //
-        // States if propery value is required or not.
-        //
-
-        public bool Required { get; set; }
-
-        //
         // CONSTRUCTORS
         //
 
-        public FW_BlkParam()
+        public FW_BlkPortRef()
         {
             ID = default(int);
+            BlockRef = default(string);
             Name = default(string);
-            Description = default(string);
-            Type = default(string);
-            Required = default(bool);
         }
     }
 }

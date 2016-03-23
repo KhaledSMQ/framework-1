@@ -13,18 +13,6 @@ using Newtonsoft.Json.Converters;
 namespace Framework.Blocks.Model.Schema
 {
     //
-    // Caracterization of a block.
-    //
-
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum TypeOfBlock
-    {
-        UNKNOWN,
-        NATIVE,
-        CUSTOM
-    }
-
-    //
     // Caracterization of the connection port.
     //
 
@@ -33,6 +21,6 @@ namespace Framework.Blocks.Model.Schema
     {
         UNKNOWN,
         IN,
-        OUT,
+        OUT
     }
 }

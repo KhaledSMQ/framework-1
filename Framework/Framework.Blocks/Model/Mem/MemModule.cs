@@ -8,31 +8,25 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
-using System.Collections.Generic;
+using Framework.Core.Types.Specialized;
 
-namespace Framework.Blocks.Model.Schema
+namespace Framework.Blocks.Model.Mem
 {
-    public class FW_BlkDomain : IID<int>
+    public class MemModule : IID<Id>
     {
         //
         // PROPERTIES
         //
 
-        public int ID { get; set; }
-
-        public string Name { get; set; }
-        
-        public ICollection<FW_BlkModule> Modules { get; set; }
+        public Id ID { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public FW_BlkDomain()
+        public MemModule()
         {
-            ID = default(int);
-            Name = default(string);
-            Modules = default(ICollection<FW_BlkModule>);
+            ID = default(Id);
         }
     }
 }

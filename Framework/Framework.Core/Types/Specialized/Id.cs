@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace Framework.Core.Types.Specialized
 {
-    public class Id
+    public class Id : IComparable
     {
         //
         // Check if identifier is simple.
@@ -133,6 +133,11 @@ namespace Framework.Core.Types.Specialized
         public override string ToString()
         {
             return _Parcels.Join(_Separator);
+        }
+
+        public int CompareTo(object obj)
+        {
+            return ToString().CompareTo(obj.ToString());
         }
 
         //

@@ -7,6 +7,7 @@
 // Description:
 // ============================================================================
 
+using Framework.Blocks.Model.Schema;
 using Framework.Factory.Patterns;
 using System.Web.Http;
 
@@ -53,5 +54,17 @@ namespace Framework.Blocks.API
         {
             return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetBlocks(); });
         }
+
+        //
+        // DEBUG
+        // Debug hooks.
+        //
+
+        [ActionName("debug.import.domain"), HttpPost]
+        public IHttpActionResult Debug_Import_Domain(FW_BlkDomainDef item)
+        {
+            return Run(() => { return Scope.Hub.GetUnique<IMemStore>().Domain_Import(item); });
+        }
+
     }
 }

@@ -8,38 +8,34 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
+using System.Collections.Generic;
 
 namespace Framework.Blocks.Model.Schema
 {
-    public class FW_BlkConnector : IID<int>
+    public class FW_BlkModuleDef : IID<int>
     {
         //
-        // Numeric identifier for connection.
+        // PROPERTIES
         //
 
         public int ID { get; set; }
 
-        //
-        // Property name from the source block.
-        //
+        public string Name { get; set; }
 
-        public string Source { get; set; }
+        public ICollection<FW_BlkBlockDef> Blocks { get; set; }
 
-        //
-        // Property name for the target block.
-        //
-
-        public string Target { get; set; }
+        public ICollection<FW_BlkModuleDef> Modules { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public FW_BlkConnector()
+        public FW_BlkModuleDef()
         {
             ID = default(int);
-            Source = default(string);
-            Target = default(string);
+            Name = default(string);
+            Blocks = default(ICollection<FW_BlkBlockDef>);
+            Modules = default(ICollection<FW_BlkModuleDef>);
         }
     }
 }

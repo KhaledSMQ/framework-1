@@ -8,34 +8,52 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
-using System.Collections.Generic;
 
 namespace Framework.Blocks.Model.Schema
 {
-    public class FW_BlkModule : IID<int>
+    public class FW_BlkPropertyDef : IID<int>
     {
         //
-        // PROPERTIES
+        // Identifier for property.
         //
 
         public int ID { get; set; }
 
+        //
+        // Name for property.
+        // 
+
         public string Name { get; set; }
 
-        public ICollection<FW_BlkABlock> Blocks { get; set; }
+        //
+        // Description for property.
+        //
 
-        public ICollection<FW_BlkModule> Modules { get; set; }
+        public string Description { get; set; }
+
+        //
+        // Type for property.
+        //
+
+        public string Type { get; set; }
+
+        //
+        // Is this property required?
+        //
+
+        public bool Required { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public FW_BlkModule()
+        public FW_BlkPropertyDef()
         {
             ID = default(int);
             Name = default(string);
-            Blocks = default(ICollection<FW_BlkABlock>);
-            Modules = default(ICollection<FW_BlkModule>);
+            Description = default(string);
+            Type = default(string);
+            Required = default(bool);
         }
     }
 }

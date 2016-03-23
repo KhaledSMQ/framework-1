@@ -9,25 +9,27 @@
 
 using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
-using System.Collections.Generic;
 
 namespace Framework.Blocks.Model.Mem
 {
-    public class MemDomain : IID<Id>
+    public class MemConnector
     {
         //
         // PROPERTIES
         //
 
-        public Id ID { get; set; }
+        public Id Name { get; set; }
+
+        public Id Target { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public MemDomain()
+        public MemConnector()
         {
-            ID = default(Id);
+            Name = default(Id);
+            Target = default(Id);
         }
     }
 }
