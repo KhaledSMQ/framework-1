@@ -151,6 +151,7 @@ namespace Framework.Blocks.API
                         MemPort memPort = new MemPort()
                         {
                             ID = memPortID,
+                            Kind = port.Kind,
                             Type = port.Type,
                             Required = port.Required
                         };
