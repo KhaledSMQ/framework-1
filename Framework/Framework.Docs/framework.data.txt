@@ -13,20 +13,21 @@
 	----
 
 	2. Features
-
-
-		a) Domains
-			a.1 Multi-domain data model specifications
-
-		b) Entities		
-			b.1 Customized data operations (e.g. CRUD) pipeline.
-		
-		c) Queries
-			c.1 User defined queries (query language)
-			c.2 Query result cache (same arguments, same result, function memoization)
-
 			
 	----
 
+	[TODO]
 
-		
+		[ ] Add Linq parser for user specified queries
+		[ ] Automatic support for paging in user defined queries (at least the queries that return list of itens)		
+		[ ] Method to unload data domains from the memory store
+		[ ] Method to import data domains to memory only (for testing purposes)
+		[ ] Method to unload all the memory store service
+		[ ] Method to dump the state in the memory state service (e.g. domains, clusters, etc.)
+		[ ] Function memmoization for queries. Allows de developer to define a time interval where the query result
+		    is cached. This depends on the input parameters of the query, caching is based on input parameters.
+		[ ] Customized data CRUD operations pipeline. Allow the developer/power user to define a custom processing
+		    flow for the CRUD operations.
+		[ ] Import mechanism for data domains, including partial imports. Partial imports are for example, add
+		    a new data entity to an already defined data cluster.
+			
