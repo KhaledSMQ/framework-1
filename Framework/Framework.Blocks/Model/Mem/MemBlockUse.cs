@@ -7,13 +7,12 @@
 // Description: 
 // ============================================================================
 
-using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
 using System.Collections.Generic;
 
 namespace Framework.Blocks.Model.Mem
 {
-    public class MemBlockRef 
+    public class MemBlockUse 
     {
         //
         // PROPERTIES
@@ -27,7 +26,7 @@ namespace Framework.Blocks.Model.Mem
         // CONSTRUCTORS 
         //
 
-        public MemBlockRef()
+        public MemBlockUse()
         {
             Def = default(Id);
             Properties = default(IDictionary<Id, object>);

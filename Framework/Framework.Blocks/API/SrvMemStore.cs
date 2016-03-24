@@ -44,6 +44,25 @@ namespace Framework.Blocks.API
         }
 
         //
+        // STORE
+        //
+
+        public object Dump()
+        {
+            return new
+            {
+                Domains = Domain_GetList(),
+                Modules = Module_GetList(),
+                Blocks = Block_GetList()
+            };
+        }
+
+        public object Clear()
+        {
+            return Domain_Clear();
+        }
+
+        //
         // DOMAINS
         //
 
@@ -269,11 +288,11 @@ namespace Framework.Blocks.API
                 // Process: BLOCKS
                 //
 
-                IDictionary<Id, MemBlockRef> defBlock_Blocks = null;
+                IDictionary<Id, MemBlockUse> defBlock_Blocks = null;
 
                 if (fwBlockDef.Blocks.NotEmpty())
                 {
-                    defBlock_Blocks = new SortedDictionary<Id, MemBlockRef>();
+                    defBlock_Blocks = new SortedDictionary<Id, MemBlockUse>();
 
                     fwBlockDef.Blocks.Apply(block =>
                     {
@@ -311,7 +330,7 @@ namespace Framework.Blocks.API
                         // definition.
                         //
 
-                        MemBlockRef refBlock = new MemBlockRef()
+                        MemBlockUse refBlock = new MemBlockUse()
                         {
                             Def = refBlock_Def,
                             Properties = refBlock_Properties
@@ -387,7 +406,7 @@ namespace Framework.Blocks.API
                     Properties = defBlock_Properties,
                     Ports = defBlock_Ports,
                     Blocks = defBlock_Blocks,
-                    Connections = defBlock_Connections
+                    Flow = defBlock_Connections
                 };
 
                 //

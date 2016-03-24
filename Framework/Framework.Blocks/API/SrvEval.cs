@@ -7,17 +7,18 @@
 // Description: 
 // ============================================================================
 
+using Framework.Core.Types.Specialized;
 using Framework.Factory.Patterns;
 
 namespace Framework.Blocks.API
 {
-    public class SrvStore : ACommon, IStore
+    public class SrvEval : ACommon, IEval
     {
         //
         // Service dependencies.
         //
 
-        protected IMemStore srvMemStore { get; set; }
+        protected IStore srvStore { get; set; }
 
         //
         // Service initialization. 
@@ -38,24 +39,20 @@ namespace Framework.Blocks.API
             // do not have dependencies that are circular to this service.
             //
 
-            srvMemStore = Scope.Hub.GetUnique<IMemStore>();
-        }
-
-        //
-        // Load configuration values from the configuration store.
-        // Load all settings, but also the data domains defined.
-        //
-
-        public void LoadConfiguration()
-        {
+            srvStore = Scope.Hub.GetUnique<IStore>();
         }
 
         //
         // EVALUATE
-        // Execute components.
+        // Evaluate a block based on its unique id.
         //
 
-        public object Block_Evaluate(string blockID, object args)
+        public object Eval(string blockID, object args)
+        {
+            return Eval(new Id(blockID), args);
+        }
+
+        public object Eval(Id blockID, object args)
         {
             return null;
         }

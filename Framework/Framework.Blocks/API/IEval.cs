@@ -7,26 +7,20 @@
 // Description:
 // ============================================================================
 
+using Framework.Core.Types.Specialized;
 using Framework.Factory.Patterns;
 
 namespace Framework.Blocks.API
 {
-    public interface IStore : ICommon
+    public interface IEval : ICommon
     {
         //
-        // Load configuration settings for the store.
-        // This will load all settings but also the 
-        // data domains that are defined on the configuration
-        // store.
-        //
-
-        void LoadConfiguration();
-
-        //
         // EVALUATE
-        // Evaluate components.
+        // Evaluate a block based on its unique id.
         //
 
-        object Block_Evaluate(string blockID, object args);
+        object Eval(string blockID, object args);
+
+        object Eval(Id blockID, object args);
     }
 }

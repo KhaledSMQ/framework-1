@@ -16,7 +16,15 @@ using System.Collections.Generic;
 namespace Framework.Blocks.API
 {
     public interface IMemStore : ICommon
-    { 
+    {
+        //
+        // STORE
+        //
+
+        object Dump();
+
+        object Clear();
+
         //
         // DOMAIN
         //    

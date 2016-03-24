@@ -28,9 +28,9 @@ namespace Framework.Blocks.Model.Mem
 
         public IDictionary<Id, MemPort> Ports { get; set; }
 
-        public IDictionary<Id, MemBlockRef> Blocks { get; set; }
+        public IDictionary<Id, MemBlockUse> Blocks { get; set; }
 
-        public IDictionary<Id, IDictionary<Id, MemConnector>> Connections { get; set; }
+        public IDictionary<Id, IDictionary<Id, MemConnector>> Flow { get; set; }
 
         //
         // CONSTRUCTORS
@@ -42,8 +42,8 @@ namespace Framework.Blocks.Model.Mem
             Type = default(Type);
             Properties = default(IDictionary<Id, MemProperty>);
             Ports = default(IDictionary<Id, MemPort>);
-            Blocks = default(IDictionary<Id, MemBlockRef>);
-            Connections = default(IDictionary<Id, IDictionary<Id, MemConnector>>);
+            Blocks = default(IDictionary<Id, MemBlockUse>);
+            Flow = default(IDictionary<Id, IDictionary<Id, MemConnector>>);
         }
     }
 }
