@@ -36,12 +36,6 @@ namespace Framework.Blocks.Model.Schema
         public string Def { get; set; }
 
         //
-        // Instance port definitions. 
-        //
-
-        public ICollection<FW_BlkPortDef> Ports { get; set; }
-
-        //
         // Specific properties for the block instance.
         //
 
@@ -56,7 +50,6 @@ namespace Framework.Blocks.Model.Schema
             ID = -1;
             Name = default(string);
             Def = default(string);
-            Ports = default(ICollection<FW_BlkPortDef>);
             Properties = default(ICollection<FW_BlkPropertyRef>);           
         }
     }

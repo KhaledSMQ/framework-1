@@ -14,6 +14,7 @@ using Framework.Core.Extensions;
 using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
 using Framework.Factory.Patterns;
+using System;
 using System.Collections.Generic;
 
 namespace Framework.Blocks.API
@@ -38,7 +39,7 @@ namespace Framework.Blocks.API
 
             __Domains = new SortedDictionary<Id, MemDomain>();
             __Modules = new SortedDictionary<Id, MemModule>();
-            __Blocks = new SortedDictionary<Id, MemBlockTemplate>();
+            __Blocks = new SortedDictionary<Id, MemBlockDef>();
         }
 
         //
@@ -119,160 +120,193 @@ namespace Framework.Blocks.API
         // BLOCK
         //
 
-        public Id Block_Import(Id parentID, FW_BlkBlockDef import)
+        public Id Block_Import(Id parentID, FW_BlkBlockDef fwBlockDef)
         {
-            Id memBlockTemplateID = default(Id);
+            Id defBlock_ID = default(Id);
 
-            if (null != import)
+            if (null != fwBlockDef)
             {
-                memBlockTemplateID = parentID + import.Name;
-
-                MemBlockTemplate memBlockTemplate = new MemBlockTemplate()
-                {
-                    ID = memBlockTemplateID,
-                    Description = import.Description,
-                    TypeName = import.TypeName
-                };
-
-                __Add(__Blocks, memBlockTemplate, "block '{0}' already defined!");
-
                 //
-                // PORTS
+                // Process: ID
                 //
 
-                if (import.Ports.NotEmpty())
-                {
-                    memBlockTemplate.Ports = new SortedDictionary<Id, MemPort>();
+                defBlock_ID = parentID + fwBlockDef.Name;
 
-                    import.Ports.Apply(port =>
+                //
+                // Process: TYPE
+                //
+
+                Type defBlock_Type = fwBlockDef.TypeName.isNotNullAndEmpty() ? Type.GetType(fwBlockDef.TypeName) : default(Type);
+
+                //
+                // Process: PORTS
+                //
+
+                IDictionary<Id, MemPort> defBlock_Ports = null;
+
+                if (fwBlockDef.Ports.NotEmpty())
+                {
+                    defBlock_Ports = new SortedDictionary<Id, MemPort>();
+
+                    fwBlockDef.Ports.Apply(port =>
                     {
-                        Id memPortID = new Id(port.Name);
+                        //
+                        // Process: ID
+                        //
+
+                        Id memPort_ID = new Id(port.Name);
+
+                        //
+                        // Process: TYPE
+                        //
+
+                        Type memPort_Type = port.TypeName.isNotNullAndEmpty() ? Type.GetType(port.TypeName) : default(Type);
+
+                        //
+                        // Put together the port definition
+                        // and add it to current block 
+                        // definition.
+                        //
 
                         MemPort memPort = new MemPort()
                         {
-                            ID = memPortID,
                             Kind = port.Kind,
-                            Type = port.Type,
+                            Type = memPort_Type,
                             Required = port.Required
                         };
 
-                        memBlockTemplate.Ports.Add(memPortID, memPort);
+                        defBlock_Ports.Add(memPort_ID, memPort);
                     });
                 }
 
                 //
-                // PROPERTIES
+                // Process: PROPERTIES
                 //
 
-                if (import.Properties.NotEmpty())
+                IDictionary<Id, MemProperty> defBlock_Properties = null;
+
+                if (fwBlockDef.Properties.NotEmpty())
                 {
-                    memBlockTemplate.Properties = new SortedDictionary<Id, MemProperty>();
+                    defBlock_Properties = new SortedDictionary<Id, MemProperty>();
 
-                    import.Properties.Apply(property =>
+                    fwBlockDef.Properties.Apply(property =>
                     {
-                        Id memPropertyID = new Id(property.Name);
+                        //
+                        // Process: ID
+                        //
 
-                        MemProperty memProperty = new MemProperty()
+                        Id defProperty_ID = new Id(property.Name);
+
+                        //
+                        // Process: TYPE
+                        //
+
+                        Type defProperty_Type = property.TypeName.isNotNullAndEmpty() ? Type.GetType(property.TypeName) : default(Type);
+
+                        //
+                        // Put together the property definition
+                        // and add to block definition set of
+                        // properties.
+                        //
+
+                        MemProperty defProperty = new MemProperty()
                         {
-                            ID = memPropertyID,
-                            Description = property.Description,
-                            Type = property.Type
+                            ID = defProperty_ID,
+                            Type = defProperty_Type
                         };
 
-                        __Add(memBlockTemplate.Properties, memProperty, "property '{0}' already defined!");
+                        defBlock_Properties.Add(defProperty_ID, defProperty);
                     });
                 }
 
                 //
-                // GRAPH: NODES/BLOCKS
+                // Process: BLOCKS
                 //
 
-                if (import.BlockRefs.NotEmpty())
+                IDictionary<Id, MemBlockRef> defBlock_Blocks = new SortedDictionary<Id, MemBlockRef>();
+
+                if (fwBlockDef.Blocks.NotEmpty())
                 {
-                    memBlockTemplate.Blocks = new SortedDictionary<Id, MemBlock>();
+                    defBlock_Blocks = new SortedDictionary<Id, MemBlockRef>();
 
-                    import.BlockRefs.Apply(blockRef =>
+                    fwBlockDef.Blocks.Apply(block =>
                     {
-                        Id memBlockRefID = new Id(blockRef.Name);
-                        Id memBlockRefDefID = new Id(blockRef.Def);
-
-                        MemBlock memBlock = new MemBlock()
-                        {
-                            ID = memBlockRefID,
-                            Def = memBlockRefDefID
-                        };
-
                         //
-                        // PORTS
+                        // Process: ID
                         //
 
-                        if (blockRef.Ports.NotEmpty())
-                        {
-                            memBlock.Ports = new SortedDictionary<Id, MemPort>();
+                        Id refBlock_ID = new Id(block.Name);
 
-                            blockRef.Ports.Apply(port => 
+                        //
+                        // Process: DEF
+                        //
+
+                        Id refBlock_Def = new Id(block.Def);
+
+                        //
+                        // Process: PROPERTIES
+                        //
+
+                        IDictionary<Id, object> refBlock_Properties = null;
+
+                        if (block.Properties.NotEmpty())
+                        {
+                            refBlock_Properties = new SortedDictionary<Id, object>();
+
+                            block.Properties.Apply(property =>
                             {
-                                Id memPortID = memBlockRefID + port.Name;
-
-                                MemPort memPort = new MemPort()
-                                {
-                                    ID = memPortID,
-                                    Type = port.Type,
-                                    Required = port.Required
-                                };
-
-                                memBlock.Ports.Add(memPortID, memPort);
+                                Id propertyValueID = refBlock_ID + property.Name;
+                                refBlock_Properties.Add(propertyValueID, property.Value);
                             });
                         }
 
                         //
-                        // PROPERTIES
+                        // Put together the complete block 
+                        // reference and add it to main block
+                        // definition.
                         //
 
-                        if (blockRef.Properties.NotEmpty())
+                        MemBlockRef refBlock = new MemBlockRef()
                         {
-                            memBlock.Properties = new SortedDictionary<Id, string>();
+                            Def = refBlock_Def,
+                            Properties = refBlock_Properties
+                        };
 
-                            blockRef.Properties.Apply(property =>
-                            {
-                                Id propertyValueID = memBlockRefID + property.Name;
-                                memBlock.Properties.Add(propertyValueID, property.Value);
-                            });
-                        }
-
-                        __Add(memBlockTemplate.Blocks, memBlock, "block reference already defined '{0}'");
+                        defBlock_Blocks.Add(refBlock_ID, refBlock);
                     });
                 }
 
                 //
-                // GRAPH: EDGES/CONNECTIONS/FLOW
+                // Process: CONNECTIONS
                 //
 
-                if (import.Connections.NotEmpty())
+                IDictionary<Id, IDictionary<Id, MemConnector>> defBlock_Connections = new SortedDictionary<Id, IDictionary<Id, MemConnector>>();
+
+                if (fwBlockDef.Connections.NotEmpty())
                 {
                     int indexConn = 0;
 
-                    memBlockTemplate.Connections = new SortedDictionary<Id, IList<MemConnector>>();
+                    defBlock_Connections = new SortedDictionary<Id, IDictionary<Id, MemConnector>>();
 
-                    import.Connections.Apply(conn =>
+                    fwBlockDef.Connections.Apply(conn =>
                     {
                         //
                         // Process: NAME
                         //
 
-                        string connName = conn.Name.isNotNullAndEmpty() ? conn.Name : "__C" + ++indexConn;
+                        string conn_Name = conn.Name.isNotNullAndEmpty() ? conn.Name : "__C" + indexConn++;
 
                         //
                         // Process: SOURCE
                         //
 
-                        Id sourcePortID = new Id(conn.Source.BlockRef, conn.Source.Name);
+                        Id conn_Source = new Id(conn.Source.Block, conn.Source.Name);
 
                         //
                         // Process: TARGET
                         //
 
-                        Id targetPortID = new Id(conn.Target.BlockRef, conn.Target.Name);
+                        Id conn_Target = new Id(conn.Target.Block, conn.Target.Name);
 
                         //
                         // Build connection object.
@@ -280,37 +314,57 @@ namespace Framework.Blocks.API
 
                         MemConnector memConnector = new MemConnector()
                         {
-                            Name = new Id(connName),
-                            Target = targetPortID
+                            Name = new Id(conn_Name)
                         };
 
                         //
                         // Add connection obejct to block connection set.
                         //
 
-                        if (!memBlockTemplate.Connections.ContainsKey(sourcePortID))
+                        if (!defBlock_Connections.ContainsKey(conn_Source))
                         {
-                            memBlockTemplate.Connections.Add(sourcePortID, new List<MemConnector>());
+                            defBlock_Connections.Add(conn_Source, new SortedDictionary<Id, MemConnector>());
                         }
 
-                        memBlockTemplate.Connections[sourcePortID].Add(memConnector);
+                        defBlock_Connections[conn_Source][conn_Target] = memConnector;
                     });
                 }
+
+                //
+                // Put together the complete block definition.
+                // 
+
+                MemBlockDef defBlock = new MemBlockDef()
+                {
+                    ID = defBlock_ID,
+                    Type = defBlock_Type,
+                    Properties = defBlock_Properties,
+                    Ports = defBlock_Ports,
+                    Blocks = defBlock_Blocks,
+                    Connections = defBlock_Connections
+                };
+
+                //
+                // Add it to memory store.
+                //
+
+                __Add(__Blocks, defBlock, "block '{0}' already defined!");
+
             }
             else
             {
                 Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "invalid block object to import");
             }
 
-            return memBlockTemplateID;
+            return defBlock_ID;
         }
 
-        public MemBlockTemplate Block_Get(Id id)
+        public MemBlockDef Block_Get(Id id)
         {
             return __Get(__Blocks, id, "block '{0}' is not defined!");
         }
 
-        public IEnumerable<MemBlockTemplate> Block_GetList()
+        public IEnumerable<MemBlockDef> Block_GetList()
         {
             return __GetList(__Blocks);
         }
@@ -354,6 +408,6 @@ namespace Framework.Blocks.API
 
         private IDictionary<Id, MemDomain> __Domains = null;
         private IDictionary<Id, MemModule> __Modules = null;
-        private IDictionary<Id, MemBlockTemplate> __Blocks = null;
+        private IDictionary<Id, MemBlockDef> __Blocks = null;
     }
 }

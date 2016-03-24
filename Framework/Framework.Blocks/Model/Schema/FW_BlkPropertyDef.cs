@@ -35,7 +35,7 @@ namespace Framework.Blocks.Model.Schema
         // Type for property.
         //
 
-        public string Type { get; set; }
+        public string TypeName { get; set; }
 
         //
         // Is this property required?
@@ -52,7 +52,7 @@ namespace Framework.Blocks.Model.Schema
             ID = default(int);
             Name = default(string);
             Description = default(string);
-            Type = default(string);
+            TypeName = default(string);
             Required = default(bool);
         }
     }

@@ -115,6 +115,7 @@
     <Compile Include="Reflection\ReflectionUtils.cs" />
     <Compile Include="Types\Specialized\AssemblyInfo.cs" />
     <Compile Include="Types\Specialized\Id.cs" />
+    <Compile Include="Serializers\IdJsonSerializer.cs" />
     <Compile Include="Types\Specialized\NamespaceInfo.cs" />
     <Compile Include="Types\Specialized\Setting.cs" />
     <Compile Include="Types\Specialized\WebResource.cs" />

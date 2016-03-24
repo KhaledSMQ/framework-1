@@ -25,7 +25,7 @@ namespace Framework.Blocks.Model.Schema
         // port references the block that we are defining.
         //
 
-        public string BlockRef { get; set; }  
+        public string Block { get; set; }  
 
         //
         // Name for port.
@@ -40,7 +40,7 @@ namespace Framework.Blocks.Model.Schema
         public FW_BlkPortRef()
         {
             ID = default(int);
-            BlockRef = default(string);
+            Block = default(string);
             Name = default(string);
         }
     }

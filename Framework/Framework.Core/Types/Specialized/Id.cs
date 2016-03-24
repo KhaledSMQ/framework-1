@@ -8,11 +8,14 @@
 // ============================================================================
 
 using Framework.Core.Extensions;
+using Framework.Core.Serializers;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
 namespace Framework.Core.Types.Specialized
 {
+    [JsonConverter(typeof(IdJsonSerializer))]
     public class Id : IComparable
     {
         //

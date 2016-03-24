@@ -9,11 +9,12 @@
 
 using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
+using System;
 using System.Collections.Generic;
 
 namespace Framework.Blocks.Model.Mem
 {
-    public class MemBlockTemplate : IID<Id>
+    public class MemBlockDef : IID<Id>
     {
         //
         // PROPERTIES
@@ -21,31 +22,28 @@ namespace Framework.Blocks.Model.Mem
 
         public Id ID { get; set; }
 
-        public string Description { get; set; }
-
-        public string TypeName { get; set; }
+        public Type Type { get; set; }
 
         public IDictionary<Id, MemProperty> Properties { get; set; }
 
         public IDictionary<Id, MemPort> Ports { get; set; }
 
-        public IDictionary<Id, MemBlock> Blocks { get; set; }
+        public IDictionary<Id, MemBlockRef> Blocks { get; set; }
 
-        public IDictionary<Id, IList<MemConnector>> Connections { get; set; }
+        public IDictionary<Id, IDictionary<Id, MemConnector>> Connections { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public MemBlockTemplate()
+        public MemBlockDef()
         {
             ID = default(Id);
-            Description = default(string);
-            TypeName = default(string);
+            Type = default(Type);
             Properties = default(IDictionary<Id, MemProperty>);
             Ports = default(IDictionary<Id, MemPort>);
-            Blocks = default(IDictionary<Id, MemBlock>);
-            Connections = default(IDictionary<Id, IList<MemConnector>>);
+            Blocks = default(IDictionary<Id, MemBlockRef>);
+            Connections = default(IDictionary<Id, IDictionary<Id, MemConnector>>);
         }
     }
 }

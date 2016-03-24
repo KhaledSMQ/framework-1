@@ -43,8 +43,8 @@ namespace Framework.Blocks.API
 
         Id Block_Import(Id moduleID, FW_BlkBlockDef block);
 
-        MemBlockTemplate Block_Get(Id id);
+        MemBlockDef Block_Get(Id id);
 
-        IEnumerable<MemBlockTemplate> Block_GetList();         
+        IEnumerable<MemBlockDef> Block_GetList();         
     }
 }

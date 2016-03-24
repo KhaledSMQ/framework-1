@@ -20,8 +20,6 @@ namespace Framework.Blocks.Model.Mem
 
         public Id Name { get; set; }
 
-        public Id Target { get; set; }
-
         //
         // CONSTRUCTORS
         //
@@ -29,7 +27,6 @@ namespace Framework.Blocks.Model.Mem
         public MemConnector()
         {
             Name = default(Id);
-            Target = default(Id);
         }
     }
 }

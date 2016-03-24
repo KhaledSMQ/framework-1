@@ -63,12 +63,12 @@
     <Compile Include="API\SrvStore.cs" />
     <Compile Include="API\BlocksController.cs" />
     <Compile Include="Lib.cs" />
-    <Compile Include="Model\Mem\MemBlock.cs" />
+    <Compile Include="Model\Mem\MemBlockRef.cs" />
     <Compile Include="Model\Mem\MemConnector.cs" />
     <Compile Include="Model\Mem\MemDomain.cs" />
     <Compile Include="Model\Mem\MemPort.cs" />
     <Compile Include="Model\Mem\MemProperty.cs" />
-    <Compile Include="Model\Mem\MemBlockTemplate.cs" />
+    <Compile Include="Model\Mem\MemBlockDef.cs" />
     <Compile Include="Model\Mem\MemModule.cs" />
     <Compile Include="Model\Runtime\Context.cs" />
     <Compile Include="Model\Runtime\Block.cs" />
