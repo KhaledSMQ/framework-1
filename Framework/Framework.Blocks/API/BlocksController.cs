@@ -55,6 +55,12 @@ namespace Framework.Blocks.API
             return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetBlocks(); });
         }
 
+        [ActionName("mem.clear"), HttpGet]
+        public IHttpActionResult Mem_Clear()
+        {
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_Clear(); });
+        }
+
         //
         // DEBUG
         // Debug hooks.

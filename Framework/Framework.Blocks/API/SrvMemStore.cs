@@ -16,6 +16,7 @@ using Framework.Core.Types.Specialized;
 using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Framework.Blocks.API
 {
@@ -54,11 +55,16 @@ namespace Framework.Blocks.API
             {
                 domain_ID = new Id(fwDomainDef.Name);
 
-                MemDomain domain = new MemDomain() { ID = domain_ID };
+                IList<Id> domain_Modules = fwDomainDef.Modules.Map(new List<Id>(), mod => { return Module_Import(domain_ID, mod); });
+
+                MemDomain domain = new MemDomain()
+                {
+                    ID = domain_ID,
+                    Modules = domain_Modules
+                };
 
                 __Add(__Domains, domain, "domain '{0}' already defined!");
 
-                fwDomainDef.Modules.Apply(mod => Module_Import(domain_ID, mod));
             }
             else
             {
@@ -78,6 +84,31 @@ namespace Framework.Blocks.API
             return __GetList(__Domains);
         }
 
+        public void Domain_Unload(MemDomain domain)
+        {
+            Domain_Unload(domain.ID);
+        }
+
+        public void Domain_Unload(string domainID)
+        {
+            Domain_Unload(new Id(domainID));
+        }
+
+        public void Domain_Unload(Id domainID)
+        {
+            MemDomain domain = Domain_Get(domainID);
+            domain.Modules.Apply(Module_Unload);
+            __Delete(__Domains, domainID);
+        }
+
+        public int Domain_Clear()
+        {
+            IEnumerable<MemDomain> listOfDomains = Domain_GetList();
+            int numOfDomains = listOfDomains.Count();
+            listOfDomains.Apply(Domain_Unload);
+            return numOfDomains;
+        }
+
         //
         // MODULES
         //
@@ -88,15 +119,19 @@ namespace Framework.Blocks.API
 
             if (null != fwModuleDef)
             {
-                module_ID = parentID + fwModuleDef.Name;
+                module_ID = parentID + fwModuleDef.Name;                           
 
-                MemModule module = new MemModule() { ID = module_ID };
+                IList<Id> module_Blocks = fwModuleDef.Blocks.Map(new List<Id>(), childFwBlockDef => { return Block_Import(module_ID, childFwBlockDef); });
+
+                MemModule module = new MemModule()
+                {
+                    ID = module_ID,
+                    Blocks = module_Blocks
+                };
 
                 __Add(__Modules, module, "module '{0}' already defined!");
 
                 fwModuleDef.Modules.Apply(childFwModuleDef => Module_Import(module_ID, childFwModuleDef));
-
-                fwModuleDef.Blocks.Apply(childFwBlockDef => Block_Import(module_ID, childFwBlockDef));
             }
             else
             {
@@ -114,6 +149,18 @@ namespace Framework.Blocks.API
         public IEnumerable<MemModule> Module_GetList()
         {
             return __GetList(__Modules);
+        }
+
+        public void Module_Unload(MemModule module)
+        {
+            Module_Unload(module.ID);
+        }
+
+        public void Module_Unload(Id moduleID)
+        {
+            MemModule module = Module_Get(moduleID);
+            module.Blocks.Apply(Block_Unload);
+            __Delete(__Modules, moduleID);
         }
 
         //
@@ -367,6 +414,16 @@ namespace Framework.Blocks.API
             return __GetList(__Blocks);
         }
 
+        public void Block_Unload(MemBlockDef block)
+        {
+            Block_Unload(block.ID);
+        }
+
+        public void Block_Unload(Id blockID)
+        {
+            __Delete(__Blocks, blockID);
+        }
+
         //
         // HELPERS
         //
@@ -397,7 +454,15 @@ namespace Framework.Blocks.API
 
         private IEnumerable<T> __GetList<T>(IDictionary<Id, T> repo)
         {
-            return repo.Values;
+            return repo.Values.ToList();
+        }
+
+        private void __Delete<T>(IDictionary<Id, T> repo, Id id)
+        {
+            if (repo.ContainsKey(id))
+            {
+                repo.Remove(id);
+            }
         }
 
         //

@@ -22,11 +22,18 @@ namespace Framework.Blocks.API
         //    
 
         Id Domain_Import(FW_BlkDomainDef domain);
-
         
         MemDomain Domain_Get(Id id);
 
         IEnumerable<MemDomain> Domain_GetList();
+
+        void Domain_Unload(MemDomain domain);
+
+        void Domain_Unload(string domainID);
+
+        void Domain_Unload(Id domainID);
+
+        int Domain_Clear();
 
         //
         // MODULES

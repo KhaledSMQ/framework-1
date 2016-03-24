@@ -41,5 +41,7 @@ namespace Framework.Blocks.API
         object Mem_GetModules();
 
         object Mem_GetBlocks();
+
+        int Mem_Clear();
     }
 }

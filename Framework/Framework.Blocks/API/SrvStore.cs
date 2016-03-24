@@ -88,5 +88,10 @@ namespace Framework.Blocks.API
         {
             return srvMemStore.Block_GetList();
         }
+
+        public int Mem_Clear()
+        {
+            return srvMemStore.Domain_Clear();
+        }
     }
 }
