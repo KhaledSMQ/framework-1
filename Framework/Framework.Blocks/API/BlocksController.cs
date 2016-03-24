@@ -66,5 +66,10 @@ namespace Framework.Blocks.API
             return Run(() => { return Scope.Hub.GetUnique<IMemStore>().Domain_Import(item); });
         }
 
+        [ActionName("debug.clear"), HttpPost]
+        public IHttpActionResult Debug_Clear(FW_BlkDomainDef item)
+        {
+            return Run(() => { return Scope.Hub.GetUnique<IMemStore>().Domain_Import(item); });
+        }
     }
 }

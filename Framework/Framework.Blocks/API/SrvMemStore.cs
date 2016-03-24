@@ -46,26 +46,26 @@ namespace Framework.Blocks.API
         // DOMAINS
         //
 
-        public Id Domain_Import(FW_BlkDomainDef import)
+        public Id Domain_Import(FW_BlkDomainDef fwDomainDef)
         {
-            Id id = default(Id);
+            Id domain_ID = default(Id);
 
-            if (null != import)
+            if (null != fwDomainDef)
             {
-                id = new Id(import.Name);
+                domain_ID = new Id(fwDomainDef.Name);
 
-                MemDomain memDomain = new MemDomain() { ID = id };
+                MemDomain domain = new MemDomain() { ID = domain_ID };
 
-                __Add(__Domains, memDomain, "domain '{0}' already defined!");
+                __Add(__Domains, domain, "domain '{0}' already defined!");
 
-                import.Modules.Apply(mod => Module_Import(id, mod));
+                fwDomainDef.Modules.Apply(mod => Module_Import(domain_ID, mod));
             }
             else
             {
                 Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "invalid domain object to import");
             }
 
-            return id;
+            return domain_ID;
         }
 
         public MemDomain Domain_Get(Id id)
@@ -82,28 +82,28 @@ namespace Framework.Blocks.API
         // MODULES
         //
 
-        public Id Module_Import(Id parentID, FW_BlkModuleDef import)
+        public Id Module_Import(Id parentID, FW_BlkModuleDef fwModuleDef)
         {
-            Id id = default(Id);
+            Id module_ID = default(Id);
 
-            if (null != import)
+            if (null != fwModuleDef)
             {
-                id = parentID + import.Name;
+                module_ID = parentID + fwModuleDef.Name;
 
-                MemModule memModule = new MemModule() { ID = id };
+                MemModule module = new MemModule() { ID = module_ID };
 
-                __Add(__Modules, memModule, "module '{0}' already defined!");
+                __Add(__Modules, module, "module '{0}' already defined!");
 
-                import.Modules.Apply(mod => Module_Import(id, mod));
+                fwModuleDef.Modules.Apply(childFwModuleDef => Module_Import(module_ID, childFwModuleDef));
 
-                import.Blocks.Apply(block => Block_Import(id, block));
+                fwModuleDef.Blocks.Apply(childFwBlockDef => Block_Import(module_ID, childFwBlockDef));
             }
             else
             {
                 Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "invalid module object to import");
             }
 
-            return id;
+            return module_ID;
         }
 
         public MemModule Module_Get(Id id)
@@ -120,7 +120,7 @@ namespace Framework.Blocks.API
         // BLOCK
         //
 
-        public Id Block_Import(Id parentID, FW_BlkBlockDef fwBlockDef)
+        public Id Block_Import(Id moduleID, FW_BlkBlockDef fwBlockDef)
         {
             Id defBlock_ID = default(Id);
 
@@ -130,7 +130,7 @@ namespace Framework.Blocks.API
                 // Process: ID
                 //
 
-                defBlock_ID = parentID + fwBlockDef.Name;
+                defBlock_ID = moduleID + fwBlockDef.Name;
 
                 //
                 // Process: TYPE
@@ -163,9 +163,8 @@ namespace Framework.Blocks.API
                         Type memPort_Type = port.TypeName.isNotNullAndEmpty() ? Type.GetType(port.TypeName) : default(Type);
 
                         //
-                        // Put together the port definition
-                        // and add it to current block 
-                        // definition.
+                        // Put together the port definition and add 
+                        // it to current block definition.
                         //
 
                         MemPort memPort = new MemPort()
@@ -223,7 +222,7 @@ namespace Framework.Blocks.API
                 // Process: BLOCKS
                 //
 
-                IDictionary<Id, MemBlockRef> defBlock_Blocks = new SortedDictionary<Id, MemBlockRef>();
+                IDictionary<Id, MemBlockRef> defBlock_Blocks = null;
 
                 if (fwBlockDef.Blocks.NotEmpty())
                 {
@@ -255,8 +254,7 @@ namespace Framework.Blocks.API
 
                             block.Properties.Apply(property =>
                             {
-                                Id propertyValueID = refBlock_ID + property.Name;
-                                refBlock_Properties.Add(propertyValueID, property.Value);
+                                refBlock_Properties.Add(new Id(property.Name), property.Value);
                             });
                         }
 
@@ -280,11 +278,11 @@ namespace Framework.Blocks.API
                 // Process: CONNECTIONS
                 //
 
-                IDictionary<Id, IDictionary<Id, MemConnector>> defBlock_Connections = new SortedDictionary<Id, IDictionary<Id, MemConnector>>();
+                IDictionary<Id, IDictionary<Id, MemConnector>> defBlock_Connections = null;
 
                 if (fwBlockDef.Connections.NotEmpty())
                 {
-                    int indexConn = 0;
+                    int idxGeneratedConnName = 0;
 
                     defBlock_Connections = new SortedDictionary<Id, IDictionary<Id, MemConnector>>();
 
@@ -294,7 +292,7 @@ namespace Framework.Blocks.API
                         // Process: NAME
                         //
 
-                        string conn_Name = conn.Name.isNotNullAndEmpty() ? conn.Name : "__C" + indexConn++;
+                        Id conn_Name = new Id(conn.Name.isNotNullAndEmpty() ? conn.Name : "__C" + idxGeneratedConnName++);
 
                         //
                         // Process: SOURCE
@@ -314,11 +312,12 @@ namespace Framework.Blocks.API
 
                         MemConnector memConnector = new MemConnector()
                         {
-                            Name = new Id(conn_Name)
+                            Name = conn_Name
                         };
 
                         //
-                        // Add connection obejct to block connection set.
+                        // Add connection object to set of connections
+                        // of the block definition.
                         //
 
                         if (!defBlock_Connections.ContainsKey(conn_Source))
@@ -349,7 +348,6 @@ namespace Framework.Blocks.API
                 //
 
                 __Add(__Blocks, defBlock, "block '{0}' already defined!");
-
             }
             else
             {

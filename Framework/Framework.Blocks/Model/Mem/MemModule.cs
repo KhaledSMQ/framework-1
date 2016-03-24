@@ -9,6 +9,7 @@
 
 using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
+using System.Collections.Generic;
 
 namespace Framework.Blocks.Model.Mem
 {
@@ -20,6 +21,8 @@ namespace Framework.Blocks.Model.Mem
 
         public Id ID { get; set; }
 
+        public IList<Id> Blocks { get; set; }
+
         //
         // CONSTRUCTORS
         //
@@ -27,6 +30,7 @@ namespace Framework.Blocks.Model.Mem
         public MemModule()
         {
             ID = default(Id);
+            Blocks = default(IList<Id>);
         }
     }
 }
