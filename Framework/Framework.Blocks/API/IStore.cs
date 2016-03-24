@@ -7,6 +7,7 @@
 // Description:
 // ============================================================================
 
+using Framework.Core.Types.Specialized;
 using Framework.Factory.Patterns;
 
 namespace Framework.Blocks.API
@@ -23,10 +24,30 @@ namespace Framework.Blocks.API
         void LoadConfiguration();
 
         //
-        // EVALUATE
-        // Evaluate components.
+        // BLOCKS        
+        // Methods for managing blocks.
         //
 
-        object Block_Evaluate(string blockID, object args);
+        object Block_Create(string moduleID, object block);
+
+        object Block_Create(Id moduleID, object block);
+
+        object Block_Get(string blockID);
+
+        object Block_Get(Id blockID);
+
+        object Block_Exists(string blockID);
+
+        object Block_Exists(Id blockID);
+
+        object Block_GetList();
+
+        object Block_GetListByDomain(string domainID);
+
+        object Block_GetListByDomain(Id domainID);
+
+        object Block_GetListByModule(string moduleID);
+
+        object Block_GetListByModule(Id moduleID);
     }
 }

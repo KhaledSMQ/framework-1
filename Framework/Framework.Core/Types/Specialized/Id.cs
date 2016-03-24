@@ -144,6 +144,15 @@ namespace Framework.Core.Types.Specialized
         }
 
         //
+        // STATICS
+        //
+
+        public static Id FromString(string val)
+        {
+            return new Id(val);
+        }
+
+        //
         // PRIVATE-PROPERTIES
         // Array of the ID parcels.
         // The set of segments that make up the whole ID.

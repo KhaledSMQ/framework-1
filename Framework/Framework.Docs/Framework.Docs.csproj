@@ -43,6 +43,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="framework.blocks.txt" />
     <Content Include="framework.data.txt" />
     <Content Include="framework.apps.txt" />
     <Content Include="framework.forms.txt" />

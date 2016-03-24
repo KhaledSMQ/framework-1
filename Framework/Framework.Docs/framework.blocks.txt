@@ -1,0 +1,30 @@
+﻿
+	                           Framework.Blocks
+
+	----
+	
+	1. Introduction
+	2. Features
+
+	----
+
+	1. Introduction
+
+	----
+
+	2. Features
+			
+	----
+
+	[TODO]
+
+	    [ ] CRUD operations for Domains, Modules and Blocks in the store
+		[ ] Method to unload block domains from the memory store
+		[ ] Method to import block domains to memory only (for testing purposes)
+		[ ] Method to unload all the memory store data
+		[ ] Method to dump the state in the memory state service (e.g. domains, modules, etc.)
+		[ ] Function memoization for block execution. Allows the developer to define a time interval where the 
+		    block result should be stored in memory an re-used in case the same set of parameters is sent.
+		[ ] Import mechanism for block domains, including partial imports. Partial imports are for example, add
+		    a new block or module separatly.
+			

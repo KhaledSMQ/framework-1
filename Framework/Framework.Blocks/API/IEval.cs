@@ -22,5 +22,14 @@ namespace Framework.Blocks.API
         object Eval(string blockID, object args);
 
         object Eval(Id blockID, object args);
+
+        //
+        // EVALUATE
+        // Different processing stages.
+        //
+
+        object Eval_StageEvalBlock(string blockID, object args);
+
+        object Eval_StageEvalBlock(Id blockID, object args);
     }
 }

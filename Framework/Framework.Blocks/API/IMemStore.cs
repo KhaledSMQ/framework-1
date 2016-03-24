@@ -33,6 +33,8 @@ namespace Framework.Blocks.API
         
         MemDomain Domain_Get(Id id);
 
+        bool Domain_Exists(Id id);
+
         IEnumerable<MemDomain> Domain_GetList();
 
         void Domain_Unload(MemDomain domain);
@@ -51,6 +53,8 @@ namespace Framework.Blocks.API
 
         MemModule Module_Get(Id id);
 
+        bool Module_Exists(Id id);
+
         IEnumerable<MemModule> Module_GetList();     
 
         //
@@ -60,6 +64,8 @@ namespace Framework.Blocks.API
         Id Block_Import(Id moduleID, FW_BlkBlockDef block);
 
         MemBlockDef Block_Get(Id id);
+
+        bool Block_Exists(Id id);
 
         IEnumerable<MemBlockDef> Block_GetList();         
     }

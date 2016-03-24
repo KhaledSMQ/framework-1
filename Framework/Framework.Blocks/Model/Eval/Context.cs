@@ -7,19 +7,9 @@
 // Description: 
 // ============================================================================
 
-using Framework.Core.Types.Specialized;
 using System.Collections.Generic;
 
-namespace Framework.Blocks.Model.Runtime
+namespace Framework.Blocks.Model.Eval
 {
-    public class Block
-    {
-        public Input Input { get; set; }
-
-        public Output Output { get; set; }
-
-        public IDictionary<Id, object> Blocks { get; set; }
-
-        public IDictionary<Id, object> Connections { get; set; }
-    }
+    public class Context { }
 }

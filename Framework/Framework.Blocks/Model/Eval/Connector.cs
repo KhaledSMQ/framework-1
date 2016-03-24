@@ -7,9 +7,25 @@
 // Description: 
 // ============================================================================
 
-using System.Collections.Generic;
+using Framework.Core.Types.Specialized;
 
-namespace Framework.Blocks.Model.Runtime
+namespace Framework.Blocks.Model.Eval
 {
-    public class Output : SortedDictionary<string, object>, IDictionary<string, object> { }
+    public class Connector
+    {
+        //
+        // PROPERTIES
+        //
+
+        public Id Name { get; set; }
+
+        //
+        // CONSTRUCTORS
+        //
+
+        public Connector()
+        {
+            Name = default(Id);
+        }
+    }
 }

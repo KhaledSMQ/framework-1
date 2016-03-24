@@ -72,5 +72,20 @@ namespace Framework.Factory.Patterns
 
             return output;
         }
+
+        protected string GetRequestContentAsString(string defaultValue)
+        {
+            string output = defaultValue;
+
+            if (null != Request)
+            {
+                if (null != Request.Content)
+                {
+                    output = Request.Content.ReadAsStringAsync().Result;
+                }
+            }
+            
+            return output;
+        }
     }
 }

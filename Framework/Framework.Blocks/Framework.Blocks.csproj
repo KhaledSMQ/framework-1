@@ -65,6 +65,10 @@
     <Compile Include="API\SrvStore.cs" />
     <Compile Include="API\BlocksController.cs" />
     <Compile Include="Lib.cs" />
+    <Compile Include="Model\Eval\Ref.cs" />
+    <Compile Include="Model\Eval\Connector.cs" />
+    <Compile Include="Model\Eval\Port.cs" />
+    <Compile Include="Model\Eval\Property.cs" />
     <Compile Include="Model\Mem\MemBlockUse.cs" />
     <Compile Include="Model\Mem\MemConnector.cs" />
     <Compile Include="Model\Mem\MemDomain.cs" />
@@ -72,10 +76,8 @@
     <Compile Include="Model\Mem\MemProperty.cs" />
     <Compile Include="Model\Mem\MemBlockDef.cs" />
     <Compile Include="Model\Mem\MemModule.cs" />
-    <Compile Include="Model\Runtime\Context.cs" />
-    <Compile Include="Model\Runtime\Block.cs" />
-    <Compile Include="Model\Runtime\Output.cs" />
-    <Compile Include="Model\Runtime\Input.cs" />
+    <Compile Include="Model\Eval\Context.cs" />
+    <Compile Include="Model\Eval\Block.cs" />
     <Compile Include="Model\Schema\FW_BlkBlockRef.cs" />
     <Compile Include="Model\Schema\FW_BlkBlockDef.cs" />
     <Compile Include="Model\Schema\FW_BlkConnDef.cs" />

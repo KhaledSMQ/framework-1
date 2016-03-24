@@ -98,6 +98,11 @@ namespace Framework.Blocks.API
             return __Get(__Domains, id, "domain '{0}' is not defined!");
         }
 
+        public bool Domain_Exists(Id id)
+        {
+            return __Exists(__Domains, id);
+        }
+
         public IEnumerable<MemDomain> Domain_GetList()
         {
             return __GetList(__Domains);
@@ -163,6 +168,11 @@ namespace Framework.Blocks.API
         public MemModule Module_Get(Id id)
         {
             return __Get(__Modules, id, "module '{0}' is not defined!");
+        }
+
+        public bool Module_Exists(Id id)
+        {
+            return __Exists(__Modules, id);
         }
 
         public IEnumerable<MemModule> Module_GetList()
@@ -428,6 +438,11 @@ namespace Framework.Blocks.API
             return __Get(__Blocks, id, "block '{0}' is not defined!");
         }
 
+        public bool Block_Exists(Id id)
+        {
+            return __Exists(__Blocks, id);
+        }
+
         public IEnumerable<MemBlockDef> Block_GetList()
         {
             return __GetList(__Blocks);
@@ -469,6 +484,11 @@ namespace Framework.Blocks.API
             }
 
             return val;
+        }
+
+        private bool __Exists<T>(IDictionary<Id, T> repo, Id id)
+        {
+            return repo.ContainsKey(id);
         }
 
         private IEnumerable<T> __GetList<T>(IDictionary<Id, T> repo)

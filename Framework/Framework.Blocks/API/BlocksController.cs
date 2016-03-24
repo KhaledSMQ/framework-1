@@ -20,10 +20,46 @@ namespace Framework.Blocks.API
         // Execute block yielding its result.
         //
 
-        [ActionName("eval"), HttpGet]
-        public IHttpActionResult Entity_Query([FromUri] string id)
+        [ActionName("eval"), HttpPost]
+        public IHttpActionResult Eval([FromUri] string id)
         {
-            return Run(() => { return Scope.Hub.GetUnique<IEval>().Eval(id, Request.Content.ReadAsStringAsync().Result); });
+            return Run(() => { return Scope.Hub.GetUnique<IEval>().Eval(id, GetRequestContentAsString(string.Empty)); });
+        }
+
+        [ActionName("eval.stage.evalBlock"), HttpPost]
+        public IHttpActionResult Eval_StageEvalBlock([FromUri] string id)
+        {
+            return Run(() => { return Scope.Hub.GetUnique<IEval>().Eval_StageEvalBlock(id, GetRequestContentAsString(string.Empty)); });
+        }
+
+        //
+        // BLOCK
+        // Management.
+        //
+
+        [ActionName("block.create"), HttpPost]
+        public IHttpActionResult Block_Create(string id, FW_BlkBlockDef item)
+        {
+            //
+            // Paramter 'id' is the module complete identifier where to add
+            // this block. The module must already exists, otherwise this operation
+            // will fail.
+            //
+
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().Block_Create(id, item); });
+        }
+
+        [ActionName("block.get"), HttpGet]
+        public IHttpActionResult Block_Get(string id)
+        {
+            //
+            // Paramter 'id' is the block complete identifier, something like:
+            //
+            //   <DOMAIN>.<MODULE0>. ... .<MODULEn>.<NAME>
+            //
+            //
+
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().Block_Get(id); });
         }
 
         //

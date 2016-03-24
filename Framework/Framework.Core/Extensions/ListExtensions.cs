@@ -103,7 +103,7 @@ namespace Framework.Core.Extensions
             }
             else
             {
-                result = tailDelegate(list.First<T>(), ListExtensions.Catamorphism<R, T>(list.Skip<T>(1).ToList<T>(), emptyGene, tailDelegate));
+                result = tailDelegate(list.First<T>(), Catamorphism(list.Skip<T>(1).ToList<T>(), emptyGene, tailDelegate));
             }
 
             return result;
@@ -119,7 +119,7 @@ namespace Framework.Core.Extensions
             }
             else
             {
-                result = tailDelegate(list.First<T>(), ListExtensions.Catamorphism<R, T>(list.Skip<T>(1).ToList<T>(), emptyValue, tailDelegate));
+                result = tailDelegate(list.First<T>(), Catamorphism(list.Skip<T>(1).ToList<T>(), emptyValue, tailDelegate));
             }
 
             return result;
