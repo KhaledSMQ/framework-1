@@ -99,6 +99,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Klowd.Store", "Fr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Docs", "Framework.Docs\Framework.Docs.csproj", "{8DEE43B5-4063-4F9D-974A-C368C8294178}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Client", "Framework.Client\Framework.Client.csproj", "{B564287E-94B9-485F-B381-4472CC5A3A89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -588,6 +590,16 @@ Global
 		{8DEE43B5-4063-4F9D-974A-C368C8294178}.NuGet|Any CPU.Build.0 = Release|Any CPU
 		{8DEE43B5-4063-4F9D-974A-C368C8294178}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DEE43B5-4063-4F9D-974A-C368C8294178}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B564287E-94B9-485F-B381-4472CC5A3A89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B564287E-94B9-485F-B381-4472CC5A3A89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B564287E-94B9-485F-B381-4472CC5A3A89}.Deploy [DEBUG]|Any CPU.ActiveCfg = Debug|Any CPU
+		{B564287E-94B9-485F-B381-4472CC5A3A89}.Deploy [DEBUG]|Any CPU.Build.0 = Debug|Any CPU
+		{B564287E-94B9-485F-B381-4472CC5A3A89}.Deploy [RELEASE]|Any CPU.ActiveCfg = Debug|Any CPU
+		{B564287E-94B9-485F-B381-4472CC5A3A89}.Deploy [RELEASE]|Any CPU.Build.0 = Debug|Any CPU
+		{B564287E-94B9-485F-B381-4472CC5A3A89}.NuGet|Any CPU.ActiveCfg = Release|Any CPU
+		{B564287E-94B9-485F-B381-4472CC5A3A89}.NuGet|Any CPU.Build.0 = Release|Any CPU
+		{B564287E-94B9-485F-B381-4472CC5A3A89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B564287E-94B9-485F-B381-4472CC5A3A89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,26 @@
+﻿
+	                           Framework.Comm
+
+	----
+	
+	1. Introduction
+	2. Features
+
+	----
+
+	1. Introduction
+
+	----
+
+	2. Features
+			
+	----
+
+	[TODO]
+
+	    [ ] Email send service
+		[ ] Email managament service
+		[ ] SMS send service
+		[ ] SMS management service
+		
+			

@@ -1,0 +1,23 @@
+﻿
+	                           Framework.Utils
+
+	----
+	
+	1. Introduction
+	2. Features
+
+	----
+
+	1. Introduction
+
+	----
+
+	2. Features
+			
+	----
+
+	[TODO]
+
+	    [ ] Bar Code generation service
+		[ ] QRCode generation service
+			
