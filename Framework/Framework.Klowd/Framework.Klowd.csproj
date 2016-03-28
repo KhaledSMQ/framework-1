@@ -145,6 +145,10 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Client\fw\fw.js" />
+    <Content Include="Client\fw\features\object.js" />
+    <Content Include="Client\fw\modules\fw\util.js" />
+    <Content Include="Client\fw\features\service.js" />
     <Content Include="index.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

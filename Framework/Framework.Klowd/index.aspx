@@ -9,6 +9,10 @@
 </head>
 <body>
 </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <framework:Include runat="server" Folder="Client\fw" Pattern="*.js" />
+    <framework:Include runat="server" Folder="Client\fw\features" Pattern="*.js" />
+    <framework:Include runat="server" Folder="Client\fw\modules" Pattern="*.js" Recursive="true" />
 </html>
 
 

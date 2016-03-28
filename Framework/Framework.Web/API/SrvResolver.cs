@@ -17,7 +17,7 @@ using System.Text;
 
 namespace Framework.Web.API
 {
-    public class Resolver : ACommon, IResolver
+    public class SrvResolver : ACommon, IResolver
     {
         //
         // PROPERTIES
