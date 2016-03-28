@@ -200,6 +200,11 @@ window.fw = jQuery.extend(true, window.fw, {
                 var modObj = fw._api.module.get(module);
                 var fullName = fw._api.util.fullname(module, name);
 
+                if (typeof deps == 'string')
+                {
+                    deps = [deps];
+                }
+
                 var defObj = {
                     feature: feature,
                     deps: deps,
@@ -262,6 +267,13 @@ window.fw = jQuery.extend(true, window.fw, {
                         //
 
                         var deps = null;
+                        if (fw._api.util.defined(defObj.deps)) {
+
+                            deps = [];
+                            $.each(defObj.deps, function (_, dep) {
+                                deps.push(fw._api.artifact.instance(dep));
+                            });
+                        }
 
                         //
                         // Use the feature value definition to get the 
@@ -275,7 +287,7 @@ window.fw = jQuery.extend(true, window.fw, {
                     // Cache the value.
                     //
 
-                    value = fw._api.singleton.set(id, value);
+                    fw._api.singleton.set(id, value);
 
                 }
 
@@ -289,20 +301,11 @@ window.fw = jQuery.extend(true, window.fw, {
 
         singleton: {
 
-            get: function (id) {
+            get: function (id) { return fw.__SINGLETON[id]; },
 
-                return fw.__SINGLETON[id];
-            },
+            set: function (id, val) { fw.__SINGLETON[id] = val; },
 
-            set: function (id, val) {
-
-                fw.__SINGLETON[id] = val;
-                return val;
-            },
-
-            has: function (id) {
-                return fw._api.util.defined(fw._api.singleton.get(id));
-            }
+            has: function (id) { return fw._api.util.defined(fw._api.singleton.get(id)); }
         },
 
         //

@@ -10,7 +10,7 @@
 fw.feature('service', {
 
     value: function (deps, def) {
-        return def();
+        return def.apply(null, deps);
     }
 
 });
