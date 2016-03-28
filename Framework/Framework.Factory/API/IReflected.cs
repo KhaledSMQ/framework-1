@@ -14,8 +14,7 @@ namespace Framework.Factory.API
     public interface IReflected : ICommon
     {
         //
-        // Run a apseicifc method found in a
-        // particular service.
+        // Run a specific method found in a particular service.
         // @param service The name of the service to instantiate.
         // @param method the name of the method to run.
         // @param args the list of arguments for method invocation.

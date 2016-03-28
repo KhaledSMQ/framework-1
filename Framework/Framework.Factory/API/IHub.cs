@@ -20,6 +20,10 @@ namespace Framework.Factory.API
 
         T GetUnique<T>(IScope whatScope) where T : ICommon;
 
+        T Get<T>() where T : ICommon;
+
+        T Get<T>(IScope whatScope) where T : ICommon;
+
         T GetByName<T>(string name) where T : ICommon;
 
         T GetByName<T>(string name, IScope whatScope) where T : ICommon;

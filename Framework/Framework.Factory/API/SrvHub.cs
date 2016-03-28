@@ -58,6 +58,36 @@ namespace Framework.Factory.API
             return GetByContract<T>(whatScope).FirstOrDefault();
         }
 
+        public T Get<T>() where T : ICommon
+        {
+            return Get<T>(Scope);
+        }
+
+        public T Get<T>(IScope whatScope) where T : ICommon
+        {
+            ServiceEntry srvEntry = default(ServiceEntry);
+            ICollection<ServiceEntry> srvEntryList = default(ICollection<ServiceEntry>);            
+            string contractTypeName = typeof(T).FullName;
+
+            if (!_ByContract.ContainsKey(contractTypeName))
+            {
+                Load(_ServiceEntry.GetByContract(contractTypeName));
+            }
+
+            srvEntryList = _ByContract[contractTypeName];
+
+            if (srvEntryList.NotEmpty())
+            {
+                srvEntry = srvEntryList.SingleOrDefault(entry => entry.Default);
+                if (null == srvEntry)
+                {
+                    srvEntry = srvEntryList.First();
+                }
+            }
+
+            return Get<T>(srvEntry);
+        }
+
         public T GetByName<T>(string name) where T : ICommon
         {
             return GetByName<T>(name, Scope);
