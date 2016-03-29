@@ -17,35 +17,70 @@ window.fw = jQuery.extend(true, window.fw, {
     __LIB: 'fw',
 
     //
-    // Module instances.
+    // Error descriptors.
+    //
+
+    __ERRORS: {
+    },
+
+    //
+    // Runtime values.
     //
 
     __MODULES: {},
     __FEATURES: {},
+    __ARTIFACTS: {},
     __SINGLETON: {},
+
+    //
+    // CONFIG
+    // Set of configuration settings for framework.
+    //
+
+    __CONFIG: {
+
+        IDENTIFIER_SEPARATOR: '.',
+        IDENTIFIER_PARCEL_RE: ''
+    },
 
     //
     // API
     //
 
-    _api: {
+    api: {
 
         //
-        // MODULES
+        // MODULE
         //
 
         module: {
 
-            add: function (fullname, deps) {
+            add: function (id, deps) {
 
                 //
-                // If module does not exist, then create
-                // it, setup the memory space for the new
-                // modules and its artifacts.
+                // If module does not exist, then create it,
+                // setup the memory space for the new module,
+                // initialize its artifact space.
                 //
 
-                if (!fw._api.module.has(fullname)) {
-                    fw._api.module.create(fullname, deps);
+                if (!fw.api.module.has(id)) {
+
+                    //
+                    // Verify input arguments.
+                    //
+
+                    fw.api.util.verify(fw.api.util.verifyID(id), 'module identifier \'' + id + '\' is invalid!');
+
+                    //
+                    // Set the module object.
+                    //
+
+                    var val = {
+                        name: id,
+                        deps: deps
+                    };
+
+                    fw.api.module.set(id, val);
                 }
 
                 //
@@ -53,37 +88,20 @@ window.fw = jQuery.extend(true, window.fw, {
                 // this will allow the user to chain calls.
                 //
 
-                return fw._api.module.protocol(fullname);
+                return fw.api.module.protocol(id);
             },
 
-            create: function (fullname, deps) {
+            get: function (id) { return fw.__MODULES[id]; },
 
-                var nameParcel = fw._api.util.getSimpleParcels(fullname);
+            set: function (id, val) { fw.__MODULES[id] = val; },
 
-                var module = {
-                    name: fullname,
-                    deps: deps,
-                    artifacts: {}
-                };
-
-                fw.__MODULES[fullname] = module;
-
-                return module;
-            },
-
-            get: function (name) {
-                return fw.__MODULES[name];
-            },
+            has: function (id) { return fw.api.util.defined(fw.api.module.get(id)); },
 
             list: function () {
 
                 var lst = [];
-                $.each(fw.__MODULES, function (name, def) { lst.push($.extend(true, def)); });
+                $.each(fw.__MODULES, function (name, _) { lst.push(name); });
                 return lst;
-            },
-
-            has: function (name) {
-                return fw._api.util.defined(fw._api.module.get(name));
             },
 
             protocol: function (module) {
@@ -95,25 +113,18 @@ window.fw = jQuery.extend(true, window.fw, {
                 // protocol for the module.
                 //
 
-                $.each(fw.__FEATURES, function (feature, _) {
+                $.each(fw.api.feature.list(), function (_, feature) {
 
                     //
                     // Add a new artifact for feature to an existing module.
                     // @param name The artifact name
                     // @param deps The artifact dependency list.
-                    // @param value The artifact implementation.
+                    // @param value The artifact value.
                     //
 
-                    protocol[feature] = function (name, deps, value) {
-
-                        if (!fw._api.util.defined(value)) {
-                            value = deps;
-                            deps = null;
-                        }
-
-                        return fw._api.artifact.add(module, name, feature, deps, value);
+                    protocol[feature] = function (name, deps, value) {                      
+                        return fw.api.artifact.add(module, name, feature, deps, value);
                     };
-
                 });
 
                 return protocol;
@@ -121,57 +132,53 @@ window.fw = jQuery.extend(true, window.fw, {
         },
 
         //
-        // FEATURES
+        // FEATURE
         //
 
         feature: {
 
-            add: function (name, def) {
+            add: function (id, def) {
 
                 //
                 // Verify name.
                 //
 
-                fw._api.util.verify(fw._api.util.checkSimpleName(name), 'invalid name for feature');
+                fw.api.util.verify(fw.api.util.verifyID(id), 'invalid name for feature');
 
-                if (!fw._api.feature.has(name)) {
-                    fw._api.feature.create(name, def);
+                if (!fw.api.feature.has(id)) {
+                    
+                    //
+                    // def :: {
+                    //
+                    //     //
+                    //     // Function to get the value definition of the artifact.
+                    //     // @param deps list of dependencies for artifact.
+                    //     // @param def the definition object, dependent on the artifact.
+                    //     // @return the runtime/singleton value for artififact.
+                    //     //
+                    //            
+                    //     value :: function(deps, def) { ... }                                
+                    // }
+                    //
+
+                    fw.api.feature.set(id, def);
                 }
 
                 return fw;
-            },
+            },   
 
-            create: function (name, def) {
+            get: function (id) { return fw.__FEATURES[id]; },
 
-                //
-                // def :: {
-                //
-                //     //
-                //     // @param deps list of dependencies for artifact.
-                //     // @param def the definition object, dependent on the artifact.
-                //     // @return the runtime/singleton value for artififact.
-                //     //
-                //            
-                //     value :: function(deps, def)
-                //
-                //
-                // }
-                //
-
-                fw.__FEATURES[name] = def;
-                return def;
-            },
-
-            get: function (name) { return fw.__FEATURES[name]; },
+            set: function (id, val) { fw.__FEATURES[id] = val; },
 
             list: function () {
 
                 var lst = [];
-                $.each(fw.__FEATURES, function (name, def) { lst.push($.extend(true, def)); });
+                $.each(fw.__FEATURES, function (name, _) { lst.push(name); });
                 return lst;
             },
 
-            has: function (name) { return fw._api.util.defined(fw._api.feature.get(name)); }
+            has: function (id) { return fw.api.util.defined(fw.api.feature.get(id)); }
         },
 
         //
@@ -183,50 +190,62 @@ window.fw = jQuery.extend(true, window.fw, {
             add: function (module, name, feature, deps, def) {
 
                 //
-                // Verify name.
+                // Verify input arguments.
                 //
 
-                fw._api.util.verify(fw._api.util.checkSimpleName(name), 'invalid name for artifact');
+                fw.api.util.verify(fw.api.util.verifyID(module), 'invalid module identifier for artifact');
+                fw.api.util.verify(fw.api.util.verifyID(name), 'invalid local name for artifact');
+                
+                //
+                // Verify if module is valid.
+                //
 
-                if (!fw._api.artifact.has(module, name)) {
-                    fw._api.artifact.create(module, name, feature, deps, def);
+                fw.api.util.verify(fw.api.module.has(module), 'module is not defined');
+
+                //
+                // Verify if feature is valid.
+                //
+
+                fw.api.util.verify(fw.api.feature.has(feature), 'feature is not defined');
+
+                //
+                //
+                //
+
+                if (!fw.api.util.defined(def)) {
+                    def = deps;
+                    deps = null;
                 }
 
-                return fw._api.module.protocol(module);
-            },
+                //
+                // Process request.
+                //
 
-            create: function (module, name, feature, deps, def) {
+                var id = fw.api.util.getID(module, name);
 
-                var modObj = fw._api.module.get(module);
-                var fullName = fw._api.util.fullname(module, name);
+                if (!fw.api.artifact.has(id)) {
 
-                if (typeof deps == 'string')
-                {
-                    deps = [deps];
+                    if (typeof deps == 'string') {
+                        deps = [deps];
+                    }
+
+                    var defObj = {
+                        feature: feature,
+                        deps: deps,
+                        def: def
+                    };
+
+                    fw.api.artifact.set(id, defObj);
                 }
 
-                var defObj = {
-                    feature: feature,
-                    deps: deps,
-                    def: def
-                };
-
-                modObj.artifacts[fullName] = defObj;
-
-                return defObj;
+                return fw.api.module.protocol(module);
             },
 
-            get: function (module, name) {
+            get: function (id) { return fw.__ARTIFACTS[id]; },
 
-                var modObj = fw._api.module.get(module);
-                var fullname = fw._api.util.fullname(module, name);
+            set: function (id, val) { fw.__ARTIFACTS[id] = val; },
 
-                return modObj.artifacts[fullname];
-            },
-
-            has: function (module, name) {
-                return fw._api.util.defined(fw._api.artifact.get(module, name));
-            },
+            has: function (id) { return fw.api.util.defined(fw.api.artifact.get(id)); },
 
             instance: function (id) {
 
@@ -234,50 +253,41 @@ window.fw = jQuery.extend(true, window.fw, {
                 // Check if value was already instantiated.
                 //
 
-                var value = fw._api.singleton.get(id);
+                var value = fw.api.singleton.get(id);
 
-                if (!fw._api.util.defined(value)) {
-
-                    //
-                    // Parse the full identifier to get the
-                    // module and name for the artifact.
-                    //
-
-                    var parcels = fw._api.util.parseModuleAndName(id);
-                    var module = parcels.module;
-                    var name = parcels.name;
+                if (!fw.api.util.defined(value)) {     
 
                     //
-                    // Now, get the artifact definition.
+                    // Get the artifact definition.
                     //
 
-                    var defObj = fw._api.artifact.get(module, name);
+                    var defObj = fw.api.artifact.get(id);
 
                     //
                     // Get the feature definition.
                     //
 
-                    var featureDef = fw._api.feature.get(defObj.feature);
+                    var featureDef = fw.api.feature.get(defObj.feature);
                     value = defObj.def;
 
-                    if (fw._api.util.defined(featureDef) && fw._api.util.defined(featureDef.value)) {
+                    if (fw.api.util.defined(featureDef) && fw.api.util.defined(featureDef.value)) {
 
                         //
                         // Instantiate the dependencies.
                         //
 
                         var deps = null;
-                        if (fw._api.util.defined(defObj.deps)) {
+                        if (fw.api.util.defined(defObj.deps)) {
 
                             deps = [];
                             $.each(defObj.deps, function (_, dep) {
-                                deps.push(fw._api.artifact.instance(dep));
+                                deps.push(fw.api.artifact.instance(dep));
                             });
                         }
 
                         //
                         // Use the feature value definition to get the 
-                        // actual feature value.
+                        // actual artifact value.
                         //
 
                         value = featureDef.value(deps, value);
@@ -287,8 +297,7 @@ window.fw = jQuery.extend(true, window.fw, {
                     // Cache the value.
                     //
 
-                    fw._api.singleton.set(id, value);
-
+                    fw.api.singleton.set(id, value);
                 }
 
                 return value;
@@ -296,7 +305,11 @@ window.fw = jQuery.extend(true, window.fw, {
         },
 
         //
-        // SINGLETONS
+        // SINGLETON
+        //
+        // Singleton are values indexed with an identifier.
+        // This identifier will include the complete module
+        // name and its local name.
         //
 
         singleton: {
@@ -305,7 +318,7 @@ window.fw = jQuery.extend(true, window.fw, {
 
             set: function (id, val) { fw.__SINGLETON[id] = val; },
 
-            has: function (id) { return fw._api.util.defined(fw._api.singleton.get(id)); }
+            has: function (id) { return fw.api.util.defined(fw.api.singleton.get(id)); }
         },
 
         //
@@ -329,8 +342,8 @@ window.fw = jQuery.extend(true, window.fw, {
                 var defined = (typeof obj != 'undefined') && (obj != null);
 
                 //
-                // In case the variable is a string check if
-                // it is not an empty string.
+                // In case the variable is a string check 
+                // if it is not an empty string.
                 //
 
                 if (defined && typeof obj == 'string') {
@@ -366,52 +379,75 @@ window.fw = jQuery.extend(true, window.fw, {
                 });
             },
 
+            //
+            // Verify if the input value is a valid identifier.
+            // @param id The identifier to verify
+            // @return true if identifier is valid, false otherwise.
+            //
+
+            verifyID: function (id) {
+
+                var output = true;
+                var parcels = id.split(fw.__CONFIG.IDENTIFIER_SEPARATOR);
+
+                if (parcels.length == 1) {
+                    output = fw.api.util.verifyIDParcel(id);
+                }
+                else {
+                    $.each(parcels, function (_, simple) {
+                        output = output && fw.api.util.verifyIDParcel(simple);
+                        return output;
+                    });
+                }
+
+                return output;
+            },
+
             // 
             // Verify that a string satisfies the simple name spec.
             // @param name The name to verify
             // @return true if ok, false otherwise.
             //
 
-            checkSimpleName: function (name) {
-                return fw._api.util.defined(name) && name.match(/[$a-zA-Z][$a-zA-Z0-9_-]*/).length == 1;
+            verifyIDParcel: function (parcel) {
+                return fw.api.util.defined(parcel) && parcel.match(/[$a-zA-Z_][$a-zA-Z0-9_-]*/).length == 1;
             },
 
             //
             // Build a fullname for an artifact.
-            // @param modName The module name
+            // @param module The module name
             // @param name The artifiact simple name.
             //
 
-            fullname: function (modName, name) {
-                return modName + '.' + name;
+            getID: function (module, name) {
+                return module + fw.__CONFIG.IDENTIFIER_SEPARATOR + name;
             },
 
             //
-            // Take a fullname and return a ordered
-            // list of the simple name parcels that
-            // compose it.
+            // Take a fullname and return a ordered list of the simple 
+            // name parcels that compose it.
             // @param fullname The fullname to process
             // @return a list of simple name parcels
             //
 
-            getSimpleParcels: function (fullname) {
+            getParcels: function (id) {
 
                 var parcels = [];
 
-                if (fw._api.util.defined(fullname)) {
+                if (fw.api.util.defined(id)) {
 
                     //
                     // Get the fullname parcels.
                     //
 
-                    parcels = fullname.split('.');
+                    parcels = id.split(fw.__CONFIG.IDENTIFIER_SEPARATOR);
 
                     //
                     // Verify that they are valid.
                     //
 
                     $.each(parcels, function (_, simple) {
-                        fw._api.util.verify(fw._api.util.checkSimpleName(simple), 'parcel \'' + simple + '\' is not a valid simple name');
+                        fw.api.util.verify(fw.api.util.verifyIDParcel(simple), 'parcel \'' + simple + '\' is not a valid simple name');
                     });
                 }
 
@@ -423,63 +459,98 @@ window.fw = jQuery.extend(true, window.fw, {
             // the module segment and simple name.
             //
 
-            parseModuleAndName: function (fullname) {
+            getModuleAndName: function (id) {
 
                 var parcels = { module: null, name: null };
 
-                if (fw._api.util.defined(fullname)) {
+                if (fw.api.util.defined(id)) {
 
                     //
-                    // parse all identifiers.
+                    // Break the identifier into
+                    // a list of simple names.
                     //
 
-                    parcels = fullname.split('.');
+                    parcels = id.split('.');
 
                     //
-                    // extract module and name.
+                    // Extract module and name.
+                    // Module is the set of all simple
+                    // identifier except the last one,
+                    // with is the local name.
                     //
 
-                    parcels.module = parcels.slice(0, parcels.length - 1).join('.');
+                    parcels.module = parcels.slice(0, parcels.length - 1).join(fw.__CONFIG.IDENTIFIER_SEPARATOR);
                     parcels.name = parcels[parcels.length - 1];
                 }
 
                 return parcels;
+            },
+
+            //
+            // Display an internal error, use this for framework
+            // related errors.
+            //
+
+            error: function (descriptor) {
+
+                //
+                // Base message.
+                //
+
+                var msg = '[' + fw.__LIB + ']:' + fw.__ERRORS[descriptor];
+
+                //
+                // Instantiate additional parameters, placeholder: {argN}
+                //
+
+                if (arguments.length > 1) {
+
+                    for (var i = 1, j = 0; i < arguments.length; i++, j++) {
+
+                        msg = msg.replace('{arg' + j + '}', arguments[i]);
+                    }
+                }
+
+                //
+                // Write final error message to console.
+                //
+
+                console.error(msg);
             }
         }
     },
 
     //
-    // Add a new module to the framework. If the module already
-    // has then just return the module API protocol.
+    // Add a new module to the framework. If the module is already
+    // defined then just return the module API protocol.
     // @param name The name for the module. (fully qualified name).
     // @return The module API object.
     //
 
-    module: function (name, deps) {
-        return fw._api.module.add(name, deps);
+    module: function (id, deps) {
+        return fw.api.module.add(id, deps);
     },
 
     //
     // Add a new feature definition to framework.
-    // @param name the name for the feature
+    // @param id the name for the feature
     // @param def The feature definition
     // @return The framework object for chainning.
     // 
 
-    feature: function (name, def) {
-        return fw._api.feature.add(name, def);
+    feature: function (id, def) {
+        return fw.api.feature.add(id, def);
     },
 
     //
-    // Get the artifact with the specified name.
-    // This is the complete, fully qualified 
-    // name for the artifact.
-    // @param id The name for the artifact to get.
+    // Get the artifact with the specified identifier.
+    // This is the complete, fully qualified name for the artifact.
+    // @param id The identifier for the artifact to get.
     // @return The artifact runtime value.
     //
 
     get: function (id) {
-        return fw._api.artifact.instance(id);
+        return fw.api.artifact.instance(id);
     }
 });
 
