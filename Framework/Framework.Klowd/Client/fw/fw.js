@@ -247,6 +247,13 @@ window.fw = jQuery.extend(true, window.fw, {
 
             set: function (id, val) { fw.__ARTIFACTS[id] = val; },
 
+            list: function () {
+
+                var lst = [];
+                $.each(fw.__ARTIFACTS, function (name, _) { lst.push(name); });
+                return lst;
+            },
+
             has: function (id) { return fw.core.defined(fw.core.artifact.get(id)); },
 
             instance: function (id) {
@@ -318,6 +325,13 @@ window.fw = jQuery.extend(true, window.fw, {
             get: function (id) { return fw.__SINGLETON[id]; },
 
             set: function (id, val) { fw.__SINGLETON[id] = val; },
+
+            list: function () {
+
+                var lst = [];
+                $.each(fw.__SINGLETON, function (name, _) { lst.push(name); });
+                return lst;
+            },
 
             has: function (id) { return fw.core.defined(fw.core.singleton.get(id)); }
         },

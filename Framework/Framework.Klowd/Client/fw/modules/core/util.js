@@ -61,7 +61,7 @@ fw.module('core').service('util', function () {
         }
         else {
 
-            if (toolkit.util.IsDefined(path)) {
+            if ($util.isDefined(path)) {
 
                 var splitPatt = path.split('.');
 
@@ -71,7 +71,7 @@ fw.module('core').service('util', function () {
 
                     var tempValue = retValue[property];
 
-                    if (toolkit.util.IsDefined(tempValue)) {
+                    if ($util.isDefined(tempValue)) {
 
                         retValue = tempValue;
 
