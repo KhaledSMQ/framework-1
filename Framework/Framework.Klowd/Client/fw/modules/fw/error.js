@@ -7,7 +7,7 @@
 // ============================================================================
 
 'use strict';
-fw.module('fw').service('error', 'fw.util', function ($util) {
+fw.module('core').service('error', 'core.util', function ($util) {
 
     var _errMsg = function (lib, bag, descriptor, error) {
 

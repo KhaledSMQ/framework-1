@@ -7,10 +7,13 @@
 // ============================================================================
 
 'use strict';
-fw.module('fw').service('string', function () {
+fw.module('core').service('string', function () {
 
     //
     // Check if a string starts with another string.
+    // @param str The string to check
+    // @param val The value to check for
+    // @return true if string starts with value, false otherwise.
     //
 
     var _startsWith = function (str, val) {

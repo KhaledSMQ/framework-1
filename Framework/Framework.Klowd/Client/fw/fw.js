@@ -44,10 +44,12 @@ window.fw = jQuery.extend(true, window.fw, {
     },
 
     //
-    // API
+    // Core API
+    // Functions and function sets for basic
+    // framework inner workings.
     //
 
-    api: {
+    core: {
 
         //
         // MODULE
@@ -63,13 +65,13 @@ window.fw = jQuery.extend(true, window.fw, {
                 // initialize its artifact space.
                 //
 
-                if (!fw.api.module.has(id)) {
+                if (!fw.core.module.has(id)) {
 
                     //
                     // Verify input arguments.
                     //
 
-                    fw.api.util.verify(fw.api.util.verifyID(id), 'module identifier \'' + id + '\' is invalid!');
+                    fw.core.verify(fw.core.verifyID(id), 'module identifier \'' + id + '\' is invalid!');
 
                     //
                     // Set the module object.
@@ -80,7 +82,7 @@ window.fw = jQuery.extend(true, window.fw, {
                         deps: deps
                     };
 
-                    fw.api.module.set(id, val);
+                    fw.core.module.set(id, val);
                 }
 
                 //
@@ -88,14 +90,14 @@ window.fw = jQuery.extend(true, window.fw, {
                 // this will allow the user to chain calls.
                 //
 
-                return fw.api.module.protocol(id);
+                return fw.core.module.protocol(id);
             },
 
             get: function (id) { return fw.__MODULES[id]; },
 
             set: function (id, val) { fw.__MODULES[id] = val; },
 
-            has: function (id) { return fw.api.util.defined(fw.api.module.get(id)); },
+            has: function (id) { return fw.core.defined(fw.core.module.get(id)); },
 
             list: function () {
 
@@ -113,7 +115,7 @@ window.fw = jQuery.extend(true, window.fw, {
                 // protocol for the module.
                 //
 
-                $.each(fw.api.feature.list(), function (_, feature) {
+                $.each(fw.core.feature.list(), function (_, feature) {
 
                     //
                     // Add a new artifact for feature to an existing module.
@@ -122,8 +124,8 @@ window.fw = jQuery.extend(true, window.fw, {
                     // @param value The artifact value.
                     //
 
-                    protocol[feature] = function (name, deps, value) {                      
-                        return fw.api.artifact.add(module, name, feature, deps, value);
+                    protocol[feature] = function (name, deps, value) {
+                        return fw.core.artifact.add(module, name, feature, deps, value);
                     };
                 });
 
@@ -143,10 +145,10 @@ window.fw = jQuery.extend(true, window.fw, {
                 // Verify name.
                 //
 
-                fw.api.util.verify(fw.api.util.verifyID(id), 'invalid name for feature');
+                fw.core.verify(fw.core.verifyID(id), 'invalid name for feature');
 
-                if (!fw.api.feature.has(id)) {
-                    
+                if (!fw.core.feature.has(id)) {
+
                     //
                     // def :: {
                     //
@@ -161,11 +163,11 @@ window.fw = jQuery.extend(true, window.fw, {
                     // }
                     //
 
-                    fw.api.feature.set(id, def);
+                    fw.core.feature.set(id, def);
                 }
 
                 return fw;
-            },   
+            },
 
             get: function (id) { return fw.__FEATURES[id]; },
 
@@ -178,7 +180,7 @@ window.fw = jQuery.extend(true, window.fw, {
                 return lst;
             },
 
-            has: function (id) { return fw.api.util.defined(fw.api.feature.get(id)); }
+            has: function (id) { return fw.core.defined(fw.core.feature.get(id)); }
         },
 
         //
@@ -193,26 +195,26 @@ window.fw = jQuery.extend(true, window.fw, {
                 // Verify input arguments.
                 //
 
-                fw.api.util.verify(fw.api.util.verifyID(module), 'invalid module identifier for artifact');
-                fw.api.util.verify(fw.api.util.verifyID(name), 'invalid local name for artifact');
-                
+                fw.core.verify(fw.core.verifyID(module), 'invalid module identifier for artifact');
+                fw.core.verify(fw.core.verifyID(name), 'invalid local name for artifact');
+
                 //
                 // Verify if module is valid.
                 //
 
-                fw.api.util.verify(fw.api.module.has(module), 'module is not defined');
+                fw.core.verify(fw.core.module.has(module), 'module is not defined');
 
                 //
                 // Verify if feature is valid.
                 //
 
-                fw.api.util.verify(fw.api.feature.has(feature), 'feature is not defined');
+                fw.core.verify(fw.core.feature.has(feature), 'feature is not defined');
 
                 //
-                //
+                // In case the artifact has no dependencies.
                 //
 
-                if (!fw.api.util.defined(def)) {
+                if (!fw.core.defined(def)) {
                     def = deps;
                     deps = null;
                 }
@@ -221,9 +223,9 @@ window.fw = jQuery.extend(true, window.fw, {
                 // Process request.
                 //
 
-                var id = fw.api.util.getID(module, name);
+                var id = fw.core.getID(module, name);
 
-                if (!fw.api.artifact.has(id)) {
+                if (!fw.core.artifact.has(id)) {
 
                     if (typeof deps == 'string') {
                         deps = [deps];
@@ -235,17 +237,17 @@ window.fw = jQuery.extend(true, window.fw, {
                         def: def
                     };
 
-                    fw.api.artifact.set(id, defObj);
+                    fw.core.artifact.set(id, defObj);
                 }
 
-                return fw.api.module.protocol(module);
+                return fw.core.module.protocol(module);
             },
 
             get: function (id) { return fw.__ARTIFACTS[id]; },
 
             set: function (id, val) { fw.__ARTIFACTS[id] = val; },
 
-            has: function (id) { return fw.api.util.defined(fw.api.artifact.get(id)); },
+            has: function (id) { return fw.core.defined(fw.core.artifact.get(id)); },
 
             instance: function (id) {
 
@@ -253,35 +255,35 @@ window.fw = jQuery.extend(true, window.fw, {
                 // Check if value was already instantiated.
                 //
 
-                var value = fw.api.singleton.get(id);
+                var value = fw.core.singleton.get(id);
 
-                if (!fw.api.util.defined(value)) {     
+                if (!fw.core.defined(value)) {
 
                     //
                     // Get the artifact definition.
                     //
 
-                    var defObj = fw.api.artifact.get(id);
+                    var defObj = fw.core.artifact.get(id);
 
                     //
                     // Get the feature definition.
                     //
 
-                    var featureDef = fw.api.feature.get(defObj.feature);
+                    var featureDef = fw.core.feature.get(defObj.feature);
                     value = defObj.def;
 
-                    if (fw.api.util.defined(featureDef) && fw.api.util.defined(featureDef.value)) {
+                    if (fw.core.defined(featureDef) && fw.core.defined(featureDef.value)) {
 
                         //
                         // Instantiate the dependencies.
                         //
 
                         var deps = null;
-                        if (fw.api.util.defined(defObj.deps)) {
+                        if (fw.core.defined(defObj.deps)) {
 
                             deps = [];
                             $.each(defObj.deps, function (_, dep) {
-                                deps.push(fw.api.artifact.instance(dep));
+                                deps.push(fw.core.artifact.instance(dep));
                             });
                         }
 
@@ -297,7 +299,7 @@ window.fw = jQuery.extend(true, window.fw, {
                     // Cache the value.
                     //
 
-                    fw.api.singleton.set(id, value);
+                    fw.core.singleton.set(id, value);
                 }
 
                 return value;
@@ -305,8 +307,7 @@ window.fw = jQuery.extend(true, window.fw, {
         },
 
         //
-        // SINGLETON
-        //
+        // SINGLETON       
         // Singleton are values indexed with an identifier.
         // This identifier will include the complete module
         // name and its local name.
@@ -318,205 +319,198 @@ window.fw = jQuery.extend(true, window.fw, {
 
             set: function (id, val) { fw.__SINGLETON[id] = val; },
 
-            has: function (id) { return fw.api.util.defined(fw.api.singleton.get(id)); }
+            has: function (id) { return fw.core.defined(fw.core.singleton.get(id)); }
         },
 
         //
-        // UTILS
+        // Check if a value is defined or not.
+        // @param obj The value to check.
+        // @return true if the value os defined, false otherwise.
         //
 
-        util: {
+        defined: function (obj) {
 
             //
-            // Check if a value is defined or not.
-            // @param obj The value to check.
-            // @return true if the value os defined, false otherwise.
+            // Check if variable is defined and not null.
             //
 
-            defined: function (obj) {
-
-                //
-                // Check if variable is defined and not null.
-                //
-
-                var defined = (typeof obj != 'undefined') && (obj != null);
-
-                //
-                // In case the variable is a string check 
-                // if it is not an empty string.
-                //
-
-                if (defined && typeof obj == 'string') {
-                    defined = obj != "";
-                }
-
-                return defined;
-            },
+            var defined = (typeof obj != 'undefined') && (obj != null);
 
             //
-            // Verify that a list of condition hold true,
-            // if not throw a message, also defined in the
-            // list of arguments.
+            // In case the variable is a string check 
+            // if it is not an empty string.
             //
 
-            verify: function () {
-
-                var values = [];
-                var msgs = [];
-
-                $.each(arguments, function (idx, value) {
-                    if (typeof value == 'string') {
-                        msgs.push(value);
-                    } else {
-                        values.push(value);
-                    }
-                });
-
-                $.each(values, function (idx, condition) {
-                    if (!condition) {
-                        throw msgs[idx];
-                    }
-                });
-            },
-
-            //
-            // Verify if the input value is a valid identifier.
-            // @param id The identifier to verify
-            // @return true if identifier is valid, false otherwise.
-            //
-
-            verifyID: function (id) {
-
-                var output = true;
-                var parcels = id.split(fw.__CONFIG.IDENTIFIER_SEPARATOR);
-
-                if (parcels.length == 1) {
-                    output = fw.api.util.verifyIDParcel(id);
-                }
-                else {
-                    $.each(parcels, function (_, simple) {
-                        output = output && fw.api.util.verifyIDParcel(simple);
-                        return output;
-                    });
-                }
-
-                return output;
-            },
-
-            // 
-            // Verify that a string satisfies the simple name spec.
-            // @param name The name to verify
-            // @return true if ok, false otherwise.
-            //
-
-            verifyIDParcel: function (parcel) {
-                return fw.api.util.defined(parcel) && parcel.match(/[$a-zA-Z_][$a-zA-Z0-9_-]*/).length == 1;
-            },
-
-            //
-            // Build a fullname for an artifact.
-            // @param module The module name
-            // @param name The artifiact simple name.
-            //
-
-            getID: function (module, name) {
-                return module + fw.__CONFIG.IDENTIFIER_SEPARATOR + name;
-            },
-
-            //
-            // Take a fullname and return a ordered list of the simple 
-            // name parcels that compose it.
-            // @param fullname The fullname to process
-            // @return a list of simple name parcels
-            //
-
-            getParcels: function (id) {
-
-                var parcels = [];
-
-                if (fw.api.util.defined(id)) {
-
-                    //
-                    // Get the fullname parcels.
-                    //
-
-                    parcels = id.split(fw.__CONFIG.IDENTIFIER_SEPARATOR);
-
-                    //
-                    // Verify that they are valid.
-                    //
-
-                    $.each(parcels, function (_, simple) {
-                        fw.api.util.verify(fw.api.util.verifyIDParcel(simple), 'parcel \'' + simple + '\' is not a valid simple name');
-                    });
-                }
-
-                return parcels;
-            },
-
-            //
-            // Take a full artifact identifier and return
-            // the module segment and simple name.
-            //
-
-            getModuleAndName: function (id) {
-
-                var parcels = { module: null, name: null };
-
-                if (fw.api.util.defined(id)) {
-
-                    //
-                    // Break the identifier into
-                    // a list of simple names.
-                    //
-
-                    parcels = id.split('.');
-
-                    //
-                    // Extract module and name.
-                    // Module is the set of all simple
-                    // identifier except the last one,
-                    // with is the local name.
-                    //
-
-                    parcels.module = parcels.slice(0, parcels.length - 1).join(fw.__CONFIG.IDENTIFIER_SEPARATOR);
-                    parcels.name = parcels[parcels.length - 1];
-                }
-
-                return parcels;
-            },
-
-            //
-            // Display an internal error, use this for framework
-            // related errors.
-            //
-
-            error: function (descriptor) {
-
-                //
-                // Base message.
-                //
-
-                var msg = '[' + fw.__LIB + ']:' + fw.__ERRORS[descriptor];
-
-                //
-                // Instantiate additional parameters, placeholder: {argN}
-                //
-
-                if (arguments.length > 1) {
-
-                    for (var i = 1, j = 0; i < arguments.length; i++, j++) {
-
-                        msg = msg.replace('{arg' + j + '}', arguments[i]);
-                    }
-                }
-
-                //
-                // Write final error message to console.
-                //
-
-                console.error(msg);
+            if (defined && typeof obj == 'string') {
+                defined = obj != "";
             }
+
+            return defined;
+        },
+
+        //
+        // Verify that a list of condition hold true,
+        // if not throw a message, also defined in the
+        // list of arguments.
+        //
+
+        verify: function () {
+
+            var values = [];
+            var msgs = [];
+
+            $.each(arguments, function (idx, value) {
+                if (typeof value == 'string') {
+                    msgs.push(value);
+                } else {
+                    values.push(value);
+                }
+            });
+
+            $.each(values, function (idx, condition) {
+                if (!condition) {
+                    throw msgs[idx];
+                }
+            });
+        },
+
+        //
+        // Verify if the input value is a valid identifier.
+        // @param id The identifier to verify
+        // @return true if identifier is valid, false otherwise.
+        //
+
+        verifyID: function (id) {
+
+            var output = true;
+            var parcels = id.split(fw.__CONFIG.IDENTIFIER_SEPARATOR);
+
+            if (parcels.length == 1) {
+                output = fw.core.verifyIDParcel(id);
+            }
+            else {
+                $.each(parcels, function (_, simple) {
+                    output = output && fw.core.verifyIDParcel(simple);
+                    return output;
+                });
+            }
+
+            return output;
+        },
+
+        // 
+        // Verify that a string satisfies the simple name spec.
+        // @param name The name to verify
+        // @return true if ok, false otherwise.
+        //
+
+        verifyIDParcel: function (parcel) {
+            return fw.core.defined(parcel) && parcel.match(/[$a-zA-Z_][$a-zA-Z0-9_-]*/).length == 1;
+        },
+
+        //
+        // Build an identifier from a list of arguments.
+        // Join every argument separated by the identifier
+        // separator character.
+        //
+
+        getID: function () {
+            return Array.prototype.slice.call(arguments).join(fw.__CONFIG.IDENTIFIER_SEPARATOR);
+        },
+
+        //
+        // Take a fullname and return a ordered list of the simple 
+        // name parcels that compose it.
+        // @param fullname The fullname to process
+        // @return a list of simple name parcels
+        //
+
+        getParcels: function (id) {
+
+            var parcels = [];
+
+            if (fw.core.defined(id)) {
+
+                //
+                // Get the fullname parcels.
+                //
+
+                parcels = id.split(fw.__CONFIG.IDENTIFIER_SEPARATOR);
+
+                //
+                // Verify that they are valid.
+                //
+
+                $.each(parcels, function (_, simple) {
+                    fw.core.verify(fw.core.verifyIDParcel(simple), 'parcel \'' + simple + '\' is not a valid simple name');
+                });
+            }
+
+            return parcels;
+        },
+
+        //
+        // Take a full artifact identifier and return
+        // the module segment and simple name.
+        //
+
+        getModuleAndName: function (id) {
+
+            var parcels = { module: null, name: null };
+
+            if (fw.core.defined(id)) {
+
+                //
+                // Break the identifier into
+                // a list of simple names.
+                //
+
+                parcels = id.split('.');
+
+                //
+                // Extract module and name.
+                // Module is the set of all simple
+                // identifier except the last one,
+                // with is the local name.
+                //
+
+                parcels.module = parcels.slice(0, parcels.length - 1).join(fw.__CONFIG.IDENTIFIER_SEPARATOR);
+                parcels.name = parcels[parcels.length - 1];
+            }
+
+            return parcels;
+        },
+
+        //
+        // Display an internal error, use this for framework
+        // related errors.
+        //
+
+        error: function (descriptor) {
+
+            //
+            // Base message.
+            //
+
+            var msg = '[' + fw.__LIB + ']:' + fw.__ERRORS[descriptor];
+
+            //
+            // Instantiate additional parameters, placeholder: {argN}
+            //
+
+            if (arguments.length > 1) {
+
+                for (var i = 1, j = 0; i < arguments.length; i++, j++) {
+
+                    msg = msg.replace('{arg' + j + '}', arguments[i]);
+                }
+            }
+
+            //
+            // Write final error message to console.
+            //
+
+            console.error(msg);
         }
     },
 
@@ -528,7 +522,7 @@ window.fw = jQuery.extend(true, window.fw, {
     //
 
     module: function (id, deps) {
-        return fw.api.module.add(id, deps);
+        return fw.core.module.add(id, deps);
     },
 
     //
@@ -539,7 +533,7 @@ window.fw = jQuery.extend(true, window.fw, {
     // 
 
     feature: function (id, def) {
-        return fw.api.feature.add(id, def);
+        return fw.core.feature.add(id, def);
     },
 
     //
@@ -550,7 +544,7 @@ window.fw = jQuery.extend(true, window.fw, {
     //
 
     get: function (id) {
-        return fw.api.artifact.instance(id);
+        return fw.core.artifact.instance(id);
     }
 });
 

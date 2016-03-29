@@ -7,7 +7,7 @@
 // ============================================================================
 
 'use strict';
-fw.module('fw').service('util', function () {
+fw.module('core').service('util', function () {
 
     //
     // Check if a variable is defined.

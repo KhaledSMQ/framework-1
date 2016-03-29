@@ -145,8 +145,25 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Client\fw\features\type.js" />
+    <Content Include="Client\fw\features\template.js" />
+    <Content Include="Client\fw\features\bundle.js" />
+    <Content Include="Client\fw\features\package.js" />
+    <Content Include="Client\fw\features\component.js" />
+    <Content Include="Client\fw\features\webapi.js" />
     <Content Include="Client\fw\fw.js" />
     <Content Include="Client\fw\features\object.js" />
+    <Content Include="Client\fw\modules\fw\http.js" />
+    <Content Include="Client\fw\modules\fw\locale.js" />
+    <Content Include="Client\fw\modules\fw\dnd.js" />
+    <Content Include="Client\fw\modules\fw\dom.js" />
+    <Content Include="Client\fw\modules\fw\mapper.js" />
+    <Content Include="Client\fw\modules\fw\filter.js" />
+    <Content Include="Client\fw\modules\fw\log.js" />
+    <Content Include="Client\fw\modules\fw\loader.js" />
+    <Content Include="Client\fw\modules\fw\sequence.js" />
+    <Content Include="Client\fw\modules\fw\resx.js" />
+    <Content Include="Client\fw\modules\fw\resolver.js" />
     <Content Include="Client\fw\modules\fw\qs.js" />
     <Content Include="Client\fw\modules\fw\error.js" />
     <Content Include="Client\fw\modules\fw\string.js" />
