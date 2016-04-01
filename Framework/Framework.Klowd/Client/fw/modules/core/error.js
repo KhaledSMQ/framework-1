@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Core module. String service.
+// Name/Class: Core module. Error service.
 // Created On: 28/Mar/2016
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Company: Cybermap Lda.
@@ -9,7 +9,15 @@
 'use strict';
 fw.module('core').service('error', 'core.util', function ($util) {
 
-    var _errMsg = function (lib, bag, descriptor, error) {
+    //
+    // Write an error message.
+    // @param lib the library/source where the error comes from.
+    // @param bag The error bag where to fetch the error descriptor.
+    // @param descriptor The error descriptor
+    // @param args A list of values to merge with the error message.
+    //
+
+    var _msg = function (lib, bag, descriptor) {
 
         //
         // Base message.
@@ -22,28 +30,16 @@ fw.module('core').service('error', 'core.util', function ($util) {
         //
 
         if (arguments.length > 4) {
-
-            for (var i = 4, j = 0; i < arguments.length; i++, j++) {
-
+            for (var i = 3, j = 0; i < arguments.length; i++, j++) {
                 msg = msg.replace('{arg' + j + '}', arguments[i]);
             }
-        }
-
-        //
-        // If caller is defined, call it here.
-        //
-
-        if ($util.isDefined(error)) {
-            error(msg);
-        }
+        }    
 
         //
         // dump to console.
         //
 
         console.error(msg);
-
-        return false;
     };
 
     //
@@ -51,6 +47,6 @@ fw.module('core').service('error', 'core.util', function ($util) {
     //
 
     return {
-
+        msg: _msg
     };
 });

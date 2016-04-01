@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\fw\features\app.js" />
+    <Content Include="Client\fw\features\fragment.js" />
     <Content Include="Client\fw\features\type.js" />
     <Content Include="Client\fw\features\template.js" />
     <Content Include="Client\fw\features\bundle.js" />
@@ -155,6 +156,7 @@
     <Content Include="Client\fw\fw.js" />
     <Content Include="Client\fw\features\object.js" />
     <Content Include="Client\fw\modules\core\http.js" />
+    <Content Include="Client\fw\modules\core\events.js" />
     <Content Include="Client\fw\modules\core\locale.js" />
     <Content Include="Client\fw\modules\core\dnd.js" />
     <Content Include="Client\fw\modules\core\dom.js" />
@@ -168,8 +170,12 @@
     <Content Include="Client\fw\modules\core\qs.js" />
     <Content Include="Client\fw\modules\core\error.js" />
     <Content Include="Client\fw\modules\core\string.js" />
+    <Content Include="Client\fw\modules\core\time.js" />
     <Content Include="Client\fw\modules\core\util.js" />
     <Content Include="Client\fw\features\service.js" />
+    <Content Include="Client\fw\modules\mvc\scope.js" />
+    <Content Include="Client\fw\modules\mvc\routing.js" />
+    <Content Include="Client\fw\modules\mvc\fragment.js" />
     <Content Include="Client\fw\modules\mvc\config.js" />
     <Content Include="Client\fw\modules\mvc\view.js" />
     <Content Include="index.aspx" />

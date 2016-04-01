@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: 
+// Name/Class: mvc.view
 // Created On: 28/Mar/2016
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Company: Cybermap Lda.
@@ -11,11 +11,10 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
 
     //
     // Normalize a view tree datatype.
-    // @param view
-    // @param errorFun
+    // @param view the fragment to normalize
     //
 
-    var _normalize = function (view, errorFun) {
+    var _normalize = function (view) {
 
         if (view instanceof Array) {
 
@@ -23,7 +22,7 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
             // List of components.
             //
 
-            $.each(view, function (compIndex, componentInstance) {
+            $.each(view, function (_, componentInstance) {
 
                 //
                 // Get a valid component definition.
@@ -37,11 +36,12 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
 
                     if ($util.isDefined(componentInstance.content)) {
 
-                        if (componentInstance.content instanceof Array || $util.isDefined(componentInstance.content[$config.PROPERTY_COMPONENT_TYPE])) {
+                        if (componentInstance.content instanceof Array ||
+                            $util.isDefined(componentInstance.content[$config.PROPERTY_COMPONENT_TYPE])) {
 
                             //
-                            // Component must have a unique content placeholder definition,
-                            // otherwise this wont work...
+                            // Component must have a unique content placeholder 
+                            // definition, otherwise this wont work...
                             //
 
                             var placeholder = '';
@@ -69,7 +69,7 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
                                 //
                                 //
 
-                                content[placeholder] = _normalize(componentInstance.content, errorFun);
+                                content[placeholder] = _normalize(componentInstance.content);
                             }
                             else {
 
@@ -77,7 +77,7 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
                                 // ERROR: Component definition needs to define a single placeholder.
                                 //
 
-                                errorFun(___LIB + ': component with namespace \'' + component.namespace + '\' and name \'' + component.name + '\' does not define a single placeholder!');
+                                throw 'component with namespace \'' + component.namespace + '\' and name \'' + component.name + '\' does not define a single placeholder!';
                             }
                         }
                         else {
@@ -88,7 +88,7 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
 
                             $.each(componentInstance.content, function (placeholderName, placeholderContent) {
 
-                                content[placeholderName] = _normalize(placeholderContent, errorFun);
+                                content[placeholderName] = _normalize(placeholderContent);
                             });
                         }
 
@@ -108,7 +108,7 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
                 }
                 else {
 
-                    errorFun('component ' + componentInstance[$config.PROPERTY_COMPONENT_TYPE] + ' is not defined!');
+                    throw 'component ' + componentInstance[$config.PROPERTY_COMPONENT_TYPE] + ' is not defined!';
                 }
             });
         }
@@ -119,7 +119,7 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
                 // One component.
                 //
 
-                view = _normalize([view], errorFun);
+                view = _normalize([view]);
             }
             else {
 
@@ -127,10 +127,7 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
                 // Placeholders.
                 //
 
-                $.each(view, function (name, content) {
-
-                    view[name] = _normalize(content, errorFun);
-                })
+                $.each(view, function (name, content) { view[name] = _normalize(content); })
             }
 
         return view;
@@ -138,12 +135,11 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
 
     //
     // Take a normalized view and build the document tree in document order.
-    // @param view
-    // @param errorFun
+    // @param view the input fragment
     // @return The tree of components in document order
     //
 
-    var _buildTree = function (view, errorFun) {
+    var _buildTree = function (view) {
 
         var output = [];
 
@@ -204,7 +200,7 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
 
                             $.each(fragment.content, function (placeholderName, placeholderContent) {
 
-                                node.content[placeholderName] = _buildTree(placeholderContent, errorFun);
+                                node.content[placeholderName] = _buildTree(placeholderContent);
                             });
                         }
                     }
@@ -215,7 +211,7 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
                     // ERROR: Was expecting an object...
                     //
 
-                    errorFun('content does appear to be normalized!, was expecting an object type, not an array...');
+                    throw 'content does appear to be normalized!, was expecting an object type, not an array...';
                 }
 
                 //
@@ -228,10 +224,10 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
         else {
 
             //
-            // ERROR: Content does appear to be normalized.
+            // ERROR: Content does not appear to be normalized.
             //
 
-            errorFun('content does appear to be normalized');
+            throw 'content does not appear to be normalized';
         }
 
         //
@@ -250,7 +246,6 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
     //                      node        :: function(root, placeholders)
     //                      placeholder :: function(name, [ ... ])
     //                      root        :: function([node])
-    //                      error       :: function(msg)
     //
     // @return The result of the operation... whetever type that might be...
     //
@@ -306,7 +301,6 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
                             //
 
                             output.push(genes.node(node, content));
-
                         }
                         else {
 
@@ -314,7 +308,7 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
                             // ERROR: Was expecting an object...
                             //
 
-                            genes.error('content does appear to be normalized!, was expecting an object type, not an array...');
+                            throw 'content does appear to be normalized!, was expecting an object type, not an array...';
                         }
                     });
                 }
@@ -325,7 +319,7 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
                 // ERROR: Content does appear to be normalized.
                 //
 
-                genes.error('content does appear to be normalized');
+                throw 'content does appear to be normalized';
             }
 
             //
@@ -396,7 +390,7 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
                         // ERROR: Was expecting an object...
                         //
 
-                        genes.error('content does appear to be normalized!, was expecting an object type, not an array...');
+                        throw 'content does appear to be normalized!, was expecting an object type, not an array...';
                     }
                 });
             }
@@ -443,7 +437,7 @@ fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $conf
                         // ERROR: Was expecting an object...
                         //
 
-                        genes.error('content does appear to be normalized!, was expecting an object type, not an array...');
+                        throw 'content does appear to be normalized!, was expecting an object type, not an array...';
                     }
                 });
             }

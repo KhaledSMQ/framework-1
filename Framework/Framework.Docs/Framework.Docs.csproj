@@ -44,12 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="framework.comm.txt" />
+    <Content Include="framework.client.txt" />
     <Content Include="framework.utils.txt" />
     <Content Include="framework.blocks.txt" />
     <Content Include="framework.data.txt" />
     <Content Include="framework.apps.txt" />
     <Content Include="framework.forms.txt" />
     <Content Include="framework.txt" />
+    <Content Include="framework.types.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

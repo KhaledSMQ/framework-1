@@ -195,26 +195,17 @@ window.fw = jQuery.extend(true, window.fw, {
                 // Verify input arguments.
                 //
 
-                fw.core.verify(fw.core.verifyID(module), 'invalid module identifier for artifact');
-                fw.core.verify(fw.core.verifyID(name), 'invalid local name for artifact');
-
-                //
-                // Verify if module is valid.
-                //
-
-                fw.core.verify(fw.core.module.has(module), 'module is not defined');
-
-                //
-                // Verify if feature is valid.
-                //
-
-                fw.core.verify(fw.core.feature.has(feature), 'feature is not defined');
+                fw.core.verify(fw.core.verifyID(module), 'invalid module identifier for artifact',
+                               fw.core.verifyID(name), 'invalid local name for artifact',
+                               fw.core.module.has(module), 'module is not defined',
+                               fw.core.feature.has(feature), 'feature is not defined');
 
                 //
                 // In case the artifact has no dependencies.
                 //
 
                 if (!fw.core.defined(def)) {
+
                     def = deps;
                     deps = null;
                 }
@@ -228,16 +219,33 @@ window.fw = jQuery.extend(true, window.fw, {
                 if (!fw.core.artifact.has(id)) {
 
                     if (typeof deps == 'string') {
-                        deps = [deps];
+
+                        //
+                        // If the list of dependencies is a string
+                        // then we must check if it has more than
+                        // one dependency.
+                        //
+
+                        var lstOfDeps = deps.split(',');
+
+                        $.each(lstOfDeps, function (idx, dep) {
+                            lstDeps[idx] = dep.trim();
+                        });
+
+                        deps = lstOfDeps;
                     }
 
-                    var defObj = {
+                    //
+                    // Build definition object for artifact.
+                    //
+
+                    var artifact = {
                         feature: feature,
                         deps: deps,
                         def: def
                     };
 
-                    fw.core.artifact.set(id, defObj);
+                    fw.core.artifact.set(id, artifact);
                 }
 
                 return fw.core.module.protocol(module);
@@ -295,8 +303,8 @@ window.fw = jQuery.extend(true, window.fw, {
                         }
 
                         //
-                        // Use the feature value definition to get the 
-                        // actual artifact value.
+                        // Use the feature value definition 
+                        // to get the actual artifact value.
                         //
 
                         value = featureDef.value(deps, value);

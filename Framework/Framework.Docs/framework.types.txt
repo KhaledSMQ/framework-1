@@ -1,0 +1,702 @@
+
+	=======================================================================
+	
+	                         Framework.Types														   
+								
+	=======================================================================
+								
+	1. Native Types   
+	2. Primitive Types
+	3. Type Value Characterization
+	4. Type Value Editors
+	5. Type Definition Editors
+		
+	1. Native Types -------------------------------------------------------
+	
+	Native types serve as the basis for all primitive types, they are 
+	supported by the native running environment. This environment can be 
+	for example the	.NET or a browser's Javascript runtime.
+	
+	<native>	
+		|
+		|--	<boolean>	
+		|
+		|--	<int>
+		|
+		|--	<float>
+		|
+		|--	<string>	
+		|
+		|--	<date>	
+		|
+		|--	{ name0 :: type0, ..., nameN :: typeN }	
+		|
+		|--	[ type ]
+		|
+		|--	<enum> { val0, val1, ... }
+		|
+		|--	... ?
+	
+	2. Primitive Types --------------------------------------------------------
+	
+	 TYPE-DEF
+			name		:: <string>,		
+			abstract	:: <boolean>,
+			def			:: TYPE
+						
+	   TYPE
+		|	
+		| 	baseType    :: <string>?
+		|
+		|--	BOOL	
+		|
+		|--	CHOICE <abstract>
+		|		|
+		|		|	allowMultipleValues	:: <boolean>,
+		|		|	allowExtraValue		:: <boolean>
+		|		|
+		|		|-- CHOICE-LITERAL
+		|		|
+		|		|		values			:: [ CHOICE-OPTION ]
+		|		|
+		|		|-- CHOICE-URL
+		|
+		|				service			:: REMOTE,
+		|				fieldDisplay	:: <string>,
+		|				fieldValue		:: <string>
+		|
+		|-- CHOICE-OPTION
+		|
+		|			display	:: <string>
+		|			value	:: <string>
+		|
+		|--	DATETIME
+		|		|
+		|		|	mode		:: <enum> { DATE, TIME, DATETIME },
+		|		|	precision	:: <enum> { YEAR, MONTH, DAY, HOUR, MINUTE },
+		|		|	timeFormat	:: <string>
+		|		|
+		|		|--	DATETIME-INTERVAL
+		|	
+		|
+		|--	FLOAT
+		|
+		|			precision	:: <int>,
+		|			minValue	:: <float>?,
+		|			maxValue	:: <float>?
+		|	
+		|--	INT
+		|
+		|			minValue :: <int>?,
+		|			maxValue :: <int>?	
+		|			
+		|--	LIST
+		|
+		|			minElements :: <int>?,
+		|			maxElements :: <int>?,
+		|			innerType	:: TYPE
+		|		
+		|--	LOCATION
+		|
+		|			minElements :: <int>?,
+		|			maxElements :: <int>?,
+		|			innerType	:: TYPE
+		|		
+		|--	TABLE
+		|
+		|			minRows	:: <int>?,
+		|			maxRows	:: <int>?,
+		|			cols	:: [ PROPERTY ]
+		|	
+		|--	OBJECT 
+		|
+		|			properties :: [ PROPERTY ]
+		|	
+		|--	TEXT
+		|
+		|			value		:: <enum> { SIMPLE, RTF },
+		|			size		:: <enum> { LINE, BLOCK },
+		|			minLength	:: <int>?,
+		|			maxLength	:: <int>?,
+		|			regex		:: <string>?,
+		|			isPassword	:: <boolean>
+		|	
+		|--	UPLOAD
+		|
+		|			maxFileSize	:: <int>,
+		|			maxFiles	:: <int>,
+		|			url			:: <string>	
+		|	
+		|--	URL
+		|
+		|			kind	:: <enum> { IMAGE, GENERIC }
+		|			
+		|--	OR
+		|
+		|			types	:: [ TAG ]
+		|
+		|--	MONEY
+		|
+		|			precision	:: <int>,
+		|			minValue	:: <float>?,
+		|			maxValue	:: <float>?
+		|	
+		|--	AND
+		|
+		|			types	:: [ TYPE ]
+		|
+		|-- REF
+		|
+		|			xName	:: <string>
+		|
+		|-- REMOTE		
+		|
+		|			url			:: <string>,
+		|			verb		:: <string>,
+		|			dataType	:: <string>		
+		|
+		|-- TAG 
+		|
+		|			name	:: <string>
+		|			type	:: TYPE
+		|
+		|--	PROPERTY
+		|
+		|			name			:: <string>,
+		|			displayName		:: <string>,
+		|			required		:: <boolean>,
+		|			defaultValue	:: <native>,
+		|			type			:: TYPE
+		|
+		|-- NONE
+		
+
+	3. Type Value Characterization --------------------------------------------
+		
+	Primitive types have their values defined by the following table in
+	the native environment.
+		
+		|=======================|=====================================|
+		| 	Primitive Type		|	Native Value Type                 |
+		|=======================|=====================================|
+		|	BOOL                |	<boolean>                         |
+		|-----------------------|-------------------------------------|
+		|	CHOICE-LITERAL      |                                     |
+		|	CHOICE-URL          |   [                                 |
+		|                       |     {                               | 
+		|                       |     	display :: <string>           |
+		|	                    |       value   :: TYPE               |
+		|                       |     }                               |  
+		|	                    |   ]                                 |
+		|	                    |                                     |		
+		|-----------------------|-------------------------------------|
+		|	DATETIME            |   <date>                            |
+		|-----------------------|-------------------------------------|
+		|	DATETIME-INTERVAL   |                                     |
+		|                       |   {                                 | 
+		|                       |   	startDate :: <date>           |
+		|	                    |       endDate   :: <date>           |
+		|                       |   }                                 |  
+		|	                    |                                     |
+		|-----------------------|-------------------------------------|
+		|	FLOAT               |	<float>                           |
+		|-----------------------|-------------------------------------|
+		|	INT                 |	<int>                             |
+		|-----------------------|-------------------------------------|
+		|	LIST                |	[ TYPE ]                          |
+		|-----------------------|-------------------------------------|
+		|	LOCATION            |	                                  |
+		|                       |   {                                 |
+		|                       |    	lat  :: <number>              |
+		|	                    |       long :: <number>              |
+		|                       |   }                                 |
+		|-----------------------|-------------------------------------|
+		|	MONEY               |	                                  |
+		|                       |   {                                 |
+		|                       |    	currency :: <string>          |
+		|	                    |       amount   :: <number>          |
+		|                       |   }                                 |
+		|-----------------------|-------------------------------------|
+		|	TABLE               |                                     |
+		|                       |   {                                 |
+		|                       |    	cols :: [ <string> ]          |
+		|	                    |       rows :: [ [ TYPE ] ]          |
+		|                       |   }                                 |
+		|	                    |                                     |
+		|-----------------------|-------------------------------------|
+		|	OBJECT              |                                     |
+		|                       |   {                                 | 
+		|                       |    	prop0 :: TYPE,                |
+		|	                    |       prop1 :: TYPE,                |
+		|                       |       ...,                          |
+        |                       |       propN :: TYPE                 | 		
+		|                       |   }                                 |  
+		|	                    |                                     |
+		|-----------------------|-------------------------------------|
+		|	TEXT                |	<string>                          |
+		|-----------------------|-------------------------------------|
+		|	UPLOAD              |	                                  |
+		|-----------------------|-------------------------------------|
+		|	URL                 |	<string>                          |
+		|-----------------------|-------------------------------------|
+		|	OR                  |                                     |
+		|                       |   {                                 |
+		|                       |    	tag   :: <string>             |
+		|	                    |       value :: TYPE                 |
+		|                       |   }                                 |
+		|	                    |                                     |
+		|-----------------------|-------------------------------------|
+		|	AND                 |                                     |
+		|                       |   {                                 | 
+		|                       |    	0 :: TYPE,                    |
+		|	                    |       1 :: TYPE,                    |
+		|                       |       ...,                          |
+        |                       |       N :: TYPE                     | 		
+		|                       |   }                                 |  
+		|	                    |                                     |
+		|-----------------------|-------------------------------------|
+		|	NONE                |	<null>                            |
+		|=============================================================|
+		
+	Examples:
+		
+		a) The following type definition:
+		
+			OBJECT : {
+				properties : [
+					PROPERTY : {
+						name			: 'name'
+						displayName		: 'Full Name',
+						required		: true,
+						defaultValue	: '',
+						type			: TEXT						
+					},
+					PROPERTY : {
+						name			: 'age'
+						displayName		: 'Age',
+						required		: true,
+						defaultValue	: 0,
+						type			: INT						
+					},
+					PROPERTY : {
+						name			: 'phone'
+						displayName		: 'Phone Number',
+						required		: false,
+						defaultValue	: '',
+						type			: TEXT						
+					},
+					PROPERTY : {
+						name			: 'address'
+						displayName		: 'Full Address',
+						required		: false,
+						defaultValue	: '',
+						type			: TEXT						
+					}
+				]
+			}
+			
+			as the following as a value:
+			
+			{
+				name	: 'Joao Paulo',
+				age		: 38,
+				phone	: '910 022 457',
+				address	: 'Ponta Delgada'
+			}
+			
+	4. Type Value Editors -----------------------------------------------------
+	
+	Type value editors allow users to edit the values for specific types.
+	Type value editors are plugins that have a set of input properties and
+	commands (functions). Commands can be executed and change the plugin
+	inner state. 
+	All type editors define a common set of properties and commands.
+	
+	4.1 Common Properties & Commands
+	
+		4.1.1 Properties
+		
+		|=============================================================|
+		| Name        | mode                                          |
+		|=============|===============================================|
+		| Description | Set the view mode for the editor. VIEW mode   |
+		|             | displays only the value, EDIT mode allows the |
+		|             | the user to edit the value.                   |
+		|=============|===============================================|
+		| Type        | <enum> { VIEW, EDIT }                         |
+		|=============|===============================================|
+		| Default     | VIEW                                          |
+		|=============|===============================================|
+	
+		|=============================================================|
+		| Name        | store                                         |
+		|=============|===============================================|
+		| Description | Type store object. This property contains the |
+		|             | available types and their configuration.      |
+		|=============|===============================================|
+		| Type        | <native>                                      |
+		|=============|===============================================|
+		| Default     | <null>                                        |
+		|=============|===============================================|
+	
+		|=============================================================|
+		| Name        | typeDef                                       |
+		|=============|===============================================|
+		| Description | Type definition for the type value to edit.   |
+		|             |                                               |
+		|=============|===============================================|
+		| Type        | <native>                                      |
+		|=============|===============================================|
+		| Default     | <null>                                        |
+		|=============|===============================================|
+
+		|=============================================================|
+		| Name        | value                                         | 
+		|=============|===============================================|
+		| Description | The value to edit/view. This value gets up-   |
+		|             | dated whenever the user makes any changes or  |
+		|             | edits.                                        |
+		|=============|===============================================|
+		| Type        | <native>                                      |
+		|=============|===============================================|
+		| Default     | <null>                                        |
+		|=============|===============================================|
+				
+		|=============================================================|
+		| Name        | cssClass                                      |
+		|=============|===============================================|
+		| Description | CSS class to use for the wrapper container.   |
+		|             |                                               |
+		|             |                                               |
+		|=============|===============================================|
+		| Type        | <string>                                      |
+		|=============|===============================================|
+		| Default     | dependent on the editor itself.               |
+		|=============|===============================================|
+		
+		4.1.2 Commands
+
+		|=============================================================|
+		| Name        | get                                           |
+		|=============|===============================================|
+		| Description | Returns the current value for the type found  |
+		|             | inside the editor.                            |
+		|=============|===============================================|
+		| Parameters  | Name       | Type        |  Description       |
+		|             |===============================================|
+		|             |                 N/A                           |
+		|=============|===============================================|
+		| Output      | Type       | Description                      |
+		|             |===============================================|
+		|             | <native>   | The current value inside editor. |			
+		|=============|===============================================|
+
+		|=============================================================|
+		| Name        | set                                           |
+		|=============|===============================================|
+		| Description | Set the current value for the type inside the |
+		|             | editor.                                       |
+		|=============|===============================================|
+		| Parameters  | Name       | Type        |  Description       |
+		|             |===============================================|
+		|             | value      | <native>    |  The value to set. |			
+		|=============|===============================================|
+		| Output      | Type       | Description                      |
+		|             |===============================================|
+		|             |                 N/A                           |
+		|=============|===============================================|
+		
+				
+	4.2 Type Editors
+	
+	4.2.1 Boolean Type Value Editor	
+		
+		a) Properties
+			
+			|=============================================================|
+			| label                                                       |
+			|=============|===============================================|
+			| Type        | <string>?                                     |
+			|=============|===============================================|
+			| Default     | <null>                                        |
+			|=============|===============================================|
+			| Description | Textual value to place next to the generated  |
+			|             | checkbox.                                     |
+			|=============================================================|
+			| labelPlacement                                              |
+			|=============|===============================================|
+			| Type        | <enum> { LEFT, RIGHT }                        |
+			|=============|===============================================|
+			| Default     | RIGHT                                         |
+			|=============|===============================================|
+			| Description | Location for label, LEFT value places label   |
+			|             | on the left side of the check box, RIGHT      |
+			|             | value places label to the right.              |
+			|=============|===============================================|
+					
+		b) mode: VIEW
+		
+		c) mode: EDIT
+		
+	4.2.2 Choice Type Value Editor
+	
+		a) mode: VIEW
+		
+		b) mode: EDIT
+		
+	4.2.2.1 Choice Literal Value Editor
+	
+		a) mode: VIEW
+		
+		b) mode: EDIT
+		
+	4.2.2.2 Choice Url Value Editor
+	
+		a) mode: VIEW
+		
+		b) mode: EDIT
+		
+	4.2.3 Date Time Type Value Editor
+	
+		a) mode: VIEW
+		
+		b) mode: EDIT
+		
+	4.2.3.1 Date Time Interval Type Value Editor	
+	
+		a) mode: VIEW
+		
+		b) mode: EDIT
+		
+	4.2.4 Float Type Value Editor
+	
+		a) mode: VIEW
+		
+		b) mode: EDIT
+		
+	4.2.5 Integer Type Value Editor	
+	
+		a) mode: VIEW
+		
+		b) mode: EDIT
+		
+	4.2.6 List Type Value Editor
+	
+		a) mode: VIEW
+		
+		b) mode: EDIT
+		
+	4.2.7 Table Type Value Editor
+	
+		a) mode: VIEW
+		
+		b) mode: EDIT
+		
+	4.2.8 Object Type Value Editor
+	
+		a) mode: VIEW
+		
+		b) mode: EDIT
+		
+	4.2.8.1 Property Type Value Editor
+	
+		a) mode: VIEW
+		
+		b) mode: EDIT
+		
+	4.2.9 Text Type Value Editor
+	
+		a) mode: VIEW
+		
+		b) mode: EDIT
+		
+	4.2.10 Upload Type Value Editor
+	
+		a) mode: VIEW
+		
+		b) mode: EDIT
+		
+	4.2.11 Url Type Value Editor
+	
+		a) mode: VIEW
+		
+		b) mode: EDIT
+		
+	4.2.12 Or Type Value Editor
+	
+		a) mode: VIEW
+		
+		b) mode: EDIT
+		
+	4.2.13 And Type Value Editor
+	
+		a) mode: VIEW
+		
+		b) mode: EDIT
+		
+	4.2.14 None Type Value Editor
+
+	
+	BOOL:
+		view:
+		- label(String);
+
+		edit:
+		- labelPlacement(String);
+
+	CHOICE:
+		view:
+		- values(Object Array) contains:
+			- value(Int);
+			- display(String);
+
+		edit:
+		- extraValue(String);
+		- errors(Object) contains:
+			- invalidFields(String);
+			- noFieldsDefined(String);
+	
+	DATETIME:
+		view:
+		- template(String);
+		- value(Datetime);
+		- valueRange(Object) contains:
+			- startDate(Datetime);
+			- endDate(Datetime);
+
+		edit:
+		- template(String);
+		- value(Datetime);
+		- valueRange(Object) contains:
+			- startDate(Datetime);
+			- endDate(Datetime);
+		- addOnPlacement(String);
+
+			[bug]: A selecção da data deve ser em popup. Acho que tinhamos 
+			       chegado a conclusão que é um BUG no bootstrap. Temos que
+				   arranjar maneira de dar a volta a isto.
+			   
+	FLOAT:
+		view:
+		- value(Float);
+			
+		edit:
+		- value(Float);
+		- labels(Object) contains:
+			- minValue(String);
+			- maxValue(String);
+			- precision(String);
+		- addOnPlacement(String);
+
+	INT:
+		view:
+		- value(Int);
+				
+		edit:
+		- value(Int);
+		- labels(Object) contains:
+			- minValue(String);
+			- maxValue(String);
+	
+	LIST:
+		view:
+		- value(Array);
+
+		edit:
+		- labels(Object) contains:
+			- minElements(String);
+			- maxElements(String);
+	TABLE:
+		view:
+		- value(Array);
+
+		edit:
+			O que temos é um editor da definição da tabela. Precisamos de um 
+			editor de valor. O numero de colunas a presentar deverá ser igual
+			ao definido no tipo.
+		
+	OBJECT:
+		view:
+		- value(Object);
+
+		edit:
+		- minFields(Int);
+		- maxFields(Int);
+		- value(Object);
+		- labelPlacement(String);
+
+	TEXT:
+		view:
+		- value(String);
+
+		edit:
+		- value(String);
+		- labels(Object) contains:
+			- regex(String);
+			- minLength(String);
+			- maxLength(String);
+		- passwordAddOn(Boolean);
+		- addOnPlacement(String);
+
+	UPLOAD:
+		view:
+		- files(Object Array) contains:
+			- name(String);
+			- type(String);
+			- url(String);		
+		
+		edit:
+		- autoProcessQueue(Boolean);
+		- submitButton(Boolean)
+			true if autoProcessQueue = false & vice-versa;
+		
+	URL:
+		view:
+		- value(String);
+			
+		edit:
+		- ???;	
+	OR:
+		view:
+		- value(Type?);
+
+			A visualização de um tipo OR só mostra um valor. Este é o valor
+			que o utilizador introduziu.
+		edit:
+		- ???;
+		
+	AND:
+		view:
+		- value(Type view mode Array?);
+
+		edit:
+		- labels(Object) contains
+			- minElements(String);
+			- maxElements(String);
+
+			O que temos é um editor da definição do AND e não do
+			seu valor. O editor de um valor 'AND' deverá ter o numero de 
+			subeditors correspondentes ao numero de elementos no AND.
+		
+	PROPERTY:
+		view:
+		- value(Object) contains:
+			- name(String);	
+			- displayName(String);
+
+		edit:
+			- labels(Object) contains:
+				- name(String);
+				- displayName(String);
+				- required(String);
+				- defaultValue(String);
+				- type(String);
+			
+			O que temos é um editor da definição da propriedade,
+			e não um editor do valor da propriedade. O que se pretende é ter
+			um editor para o valor. Este editor deverá utilizar a definição 
+			do tipo da propriedade para a construção do editor.
+	
+	5. Type Definition Editors ------------------------------------------------
+					
+	
