@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: fw service feature.
+// Name/Class: Service feature.
 // Created On: 23/Jan/2016
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Company: Cybermap Lda.
@@ -10,7 +10,14 @@
 fw.feature('service', {
 
     value: function (deps, def) {
-        return def.apply(null, deps);
+
+        var api = null;
+
+        if (typeof def == 'function') {
+            api = def.apply(def, deps);
+        }
+        
+        return api;
     }
 
 });

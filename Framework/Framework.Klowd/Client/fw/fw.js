@@ -229,7 +229,7 @@ window.fw = jQuery.extend(true, window.fw, {
                         var lstOfDeps = deps.split(',');
 
                         $.each(lstOfDeps, function (idx, dep) {
-                            lstDeps[idx] = dep.trim();
+                            lstOfDeps[idx] = dep.trim();
                         });
 
                         deps = lstOfDeps;

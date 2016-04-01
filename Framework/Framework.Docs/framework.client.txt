@@ -12,14 +12,14 @@
 		
 	1. Introduction -------------------------------------------------------
 		
-	  This document describes a Web client-side framework. This framework 
-	is divided into three main sub-systems: The core sub-system, where all 
+	  This document describes a client-side framework. This framework is 
+	divided into three main sub-systems: The core sub-system, where all 
 	functionality is registered, managed and retrieved, a basic library of
 	services, where a number of core functions is implemented and a compo-
 	nent-based interface rendering framework, where user interfaces are 
 	assembled using a pre-built, but extensible, set of components.
 		
-	2. Framework -------------------------------------------------------	
+	2. Framework ----------------------------------------------------------	
 
 	2.1 Modules
 	
@@ -93,6 +93,9 @@
 			e.g. 'types.forms.list', where 'types.forms' is the namespace 
 			and 'list' is the local name.
 
+		o- Description
+			Small description for the component.
+
 		o- Property Schema
 			Set of properties that work as configuration values. Useful 
 			for defining specific behaviour, style, constant values or
@@ -134,10 +137,15 @@
 			A native-based rendering template. It could be for an example,
 			a piece of a HTML template with specific placeholders.
 
+		o- Placeholders
+		    Declares the component placholders. The placeholders are where
+			it is possible to add children components for the current 
+			component.
+
 		o- Base
 			Optional value that refers to the base component type of the 
 			component that is being defined.
-
+			
 	4.1.2 Runtime
 
 		o- Property Values
@@ -195,8 +203,21 @@
 				        |  | ------------------------------- |    |   | |
                         |  -----------------------------------    |   | |
                         |                                         |   | |
+	                    |  -----------------------------------    |   | |
+	                    |  |              Event              |    |   | |
+	    Event Handlers  |  | ------------------------------- |    |   | |
+	 |---------------------->|          Protocol           |<====>|   | |
+	                    |  | ------------------------------- |    |   | |
+				        |  | |    Handlers  |     Schema   | |    |   | |
+				        |  | ------------------------------- |    |   | |
+                        |  -----------------------------------    |   | |
+                        |                                         |   | |
                         |    -------------------------------      |   | |
                         |    |          Template           |----->|   | |
+						|    -------------------------------      |   | |
+                        |                                         |   | |
+                        |    -------------------------------      |   | |
+                        |    |          Placeholders       |----->|   | |
 						|    -------------------------------      ----- |
 	                    -------------------------------------------------
 
@@ -204,9 +225,11 @@
 	4.2 Fragments
 	
 		o- Name
-		o- Properties
-		o- Resources
-		o- Model		
+		o- Description
+		o- Property Schema
+		o- Model Schema	
+		o- Resource Schema
+		o- Event Schema	
 
 		o- Master
 
