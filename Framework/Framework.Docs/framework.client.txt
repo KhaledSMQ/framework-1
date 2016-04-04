@@ -156,7 +156,12 @@
 		
 		o- Event Handlers	
 
+		Component instance:
 
+			- $property
+			- $model
+			- $resource
+			- $event
 	                       
                           ---------------------------------------------
 	                      |                  <BASE>                   |
