@@ -11,7 +11,7 @@
 </body>
     <framework:Include runat="server" Folder="Client" Pattern="*.js" />
     <framework:Include runat="server" Folder="Client\fw" Pattern="*.js" />
-    <framework:Include runat="server" Folder="Client\fw\features" Pattern="*.js" />
+    <framework:Include runat="server" Folder="Client\fw" Pattern="__*.js" Recursive="true" />
     <framework:Include runat="server" Folder="Client\fw\modules" Pattern="*.js" Recursive="true" />
 </html>
 

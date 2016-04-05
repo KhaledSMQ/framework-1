@@ -15,15 +15,11 @@ fw.module('utils').component('rollup', 'core.util', {
             dft: []
         }
     },
-    native: function ($util) {
-
-        var $def = this;
+    native: function ($instance, $util) {
 
         //
 
-        function _render() {
-
-            var instance = this;
+        var _render = function() {            
         }
 
         //

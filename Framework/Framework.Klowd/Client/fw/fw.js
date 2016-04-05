@@ -139,7 +139,7 @@ window.fw = jQuery.extend(true, window.fw, {
 
         feature: {
 
-            add: function (id, def) {
+            add: function (id, deps, def) {
 
                 //
                 // Verify name.
@@ -148,6 +148,33 @@ window.fw = jQuery.extend(true, window.fw, {
                 fw.core.verify(fw.core.verifyID(id), 'invalid name for feature');
 
                 if (!fw.core.feature.has(id)) {
+
+                    //
+                    // Check if no dependencies were set.
+                    //
+
+                    if (!fw.core.defined(def)) {
+
+                        def = deps;
+                        deps = null;
+                    }
+
+                    var defObj = null;
+                    
+                    if (fw.core.defined(deps)) {
+
+                        var depsInstance = [];
+
+                        $.each(deps, function (_, dep) {
+                            depsInstance.push(fw.core.artifact.instance(dep));
+                        });
+
+                        defObj = def.apply(def, depsInstance);
+                    }
+                    else {
+
+                        defObj = def.apply(def);
+                    }
 
                     //
                     // def :: {
@@ -163,7 +190,7 @@ window.fw = jQuery.extend(true, window.fw, {
                     // }
                     //
 
-                    fw.core.feature.set(id, def);
+                    fw.core.feature.set(id, defObj);
                 }
 
                 return fw;
@@ -554,8 +581,8 @@ window.fw = jQuery.extend(true, window.fw, {
     // @return The framework object for chainning.
     // 
 
-    feature: function (id, def) {
-        return fw.core.feature.add(id, def);
+    feature: function (id, deps, def) {
+        return fw.core.feature.add(id, deps, def);
     },
 
     //

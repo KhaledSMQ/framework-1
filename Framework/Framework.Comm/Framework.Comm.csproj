@@ -56,6 +56,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\SrvSMSBulk.cs" />
+    <Compile Include="API\SrvSMSUSendIt.cs" />
+    <Compile Include="API\SrvSMSLuso.cs" />
+    <Compile Include="API\ISMS.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -65,7 +69,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="API\" />
     <Folder Include="Data\" />
     <Folder Include="Model\" />
   </ItemGroup>

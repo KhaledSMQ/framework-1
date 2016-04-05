@@ -7,4 +7,15 @@
 // ============================================================================
 
 'use strict';
-fw.feature('webapi', {});
+
+fw.feature('template', function () {
+
+    return {};
+
+});
+
+fw.feature('webapi', function () {
+
+    return {};
+
+});
