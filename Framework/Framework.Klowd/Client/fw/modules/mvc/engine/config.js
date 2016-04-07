@@ -7,7 +7,7 @@
 // ============================================================================
 
 'use strict';
-fw.module('mvc').service('config', 'core.util', function ($util) {
+fw.module('mvc.engine').service('config', 'core.util', function ($util) {
 
     //
     // Default name for application manifest, in

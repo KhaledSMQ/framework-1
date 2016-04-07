@@ -7,7 +7,7 @@
 // ============================================================================
 
 'use strict';
-fw.module('mvc').service('view', 'core.util, mvc.config', function ($util, $config) {
+fw.module('mvc.engine').service('view', 'core.util, mvc.engine.config', function ($util, $config) {
 
     //
     // Normalize a view tree datatype.

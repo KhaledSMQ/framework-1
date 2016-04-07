@@ -7,17 +7,28 @@
 // ============================================================================
 
 'use strict';
-fw.module('mvc').service('component', 'core.util', function ($util) {
+fw.module('mvc.engine').service('component', 'core.util', function ($util) {
 
     //
     // Service name.
     //
 
-    var __LIB = 'mvc.component';
+    var __LIB = 'mvc.engine.component';
+
+    //
+    // Internal state, count the number of
+    // component instances that were created
+    // and define the prefix value for component
+    // instance unique identifier.
+    //
+
+    var __INSTANCE__COUNT = 0;
+    var __INSTANCE__PREFIX = 'c';
 
     //
     // Get a new instance for a specific component.
     // @param name The unique name for the component.
+    // @return A ready-to-go component instance.
     //
 
     var _new = function (name) {
@@ -35,7 +46,7 @@ fw.module('mvc').service('component', 'core.util', function ($util) {
             //
 
             __dom: {
-                id: null,
+                id: __INSTANCE__PREFIX + __INSTANCE__COUNT++,
                 root: null
             },
 
@@ -95,42 +106,62 @@ fw.module('mvc').service('component', 'core.util', function ($util) {
             $data: {}
         };
 
-
         //
         // Get the component definition.
         //
 
-        var def = fw.get(name);
+        var defObj = fw.get(name);
+
+        var compDef = defObj.def.apply(defObj.def, defObj.deps);
 
         //
-        // Import the API defined by the component to
-        // the component instance. This makes up for
-        // a very clean instance interface.        
+        // Attach to the instance the component
+        // definition object. Add the name value
+        // also.
         //
 
-        /*
-        $.each(api, function (name, def) {
-
-            instance[name] = function () { def.apply(api.$def.native, arguments); };
-        });
-        */
-
-        instance.run = function () {
-
-            var args = [];
-            args.push(instance);
-            $.each(def.deps, function (_, dep) { args.push(dep); });
-
-            var api = def.native.apply(def, args);
-
-            var name = arguments[0];
-
-            api[name].apply(def, arguments);
-
-        };
+        instance.$def = compDef;
+        instance.$def.name = name;
 
         //
-        // Return the component instance to caller.
+        // Process the component instance API.
+        // Create a function for every native method
+        // found in the component definition.
+        //
+
+        if ($util.isDefined(compDef.api)) {
+
+            $.each(compDef.api, function (name, fun) {
+
+                instance[name] = function () {
+
+                    //
+                    // Attach the component instance
+                    // object, this means that all
+                    // function must declare first the
+                    // component instance.
+                    //
+
+                    var args = [instance];
+
+                    //
+                    // Add other arguments that are sent 
+                    // to function by the invocation.
+                    //
+
+                    //
+                    // Call the function.
+                    //
+
+                    fun.apply(fun, args);
+                };
+            });
+        }
+
+        //
+        // Return a newly create component
+        // instance to caller. This instance
+        // can be used independently...
         //
 
         return instance;

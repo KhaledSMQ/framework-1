@@ -3,32 +3,27 @@
 // utils.rollup
 //
 
-fw.module('utils').component('rollup', 'core.util', {
-    description: 'diplay a list of items',
-    template: '<div>{{ placeholders.MAIN }}</div>',
-    placeholders: { 'MAIN': null },
-    model: {
-        list: {
-            display: 'list',
-            kind: 'INOUT',
-            type: null,
-            dft: []
+fw.module('utils').component('rollup', 'core.util', function ($util) {
+    return {
+        description: 'display a list of items, according to an optional template value.',
+        template: '<div>{{ placeholders.MAIN }}</div>',
+        placeholders: { 'MAIN': null },
+        model: {
+            list: {
+                display: 'list',
+                kind: 'INOUT',
+                type: null,
+                dft: []
+            }
+        },
+        api: {
+
+            render: function ($this) {
+
+                console.info('$util: ' + JSON.stringify($util));
+                console.info('description: ' + JSON.stringify($this.$def.description));
+            }
         }
-    },
-    native: function ($instance, $util) {
-
-        //
-
-        var _render = function() {            
-        }
-
-        //
-        // API
-        //
-
-        return {
-            render: _render
-        };
-    }
+    };
 });
 

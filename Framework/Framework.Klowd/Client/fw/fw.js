@@ -160,21 +160,15 @@ window.fw = jQuery.extend(true, window.fw, {
                     }
 
                     var defObj = null;
-                    
+                    var args = [];
+
                     if (fw.core.defined(deps)) {
-
-                        var depsInstance = [];
-
                         $.each(deps, function (_, dep) {
-                            depsInstance.push(fw.core.artifact.instance(dep));
+                            args.push(fw.core.artifact.instance(dep));
                         });
-
-                        defObj = def.apply(def, depsInstance);
                     }
-                    else {
 
-                        defObj = def.apply(def);
-                    }
+                    defObj = def.apply(def, args);
 
                     //
                     // def :: {
@@ -289,60 +283,112 @@ window.fw = jQuery.extend(true, window.fw, {
                 return lst;
             },
 
-            has: function (id) { return fw.core.defined(fw.core.artifact.get(id)); },
+            has: function (id) { return fw.core.defined(fw.core.artifact.get(id)); },            
 
-            instance: function (id) {
+            value: function (id) {
+
+                var value = null;
 
                 //
-                // Check if value was already instantiated.
+                // Get the artifact definition.
                 //
 
-                var value = fw.core.singleton.get(id);
+                var artifact = fw.core.artifact.get(id);
 
-                if (!fw.core.defined(value)) {
-
-                    //
-                    // Get the artifact definition.
-                    //
-
-                    var defObj = fw.core.artifact.get(id);
+                if (fw.core.defined(artifact)) {
 
                     //
                     // Get the feature definition.
                     //
 
-                    var featureDef = fw.core.feature.get(defObj.feature);
-                    value = defObj.def;
+                    var feature = fw.core.feature.get(artifact.feature);
 
-                    if (fw.core.defined(featureDef) && fw.core.defined(featureDef.value)) {
+                    if (fw.core.defined(feature)) {
 
                         //
-                        // Instantiate the dependencies.
+                        // if feature is defined to generate
+                        // singletons, then get the singleton
+                        // and be done with it. By default,
+                        // everything is a singleton.
                         //
 
-                        var deps = null;
-                        if (fw.core.defined(defObj.deps)) {
+                        var isSingleton = !fw.core.defined(feature.singleton) || feature.singleton;
 
-                            deps = [];
-                            $.each(defObj.deps, function (_, dep) {
-                                deps.push(fw.core.artifact.instance(dep));
-                            });
+                        //
+                        // In case the feature is singletons
+                        // and the value was already retrieved.
+                        //
+
+                        if (isSingleton) {
+
+                            value = fw.core.singleton.get(id);
+                            if (fw.core.defined(value)) {
+                                return value;
+                            }
                         }
 
                         //
-                        // Use the feature value definition 
-                        // to get the actual artifact value.
+                        // Default value for the artifact
                         //
 
-                        value = featureDef.value(deps, value);
+                        value = artifact.def;
+
+                        //
+                        // If feature associated with the artifact 
+                        // defines a new handler, call it.
+                        // 
+
+                        if (fw.core.defined(feature.value)) {
+
+                            //
+                            // Instantiate the dependencies.
+                            //
+
+                            var deps = null;
+                            if (fw.core.defined(artifact.deps)) {
+
+                                deps = [];
+                                $.each(artifact.deps, function (_, dep) {
+                                    deps.push(fw.core.artifact.value(dep));
+                                });
+                            }
+
+                            //
+                            // Use the feature value definition 
+                            // to get the actual artifact value.
+                            //
+
+                            value = feature.value(deps, value);
+                        }
+
+                        //
+                        // Cache the value.
+                        //
+
+                        if (isSingleton) {
+
+                            fw.core.singleton.set(id, value);
+                        }
                     }
+                    else {
 
-                    //
-                    // Cache the value.
-                    //
-
-                    fw.core.singleton.set(id, value);
+                        //
+                        // ERROR: could not find feature for artifact with identifier 'id'.
+                        //
+                    }
                 }
+                else {
+
+                    //
+                    // ERROR: artifact with identifier 'id' was not found!
+                    //
+                }
+
+                //
+                // Return value for identifier, either a new
+                // object or an object form the singleton
+                // store.
+                //
 
                 return value;
             }
@@ -570,7 +616,7 @@ window.fw = jQuery.extend(true, window.fw, {
     // @return The module API object.
     //
 
-    module: function (id, deps) {
+    'module': function (id, deps) {
         return fw.core.module.add(id, deps);
     },
 
@@ -581,7 +627,7 @@ window.fw = jQuery.extend(true, window.fw, {
     // @return The framework object for chainning.
     // 
 
-    feature: function (id, deps, def) {
+    'feature': function (id, deps, def) {
         return fw.core.feature.add(id, deps, def);
     },
 
@@ -592,8 +638,8 @@ window.fw = jQuery.extend(true, window.fw, {
     // @return The artifact runtime value.
     //
 
-    get: function (id) {
-        return fw.core.artifact.instance(id);
+    'get': function (id) {
+        return fw.core.artifact.value(id);
     }
 });
 

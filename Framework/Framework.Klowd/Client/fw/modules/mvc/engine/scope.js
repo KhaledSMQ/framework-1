@@ -7,7 +7,7 @@
 // ============================================================================
 
 'use strict';
-fw.module('mvc').service('scope', 'core.util', function ($util) {
+fw.module('mvc.engine').service('scope', 'core.util', function ($util) {
 
     //
     // Library name.

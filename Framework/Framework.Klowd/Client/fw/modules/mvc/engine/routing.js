@@ -7,7 +7,7 @@
 // ============================================================================
 
 'use strict';
-fw.module('mvc').service('routing', 'core.util, core.string, core.time, core.resolver, mvc.config', function ($util, $string, $time, $resolver, $config) {
+fw.module('mvc.engine').service('routing', 'core.util, core.string, core.time, core.resolver, mvc.engine.config', function ($util, $string, $time, $resolver, $config) {
 
     //
     // Take an application instance and an url and extract
