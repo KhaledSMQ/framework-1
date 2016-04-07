@@ -9,7 +9,7 @@
 'use strict';
 fw.feature('service', function () {
     return {
-        value: function (deps, def) {
+        value: function (id, deps, def) {
             return (typeof def == 'function') ? def.apply(def, deps) : null;
         }
     };
@@ -18,7 +18,7 @@ fw.feature('service', function () {
 fw.feature('factory', function () {
     return {
         singleton: false,
-        value: function (deps, def) {
+        value: function (id, deps, def) {
             return (typeof def == 'function') ? def.apply(def, deps) : null;
         }
     };

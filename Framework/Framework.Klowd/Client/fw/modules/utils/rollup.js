@@ -5,6 +5,7 @@
 
 fw.module('utils').component('rollup', 'core.util', function ($util) {
     return {
+        base: 'mvc.components.base',
         description: 'display a list of items, according to an optional template value.',
         template: '<div>{{ placeholders.MAIN }}</div>',
         placeholders: { 'MAIN': null },
@@ -17,12 +18,6 @@ fw.module('utils').component('rollup', 'core.util', function ($util) {
             }
         },
         api: {
-
-            render: function ($this) {
-
-                console.info('$util: ' + JSON.stringify($util));
-                console.info('description: ' + JSON.stringify($this.$def.description));
-            }
         }
     };
 });

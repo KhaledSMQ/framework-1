@@ -19,11 +19,54 @@ fw.feature('component', function () {
     var __INSTANCE__COUNT = 0;
     var __INSTANCE__PREFIX = 'c';
 
+    //
+    // Import an API set to a new component instance.
+    // @param instance The component instance where to import the API.
+    // @param api The API to import.
+    //
+
+    var _importAPI = function (instance, api) {
+
+        if (fw.core.defined(api)) {
+
+            $.each(api, function (name, fun) {
+
+                instance[name] = function () {
+
+                    //
+                    // Attach the component instance
+                    // object, this means that all
+                    // function must declare first the
+                    // component instance.
+                    //
+
+                    var args = [instance];
+
+                    //
+                    // TODO: Add other arguments that are sent 
+                    // to function by the invocation.
+                    //
+
+                    //
+                    // Call the function.
+                    //
+
+                    fun.apply(fun, args);
+                };
+            });
+        }
+    };
+
+    //
+    // Return the component feature
+    // object API.
+    //
+
     return {
 
         singleton: false,
 
-        value: function (deps, fun) {
+        value: function (id, deps, fun) {
 
             //
             // TODO: Check the generated component API,
@@ -113,7 +156,7 @@ fw.feature('component', function () {
             // Get the component definition.
             //
 
-            var compDef = fun.apply(fun, deps);
+            var component = fun.apply(fun, deps);
 
             //
             // Attach to the instance the component
@@ -121,8 +164,31 @@ fw.feature('component', function () {
             // also.
             //
 
-            instance.$def = compDef;
-            instance.$def.name = name;
+            instance.$def = component;
+            instance.$def.name = id;
+
+            //
+            // If component defines a base component
+            // then instantiate it here.
+            //
+
+            var base = null;
+            if (fw.core.defined(component.base))
+            {
+                base = fw.get(component.base);
+            }
+
+            instance.$base = base;
+
+            //
+            // Process the base component instance API.
+            // If the base is null or undefined, do nothing.
+            //
+
+            if (fw.core.defined(base)) {
+
+                _importAPI(instance, base.$def.api);
+            }
 
             //
             // Process the component instance API.
@@ -130,34 +196,7 @@ fw.feature('component', function () {
             // found in the component definition.
             //
 
-            if (fw.core.defined(compDef.api)) {
-
-                $.each(compDef.api, function (name, fun) {
-
-                    instance[name] = function () {
-
-                        //
-                        // Attach the component instance
-                        // object, this means that all
-                        // function must declare first the
-                        // component instance.
-                        //
-
-                        var args = [instance];
-
-                        //
-                        // TODO: Add other arguments that are sent 
-                        // to function by the invocation.
-                        //
-
-                        //
-                        // Call the function.
-                        //
-
-                        fun.apply(fun, args);
-                    };
-                });
-            }
+            _importAPI(instance, component.api);
 
             //
             // Return a newly create component

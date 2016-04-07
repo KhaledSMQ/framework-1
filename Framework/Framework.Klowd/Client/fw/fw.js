@@ -328,7 +328,9 @@ window.fw = jQuery.extend(true, window.fw, {
                         if (isSingleton) {
 
                             value = fw.core.singleton.get(id);
+
                             if (fw.core.defined(value)) {
+
                                 return value;
                             }
                         }
@@ -364,7 +366,7 @@ window.fw = jQuery.extend(true, window.fw, {
                             // to get the actual artifact value.
                             //
 
-                            value = feature.value(deps, value);
+                            value = feature.value(id, deps, value);
                         }
 
                         //
