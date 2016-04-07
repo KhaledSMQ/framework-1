@@ -201,7 +201,6 @@
     <Content Include="Client\fw\modules\html\h1.js" />
     <Content Include="Client\fw\modules\html\hr.js" />
     <Content Include="Client\fw\modules\html\br.js" />
-    <Content Include="Client\fw\modules\mvc\engine\component.js" />
     <Content Include="Client\fw\modules\mvc\engine\scope.js" />
     <Content Include="Client\fw\modules\mvc\engine\routing.js" />
     <Content Include="Client\fw\modules\mvc\engine\fragment.js" />

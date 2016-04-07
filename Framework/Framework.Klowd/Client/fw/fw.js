@@ -174,6 +174,12 @@ window.fw = jQuery.extend(true, window.fw, {
                     // def :: {
                     //
                     //     //
+                    //     // Whether the feature vaues are singletons.
+                    //     //
+                    //    
+                    //     singleton :: bool
+                    //
+                    //     //
                     //     // Function to get the value definition of the artifact.
                     //     // @param deps list of dependencies for artifact.
                     //     // @param def the definition object, dependent on the artifact.
@@ -283,7 +289,7 @@ window.fw = jQuery.extend(true, window.fw, {
                 return lst;
             },
 
-            has: function (id) { return fw.core.defined(fw.core.artifact.get(id)); },            
+            has: function (id) { return fw.core.defined(fw.core.artifact.get(id)); },
 
             value: function (id) {
 
@@ -375,6 +381,8 @@ window.fw = jQuery.extend(true, window.fw, {
                         //
                         // ERROR: could not find feature for artifact with identifier 'id'.
                         //
+
+                        fw.error('could not find feature for artifact with identifier \'' + id + '\'');
                     }
                 }
                 else {
@@ -382,6 +390,8 @@ window.fw = jQuery.extend(true, window.fw, {
                     //
                     // ERROR: artifact with identifier 'id' was not found!
                     //
+
+                    fw.error('artifact with identifier \'' + id + '\' was not found!');
                 }
 
                 //
@@ -628,11 +638,26 @@ window.fw = jQuery.extend(true, window.fw, {
     // 
 
     'feature': function (id, deps, def) {
-        return fw.core.feature.add(id, deps, def);
+
+        //
+        // Check if we are defining a feature or
+        // getting the feature definition object.
+        //
+
+        return (fw.core.defined(deps) || fw.core.defined(def)) ? fw.core.feature.add(id, deps, def) : fw.core.feature.get(id);
     },
 
     //
-    // Get the artifact with the specified identifier.
+    // Get the artifact value.
+    // @param id the name for the artifact
+    //
+
+    'artifact': function (id) {
+        return fw.core.artifact.get(id);
+    },
+
+    //
+    // Get the artifact value with the specified identifier.
     // This is the complete, fully qualified name for the artifact.
     // @param id The identifier for the artifact to get.
     // @return The artifact runtime value.
@@ -640,6 +665,15 @@ window.fw = jQuery.extend(true, window.fw, {
 
     'get': function (id) {
         return fw.core.artifact.value(id);
+    },
+
+    //
+    // Throw an error.
+    // @param msg The message error to throw.
+    //
+
+    'error': function (msg) {
+        console.error(msg);
     }
 });
 

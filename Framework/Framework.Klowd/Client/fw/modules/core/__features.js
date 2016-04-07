@@ -7,28 +7,24 @@
 // ============================================================================
 
 'use strict';
-
 fw.feature('service', function () {
-
-    var _value = function (deps, def) {
-
-        var api = null;
-
-        if (typeof def == 'function') {
-            api = def.apply(def, deps);
-        }
-
-        return api;
-    };
-
     return {
-        value: _value
+        value: function (deps, def) {
+            return (typeof def == 'function') ? def.apply(def, deps) : null;
+        }
     };
+});
 
+fw.feature('factory', function () {
+    return {
+        singleton: false,
+        value: function (deps, def) {
+            return (typeof def == 'function') ? def.apply(def, deps) : null;
+        }
+    };
 });
 
 fw.feature('object', function () {
-
-    return {};
-
+    return {
+    };
 });

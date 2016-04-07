@@ -7,7 +7,6 @@
 // ============================================================================
 
 'use strict';
-
 fw.feature('component', function () {
 
     //
@@ -147,7 +146,7 @@ fw.feature('component', function () {
                         var args = [instance];
 
                         //
-                        // Add other arguments that are sent 
+                        // TODO: Add other arguments that are sent 
                         // to function by the invocation.
                         //
 

@@ -8,7 +8,6 @@
 
 'use strict';
 fw.feature('app', function () {
-
-    return {};
-
+    return {
+    };
 });
