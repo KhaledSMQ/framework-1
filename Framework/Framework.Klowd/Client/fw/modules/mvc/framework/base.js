@@ -5,10 +5,7 @@
 
 fw.module('mvc.framework').component('base', 'core.util', function ($util) {
     return {
-        description: 'Base component definition',
-        template: null,
-        placeholders: null,
-        model: null,
+        description: 'Base component definition',      
         api: {
 
             //
@@ -16,12 +13,18 @@ fw.module('mvc.framework').component('base', 'core.util', function ($util) {
             // @param $this The runtime instance object value for component.
             //            
 
-            render: function ($this) {
+            $anatomy: function ($this) {
 
-                if (fw.debug()) {
-                    console.info('name: ' + $this.$def.name);
-                    console.info('description: ' + $this.$def.description);
-                }
+                // #ifdef DEBUG
+                
+                fw.debug('COMPONENT:');
+                fw.debug('    name.........: {0}', $this.$def.name);
+                fw.debug('    description..: {0}', $this.$def.description);
+                fw.debug('INSTANCE:');
+                fw.debug('    id...........: {0}', $this.id);
+                fw.debug('    type.........: {0}', $this.type);
+
+                // #endif
             }
         }
     };

@@ -163,6 +163,18 @@ window.fw = jQuery.extend(true, window.fw, {
 
                     var feature = fun.apply(fun, args);
 
+                    //
+                    // Add other information to the feature
+                    // object, things like id, dependecies, etc.
+                    //
+
+                    feature.id = id;
+                    feature.deps = deps;
+
+                    //
+                    // Add the feature runtime object.
+                    //
+
                     fw.core.feature.set(id, feature);
                 }
 
@@ -323,7 +335,7 @@ window.fw = jQuery.extend(true, window.fw, {
                             // to get the actual artifact value.
                             //
 
-                            value = feature.value(id, deps, value);
+                            value = feature.value(feature, id, deps, value);
                         }
 
                         //
@@ -401,23 +413,36 @@ window.fw = jQuery.extend(true, window.fw, {
         // @return the current debug flag value.
         //
 
-        debug: function (val) {
-            if (fw.core.defined(val)) {
-                if (typeof val === 'boolean') {
-                    fw.__DEBUG = val;
-                }
-                else if (fw.__DEBUG) {
-                    if (typeof val === 'function') {
-                        fw.log(JSON.stringify(val()));
+        debug: function () {
+
+            let prefix = '[FW:DEBUG]    ';
+
+            if (1 == arguments.length) {
+
+                let val = arguments[0];
+                if (fw.core.defined(val)) {
+                    if (typeof val === 'boolean') {
+                        fw.__DEBUG = val;
                     }
-                    else if (typeof val === 'string') {
-                        fw.log(val)
-                    }
-                    else {
-                        fw.log(JSON.stringify(val));
+                    else if (fw.__DEBUG) {
+                        if (typeof val === 'function') {
+                            fw.log(prefix + JSON.stringify(val()));
+                        }
+                        else if (typeof val === 'string') {
+                            fw.log(prefix + val)
+                        }
+                        else {
+                            fw.log(prefix + JSON.stringify(val));
+                        }
                     }
                 }
             }
+            else {
+                if (fw.__DEBUG) {
+                    fw.log(prefix + fw.core.format.apply(this, arguments));
+                }
+            }
+
             return fw.__DEBUG;
         },
 
@@ -496,6 +521,25 @@ window.fw = jQuery.extend(true, window.fw, {
                 }
             }
 
+            return output;
+        },
+
+        //
+        // Take a string with a set of placeholder, e.g. {0}, {1},
+        // .. {n} and replace them with the actual values passed
+        // in the rest of the arguments.
+        //
+
+        format: function () {
+            var output = null;
+            if (arguments.length > 1) {
+
+                output = arguments[0];
+                for (var i = 1, j = 0; i < arguments.length; i++, j++) {
+                    let str = typeof arguments[i] === 'string' ? arguments[i] : JSON.stringify(arguments[i]);
+                    output = output.replace('{' + j + '}', str);
+                }
+            }
             return output;
         },
 
@@ -721,8 +765,8 @@ window.fw = jQuery.extend(true, window.fw, {
     // @return the current debug flag value.
     //
 
-    'debug': function (val) {
-        return fw.core.debug(val);
+    'debug': function () {
+        return fw.core.debug.apply(this, arguments);
     },
 
     //

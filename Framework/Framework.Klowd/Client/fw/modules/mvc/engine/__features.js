@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: 
+// Name/Class: Component feature.
 // Created On: 27/Mar/2016
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Company: Cybermap Lda.
@@ -25,7 +25,7 @@ fw.feature('component', function () {
     // @param api The API to import.
     //
 
-    var _importAPI = function (instance, api) {
+    var _importAPI = function (feature, instance, api) {
 
         if (fw.core.defined(api)) {
 
@@ -63,7 +63,7 @@ fw.feature('component', function () {
     // @param model The model definition.
     //
 
-    var _initModel = function (instance, model) {
+    var _initModel = function (feature, instance, model) {
 
         instance.$model = {};
         instance.__state.model = {};
@@ -78,209 +78,212 @@ fw.feature('component', function () {
                 // model definition.
                 //
 
-                _setModel(instance, name, (fw.core.defined(def) && fw.core.defined(def.dft)) ? def.dft : null);
+                _setModel(feature, instance, name, (fw.core.defined(def) && fw.core.defined(def.dft)) ? def.dft : null);
 
                 //
                 // Hookup the setters/getters for the property.
                 //
 
                 Object.defineProperty(instance, name, {
-                    get: function () { return _getModel(instance, name); },
-                    set: function (val) { return _setModel(instance, name, val); }
+                    get: function () { return _getModel(feature, instance, name); },
+                    set: function (val) { return _setModel(feature, instance, name, val); }
                 });
-
             });
         }
     };
 
     //
-    // Get/Set the value of a specific model property.
+    // Get the value of a specific model property.
     //
 
-    var _getModel = function (instance, name) {
+    var _getModel = function (feature, instance, name) {
 
         // #ifdef DEBUG
 
-        fw.debug('COMPONENT: ' +instance.id + ' :: ' + instance.type + ' => ' + '[GET, ' + name + ']');
+        fw.debug('{0}: {1}::{2} => [GET, {3}]', feature.id.toUpperCase(), instance.id, instance.type, name);
 
         // #endif
 
         return instance.__state.model[name];
     };
 
-    var _setModel = function (instance, name, val) {
+    //
+    // Set the value of a specific model property.
+    //
+
+    var _setModel = function (feature, instance, name, val) {
 
         instance.__state.model[name] = val;
 
         // #ifdef DEBUG
 
-        fw.debug('COMPONENT: ' + instance.id + ' :: ' + instance.type + ' => ' + '[SET, ' + name + ', ' + JSON.stringify(instance.__state.model[name]) + ']');
+        fw.debug('{0}:: {1}::{2} => [SET, {3}, {4}]', feature.id.toUpperCase(), instance.id, instance.type, name, instance.__state.model[name]);
 
         // #endif
     };
 
     //
-    // Return the component feature
-    // object API.
+    // Get the value of a new feature element.
+    //
+
+    var _value = function (feature, id, deps, fun) {
+
+        //
+        // TODO: Check the generated component API,
+        // components must define at least a render
+        // method.
+        //
+
+        //
+        // TODO: Check the generated API, methods are
+        // not allowed to start with a '$' or '_' caracter.
+        //
+
+        //
+        // Setup the component instance value.
+        //
+
+        var instance = {
+
+            //
+            // Component instance unique identifier.
+            //
+
+            id: __INSTANCE__PREFIX + __INSTANCE__COUNT++,
+
+            //
+            // instance type, this is the component id.
+            //
+
+            type: id,
+
+            //
+            // State of the component. This object
+            // forms all known data for the instance,
+            // the apis retrieve and store values 
+            // from this state value.
+            //
+
+            __state: {
+
+                //
+                // Properties. Hash mapping the name
+                // and runtime value for a specific
+                // property.
+                //
+
+                properties: {},
+
+                //
+                // Model. Hash mapping the name and
+                // the runtime model value.
+                //
+
+                model: {},
+
+                //
+                // Resources. Mapping between resource name
+                // and its value.
+                //
+
+                resources: {},
+
+                //
+                // Hash with the event handlers and the event names.
+                //
+
+                events: {},
+
+                //
+                // Geenric custom user data store.
+                //
+
+                data: {}
+            },
+
+            //
+            // APIs.
+            //
+
+            $property: {},
+            $model: {},
+            $resource: {},
+            $event: {},
+            $data: {}
+        };
+
+        //
+        // Get the component definition.
+        //
+
+        var component = fun.apply(fun, deps);
+
+        //
+        // Attach to the instance the component
+        // definition object. Add the name value
+        // also.
+        //
+
+        instance.$def = component;
+        instance.$def.name = id;
+
+        //
+        // If component defines a base component
+        // then instantiate it here.
+        //
+
+        var base = null;
+        if (fw.core.defined(component.base)) {
+            base = fw.get(component.base);
+        }
+
+        instance.$base = base;
+
+        //
+        // Process the base component instance API.
+        // If the base is null or undefined, do nothing.
+        //
+
+        if (fw.core.defined(base)) {
+
+            _importAPI(feature, instance, base.$def.api);
+        }
+
+        //
+        // Process the component instance API.
+        // Create a function for every native method
+        // found in the component definition.
+        //
+
+        _importAPI(feature, instance, component.api);
+
+        _initModel(feature, instance, component.model);
+
+        //
+        // Return a newly create component
+        // instance to caller. This instance
+        // can be used independently...
+        //
+
+        return instance;
+    };
+
+    //
+    // Return the component feature object API.
     //
 
     return {
 
         singleton: false,
 
-        value: function (id, deps, fun) {
-
-            //
-            // TODO: Check the generated component API,
-            // components must define at least a render
-            // method.
-            //
-
-            //
-            // TODO: Check the generated API, methods are
-            // not allowed to start with a '$' or '_' caracter.
-            //
-
-            //
-            // Setup the component instance value.
-            //
-
-            var instance = {
-
-                //
-                // Component instance unique identifier.
-                //
-
-                id: __INSTANCE__PREFIX + __INSTANCE__COUNT++,
-
-                //
-                // instance type, this is the component id.
-                //
-
-                type: id,
-
-                //
-                // State of the component. This object
-                // forms all known data for the instance,
-                // the apis retrieve and store values 
-                // from this state value.
-                //
-
-                __state: {
-
-                    //
-                    // Properties. Hash mapping the name
-                    // and runtime value for a specific
-                    // property.
-                    //
-
-                    properties: {},
-
-                    //
-                    // Model. Hash mapping the name and
-                    // the runtime model value.
-                    //
-
-                    model: {},
-
-                    //
-                    // Resources. Mapping between resource name
-                    // and its value.
-                    //
-
-                    resources: {},
-
-                    //
-                    // Hash with the event handlers and the event names.
-                    //
-
-                    events: {},
-
-                    //
-                    // Geenric custom user data store.
-                    //
-
-                    data: {}
-                },
-
-                //
-                // APIs.
-                //
-
-                $property: {},
-                $model: {},
-                $resource: {},
-                $event: {},
-                $data: {}
-            };
-
-            //
-            // Get the component definition.
-            //
-
-            var component = fun.apply(fun, deps);
-
-            //
-            // Attach to the instance the component
-            // definition object. Add the name value
-            // also.
-            //
-
-            instance.$def = component;
-            instance.$def.name = id;
-
-            //
-            // If component defines a base component
-            // then instantiate it here.
-            //
-
-            var base = null;
-            if (fw.core.defined(component.base)) {
-                base = fw.get(component.base);
-            }
-
-            instance.$base = base;
-
-            //
-            // Process the base component instance API.
-            // If the base is null or undefined, do nothing.
-            //
-
-            if (fw.core.defined(base)) {
-
-                _importAPI(instance, base.$def.api);
-            }
-
-            //
-            // Process the component instance API.
-            // Create a function for every native method
-            // found in the component definition.
-            //
-
-            _importAPI(instance, component.api);
-
-            _initModel(instance, component.model);
-
-            //
-            // Return a newly create component
-            // instance to caller. This instance
-            // can be used independently...
-            //
-
-            return instance;
-        }
+        value: _value
     };
 });
 
 fw.feature('fragment', function () {
     return {
-        value: function (deps, fun) {
+        value: function (feature, id, deps, fun) {
             return { deps: deps, def: fun };
         }
-    };
-});
-
-fw.feature('package', function () {
-    return {
     };
 });

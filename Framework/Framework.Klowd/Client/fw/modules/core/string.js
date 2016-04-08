@@ -32,11 +32,22 @@ fw.module('core').service('string', function () {
     };
 
     //
+    // Take a string with a set of placeholder, e.g. {0}, {1},
+    // .. {n} and replace them with the actual values passed
+    // in the rest of the arguments.
+    //
+
+    var _format = function () {
+        return fw.core.format.apply(this, arguments);
+    };
+
+    //
     // API
     //
 
     return {
         startsWith: _startsWith,
-        endsWith: _endsWith
+        endsWith: _endsWith,
+        format: _format
     };
 });
