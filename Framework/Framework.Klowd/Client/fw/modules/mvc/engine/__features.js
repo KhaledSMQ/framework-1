@@ -58,6 +58,68 @@ fw.feature('component', function () {
     };
 
     //
+    // Initialize the model for a specific instance.
+    // @param instance The component instance
+    // @param model The model definition.
+    //
+
+    var _initModel = function (instance, model) {
+
+        instance.$model = {};
+        instance.__state.model = {};
+
+        if (fw.core.defined(model)) {
+
+            $.each(model, function (name, def) {
+
+                //
+                // Set the initial value for the model
+                // property, take it from the component
+                // model definition.
+                //
+
+                _setModel(instance, name, (fw.core.defined(def) && fw.core.defined(def.dft)) ? def.dft : null);
+
+                //
+                // Hookup the setters/getters for the property.
+                //
+
+                Object.defineProperty(instance, name, {
+                    get: function () { return _getModel(instance, name); },
+                    set: function (val) { return _setModel(instance, name, val); }
+                });
+
+            });
+        }
+    };
+
+    //
+    // Get/Set the value of a specific model property.
+    //
+
+    var _getModel = function (instance, name) {
+
+        // #ifdef DEBUG
+
+        fw.debug('COMPONENT: ' +instance.id + ' :: ' + instance.type + ' => ' + '[GET, ' + name + ']');
+
+        // #endif
+
+        return instance.__state.model[name];
+    };
+
+    var _setModel = function (instance, name, val) {
+
+        instance.__state.model[name] = val;
+
+        // #ifdef DEBUG
+
+        fw.debug('COMPONENT: ' + instance.id + ' :: ' + instance.type + ' => ' + '[SET, ' + name + ', ' + JSON.stringify(instance.__state.model[name]) + ']');
+
+        // #endif
+    };
+
+    //
     // Return the component feature
     // object API.
     //
@@ -86,15 +148,16 @@ fw.feature('component', function () {
             var instance = {
 
                 //
-                // unique identifier and DOM container where 
-                // the component is attached, could be a string or
-                // a jQuery object.
+                // Component instance unique identifier.
                 //
 
-                __dom: {
-                    id: __INSTANCE__PREFIX + __INSTANCE__COUNT++,
-                    root: null
-                },
+                id: __INSTANCE__PREFIX + __INSTANCE__COUNT++,
+
+                //
+                // instance type, this is the component id.
+                //
+
+                type: id,
 
                 //
                 // State of the component. This object
@@ -144,7 +207,6 @@ fw.feature('component', function () {
                 // APIs.
                 //
 
-                $dom: {},
                 $property: {},
                 $model: {},
                 $resource: {},
@@ -173,8 +235,7 @@ fw.feature('component', function () {
             //
 
             var base = null;
-            if (fw.core.defined(component.base))
-            {
+            if (fw.core.defined(component.base)) {
                 base = fw.get(component.base);
             }
 
@@ -197,6 +258,8 @@ fw.feature('component', function () {
             //
 
             _importAPI(instance, component.api);
+
+            _initModel(instance, component.model);
 
             //
             // Return a newly create component

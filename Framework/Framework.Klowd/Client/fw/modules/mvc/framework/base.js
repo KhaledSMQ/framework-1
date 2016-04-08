@@ -3,7 +3,7 @@
 // mvc.components.base
 //
 
-fw.module('mvc.components').component('base', 'core.util', function ($util) {
+fw.module('mvc.framework').component('base', 'core.util', function ($util) {
     return {
         description: 'Base component definition',
         template: null,
@@ -18,8 +18,10 @@ fw.module('mvc.components').component('base', 'core.util', function ($util) {
 
             render: function ($this) {
 
-                console.info('name: ' + $this.$def.name);
-                console.info('description: ' + $this.$def.description);
+                if (fw.debug()) {
+                    console.info('name: ' + $this.$def.name);
+                    console.info('description: ' + $this.$def.description);
+                }
             }
         }
     };

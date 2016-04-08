@@ -31,6 +31,7 @@ window.fw = jQuery.extend(true, window.fw, {
     __FEATURES: {},
     __ARTIFACTS: {},
     __SINGLETON: {},
+    __DEBUG: false,
 
     //
     // CONFIG
@@ -77,12 +78,7 @@ window.fw = jQuery.extend(true, window.fw, {
                     // Set the module object.
                     //
 
-                    var val = {
-                        name: id,
-                        deps: deps
-                    };
-
-                    fw.core.module.set(id, val);
+                    fw.core.module.set(id, { name: id, deps: deps });
                 }
 
                 //
@@ -90,32 +86,11 @@ window.fw = jQuery.extend(true, window.fw, {
                 // this will allow the user to chain calls.
                 //
 
-                return fw.core.module.protocol(id);
+                return fw.core.module.api(id);
             },
 
-            get: function (id) { return fw.__MODULES[id]; },
-
-            set: function (id, val) { fw.__MODULES[id] = val; },
-
-            has: function (id) { return fw.core.defined(fw.core.module.get(id)); },
-
-            list: function () {
-
-                var lst = [];
-                $.each(fw.__MODULES, function (name, _) { lst.push(name); });
-                return lst;
-            },
-
-            protocol: function (module) {
-
-                var protocol = {};
-
-                //
-                // Run all features and setup the 
-                // protocol for the module.
-                //
-
-                $.each(fw.core.feature.list(), function (_, feature) {
+            api: function (module) {
+                return fw.core.map(fw.__FEATURES, function (feature, _) {
 
                     //
                     // Add a new artifact for feature to an existing module.
@@ -124,22 +99,47 @@ window.fw = jQuery.extend(true, window.fw, {
                     // @param value The artifact value.
                     //
 
-                    protocol[feature] = function (name, deps, value) {
+                    return function (name, deps, value) {
                         return fw.core.artifact.add(module, name, feature, deps, value);
                     };
                 });
+            },
 
-                return protocol;
-            }
+            // ---
+
+            get: function (id) { return fw.__MODULES[id]; },
+
+            set: function (id, val) { fw.__MODULES[id] = val; },
+
+            has: function (id) { return fw.core.defined(fw.core.module.get(id)); },
+
+            list: function () { return fw.core.toArray(fw.__MODULES, function (name, _) { return name; }); }
         },
 
         //
         // FEATURE
         //
+        // {        
+        //     //
+        //     // Whether the feature values are singletons.
+        //     //
+        //    
+        //     singleton :: bool
+        //
+        //     //
+        //     // Function to get the value definition of the artifact.
+        //     // @param deps list of dependencies for artifact.
+        //     // @param def the definition object, dependent on the artifact.
+        //     // @return the runtime/singleton value for artififact.
+        //     //
+        //            
+        //     value :: function(deps, def) { ... }                                
+        // }
+        //        
 
         feature: {
 
-            add: function (id, deps, def) {
+            add: function (id, deps, fun) {
 
                 //
                 // Verify name.
@@ -153,59 +153,29 @@ window.fw = jQuery.extend(true, window.fw, {
                     // Check if no dependencies were set.
                     //
 
-                    if (!fw.core.defined(def)) {
+                    if (!fw.core.defined(fun)) {
 
-                        def = deps;
+                        fun = deps;
                         deps = null;
                     }
 
-                    var defObj = null;
-                    var args = [];
+                    var args = fw.core.map(deps, function (_, dep) { return fw.core.artifact.instance(dep); })
 
-                    if (fw.core.defined(deps)) {
-                        $.each(deps, function (_, dep) {
-                            args.push(fw.core.artifact.instance(dep));
-                        });
-                    }
+                    var feature = fun.apply(fun, args);
 
-                    defObj = def.apply(def, args);
-
-                    //
-                    // def :: {
-                    //
-                    //     //
-                    //     // Whether the feature vaues are singletons.
-                    //     //
-                    //    
-                    //     singleton :: bool
-                    //
-                    //     //
-                    //     // Function to get the value definition of the artifact.
-                    //     // @param deps list of dependencies for artifact.
-                    //     // @param def the definition object, dependent on the artifact.
-                    //     // @return the runtime/singleton value for artififact.
-                    //     //
-                    //            
-                    //     value :: function(deps, def) { ... }                                
-                    // }
-                    //
-
-                    fw.core.feature.set(id, defObj);
+                    fw.core.feature.set(id, feature);
                 }
 
                 return fw;
             },
 
+            // ---
+
             get: function (id) { return fw.__FEATURES[id]; },
 
             set: function (id, val) { fw.__FEATURES[id] = val; },
 
-            list: function () {
-
-                var lst = [];
-                $.each(fw.__FEATURES, function (name, _) { lst.push(name); });
-                return lst;
-            },
+            list: function () { return fw.core.toArray(fw.__FEATURES, function (name, _) { return name; }); },
 
             has: function (id) { return fw.core.defined(fw.core.feature.get(id)); }
         },
@@ -275,21 +245,8 @@ window.fw = jQuery.extend(true, window.fw, {
                     fw.core.artifact.set(id, artifact);
                 }
 
-                return fw.core.module.protocol(module);
+                return fw.core.module.api(module);
             },
-
-            get: function (id) { return fw.__ARTIFACTS[id]; },
-
-            set: function (id, val) { fw.__ARTIFACTS[id] = val; },
-
-            list: function () {
-
-                var lst = [];
-                $.each(fw.__ARTIFACTS, function (name, _) { lst.push(name); });
-                return lst;
-            },
-
-            has: function (id) { return fw.core.defined(fw.core.artifact.get(id)); },
 
             value: function (id) {
 
@@ -403,7 +360,17 @@ window.fw = jQuery.extend(true, window.fw, {
                 //
 
                 return value;
-            }
+            },
+
+            // ---
+
+            get: function (id) { return fw.__ARTIFACTS[id]; },
+
+            set: function (id, val) { fw.__ARTIFACTS[id] = val; },
+
+            list: function () { return fw.core.toArray(fw.__ARTIFACTS, function (name, _) { return name; }); },
+
+            has: function (id) { return fw.core.defined(fw.core.artifact.get(id)); }
         },
 
         //
@@ -415,18 +382,43 @@ window.fw = jQuery.extend(true, window.fw, {
 
         singleton: {
 
+            // ---
+
             get: function (id) { return fw.__SINGLETON[id]; },
 
             set: function (id, val) { fw.__SINGLETON[id] = val; },
 
-            list: function () {
-
-                var lst = [];
-                $.each(fw.__SINGLETON, function (name, _) { lst.push(name); });
-                return lst;
-            },
+            list: function () { return fw.core.toArray(fw.__SINGLETON, function (name, _) { return name; }); },
 
             has: function (id) { return fw.core.defined(fw.core.singleton.get(id)); }
+        },
+
+        //
+        // Set or get the framework debug flag or
+        // write a debug message.
+        // @param val the debug flag value if boolean or
+        // the debug message if not boolean.
+        // @return the current debug flag value.
+        //
+
+        debug: function (val) {
+            if (fw.core.defined(val)) {
+                if (typeof val === 'boolean') {
+                    fw.__DEBUG = val;
+                }
+                else if (fw.__DEBUG) {
+                    if (typeof val === 'function') {
+                        fw.log(JSON.stringify(val()));
+                    }
+                    else if (typeof val === 'string') {
+                        fw.log(val)
+                    }
+                    else {
+                        fw.log(JSON.stringify(val));
+                    }
+                }
+            }
+            return fw.__DEBUG;
         },
 
         //
@@ -436,23 +428,75 @@ window.fw = jQuery.extend(true, window.fw, {
         //
 
         defined: function (obj) {
+            return (typeof obj != 'undefined') && (obj != null);
+        },
 
-            //
-            // Check if variable is defined and not null.
-            //
+        //
+        // Map an object or array to an equivalent
+        // value type, but applying a function.
+        // @param val The input value
+        // @param fun The mapping function
+        // @return a new value mapped with the function
+        //
 
-            var defined = (typeof obj != 'undefined') && (obj != null);
+        map: function (val, fun) {
 
-            //
-            // In case the variable is a string check 
-            // if it is not an empty string.
-            //
+            var output = null;
 
-            if (defined && typeof obj == 'string') {
-                defined = obj != "";
+            if (fw.core.defined(val) && fw.core.defined(fun)) {
+
+                if (val instanceof Array) {
+
+                    output = [];
+                    $.each(val, function (idx, item) {
+                        output.push(fun(idx, item));
+                    });
+                }
+                else if (typeof val == 'object') {
+
+                    output = {};
+                    $.each(val, function (property, value) {
+                        output[property] = fun(property, value);
+                    });
+                }
+                else {
+                    output = fun(val);
+                }
             }
 
-            return defined;
+            return output;
+        },
+
+        //
+        // Map a value to an array
+        // @param val The input value
+        // @param fun The mapping function
+        // @return an array with the mapping
+        //
+
+        toArray: function (val, fun) {
+
+            var output = null;
+
+            if (fw.core.defined(val) && fw.core.defined(fun)) {
+
+                if (val instanceof Array) {
+
+                    output = fw.core.map(val, fun);
+                }
+                else if (typeof val == 'object') {
+
+                    output = [];
+                    $.each(val, function (property, value) {
+                        output.push(fun(property, value));
+                    });
+                }
+                else {
+                    output = [fun(val)];
+                }
+            }
+
+            return output;
         },
 
         //
@@ -572,7 +616,7 @@ window.fw = jQuery.extend(true, window.fw, {
                 // a list of simple names.
                 //
 
-                parcels = id.split('.');
+                parcels = id.split(fw.__CONFIG.IDENTIFIER_SEPARATOR);
 
                 //
                 // Extract module and name.
@@ -646,7 +690,9 @@ window.fw = jQuery.extend(true, window.fw, {
         // getting the feature definition object.
         //
 
-        return (fw.core.defined(deps) || fw.core.defined(def)) ? fw.core.feature.add(id, deps, def) : fw.core.feature.get(id);
+        return (!fw.core.defined(deps) && !fw.core.defined(def))
+            ? fw.core.feature.get(id)
+            : fw.core.feature.add(id, deps, def);
     },
 
     //
@@ -670,12 +716,50 @@ window.fw = jQuery.extend(true, window.fw, {
     },
 
     //
+    // Set or get the framework debug flag.
+    // @param val, if set then change the debug flag.
+    // @return the current debug flag value.
+    //
+
+    'debug': function (val) {
+        return fw.core.debug(val);
+    },
+
+    //
     // Throw an error.
     // @param msg The message error to throw.
     //
 
     'error': function (msg) {
         console.error(msg);
+    },
+
+    //
+    // Signal a warning.
+    // @param msg The message warning to signal.
+    //
+
+    'warn': function (msg) {
+        console.warn(msg);
+    },
+
+    //
+    // Signal an information message.
+    // @param msg The message info to signal.
+    //
+
+    'info': function (msg) {
+        console.info(msg);
+    },
+
+    //
+    // Signal a log message.
+    // @param msg The message log to signal.
+    //
+
+    'log': function (msg) {
+        console.log(msg);
     }
+
 });
 

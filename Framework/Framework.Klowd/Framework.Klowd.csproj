@@ -145,7 +145,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Client\fw\modules\mvc\components\base.js" />
+    <Content Include="Client\fw\modules\mvc\framework\base.js" />
     <Content Include="Client\fw\modules\server\__features.js" />
     <Content Include="Client\fw\modules\core\__features.js" />
     <Content Include="Client\fw\modules\mvc\engine\__features.js" />

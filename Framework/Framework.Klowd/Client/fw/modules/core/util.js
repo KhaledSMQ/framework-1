@@ -16,24 +16,7 @@ fw.module('core').service('util', function () {
     //
 
     var _isDefined = function (variable) {
-
-        //
-        // Check if variable is defined and not null.
-        //
-
-        var defined = (typeof variable != 'undefined') && (variable != null);
-
-        //
-        // In case the variable is a string check if
-        // it is not an empty string.
-        //
-
-        if (defined && typeof variable == 'string') {
-
-            defined = variable != "";
-        }
-
-        return defined;
+        return fw.core.defined(variable);
     };
 
     //
@@ -41,9 +24,24 @@ fw.module('core').service('util', function () {
     //
 
     var _isNotDefined = function (variable) {
-
         return !_isDefined(variable);
     };
+
+    //
+    // Mapping for values.
+    //
+
+    var _map = function (val, fun) {
+        return fw.core.map(val, fun);
+    }
+
+    //
+    // Transform values into arrays.
+    //
+
+    var _toArray = function (val, fun) {
+        return fw.core.toArray(val, fun);
+    }
 
     //
     // Get a value for a particular object.
@@ -125,6 +123,8 @@ fw.module('core').service('util', function () {
     return {
         isDefined: _isDefined,
         isNotDefined: _isNotDefined,
+        map: _map,
+        toArray:_toArray,
         getValue: _getValue,
         count: _count,
         clone: _clone
