@@ -14,7 +14,7 @@ fw.module('core').service('debug', 'core.util', function ($util) {
     //
 
     var _on = function () {
-        fw.debug(true);
+        return fw.debug(true);
     };
 
     //
@@ -22,7 +22,15 @@ fw.module('core').service('debug', 'core.util', function ($util) {
     //
 
     var _off = function () {
-        fw.debug(false);
+        return fw.debug(false);
+    };
+
+    //
+    // Current state for debug flag.
+    //
+
+    var _flag = function () {
+        return fw.debug();
     };
 
     //
@@ -30,7 +38,7 @@ fw.module('core').service('debug', 'core.util', function ($util) {
     //
 
     var _log = function () {
-        fw.debug.apply(this, arguments);
+        return fw.debug.apply(this, arguments);
     }
 
     //
@@ -40,6 +48,7 @@ fw.module('core').service('debug', 'core.util', function ($util) {
     return {
         on: _on,
         off: _off,
+        flag: _flag,
         log: _log
     };
 });

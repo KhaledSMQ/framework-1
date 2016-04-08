@@ -438,7 +438,7 @@ window.fw = jQuery.extend(true, window.fw, {
                 }
             }
             else {
-                if (fw.__DEBUG) {
+                if (fw.__DEBUG && arguments.length > 1) {
                     fw.log(prefix + fw.core.format.apply(this, arguments));
                 }
             }
