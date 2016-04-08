@@ -14,6 +14,5 @@ fw.module('core').service('loader', 'core.util', function ($util) {
     //
 
     return {
-
     };
 });

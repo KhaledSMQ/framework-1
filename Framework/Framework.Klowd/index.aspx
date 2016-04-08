@@ -13,6 +13,7 @@
     <framework:Include runat="server" Folder="Client\fw" Pattern="*.js" />
     <framework:Include runat="server" Folder="Client\fw" Pattern="__*.js" Recursive="true" />
     <framework:Include runat="server" Folder="Client\fw\modules" Pattern="*.js" Recursive="true" />
+    <script>fw.debug(true);</script>
 </html>
 
 

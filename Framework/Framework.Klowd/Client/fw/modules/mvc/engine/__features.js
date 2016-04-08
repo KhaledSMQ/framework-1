@@ -21,6 +21,7 @@ fw.feature('component', function () {
 
     //
     // Import an API set to a new component instance.
+    // @param feature The feature api object.
     // @param instance The component instance where to import the API.
     // @param api The API to import.
     //
@@ -38,14 +39,11 @@ fw.feature('component', function () {
                     // object, this means that all
                     // function must declare first the
                     // component instance.
-                    //
-
-                    var args = [instance];
-
-                    //
-                    // TODO: Add other arguments that are sent 
+                    // Add other arguments that are sent 
                     // to function by the invocation.
                     //
+
+                    var args = [instance].concat(Array.prototype.slice.call(arguments));
 
                     //
                     // Call the function.
@@ -66,7 +64,7 @@ fw.feature('component', function () {
     var _initModel = function (feature, instance, model) {
 
         instance.$model = {};
-        instance.__state.model = {};
+        instance.$state.model = {};
 
         if (fw.core.defined(model)) {
 
@@ -100,11 +98,11 @@ fw.feature('component', function () {
 
         // #ifdef DEBUG
 
-        fw.debug('{0}: {1}::{2} => [GET, {3}]', feature.id.toUpperCase(), instance.id, instance.type, name);
+        fw.debug('{0}: {1}::{2} => [GET, {3}]', feature.id.toUpperCase(), instance.$id, instance.$type, name);
 
         // #endif
 
-        return instance.__state.model[name];
+        return instance.$state.model[name];
     };
 
     //
@@ -113,11 +111,11 @@ fw.feature('component', function () {
 
     var _setModel = function (feature, instance, name, val) {
 
-        instance.__state.model[name] = val;
+        instance.$state.model[name] = val;
 
         // #ifdef DEBUG
 
-        fw.debug('{0}:: {1}::{2} => [SET, {3}, {4}]', feature.id.toUpperCase(), instance.id, instance.type, name, instance.__state.model[name]);
+        fw.debug('{0}:: {1}::{2} => [SET, {3}, {4}]', feature.id.toUpperCase(), instance.$id, instance.$type, name, instance.$state.model[name]);
 
         // #endif
     };
@@ -149,13 +147,13 @@ fw.feature('component', function () {
             // Component instance unique identifier.
             //
 
-            id: __INSTANCE__PREFIX + __INSTANCE__COUNT++,
+            $id: __INSTANCE__PREFIX + __INSTANCE__COUNT++,
 
             //
             // instance type, this is the component id.
             //
 
-            type: id,
+            $type: id,
 
             //
             // State of the component. This object
@@ -164,7 +162,7 @@ fw.feature('component', function () {
             // from this state value.
             //
 
-            __state: {
+            $state: {
 
                 //
                 // Properties. Hash mapping the name
@@ -232,21 +230,24 @@ fw.feature('component', function () {
         // then instantiate it here.
         //
 
-        var base = null;
-        if (fw.core.defined(component.base)) {
-            base = fw.get(component.base);
-        }
+        let topComponent = 'mvc.framework.base';
 
-        instance.$base = base;
+        if (id != topComponent) {
 
-        //
-        // Process the base component instance API.
-        // If the base is null or undefined, do nothing.
-        //
+            let baseID = fw.core.defined(component.base) ? component.base : topComponent;
+            let base = fw.get(baseID);
 
-        if (fw.core.defined(base)) {
+            instance.$base = base;
 
-            _importAPI(feature, instance, base.$def.api);
+            //
+            // Process the base component instance API.
+            // If the base is null or undefined, do nothing.
+            //
+
+            if (fw.core.defined(base)) {
+
+                _importAPI(feature, instance, base.$def.api);
+            }
         }
 
         //
