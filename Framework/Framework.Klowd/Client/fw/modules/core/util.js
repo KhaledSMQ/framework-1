@@ -117,6 +117,15 @@ fw.module('core').service('util', function () {
     };
 
     //
+    // Return true of object is empty, false
+    // otherwise.
+    //
+
+    var _empty = function (obj) {
+        return 0 == _count(obj);
+    }
+
+    //
     // API
     //
 
@@ -127,6 +136,7 @@ fw.module('core').service('util', function () {
         toArray:_toArray,
         getValue: _getValue,
         count: _count,
+        empty:_empty,
         clone: _clone
     };
 });
