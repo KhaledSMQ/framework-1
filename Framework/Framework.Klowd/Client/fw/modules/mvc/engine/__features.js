@@ -49,7 +49,7 @@ fw.feature('component', function () {
                     // Call the function.
                     //
 
-                    fun.apply(fun, args);
+                    return fun.apply(fun, args);
                 };
             });
         }
@@ -118,6 +118,13 @@ fw.feature('component', function () {
         fw.debug('{0}:: {1}::{2} => [SET, {3}, {4}]', feature.id.toUpperCase(), instance.$id, instance.$type, name, instance.$state.model[name]);
 
         // #endif
+
+        //
+        // Check if there are any event handlers,
+        // and call them, by order.
+        //
+
+        instance.$trigger(name, 'change');
     };
 
     //
