@@ -194,13 +194,13 @@ fw.feature('component', function () {
                 resources: {},
 
                 //
-                // Hash with the event handlers and the event names.
+                // Hash with object/event handlers.
                 //
 
                 events: {},
 
                 //
-                // Geenric custom user data store.
+                // Generic custom user data store.
                 //
 
                 data: {}

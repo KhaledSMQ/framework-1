@@ -28,6 +28,14 @@ fw.module('core').service('util', function () {
     };
 
     //
+    // Apply a handler to an object or array.
+    //
+
+    var _apply = function (val, fun) {
+        return fw.core.apply(val, fun);
+    };
+
+    //
     // Mapping for values.
     //
 
@@ -132,11 +140,12 @@ fw.module('core').service('util', function () {
     return {
         isDefined: _isDefined,
         isNotDefined: _isNotDefined,
+        apply: _apply,
         map: _map,
-        toArray:_toArray,
+        toArray: _toArray,
         getValue: _getValue,
         count: _count,
-        empty:_empty,
+        empty: _empty,
         clone: _clone
     };
 });

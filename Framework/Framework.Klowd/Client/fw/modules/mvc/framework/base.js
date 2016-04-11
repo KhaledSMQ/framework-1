@@ -1,6 +1,6 @@
 ﻿
 //
-// mvc.components.base
+// mvc.framework.base
 //
 
 fw.module('mvc.framework').component('base', 'core.util, core.string, mvc.engine.instance', function ($util, $string, $instance) {
@@ -9,13 +9,19 @@ fw.module('mvc.framework').component('base', 'core.util, core.string, mvc.engine
         api: {
 
             //
-            // Component initialization function.
+            // Component related functions
             //
 
-            _init: function ($this) { },
+            $hierarchy: function ($this) {
+                return $instance.hierarchy($this);
+            },
+
+            $is: function ($this, type) {
+                return $instance.is($this, type);
+            },
 
             //
-            //
+            // Model related functions.
             //
 
             $get: function ($this, name) {
@@ -26,6 +32,10 @@ fw.module('mvc.framework').component('base', 'core.util, core.string, mvc.engine
                 $instance.set($this, name, val)
             },
 
+            //
+            // Event related functions.
+            //
+
             $on: function ($this, object, event, handler) {
                 $instance.on($this, object, event, handler);
             },
@@ -33,12 +43,6 @@ fw.module('mvc.framework').component('base', 'core.util, core.string, mvc.engine
             $trigger: function ($this, object, event) {
                 $instance.trigger($this, object, event);
             },
-
-            //
-            // Dump the component instance definition and 
-            // current state to the debug console.            
-            // @param $this This component instance.
-            //            
 
             // #ifdef DEBUG
             $anatomy: function ($this) {

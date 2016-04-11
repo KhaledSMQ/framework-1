@@ -457,6 +457,20 @@ window.fw = jQuery.extend(true, window.fw, {
         },
 
         //
+        // Apply to an object or array a specific
+        // function handler.
+        // @param val The input value
+        // @param fun The mapping function
+        //
+
+        apply: function (val, fun) {
+
+            if (fw.core.defined(val) && fw.core.defined(fun)) {
+                $.each(val, fun);
+            }
+        },
+
+        //
         // Map an object or array to an equivalent
         // value type, but applying a function.
         // @param val The input value
