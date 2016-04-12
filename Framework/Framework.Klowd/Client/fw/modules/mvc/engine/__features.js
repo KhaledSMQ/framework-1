@@ -18,31 +18,28 @@ fw.feature('component', function () {
 
     var __INSTANCE__COUNT = 0;
     var __INSTANCE__PREFIX = 'c';
+    var __COMPONENTS = {};
 
     //
     // Import an API set to a new component instance.
-    // @param feature The feature api object.
     // @param instance The component instance where to import the API.
     // @param api The API to import.
     //
 
-    var _importAPI = function (feature, instance, api) {
+    var _importAPI = function (instance, api) {
 
-        if (fw.core.defined(api)) {
+        fw.core.apply(api, function (name, fun) {
 
-            $.each(api, function (name, fun) {
+            if ((typeof fun === 'function') && !fw.core.defined(instance[name])) {
 
                 instance[name] = function () {
 
                     //
-                    // Attach the component instance
-                    // object, this means that all
-                    // function must declare first the
-                    // component instance.
-                    // Add other arguments that are sent 
-                    // to function by the invocation.
+                    // Attach the component instance object, this means that all
+                    // functions must declare first the component instance.
+                    // Add other arguments that are sent to function by the invocation.
                     //
-
+                    
                     var args = [instance].concat(Array.prototype.slice.call(arguments));
 
                     //
@@ -51,8 +48,8 @@ fw.feature('component', function () {
 
                     return fun.apply(fun, args);
                 };
-            });
-        }
+            }
+        });
     };
 
     //
@@ -131,14 +128,28 @@ fw.feature('component', function () {
     // Get the value of a new feature element.
     //
 
+    var _path2root = function (id) {
+
+        var output = [];
+
+        if (fw.core.defined(id)) {
+
+            let component = fw.get(id);
+
+            output = _path2root(component.$def.base);
+
+            output.push(id);
+        }
+
+        return output;
+    };
+
     var _value = function (feature, id, deps, fun) {
 
         //
         // TODO: Check the generated component API,
         // components must define at least a render
-        // method.
-        //
-
+        // method.                
         //
         // TODO: Check the generated API, methods are
         // not allowed to start with a '$' or '_' caracter.
@@ -231,39 +242,38 @@ fw.feature('component', function () {
 
         instance.$def = component;
         instance.$def.name = id;
+        
+        //
+        //
+        //
+
+        _importAPI(instance, component.api);
 
         //
-        // If component defines a base component
-        // then instantiate it here.
+        //
         //
 
-        let topComponent = 'mvc.framework.base';
+        let base = fw.get(component.base);
+        instance.$base = base;
 
-        if (id != topComponent) {
-
-            let baseID = fw.core.defined(component.base) ? component.base : topComponent;
-            let base = fw.get(baseID);
-
-            instance.$base = base;
+        while (fw.core.defined(base)) {
 
             //
-            // Process the base component instance API.
-            // If the base is null or undefined, do nothing.
+            //
             //
 
-            if (fw.core.defined(base)) {
+            _importAPI(instance, base.$def.api);
 
-                _importAPI(feature, instance, base.$def.api);
-            }
+            //
+            //
+            //
+
+            base = fw.get(base.$def.base);
         }
-
+      
         //
-        // Process the component instance API.
-        // Create a function for every native method
-        // found in the component definition.
         //
-
-        _importAPI(feature, instance, component.api);
+        //
 
         _initModel(feature, instance, component.model);
 

@@ -237,7 +237,7 @@ window.fw = jQuery.extend(true, window.fw, {
 
                         var lstOfDeps = deps.split(',');
 
-                        $.each(lstOfDeps, function (idx, dep) {
+                        fw.core.apply(lstOfDeps, function (idx, dep) {
                             lstOfDeps[idx] = dep.trim();
                         });
 
@@ -264,105 +264,107 @@ window.fw = jQuery.extend(true, window.fw, {
 
                 var value = null;
 
-                //
-                // Get the artifact definition.
-                //
-
-                var artifact = fw.core.artifact.get(id);
-
-                if (fw.core.defined(artifact)) {
+                if (fw.core.defined(id)) {
 
                     //
-                    // Get the feature definition.
+                    // Get the artifact definition.
                     //
 
-                    var feature = fw.core.feature.get(artifact.feature);
+                    var artifact = fw.core.artifact.get(id);
 
-                    if (fw.core.defined(feature)) {
-
-                        //
-                        // if feature is defined to generate
-                        // singletons, then get the singleton
-                        // and be done with it. By default,
-                        // everything is a singleton.
-                        //
-
-                        var isSingleton = !fw.core.defined(feature.singleton) || feature.singleton;
+                    if (fw.core.defined(artifact)) {
 
                         //
-                        // In case the feature is singletons
-                        // and the value was already retrieved.
+                        // Get the feature definition.
                         //
 
-                        if (isSingleton) {
+                        var feature = fw.core.feature.get(artifact.feature);
 
-                            value = fw.core.singleton.get(id);
-
-                            if (fw.core.defined(value)) {
-
-                                return value;
-                            }
-                        }
-
-                        //
-                        // Default value for the artifact
-                        //
-
-                        value = artifact.def;
-
-                        //
-                        // If feature associated with the artifact 
-                        // defines a new handler, call it.
-                        // 
-
-                        if (fw.core.defined(feature.value)) {
+                        if (fw.core.defined(feature)) {
 
                             //
-                            // Instantiate the dependencies.
+                            // if feature is defined to generate
+                            // singletons, then get the singleton
+                            // and be done with it. By default,
+                            // everything is a singleton.
                             //
 
-                            var deps = null;
-                            if (fw.core.defined(artifact.deps)) {
+                            var isSingleton = !fw.core.defined(feature.singleton) || feature.singleton;
 
-                                deps = [];
-                                $.each(artifact.deps, function (_, dep) {
-                                    deps.push(fw.core.artifact.value(dep));
-                                });
+                            //
+                            // In case the feature is singletons
+                            // and the value was already retrieved.
+                            //
+
+                            if (isSingleton) {
+
+                                value = fw.core.singleton.get(id);
+
+                                if (fw.core.defined(value)) {
+
+                                    return value;
+                                }
                             }
 
                             //
-                            // Use the feature value definition 
-                            // to get the actual artifact value.
+                            // Default value for the artifact
                             //
 
-                            value = feature.value(feature, id, deps, value);
+                            value = artifact.def;
+
+                            //
+                            // If feature associated with the artifact 
+                            // defines a new handler, call it.
+                            // 
+
+                            if (fw.core.defined(feature.value)) {
+
+                                //
+                                // Instantiate the dependencies.
+                                //
+
+                                let deps = null;
+                                if (fw.core.defined(artifact.deps)) {
+
+                                    deps = fw.core.map(artifact.deps, function (_, dep) {
+                                        return fw.core.artifact.value(dep);
+                                    });
+                                }
+
+                                //
+                                // Use the feature value definition 
+                                // to get the actual artifact value.
+                                //
+
+                                value = feature.value(feature, id, deps, value);
+                            }
+
+                            //
+                            // Cache the value.
+                            //
+
+                            if (isSingleton) {
+
+                                fw.core.singleton.set(id, value);
+                            }
                         }
+                        else {
 
-                        //
-                        // Cache the value.
-                        //
+                            //
+                            // ERROR: could not find feature for artifact with identifier 'id'.
+                            //
 
-                        if (isSingleton) {
-
-                            fw.core.singleton.set(id, value);
+                            fw.error('could not find feature for artifact with identifier \'' + id + '\'');
                         }
                     }
                     else {
 
                         //
-                        // ERROR: could not find feature for artifact with identifier 'id'.
+                        // ERROR: artifact with identifier 'id' was not found!
                         //
 
-                        fw.error('could not find feature for artifact with identifier \'' + id + '\'');
+                        fw.error('artifact with identifier \'' + id + '\' was not found!');
                     }
-                }
-                else {
-
-                    //
-                    // ERROR: artifact with identifier 'id' was not found!
-                    //
-
-                    fw.error('artifact with identifier \'' + id + '\' was not found!');
                 }
 
                 //
