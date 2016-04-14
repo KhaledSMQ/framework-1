@@ -15,6 +15,8 @@ fw.module('mvc.framework').component('base', 'core.util, core.string, mvc.engine
 
             $constructor: function ($this) {
                 $instance.model.init($this);
+                $instance.data.init($this);
+                $instance.resource.init($this);
             },
 
             //

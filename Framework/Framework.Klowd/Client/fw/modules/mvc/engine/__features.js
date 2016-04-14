@@ -160,11 +160,8 @@ fw.feature('component', function () {
             //
             // APIs.
             //
-
             
-            $resource: {},
-            $event: {},
-            $data: {}
+            $event: {}            
         };
 
         //
