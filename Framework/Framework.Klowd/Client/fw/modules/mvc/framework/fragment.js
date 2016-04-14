@@ -3,25 +3,13 @@
 // mvc.framework.fragment
 //
 
-fw.module('mvc.framework').component('fragment', 'core.util', function ($util) {
+fw.module('mvc.framework').component('fragment', 'core.util, mvc.engine.component', function ($util, $component) {
     return {
         base: 'mvc.framework.view',
-        description: 'User defined view',
-        template: '<div>{{ placeholders.MAIN }}</div>',
-        placeholders: null,
+        description: 'User defined component.',
         model: {
-            view: {
-                display: 'view',
-                kind: 'INOUT',
-                type: null,
-                dft: null
-            },
-            binding: {
-                display: 'binding',
-                kind: 'INOUT',
-                type: null,
-                dft: null
-            }
+            view: $component.property('view', $component.INOUT, null, $component.REQUIRED, null),
+            binding: $component.property('binding', $component.INOUT, null, $component.OPTIONAL, null)
         },
         api: {
         }

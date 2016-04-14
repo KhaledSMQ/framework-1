@@ -9,6 +9,23 @@ fw.module('mvc.framework').component('base', 'core.util, core.string, mvc.engine
         api: {
 
             //
+            // Initialize the view component.
+            // @param $this The component instance.
+            //
+
+            $constructor: function ($this) {
+                $instance.init.model($this);
+            },
+
+            //
+            // Initialize the view component.
+            // @param $this The component instance.
+            //
+
+            $init: function ($this) {
+            },
+
+            //
             // Component related functions
             //
 

@@ -3,7 +3,7 @@
 // bootstrap.row-4-8
 //
 
-fw.module('bootstrap').fragment('row-4-8',  function () {
+fw.module('bootstrap').component('row-4-8',  function () {
     return {
         description: 'bootstrap row object with two cols (4-8)',
         properties: {

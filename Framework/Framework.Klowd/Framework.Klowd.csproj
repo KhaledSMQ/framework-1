@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\fw\modules\core\debug.js" />
+    <Content Include="Client\fw\modules\mvc\engine\component.js" />
     <Content Include="Client\fw\modules\mvc\engine\instance.js" />
     <Content Include="Client\fw\modules\mvc\framework\fragment.js" />
     <Content Include="Client\fw\modules\mvc\framework\view.js" />

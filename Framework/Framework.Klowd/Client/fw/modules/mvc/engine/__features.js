@@ -18,15 +18,14 @@ fw.feature('component', function () {
 
     var __INSTANCE__COUNT = 0;
     var __INSTANCE__PREFIX = 'c';
-    var __COMPONENTS = {};
 
     //
-    // Import an API set to a new component instance.
+    // Inherit an API set to a new component instance.
     // @param instance The component instance where to import the API.
     // @param api The API to import.
     //
 
-    var _importAPI = function (instance, api) {
+    var _inherit_API = function (instance, api) {
 
         fw.core.apply(api, function (name, fun) {
 
@@ -39,7 +38,7 @@ fw.feature('component', function () {
                     // functions must declare first the component instance.
                     // Add other arguments that are sent to function by the invocation.
                     //
-                    
+
                     var args = [instance].concat(Array.prototype.slice.call(arguments));
 
                     //
@@ -53,110 +52,51 @@ fw.feature('component', function () {
     };
 
     //
-    // Initialize the model for a specific instance.
-    // @param instance The component instance
-    // @param model The model definition.
+    // Inherit a model definition to a new component instance.
+    // @param instance The component instance where to inherit the model definition
+    // @param model the model properties object.
     //
 
-    var _initModel = function (feature, instance, model) {
+    var _inherit_Model = function (instance, model) {
 
-        instance.$model = {};
-        instance.$state.model = {};
+        instance.$model = fw.core.defined(instance.$model) ? instance.$model : {};
 
-        if (fw.core.defined(model)) {
+        fw.core.apply(model, function (name, def) {
 
-            $.each(model, function (name, def) {
+            if (!fw.core.defined(instance.$model[name])) {
 
-                //
-                // Set the initial value for the model
-                // property, take it from the component
-                // model definition.
-                //
+                instance.$model[name] = def;
+            }
+        });
+    };
 
-                _setModel(feature, instance, name, (fw.core.defined(def) && fw.core.defined(def.dft)) ? def.dft : null);
+    //
+    // Inherit a component definition.
+    // @param instance The target component instance
+    // @param component The component definition
+    //
 
-                //
-                // Hookup the setters/getters for the property.
-                //
-
-                Object.defineProperty(instance, name, {
-                    get: function () { return _getModel(feature, instance, name); },
-                    set: function (val) { return _setModel(feature, instance, name, val); }
-                });
-            });
+    var _inherit = function (instance, component) {
+        if (fw.core.defined(component)) {
+            _inherit_API(instance, component.api);
+            _inherit_Model(instance, component.model);
         }
-    };
-
-    //
-    // Get the value of a specific model property.
-    //
-
-    var _getModel = function (feature, instance, name) {
-
-        // #ifdef DEBUG
-
-        fw.debug('{0}: {1}::{2} => [GET, {3}]', feature.id.toUpperCase(), instance.$id, instance.$type, name);
-
-        // #endif
-
-        return instance.$state.model[name];
-    };
-
-    //
-    // Set the value of a specific model property.
-    //
-
-    var _setModel = function (feature, instance, name, val) {
-
-        instance.$state.model[name] = val;
-
-        // #ifdef DEBUG
-
-        fw.debug('{0}:: {1}::{2} => [SET, {3}, {4}]', feature.id.toUpperCase(), instance.$id, instance.$type, name, instance.$state.model[name]);
-
-        // #endif
-
-        //
-        // Check if there are any event handlers,
-        // and call them, by order.
-        //
-
-        instance.$trigger(name, 'change');
-    };
+    }
 
     //
     // Get the value of a new feature element.
+    // @param feature 
+    // @param id The unique identifier for the feature artifact
+    // @param deps The list of instantiated dependencies
+    // @param fun The function for getting the artificat definition.
+    // @return A new, instantiated and initialized component instance.
     //
-
-    var _path2root = function (id) {
-
-        var output = [];
-
-        if (fw.core.defined(id)) {
-
-            let component = fw.get(id);
-
-            output = _path2root(component.$def.base);
-
-            output.push(id);
-        }
-
-        return output;
-    };
 
     var _value = function (feature, id, deps, fun) {
 
         //
-        // TODO: Check the generated component API,
-        // components must define at least a render
-        // method.                
-        //
-        // TODO: Check the generated API, methods are
-        // not allowed to start with a '$' or '_' caracter.
-        //
-
-        //
-        // Setup the component instance value.
+        // Start with building the component
+        // instance basic structure.
         //
 
         var instance = {
@@ -181,14 +121,6 @@ fw.feature('component', function () {
             //
 
             $state: {
-
-                //
-                // Properties. Hash mapping the name
-                // and runtime value for a specific
-                // property.
-                //
-
-                properties: {},
 
                 //
                 // Model. Hash mapping the name and
@@ -221,7 +153,6 @@ fw.feature('component', function () {
             // APIs.
             //
 
-            $property: {},
             $model: {},
             $resource: {},
             $event: {},
@@ -242,15 +173,18 @@ fw.feature('component', function () {
 
         instance.$def = component;
         instance.$def.name = id;
-        
-        //
-        //
-        //
-
-        _importAPI(instance, component.api);
 
         //
+        // inherit the component to the new instance.
+        // Implies adding model, api, etc.
         //
+
+        _inherit(instance, component);
+
+        //
+        // Inherit the base definitions,
+        // we need to inherit all the components
+        // up the chain.
         //
 
         let base = fw.get(component.base);
@@ -259,23 +193,20 @@ fw.feature('component', function () {
         while (fw.core.defined(base)) {
 
             //
-            //
-            //
-
-            _importAPI(instance, base.$def.api);
-
-            //
-            //
+            // Inherit the base component definition
+            // and move the current base up the chain.
             //
 
+            _inherit(instance, base.$def);
             base = fw.get(base.$def.base);
         }
-      
+
         //
-        //
+        // Initialize component.
+        // Run init function.
         //
 
-        _initModel(feature, instance, component.model);
+        instance.$constructor();
 
         //
         // Return a newly create component
@@ -298,10 +229,3 @@ fw.feature('component', function () {
     };
 });
 
-fw.feature('fragment', function () {
-    return {
-        value: function (feature, id, deps, fun) {
-            return { deps: deps, def: fun };
-        }
-    };
-});
