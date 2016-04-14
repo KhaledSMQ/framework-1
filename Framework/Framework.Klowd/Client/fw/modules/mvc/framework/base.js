@@ -14,27 +14,19 @@ fw.module('mvc.framework').component('base', 'core.util, core.string, mvc.engine
             //
 
             $constructor: function ($this) {
-                $instance.init.model($this);
+                $instance.model.init($this);
             },
 
             //
-            // Initialize the view component.
-            // @param $this The component instance.
+            // Component type related functions
             //
-
-            $init: function ($this) {
-            },
-
-            //
-            // Component related functions
-            //
-
-            $hierarchy: function ($this) {
-                return $instance.hierarchy($this);
-            },
 
             $is: function ($this, type) {
-                return $instance.is($this, type);
+                return $instance.type.is($this, type);
+            },
+
+            $hierarchy: function ($this) {
+                return $instance.type.hierarchy($this);
             },
 
             //
@@ -42,11 +34,11 @@ fw.module('mvc.framework').component('base', 'core.util, core.string, mvc.engine
             //
 
             $get: function ($this, name) {
-                return $instance.get($this, name);
+                return $instance.model.get($this, name);
             },
 
             $set: function ($this, name, val) {
-                $instance.set($this, name, val)
+                return $instance.model.set($this, name, val)
             },
 
             //
@@ -54,18 +46,20 @@ fw.module('mvc.framework').component('base', 'core.util, core.string, mvc.engine
             //
 
             $on: function ($this, object, event, handler) {
-                $instance.on($this, object, event, handler);
+                return $instance.events.on($this, object, event, handler);
             },
 
             $trigger: function ($this, object, event) {
-                $instance.trigger($this, object, event);
+                return $instance.events.trigger($this, object, event);
             },
 
-            // #ifdef DEBUG
+            //
+            // Debug related functions.
+            //
+
             $anatomy: function ($this) {
-                $instance.anatomy($this);
+                return $instance.debug.anatomy($this);
             }
-            // #endif
         }
     };
 });

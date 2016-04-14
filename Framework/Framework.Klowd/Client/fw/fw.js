@@ -8,6 +8,7 @@
 
 'use strict';
 window.fw = undefined == window.fw ? {} : window.fw;
+
 window.fw = jQuery.extend(true, window.fw, {
 
     //
@@ -42,7 +43,363 @@ window.fw = jQuery.extend(true, window.fw, {
 
         IDENTIFIER_SEPARATOR: '.',
         IDENTIFIER_PARCEL_RE: ''
+    }
+});
+
+window.fw.core = jQuery.extend(true, window.fw.core, {
+
+    //
+    // Set or get the framework debug flag or
+    // write a debug message.
+    // @param val the debug flag value if boolean or
+    // the debug message if not boolean.
+    // @return the current debug flag value.
+    //
+
+    debug: function () {
+
+        let prefix = '[FW:DEBUG]    ';
+
+        if (1 == arguments.length) {
+
+            let val = arguments[0];
+            if (fw.core.defined(val)) {
+                if (typeof val === 'boolean') {
+                    fw.__DEBUG = val;
+                }
+                else if (fw.__DEBUG) {
+                    if (typeof val === 'function') {
+                        fw.log(prefix + JSON.stringify(val()));
+                    }
+                    else if (typeof val === 'string') {
+                        fw.log(prefix + val)
+                    }
+                    else {
+                        fw.log(prefix + JSON.stringify(val));
+                    }
+                }
+            }
+        }
+        else {
+            if (fw.__DEBUG && arguments.length > 1) {
+                fw.log(prefix + fw.core.format.apply(this, arguments));
+            }
+        }
+
+        return fw.__DEBUG;
     },
+
+    //
+    // Check if a value is defined or not.
+    // @param obj The value to check.
+    // @return true if the value os defined, false otherwise.
+    //
+
+    defined: function (obj) {
+        return (typeof obj != 'undefined') && (obj != null);
+    },
+
+    //
+    // Apply to an object or array a specific
+    // function handler.
+    // @param val The input value
+    // @param fun The mapping function
+    //
+
+    apply: function (val, fun) {
+        if (fw.core.defined(val) && fw.core.defined(fun)) {
+            $.each(val, fun);
+        }
+    },
+
+    //
+    // Map an object or array to an equivalent
+    // value type, but applying a function.
+    // @param val The input value
+    // @param fun The mapping function
+    // @return a new value mapped with the function
+    //
+
+    map: function (val, fun) {
+
+        var output = null;
+
+        if (fw.core.defined(val) && fw.core.defined(fun)) {
+
+            if (val instanceof Array) {
+
+                output = [];
+                $.each(val, function (idx, item) {
+                    output.push(fun(idx, item));
+                });
+            }
+            else if (typeof val == 'object') {
+
+                output = {};
+                $.each(val, function (property, value) {
+                    output[property] = fun(property, value);
+                });
+            }
+            else {
+                output = fun(val);
+            }
+        }
+
+        return output;
+    },
+
+    //
+    // Map a value to an array
+    // @param val The input value
+    // @param fun The mapping function
+    // @return an array with the mapping
+    //
+
+    toArray: function (val, fun) {
+
+        var output = null;
+
+        if (fw.core.defined(val) && fw.core.defined(fun)) {
+
+            if (val instanceof Array) {
+
+                output = fw.core.map(val, fun);
+            }
+            else if (typeof val == 'object') {
+
+                output = [];
+                $.each(val, function (property, value) {
+                    output.push(fun(property, value));
+                });
+            }
+            else {
+                output = [fun(val)];
+            }
+        }
+
+        return output;
+    },
+
+    //
+    // Take a string with a set of placeholder, e.g. {0}, {1},
+    // .. {n} and replace them with the actual values passed
+    // in the rest of the arguments.
+    //
+
+    format: function () {
+        var output = null;
+        if (arguments.length > 1) {
+
+            output = arguments[0];
+            for (var i = 1, j = 0; i < arguments.length; i++, j++) {
+                let str = typeof arguments[i] === 'string' ? arguments[i] : JSON.stringify(arguments[i]);
+                output = output.replace('{' + j + '}', str);
+            }
+        }
+        return output;
+    },
+
+    //
+    // Verify that a list of condition hold true,
+    // if not throw a message, also defined in the
+    // list of arguments.
+    //
+
+    verify: function () {
+
+        var values = [];
+        var msgs = [];
+
+        $.each(arguments, function (idx, value) {
+            if (typeof value == 'string') {
+                msgs.push(value);
+            } else {
+                values.push(value);
+            }
+        });
+
+        $.each(values, function (idx, condition) {
+            if (!condition) {
+                throw msgs[idx];
+            }
+        });
+    },
+
+    //
+    // Verify if the input value is a valid identifier.
+    // @param id The identifier to verify
+    // @return true if identifier is valid, false otherwise.
+    //
+
+    verifyID: function (id) {
+
+        var output = true;
+        var parcels = id.split(fw.__CONFIG.IDENTIFIER_SEPARATOR);
+
+        if (parcels.length == 1) {
+            output = fw.core.verifyIDParcel(id);
+        }
+        else {
+            $.each(parcels, function (_, simple) {
+                output = output && fw.core.verifyIDParcel(simple);
+                return output;
+            });
+        }
+
+        return output;
+    },
+
+    // 
+    // Verify that a string satisfies the simple name spec.
+    // @param name The name to verify
+    // @return true if ok, false otherwise.
+    //
+
+    verifyIDParcel: function (parcel) {
+        return fw.core.defined(parcel) && parcel.match(/[$a-zA-Z_][$a-zA-Z0-9_-]*/).length == 1;
+    },
+
+    //
+    // Build an identifier from a list of arguments.
+    // Join every argument separated by the identifier
+    // separator character.
+    //
+
+    getID: function () {
+        return Array.prototype.slice.call(arguments).join(fw.__CONFIG.IDENTIFIER_SEPARATOR);
+    },
+
+    //
+    // Take a fullname and return a ordered list of the simple 
+    // name parcels that compose it.
+    // @param fullname The fullname to process
+    // @return a list of simple name parcels
+    //
+
+    getParcels: function (id) {
+
+        var parcels = [];
+
+        if (fw.core.defined(id)) {
+
+            //
+            // Get the fullname parcels.
+            //
+
+            parcels = id.split(fw.__CONFIG.IDENTIFIER_SEPARATOR);
+
+            //
+            // Verify that they are valid.
+            //
+
+            $.each(parcels, function (_, simple) {
+                fw.core.verify(fw.core.verifyIDParcel(simple), 'parcel \'' + simple + '\' is not a valid simple name');
+            });
+        }
+
+        return parcels;
+    },
+
+    //
+    // Take a full artifact identifier and return
+    // the module segment and simple name.
+    //
+
+    getModuleAndName: function (id) {
+
+        var parcels = { module: null, name: null };
+
+        if (fw.core.defined(id)) {
+
+            //
+            // Break the identifier into
+            // a list of simple names.
+            //
+
+            parcels = id.split(fw.__CONFIG.IDENTIFIER_SEPARATOR);
+
+            //
+            // Extract module and name.
+            // Module is the set of all simple
+            // identifier except the last one,
+            // with is the local name.
+            //
+
+            parcels.module = parcels.slice(0, parcels.length - 1).join(fw.__CONFIG.IDENTIFIER_SEPARATOR);
+            parcels.name = parcels[parcels.length - 1];
+        }
+
+        return parcels;
+    },
+
+    //
+    // Display an internal error, use this for framework
+    // related errors.
+    //
+
+    error: function (descriptor) {
+
+        //
+        // Base message.
+        //
+
+        var msg = '[' + fw.__LIB + ']:' + fw.__ERRORS[descriptor];
+
+        //
+        // Instantiate additional parameters, placeholder: {argN}
+        //
+
+        if (arguments.length > 1) {
+
+            for (var i = 1, j = 0; i < arguments.length; i++, j++) {
+
+                msg = msg.replace('{arg' + j + '}', arguments[i]);
+            }
+        }
+
+        //
+        // Write final error message to console.
+        //
+
+        console.error(msg);
+    },
+
+    //
+    // Generate an API for an hash/object value.
+    // @param obj The object to generate the API for.
+    // @return An object with a set of functions.
+    //
+
+    hash: function (obj) {
+
+        var _init = function (name) { obj = fw.core.defined(obj) ? obj : {}; };
+
+        var _get = function (name) { return obj[name]; };
+
+        var _set = function (name, val) { obj[name] = val; };
+
+        var _keys = function () { return fw.core.toArray(obj, function (name, _) { return name; }); };
+
+        var _values = function () { return fw.core.toArray(obj, function (_, val) { return val; }); };
+
+        var _clear = function () { return fw.core.apply(obj, function (name, _) { delete obj[name]; }); };
+
+        var _has = function (name) { return fw.core.defined(_get(name)); };
+
+        return {
+            init: _init,
+            get: _get,
+            set: _set,
+            list: _keys,
+            keys: _keys,
+            values: _values,
+            clear: _clear,
+            has: _has
+        };
+    }
+});
+
+window.fw = jQuery.extend(true, window.fw, {
 
     //
     // Core API
@@ -56,7 +413,7 @@ window.fw = jQuery.extend(true, window.fw, {
         // MODULE
         //
 
-        module: {
+        module: $.extend(true, fw.core.hash(fw.__MODULES), {
 
             add: function (id, deps) {
 
@@ -105,39 +462,13 @@ window.fw = jQuery.extend(true, window.fw, {
                 });
             },
 
-            // ---
-
-            get: function (id) { return fw.__MODULES[id]; },
-
-            set: function (id, val) { fw.__MODULES[id] = val; },
-
-            has: function (id) { return fw.core.defined(fw.core.module.get(id)); },
-
-            list: function () { return fw.core.toArray(fw.__MODULES, function (name, _) { return name; }); }
-        },
+        }),
 
         //
         // FEATURE
         //
-        // {        
-        //     //
-        //     // Whether the feature values are singletons.
-        //     //
-        //    
-        //     singleton :: bool
-        //
-        //     //
-        //     // Function to get the value definition of the artifact.
-        //     // @param deps list of dependencies for artifact.
-        //     // @param def the definition object, dependent on the artifact.
-        //     // @return the runtime/singleton value for artififact.
-        //     //
-        //            
-        //     value :: function(deps, def) { ... }                                
-        // }
-        //        
 
-        feature: {
+        feature: $.extend(true, fw.core.hash(fw.__FEATURES), {
 
             add: function (id, deps, fun) {
 
@@ -179,24 +510,15 @@ window.fw = jQuery.extend(true, window.fw, {
                 }
 
                 return fw;
-            },
+            }
 
-            // ---
-
-            get: function (id) { return fw.__FEATURES[id]; },
-
-            set: function (id, val) { fw.__FEATURES[id] = val; },
-
-            list: function () { return fw.core.toArray(fw.__FEATURES, function (name, _) { return name; }); },
-
-            has: function (id) { return fw.core.defined(fw.core.feature.get(id)); }
-        },
+        }),
 
         //
         // ARTIFACTS
         //
 
-        artifact: {
+        artifact: $.extend(true, fw.core.hash(fw.__ARTIFACTS), {
 
             add: function (module, name, feature, deps, def) {
 
@@ -374,18 +696,9 @@ window.fw = jQuery.extend(true, window.fw, {
                 //
 
                 return value;
-            },
+            }
 
-            // ---
-
-            get: function (id) { return fw.__ARTIFACTS[id]; },
-
-            set: function (id, val) { fw.__ARTIFACTS[id] = val; },
-
-            list: function () { return fw.core.toArray(fw.__ARTIFACTS, function (name, _) { return name; }); },
-
-            has: function (id) { return fw.core.defined(fw.core.artifact.get(id)); }
-        },
+        }),
 
         //
         // SINGLETON       
@@ -394,335 +707,7 @@ window.fw = jQuery.extend(true, window.fw, {
         // name and its local name.
         //
 
-        singleton: {
-
-            // ---
-
-            get: function (id) { return fw.__SINGLETON[id]; },
-
-            set: function (id, val) { fw.__SINGLETON[id] = val; },
-
-            list: function () { return fw.core.toArray(fw.__SINGLETON, function (name, _) { return name; }); },
-
-            has: function (id) { return fw.core.defined(fw.core.singleton.get(id)); }
-        },
-
-        //
-        // Set or get the framework debug flag or
-        // write a debug message.
-        // @param val the debug flag value if boolean or
-        // the debug message if not boolean.
-        // @return the current debug flag value.
-        //
-
-        debug: function () {
-
-            let prefix = '[FW:DEBUG]    ';
-
-            if (1 == arguments.length) {
-
-                let val = arguments[0];
-                if (fw.core.defined(val)) {
-                    if (typeof val === 'boolean') {
-                        fw.__DEBUG = val;
-                    }
-                    else if (fw.__DEBUG) {
-                        if (typeof val === 'function') {
-                            fw.log(prefix + JSON.stringify(val()));
-                        }
-                        else if (typeof val === 'string') {
-                            fw.log(prefix + val)
-                        }
-                        else {
-                            fw.log(prefix + JSON.stringify(val));
-                        }
-                    }
-                }
-            }
-            else {
-                if (fw.__DEBUG && arguments.length > 1) {
-                    fw.log(prefix + fw.core.format.apply(this, arguments));
-                }
-            }
-
-            return fw.__DEBUG;
-        },
-
-        //
-        // Check if a value is defined or not.
-        // @param obj The value to check.
-        // @return true if the value os defined, false otherwise.
-        //
-
-        defined: function (obj) {
-            return (typeof obj != 'undefined') && (obj != null);
-        },
-
-        //
-        // Apply to an object or array a specific
-        // function handler.
-        // @param val The input value
-        // @param fun The mapping function
-        //
-
-        apply: function (val, fun) {
-
-            if (fw.core.defined(val) && fw.core.defined(fun)) {
-                $.each(val, fun);
-            }
-        },
-
-        //
-        // Map an object or array to an equivalent
-        // value type, but applying a function.
-        // @param val The input value
-        // @param fun The mapping function
-        // @return a new value mapped with the function
-        //
-
-        map: function (val, fun) {
-
-            var output = null;
-
-            if (fw.core.defined(val) && fw.core.defined(fun)) {
-
-                if (val instanceof Array) {
-
-                    output = [];
-                    $.each(val, function (idx, item) {
-                        output.push(fun(idx, item));
-                    });
-                }
-                else if (typeof val == 'object') {
-
-                    output = {};
-                    $.each(val, function (property, value) {
-                        output[property] = fun(property, value);
-                    });
-                }
-                else {
-                    output = fun(val);
-                }
-            }
-
-            return output;
-        },
-
-        //
-        // Map a value to an array
-        // @param val The input value
-        // @param fun The mapping function
-        // @return an array with the mapping
-        //
-
-        toArray: function (val, fun) {
-
-            var output = null;
-
-            if (fw.core.defined(val) && fw.core.defined(fun)) {
-
-                if (val instanceof Array) {
-
-                    output = fw.core.map(val, fun);
-                }
-                else if (typeof val == 'object') {
-
-                    output = [];
-                    $.each(val, function (property, value) {
-                        output.push(fun(property, value));
-                    });
-                }
-                else {
-                    output = [fun(val)];
-                }
-            }
-
-            return output;
-        },
-
-        //
-        // Take a string with a set of placeholder, e.g. {0}, {1},
-        // .. {n} and replace them with the actual values passed
-        // in the rest of the arguments.
-        //
-
-        format: function () {
-            var output = null;
-            if (arguments.length > 1) {
-
-                output = arguments[0];
-                for (var i = 1, j = 0; i < arguments.length; i++, j++) {
-                    let str = typeof arguments[i] === 'string' ? arguments[i] : JSON.stringify(arguments[i]);
-                    output = output.replace('{' + j + '}', str);
-                }
-            }
-            return output;
-        },
-
-        //
-        // Verify that a list of condition hold true,
-        // if not throw a message, also defined in the
-        // list of arguments.
-        //
-
-        verify: function () {
-
-            var values = [];
-            var msgs = [];
-
-            $.each(arguments, function (idx, value) {
-                if (typeof value == 'string') {
-                    msgs.push(value);
-                } else {
-                    values.push(value);
-                }
-            });
-
-            $.each(values, function (idx, condition) {
-                if (!condition) {
-                    throw msgs[idx];
-                }
-            });
-        },
-
-        //
-        // Verify if the input value is a valid identifier.
-        // @param id The identifier to verify
-        // @return true if identifier is valid, false otherwise.
-        //
-
-        verifyID: function (id) {
-
-            var output = true;
-            var parcels = id.split(fw.__CONFIG.IDENTIFIER_SEPARATOR);
-
-            if (parcels.length == 1) {
-                output = fw.core.verifyIDParcel(id);
-            }
-            else {
-                $.each(parcels, function (_, simple) {
-                    output = output && fw.core.verifyIDParcel(simple);
-                    return output;
-                });
-            }
-
-            return output;
-        },
-
-        // 
-        // Verify that a string satisfies the simple name spec.
-        // @param name The name to verify
-        // @return true if ok, false otherwise.
-        //
-
-        verifyIDParcel: function (parcel) {
-            return fw.core.defined(parcel) && parcel.match(/[$a-zA-Z_][$a-zA-Z0-9_-]*/).length == 1;
-        },
-
-        //
-        // Build an identifier from a list of arguments.
-        // Join every argument separated by the identifier
-        // separator character.
-        //
-
-        getID: function () {
-            return Array.prototype.slice.call(arguments).join(fw.__CONFIG.IDENTIFIER_SEPARATOR);
-        },
-
-        //
-        // Take a fullname and return a ordered list of the simple 
-        // name parcels that compose it.
-        // @param fullname The fullname to process
-        // @return a list of simple name parcels
-        //
-
-        getParcels: function (id) {
-
-            var parcels = [];
-
-            if (fw.core.defined(id)) {
-
-                //
-                // Get the fullname parcels.
-                //
-
-                parcels = id.split(fw.__CONFIG.IDENTIFIER_SEPARATOR);
-
-                //
-                // Verify that they are valid.
-                //
-
-                $.each(parcels, function (_, simple) {
-                    fw.core.verify(fw.core.verifyIDParcel(simple), 'parcel \'' + simple + '\' is not a valid simple name');
-                });
-            }
-
-            return parcels;
-        },
-
-        //
-        // Take a full artifact identifier and return
-        // the module segment and simple name.
-        //
-
-        getModuleAndName: function (id) {
-
-            var parcels = { module: null, name: null };
-
-            if (fw.core.defined(id)) {
-
-                //
-                // Break the identifier into
-                // a list of simple names.
-                //
-
-                parcels = id.split(fw.__CONFIG.IDENTIFIER_SEPARATOR);
-
-                //
-                // Extract module and name.
-                // Module is the set of all simple
-                // identifier except the last one,
-                // with is the local name.
-                //
-
-                parcels.module = parcels.slice(0, parcels.length - 1).join(fw.__CONFIG.IDENTIFIER_SEPARATOR);
-                parcels.name = parcels[parcels.length - 1];
-            }
-
-            return parcels;
-        },
-
-        //
-        // Display an internal error, use this for framework
-        // related errors.
-        //
-
-        error: function (descriptor) {
-
-            //
-            // Base message.
-            //
-
-            var msg = '[' + fw.__LIB + ']:' + fw.__ERRORS[descriptor];
-
-            //
-            // Instantiate additional parameters, placeholder: {argN}
-            //
-
-            if (arguments.length > 1) {
-
-                for (var i = 1, j = 0; i < arguments.length; i++, j++) {
-
-                    msg = msg.replace('{arg' + j + '}', arguments[i]);
-                }
-            }
-
-            //
-            // Write final error message to console.
-            //
-
-            console.error(msg);
-        }
+        singleton: fw.core.hash(fw.__SINGLETON),
     },
 
     //

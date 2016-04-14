@@ -3,29 +3,15 @@
 // mvc.framework.view
 //
 
-fw.module('mvc.framework').component('view', 'core.util, core.string, mvc.engine.component', function ($util, $string, $component) {
+fw.module('mvc.framework').component('view', 'core.util, core.string, mvc.engine.component', function ($util, $string, $c) {
     return {
         base: 'mvc.framework.base',
         description: 'User interface layer base component',
         model: {
-            width: $component.property('width', $component.INOUT, null, $component.OPTIONAL, 0),
-            height: $component.property('height', $component.INOUT, null, $component.OPTIONAL, 0)
+            width: $c.property('width', $c.INOUT, null, $c.OPTIONAL, 0),
+            height: $c.property('height', $c.INOUT, null, $c.OPTIONAL, 0)
         },
         api: {
-
-            //
-            // Initialize the view component.
-            // @param $this The component instance.
-            //
-
-            $init: function ($this) {
-
-                
-                 // Call base component initialize method.
-                
-
-                $this.$base.$init();
-            },
 
             //
             // Main render method.
@@ -34,8 +20,6 @@ fw.module('mvc.framework').component('view', 'core.util, core.string, mvc.engine
 
             $render: function ($this) {
             }
-
-
         }
     };
 });

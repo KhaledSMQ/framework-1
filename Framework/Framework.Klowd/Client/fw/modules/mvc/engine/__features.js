@@ -150,10 +150,18 @@ fw.feature('component', function () {
             },
 
             //
-            // APIs.
+            // Model definition, set of model properties
+            // includes all accessible properties, from current
+            // instance to all inherited ones.
             //
 
             $model: {},
+
+            //
+            // APIs.
+            //
+
+            
             $resource: {},
             $event: {},
             $data: {}
