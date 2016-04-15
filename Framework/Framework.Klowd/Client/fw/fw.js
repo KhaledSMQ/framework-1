@@ -7,7 +7,7 @@
 // ============================================================================
 
 'use strict';
-window.fw = undefined == window.fw ? {} : window.fw;
+window.fw = undefined == window.fw || null == window.fw ? {} : window.fw;
 
 window.fw = jQuery.extend(true, window.fw, {
 

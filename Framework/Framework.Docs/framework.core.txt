@@ -1,0 +1,25 @@
+﻿
+	                           Framework.Core
+
+	----
+	
+	1. Introduction
+	2. Features
+
+	----
+
+	1. Introduction
+
+	----
+
+	2. Features
+			
+	----
+
+	[TODO]
+
+	Extensions
+
+		[ ] Safe apply method with a default IList implementation instead of passing in
+		    the new list object instance.
+			

@@ -130,8 +130,8 @@ fw.feature('component', function () {
                 model: {},
 
                 //
-                // Resources. Mapping between resource name
-                // and its value.
+                // Resources. Mapping between 
+                // name and its value.
                 //
 
                 resources: {},

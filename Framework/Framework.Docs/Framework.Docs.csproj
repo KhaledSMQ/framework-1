@@ -45,6 +45,7 @@
   <ItemGroup>
     <Content Include="framework.comm.txt" />
     <Content Include="framework.client.txt" />
+    <Content Include="framework.core.txt" />
     <Content Include="framework.utils.txt" />
     <Content Include="framework.blocks.txt" />
     <Content Include="framework.data.txt" />
