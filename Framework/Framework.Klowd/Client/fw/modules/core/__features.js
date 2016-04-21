@@ -26,5 +26,8 @@ fw.feature('factory', function () {
 
 fw.feature('object', function () {
     return {
+        value: function (feature, id, deps, def) {
+            return (typeof def == 'function') ? def.apply(def, deps) : null;
+        }
     };
 });
