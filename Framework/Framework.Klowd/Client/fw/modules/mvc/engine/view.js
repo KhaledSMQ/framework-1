@@ -22,7 +22,7 @@ fw.module('mvc.engine').service('view', 'core.util, mvc.engine.config', function
             // List of components.
             //
 
-            $.each(view, function (_, componentInstance) {
+            $util.apply(view, function (_, componentInstance) {
 
                 //
                 // Get a valid component definition.
@@ -52,7 +52,7 @@ fw.module('mvc.engine').service('view', 'core.util, mvc.engine.config', function
                                 // Get the name of the single placeholder.
                                 //
 
-                                $.each(component.placeholders, function (name, def) { placeholder = name; });
+                                $util.apply(component.placeholders, function (name, def) { placeholder = name; });
 
                                 //
                                 //
@@ -86,7 +86,7 @@ fw.module('mvc.engine').service('view', 'core.util, mvc.engine.config', function
                             // CASE: Content defines the placeholders.
                             //
 
-                            $.each(componentInstance.content, function (placeholderName, placeholderContent) {
+                            $util.apply(componentInstance.content, function (placeholderName, placeholderContent) {
 
                                 content[placeholderName] = _normalize(placeholderContent);
                             });
@@ -127,7 +127,7 @@ fw.module('mvc.engine').service('view', 'core.util, mvc.engine.config', function
                 // Placeholders.
                 //
 
-                $.each(view, function (name, content) { view[name] = _normalize(content); })
+                $util.apply(view, function (name, content) { view[name] = _normalize(content); })
             }
 
         return view;
@@ -149,7 +149,7 @@ fw.module('mvc.engine').service('view', 'core.util, mvc.engine.config', function
 
         if (view instanceof Array) {
 
-            $.each(view, function (idx0, fragment) {
+            $util.apply(view, function (idx0, fragment) {
 
                 //
                 // Initialize this node value.
@@ -198,7 +198,7 @@ fw.module('mvc.engine').service('view', 'core.util, mvc.engine.config', function
 
                             node.content = {};
 
-                            $.each(fragment.content, function (placeholderName, placeholderContent) {
+                            $util.apply(fragment.content, function (placeholderName, placeholderContent) {
 
                                 node.content[placeholderName] = _buildTree(placeholderContent);
                             });
@@ -276,7 +276,7 @@ fw.module('mvc.engine').service('view', 'core.util, mvc.engine.config', function
                     // CASE: Nodes in tree are > 0
                     //
 
-                    $.each(value, function (idx0, node) {
+                    $util.apply(value, function (idx0, node) {
 
                         //
                         // Check if this is an object.
@@ -290,7 +290,7 @@ fw.module('mvc.engine').service('view', 'core.util, mvc.engine.config', function
 
                                 content = {};
 
-                                $.each(node.content, function (placeholderName, placeholderContent) {
+                                $util.apply(node.content, function (placeholderName, placeholderContent) {
 
                                     content[placeholderName] = genes.placeholder(placeholderName, _cataRec(placeholderContent));
                                 });
@@ -361,7 +361,7 @@ fw.module('mvc.engine').service('view', 'core.util, mvc.engine.config', function
                 // CASE: Nodes in tree are > 0
                 //
 
-                $.each(value, function (idx0, node) {
+                $util.apply(value, function (idx0, node) {
 
                     //
                     // Check if this is an object.
@@ -381,7 +381,7 @@ fw.module('mvc.engine').service('view', 'core.util, mvc.engine.config', function
 
                         if ($util.isDefined(node.content)) {
 
-                            $.each(node.content, function (placeholderName, placeholderContent) { _preOrder(placeholderContent); });
+                            $util.apply(node.content, function (placeholderName, placeholderContent) { _preOrder(placeholderContent); });
                         }
                     }
                     else {
@@ -408,7 +408,7 @@ fw.module('mvc.engine').service('view', 'core.util, mvc.engine.config', function
                 // CASE: Nodes in tree are > 0
                 //
 
-                $.each(value, function (idx0, node) {
+                $util.apply(value, function (idx0, node) {
 
                     //
                     // Check if this is an object.
@@ -422,7 +422,7 @@ fw.module('mvc.engine').service('view', 'core.util, mvc.engine.config', function
 
                         if ($util.isDefined(node.content)) {
 
-                            $.each(node.content, function (placeholderName, placeholderContent) { _postOrder(placeholderContent); });
+                            $util.apply(node.content, function (placeholderName, placeholderContent) { _postOrder(placeholderContent); });
                         }
 
                         //

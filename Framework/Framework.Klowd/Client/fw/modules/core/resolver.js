@@ -85,7 +85,7 @@ fw.module('core').service('resolver', 'core.util, core.error', function ($util, 
 
                 var name = '';
 
-                $.each(list, function (idx, elm) {
+                $util.apply(list, function (idx, elm) {
 
                     //
                     // if index is an odd number.

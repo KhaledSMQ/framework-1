@@ -10,9 +10,7 @@
 fw.module('core').service('util', function () {
 
     //
-    // Check if a variable is defined.
-    // The variable is defined if is not undefined,
-    // not null and has a non empty string value.
+    // Check if a value is defined.
     //
 
     var _isDefined = function (variable) {
@@ -20,11 +18,35 @@ fw.module('core').service('util', function () {
     };
 
     //
-    // Check if a variable is not defined.
+    // Check if a value is not defined.
     //
 
     var _isNotDefined = function (variable) {
         return !_isDefined(variable);
+    };
+
+    //
+    // Check if a value is a function.
+    //
+
+    var _isFunction = function (variable) {
+        return fw.core.defined(variable) && typeof(variable) == 'function';
+    };
+
+    //
+    // Check if a value is a object
+    //
+
+    var _isObject = function (variable) {
+        return fw.core.defined(variable) && typeof (variable) == 'object';
+    };
+
+    //
+    // Check if value is an array.
+    //
+
+    var _isArray = function (variable) {
+        return fw.core.defined(variable) && variable instanceof Array;
     };
 
     //
@@ -73,11 +95,11 @@ fw.module('core').service('util', function () {
 
                 var retValue = obj;
 
-                $.each(splitPatt, function (idx, property) {
+                _apply(splitPatt, function (idx, property) {
 
                     var tempValue = retValue[property];
 
-                    if ($util.isDefined(tempValue)) {
+                    if (_isDefined(tempValue)) {
 
                         retValue = tempValue;
 
@@ -140,6 +162,9 @@ fw.module('core').service('util', function () {
     return {
         isDefined: _isDefined,
         isNotDefined: _isNotDefined,
+        isFunction: _isFunction,
+        isObject:_isObject,
+        isArray: _isArray,
         apply: _apply,
         map: _map,
         toArray: _toArray,

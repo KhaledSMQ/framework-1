@@ -208,7 +208,7 @@ fw.feature('component', function () {
 
         //
         // Initialize component.
-        // Run init function.
+        // Run constructor function.
         //
 
         instance.$constructor();

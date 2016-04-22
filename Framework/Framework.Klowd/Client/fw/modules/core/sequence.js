@@ -36,7 +36,7 @@ fw.module('core').service('sequence', 'core.util', function ($util) {
 
         var processed = [];
 
-        $.each(sequence, function (_, step) {
+        $util.apply(sequence, function (_, step) {
 
             //
             // Predefined step value.
