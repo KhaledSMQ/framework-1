@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Framework.Data.Model.Schema.FW_DataCluster" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAggAAAAAAAAAQAAgAAAAAAggkAAABAAAE=</HashCode>
+      <FileName>Model\Schema\FW_DataCluster.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Entities" />
+      <Property Name="Contexts" />
+      <Property Name="Models" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Data.Model.Schema.FW_DataContext" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAkgAAAAAAAAAQAAgAAAAAAggkAAAAAAAE=</HashCode>
+      <FileName>Model\Schema\FW_DataContext.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Models" />
+      <Property Name="Entities" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Data.Model.Schema.FW_DataDomain" BaseTypeListCollapsed="true">
+    <Position X="1.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAggAAAAAAAAAQAAgAAAAAAgiAAAAAAAAE=</HashCode>
+      <FileName>Model\Schema\FW_DataDomain.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Clusters" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Data.Model.Schema.FW_DataEntity" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAABggAAAAAAAAAQAAgAAABQAggAAAAAAAAE=</HashCode>
+      <FileName>Model\Schema\FW_DataEntity.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Queries" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Data.Model.Schema.FW_DataEntityRef" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAggAAAAAAAAAQAAgAAAAAAggAAAAAAAAE=</HashCode>
+      <FileName>Model\Schema\FW_DataEntityRef.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Data.Model.Schema.FW_DataPartialModel" BaseTypeListCollapsed="true">
+    <Position X="1" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAggAAAAAAAAAQAAgAAABAAggAAAAAAAAE=</HashCode>
+      <FileName>Model\Schema\FW_DataPartialModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Data.Model.Schema.FW_DataPartialModelRef" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAggAAAAAAAAAQAAgAAAAAAggAAAAAAAAE=</HashCode>
+      <FileName>Model\Schema\FW_DataPartialModelRef.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Data.Model.Schema.FW_DataProvider" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAggAAAAAAAAAAAggAAABAAggAAAAAAAAE=</HashCode>
+      <FileName>Model\Schema\FW_DataProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Data.Model.Schema.FW_DataQuery" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAIAAABggAAAAAAAAAQAAgAAAAAQAgAAAAAAQAE=</HashCode>
+      <FileName>Model\Schema\FW_DataQuery.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Params" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Data.Model.Schema.FW_DataQueryParam" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="8.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEggAAAAAAAIAQAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Schema\FW_DataQueryParam.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

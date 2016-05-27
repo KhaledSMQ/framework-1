@@ -80,7 +80,6 @@
     <Compile Include="API\IStore.cs" />
     <Compile Include="API\SrvStore.cs" />
     <Compile Include="API\StoreController.cs" />
-    <Compile Include="API\ADataEntityGenericController.cs" />
     <Compile Include="API\IDynamicStoreDataScope.cs" />
     <Compile Include="API\IDynamicClusterDataScope.cs" />
     <Compile Include="API\IGenericStoreDataScope.cs" />
@@ -147,6 +146,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Framework.Data.nuspec" />
+    <None Include="Model\Schema\_Model.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

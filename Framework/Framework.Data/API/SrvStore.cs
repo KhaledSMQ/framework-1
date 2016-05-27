@@ -7,16 +7,16 @@
 // Description: 
 // ============================================================================
 
+using Framework.Core.Error;
 using Framework.Core.Extensions;
 using Framework.Data.Config;
-using Framework.Data.Model.Schema;
-using Framework.Factory.Patterns;
-using System.Collections.Generic;
-using System;
-using Framework.Data.Patterns;
-using Framework.Core.Error;
-using System.Linq.Dynamic;
 using Framework.Data.Model.Mem;
+using Framework.Data.Model.Schema;
+using Framework.Data.Patterns;
+using Framework.Factory.Patterns;
+using System;
+using System.Collections.Generic;
+using System.Linq.Dynamic;
 
 namespace Framework.Data.API
 {
@@ -26,7 +26,7 @@ namespace Framework.Data.API
         // Service dependencies.
         //
 
-        protected IMemStore srvMemStore { get; set; }
+        protected IMemStore SrvMemStore { get; set; }
 
         //
         // Service initialization. 
@@ -47,7 +47,7 @@ namespace Framework.Data.API
             // do not have dependencies that are circular to this service.
             //
 
-            srvMemStore = Scope.Hub.GetUnique<IMemStore>();
+            SrvMemStore = Scope.Hub.GetUnique<IMemStore>();
         }
 
         //
@@ -71,7 +71,7 @@ namespace Framework.Data.API
 
             if (null != config)
             {
-                config.Domains.Map<DomainElement, FW_DataDomain>(new List<FW_DataDomain>(), Transforms.Converter).Apply(srvMemStore.Domain_Import);
+                config.Domains.Map<DomainElement, FW_DataDomain>(new List<FW_DataDomain>(), Transforms.Converter).Apply(SrvMemStore.Domain_Import);
             }
         }
 
@@ -82,7 +82,7 @@ namespace Framework.Data.API
 
         public void InitAllLoadedDomains()
         {
-            srvMemStore.Domain_GetList().Apply(srvMemStore.Domain_Init);
+            SrvMemStore.Domain_GetList().Apply(SrvMemStore.Domain_Init);
         }
 
         //
@@ -124,7 +124,7 @@ namespace Framework.Data.API
             // Get the query specification to run.
             //
 
-            MemQuery query = srvMemStore.Query_Get(entityID, name);
+            MemQuery query = SrvMemStore.Query_Get(entityID, name);
 
             //
             // Process arguments.
@@ -208,7 +208,7 @@ namespace Framework.Data.API
 
         private object __Entity_GetItem(string entityID, object value)
         {
-            Type type = srvMemStore.Entity_GetType(entityID);
+            Type type = SrvMemStore.Entity_GetType(entityID);
 
             object item = value;
 
@@ -231,7 +231,7 @@ namespace Framework.Data.API
             // Default return value for entity data set.
             //            
 
-            IProviderDataContext provider = srvMemStore.Entity_GetProviderDataContext(entityID);
+            IProviderDataContext provider = SrvMemStore.Entity_GetProviderDataContext(entityID);
 
             if (null == provider)
             {
@@ -255,7 +255,7 @@ namespace Framework.Data.API
 
             IProviderDataContext provider = __Entity_GetProviderDataContext(entityID);
 
-            Type type = srvMemStore.Entity_GetType(entityID);
+            Type type = SrvMemStore.Entity_GetType(entityID);
 
             if (null != type)
             {
@@ -289,7 +289,7 @@ namespace Framework.Data.API
 
             IProviderDataContext provider = __Entity_GetProviderDataContext(entityID);
 
-            Type type = srvMemStore.Entity_GetType(entityID);
+            Type type = SrvMemStore.Entity_GetType(entityID);
 
             if (null != type)
             {
@@ -331,32 +331,32 @@ namespace Framework.Data.API
 
         public object Mem_GetDomains()
         {
-            return srvMemStore.Domain_GetList();
+            return SrvMemStore.Domain_GetList();
         }
 
         public object Mem_GetClusters()
         {
-            return srvMemStore.Cluster_GetList();
+            return SrvMemStore.Cluster_GetList();
         }
 
         public object Mem_GetContexts()
         {
-            return srvMemStore.Context_GetList();
+            return SrvMemStore.Context_GetList();
         }
 
         public object Mem_GetEntities()
         {
-            return srvMemStore.Entity_GetList();
+            return SrvMemStore.Entity_GetList();
         }
 
         public object Mem_GetModels()
         {
-            return srvMemStore.Model_GetList();
+            return SrvMemStore.Model_GetList();
         }
 
         public object Mem_GetQueries()
         {
-            return srvMemStore.Query_GetList();
+            return SrvMemStore.Query_GetList();
         }
     }
 }

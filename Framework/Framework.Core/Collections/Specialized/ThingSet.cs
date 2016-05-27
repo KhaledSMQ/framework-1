@@ -7,11 +7,11 @@
 // Description: IThingSet implementation class.
 // ============================================================================
 
-using System.Collections.Generic;
-using System.Xml.Linq;
-using Framework.Core.Types.Specialized;
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
+using Framework.Core.Types.Specialized;
+using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace Framework.Core.Collections.Specialized
 {

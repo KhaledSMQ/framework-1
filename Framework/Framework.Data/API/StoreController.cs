@@ -16,7 +16,7 @@ namespace Framework.Data.API
     {
         //
         // ENTITIES
-        // Data Access Layer Entities.
+        // Data Access Layer for Entities.
         //
 
         [ActionName("entity.create"), HttpPost, HttpPut]
