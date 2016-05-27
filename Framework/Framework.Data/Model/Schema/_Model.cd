@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Framework.Data.Model.Schema.FW_DataCluster" BaseTypeListCollapsed="true">
-    <Position X="4.5" Y="5" Width="1.5" />
+    <Position X="3" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAggAAAAAAAAAQAAgAAAAAAggkAAABAAAE=</HashCode>
       <FileName>Model\Schema\FW_DataCluster.cs</FileName>
@@ -14,11 +14,22 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Framework.Data.Model.Schema.FW_DataContext" BaseTypeListCollapsed="true">
-    <Position X="7.5" Y="4.5" Width="1.5" />
+    <Position X="5.5" Y="5" Width="1.5" />
+    <AssociationLine Name="Provider" Type="Framework.Data.Model.Schema.FW_DataProvider" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7" Y="5.524" />
+        <Point X="7.875" Y="5.524" />
+        <Point X="7.875" Y="3.297" />
+        <Point X="8.25" Y="3.297" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAkgAAAAAAAAAQAAgAAAAAAggkAAAAAAAE=</HashCode>
       <FileName>Model\Schema\FW_DataContext.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Provider" />
+    </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Models" />
       <Property Name="Entities" />
@@ -26,7 +37,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Framework.Data.Model.Schema.FW_DataDomain" BaseTypeListCollapsed="true">
-    <Position X="1.5" Y="8.5" Width="1.5" />
+    <Position X="0.5" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAggAAAAAAAAAQAAgAAAAAAgiAAAAAAAAE=</HashCode>
       <FileName>Model\Schema\FW_DataDomain.cs</FileName>
@@ -37,7 +48,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Framework.Data.Model.Schema.FW_DataEntity" BaseTypeListCollapsed="true">
-    <Position X="7.5" Y="8.25" Width="1.5" />
+    <Position X="5.5" Y="12.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAABggAAAAAAAAAQAAgAAABQAggAAAAAAAAE=</HashCode>
       <FileName>Model\Schema\FW_DataEntity.cs</FileName>
@@ -48,7 +59,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Framework.Data.Model.Schema.FW_DataEntityRef" BaseTypeListCollapsed="true">
-    <Position X="10.5" Y="4.5" Width="1.5" />
+    <Position X="8.25" Y="9.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAggAAAAAAAAAQAAgAAAAAAggAAAAAAAAE=</HashCode>
       <FileName>Model\Schema\FW_DataEntityRef.cs</FileName>
@@ -56,7 +67,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Framework.Data.Model.Schema.FW_DataPartialModel" BaseTypeListCollapsed="true">
-    <Position X="1" Y="4.5" Width="2.25" />
+    <Position X="5.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAggAAAAAAAAAQAAgAAABAAggAAAAAAAAE=</HashCode>
       <FileName>Model\Schema\FW_DataPartialModel.cs</FileName>
@@ -64,15 +75,15 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Framework.Data.Model.Schema.FW_DataPartialModelRef" BaseTypeListCollapsed="true">
-    <Position X="7.25" Y="0.5" Width="2" />
+    <Position X="8.25" Y="5.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAggAAAAAAAAAQAAgAAAAAAggAAAAAAAAE=</HashCode>
       <FileName>Model\Schema\FW_DataPartialModelRef.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Framework.Data.Model.Schema.FW_DataProvider" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="16.25" Y="0.5" Width="1.5" />
+  <Class Name="Framework.Data.Model.Schema.FW_DataProvider" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAggAAAAAAAAAAAggAAABAAggAAAAAAAAE=</HashCode>
       <FileName>Model\Schema\FW_DataProvider.cs</FileName>
@@ -80,7 +91,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Framework.Data.Model.Schema.FW_DataQuery" BaseTypeListCollapsed="true">
-    <Position X="10.5" Y="8.25" Width="1.5" />
+    <Position X="8" Y="12.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAIAAABggAAAAAAAAAQAAgAAAAAQAgAAAAAAQAE=</HashCode>
       <FileName>Model\Schema\FW_DataQuery.cs</FileName>
@@ -91,7 +102,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Framework.Data.Model.Schema.FW_DataQueryParam" BaseTypeListCollapsed="true">
-    <Position X="13.25" Y="8.75" Width="2" />
+    <Position X="10.5" Y="12.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAEggAAAAAAAIAQAAAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Schema\FW_DataQueryParam.cs</FileName>

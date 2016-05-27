@@ -110,6 +110,16 @@
     <Compile Include="Extensions\IDExtensions.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="API\SrvMemStore.cs" />
+    <Compile Include="Model\Import\ImportCluster.cs" />
+    <Compile Include="Model\Import\ImportContext.cs" />
+    <Compile Include="Model\Import\ImportDomain.cs" />
+    <Compile Include="Model\Import\ImportEntity.cs" />
+    <Compile Include="Model\Import\ImportEntityRef.cs" />
+    <Compile Include="Model\Import\ImportPartialModel.cs" />
+    <Compile Include="Model\Import\ImportPartialModelRef.cs" />
+    <Compile Include="Model\Import\ImportProvider.cs" />
+    <Compile Include="Model\Import\ImportQuery.cs" />
+    <Compile Include="Model\Import\ImportQueryParam.cs" />
     <Compile Include="Model\Mem\MemCluster.cs" />
     <Compile Include="Model\Mem\MemContext.cs" />
     <Compile Include="Model\Mem\MemQuery.cs" />
