@@ -15,10 +15,8 @@ namespace Framework.Data.Model.Import
     public class ImportCluster 
     {
         //
-        // Info
+        // PROPERTIES
         //
-
-        public int ID { get; set; }
 
         public string Name { get; set; }
 
@@ -38,11 +36,6 @@ namespace Framework.Data.Model.Import
 
         public ImportCluster()
         {
-            //
-            // Info
-            //
-
-            ID = -1;
             Name = string.Empty;
             Description = string.Empty;
             Contexts = null;

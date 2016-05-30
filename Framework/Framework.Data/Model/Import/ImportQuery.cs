@@ -7,25 +7,16 @@
 // Description: Service specification class.
 // ============================================================================
 
-using Framework.Core.Extensions;
-using Framework.Core.Patterns;
 using Framework.Data.Model.Schema;
-using System;
 using System.Collections.Generic;
 
 namespace Framework.Data.Model.Import
 {
-    public class ImportQuery :
-        IID<int>,
-        IName<string>,
-        IDescription<string>,
-        IAuditable<string>
+    public class ImportQuery
     {
         //
-        // INFO
+        // PROPERTIES
         //
-
-        public int ID { get; set; }
 
         public TypeOfDataQuery Kind { get; set; }
 
@@ -61,40 +52,17 @@ namespace Framework.Data.Model.Import
         public string Callback { get; set; }
 
         //
-        // AUDITS
-        //
-
-        public string CreatedBy { get; set; }
-
-        public DateTime CreatedDate { get; set; }
-
-        public string ModifiedBy { get; set; }
-
-        public DateTime ModifiedDate { get; set; }
-
-        //
         // CONSTRUCTORS
         // 
 
         public ImportQuery()
         {
-            //
-            // INFO
-            //
-
-            ID = -1;
             Kind = TypeOfDataQuery.UNKNOWN;
             Name = string.Empty;
             Description = string.Empty;
             Expression = string.Empty;
             Params = null;
             Callback = string.Empty;
-
-            //
-            // AUDITS
-            //
-
-            AuditableExtensions.Init(this, string.Empty);
         }
     }
 }

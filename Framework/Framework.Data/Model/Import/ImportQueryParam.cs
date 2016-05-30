@@ -7,20 +7,13 @@
 // Description: Service specification class.
 // ============================================================================
 
-using Framework.Core.Patterns;
-
 namespace Framework.Data.Model.Import
 {
-    public class ImportQueryParam :
-        IID<int>,
-        IName<string>,
-        IDescription<string>
+    public class ImportQueryParam 
     {
         //
-        // INFO
+        // PROPERTIES
         //
-
-        public int ID { get; set; }
 
         public string Name { get; set; }
 
@@ -38,11 +31,6 @@ namespace Framework.Data.Model.Import
 
         public ImportQueryParam()
         {
-            //
-            // INFO
-            //
-
-            ID = -1;
             Name = default(string);
             Description = default(string);
             TypeName = default(string);

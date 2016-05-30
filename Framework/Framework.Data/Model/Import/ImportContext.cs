@@ -7,27 +7,16 @@
 // Description: 
 // ============================================================================
 
-using Framework.Core.Extensions;
-using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
-using Framework.Factory.Model;
-using System;
 using System.Collections.Generic;
 
 namespace Framework.Data.Model.Import
 {
-    public class ImportContext : 
-        IID<int>,
-        IName<string>,
-        IDescription<string>,
-        IConfigList<Setting>,
-        IAuditable<string>
+    public class ImportContext
     {
         //
-        // INFO
+        // PROPERTIES
         //
-
-        public int ID { get; set; }
 
         public string Name { get; set; }
 
@@ -42,40 +31,17 @@ namespace Framework.Data.Model.Import
         public ICollection<Setting> Settings { get; set; }
 
         //
-        // AUDITS
-        //
-
-        public string CreatedBy { get; set; }
-
-        public DateTime CreatedDate { get; set; }
-
-        public string ModifiedBy { get; set; }
-
-        public DateTime ModifiedDate { get; set; }
-
-        //
         // CONSTRUCTORS
         // 
 
         public ImportContext()
         {
-            //
-            // INFO
-            //
-
-            ID = -1;
             Name = string.Empty;
             Description = string.Empty;
             Provider = null;
             Entities = null;
             Models = null;
             Settings = null;
-
-            //
-            // AUDITS
-            //
-
-            AuditableExtensions.Init(this, string.Empty);
         }
     }
 }
