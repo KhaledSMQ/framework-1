@@ -12,40 +12,38 @@ using System.Web.Http;
 
 namespace Framework.Data.API
 {
-    public class StoreController : AController
+    public class DataController : AController
     {
         //
-        // ENTITIES
-        // Data Access Layer for Entities.
+        // DATA-ACCESS-LAYER
         //
 
         [ActionName("entity.create"), HttpPost, HttpPut]
-        public IHttpActionResult Entity_Create([FromUri] string id)
+        public IHttpActionResult DAL_Create([FromUri] string id)
         {
-            return Run(() => { return Scope.Hub.GetUnique<IStore>().Entity_Create(id, Request.Content.ReadAsStringAsync().Result); });
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().DAL_Create(id, Request.Content.ReadAsStringAsync().Result); });
         }
 
         [ActionName("entity.query"), HttpGet]
-        public IHttpActionResult Entity_Query([FromUri] string id, [FromUri] string name)
+        public IHttpActionResult DAL_Query([FromUri] string id, [FromUri] string name)
         {
-            return Run(() => { return Scope.Hub.GetUnique<IStore>().Entity_Query(id, name, Request.Content.ReadAsStringAsync().Result); });
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().DAL_Query(id, name, Request.Content.ReadAsStringAsync().Result); });
         }
 
         [ActionName("entity.update"), HttpPost]
-        public IHttpActionResult Entity_Update([FromUri] string id)
+        public IHttpActionResult DAL_Update([FromUri] string id)
         {
-            return Run(() => { return Scope.Hub.GetUnique<IStore>().Entity_Update(id, Request.Content.ReadAsStringAsync().Result); });
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().DAL_Update(id, Request.Content.ReadAsStringAsync().Result); });
         }
 
         [ActionName("entity.delete"), HttpDelete, HttpPost, HttpPut]
-        public IHttpActionResult Entity_Delete([FromUri] string id)
+        public IHttpActionResult DAL_Delete([FromUri] string id)
         {
-            return Run(() => { return Scope.Hub.GetUnique<IStore>().Entity_Delete(id, Request.Content.ReadAsStringAsync().Result); });
+            return Run(() => { return Scope.Hub.GetUnique<IStore>().DAL_Delete(id, Request.Content.ReadAsStringAsync().Result); });
         }
 
         //
         // DIAGNOSTICS
-        // Memory & Performance.
         //
 
         [ActionName("mem.dump"), HttpGet]

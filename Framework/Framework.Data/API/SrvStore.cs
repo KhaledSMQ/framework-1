@@ -7,16 +7,13 @@
 // Description: 
 // ============================================================================
 
-using Framework.Core.Error;
 using Framework.Core.Extensions;
-using Framework.Data.Config;
+using Framework.Data.Model.Config;
 using Framework.Data.Model.Mem;
 using Framework.Data.Model.Schema;
 using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
-using System;
 using System.Collections.Generic;
-using System.Linq.Dynamic;
 
 namespace Framework.Data.API
 {
@@ -26,7 +23,13 @@ namespace Framework.Data.API
         // Service dependencies.
         //
 
-        protected IMemStore SrvMemStore { get; set; }
+        protected IConfig SrvConfig { get; set; }
+
+        protected IMem SrvMemStore { get; set; }
+
+        protected IDAL SrvDAL { get; set; }
+
+        protected ITransform SrvTransform { get; set; }
 
         //
         // Service initialization. 
@@ -47,7 +50,10 @@ namespace Framework.Data.API
             // do not have dependencies that are circular to this service.
             //
 
-            SrvMemStore = Scope.Hub.GetUnique<IMemStore>();
+            SrvConfig = Scope.Hub.GetUnique<IConfig>();
+            SrvMemStore = Scope.Hub.GetUnique<IMem>();
+            SrvDAL = Scope.Hub.GetUnique<IDAL>();
+            SrvTransform = Scope.Hub.GetUnique<ITransform>();
         }
 
         //
@@ -71,7 +77,7 @@ namespace Framework.Data.API
 
             if (null != config)
             {
-                config.Domains.Map<DomainElement, FW_DataDomain>(new List<FW_DataDomain>(), Transforms.Converter).Apply(SrvMemStore.Domain_Import);
+                config.Domains.Map<DomainElement, FW_DataDomain>(new List<FW_DataDomain>(), SrvTransform.Convert).Apply(SrvMemStore.Domain_Import);
             }
         }
 
@@ -86,230 +92,36 @@ namespace Framework.Data.API
         }
 
         //
-        // ENTITIES
-        // Data Access Layer for Entities.
+        // DATA-ACCESS-LAYER
         //
 
-        public object Entity_Create(string entityID, object value)
+        public object DAL_Create(string entityID, object value)
         {
-            //
-            // Get the item to to process.
-            //
-
-            object item = __Entity_GetItem(entityID, value);
-
-            //
-            // Get the data layer for the entity.
-            //
-
-            IDynamicDataSet dataSet = __Entity_GetDynamicDataSet(entityID);
-
-            //
-            // Create and save changes.
-            //
-
-            object output = dataSet.Create(item);
-            dataSet.Save();
-
-            //
-            // Return output from create method to caller.
-            //
-
-            return output;
-        }
-
-        public object Entity_Query(string entityID, string name, object args)
-        {
-            //
-            // Get the query specification to run.
-            //
-
-            MemQuery query = SrvMemStore.Query_Get(entityID, name);
-
-            //
-            // Process arguments.
-            //
-
-            if (args.GetType() == typeof(string))
-            {
-
-            }
-
-            //
-            // Get the data layer for the entity.
-            //
-
-            IDynamicDataSet dataSet = __Entity_GetDynamicDataSet(entityID);
-
-            //
-            // Run query.
-            //
-
-            object output = dataSet.Queryable().Where(query.Query);
-
-            return output;
-        }
-
-        public object Entity_Update(string entityID, object value)
-        {
-            //
-            // Get the item to to process.
-            //
-
-            object item = __Entity_GetItem(entityID, value);
-
-            //
-            // Get the data layer for the entity.
-            //
-
-            IDynamicDataSet dataSet = __Entity_GetDynamicDataSet(entityID);
-
-            //
-            // Create and save changes.
-            //
-
-            object output = dataSet.Update(item);
-            dataSet.Save();
-
-            //
-            // Return output from create method to caller.
-            //
-
-            return output;
-        }
-
-        public object Entity_Delete(string entityID, object value)
-        {
-            //
-            // Get the item to to process.
-            //
-
-            object item = __Entity_GetItem(entityID, value);
-
-            //
-            // Get the data layer for the entity.
-            //
-
-            IDynamicDataSet dataSet = __Entity_GetDynamicDataSet(entityID);
-
-            //
-            // Create and save changes.
-            //
-
-            object output = dataSet.Delete(item);
-            dataSet.Save();
-
-            //
-            // Return output from create method to caller.
-            //
-
-            return output;
-        }
-
-        private object __Entity_GetItem(string entityID, object value)
-        {
-            Type type = SrvMemStore.Entity_GetType(entityID);
-
-            object item = value;
-
-            //
-            // If value is a string, then we assume
-            // that is an object in JSON fprmat.
-            //
-
-            if (value.GetType() == typeof(string))
-            {
-                item = Core.Helpers.JSONHelper.ReadJSONObjectFromString(type, (string)value);
-            }
-
-            return item;
-        }
-
-        private IProviderDataContext __Entity_GetProviderDataContext(string entityID)
-        {
-            //
-            // Default return value for entity data set.
-            //            
-
             IProviderDataContext provider = SrvMemStore.Entity_GetProviderDataContext(entityID);
-
-            if (null == provider)
-            {
-                Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "could not get data context provider for entity '{0}'!", entityID);
-            }
-
-            //
-            // Return the infered data set for entity.
-            //
-
-            return provider;
+            MemEntity entity = SrvMemStore.Entity_Get(entityID);
+            return SrvDAL.Create(provider, entity, value);
         }
 
-        private IDynamicDataSet __Entity_GetDynamicDataSet(string entityID)
+        public object DAL_Query(string entityID, string name, object args)
         {
-            //
-            // Default return value for entity data set.
-            //            
-
-            IDynamicDataSet dataSet = null;
-
-            IProviderDataContext provider = __Entity_GetProviderDataContext(entityID);
-
-            Type type = SrvMemStore.Entity_GetType(entityID);
-
-            if (null != type)
-            {
-                dataSet = provider.GetDataSet(type);
-
-                if (null == dataSet)
-                {
-                    Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "could not get data set provider for entity '{0}'!", entityID);
-                }
-            }
-            else
-            {
-
-                Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "could not get type for entity '{0}'!", entityID);
-            }
-
-            //
-            // Return the infered data set for entity.
-            //
-
-            return dataSet;
+            IProviderDataContext provider = SrvMemStore.Entity_GetProviderDataContext(entityID);
+            MemQuery query = SrvMemStore.Query_Get(entityID, name);
+            MemEntity entity = SrvMemStore.Entity_Get(entityID);
+            return SrvDAL.Query(provider, query, entity, args);
         }
 
-        private IDynamicDataObject __Entity_GetDynamicDataObject(string entityID)
+        public object DAL_Update(string entityID, object value)
         {
-            //
-            // Default return value for entity data set.
-            //            
+            IProviderDataContext provider = SrvMemStore.Entity_GetProviderDataContext(entityID);
+            MemEntity entity = SrvMemStore.Entity_Get(entityID);
+            return SrvDAL.Update(provider, entity, value);
+        }
 
-            IDynamicDataObject dataObject = null;
-
-            IProviderDataContext provider = __Entity_GetProviderDataContext(entityID);
-
-            Type type = SrvMemStore.Entity_GetType(entityID);
-
-            if (null != type)
-            {
-                dataObject = provider.GetDataObject(type);
-
-                if (null == dataObject)
-                {
-                    Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "could not get data set provider for entity '{0}'!", entityID);
-                }
-            }
-            else
-            {
-                Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "could not get type for entity '{0}'!", entityID);
-            }
-
-            //
-            // Return the infered data set for entity.
-            //
-
-            return dataObject;
+        public object DAL_Delete(string entityID, object value)
+        {
+            IProviderDataContext provider = SrvMemStore.Entity_GetProviderDataContext(entityID);
+            MemEntity entity = SrvMemStore.Entity_Get(entityID);
+            return SrvDAL.Delete(provider, entity, value);
         }
 
         //

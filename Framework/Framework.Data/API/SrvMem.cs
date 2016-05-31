@@ -21,7 +21,7 @@ using System.Text.RegularExpressions;
 
 namespace Framework.Data.API
 {
-    public class SrvMemStore : ACommon, IMemStore
+    public class SrvMem : ACommon, IMem
     {
         //
         // INITIALIZATION

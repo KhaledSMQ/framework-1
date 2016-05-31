@@ -9,7 +9,7 @@
 
 using System.Configuration;
 
-namespace Framework.Data.Config
+namespace Framework.Data.Model.Config
 {
     public class ClusterElementCollection : ConfigurationElementCollection
     {

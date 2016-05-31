@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class:
+// Name/Class: IMemStore
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 10/Mar/2016
 // Company: Cybermap Lta.
@@ -16,7 +16,7 @@ using System.Collections.Generic;
 
 namespace Framework.Data.API
 {
-    public interface IMemStore : ICommon
+    public interface IMem : ICommon
     { 
         //
         // DOMAIN

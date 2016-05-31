@@ -75,11 +75,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\IDAL.cs" />
+    <Compile Include="API\IConfig.cs" />
+    <Compile Include="API\ISrvTransform.cs" />
     <Compile Include="API\SrvLinqQueryProcessor.cs" />
     <Compile Include="API\IQueryProcessor.cs" />
     <Compile Include="API\IStore.cs" />
+    <Compile Include="API\SrvDAL.cs" />
     <Compile Include="API\SrvStore.cs" />
-    <Compile Include="API\StoreController.cs" />
+    <Compile Include="API\DataController.cs" />
     <Compile Include="API\IDynamicStoreDataScope.cs" />
     <Compile Include="API\IDynamicClusterDataScope.cs" />
     <Compile Include="API\IGenericStoreDataScope.cs" />
@@ -89,27 +93,28 @@
     <Compile Include="API\SrvGenericStoreDataScope.cs" />
     <Compile Include="API\SrvGenericClusterDataScope.cs" />
     <Compile Include="API\SrvServiceEntry.cs" />
-    <Compile Include="API\IMemStore.cs" />
-    <Compile Include="Config\BaseConfiguration.cs" />
-    <Compile Include="Config\DomainConfiguration.cs" />
-    <Compile Include="Config\ContextConfiguration.cs" />
-    <Compile Include="Config\QueryParamConfiguration.cs" />
-    <Compile Include="Config\QueryConfiguration.cs" />
-    <Compile Include="Config\ModelRefConfiguration.cs" />
-    <Compile Include="Config\EntityRefConfiguration.cs" />
-    <Compile Include="Config\ModelConfiguration.cs" />
-    <Compile Include="Config\EntityConfiguration.cs" />
-    <Compile Include="Config\ProviderConfiguration.cs" />
-    <Compile Include="Config\Transforms.cs" />
-    <Compile Include="Config\SettingsConfiguration.cs" />
-    <Compile Include="Config\ClusterConfiguration.cs" />
-    <Compile Include="Config\_Const.cs" />
+    <Compile Include="API\IMem.cs" />
+    <Compile Include="API\SrvConfig.cs" />
+    <Compile Include="Model\Config\BaseConfiguration.cs" />
+    <Compile Include="Model\Config\DomainConfiguration.cs" />
+    <Compile Include="Model\Config\ContextConfiguration.cs" />
+    <Compile Include="Model\Config\QueryParamConfiguration.cs" />
+    <Compile Include="Model\Config\QueryConfiguration.cs" />
+    <Compile Include="Model\Config\ModelRefConfiguration.cs" />
+    <Compile Include="Model\Config\EntityRefConfiguration.cs" />
+    <Compile Include="Model\Config\ModelConfiguration.cs" />
+    <Compile Include="Model\Config\EntityConfiguration.cs" />
+    <Compile Include="Model\Config\ProviderConfiguration.cs" />
+    <Compile Include="API\SrvTransform.cs" />
+    <Compile Include="Model\Config\SettingsConfiguration.cs" />
+    <Compile Include="Model\Config\ClusterConfiguration.cs" />
+    <Compile Include="Model\Config\_Const.cs" />
     <Compile Include="Extensions\TypeNameExtensions.cs" />
     <Compile Include="Extensions\NameExtensions.cs" />
     <Compile Include="Extensions\VisibleExtensions.cs" />
     <Compile Include="Extensions\IDExtensions.cs" />
     <Compile Include="Lib.cs" />
-    <Compile Include="API\SrvMemStore.cs" />
+    <Compile Include="API\SrvMem.cs" />
     <Compile Include="Model\Import\ImportCluster.cs" />
     <Compile Include="Model\Import\ImportContext.cs" />
     <Compile Include="Model\Import\ImportDomain.cs" />
@@ -151,12 +156,12 @@
     <Compile Include="Query\Linq\Take.cs" />
     <Compile Include="Query\Linq\Paging.cs" />
     <Compile Include="Query\Linq\Where.cs" />
-    <Compile Include="Config\ManagerConfiguration.cs" />
+    <Compile Include="Model\Config\ManagerConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Framework.Data.nuspec" />
-    <None Include="Model\Schema\_Model.cd" />
+    <None Include="Model\Schema\__Model.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

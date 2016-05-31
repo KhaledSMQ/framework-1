@@ -1,13 +1,13 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Manager
+// Name/Class: Constants
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
 // Company: Cybermap Lta.
 // Description: Runtime data store implementation.
 // ============================================================================
 
-namespace Framework.Data.Config
+namespace Framework.Data.Model.Config
 {
     public static class Constants
     {

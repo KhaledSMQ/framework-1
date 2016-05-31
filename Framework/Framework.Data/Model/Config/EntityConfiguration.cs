@@ -1,23 +1,24 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Configuration for Settings.
+// Name/Class: Configuration for Entities.
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
 // Company: Cybermap Lta.
 // Description: Configuration objects.
 // ============================================================================
 
+using Framework.Data.Model.Schema;
 using System.Configuration;
 
-namespace Framework.Data.Config
+namespace Framework.Data.Model.Config
 {
-    public class SettingElementCollection : ConfigurationElementCollection
+    public class EntityElementCollection : ConfigurationElementCollection
     {
-        public SettingElementCollection() { }
+        public EntityElementCollection() { }
 
-        public SettingElement this[int index]
+        public EntityElement this[int index]
         {
-            get { return (SettingElement)BaseGet(index); }
+            get { return (EntityElement)BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -28,7 +29,7 @@ namespace Framework.Data.Config
             }
         }
 
-        public void Add(SettingElement serviceConfig)
+        public void Add(EntityElement serviceConfig)
         {
             BaseAdd(serviceConfig);
         }
@@ -40,15 +41,15 @@ namespace Framework.Data.Config
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new SettingElement();
+            return new EntityElement();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((SettingElement)element).Name;
+            return ((EntityElement)element).Name;
         }
 
-        public void Remove(SettingElement serviceConfig)
+        public void Remove(EntityElement serviceConfig)
         {
             BaseRemove(serviceConfig.Name);
         }
@@ -64,17 +65,28 @@ namespace Framework.Data.Config
         }
     }
 
-    public class SettingElement : BaseElement {
-
+    public class EntityElement : BaseElementWithTypeAndSettings
+    {
         //
-        // Value
+        // KIND
         //
 
-        [ConfigurationProperty(Constants.VALUE, DefaultValue = "", IsRequired = true)]
-        public string Value
+        [ConfigurationProperty(Constants.KIND, DefaultValue = TypeOfDataEntity.DATA_SET, IsRequired = false)]
+        public TypeOfDataEntity Kind
         {
-            get { return (string)this[Constants.VALUE]; }
-            set { this[Constants.VALUE] = value; }
+            get { return (TypeOfDataEntity)this[Constants.KIND]; }
+            set { this[Constants.KIND] = value; }
+        }
+
+        //
+        // QUERIES
+        //
+
+        [ConfigurationProperty(Constants.QUERIES, IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(QueryElementCollection))]
+        public QueryElementCollection Queries
+        {
+            get { return (QueryElementCollection)this[Constants.QUERIES]; }
         }
     }
 }

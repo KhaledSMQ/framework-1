@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Configuration for Entities.
+// Name/Class: Configuration for Models.
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
 // Company: Cybermap Lta.
@@ -9,15 +9,15 @@
 
 using System.Configuration;
 
-namespace Framework.Data.Config
+namespace Framework.Data.Model.Config
 {
-    public class EntityRefElementCollection : ConfigurationElementCollection
+    public class ModelElementCollection : ConfigurationElementCollection
     {
-        public EntityRefElementCollection() { }
+        public ModelElementCollection() { }
 
-        public EntityRefElement this[int index]
+        public ModelElement this[int index]
         {
-            get { return (EntityRefElement)BaseGet(index); }
+            get { return (ModelElement)BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -28,9 +28,9 @@ namespace Framework.Data.Config
             }
         }
 
-        public void Add(EntityRefElement elm)
+        public void Add(ModelElement serviceConfig)
         {
-            BaseAdd(elm);
+            BaseAdd(serviceConfig);
         }
 
         public void Clear()
@@ -40,17 +40,17 @@ namespace Framework.Data.Config
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new EntityRefElement();
+            return new ModelElement();
         }
 
-        protected override object GetElementKey(ConfigurationElement elm)
+        protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((EntityRefElement)elm).Name;
+            return ((ModelElement)element).Name;
         }
 
-        public void Remove(EntityRefElement elm)
+        public void Remove(ModelElement serviceConfig)
         {
-            BaseRemove(elm.Name);
+            BaseRemove(serviceConfig.Name);
         }
 
         public void RemoveAt(int index)
@@ -64,5 +64,5 @@ namespace Framework.Data.Config
         }
     }
 
-    public class EntityRefElement : BaseElementWithSettings { }
+    public class ModelElement : BaseElementWithTypeAndSettings { }
 }

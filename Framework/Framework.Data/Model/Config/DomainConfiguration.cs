@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Configuration for Models.
+// Name/Class: Configuration for Domains.
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
 // Company: Cybermap Lta.
@@ -9,15 +9,15 @@
 
 using System.Configuration;
 
-namespace Framework.Data.Config
+namespace Framework.Data.Model.Config
 {
-    public class ModelElementCollection : ConfigurationElementCollection
+    public class DomainElementCollection : ConfigurationElementCollection
     {
-        public ModelElementCollection() { }
+        public DomainElementCollection() { }
 
-        public ModelElement this[int index]
+        public DomainElement this[int index]
         {
-            get { return (ModelElement)BaseGet(index); }
+            get { return (DomainElement)BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -28,9 +28,9 @@ namespace Framework.Data.Config
             }
         }
 
-        public void Add(ModelElement serviceConfig)
+        public void Add(DomainElement itemConfig)
         {
-            BaseAdd(serviceConfig);
+            BaseAdd(itemConfig);
         }
 
         public void Clear()
@@ -40,17 +40,17 @@ namespace Framework.Data.Config
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new ModelElement();
+            return new DomainElement();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((ModelElement)element).Name;
+            return ((DomainElement)element).Name;
         }
 
-        public void Remove(ModelElement serviceConfig)
+        public void Remove(DomainElement itemConfig)
         {
-            BaseRemove(serviceConfig.Name);
+            BaseRemove(itemConfig.Name);
         }
 
         public void RemoveAt(int index)
@@ -64,5 +64,17 @@ namespace Framework.Data.Config
         }
     }
 
-    public class ModelElement : BaseElementWithTypeAndSettings { }
+    public class DomainElement : BaseElementWithSettings
+    {
+        //
+        // CLUSTERS
+        //
+
+        [ConfigurationProperty(Constants.CLUSTERS, IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(ClusterElementCollection))]
+        public ClusterElementCollection Contexts
+        {
+            get { return (ClusterElementCollection)this[Constants.CLUSTERS]; }
+        }         
+    }
 }

@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Configuration for Domains.
+// Name/Class: Configuration for Settings.
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
 // Company: Cybermap Lta.
@@ -9,15 +9,15 @@
 
 using System.Configuration;
 
-namespace Framework.Data.Config
+namespace Framework.Data.Model.Config
 {
-    public class DomainElementCollection : ConfigurationElementCollection
+    public class SettingElementCollection : ConfigurationElementCollection
     {
-        public DomainElementCollection() { }
+        public SettingElementCollection() { }
 
-        public DomainElement this[int index]
+        public SettingElement this[int index]
         {
-            get { return (DomainElement)BaseGet(index); }
+            get { return (SettingElement)BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -28,9 +28,9 @@ namespace Framework.Data.Config
             }
         }
 
-        public void Add(DomainElement itemConfig)
+        public void Add(SettingElement serviceConfig)
         {
-            BaseAdd(itemConfig);
+            BaseAdd(serviceConfig);
         }
 
         public void Clear()
@@ -40,17 +40,17 @@ namespace Framework.Data.Config
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new DomainElement();
+            return new SettingElement();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((DomainElement)element).Name;
+            return ((SettingElement)element).Name;
         }
 
-        public void Remove(DomainElement itemConfig)
+        public void Remove(SettingElement serviceConfig)
         {
-            BaseRemove(itemConfig.Name);
+            BaseRemove(serviceConfig.Name);
         }
 
         public void RemoveAt(int index)
@@ -64,17 +64,17 @@ namespace Framework.Data.Config
         }
     }
 
-    public class DomainElement : BaseElementWithSettings
-    {
+    public class SettingElement : BaseElement {
+
         //
-        // CLUSTERS
+        // Value
         //
 
-        [ConfigurationProperty(Constants.CLUSTERS, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(ClusterElementCollection))]
-        public ClusterElementCollection Contexts
+        [ConfigurationProperty(Constants.VALUE, DefaultValue = "", IsRequired = true)]
+        public string Value
         {
-            get { return (ClusterElementCollection)this[Constants.CLUSTERS]; }
-        }         
+            get { return (string)this[Constants.VALUE]; }
+            set { this[Constants.VALUE] = value; }
+        }
     }
 }

@@ -32,17 +32,17 @@ namespace Framework.Data.API
         void InitAllLoadedDomains();
 
         //
-        // ENTITIES
+        // DATA-ACCESS-LAYER
         // Data Access Layer Entities.
         //
 
-        object Entity_Create(string entityID, object value);
+        object DAL_Create(string entityID, object value);
 
-        object Entity_Query(string entityID, string name, object args);
+        object DAL_Query(string entityID, string name, object args);
 
-        object Entity_Update(string entityID, object value);
+        object DAL_Update(string entityID, object value);
 
-        object Entity_Delete(string entityID, object value);
+        object DAL_Delete(string entityID, object value);
 
         //
         // DIAGNOSTICS

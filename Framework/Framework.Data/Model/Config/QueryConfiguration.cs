@@ -10,7 +10,7 @@
 using Framework.Data.Model.Schema;
 using System.Configuration;
 
-namespace Framework.Data.Config
+namespace Framework.Data.Model.Config
 {
     public class QueryElementCollection : ConfigurationElementCollection
     {
