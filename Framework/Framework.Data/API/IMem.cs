@@ -17,14 +17,18 @@ using System.Collections.Generic;
 namespace Framework.Data.API
 {
     public interface IMem : ICommon
-    { 
+    {
         //
         // DOMAIN
         //    
 
+        void Domain_Import(IEnumerable<FW_DataDomain> domains);
+
         void Domain_Import(FW_DataDomain domain);
 
         void Domain_Init(string domainID);
+
+        void Domain_Init(IEnumerable<MemDomain> domains);
 
         void Domain_Init(MemDomain domain);
 

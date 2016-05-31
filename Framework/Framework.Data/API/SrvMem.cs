@@ -51,6 +51,11 @@ namespace Framework.Data.API
         // DOMAINS
         //
 
+        public void Domain_Import(IEnumerable<FW_DataDomain> domains)
+        {
+            domains.Apply(Domain_Import);
+        }
+
         public void Domain_Import(FW_DataDomain domain)
         {
             string domainID = default(string);
@@ -126,6 +131,11 @@ namespace Framework.Data.API
         public void Domain_Init(string domainID)
         {
             Domain_Init(Domain_Get(domainID));
+        }
+
+        public void Domain_Init(IEnumerable<MemDomain> domains)
+        {
+            domains.Apply(Domain_Init);
         }
 
         public void Domain_Init(MemDomain domain)

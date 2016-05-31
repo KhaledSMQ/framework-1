@@ -25,7 +25,7 @@ namespace Framework.Data.API
 
         protected IConfig SrvConfig { get; set; }
 
-        protected IMem SrvMemStore { get; set; }
+        protected IMem SrvMem { get; set; }
 
         protected IDAL SrvDAL { get; set; }
 
@@ -51,7 +51,7 @@ namespace Framework.Data.API
             //
 
             SrvConfig = Scope.Hub.GetUnique<IConfig>();
-            SrvMemStore = Scope.Hub.GetUnique<IMem>();
+            SrvMem = Scope.Hub.GetUnique<IMem>();
             SrvDAL = Scope.Hub.GetUnique<IDAL>();
             SrvTransform = Scope.Hub.GetUnique<ITransform>();
         }
@@ -61,24 +61,10 @@ namespace Framework.Data.API
         // Load all settings, but also the data domains defined.
         //
 
-        public void LoadConfiguration()
+        public void Boot()
         {
-            //
-            // Load from the system configuration spec
-            // the data store elements, domains and settings.
-            //
-
-            ManagerConfiguration config = (ManagerConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
-
-            //
-            // Load the configuration clusters from config store 
-            // and load them into the runtime store service.
-            //
-
-            if (null != config)
-            {
-                config.Domains.Map<DomainElement, FW_DataDomain>(new List<FW_DataDomain>(), SrvTransform.Convert).Apply(SrvMemStore.Domain_Import);
-            }
+            SrvConfig.Load();
+            SrvMem.Domain_Import(SrvConfig.GetListOfDomains());
         }
 
         //
@@ -86,9 +72,9 @@ namespace Framework.Data.API
         // Initialize all loaded, (i.e. in memory) domains.
         //
 
-        public void InitAllLoadedDomains()
+        public void Setup()
         {
-            SrvMemStore.Domain_GetList().Apply(SrvMemStore.Domain_Init);
+            SrvMem.Domain_Init(SrvMem.Domain_GetList());
         }
 
         //
@@ -97,30 +83,30 @@ namespace Framework.Data.API
 
         public object DAL_Create(string entityID, object value)
         {
-            IProviderDataContext provider = SrvMemStore.Entity_GetProviderDataContext(entityID);
-            MemEntity entity = SrvMemStore.Entity_Get(entityID);
+            IProviderDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
+            MemEntity entity = SrvMem.Entity_Get(entityID);
             return SrvDAL.Create(provider, entity, value);
         }
 
         public object DAL_Query(string entityID, string name, object args)
         {
-            IProviderDataContext provider = SrvMemStore.Entity_GetProviderDataContext(entityID);
-            MemQuery query = SrvMemStore.Query_Get(entityID, name);
-            MemEntity entity = SrvMemStore.Entity_Get(entityID);
+            IProviderDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
+            MemQuery query = SrvMem.Query_Get(entityID, name);
+            MemEntity entity = SrvMem.Entity_Get(entityID);
             return SrvDAL.Query(provider, query, entity, args);
         }
 
         public object DAL_Update(string entityID, object value)
         {
-            IProviderDataContext provider = SrvMemStore.Entity_GetProviderDataContext(entityID);
-            MemEntity entity = SrvMemStore.Entity_Get(entityID);
+            IProviderDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
+            MemEntity entity = SrvMem.Entity_Get(entityID);
             return SrvDAL.Update(provider, entity, value);
         }
 
         public object DAL_Delete(string entityID, object value)
         {
-            IProviderDataContext provider = SrvMemStore.Entity_GetProviderDataContext(entityID);
-            MemEntity entity = SrvMemStore.Entity_Get(entityID);
+            IProviderDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
+            MemEntity entity = SrvMem.Entity_Get(entityID);
             return SrvDAL.Delete(provider, entity, value);
         }
 
@@ -143,32 +129,32 @@ namespace Framework.Data.API
 
         public object Mem_GetDomains()
         {
-            return SrvMemStore.Domain_GetList();
+            return SrvMem.Domain_GetList();
         }
 
         public object Mem_GetClusters()
         {
-            return SrvMemStore.Cluster_GetList();
+            return SrvMem.Cluster_GetList();
         }
 
         public object Mem_GetContexts()
         {
-            return SrvMemStore.Context_GetList();
+            return SrvMem.Context_GetList();
         }
 
         public object Mem_GetEntities()
         {
-            return SrvMemStore.Entity_GetList();
+            return SrvMem.Entity_GetList();
         }
 
         public object Mem_GetModels()
         {
-            return SrvMemStore.Model_GetList();
+            return SrvMem.Model_GetList();
         }
 
         public object Mem_GetQueries()
         {
-            return SrvMemStore.Query_GetList();
+            return SrvMem.Query_GetList();
         }
     }
 }

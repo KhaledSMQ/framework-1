@@ -14,13 +14,11 @@ namespace Framework.Data.API
     public interface IStore : ICommon
     {
         //
-        // Load configuration settings for the store.
-        // This will load all settings but also the 
-        // data domains that are defined on the configuration
-        // store.
+        // Boot data store service.
+        // Load configurations, initializes domains.
         //
 
-        void LoadConfiguration();
+        void Boot();
 
         //
         // Initialize all memory loaded domains.
@@ -29,7 +27,7 @@ namespace Framework.Data.API
         // method multiple times.
         //
 
-        void InitAllLoadedDomains();
+        void Setup();
 
         //
         // DATA-ACCESS-LAYER
