@@ -9,10 +9,11 @@
 
 using Framework.Core.Extensions;
 using Framework.Core.Types.Specialized;
-using Framework.Factory.Model;
+using Framework.Factory.Model.Schema;
+using Framework.Factory.Model.Config;
 using System.Collections.Generic;
 
-namespace Framework.Factory.Config
+namespace Framework.Factory.API
 {
     public static class Transforms
     {

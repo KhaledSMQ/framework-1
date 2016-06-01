@@ -7,15 +7,14 @@
 // Description: Factory runtime static object.
 // ============================================================================
 
-using Framework.Factory.API;
-using Framework.Factory.Config;
-using Framework.Factory.Model;
+using Framework.Core.Extensions;
+using Framework.Factory.Model.Config;
+using Framework.Factory.Model.Schema;
 using Owin;
 using System;
 using System.Collections.Generic;
-using Framework.Core.Extensions;
 
-namespace Framework.Factory
+namespace Framework.Factory.API
 {
     public static class Runtime
     {
@@ -38,11 +37,7 @@ namespace Framework.Factory
         // 
 
         public static void Init(IAppBuilder app)
-        {
-            //
-            // Load base configuration.
-            //
-
+        {   
             LoadConfig();
         }
 
@@ -73,7 +68,7 @@ namespace Framework.Factory
                     // Load the hub service entry into the hub... :-)
                     // 
 
-                    __HubEntry = Transforms.Converter(config.Hub);
+                    ServiceEntry __HubEntry = Transforms.Converter(config.Hub);
                     __HubEntry.Unique = true;
 
                     __Hub = Core.Reflection.Activator.CreateGenericInstance<IHub>(__HubEntry.TypeName);
@@ -85,9 +80,8 @@ namespace Framework.Factory
                         //
                         // Load core services into hub.
                         //
-                        
-                        __CoreServices = config.Services.Map<ServiceElement, ServiceEntry>(new List<ServiceEntry>(), Transforms.Converter);
-                        __CoreServices.Apply(__Hub.Load);                       
+                                                 
+                        __Hub.Load(config.Services.Map<ServiceElement, ServiceEntry>(new List<ServiceEntry>(), Transforms.Converter));                       
                     }
 
                     //
@@ -122,8 +116,6 @@ namespace Framework.Factory
         //     
 
         private static IHub __Hub = null;
-        private static ServiceEntry __HubEntry = null;
-        private static IEnumerable<ServiceEntry> __CoreServices = null;
         private static IScope __Scope = null;
     }
 }

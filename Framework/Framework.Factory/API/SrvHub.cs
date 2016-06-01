@@ -11,7 +11,7 @@ using Framework.Core.Collections.Specialized;
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
-using Framework.Factory.Model;
+using Framework.Factory.Model.Schema;
 using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;
@@ -85,7 +85,7 @@ namespace Framework.Factory.API
                 }
             }
 
-            return Get<T>(srvEntry);
+            return Get<T>(srvEntry, whatScope);
         }
 
         public T GetByName<T>(string name) where T : ICommon
@@ -288,6 +288,20 @@ namespace Framework.Factory.API
         }
 
         //
+        // RETRIEVE-SECTION
+        //
+
+        public IEnumerable<ServiceEntry> GetListOfInstances()
+        {
+            return _Instances.Keys.Map(new List<ServiceEntry>(), name => { return _ByName[name]; });
+        }
+
+        public IEnumerable<ServiceEntry> GetListOfLoaded()
+        {
+            return _ByName.Values;
+        }
+
+        //
         // HELPERS
         //
 
@@ -328,6 +342,7 @@ namespace Framework.Factory.API
 
         private IServiceEntry _ServiceEntry { get { return _GetServiceEntry(); } }
         private IServiceEntry _ServiceEntryValue { get; set; }
+
         private IDictionary<string, ICommon> _Instances = null;
         private IDictionary<string, ServiceEntry> _ByName = null;
         private IDictionary<string, IList<ServiceEntry>> _ByTypeName = null;

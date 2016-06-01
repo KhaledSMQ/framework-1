@@ -13,7 +13,7 @@ using Framework.Core.Types.Specialized;
 using System;
 using System.Collections.Generic;
 
-namespace Framework.Factory.Model
+namespace Framework.Factory.Model.Schema
 {
     public class ServiceEntry : 
         IID<int>, 

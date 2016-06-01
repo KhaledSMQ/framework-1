@@ -7,7 +7,7 @@
 // Description: Constants.
 // ============================================================================
 
-namespace Framework.Factory.Config
+namespace Framework.Factory.Model.Config
 {
     public static class Constants
     {

@@ -9,7 +9,7 @@
 
 using Framework.Data.Patterns;
 using Framework.Factory.API;
-using Framework.Factory.Model;
+using Framework.Factory.Model.Schema;
 using Framework.Factory.Patterns;
 using System.Collections.Generic;
 using System.Linq;

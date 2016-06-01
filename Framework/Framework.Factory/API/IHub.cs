@@ -7,7 +7,7 @@
 // Description: Service hub interface.
 // ============================================================================
 
-using Framework.Factory.Model;
+using Framework.Factory.Model.Schema;
 using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;
@@ -48,6 +48,21 @@ namespace Framework.Factory.API
 
         T New<T>(ServiceEntry cfg, IScope whatScope) where T : ICommon;
 
+        //
+        // LOAD-SECTION
+        // Load service entries into memory.
+        //
+
         void Load(ServiceEntry entry);
+
+        void Load(IEnumerable<ServiceEntry> lst);
+
+        //
+        // RETRIEVE-SECTION
+        //
+
+        IEnumerable<ServiceEntry> GetListOfInstances();
+
+        IEnumerable<ServiceEntry> GetListOfLoaded();
     }
 }

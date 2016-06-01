@@ -64,7 +64,7 @@ namespace Framework.Configuration.API
             {
                 if (null != config.Sequence)
                 {
-                    __Sequence = Transforms.ToSequence(config.Sequence);
+                    __Sequence = Config.Transforms.ToSequence(config.Sequence);
                 }
             }
         }

@@ -1,10 +1,10 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: 
+// Name/Class: Service
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Create date: 26/Nov/2015
+// Create date: 03/Aug/2015
 // Company: Cybermap Lta.
-// Description: 
+// Description: Service specification class.
 // ============================================================================
 
 using Framework.Core.Extensions;
@@ -13,35 +13,36 @@ using Framework.Core.Types.Specialized;
 using System;
 using System.Collections.Generic;
 
-namespace Framework.Data.Model.Schema
+namespace Framework.Factory.Model.Runtime
 {
-    public class FW_DataContext : 
-        IID<int>,
-        IName<string>,
-        IDescription<string>,
-        IConfigList<Setting>,
+    public class ServiceEntry : 
+        IID<int>, 
+        IName<string>, 
+        ITypeName<string>, 
         IAuditable<string>
     {
         //
-        // INFO
+        // PROPERTIES
         //
 
         public int ID { get; set; }
+
+        public bool Unique { get; set; }
+
+        public bool Default { get; set; }
 
         public string Name { get; set; }
 
         public string Description { get; set; }
 
-        public FW_DataProvider Provider { get; set; }
+        public string Contract { get; set; }
 
-        public ICollection<FW_DataEntityRef> Entities { get; set; }
+        public string TypeName { get; set; }
 
-        public ICollection<FW_DataPartialModelRef> Models { get; set; }
-
-        public ICollection<Setting> Settings { get; set; }
+        public virtual ICollection<Setting> Settings { get; set; }
 
         //
-        // AUDITS
+        // Audits
         //
 
         public string CreatedBy { get; set; }
@@ -56,22 +57,23 @@ namespace Framework.Data.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public FW_DataContext()
+        public ServiceEntry()
         {
             //
-            // INFO
+            // Basic info.
             //
 
             ID = -1;
+            Unique = false;
+            Default = false;
             Name = string.Empty;
             Description = string.Empty;
-            Provider = null;
-            Entities = null;
-            Models = null;
+            Contract = string.Empty;
+            TypeName = string.Empty;
             Settings = null;
 
             //
-            // AUDITS
+            // Audits
             //
 
             AuditableExtensions.Init(this, string.Empty);

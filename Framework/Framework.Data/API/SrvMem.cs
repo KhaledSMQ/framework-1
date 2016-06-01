@@ -12,7 +12,7 @@ using Framework.Core.Extensions;
 using Framework.Data.Model.Mem;
 using Framework.Data.Model.Schema;
 using Framework.Data.Patterns;
-using Framework.Factory.Model;
+using Framework.Factory.Model.Schema;
 using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;

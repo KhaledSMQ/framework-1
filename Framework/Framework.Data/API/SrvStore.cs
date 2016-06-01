@@ -1,19 +1,15 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: 
+// Name/Class: SrvStore
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
 // Company: Cybermap Lta.
-// Description: 
+// Description: Data store service implementation.
 // ============================================================================
 
-using Framework.Core.Extensions;
-using Framework.Data.Model.Config;
 using Framework.Data.Model.Mem;
-using Framework.Data.Model.Schema;
 using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
-using System.Collections.Generic;
 
 namespace Framework.Data.API
 {
@@ -23,13 +19,11 @@ namespace Framework.Data.API
         // Service dependencies.
         //
 
-        protected IConfig SrvConfig { get; set; }
+        protected ICfg SrvCfg { get; set; }
 
         protected IMem SrvMem { get; set; }
 
         protected IDAL SrvDAL { get; set; }
-
-        protected ITransform SrvTransform { get; set; }
 
         //
         // Service initialization. 
@@ -50,10 +44,9 @@ namespace Framework.Data.API
             // do not have dependencies that are circular to this service.
             //
 
-            SrvConfig = Scope.Hub.GetUnique<IConfig>();
+            SrvCfg = Scope.Hub.GetUnique<ICfg>();
             SrvMem = Scope.Hub.GetUnique<IMem>();
-            SrvDAL = Scope.Hub.GetUnique<IDAL>();
-            SrvTransform = Scope.Hub.GetUnique<ITransform>();
+            SrvDAL = Scope.Hub.GetUnique<IDAL>();           
         }
 
         //
@@ -63,8 +56,8 @@ namespace Framework.Data.API
 
         public void Boot()
         {
-            SrvConfig.Load();
-            SrvMem.Domain_Import(SrvConfig.GetListOfDomains());
+            SrvCfg.Load();
+            SrvMem.Domain_Import(SrvCfg.GetListOfDomains());
         }
 
         //

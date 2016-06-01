@@ -9,7 +9,7 @@
 
 using Framework.Data.Model.Schema;
 using Framework.Data.Patterns;
-using Framework.Factory.Model;
+using Framework.Factory.Model.Schema;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

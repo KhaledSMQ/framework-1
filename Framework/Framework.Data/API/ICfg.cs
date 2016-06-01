@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace Framework.Data.API
 {
-    public interface IConfig : ICommon
+    public interface ICfg : ICommon
     {
         void Load();
 

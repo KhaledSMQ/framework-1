@@ -76,7 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\IDAL.cs" />
-    <Compile Include="API\IConfig.cs" />
+    <Compile Include="API\ICfg.cs" />
     <Compile Include="API\ISrvTransform.cs" />
     <Compile Include="API\SrvLinqQueryProcessor.cs" />
     <Compile Include="API\IQueryProcessor.cs" />
@@ -94,7 +94,7 @@
     <Compile Include="API\SrvGenericClusterDataScope.cs" />
     <Compile Include="API\SrvServiceEntry.cs" />
     <Compile Include="API\IMem.cs" />
-    <Compile Include="API\SrvConfig.cs" />
+    <Compile Include="API\SrvCfg.cs" />
     <Compile Include="Model\Config\BaseConfiguration.cs" />
     <Compile Include="Model\Config\DomainConfiguration.cs" />
     <Compile Include="Model\Config\ContextConfiguration.cs" />
