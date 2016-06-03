@@ -92,9 +92,7 @@
     <None Include="Framework.Web.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Patterns\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Framework.Configuration\Framework.Configuration.csproj">
       <Project>{6c07c50f-a704-4eb1-b6bd-3b629f7f5729}</Project>

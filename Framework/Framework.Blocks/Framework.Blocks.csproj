@@ -95,10 +95,7 @@
     <None Include="Framework.Blocks.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Config\" />
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>

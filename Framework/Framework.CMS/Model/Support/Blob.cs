@@ -8,7 +8,7 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
-using Framework.FileSystem.Patterns;
+using Framework.Storage.Patterns;
 using System;
 
 namespace Framework.CMS.Model.Support

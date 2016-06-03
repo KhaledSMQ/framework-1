@@ -69,7 +69,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
