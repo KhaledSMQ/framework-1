@@ -49,8 +49,6 @@ namespace Framework.Data.API
 
         object Mem_Dump();
 
-        object Mem_GetDomains();
-
         object Mem_GetClusters();
 
         object Mem_GetContexts();

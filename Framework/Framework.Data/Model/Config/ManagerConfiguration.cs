@@ -17,11 +17,11 @@ namespace Framework.Data.Model.Config
         // CLUSTERS
         //
 
-        [ConfigurationProperty(Constants.DOMAINS, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(DomainElementCollection))]
-        public DomainElementCollection Domains
+        [ConfigurationProperty(Constants.CLUSTERS, IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(ClusterElementCollection))]
+        public ClusterElementCollection Clusters
         {
-            get { return (DomainElementCollection)this[Constants.DOMAINS]; }
+            get { return (ClusterElementCollection)this[Constants.CLUSTERS]; }
         }
 
         //

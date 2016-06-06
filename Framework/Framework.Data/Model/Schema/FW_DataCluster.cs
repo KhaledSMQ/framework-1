@@ -15,7 +15,8 @@ using System.Collections.Generic;
 
 namespace Framework.Data.Model.Schema
 {
-    public class FW_DataCluster : 
+    public class FW_DataCluster :
+        IOwner<int>,
         IID<int>,
         IName<string>,
         IDescription<string>,
@@ -25,6 +26,8 @@ namespace Framework.Data.Model.Schema
         //
         // Info
         //
+
+        public int Owner { get; set; }
 
         public int ID { get; set; }
 
@@ -62,6 +65,7 @@ namespace Framework.Data.Model.Schema
             // Info
             //
 
+            Owner = -1;
             ID = -1;
             Name = string.Empty;
             Description = string.Empty;

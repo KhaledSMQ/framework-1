@@ -264,10 +264,6 @@
       <Project>{8e8c0642-e92c-4fa3-b127-7a6383870d37}</Project>
       <Name>Framework.Charting</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Framework.CMS\Framework.CMS.csproj">
-      <Project>{6ce4fdcd-c77e-484f-9904-55223c303358}</Project>
-      <Name>Framework.CMS</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Framework.Comm\Framework.Comm.csproj">
       <Project>{df072c9d-45f4-4ee7-a243-a155e6a79a7b}</Project>
       <Name>Framework.Comm</Name>

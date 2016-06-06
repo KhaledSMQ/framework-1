@@ -19,28 +19,16 @@ namespace Framework.Data.API
     public interface IMem : ICommon
     {
         //
-        // DOMAIN
-        //    
-
-        void Domain_Import(IEnumerable<FW_DataDomain> domains);
-
-        void Domain_Import(FW_DataDomain domain);
-
-        void Domain_Init(string domainID);
-
-        void Domain_Init(IEnumerable<MemDomain> domains);
-
-        void Domain_Init(MemDomain domain);
-
-        MemDomain Domain_Get(params string[] parcels);
-
-        IEnumerable<MemDomain> Domain_GetList();
-
-        //
         // CLUSTER
         //
 
-        string Cluster_Import(string domainID, FW_DataCluster cluster);
+        void Cluster_Import(IEnumerable<FW_DataCluster> clusters);
+
+        void Cluster_Import(FW_DataCluster cluster);
+
+        void Cluster_Init(string clusterID);
+
+        void Cluster_Init(IEnumerable<MemCluster> clusters);
 
         MemCluster Cluster_Get(params string[] parcels);
 

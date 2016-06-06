@@ -82,6 +82,7 @@
     <Compile Include="Model\Schema\FW_BlkBlockDef.cs" />
     <Compile Include="Model\Schema\FW_BlkConnDef.cs" />
     <Compile Include="Model\Schema\FW_BlkDomainDef.cs" />
+    <Compile Include="Model\Schema\FW_BlkDomain.cs" />
     <Compile Include="Model\Schema\FW_BlkModuleDef.cs" />
     <Compile Include="Model\Schema\FW_BlkPortDef.cs" />
     <Compile Include="Model\Schema\FW_BlkPortRef.cs" />

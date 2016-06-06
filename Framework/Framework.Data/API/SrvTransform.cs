@@ -22,16 +22,7 @@ namespace Framework.Data.API
         // CONFIGURATION OBJECT ==> SCHEMA OBJECT
         //
 
-        public FW_DataDomain Convert(DomainElement elm)
-        {
-            FW_DataDomain ast = new FW_DataDomain();
-            ast.Name = elm.Name;
-            ast.Description = elm.Description;
-            ast.Clusters = elm.Contexts.Map<ClusterElement, FW_DataCluster>(new List<FW_DataCluster>(), __Convert);
-            return ast;
-        }
-
-        private FW_DataCluster __Convert(ClusterElement elm)
+        public FW_DataCluster Convert(ClusterElement elm)
         {
             FW_DataCluster ast = new FW_DataCluster();
             ast.Name = elm.Name;

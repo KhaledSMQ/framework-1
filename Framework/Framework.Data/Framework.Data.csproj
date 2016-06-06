@@ -77,7 +77,7 @@
   <ItemGroup>
     <Compile Include="API\IDAL.cs" />
     <Compile Include="API\ICfg.cs" />
-    <Compile Include="API\ISrvTransform.cs" />
+    <Compile Include="API\ITransform.cs" />
     <Compile Include="API\SrvLinqQueryProcessor.cs" />
     <Compile Include="API\IQueryProcessor.cs" />
     <Compile Include="API\IStore.cs" />
@@ -96,7 +96,6 @@
     <Compile Include="API\IMem.cs" />
     <Compile Include="API\SrvCfg.cs" />
     <Compile Include="Model\Config\BaseConfiguration.cs" />
-    <Compile Include="Model\Config\DomainConfiguration.cs" />
     <Compile Include="Model\Config\ContextConfiguration.cs" />
     <Compile Include="Model\Config\QueryParamConfiguration.cs" />
     <Compile Include="Model\Config\QueryConfiguration.cs" />
@@ -117,7 +116,6 @@
     <Compile Include="API\SrvMem.cs" />
     <Compile Include="Model\Import\ImportCluster.cs" />
     <Compile Include="Model\Import\ImportContext.cs" />
-    <Compile Include="Model\Import\ImportDomain.cs" />
     <Compile Include="Model\Import\ImportEntity.cs" />
     <Compile Include="Model\Import\ImportEntityRef.cs" />
     <Compile Include="Model\Import\ImportPartialModel.cs" />
@@ -130,11 +128,9 @@
     <Compile Include="Model\Mem\MemQuery.cs" />
     <Compile Include="Model\Mem\MemModel.cs" />
     <Compile Include="Model\Mem\MemEntity.cs" />
-    <Compile Include="Model\Mem\MemDomain.cs" />
     <Compile Include="Model\Query\Expression.cs" />
     <Compile Include="Model\Schema\FW_DataCluster.cs" />
     <Compile Include="Model\Schema\FW_DataContext.cs" />
-    <Compile Include="Model\Schema\FW_DataDomain.cs" />
     <Compile Include="Model\Schema\FW_DataPartialModelRef.cs" />
     <Compile Include="Model\Schema\FW_DataEntityRef.cs" />
     <Compile Include="Model\Schema\FW_DataQueryParam.cs" />

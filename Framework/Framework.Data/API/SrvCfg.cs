@@ -41,9 +41,9 @@ namespace Framework.Data.API
         // Return the list of domains defined in the configuration section.
         // 
 
-        public IEnumerable<FW_DataDomain> GetListOfDomains()
+        public IEnumerable<FW_DataCluster> GetListOfClusters()
         {
-            IEnumerable<FW_DataDomain> lstOfDomains = null;
+            IEnumerable<FW_DataCluster> lstOfItems = null;
 
             //
             // Load the configuration clusters from config store 
@@ -52,10 +52,10 @@ namespace Framework.Data.API
 
             if (null != Config)
             {
-                lstOfDomains = Config.Domains.Map<DomainElement, FW_DataDomain>(new List<FW_DataDomain>(), Scope.Hub.Get<ITransform>().Convert);
+                lstOfItems = Config.Clusters.Map<ClusterElement, FW_DataCluster>(new List<FW_DataCluster>(), Scope.Hub.Get<ITransform>().Convert);
             }
 
-            return lstOfDomains;
+            return lstOfItems;
         }
     }
 }

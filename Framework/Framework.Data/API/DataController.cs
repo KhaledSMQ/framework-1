@@ -52,12 +52,6 @@ namespace Framework.Data.API
             return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_Dump(); });
         }
 
-        [ActionName("mem.domains"), HttpGet]
-        public IHttpActionResult Mem_Domains()
-        {
-            return Run(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetDomains(); });
-        }
-
         [ActionName("mem.clusters"), HttpGet]
         public IHttpActionResult Mem_Clusters()
         {

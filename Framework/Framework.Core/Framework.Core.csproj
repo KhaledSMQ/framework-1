@@ -88,6 +88,7 @@
     <Compile Include="Patterns\IAuditable.cs" />
     <Compile Include="Patterns\IConfigList.cs" />
     <Compile Include="Patterns\IConfigSetting.cs" />
+    <Compile Include="Patterns\IOwner.cs" />
     <Compile Include="Patterns\IProvider.cs" />
     <Compile Include="Patterns\IConfigMap.cs" />
     <Compile Include="Patterns\ICreated.cs" />

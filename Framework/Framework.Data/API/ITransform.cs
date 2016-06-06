@@ -19,6 +19,6 @@ namespace Framework.Data.API
         // CONFIGURATION OBJECT ==> SCHEMA OBJECT
         //
 
-        FW_DataDomain Convert(DomainElement elm);
+        FW_DataCluster Convert(ClusterElement elm);
     }
 }

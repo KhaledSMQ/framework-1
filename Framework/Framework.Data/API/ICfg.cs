@@ -17,6 +17,6 @@ namespace Framework.Data.API
     {
         void Load();
 
-        IEnumerable<FW_DataDomain> GetListOfDomains();
+        IEnumerable<FW_DataCluster> GetListOfClusters();
     }
 }

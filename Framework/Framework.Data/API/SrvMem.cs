@@ -39,7 +39,6 @@ namespace Framework.Data.API
             // Initialize in-memory data structures.
             //
 
-            __Domains = new SortedDictionary<string, MemDomain>();
             __Clusters = new SortedDictionary<string, MemCluster>();
             __Contexts = new SortedDictionary<string, MemContext>();
             __Entities = new SortedDictionary<string, MemEntity>();
@@ -48,201 +47,15 @@ namespace Framework.Data.API
         }
 
         //
-        // DOMAINS
-        //
-
-        public void Domain_Import(IEnumerable<FW_DataDomain> domains)
-        {
-            domains.Apply(Domain_Import);
-        }
-
-        public void Domain_Import(FW_DataDomain domain)
-        {
-            string domainID = default(string);
-
-            if (null != domain)
-            {
-                if (domain.Name.isNotNullAndEmpty())
-                {
-                    if (VerifyParcel(domain.Name))
-                    {
-                        //
-                        // Build the unique cluster identifier.
-                        //
-
-                        domainID = domain.Name;
-
-                        if (!__Domains.ContainsKey(domainID))
-                        {
-                            //
-                            // Build the domain runtime object.
-                            //
-
-                            MemDomain domainInfo = new MemDomain()
-                            {
-                                ID = domainID,
-                                Original = domain,
-                                Clusters = domain.Clusters.Map(new List<string>(), cluster => { return Cluster_Import(domainID, cluster); })
-                            };
-
-                            //
-                            // Add domain info to runtime.
-                            //
-
-                            __Domains.AddNonExistent(domainID, domainInfo);
-                        }
-                        else
-                        {
-                            //
-                            // ERROR: Domain is not defined!
-                            //
-
-                            Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "domain '{0}' already defined!", domainID);
-                        }
-                    }
-                    else
-                    {
-                        //
-                        // ERROR: Domain is not defined!
-                        //
-
-                        Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "domain is invalid!");
-                    }
-                }
-                else
-                {
-                    //
-                    // ERROR: Domain is not defined!
-                    //
-
-                    Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "domain name is null or empty!");
-                }
-            }
-            else
-            {
-                //
-                // ERROR: Domain is not defined!
-                //
-
-                Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "invalid domain instance!");
-            }
-        }
-
-        public void Domain_Init(string domainID)
-        {
-            Domain_Init(Domain_Get(domainID));
-        }
-
-        public void Domain_Init(IEnumerable<MemDomain> domains)
-        {
-            domains.Apply(Domain_Init);
-        }
-
-        public void Domain_Init(MemDomain domain)
-        {
-            domain.Clusters.Apply(clusterID =>
-            {
-                MemCluster cluster = Cluster_Get(clusterID);
-
-                cluster.Contexts.Apply(contextID =>
-                {
-                    MemContext context = Context_Get(contextID);
-
-                    if (null != context)
-                    {
-                        //
-                        // Initialize data context provider. This means load the service 
-                        // provider, initialize it and create the model.
-                        //
-
-                        if (null != context.Provider)
-                        {
-                            //
-                            // Try to get the instance.
-                            // 
-
-                            context.ProviderService = Scope.Hub.New<IProviderDataContext>(context.ProviderServiceEntry);
-
-                            if (null != context.ProviderService)
-                            {
-                                //
-                                // Get the context entities and model definitions.
-                                //
-
-                                IEnumerable<FW_DataEntity> entities = context.Entities.Map(new List<FW_DataEntity>(), e => { return Entity_Get(e).Instance; });
-                                IEnumerable<FW_DataPartialModel> models = context.Models.Map(new List<FW_DataPartialModel>(), e => { return Model_Get(e).Instance; });
-
-                                //
-                                // Load the entities and partial models in data context provider.
-                                //
-
-                                context.ProviderService.Load(entities);
-                                context.ProviderService.Load(models);
-
-                                //
-                                // Use the data context handler to create/setup the required 
-                                // data model specification.
-                                //
-
-                                context.ProviderService.CreateModel();
-                            }
-                            else
-                            {
-                                //
-                                // ERROR: Could not load data context provider service.
-                                //
-
-                                Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "Could not load data context provider service");
-                            }
-                        }
-                        else
-                        {
-                            //
-                            // ERROR: Invalid service name for data cluster provider.
-                            //
-
-                            Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "Invalid service name for data cluster provider");
-                        }
-                    }
-                    else
-                    {
-                        //
-                        // ERROR: Data context provider specification for cluster is invalid!
-                        //
-
-                        Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "Data context provider specification for cluster is invalid!");
-                    }
-                });
-            });
-        }
-
-        public MemDomain Domain_Get(params string[] parcels)
-        {
-            MemDomain domainInfo = default(MemDomain);
-            string domainID = GetID(parcels);
-
-            if (__Domains.ContainsKey(domainID))
-            {
-                domainInfo = __Domains[domainID];
-            }
-            else
-            {
-                Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "domain with identifier '{0}' does not exist!", domainID);
-            }
-
-            return domainInfo;
-        }
-
-        public IEnumerable<MemDomain> Domain_GetList()
-        {
-            return __Domains.Values;
-        }
-
-        //
         // CLUSTERS
         //
 
-        public string Cluster_Import(string domainID, FW_DataCluster cluster)
+        public void Cluster_Import(IEnumerable<FW_DataCluster> clusters)
+        {
+            clusters.Apply(Cluster_Import);
+        }
+
+        public void Cluster_Import(FW_DataCluster cluster)
         {
             string clusterID = default(string);
 
@@ -256,7 +69,7 @@ namespace Framework.Data.API
                         // Build the unique cluster identifier.
                         //
 
-                        clusterID = GetID(domainID, cluster.Name);
+                        clusterID = GetID(cluster.Name);
 
                         if (!__Clusters.ContainsKey(clusterID))
                         {
@@ -325,8 +138,89 @@ namespace Framework.Data.API
 
                 Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "invalid cluster instance!");
             }
+        }
 
-            return clusterID;
+        public void Cluster_Init(IEnumerable<MemCluster> domains)
+        {
+            domains.Apply(Cluster_Init);
+        }
+
+        public void Cluster_Init(string cluster)
+        {
+            Cluster_Init(Cluster_Get(cluster));
+        }
+
+        public void Cluster_Init(MemCluster cluster)
+        {
+            cluster.Contexts.Apply(contextID =>
+            {
+                MemContext context = Context_Get(contextID);
+
+                if (null != context)
+                {
+                    //
+                    // Initialize data context provider. This means load the service 
+                    // provider, initialize it and create the model.
+                    //
+
+                    if (null != context.Provider)
+                    {
+                        //
+                        // Try to get the instance.
+                        // 
+
+                        context.ProviderService = Scope.Hub.New<IProviderDataContext>(context.ProviderServiceEntry);
+
+                        if (null != context.ProviderService)
+                        {
+                            //
+                            // Get the context entities and model definitions.
+                            //
+
+                            IEnumerable<FW_DataEntity> entities = context.Entities.Map(new List<FW_DataEntity>(), e => { return Entity_Get(e).Instance; });
+                            IEnumerable<FW_DataPartialModel> models = context.Models.Map(new List<FW_DataPartialModel>(), e => { return Model_Get(e).Instance; });
+
+                            //
+                            // Load the entities and partial models in data context provider.
+                            //
+
+                            context.ProviderService.Load(entities);
+                            context.ProviderService.Load(models);
+
+                            //
+                            // Use the data context handler to create/setup the required 
+                            // data model specification.
+                            //
+
+                            context.ProviderService.CreateModel();
+                        }
+                        else
+                        {
+                            //
+                            // ERROR: Could not load data context provider service.
+                            //
+
+                            Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "Could not load data context provider service");
+                        }
+                    }
+                    else
+                    {
+                        //
+                        // ERROR: Invalid service name for data cluster provider.
+                        //
+
+                        Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "Invalid service name for data cluster provider");
+                    }
+                }
+                else
+                {
+                    //
+                    // ERROR: Data context provider specification for cluster is invalid!
+                    //
+
+                    Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, "Data context provider specification for cluster is invalid!");
+                }
+            });
         }
 
         public MemCluster Cluster_Get(params string[] parcels)
@@ -834,7 +728,6 @@ namespace Framework.Data.API
         // Memory storage.
         //
 
-        private IDictionary<string, MemDomain> __Domains = null;
         private IDictionary<string, MemCluster> __Clusters = null;
         private IDictionary<string, MemContext> __Contexts = null;
         private IDictionary<string, MemEntity> __Entities = null;

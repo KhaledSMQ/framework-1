@@ -57,7 +57,7 @@ namespace Framework.Data.API
         public void Boot()
         {
             SrvCfg.Load();
-            SrvMem.Domain_Import(SrvCfg.GetListOfDomains());
+            SrvMem.Cluster_Import(SrvCfg.GetListOfClusters());
         }
 
         //
@@ -67,7 +67,7 @@ namespace Framework.Data.API
 
         public void Setup()
         {
-            SrvMem.Domain_Init(SrvMem.Domain_GetList());
+            SrvMem.Cluster_Init(SrvMem.Cluster_GetList());
         }
 
         //
@@ -111,18 +111,12 @@ namespace Framework.Data.API
         public object Mem_Dump()
         {
             return new {
-                Domains = Mem_GetDomains(),
                 Clusters = Mem_GetClusters(),
                 Contexts = Mem_GetContexts(),
                 Entities = Mem_GetEntities(),
                 Models = Mem_GetModels(),
                 Queries = Mem_GetQueries()
             };
-        }
-
-        public object Mem_GetDomains()
-        {
-            return SrvMem.Domain_GetList();
         }
 
         public object Mem_GetClusters()
