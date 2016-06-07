@@ -215,6 +215,7 @@
     <Content Include="Client\fw\modules\mvc\engine\view.js" />
     <Content Include="Client\fw\modules\mvc\framework\content\rollup.js" />
     <Content Include="Client\jquery.min.js" />
+    <None Include="Data\Seed\cluster0.json" />
     <Content Include="index.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

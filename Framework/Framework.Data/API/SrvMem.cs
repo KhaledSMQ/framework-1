@@ -9,6 +9,7 @@
 
 using Framework.Core.Error;
 using Framework.Core.Extensions;
+using Framework.Core.Types.Specialized;
 using Framework.Data.Model.Mem;
 using Framework.Data.Model.Schema;
 using Framework.Data.Patterns;
@@ -279,7 +280,14 @@ namespace Framework.Data.API
                             // TODO: Convert data settings to factory settings.
                             //
 
-                            Settings = null
+                            Settings = context.Provider.Settings.Map(new List<Setting>(), set => {
+                                return new Setting()
+                                {
+                                    Name = set.Name,
+                                    Description = set.Description,
+                                    Value = set.Value
+                                };
+                            })
                         };
 
                         //

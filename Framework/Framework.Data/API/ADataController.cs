@@ -21,7 +21,7 @@ namespace Framework.Data.API
         //
 
         [ActionName("schema.import"), HttpPost, HttpPut]
-        public IHttpActionResult SCHEMA_Import([FromBody] ImportCluster cluster)
+        public IHttpActionResult SCHEMA_ImportCluster([FromBody] ImportCluster cluster)
         {
             return ApplyNoReturn(() => { Scope.Hub.GetUnique<IStore>().Schema_Import(cluster); });
         }
