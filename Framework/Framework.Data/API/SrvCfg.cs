@@ -21,7 +21,7 @@ namespace Framework.Data.API
         // Internal state.
         //
 
-        protected ManagerConfiguration Config;
+        protected ConfigManager Config;
 
         //
         // Load configuration.
@@ -34,16 +34,16 @@ namespace Framework.Data.API
             // the data store elements, domains and settings.
             //
 
-            Config = (ManagerConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
+            Config = (ConfigManager)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
         }
 
         //
         // Return the list of domains defined in the configuration section.
         // 
 
-        public IEnumerable<FW_DataCluster> GetListOfClusters()
+        public IEnumerable<ConfigCluster> GetListOfClusters()
         {
-            IEnumerable<FW_DataCluster> lstOfItems = null;
+            IEnumerable<ConfigCluster> lstOfItems = null;
 
             //
             // Load the configuration clusters from config store 
@@ -52,7 +52,7 @@ namespace Framework.Data.API
 
             if (null != Config)
             {
-                lstOfItems = Config.Clusters.Map<ClusterElement, FW_DataCluster>(new List<FW_DataCluster>(), Scope.Hub.Get<ITransform>().Convert);
+                lstOfItems = Config.Clusters.Map<ConfigCluster, ConfigCluster>(new List<ConfigCluster>(), x => { return x; });
             }
 
             return lstOfItems;

@@ -19,8 +19,6 @@ namespace Framework.Data.Model.Mem
 
         public Type Type { get; set; }
 
-        public string Domain { get; set; }
-
         public string Cluster { get; set; }
 
         public string Context { get; set; }
@@ -42,10 +40,8 @@ namespace Framework.Data.Model.Mem
         {
             ID = default(string);
             Type = default(Type);
-            Domain = default(string);
             Cluster = default(string);
             Context = default(string);
-
             Original = null;
             Instance = null;            
         }

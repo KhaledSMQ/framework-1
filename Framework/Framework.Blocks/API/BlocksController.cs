@@ -23,13 +23,13 @@ namespace Framework.Blocks.API
         [ActionName("eval"), HttpPost]
         public IHttpActionResult Eval([FromUri] string id)
         {
-            return Run(() => { return Scope.Hub.GetUnique<IEval>().Eval(id, GetRequestContentAsString(string.Empty)); });
+            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IEval>().Eval(id, GetRequestContentAsString(string.Empty)); });
         }
 
         [ActionName("eval.stage.evalBlock"), HttpPost]
         public IHttpActionResult Eval_StageEvalBlock([FromUri] string id)
         {
-            return Run(() => { return Scope.Hub.GetUnique<IEval>().Eval_StageEvalBlock(id, GetRequestContentAsString(string.Empty)); });
+            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IEval>().Eval_StageEvalBlock(id, GetRequestContentAsString(string.Empty)); });
         }
 
         //
@@ -46,7 +46,7 @@ namespace Framework.Blocks.API
             // will fail.
             //
 
-            return Run(() => { return Scope.Hub.GetUnique<IStore>().Block_Create(id, item); });
+            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IStore>().Block_Create(id, item); });
         }
 
         [ActionName("block.get"), HttpGet]
@@ -55,11 +55,11 @@ namespace Framework.Blocks.API
             //
             // Paramter 'id' is the block complete identifier, something like:
             //
-            //   <DOMAIN>.<MODULE0>. ... .<MODULEn>.<NAME>
+            //   <CLUSTER>.<MODULE0>. ... .<MODULEn>.<NAME>
             //
             //
 
-            return Run(() => { return Scope.Hub.GetUnique<IStore>().Block_Get(id); });
+            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IStore>().Block_Get(id); });
         }
 
         //
@@ -68,39 +68,39 @@ namespace Framework.Blocks.API
         //
 
         [ActionName("mem.import"), HttpPost]
-        public IHttpActionResult Mem_Import(FW_BlkDomainDef item)
+        public IHttpActionResult Mem_Import(FW_BlkClusterDef item)
         {
-            return Run(() => { return Scope.Hub.GetUnique<IMemStore>().Domain_Import(item); });
+            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IMem>().Cluster_Import(item); });
         }
 
         [ActionName("mem.dump"), HttpGet]
         public IHttpActionResult Mem_Dump()
         {
-            return Run(() => { return Scope.Hub.GetUnique<IMemStore>().Dump(); });
+            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IMem>().Dump(); });
         }
 
-        [ActionName("mem.domains"), HttpGet]
+        [ActionName("mem.clusters"), HttpGet]
         public IHttpActionResult Mem_Domains()
         {
-            return Run(() => { return Scope.Hub.GetUnique<IMemStore>().Domain_GetList(); });
+            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IMem>().Cluster_GetList(); });
         }
 
         [ActionName("mem.modules"), HttpGet]
         public IHttpActionResult Mem_Modules()
         {
-            return Run(() => { return Scope.Hub.GetUnique<IMemStore>().Module_GetList(); });
+            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IMem>().Module_GetList(); });
         }
 
         [ActionName("mem.blocks"), HttpGet]
         public IHttpActionResult Mem_Blocks()
         {
-            return Run(() => { return Scope.Hub.GetUnique<IMemStore>().Block_GetList(); });
+            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IMem>().Block_GetList(); });
         }
 
         [ActionName("mem.clear"), HttpGet]
         public IHttpActionResult Mem_Clear()
         {
-            return Run(() => { return Scope.Hub.GetUnique<IMemStore>().Clear(); });
+            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IMem>().Clear(); });
         }
     }
 }

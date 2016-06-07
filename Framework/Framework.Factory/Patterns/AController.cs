@@ -45,7 +45,36 @@ namespace Framework.Factory.Patterns
         // HELPERS
         //
 
-        protected IHttpActionResult Run(Func<object> handler)
+        protected IHttpActionResult ApplyNoReturn(Action handler)
+        {
+            IHttpActionResult output = Ok(true);
+
+            try
+            {
+                handler();
+                return output;
+            }
+            catch (InternalException ex0)
+            {
+                output = BadRequest(ex0.Message);
+            }
+            catch (FatalException ex1)
+            {
+                output = BadRequest(ex1.Message);
+            }
+            catch (UnauthorizedException)
+            {
+                output = Unauthorized();
+            }
+            catch (Exception ex2)
+            {
+                throw ex2;
+            }
+
+            return output;
+        }
+
+        protected IHttpActionResult ApplyAndReturn(Func<object> handler)
         {
             IHttpActionResult output = default(IHttpActionResult);
 
@@ -72,7 +101,6 @@ namespace Framework.Factory.Patterns
 
             return output;
         }
-
         protected string GetRequestContentAsString(string defaultValue)
         {
             string output = defaultValue;

@@ -8,6 +8,7 @@
 // ============================================================================
 
 using Framework.Data.Model.Config;
+using Framework.Data.Model.Import;
 using Framework.Data.Model.Schema;
 using Framework.Factory.Patterns;
 
@@ -19,6 +20,13 @@ namespace Framework.Data.API
         // CONFIGURATION OBJECT ==> SCHEMA OBJECT
         //
 
-        FW_DataCluster Convert(ClusterElement elm);
+        FW_DataCluster Convert(ConfigCluster cluster);
+
+        //
+        // IMPORT OBJECT ==> SCHEMA OBJECT
+        //
+
+        FW_DataCluster Convert(ImportCluster cluster);
+
     }
 }

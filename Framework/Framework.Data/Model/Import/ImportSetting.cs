@@ -2,37 +2,41 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Create date: 20/Mar/2016
+// Create date: 26/Nov/2015
 // Company: Cybermap Lta.
 // Description: 
 // ============================================================================
 
-using Framework.Core.Patterns;
-using System.Collections.Generic;
-
-namespace Framework.Blocks.Model.Schema
+namespace Framework.Data.Model.Import
 {
-    public class FW_BlkDomainDef : IID<int>
+    public class ImportSetting 
     {
         //
-        // PROPERTIES
+        // INFO
         //
 
         public int ID { get; set; }
 
         public string Name { get; set; }
-        
-        public ICollection<FW_BlkModuleDef> Modules { get; set; }
+
+        public string Description { get; set; }
+
+        public string Value { get; set; }       
 
         //
         // CONSTRUCTORS
-        //
+        // 
 
-        public FW_BlkDomainDef()
+        public ImportSetting()
         {
-            ID = default(int);
-            Name = default(string);
-            Modules = default(ICollection<FW_BlkModuleDef>);
+            //
+            // INFO
+            //
+
+            ID = -1;
+            Name = string.Empty;
+            Description = string.Empty;
+            Value = string.Empty;       
         }
     }
 }

@@ -18,7 +18,6 @@ namespace Framework.Data.Model.Schema
     public class FW_DataEntityRef :
         IID<int>,
         IName<string>,     
-        IConfigList<Setting>,
         IAuditable<string>
     {
         //
@@ -31,7 +30,7 @@ namespace Framework.Data.Model.Schema
 
         public string Description { get; set; }
 
-        public ICollection<Setting> Settings { get; set; }
+        public ICollection<FW_DataSetting> Settings { get; set; }
 
         //
         // AUDITS

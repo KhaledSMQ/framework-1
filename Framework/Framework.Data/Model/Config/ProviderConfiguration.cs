@@ -11,7 +11,7 @@ using System.Configuration;
 
 namespace Framework.Data.Model.Config
 {
-    public class ProviderElement : ConfigurationElement
+    public class ConfigProvider : ConfigurationElement
     {
         //
         // TYPE-NAME
@@ -29,10 +29,10 @@ namespace Framework.Data.Model.Config
         //
 
         [ConfigurationProperty(Constants.SETTINGS, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(SettingElementCollection))]
-        public SettingElementCollection Settings
+        [ConfigurationCollection(typeof(ConfigSettingCollection))]
+        public ConfigSettingCollection Settings
         {
-            get { return (SettingElementCollection)this[Constants.SETTINGS]; }
+            get { return (ConfigSettingCollection)this[Constants.SETTINGS]; }
         }
     }
 }

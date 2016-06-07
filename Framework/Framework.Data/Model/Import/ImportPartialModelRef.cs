@@ -22,7 +22,7 @@ namespace Framework.Data.Model.Import
 
         public string Description { get; set; }
 
-        public ICollection<Setting> Settings { get; set; }
+        public ICollection<ImportSetting> Settings { get; set; }
 
         //
         // CONSTRUCTORS

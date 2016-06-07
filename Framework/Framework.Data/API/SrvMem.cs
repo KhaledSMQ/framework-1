@@ -274,7 +274,12 @@ namespace Framework.Data.API
                             Name = string.Empty,
                             Contract = typeof(IProviderDataContext).FullName,
                             TypeName = context.Provider.TypeName,
-                            Settings = context.Provider.Settings
+
+                            //
+                            // TODO: Convert data settings to factory settings.
+                            //
+
+                            Settings = null
                         };
 
                         //

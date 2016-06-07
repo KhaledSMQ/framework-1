@@ -11,13 +11,13 @@ using System.Configuration;
 
 namespace Framework.Data.Model.Config
 {
-    public class ModelElementCollection : ConfigurationElementCollection
+    public class ConfigModelCollection : ConfigurationElementCollection
     {
-        public ModelElementCollection() { }
+        public ConfigModelCollection() { }
 
-        public ModelElement this[int index]
+        public ConfigModel this[int index]
         {
-            get { return (ModelElement)BaseGet(index); }
+            get { return (ConfigModel)BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -28,7 +28,7 @@ namespace Framework.Data.Model.Config
             }
         }
 
-        public void Add(ModelElement serviceConfig)
+        public void Add(ConfigModel serviceConfig)
         {
             BaseAdd(serviceConfig);
         }
@@ -40,15 +40,15 @@ namespace Framework.Data.Model.Config
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new ModelElement();
+            return new ConfigModel();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((ModelElement)element).Name;
+            return ((ConfigModel)element).Name;
         }
 
-        public void Remove(ModelElement serviceConfig)
+        public void Remove(ConfigModel serviceConfig)
         {
             BaseRemove(serviceConfig.Name);
         }
@@ -64,5 +64,5 @@ namespace Framework.Data.Model.Config
         }
     }
 
-    public class ModelElement : BaseElementWithTypeAndSettings { }
+    public class ConfigModel : ConfigBaseWithTypeAndSettings { }
 }

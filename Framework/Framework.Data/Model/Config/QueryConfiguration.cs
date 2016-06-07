@@ -12,13 +12,13 @@ using System.Configuration;
 
 namespace Framework.Data.Model.Config
 {
-    public class QueryElementCollection : ConfigurationElementCollection
+    public class ConfigQueryCollection : ConfigurationElementCollection
     {
-        public QueryElementCollection() { }
+        public ConfigQueryCollection() { }
 
-        public QueryElement this[int index]
+        public ConfigQuery this[int index]
         {
-            get { return (QueryElement)BaseGet(index); }
+            get { return (ConfigQuery)BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -29,7 +29,7 @@ namespace Framework.Data.Model.Config
             }
         }
 
-        public void Add(QueryElement serviceConfig)
+        public void Add(ConfigQuery serviceConfig)
         {
             BaseAdd(serviceConfig);
         }
@@ -41,15 +41,15 @@ namespace Framework.Data.Model.Config
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new QueryElement();
+            return new ConfigQuery();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((QueryElement)element).Name;
+            return ((ConfigQuery)element).Name;
         }
 
-        public void Remove(QueryElement serviceConfig)
+        public void Remove(ConfigQuery serviceConfig)
         {
             BaseRemove(serviceConfig.Name);
         }
@@ -65,7 +65,7 @@ namespace Framework.Data.Model.Config
         }
     }
 
-    public class QueryElement : BaseElement
+    public class ConfigQuery : ConfigBase
     {
         //
         // KIND
@@ -83,10 +83,10 @@ namespace Framework.Data.Model.Config
         //
 
         [ConfigurationProperty(Constants.PARAMS, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(QueryParamElementCollection))]
-        public QueryParamElementCollection Params
+        [ConfigurationCollection(typeof(ConfigQueryParamCollection))]
+        public ConfigQueryParamCollection Params
         {
-            get { return (QueryParamElementCollection)this[Constants.PARAMS]; }
+            get { return (ConfigQueryParamCollection)this[Constants.PARAMS]; }
         }
 
         //

@@ -52,7 +52,6 @@ namespace Framework.Data.Model.Mem
             Provider = default(FW_DataProvider);
             ProviderServiceEntry = default(ServiceEntry);
             ProviderService = default(IProviderDataContext);
-
             Original = default(FW_DataContext);
         }
     }  

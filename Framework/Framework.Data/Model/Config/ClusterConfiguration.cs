@@ -11,13 +11,13 @@ using System.Configuration;
 
 namespace Framework.Data.Model.Config
 {
-    public class ClusterElementCollection : ConfigurationElementCollection
+    public class ConfigClusterCollection : ConfigurationElementCollection
     {
-        public ClusterElementCollection() { }
+        public ConfigClusterCollection() { }
 
-        public ClusterElement this[int index]
+        public ConfigCluster this[int index]
         {
-            get { return (ClusterElement)BaseGet(index); }
+            get { return (ConfigCluster)BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -28,7 +28,7 @@ namespace Framework.Data.Model.Config
             }
         }
 
-        public void Add(ClusterElement itemConfig)
+        public void Add(ConfigCluster itemConfig)
         {
             BaseAdd(itemConfig);
         }
@@ -40,15 +40,15 @@ namespace Framework.Data.Model.Config
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new ClusterElement();
+            return new ConfigCluster();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((ClusterElement)element).Name;
+            return ((ConfigCluster)element).Name;
         }
 
-        public void Remove(ClusterElement itemConfig)
+        public void Remove(ConfigCluster itemConfig)
         {
             BaseRemove(itemConfig.Name);
         }
@@ -64,17 +64,17 @@ namespace Framework.Data.Model.Config
         }
     }
 
-    public class ClusterElement : BaseElementWithSettings
+    public class ConfigCluster : ConfigBaseWithSettings
     {
         //
         // CONTEXTS
         //
 
         [ConfigurationProperty(Constants.CONTEXTS, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(ContextElementCollection))]
-        public ContextElementCollection Contexts
+        [ConfigurationCollection(typeof(ConfigContextCollection))]
+        public ConfigContextCollection Contexts
         {
-            get { return (ContextElementCollection)this[Constants.CONTEXTS]; }
+            get { return (ConfigContextCollection)this[Constants.CONTEXTS]; }
         }      
 
         //
@@ -82,10 +82,10 @@ namespace Framework.Data.Model.Config
         //
 
         [ConfigurationProperty(Constants.ENTITIES, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(EntityElementCollection))]
-        public EntityElementCollection Entities
+        [ConfigurationCollection(typeof(ConfigEntityCollection))]
+        public ConfigEntityCollection Entities
         {
-            get { return (EntityElementCollection)this[Constants.ENTITIES]; }
+            get { return (ConfigEntityCollection)this[Constants.ENTITIES]; }
         }
 
         //
@@ -93,10 +93,10 @@ namespace Framework.Data.Model.Config
         //
 
         [ConfigurationProperty(Constants.MODELS, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(ModelElementCollection))]
-        public ModelElementCollection Models
+        [ConfigurationCollection(typeof(ConfigModelCollection))]
+        public ConfigModelCollection Models
         {
-            get { return (ModelElementCollection)this[Constants.MODELS]; }
+            get { return (ConfigModelCollection)this[Constants.MODELS]; }
         }
     }
 }

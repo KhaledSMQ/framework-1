@@ -20,8 +20,7 @@ namespace Framework.Data.Model.Schema
         IID<int>,
         IName<string>,
         IDescription<string>,
-        IAuditable<string>,
-        IConfigList<Setting>
+        IAuditable<string>
     {
         //
         // Info
@@ -41,7 +40,7 @@ namespace Framework.Data.Model.Schema
 
         public ICollection<FW_DataPartialModel> Models { get; set; }
 
-        public ICollection<Setting> Settings { get; set; }
+        public ICollection<FW_DataSetting> Settings { get; set; }
 
         //
         // Audits

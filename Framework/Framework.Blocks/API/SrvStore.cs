@@ -21,7 +21,7 @@ namespace Framework.Blocks.API
         // Service dependencies.
         //
 
-        protected IMemStore srvMemStore { get; set; }
+        protected IMem srvMemStore { get; set; }
 
         //
         // Service initialization. 
@@ -42,7 +42,7 @@ namespace Framework.Blocks.API
             // do not have dependencies that are circular to this service.
             //
 
-            srvMemStore = Scope.Hub.GetUnique<IMemStore>();
+            srvMemStore = Scope.Hub.GetUnique<IMem>();
         }
 
         //
@@ -132,7 +132,7 @@ namespace Framework.Blocks.API
 
         public object Block_GetListByDomain(Id domainID)
         {
-            return srvMemStore.Domain_Get(domainID).Modules
+            return srvMemStore.Cluster_Get(domainID).Modules
                 .Map(new List<MemModule>(), srvMemStore.Module_Get)
                 .Catamorphism<IList<MemBlockDef>, MemModule>(new List<MemBlockDef>(), (module, tail) =>
                 {

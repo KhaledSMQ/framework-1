@@ -83,7 +83,7 @@
     <Compile Include="API\IStore.cs" />
     <Compile Include="API\SrvDAL.cs" />
     <Compile Include="API\SrvStore.cs" />
-    <Compile Include="API\DataController.cs" />
+    <Compile Include="API\ADataController.cs" />
     <Compile Include="API\IDynamicStoreDataScope.cs" />
     <Compile Include="API\IDynamicClusterDataScope.cs" />
     <Compile Include="API\IGenericStoreDataScope.cs" />
@@ -114,6 +114,7 @@
     <Compile Include="Extensions\IDExtensions.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="API\SrvMem.cs" />
+    <Compile Include="Model\Import\ImportSetting.cs" />
     <Compile Include="Model\Import\ImportCluster.cs" />
     <Compile Include="Model\Import\ImportContext.cs" />
     <Compile Include="Model\Import\ImportEntity.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="Model\Schema\FW_DataQueryParam.cs" />
     <Compile Include="Model\Schema\FW_DataQuery.cs" />
     <Compile Include="Model\Schema\FW_DataProvider.cs" />
+    <Compile Include="Model\Schema\FW_DataSetting.cs" />
     <Compile Include="Model\Schema\_Enums.cs" />
     <Compile Include="Model\Schema\FW_DataEntity.cs" />
     <Compile Include="Model\Schema\FW_DataPartialModel.cs" />

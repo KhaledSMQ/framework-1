@@ -11,7 +11,7 @@ using System.Configuration;
 
 namespace Framework.Data.Model.Config
 {
-    public class BaseElement : ConfigurationElement
+    public class ConfigBase : ConfigurationElement
     { 
         //
         // NAME
@@ -36,7 +36,7 @@ namespace Framework.Data.Model.Config
         }  
     }
 
-    public class BaseElementWithType : BaseElement
+    public class ConfigBaseWithType : ConfigBase
     {
         //
         // TYPE-NAME
@@ -50,31 +50,31 @@ namespace Framework.Data.Model.Config
         }
     }
 
-    public class BaseElementWithSettings : BaseElement
+    public class ConfigBaseWithSettings : ConfigBase
     {
         //
         // SETTINGS
         //
 
         [ConfigurationProperty(Constants.SETTINGS, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(SettingElementCollection))]
-        public SettingElementCollection Settings
+        [ConfigurationCollection(typeof(ConfigSettingCollection))]
+        public ConfigSettingCollection Settings
         {
-            get { return (SettingElementCollection)this[Constants.SETTINGS]; }
+            get { return (ConfigSettingCollection)this[Constants.SETTINGS]; }
         }
     }
 
-    public class BaseElementWithTypeAndSettings : BaseElementWithType
+    public class ConfigBaseWithTypeAndSettings : ConfigBaseWithType
     {
         //
         // SETTINGS
         //
 
         [ConfigurationProperty(Constants.SETTINGS, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(SettingElementCollection))]
-        public SettingElementCollection Settings
+        [ConfigurationCollection(typeof(ConfigSettingCollection))]
+        public ConfigSettingCollection Settings
         {
-            get { return (SettingElementCollection)this[Constants.SETTINGS]; }
+            get { return (ConfigSettingCollection)this[Constants.SETTINGS]; }
         }
     }
 }

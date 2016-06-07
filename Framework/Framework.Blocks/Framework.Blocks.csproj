@@ -57,10 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\IBlock.cs" />
-    <Compile Include="API\IMemStore.cs" />
+    <Compile Include="API\IMem.cs" />
     <Compile Include="API\IEval.cs" />
     <Compile Include="API\IStore.cs" />
-    <Compile Include="API\SrvMemStore.cs" />
+    <Compile Include="API\SrvMem.cs" />
     <Compile Include="API\SrvEval.cs" />
     <Compile Include="API\SrvStore.cs" />
     <Compile Include="API\BlocksController.cs" />
@@ -71,7 +71,7 @@
     <Compile Include="Model\Eval\Property.cs" />
     <Compile Include="Model\Mem\MemBlockUse.cs" />
     <Compile Include="Model\Mem\MemConnector.cs" />
-    <Compile Include="Model\Mem\MemDomain.cs" />
+    <Compile Include="Model\Mem\MemCluster.cs" />
     <Compile Include="Model\Mem\MemPort.cs" />
     <Compile Include="Model\Mem\MemProperty.cs" />
     <Compile Include="Model\Mem\MemBlockDef.cs" />
@@ -81,8 +81,7 @@
     <Compile Include="Model\Schema\FW_BlkBlockRef.cs" />
     <Compile Include="Model\Schema\FW_BlkBlockDef.cs" />
     <Compile Include="Model\Schema\FW_BlkConnDef.cs" />
-    <Compile Include="Model\Schema\FW_BlkDomainDef.cs" />
-    <Compile Include="Model\Schema\FW_BlkDomain.cs" />
+    <Compile Include="Model\Schema\FW_BlkClusterDef.cs" />
     <Compile Include="Model\Schema\FW_BlkModuleDef.cs" />
     <Compile Include="Model\Schema\FW_BlkPortDef.cs" />
     <Compile Include="Model\Schema\FW_BlkPortRef.cs" />

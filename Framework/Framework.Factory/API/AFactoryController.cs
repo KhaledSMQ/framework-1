@@ -12,7 +12,7 @@ using System.Web.Http;
 
 namespace Framework.Factory.API
 {
-    public class FactoryController : AController
+    public abstract class AFactoryController : AController
     {
         //
         // HUB
@@ -21,13 +21,13 @@ namespace Framework.Factory.API
         [ActionName("hub.loaded"), HttpGet]
         public IHttpActionResult HUB_GetLoaded()
         {
-            return Run(() => { return Scope.Hub.GetListOfLoaded(); });
+            return ApplyAndReturn(() => { return Scope.Hub.GetListOfLoaded(); });
         }
 
         [ActionName("hub.instances"), HttpGet]
         public IHttpActionResult HUB_GetInstances()
         {
-            return Run(() => { return Scope.Hub.GetListOfInstances(); });
+            return ApplyAndReturn(() => { return Scope.Hub.GetListOfInstances(); });
         }
     }
 }

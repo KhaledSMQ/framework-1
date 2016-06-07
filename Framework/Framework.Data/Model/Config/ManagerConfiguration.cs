@@ -11,17 +11,17 @@ using System.Configuration;
 
 namespace Framework.Data.Model.Config
 {
-    public class ManagerConfiguration : ConfigurationSection
+    public class ConfigManager : ConfigurationSection
     {
         //
         // CLUSTERS
         //
 
         [ConfigurationProperty(Constants.CLUSTERS, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(ClusterElementCollection))]
-        public ClusterElementCollection Clusters
+        [ConfigurationCollection(typeof(ConfigClusterCollection))]
+        public ConfigClusterCollection Clusters
         {
-            get { return (ClusterElementCollection)this[Constants.CLUSTERS]; }
+            get { return (ConfigClusterCollection)this[Constants.CLUSTERS]; }
         }
 
         //
@@ -29,10 +29,10 @@ namespace Framework.Data.Model.Config
         //
 
         [ConfigurationProperty(Constants.SETTINGS, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(SettingElementCollection))]
-        public SettingElementCollection Settings
+        [ConfigurationCollection(typeof(ConfigSettingCollection))]
+        public ConfigSettingCollection Settings
         {
-            get { return (SettingElementCollection)this[Constants.SETTINGS]; }
+            get { return (ConfigSettingCollection)this[Constants.SETTINGS]; }
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Framework.Data.Model.Schema
 
         public string TypeName { get; set; }
 
-        public virtual ICollection<Setting> Settings { get; set; }
+        public virtual ICollection<FW_DataSetting> Settings { get; set; }
 
         //
         // Audits

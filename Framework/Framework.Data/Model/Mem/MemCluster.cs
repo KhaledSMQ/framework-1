@@ -24,7 +24,7 @@ namespace Framework.Data.Model.Mem
         public IList<string> Models { get; set; }
 
         //
-        // Original context specification.
+        // Original cluster specification.
         //
 
         [JsonIgnore]

@@ -12,13 +12,13 @@ using System.Configuration;
 
 namespace Framework.Data.Model.Config
 {
-    public class EntityElementCollection : ConfigurationElementCollection
+    public class ConfigEntityCollection : ConfigurationElementCollection
     {
-        public EntityElementCollection() { }
+        public ConfigEntityCollection() { }
 
-        public EntityElement this[int index]
+        public ConfigEntity this[int index]
         {
-            get { return (EntityElement)BaseGet(index); }
+            get { return (ConfigEntity)BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -29,7 +29,7 @@ namespace Framework.Data.Model.Config
             }
         }
 
-        public void Add(EntityElement serviceConfig)
+        public void Add(ConfigEntity serviceConfig)
         {
             BaseAdd(serviceConfig);
         }
@@ -41,15 +41,15 @@ namespace Framework.Data.Model.Config
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new EntityElement();
+            return new ConfigEntity();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((EntityElement)element).Name;
+            return ((ConfigEntity)element).Name;
         }
 
-        public void Remove(EntityElement serviceConfig)
+        public void Remove(ConfigEntity serviceConfig)
         {
             BaseRemove(serviceConfig.Name);
         }
@@ -65,7 +65,7 @@ namespace Framework.Data.Model.Config
         }
     }
 
-    public class EntityElement : BaseElementWithTypeAndSettings
+    public class ConfigEntity : ConfigBaseWithTypeAndSettings
     {
         //
         // KIND
@@ -83,10 +83,10 @@ namespace Framework.Data.Model.Config
         //
 
         [ConfigurationProperty(Constants.QUERIES, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(QueryElementCollection))]
-        public QueryElementCollection Queries
+        [ConfigurationCollection(typeof(ConfigQueryCollection))]
+        public ConfigQueryCollection Queries
         {
-            get { return (QueryElementCollection)this[Constants.QUERIES]; }
+            get { return (ConfigQueryCollection)this[Constants.QUERIES]; }
         }
     }
 }

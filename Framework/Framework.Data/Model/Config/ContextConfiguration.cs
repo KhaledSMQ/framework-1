@@ -11,13 +11,13 @@ using System.Configuration;
 
 namespace Framework.Data.Model.Config
 {
-    public class ContextElementCollection : ConfigurationElementCollection
+    public class ConfigContextCollection : ConfigurationElementCollection
     {
-        public ContextElementCollection() { }
+        public ConfigContextCollection() { }
 
-        public ContextElement this[int index]
+        public ConfigContext this[int index]
         {
-            get { return (ContextElement)BaseGet(index); }
+            get { return (ConfigContext)BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -28,7 +28,7 @@ namespace Framework.Data.Model.Config
             }
         }
 
-        public void Add(ContextElement elm)
+        public void Add(ConfigContext elm)
         {
             BaseAdd(elm);
         }
@@ -40,15 +40,15 @@ namespace Framework.Data.Model.Config
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new ContextElement();
+            return new ConfigContext();
         }
 
         protected override object GetElementKey(ConfigurationElement elm)
         {
-            return ((ContextElement)elm).Name;
+            return ((ConfigContext)elm).Name;
         }
 
-        public void Remove(ContextElement elm)
+        public void Remove(ConfigContext elm)
         {
             BaseRemove(elm.Name);
         }
@@ -64,16 +64,16 @@ namespace Framework.Data.Model.Config
         }
     }
 
-    public class ContextElement : BaseElement
+    public class ConfigContext : ConfigBase
     { 
         //
         // PROVIDER
         //
 
         [ConfigurationProperty(Constants.PROVIDER, IsRequired = true)]
-        public ProviderElement Provider
+        public ConfigProvider Provider
         {
-            get { return (ProviderElement)this[Constants.PROVIDER]; }
+            get { return (ConfigProvider)this[Constants.PROVIDER]; }
         }
 
         //
@@ -81,10 +81,10 @@ namespace Framework.Data.Model.Config
         //
 
         [ConfigurationProperty(Constants.ENTITIES, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(EntityRefElementCollection))]
-        public EntityRefElementCollection Entities
+        [ConfigurationCollection(typeof(ConfigEntityRefCollection))]
+        public ConfigEntityRefCollection Entities
         {
-            get { return (EntityRefElementCollection)this[Constants.ENTITIES]; }
+            get { return (ConfigEntityRefCollection)this[Constants.ENTITIES]; }
         }
 
         //
@@ -92,10 +92,10 @@ namespace Framework.Data.Model.Config
         //
 
         [ConfigurationProperty(Constants.MODELS, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(ModelRefElementCollection))]
-        public ModelRefElementCollection Models
+        [ConfigurationCollection(typeof(ConfigModelRefCollection))]
+        public ConfigModelRefCollection Models
         {
-            get { return (ModelRefElementCollection)this[Constants.MODELS]; }
+            get { return (ConfigModelRefCollection)this[Constants.MODELS]; }
         }
     }
 }

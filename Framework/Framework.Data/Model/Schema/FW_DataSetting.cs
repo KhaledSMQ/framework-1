@@ -9,16 +9,11 @@
 
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
-using Framework.Core.Types.Specialized;
 using System;
-using System.Collections.Generic;
 
 namespace Framework.Data.Model.Schema
 {
-    public class FW_DataContext : 
-        IID<int>,
-        IName<string>,
-        IDescription<string>,
+    public class FW_DataSetting : 
         IAuditable<string>
     {
         //
@@ -31,13 +26,7 @@ namespace Framework.Data.Model.Schema
 
         public string Description { get; set; }
 
-        public FW_DataProvider Provider { get; set; }
-
-        public ICollection<FW_DataEntityRef> Entities { get; set; }
-
-        public ICollection<FW_DataPartialModelRef> Models { get; set; }
-
-        public ICollection<FW_DataSetting> Settings { get; set; }
+        public string Value { get; set; }
 
         //
         // AUDITS
@@ -55,7 +44,7 @@ namespace Framework.Data.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public FW_DataContext()
+        public FW_DataSetting()
         {
             //
             // INFO
@@ -64,10 +53,7 @@ namespace Framework.Data.Model.Schema
             ID = -1;
             Name = string.Empty;
             Description = string.Empty;
-            Provider = null;
-            Entities = null;
-            Models = null;
-            Settings = null;
+            Value = string.Empty;
 
             //
             // AUDITS

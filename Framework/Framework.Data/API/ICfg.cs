@@ -7,6 +7,7 @@
 // Description:
 // ============================================================================
 
+using Framework.Data.Model.Config;
 using Framework.Data.Model.Schema;
 using Framework.Factory.Patterns;
 using System.Collections.Generic;
@@ -17,6 +18,6 @@ namespace Framework.Data.API
     {
         void Load();
 
-        IEnumerable<FW_DataCluster> GetListOfClusters();
+        IEnumerable<ConfigCluster> GetListOfClusters();
     }
 }

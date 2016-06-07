@@ -79,7 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\FactoryController.cs" />
+    <Compile Include="API\AFactoryController.cs" />
     <Compile Include="API\SrvReflected.cs" />
     <Compile Include="API\IReflected.cs" />
     <Compile Include="API\IServiceEntry.cs" />

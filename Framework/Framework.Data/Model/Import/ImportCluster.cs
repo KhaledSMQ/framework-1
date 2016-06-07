@@ -12,11 +12,13 @@ using System.Collections.Generic;
 
 namespace Framework.Data.Model.Import
 {
-    public class ImportCluster 
+    public class ImportCluster
     {
         //
         // PROPERTIES
         //
+
+        public int Owner { get; set; }
 
         public string Name { get; set; }
 
@@ -28,7 +30,7 @@ namespace Framework.Data.Model.Import
 
         public ICollection<ImportPartialModel> Models { get; set; }
 
-        public ICollection<Setting> Settings { get; set; }  
+        public ICollection<ImportSetting> Settings { get; set; }
 
         //
         // CONSTRUCTORS
@@ -36,8 +38,9 @@ namespace Framework.Data.Model.Import
 
         public ImportCluster()
         {
-            Name = string.Empty;
-            Description = string.Empty;
+            Owner = default(int);
+            Name = default(string);
+            Description = default(string);
             Contexts = null;
             Entities = null;
             Models = null;

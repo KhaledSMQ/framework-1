@@ -24,7 +24,7 @@ namespace Framework.Data.Model.Import
 
         public string TypeName { get; set; }
 
-        public virtual ICollection<Setting> Settings { get; set; }
+        public virtual ICollection<ImportSetting> Settings { get; set; }
 
         //
         // CONSTRUCTORS

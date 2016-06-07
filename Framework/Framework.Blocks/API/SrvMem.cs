@@ -20,7 +20,7 @@ using System.Linq;
 
 namespace Framework.Blocks.API
 {
-    public class SrvMemStore : ACommon, IMemStore
+    public class SrvMem : ACommon, IMem
     {
         //
         // INITIALIZATION
@@ -38,7 +38,7 @@ namespace Framework.Blocks.API
             // Initialize in-memory data structures.
             //
 
-            __Domains = new SortedDictionary<Id, MemDomain>();
+            __Domains = new SortedDictionary<Id, MemCluster>();
             __Modules = new SortedDictionary<Id, MemModule>();
             __Blocks = new SortedDictionary<Id, MemBlockDef>();
         }
@@ -51,7 +51,7 @@ namespace Framework.Blocks.API
         {
             return new
             {
-                Domains = Domain_GetList(),
+                Domains = Cluster_GetList(),
                 Modules = Module_GetList(),
                 Blocks = Block_GetList()
             };
@@ -59,14 +59,14 @@ namespace Framework.Blocks.API
 
         public object Clear()
         {
-            return Domain_Clear();
+            return Cluster_Clear();
         }
 
         //
         // DOMAINS
         //
 
-        public Id Domain_Import(FW_BlkDomainDef fwDomainDef)
+        public Id Cluster_Import(FW_BlkClusterDef fwDomainDef)
         {
             Id domain_ID = default(Id);
 
@@ -76,7 +76,7 @@ namespace Framework.Blocks.API
 
                 IList<Id> domain_Modules = fwDomainDef.Modules.Map(new List<Id>(), mod => { return Module_Import(domain_ID, mod); });
 
-                MemDomain domain = new MemDomain()
+                MemCluster domain = new MemCluster()
                 {
                     ID = domain_ID,
                     Modules = domain_Modules
@@ -93,43 +93,43 @@ namespace Framework.Blocks.API
             return domain_ID;
         }
 
-        public MemDomain Domain_Get(Id id)
+        public MemCluster Cluster_Get(Id id)
         {
             return __Get(__Domains, id, "domain '{0}' is not defined!");
         }
 
-        public bool Domain_Exists(Id id)
+        public bool Cluster_Exists(Id id)
         {
             return __Exists(__Domains, id);
         }
 
-        public IEnumerable<MemDomain> Domain_GetList()
+        public IEnumerable<MemCluster> Cluster_GetList()
         {
             return __GetList(__Domains);
         }
 
-        public void Domain_Unload(MemDomain domain)
+        public void Cluster_Unload(MemCluster domain)
         {
-            Domain_Unload(domain.ID);
+            Cluster_Unload(domain.ID);
         }
 
-        public void Domain_Unload(string domainID)
+        public void Cluster_Unload(string domainID)
         {
-            Domain_Unload(new Id(domainID));
+            Cluster_Unload(new Id(domainID));
         }
 
-        public void Domain_Unload(Id domainID)
+        public void Cluster_Unload(Id domainID)
         {
-            MemDomain domain = Domain_Get(domainID);
+            MemCluster domain = Cluster_Get(domainID);
             domain.Modules.Apply(Module_Unload);
             __Delete(__Domains, domainID);
         }
 
-        public int Domain_Clear()
+        public int Cluster_Clear()
         {
-            IEnumerable<MemDomain> listOfDomains = Domain_GetList();
+            IEnumerable<MemCluster> listOfDomains = Cluster_GetList();
             int numOfDomains = listOfDomains.Count();
-            listOfDomains.Apply(Domain_Unload);
+            listOfDomains.Apply(Cluster_Unload);
             return numOfDomains;
         }
 
@@ -508,7 +508,7 @@ namespace Framework.Blocks.API
         // Memory storage.
         //
 
-        private IDictionary<Id, MemDomain> __Domains = null;
+        private IDictionary<Id, MemCluster> __Domains = null;
         private IDictionary<Id, MemModule> __Modules = null;
         private IDictionary<Id, MemBlockDef> __Blocks = null;
     }

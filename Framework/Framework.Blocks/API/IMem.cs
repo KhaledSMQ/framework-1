@@ -15,7 +15,7 @@ using System.Collections.Generic;
 
 namespace Framework.Blocks.API
 {
-    public interface IMemStore : ICommon
+    public interface IMem : ICommon
     {
         //
         // STORE
@@ -29,21 +29,21 @@ namespace Framework.Blocks.API
         // DOMAIN
         //    
 
-        Id Domain_Import(FW_BlkDomainDef domain);
+        Id Cluster_Import(FW_BlkClusterDef domain);
         
-        MemDomain Domain_Get(Id id);
+        MemCluster Cluster_Get(Id id);
 
-        bool Domain_Exists(Id id);
+        bool Cluster_Exists(Id id);
 
-        IEnumerable<MemDomain> Domain_GetList();
+        IEnumerable<MemCluster> Cluster_GetList();
 
-        void Domain_Unload(MemDomain domain);
+        void Cluster_Unload(MemCluster domain);
 
-        void Domain_Unload(string domainID);
+        void Cluster_Unload(string domainID);
 
-        void Domain_Unload(Id domainID);
+        void Cluster_Unload(Id domainID);
 
-        int Domain_Clear();
+        int Cluster_Clear();
 
         //
         // MODULES

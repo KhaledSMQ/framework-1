@@ -20,7 +20,6 @@ namespace Framework.Data.Model.Schema
         IName<string>,
         IDescription<string>,
         ITypeName<string>,
-        IConfigList<Setting>,
         IAuditable<string>
     {
         //
@@ -39,7 +38,7 @@ namespace Framework.Data.Model.Schema
 
         public ICollection<FW_DataQuery> Queries { get; set; }
 
-        public ICollection<Setting> Settings { get; set; }
+        public ICollection<FW_DataSetting> Settings { get; set; }
 
         //
         // AUDITS

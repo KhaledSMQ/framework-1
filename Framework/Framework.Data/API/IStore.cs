@@ -7,40 +7,42 @@
 // Description:
 // ============================================================================
 
+using Framework.Data.Model.Config;
+using Framework.Data.Model.Import;
 using Framework.Factory.Patterns;
+using System.Collections.Generic;
 
 namespace Framework.Data.API
 {
     public interface IStore : ICommon
     {
         //
-        // Boot data store service.
-        // Load configurations, initializes domains.
+        // SCHEMA-ACCESS-LAYER
         //
 
         void Boot();
 
-        //
-        // Initialize all memory loaded domains.
-        // Method will only initialize domains that are loaded
-        // but were not initialized, this means you can call this 
-        // method multiple times.
-        //
-
         void Setup();
+
+        void Schema_Import(IEnumerable<ImportCluster> clusters);
+
+        void Schema_Import(ImportCluster cluster);
+
+        void Schema_Import(IEnumerable<ConfigCluster> clusters);
+
+        void Schema_Import(ConfigCluster cluster);
 
         //
         // DATA-ACCESS-LAYER
-        // Data Access Layer Entities.
         //
 
-        object DAL_Create(string entityID, object value);
+        object Dal_Create(string entity, object value);
 
-        object DAL_Query(string entityID, string name, object args);
+        object Dal_Query(string entity, string name, object args);
 
-        object DAL_Update(string entityID, object value);
+        object Dal_Update(string entity, object value);
 
-        object DAL_Delete(string entityID, object value);
+        object Dal_Delete(string entity, object value);
 
         //
         // DIAGNOSTICS

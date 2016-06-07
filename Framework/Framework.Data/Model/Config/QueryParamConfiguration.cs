@@ -11,13 +11,13 @@ using System.Configuration;
 
 namespace Framework.Data.Model.Config
 {
-    public class QueryParamElementCollection : ConfigurationElementCollection
+    public class ConfigQueryParamCollection : ConfigurationElementCollection
     {
-        public QueryParamElementCollection() { }
+        public ConfigQueryParamCollection() { }
 
-        public QueryParamElement this[int index]
+        public ConfigQueryParam this[int index]
         {
-            get { return (QueryParamElement)BaseGet(index); }
+            get { return (ConfigQueryParam)BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -28,7 +28,7 @@ namespace Framework.Data.Model.Config
             }
         }
 
-        public void Add(QueryParamElement serviceConfig)
+        public void Add(ConfigQueryParam serviceConfig)
         {
             BaseAdd(serviceConfig);
         }
@@ -40,15 +40,15 @@ namespace Framework.Data.Model.Config
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new QueryParamElement();
+            return new ConfigQueryParam();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((QueryParamElement)element).Name;
+            return ((ConfigQueryParam)element).Name;
         }
 
-        public void Remove(QueryParamElement serviceConfig)
+        public void Remove(ConfigQueryParam serviceConfig)
         {
             BaseRemove(serviceConfig.Name);
         }
@@ -64,7 +64,7 @@ namespace Framework.Data.Model.Config
         }
     }
 
-    public class QueryParamElement : BaseElementWithType
+    public class ConfigQueryParam : ConfigBaseWithType
     {
         //
         // REQUIRED

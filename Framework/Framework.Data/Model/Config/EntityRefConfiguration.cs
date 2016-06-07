@@ -11,13 +11,13 @@ using System.Configuration;
 
 namespace Framework.Data.Model.Config
 {
-    public class EntityRefElementCollection : ConfigurationElementCollection
+    public class ConfigEntityRefCollection : ConfigurationElementCollection
     {
-        public EntityRefElementCollection() { }
+        public ConfigEntityRefCollection() { }
 
-        public EntityRefElement this[int index]
+        public ConfigEntityRef this[int index]
         {
-            get { return (EntityRefElement)BaseGet(index); }
+            get { return (ConfigEntityRef)BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -28,7 +28,7 @@ namespace Framework.Data.Model.Config
             }
         }
 
-        public void Add(EntityRefElement elm)
+        public void Add(ConfigEntityRef elm)
         {
             BaseAdd(elm);
         }
@@ -40,15 +40,15 @@ namespace Framework.Data.Model.Config
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new EntityRefElement();
+            return new ConfigEntityRef();
         }
 
         protected override object GetElementKey(ConfigurationElement elm)
         {
-            return ((EntityRefElement)elm).Name;
+            return ((ConfigEntityRef)elm).Name;
         }
 
-        public void Remove(EntityRefElement elm)
+        public void Remove(ConfigEntityRef elm)
         {
             BaseRemove(elm.Name);
         }
@@ -64,5 +64,5 @@ namespace Framework.Data.Model.Config
         }
     }
 
-    public class EntityRefElement : BaseElementWithSettings { }
+    public class ConfigEntityRef : ConfigBaseWithSettings { }
 }

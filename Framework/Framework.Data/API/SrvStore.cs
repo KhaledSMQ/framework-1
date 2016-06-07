@@ -7,9 +7,13 @@
 // Description: Data store service implementation.
 // ============================================================================
 
+using Framework.Data.Model.Config;
+using Framework.Data.Model.Import;
 using Framework.Data.Model.Mem;
 using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
+using Framework.Core.Extensions;
+using System.Collections.Generic;
 
 namespace Framework.Data.API
 {
@@ -50,38 +54,52 @@ namespace Framework.Data.API
         }
 
         //
-        // Load configuration values from the configuration store.
-        // Load all settings, but also the data domains defined.
+        // SCHEMA-ACCESS-LAYER
         //
 
         public void Boot()
         {
             SrvCfg.Load();
-            SrvMem.Cluster_Import(SrvCfg.GetListOfClusters());
+            Schema_Import(SrvCfg.GetListOfClusters());
         }
-
-        //
-        // Initialize all domains. 
-        // Initialize all loaded, (i.e. in memory) domains.
-        //
 
         public void Setup()
         {
             SrvMem.Cluster_Init(SrvMem.Cluster_GetList());
         }
 
+        public void Schema_Import(IEnumerable<ImportCluster> clusters)
+        {
+            clusters.Apply(Schema_Import);
+        }
+
+        public void Schema_Import(ImportCluster cluster)
+        {
+            SrvMem.Cluster_Import(Scope.Hub.Get<ITransform>().Convert(cluster));
+        }
+
+        public void Schema_Import(IEnumerable<ConfigCluster> clusters)
+        {
+            clusters.Apply(Schema_Import);
+        }
+
+        public void Schema_Import(ConfigCluster cluster)
+        {
+            SrvMem.Cluster_Import(Scope.Hub.Get<ITransform>().Convert(cluster));
+        }
+
         //
         // DATA-ACCESS-LAYER
         //
 
-        public object DAL_Create(string entityID, object value)
+        public object Dal_Create(string entityID, object value)
         {
             IProviderDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
             MemEntity entity = SrvMem.Entity_Get(entityID);
             return SrvDAL.Create(provider, entity, value);
         }
 
-        public object DAL_Query(string entityID, string name, object args)
+        public object Dal_Query(string entityID, string name, object args)
         {
             IProviderDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
             MemQuery query = SrvMem.Query_Get(entityID, name);
@@ -89,14 +107,14 @@ namespace Framework.Data.API
             return SrvDAL.Query(provider, query, entity, args);
         }
 
-        public object DAL_Update(string entityID, object value)
+        public object Dal_Update(string entityID, object value)
         {
             IProviderDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
             MemEntity entity = SrvMem.Entity_Get(entityID);
             return SrvDAL.Update(provider, entity, value);
         }
 
-        public object DAL_Delete(string entityID, object value)
+        public object Dal_Delete(string entityID, object value)
         {
             IProviderDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
             MemEntity entity = SrvMem.Entity_Get(entityID);

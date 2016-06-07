@@ -29,7 +29,7 @@ namespace Framework.Data.Model.Import
 
         public ICollection<ImportQuery> Queries { get; set; }
 
-        public ICollection<Setting> Settings { get; set; }
+        public ICollection<ImportSetting> Settings { get; set; }
 
         //
         // CONSTRUCTORS
