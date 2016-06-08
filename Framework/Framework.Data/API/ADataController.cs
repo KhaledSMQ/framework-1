@@ -20,6 +20,12 @@ namespace Framework.Data.API
         // Entry points for data definition layer.
         //
 
+        [ActionName("schema.init"), HttpGet, HttpPost, HttpPut]
+        public IHttpActionResult SCHEMA_InitCluster([FromUri] string id)
+        {
+            return ApplyNoReturn(() => { Scope.Hub.GetUnique<IStore>().Schema_Init(id); });
+        }
+
         [ActionName("schema.import"), HttpPost, HttpPut]
         public IHttpActionResult SCHEMA_ImportCluster([FromBody] ImportCluster cluster)
         {

@@ -20,9 +20,11 @@ namespace Framework.Data.API
         // SCHEMA-ACCESS-LAYER
         //
 
-        void Boot();
+        void Schema_Load();
 
-        void Setup();
+        void Schema_Init();
+
+        void Schema_Init(string cluster);
 
         void Schema_Import(IEnumerable<ImportCluster> clusters);
 

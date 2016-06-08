@@ -57,15 +57,20 @@ namespace Framework.Data.API
         // SCHEMA-ACCESS-LAYER
         //
 
-        public void Boot()
+        public void Schema_Load()
         {
             SrvCfg.Load();
             Schema_Import(SrvCfg.GetListOfClusters());
         }
 
-        public void Setup()
+        public void Schema_Init()
         {
             SrvMem.Cluster_Init(SrvMem.Cluster_GetList());
+        }
+
+        public void Schema_Init(string cluster)
+        {
+            SrvMem.Cluster_Init(cluster);
         }
 
         public void Schema_Import(IEnumerable<ImportCluster> clusters)
