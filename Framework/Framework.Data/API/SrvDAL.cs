@@ -126,6 +126,10 @@ namespace Framework.Data.API
             return output;
         }
 
+        //
+        // HELPERS
+        //
+
         private object __GetItem(MemEntity entity, object value)
         {
             object item = value;
