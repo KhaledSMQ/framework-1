@@ -17,9 +17,9 @@ namespace Framework.Code.Model
 
         public string Name { get; set; }
 
-        public Type Base { get; set; }
+        public string Base { get; set; }
 
-        public IList<Type> Interfaces { get; set; }
+        public IList<string> Interfaces { get; set; }
 
         public IList<Property> Properties { get; set; }
     }

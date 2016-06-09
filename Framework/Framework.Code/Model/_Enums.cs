@@ -2,15 +2,19 @@
 // Project: Framework
 // Name/Class:
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Create date: 
+// Create date: 20/Mar/2016
 // Company: Cybermap Lta.
 // Description:
 // ============================================================================
 
 namespace Framework.Code.Model
 {
-    public class Type
+    public enum Accessibility
     {
-        public string Name { get; set; }
-    }
+        PUBLIC,
+        PRIVATE,
+        PROTECTED
+    };
+
+
 }

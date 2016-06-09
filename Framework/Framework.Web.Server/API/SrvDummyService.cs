@@ -26,8 +26,16 @@ namespace Framework.Web.Server.API
                 Namespace = "Gen",
                 Name = "Example",
                 Properties = new List<Code.Model.Property>() {
-                    new Code.Model.Property() { Type = new Code.Model.Type() { Name = "int" }, Name = "ID" },
-                    new Code.Model.Property() { Type = new Code.Model.Type() { Name = "string" }, Name = "Name" }
+                    new Code.Model.Property() {
+                        Accessibility = Code.Model.Accessibility.PUBLIC,
+                        Type = typeof(int),
+                        Name = "ID"
+                    },
+                    new Code.Model.Property() {
+                        Accessibility = Code.Model.Accessibility.PUBLIC,
+                        Type = typeof(string),
+                        Name = "Name"
+                    }
                 }
             };
 

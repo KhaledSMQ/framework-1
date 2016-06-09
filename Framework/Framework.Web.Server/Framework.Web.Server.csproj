@@ -161,6 +161,7 @@
     <Content Include="Data\Seed\_seed.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\DummyController.cs" />
     <Compile Include="API\IDummyService.cs" />
     <Compile Include="API\SrvDummyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

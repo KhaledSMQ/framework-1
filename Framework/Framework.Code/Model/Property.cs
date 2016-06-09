@@ -7,10 +7,14 @@
 // Description:
 // ============================================================================
 
+using System;
+
 namespace Framework.Code.Model
 {
     public class Property
     {
+        public Accessibility Accessibility { get; set; }
+
         public Type Type { get; set; }
 
         public string Name { get; set; }

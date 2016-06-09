@@ -51,8 +51,10 @@ namespace Framework.Code.API
             classSpec.Properties.Apply(property => 
             {                
                 CodeMemberProperty propDecl = new CodeMemberProperty();
-                propDecl.Type = new CodeTypeReference(property.Type.Name);
+                propDecl.Type = new CodeTypeReference(property.Type);
                 propDecl.Name = property.Name;
+                propDecl.HasGet = true;
+                propDecl.HasSet = true;
 
                 classDecl.Members.Add(propDecl);
             });
