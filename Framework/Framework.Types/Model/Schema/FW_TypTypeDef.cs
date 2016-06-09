@@ -14,7 +14,6 @@ using System;
 namespace Framework.Types.Model.Schema
 {
     public class FW_TypTypeDef :
-        IOwner<int>,
         IID<int>,
         IName<string>,
         IDescription<string>,

@@ -7,8 +7,6 @@
 // Description: 
 // ============================================================================
 
-using System.Reflection;
-
 namespace Framework.Shell
 {
     public static class Lib
@@ -17,12 +15,12 @@ namespace Framework.Shell
         // Error prefix for error messages in this library.
         //
 
-        public static string DEFAULT_ERROR_MSG_PREFIX = Assembly.GetExecutingAssembly().GetName().Name;
+        public static string DEFAULT_ERROR_MSG_PREFIX = Framework.Lib.GetDefaultErrorPrefix(System.Reflection.Assembly.GetExecutingAssembly());
 
         // 
         // Default Xml namespace.
         //
 
-        public const string DEFAULT_XML_NAMESPACE = Framework.Lib.DEFAULT_XML_NAMESPACE + "/shell";
+        public static string DEFAULT_XML_NAMESPACE = Framework.Lib.GetDefaultXmlNamespace(System.Reflection.Assembly.GetExecutingAssembly());
     }
 }

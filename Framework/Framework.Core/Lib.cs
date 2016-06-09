@@ -19,6 +19,20 @@ namespace Framework
         //
 
         public const string DEFAULT_XML_NAMESPACE = "http://framework.cybermap.pt/";
+
+        //
+        // Static methods for assembly/lib values.
+        //
+
+        public static string GetDefaultErrorPrefix(Assembly executingAssembly)
+        {
+            return executingAssembly.GetName().Name;
+        }
+
+        public static string GetDefaultXmlNamespace(Assembly executingAssembly)
+        {
+            return DEFAULT_XML_NAMESPACE + "/" + GetDefaultErrorPrefix(executingAssembly).RightOf(".").Replace('.', '/').ToLower();
+        }
     }
 }
 
@@ -30,12 +44,12 @@ namespace Framework.Core
         // Error prefix for error messages in this library.
         //
 
-        public static string DEFAULT_ERROR_MSG_PREFIX = Assembly.GetExecutingAssembly().GetName().Name;
+        public static string DEFAULT_ERROR_MSG_PREFIX = Framework.Lib.GetDefaultErrorPrefix(Assembly.GetExecutingAssembly());
 
         // 
         // Default Xml namespace.
         //
 
-        public static string DEFAULT_XML_NAMESPACE = Framework.Lib.DEFAULT_XML_NAMESPACE + "/" + DEFAULT_ERROR_MSG_PREFIX.RightOf(".").Replace('.','/').ToLower();
+        public static string DEFAULT_XML_NAMESPACE = Framework.Lib.GetDefaultXmlNamespace(Assembly.GetExecutingAssembly());
     }
 }
