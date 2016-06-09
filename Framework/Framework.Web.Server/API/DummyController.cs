@@ -14,7 +14,7 @@ namespace Framework.Web.Server.API
     public class DummyController : Factory.Patterns.AController
     {
         [ActionName("run"), HttpGet, HttpPost, HttpPut]
-        public IHttpActionResult SCHEMA_InitCluster([FromUri] string id)
+        public IHttpActionResult Run()
         {
             return ApplyNoReturn(() => { Scope.Hub.GetUnique<IDummyService>().Run(); });
         }
