@@ -249,10 +249,6 @@
     <Folder Include="Server\Model\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Framework.APIs\Framework.APIs.csproj">
-      <Project>{1ca157be-cd57-43bc-9afc-ab4ce0eac87c}</Project>
-      <Name>Framework.APIs</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Framework.Auth\Framework.Auth.csproj">
       <Project>{13b3c667-c1d6-4736-bee7-70f608538914}</Project>
       <Name>Framework.Auth</Name>
@@ -268,10 +264,6 @@
     <ProjectReference Include="..\Framework.Comm\Framework.Comm.csproj">
       <Project>{df072c9d-45f4-4ee7-a243-a155e6a79a7b}</Project>
       <Name>Framework.Comm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Components\Framework.Components.csproj">
-      <Project>{4ef44137-5cf7-4dae-a5ca-c3ecd9f20937}</Project>
-      <Name>Framework.Components</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Configuration\Framework.Configuration.csproj">
       <Project>{6c07c50f-a704-4eb1-b6bd-3b629f7f5729}</Project>
@@ -329,29 +321,13 @@
       <Project>{eefd71d7-df7a-46b2-b31a-e66cdd14ab5e}</Project>
       <Name>Framework.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Framework.Navigation\Framework.Navigation.csproj">
-      <Project>{0e537a63-c299-4c42-b3bc-4e98a73377d9}</Project>
-      <Name>Framework.Navigation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Framework.Packages\Framework.Packages.csproj">
       <Project>{5d3c5a1a-f582-4c50-9036-e466d3f79446}</Project>
       <Name>Framework.Packages</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Framework.Pages\Framework.Pages.csproj">
-      <Project>{b7701d2a-54f2-430a-88c3-8ef5e4843732}</Project>
-      <Name>Framework.Pages</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Framework.Reporting\Framework.Reporting.csproj">
       <Project>{89bb6ad5-6b06-415c-b460-965dc5e39b8b}</Project>
       <Name>Framework.Reporting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Scripts.DataScript\Framework.Scripts.DataScript.csproj">
-      <Project>{4370eb83-f28c-4a8a-ba09-aa78ddc67e65}</Project>
-      <Name>Framework.Scripts.DataScript</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Scripts\Framework.Scripts.csproj">
-      <Project>{874c8db8-7f8f-4a0f-a1cc-352077441634}</Project>
-      <Name>Framework.Scripts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Search\Framework.Search.csproj">
       <Project>{9201f213-d8e3-4f69-bf05-8b6540ae99e2}</Project>

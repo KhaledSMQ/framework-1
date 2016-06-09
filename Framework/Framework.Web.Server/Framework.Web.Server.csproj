@@ -161,6 +161,8 @@
     <Content Include="Data\Seed\_seed.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\IDummyService.cs" />
+    <Compile Include="API\SrvDummyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="API\FactoryController.cs" />
     <Compile Include="API\DataController.cs" />
@@ -175,13 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\DB\" />
-    <Folder Include="Model\" />
+    <Folder Include="Gen\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Framework.APIs\Framework.APIs.csproj">
-      <Project>{1ca157be-cd57-43bc-9afc-ab4ce0eac87c}</Project>
-      <Name>Framework.APIs</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Framework.Auth\Framework.Auth.csproj">
       <Project>{13b3c667-c1d6-4736-bee7-70f608538914}</Project>
       <Name>Framework.Auth</Name>
@@ -194,13 +192,17 @@
       <Project>{8e8c0642-e92c-4fa3-b127-7a6383870d37}</Project>
       <Name>Framework.Charting</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Framework.Code\Framework.Code.csproj">
+      <Project>{dea74fd1-67ed-4684-8445-60358ab851df}</Project>
+      <Name>Framework.Code</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Framework.Comm\Framework.Comm.csproj">
       <Project>{df072c9d-45f4-4ee7-a243-a155e6a79a7b}</Project>
       <Name>Framework.Comm</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Framework.Components\Framework.Components.csproj">
-      <Project>{4ef44137-5cf7-4dae-a5ca-c3ecd9f20937}</Project>
-      <Name>Framework.Components</Name>
+    <ProjectReference Include="..\Framework.Compression\Framework.Compression.csproj">
+      <Project>{b7701d2a-54f2-430a-88c3-8ef5e4843732}</Project>
+      <Name>Framework.Compression</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Configuration\Framework.Configuration.csproj">
       <Project>{6c07c50f-a704-4eb1-b6bd-3b629f7f5729}</Project>
@@ -242,6 +244,10 @@
       <Project>{12f96190-7bb7-4f01-bef0-03591d5ae9c1}</Project>
       <Name>Framework.Forms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Framework.Fragments\Framework.Fragments.csproj">
+      <Project>{c0e1e4dc-990d-4c07-aaa9-198615919cc2}</Project>
+      <Name>Framework.Fragments</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Framework.Localization\Framework.Localization.csproj">
       <Project>{4605e740-4e65-4be5-a191-834804595e8f}</Project>
       <Name>Framework.Localization</Name>
@@ -258,29 +264,13 @@
       <Project>{eefd71d7-df7a-46b2-b31a-e66cdd14ab5e}</Project>
       <Name>Framework.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Framework.Navigation\Framework.Navigation.csproj">
-      <Project>{0e537a63-c299-4c42-b3bc-4e98a73377d9}</Project>
-      <Name>Framework.Navigation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Framework.Packages\Framework.Packages.csproj">
       <Project>{5d3c5a1a-f582-4c50-9036-e466d3f79446}</Project>
       <Name>Framework.Packages</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Framework.Pages\Framework.Pages.csproj">
-      <Project>{b7701d2a-54f2-430a-88c3-8ef5e4843732}</Project>
-      <Name>Framework.Pages</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Framework.Reporting\Framework.Reporting.csproj">
       <Project>{89bb6ad5-6b06-415c-b460-965dc5e39b8b}</Project>
       <Name>Framework.Reporting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Scripts.DataScript\Framework.Scripts.DataScript.csproj">
-      <Project>{4370eb83-f28c-4a8a-ba09-aa78ddc67e65}</Project>
-      <Name>Framework.Scripts.DataScript</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Scripts\Framework.Scripts.csproj">
-      <Project>{874c8db8-7f8f-4a0f-a1cc-352077441634}</Project>
-      <Name>Framework.Scripts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Search\Framework.Search.csproj">
       <Project>{9201f213-d8e3-4f69-bf05-8b6540ae99e2}</Project>
@@ -289,6 +279,22 @@
     <ProjectReference Include="..\Framework.Shell\Framework.Shell.csproj">
       <Project>{4d8bc1f3-1d0a-436f-8e79-2fcb51cad64a}</Project>
       <Name>Framework.Shell</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Storage.EntityFramework\Framework.Storage.EntityFramework.csproj">
+      <Project>{279d483a-e474-4926-9ce9-891babbb4dd5}</Project>
+      <Name>Framework.Storage.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Storage.FileSystem\Framework.Storage.FileSystem.csproj">
+      <Project>{8058f1f7-331b-4a10-8958-a1fda7e9fd6c}</Project>
+      <Name>Framework.Storage.FileSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Storage.GoogleClowd\Framework.Storage.GoogleClowd.csproj">
+      <Project>{5504a171-d447-4268-9f67-6b503091579e}</Project>
+      <Name>Framework.Storage.GoogleClowd</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Storage\Framework.Storage.csproj">
+      <Project>{ba222fac-b415-4a78-936a-1a5d27e71f0b}</Project>
+      <Name>Framework.Storage</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Templates\Framework.Templates.csproj">
       <Project>{b4935fcb-76e7-4ac6-9f6d-89a6e97f3ce3}</Project>
@@ -321,6 +327,10 @@
     <ProjectReference Include="..\Framework.Watcher\Framework.Watcher.csproj">
       <Project>{2ae5048a-e359-4de7-9223-f0d9cf4e97d3}</Project>
       <Name>Framework.Watcher</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.WebAPI\Framework.WebAPI.csproj">
+      <Project>{d590ba6d-2425-4270-9201-d067fc59fb47}</Project>
+      <Name>Framework.WebAPI</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Web\Framework.Web.csproj">
       <Project>{ab6ab9f2-e765-4cb6-aede-a5cb3bcc8794}</Project>
