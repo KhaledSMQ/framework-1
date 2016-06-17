@@ -29,6 +29,7 @@ namespace Framework.Models.Model.Import
 
         public IDictionary<string, Property> Properties { get; set; }
 
+        public IDictionary<string, Query> Queries { get; set; }
         //
         // CONSTRUCTORS
         // 
@@ -38,6 +39,7 @@ namespace Framework.Models.Model.Import
             Name = default(string);
             Description = default(Value<string>);
             Properties = null;
+            Queries = null;
         }
     }
 }
