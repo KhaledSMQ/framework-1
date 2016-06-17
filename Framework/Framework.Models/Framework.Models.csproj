@@ -57,6 +57,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Lib.cs" />
+    <Compile Include="Model\Import\Cluster.cs" />
+    <Compile Include="Model\Import\Query.cs" />
+    <Compile Include="Model\Import\Value.cs" />
+    <Compile Include="Model\Import\Entity.cs" />
+    <Compile Include="Model\Import\Property.cs" />
+    <Compile Include="Model\Schema\FW_ModProperty.cs" />
+    <Compile Include="Model\Schema\FW_ModEntity.cs" />
+    <Compile Include="Model\Schema\FW_ModCluster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,8 +74,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="API\" />
-    <Folder Include="Model\Import\" />
-    <Folder Include="Model\Schema\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
