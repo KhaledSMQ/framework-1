@@ -9,10 +9,10 @@
 </head>
 <body>
 </body>
-    <framework:Include runat="server" Folder="Client" Pattern="*.js" />
-    <framework:Include runat="server" Folder="Client\fw" Pattern="*.js" />
-    <framework:Include runat="server" Folder="Client\fw" Pattern="__*.js" Recursive="true" />
-    <framework:Include runat="server" Folder="Client\fw\modules" Pattern="*.js" Recursive="true" />
+    <framework:Include runat="server" Folder="Packages" Pattern="*.js" />
+    <framework:Include runat="server" Folder="Packages\framework\fw" Pattern="*.js" />
+    <framework:Include runat="server" Folder="Packages\framework\fw" Pattern="__*.js" Recursive="true" />
+    <framework:Include runat="server" Folder="Packages\framework\fw\modules" Pattern="*.js" Recursive="true" />
     <script>fw.debug(true);</script>
 </html>
 
