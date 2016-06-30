@@ -20,6 +20,7 @@ namespace Framework.Comm.API
 
         public void Send(string number, string message)
         {
+            throw new System.NotSupportedException();
         }
     }
 }

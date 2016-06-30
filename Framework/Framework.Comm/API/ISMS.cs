@@ -1,5 +1,4 @@
-﻿using Framework.Factory.Patterns;
-// ============================================================================
+﻿// ============================================================================
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
@@ -7,6 +6,8 @@
 // Company: Coop4Creativity
 // Description: 
 // ============================================================================
+
+using Framework.Factory.Patterns;
 
 namespace Framework.Comm.API
 {
