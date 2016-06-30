@@ -3,7 +3,7 @@
 // Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 18/Mar/2016
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: 
 // ============================================================================
 
@@ -18,7 +18,7 @@ namespace Framework
         // Default Xml namespace for the base namespace.
         //
 
-        public const string DEFAULT_XML_NAMESPACE = "http://framework.cybermap.pt/";
+        public const string DEFAULT_XML_NAMESPACE = "http://framework.coop4creativity.pt/";
 
         //
         // Static methods for assembly/lib values.

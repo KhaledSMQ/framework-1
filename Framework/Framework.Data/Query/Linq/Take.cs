@@ -3,7 +3,7 @@
 // Name/Class: Take
 // Author: Joao Carreiro (jao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2016
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description:
 // ============================================================================
 

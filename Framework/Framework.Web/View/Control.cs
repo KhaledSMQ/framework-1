@@ -3,7 +3,7 @@
 // Name/Class: Control
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 15/Abr/2014
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Base control definition.
 // ============================================================================
 

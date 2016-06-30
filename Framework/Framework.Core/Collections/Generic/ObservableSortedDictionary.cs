@@ -4,7 +4,7 @@
 // Author: Dr. WPF
 //         Integrated by joao carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Observable collection datatype.
 //
 // Copyright (c) 2007, Dr. WPF

@@ -3,7 +3,7 @@
 // Name/Class: DictTypeConversion
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Semi-Generic based dictionary where the values are always 
 //              strings which can be converted to any type using the public
 //              conversion methods such  as GetInt(key), GetBool(key) etc.

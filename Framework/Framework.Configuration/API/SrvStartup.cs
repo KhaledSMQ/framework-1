@@ -3,7 +3,7 @@
 // Name/Class: SrvHost
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 07/Mar/2016
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Host related properties and features.
 // ============================================================================
 

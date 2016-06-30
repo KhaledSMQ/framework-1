@@ -4,7 +4,7 @@
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 //         Filipe Nunes (filipe.nunes@cybermap.pt)
 // Create date: 26/Nov/2015
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Xml extension methods.
 // ============================================================================
 

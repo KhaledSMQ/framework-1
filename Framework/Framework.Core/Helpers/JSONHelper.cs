@@ -3,7 +3,7 @@
 // Name/Class: JSONHelper
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 23/Dez/2014
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: JSON Reader
 // ============================================================================
 

@@ -3,7 +3,7 @@
 // Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Interface for storing a collection of objects of type T,
 //              such that the objects can be looked up by either the
 //              id of the object T or by creating a distinct name for the 

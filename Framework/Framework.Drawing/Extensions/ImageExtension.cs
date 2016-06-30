@@ -4,7 +4,7 @@
 // Author: Tiago Reis (tiago.reis@cybermap.pt)
 //         João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 17/Jun/2013
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Image extension methods.
 // ============================================================================                    
 

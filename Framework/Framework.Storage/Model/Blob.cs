@@ -3,7 +3,7 @@
 // Name/Class: Blob
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 03/Aug/2015
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Data blob modelling class.
 // ============================================================================
 

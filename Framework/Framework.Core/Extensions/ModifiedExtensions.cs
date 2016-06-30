@@ -3,7 +3,7 @@
 // Name/Class: ModifiedExtensions
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 29/Oct/2015
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Extension methods for modified datatype.
 // ============================================================================                    
 

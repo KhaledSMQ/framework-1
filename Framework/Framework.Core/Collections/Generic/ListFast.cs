@@ -3,7 +3,7 @@
 // Name/Class: ListFast
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Fast list implementation based on an internal array that 
 //              grows and shrinks to fit the number of items.
 // ============================================================================

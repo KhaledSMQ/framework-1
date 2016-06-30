@@ -3,7 +3,7 @@
 // Name/Class: Service
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 03/Aug/2015
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Service specification class.
 // ============================================================================
 

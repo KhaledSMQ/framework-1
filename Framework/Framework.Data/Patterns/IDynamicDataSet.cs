@@ -3,7 +3,7 @@
 // Name/Class: IDynamicDataSet
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 14/Mar/2016
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Dynamic object data source.
 // ============================================================================
 

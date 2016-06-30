@@ -3,7 +3,7 @@
 // Name/Class: IProjection
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 17/Oct/2013
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Interface that includes all sub projections.
 // ============================================================================
 

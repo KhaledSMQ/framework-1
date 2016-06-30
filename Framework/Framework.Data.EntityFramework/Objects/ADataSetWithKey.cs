@@ -3,7 +3,7 @@
 // Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Fev/2016
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description:
 // ============================================================================
 

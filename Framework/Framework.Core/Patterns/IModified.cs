@@ -3,7 +3,7 @@
 // Name/Class: IModified
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 08/Sep/2015
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Pattern for classes required modified audit info.
 // ============================================================================                    
 

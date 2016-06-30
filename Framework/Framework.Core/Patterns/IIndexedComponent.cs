@@ -3,7 +3,7 @@
 // Name/Class: 
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Interface that any component must implement
 //              so that it can be indexed by an id or by a name.
 // ============================================================================

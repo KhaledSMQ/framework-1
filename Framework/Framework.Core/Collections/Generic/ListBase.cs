@@ -3,7 +3,7 @@
 // Name/Class: ListBase
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Class to serve as a base class for generic lists.
 //              This is because the Generic list:
 //                           System.Collections.Generic.List

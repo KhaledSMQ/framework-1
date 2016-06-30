@@ -3,7 +3,7 @@
 // Name/Class: CreatedExtensions
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 14/Abr/2014
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Extension methods for created object types.
 // ============================================================================                    
 

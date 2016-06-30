@@ -3,7 +3,7 @@
 // Name/Class: FileSet
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 20/May/2015
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Data file set modelling class.
 // ============================================================================
 

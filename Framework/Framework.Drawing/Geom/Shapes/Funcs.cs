@@ -4,7 +4,7 @@
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 //         Filipe Nunes (filipe.nunes@cybermap.pt)
 // Create date: 17/Oct/2013
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Functions ton shapes. Utils.
 // ============================================================================
 

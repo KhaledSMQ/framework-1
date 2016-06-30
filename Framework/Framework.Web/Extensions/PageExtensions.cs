@@ -3,7 +3,7 @@
 // Name/Class: PageExtensions
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 13/Jun/2013
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Set of extension methods for web pages.
 // ============================================================================                    
 

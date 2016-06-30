@@ -3,7 +3,7 @@
 // Name/Class: KeyValue
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: KeyValue pair. This is a class not a struct like the 
 //              KeyValuePair. Unlike Tuple, this has Key/Value fields instead
 //              of properties that can be modified.

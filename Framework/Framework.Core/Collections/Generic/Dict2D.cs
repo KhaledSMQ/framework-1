@@ -3,7 +3,7 @@
 // Name/Class: Dict2D
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Sorted Table. Table that stores values where its indexes are 
 //              generic objects. This class is similar to a normal two 
 //              dimensional array, but with indexes implemented as generic

@@ -3,7 +3,7 @@
 // Name/Class: UrlHelper
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 31/Jul/2015
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Helper functions for urls.
 // ============================================================================  
 

@@ -3,7 +3,7 @@
 // Name/Class: UrlExtensions
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 29/July/2013
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: String extensions for Web related functions.
 // ============================================================================
 

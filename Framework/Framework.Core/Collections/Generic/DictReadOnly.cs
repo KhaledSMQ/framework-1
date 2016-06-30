@@ -3,7 +3,7 @@
 // Name/Class: DictReadOnly
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Read only wrapper for generics based dictionary.
 //              Only provides lookup retrieval abilities.
 // ============================================================================

@@ -3,7 +3,7 @@
 // Name/Class: Error
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 06/Mar/2016
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Display an error message.
 // ============================================================================
 

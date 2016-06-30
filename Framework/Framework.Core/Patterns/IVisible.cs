@@ -3,7 +3,7 @@
 // Name/Class: IVisible
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Pattern for classes that need a visibility state.
 // ============================================================================                    
 

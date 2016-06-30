@@ -3,7 +3,7 @@
 // Name/Class: IProjectionR2P
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 17/Oct/2013
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: Interface for Real to Proportional projection.
 // ============================================================================
 

@@ -3,7 +3,7 @@
 // Name/Class: TreeNodeKey
 // Author: João Carreiro (joao.carreiro@cybermap.pt)
 // Create date: 26/Nov/2015
-// Company: Cybermap Lta.
+// Company: Coop4Creativity
 // Description: This class models generic trees indexed with a key. Keys
 //              can be any hashable object class. We also include methods
 //              for generating Xml representations.
