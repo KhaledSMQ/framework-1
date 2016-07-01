@@ -145,6 +145,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="react.aspx" />
+    <Content Include="ngv1.aspx" />
     <Content Include="Packages\framework\fw\modules\core\debug.js" />
     <Content Include="Packages\framework\fw\modules\mvc\engine\component.js" />
     <Content Include="Packages\framework\fw\modules\mvc\engine\instance.js" />
@@ -216,7 +218,7 @@
     <Content Include="Packages\framework\fw\modules\mvc\framework\content\rollup.js" />
     <Content Include="Packages\jquery.min.js" />
     <None Include="Data\Seed\cluster0.json" />
-    <Content Include="index.aspx" />
+    <Content Include="fw.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -248,7 +250,9 @@
     <Folder Include="Packages\framework\angular\v1\engine\" />
     <Folder Include="Packages\framework\angular\v1\modules\" />
     <Folder Include="Packages\framework\angular\v2\" />
+    <Folder Include="Packages\framework\aurelia\" />
     <Folder Include="Packages\framework\fw\modules\mvc\framework\forms\" />
+    <Folder Include="Packages\framework\react\" />
     <Folder Include="Server\Model\" />
   </ItemGroup>
   <ItemGroup>
