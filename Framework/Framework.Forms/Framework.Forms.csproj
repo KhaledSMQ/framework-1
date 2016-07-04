@@ -56,7 +56,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\AFormsController.cs" />
+    <Compile Include="API\SrvStore.cs" />
+    <Compile Include="API\SrvMem.cs" />
+    <Compile Include="API\IMem.cs" />
+    <Compile Include="API\IStore.cs" />
     <Compile Include="Lib.cs" />
+    <Compile Include="Model\Template\FormParameter.cs" />
+    <Compile Include="Model\Template\FormTemplate.cs" />
+    <Compile Include="Model\Template\FormSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -64,10 +72,7 @@
     <None Include="Framework.Forms.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="API\" />
-    <Folder Include="Model\Schema\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>

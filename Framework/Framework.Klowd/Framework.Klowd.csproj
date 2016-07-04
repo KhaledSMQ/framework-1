@@ -234,6 +234,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\API\FormsController.cs" />
     <Compile Include="Server\API\FactoryController.cs" />
     <Compile Include="Server\API\DataController.cs" />
   </ItemGroup>
