@@ -37,7 +37,7 @@ namespace Framework.Forms.API
             return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IStore>().Template_GetList(); });
         }
 
-        [ActionName("template.update"), HttpPost]
+        [ActionName("template.update"), HttpPost, HttpPut]
         public IHttpActionResult Template_Update()
         {
             return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IStore>().Template_Update(Request.Content.ReadAsStringAsync().Result); });
