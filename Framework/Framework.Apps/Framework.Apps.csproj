@@ -63,13 +63,15 @@
     <Compile Include="Model\Config\LibConfiguration.cs" />
     <Compile Include="Model\Config\_Const.cs" />
     <Compile Include="Model\Objects\App.cs" />
+    <Compile Include="Model\Objects\Domain.cs" />
+    <Compile Include="Model\Relational\FW_Domain.cs" />
     <Compile Include="Model\Relational\FW_App.cs" />
     <Compile Include="Model\Relational\_Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Framework.Content.Data.nuspec" />
+    <None Include="Framework.Apps.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

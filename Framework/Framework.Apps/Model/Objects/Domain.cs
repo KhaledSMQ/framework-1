@@ -8,13 +8,13 @@
 // ============================================================================
 
 using System;
+using System.Collections.Generic;
 using Framework.Core.Patterns;
 using Framework.Core.Extensions;
 
 namespace Framework.Apps.Model.Objects
 {
-    public class App :
-        IOwner<int>,
+    public class Domain :
         IID<int>,
         IVisible,
         IAuditable<string>,
@@ -25,8 +25,6 @@ namespace Framework.Apps.Model.Objects
         //
         // PROPERTIES
         //
-
-        public int Owner { get; set; }
 
         public int ID { get; set; }
 
@@ -53,18 +51,23 @@ namespace Framework.Apps.Model.Objects
         public string Name { get; set; }
 
         public string Description { get; set; }
+       
+        //
+        // APPS
+        //
+
+        public IDictionary<string, App> Apps { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public App()
+        public Domain()
         {
             //
             // Base
             //
 
-            Owner = default(int);
             ID = default(int);
             Visibility = TypeOfVisibility.ACTIVE;
 
@@ -81,6 +84,12 @@ namespace Framework.Apps.Model.Objects
             Ref = default(string);
             Name = default(string);
             Description = default(string);
+
+            //
+            // Apps
+            //
+
+            Apps = default(IDictionary<string, App>);
         }
     }
 }
