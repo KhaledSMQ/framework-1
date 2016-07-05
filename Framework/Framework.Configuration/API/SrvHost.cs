@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Framework
 // Name/Class: SrvHost
-// Author: João Carreiro (joao.carreiro@cybermap.pt)
+// Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 07/Mar/2016
 // Company: Coop4Creativity
 // Description: Host related properties and features.

@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project:
 // Name/Class: 
-// Author: Joao Carreiro (jao.carreiro@cybermap.pt)
+// Author: Joao Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 26/Nov/2016
 // Company: Coop4Creativity
 // Description:

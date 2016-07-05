@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Framework
 // Name/Class: Throw
-// Author: João Carreiro (joao.carreiro@cybermap.pt)
+// Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 14/Mar/2016
 // Company: Coop4Creativity
 // Description: Error throwing static class.

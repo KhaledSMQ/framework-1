@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Toolkit
 // Name/Class: AuditableExtensions
-// Author: João Carreiro (joao.carreiro@cybermap.pt)
+// Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 14/Abr/2014
 // Company: Coop4Creativity
 // Description: Extension methods for list datatype.

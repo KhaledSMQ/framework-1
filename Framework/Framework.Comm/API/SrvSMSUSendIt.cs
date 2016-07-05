@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Framework
 // Name/Class: 
-// Author: João Carreiro (joao.carreiro@cybermap.pt)
+// Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 05/Apr/2016
 // Company: Coop4Creativity
 // Description: 

@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Author: João Carreiro (joao.carreiro@cybermap.pt)
+// Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 17/July/2013
 // Company: Coop4Creativity
 // Description: Enumerations for this namespace.

@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Framework
 // Name/Class: IProjectionV2R
-// Author: João Carreiro (joao.carreiro@cybermap.pt)
+// Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 17/Oct/2013
 // Company: Coop4Creativity
 // Description: Interface for Virtual to Proportional projection.

@@ -5,7 +5,7 @@
 // 
 // Version:1.0
 // Date: 12/Jun/2012
-// Author(s): João Paulo Carreiro (joao.carreiro@cybermap.pt)
+// Author(s): João Paulo Carreiro (joaopaulocarreiro@gmail.com)
 
 namespace Framework.Drawing.Dot.DOM
 {

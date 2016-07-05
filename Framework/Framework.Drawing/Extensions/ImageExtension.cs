@@ -1,8 +1,7 @@
 ﻿// ============================================================================
 // Project: Framework
 // Name/Class: ImageExtension
-// Author: Tiago Reis (tiago.reis@cybermap.pt)
-//         João Carreiro (joao.carreiro@cybermap.pt)
+// Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 17/Jun/2013
 // Company: Coop4Creativity
 // Description: Image extension methods.

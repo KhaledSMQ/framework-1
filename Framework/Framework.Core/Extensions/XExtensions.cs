@@ -1,8 +1,7 @@
 ﻿// ============================================================================
 // Project: Framework
 // Name/Class: XExtensions
-// Author: João Carreiro (joao.carreiro@cybermap.pt)
-//         Filipe Nunes (filipe.nunes@cybermap.pt)
+// Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 26/Nov/2015
 // Company: Coop4Creativity
 // Description: Xml extension methods.

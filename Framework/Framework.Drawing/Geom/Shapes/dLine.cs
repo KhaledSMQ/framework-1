@@ -1,6 +1,6 @@
 ﻿// Toolkit Library
 // Description: C# based library of reusable components and software. 
-// Author(s): João Paulo Carreiro (joao.carreiro@cybermap.pt)
+// Author(s): João Paulo Carreiro (joaopaulocarreiro@gmail.com)
 
 using System;
 using System.Xml.Linq;

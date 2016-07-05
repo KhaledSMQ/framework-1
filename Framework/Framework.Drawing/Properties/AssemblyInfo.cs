@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Framework.Drawing")]
 [assembly: AssemblyDescription("Generate graphic representations of datatypes")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Cybermap")]
+[assembly: AssemblyCompany("Coop4Creativity")]
 [assembly: AssemblyProduct("Framework.Drawing")]
-[assembly: AssemblyCopyright("Copyright © HP Cybermap 2013")]
+[assembly: AssemblyCopyright("Copyright © Coop4Creativity 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

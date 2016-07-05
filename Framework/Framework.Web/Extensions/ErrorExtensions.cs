@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Toolkit
 // Name/Class: ErrorExtensions
-// Author: João Carreiro (joao.carreiro@cybermap.pt)
+// Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 29/July/2013
 // Company: Coop4Creativity
 // Description: Extensions methods for Error handling in a ASP.NET environment

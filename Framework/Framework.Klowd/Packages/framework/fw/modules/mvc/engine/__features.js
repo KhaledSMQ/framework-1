@@ -2,8 +2,8 @@
 // Project: Framework
 // Name/Class: Component feature.
 // Created On: 27/Mar/2016
-// Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Company: Cybermap Lda.
+// Author: João Carreiro (joaopaulocarreiro@gmail.com)
+// Company: Coop4Creativity
 // ============================================================================
 
 'use strict';

@@ -1,7 +1,7 @@
 // ============================================================================
 // Project: Framework
 // Name/Class: DictTypeConversion
-// Author: João Carreiro (joao.carreiro@cybermap.pt)
+// Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 26/Nov/2015
 // Company: Coop4Creativity
 // Description: Semi-Generic based dictionary where the values are always 

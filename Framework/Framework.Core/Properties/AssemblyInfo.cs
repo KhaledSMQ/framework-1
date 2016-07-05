@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Framework.Core")]
 [assembly: AssemblyDescription("Framework Core library.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Cybermap")]
+[assembly: AssemblyCompany("Coop4Creativity")]
 [assembly: AssemblyProduct("Framework.Core")]
-[assembly: AssemblyCopyright("Copyright © Cybermap 2012")]
+[assembly: AssemblyCopyright("Copyright © Coop4Creativity 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

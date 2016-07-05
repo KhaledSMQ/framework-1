@@ -1,8 +1,7 @@
 ﻿// Framework Library - Drawing
 // Description: Svg Draw support for Framework library.
 // Author(s): 
-//    João Horta (joao.horta@cybermap.pt)
-//    João Paulo Carreiro (joao.carreiro@cybermap.pt)
+//    João Paulo Carreiro (joaopaulocarreiro@gmail.com)
 // EDITED FROM ORIGINAL FILE:
 // -----------------------------------------------------------------------
 // <copyright file="SvgImage.cs" company="">

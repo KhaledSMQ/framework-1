@@ -2,8 +2,8 @@
 // Project: Framework
 // Name/Class: mvc.engine.instance
 // Created On: 09/Abr/2016
-// Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Company: Cybermap Lda.
+// Author: João Carreiro (joaopaulocarreiro@gmail.com)
+// Company: Coop4Creativity
 // ============================================================================
 
 'use strict';

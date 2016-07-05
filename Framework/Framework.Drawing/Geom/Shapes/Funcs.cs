@@ -1,8 +1,7 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: dRect
-// Author: João Carreiro (joao.carreiro@cybermap.pt)
-//         Filipe Nunes (filipe.nunes@cybermap.pt)
+// Name/Class:
+// Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 17/Oct/2013
 // Company: Coop4Creativity
 // Description: Functions ton shapes. Utils.

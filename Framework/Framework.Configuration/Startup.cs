@@ -1,9 +1,9 @@
 ﻿// ============================================================================
 // Project: Framework
 // Name/Class: Startup
-// Author: João Carreiro (joao.carreiro@cybermap.pt)
+// Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 08/Mar/2016
-// Company: Cybermap
+// Company: Coop4Creativity
 // Description: Application startup class.
 // ============================================================================
 

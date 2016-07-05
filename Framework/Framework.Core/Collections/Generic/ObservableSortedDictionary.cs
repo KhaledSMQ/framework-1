@@ -2,7 +2,7 @@
 // Project: Framework
 // Name/Class: ObservableSortedDictionary
 // Author: Dr. WPF
-//         Integrated by joao carreiro (joao.carreiro@cybermap.pt)
+//         Integrated by joao carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 26/Nov/2015
 // Company: Coop4Creativity
 // Description: Observable collection datatype.

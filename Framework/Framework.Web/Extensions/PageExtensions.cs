@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Toolkit (Web)
 // Name/Class: PageExtensions
-// Author: João Carreiro (joao.carreiro@cybermap.pt)
+// Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 13/Jun/2013
 // Company: Coop4Creativity
 // Description: Set of extension methods for web pages.

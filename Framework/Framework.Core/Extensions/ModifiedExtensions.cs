@@ -1,7 +1,7 @@
 // ============================================================================
 // Project: Frameowrk
 // Name/Class: ModifiedExtensions
-// Author: João Carreiro (joao.carreiro@cybermap.pt)
+// Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 29/Oct/2015
 // Company: Coop4Creativity
 // Description: Extension methods for modified datatype.

@@ -1,9 +1,9 @@
 ﻿// ============================================================================
 // Project:
 // Name/Class:
-// Author: João Carreiro (joao.carreiro@cybermap.pt)
+// Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 
-// Company: Cybermap Lda.
+// Company: Coop4Creativity
 // Description:
 // ============================================================================
 

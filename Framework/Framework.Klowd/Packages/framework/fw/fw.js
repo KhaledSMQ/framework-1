@@ -2,8 +2,8 @@
 // Project: Framework
 // Name/Class: fw
 // Created On: 19/Jan/2016
-// Author: João Carreiro (joao.carreiro@cybermap.pt)
-// Company: Cybermap Lda.
+// Author: João Carreiro (joaopaulocarreiro@gmail.com)
+// Company: Coop4Creativity
 // ============================================================================
 
 'use strict';
