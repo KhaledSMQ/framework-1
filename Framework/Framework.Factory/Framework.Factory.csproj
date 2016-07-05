@@ -88,7 +88,7 @@
     <Compile Include="Model\Config\BaseConfiguration.cs" />
     <Compile Include="Model\Config\ServiceConfiguration.cs" />
     <Compile Include="Model\Config\_Const.cs" />
-    <Compile Include="Model\Config\ManagerConfiguration.cs" />
+    <Compile Include="Model\Config\LibConfiguration.cs" />
     <Compile Include="Model\Config\SettingsConfiguration.cs" />
     <Compile Include="API\Transforms.cs" />
     <Compile Include="Model\Relational\FW_FactorySetting.cs" />

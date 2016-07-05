@@ -154,7 +154,7 @@
     <Compile Include="Query\Linq\Take.cs" />
     <Compile Include="Query\Linq\Paging.cs" />
     <Compile Include="Query\Linq\Where.cs" />
-    <Compile Include="Model\Config\ManagerConfiguration.cs" />
+    <Compile Include="Model\Config\LibConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

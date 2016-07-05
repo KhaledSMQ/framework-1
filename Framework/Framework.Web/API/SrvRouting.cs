@@ -74,7 +74,7 @@ namespace Framework.Web.API
             // Load from configuration settings.
             //
 
-            WebConfiguration config = (WebConfiguration)System.Configuration.ConfigurationManager.GetSection(Config.Constants.SECTION);
+            LibConfiguration config = (LibConfiguration)System.Configuration.ConfigurationManager.GetSection(Config.Constants.SECTION);
             if (null != config)
             {
                 if (null != config.Routing)

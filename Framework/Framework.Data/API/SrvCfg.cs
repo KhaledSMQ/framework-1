@@ -21,7 +21,7 @@ namespace Framework.Data.API
         // Internal state.
         //
 
-        protected ConfigManager Config;
+        protected LibConfiguration Config;
 
         //
         // Load configuration.
@@ -34,7 +34,7 @@ namespace Framework.Data.API
             // the data store elements, domains and settings.
             //
 
-            Config = (ConfigManager)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
+            Config = (LibConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
         }
 
         //

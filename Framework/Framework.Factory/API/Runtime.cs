@@ -51,7 +51,7 @@ namespace Framework.Factory.API
             // Load from the system configuration.
             //
 
-            ManagerConfiguration config = (ManagerConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
+            LibConfiguration config = (LibConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
 
             //
             // Load configuration for the service hub.

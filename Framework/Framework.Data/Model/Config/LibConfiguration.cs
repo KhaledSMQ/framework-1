@@ -11,7 +11,7 @@ using System.Configuration;
 
 namespace Framework.Data.Model.Config
 {
-    public class ConfigManager : ConfigurationSection
+    public class LibConfiguration : ConfigurationSection
     {
         //
         // CLUSTERS

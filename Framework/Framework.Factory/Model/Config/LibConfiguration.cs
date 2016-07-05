@@ -11,7 +11,7 @@ using System.Configuration;
 
 namespace Framework.Factory.Model.Config
 {
-    public class ManagerConfiguration : ConfigurationSection
+    public class LibConfiguration : ConfigurationSection
     {
         //
         // HUB

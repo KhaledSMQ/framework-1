@@ -12,7 +12,7 @@ using System.Configuration;
 
 namespace Framework.Web.Config
 {
-    public class WebConfiguration : ConfigurationSection
+    public class LibConfiguration : ConfigurationSection
     {
         //
         // ROUTING
