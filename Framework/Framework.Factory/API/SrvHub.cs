@@ -11,7 +11,7 @@ using Framework.Core.Collections.Specialized;
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
-using Framework.Factory.Model.Schema;
+using Framework.Factory.Model.Relational;
 using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;
@@ -39,10 +39,10 @@ namespace Framework.Factory.API
             //
 
             _Instances = new SortedDictionary<string, ICommon>();
-            _ByName = new SortedDictionary<string, ServiceEntry>();
-            _ByTypeName = new SortedDictionary<string, IList<ServiceEntry>>();
-            _ByContract = new SortedDictionary<string, IList<ServiceEntry>>();
-        }      
+            _ByName = new SortedDictionary<string, FW_FactoryServiceEntry>();
+            _ByTypeName = new SortedDictionary<string, IList<FW_FactoryServiceEntry>>();
+            _ByContract = new SortedDictionary<string, IList<FW_FactoryServiceEntry>>();
+        }
 
         //
         // API
@@ -65,8 +65,8 @@ namespace Framework.Factory.API
 
         public T Get<T>(IScope whatScope) where T : ICommon
         {
-            ServiceEntry srvEntry = default(ServiceEntry);
-            ICollection<ServiceEntry> srvEntryList = default(ICollection<ServiceEntry>);            
+            FW_FactoryServiceEntry srvEntry = default(FW_FactoryServiceEntry);
+            ICollection<FW_FactoryServiceEntry> srvEntryList = default(ICollection<FW_FactoryServiceEntry>);
             string contractTypeName = typeof(T).FullName;
 
             if (!_ByContract.ContainsKey(contractTypeName))
@@ -145,12 +145,12 @@ namespace Framework.Factory.API
             return _ByContract[contractTypeName].Map(new List<T>(), e => Get<T>(e, whatScope));
         }
 
-        public T Get<T>(ServiceEntry entry) where T : ICommon
+        public T Get<T>(FW_FactoryServiceEntry entry) where T : ICommon
         {
             return Get<T>(entry, Scope);
         }
 
-        public T Get<T>(ServiceEntry entry, IScope whatScope) where T : ICommon
+        public T Get<T>(FW_FactoryServiceEntry entry, IScope whatScope) where T : ICommon
         {
             //
             // Check if service was already initialized.
@@ -187,12 +187,12 @@ namespace Framework.Factory.API
             return service;
         }
 
-        public T New<T>(ServiceEntry entry) where T : ICommon
+        public T New<T>(FW_FactoryServiceEntry entry) where T : ICommon
         {
             return New<T>(entry, Scope);
         }
 
-        public T New<T>(ServiceEntry entry, IScope whatScope) where T : ICommon
+        public T New<T>(FW_FactoryServiceEntry entry, IScope whatScope) where T : ICommon
         {
             //
             // Check if service was already initialized.
@@ -228,10 +228,10 @@ namespace Framework.Factory.API
             return service;
         }
 
-        private IConfigMap __ProcessServiceSettings(ICollection<Setting> settings)
+        private IConfigMap __ProcessServiceSettings(ICollection<FW_FactorySetting> settings)
         {
             ConfigMap setMap = new ConfigMap();
-            settings.Apply(setting => { setMap.Add(setting.Name, setting); });
+            settings.Apply(setting => { setMap.Add(setting.Name, new Setting() { Name = setting.Name, Description = setting.Description, Value = setting.Value }); });
             return setMap;
         }
 
@@ -261,7 +261,7 @@ namespace Framework.Factory.API
         // LOAD
         //
 
-        public void Load(ServiceEntry entry)
+        public void Load(FW_FactoryServiceEntry entry)
         {
             if (!_ByName.ContainsKey(entry.Name))
             {
@@ -269,12 +269,12 @@ namespace Framework.Factory.API
 
                 if (!_ByTypeName.ContainsKey(entry.TypeName))
                 {
-                    _ByTypeName.Add(entry.TypeName, new List<ServiceEntry>());
+                    _ByTypeName.Add(entry.TypeName, new List<FW_FactoryServiceEntry>());
                 }
 
                 if (!_ByContract.ContainsKey(entry.Contract))
                 {
-                    _ByContract.Add(entry.Contract, new List<ServiceEntry>());
+                    _ByContract.Add(entry.Contract, new List<FW_FactoryServiceEntry>());
                 }
 
                 _ByTypeName[entry.TypeName].Add(entry);
@@ -282,7 +282,7 @@ namespace Framework.Factory.API
             }
         }
 
-        public void Load(IEnumerable<ServiceEntry> lst)
+        public void Load(IEnumerable<FW_FactoryServiceEntry> lst)
         {
             lst.Apply(Load);
         }
@@ -291,12 +291,12 @@ namespace Framework.Factory.API
         // RETRIEVE-SECTION
         //
 
-        public IEnumerable<ServiceEntry> GetListOfInstances()
+        public IEnumerable<FW_FactoryServiceEntry> GetListOfInstances()
         {
-            return _Instances.Keys.Map(new List<ServiceEntry>(), name => { return _ByName[name]; });
+            return _Instances.Keys.Map(new List<FW_FactoryServiceEntry>(), name => { return _ByName[name]; });
         }
 
-        public IEnumerable<ServiceEntry> GetListOfLoaded()
+        public IEnumerable<FW_FactoryServiceEntry> GetListOfLoaded()
         {
             return _ByName.Values;
         }
@@ -344,8 +344,8 @@ namespace Framework.Factory.API
         private IServiceEntry _ServiceEntryValue { get; set; }
 
         private IDictionary<string, ICommon> _Instances = null;
-        private IDictionary<string, ServiceEntry> _ByName = null;
-        private IDictionary<string, IList<ServiceEntry>> _ByTypeName = null;
-        private IDictionary<string, IList<ServiceEntry>> _ByContract = null;
+        private IDictionary<string, FW_FactoryServiceEntry> _ByName = null;
+        private IDictionary<string, IList<FW_FactoryServiceEntry>> _ByTypeName = null;
+        private IDictionary<string, IList<FW_FactoryServiceEntry>> _ByContract = null;
     }
 }

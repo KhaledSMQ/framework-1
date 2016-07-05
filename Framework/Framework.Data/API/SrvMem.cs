@@ -11,9 +11,9 @@ using Framework.Core.Error;
 using Framework.Core.Extensions;
 using Framework.Core.Types.Specialized;
 using Framework.Data.Model.Mem;
-using Framework.Data.Model.Schema;
+using Framework.Data.Model.Relational;
 using Framework.Data.Patterns;
-using Framework.Factory.Model.Schema;
+using Framework.Factory.Model.Relational;
 using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;
@@ -270,7 +270,7 @@ namespace Framework.Data.API
                         // Setup the provider service.
                         //
 
-                        ServiceEntry providerSrvEntry = new ServiceEntry()
+                        FW_FactoryServiceEntry providerSrvEntry = new FW_FactoryServiceEntry()
                         {
                             Name = string.Empty,
                             Contract = typeof(IProviderDataContext).FullName,
@@ -280,8 +280,8 @@ namespace Framework.Data.API
                             // TODO: Convert data settings to factory settings.
                             //
 
-                            Settings = context.Provider.Settings.Map(new List<Setting>(), set => {
-                                return new Setting()
+                            Settings = context.Provider.Settings.Map(new List<FW_FactorySetting>(), set => {
+                                return new FW_FactorySetting()
                                 {
                                     Name = set.Name,
                                     Description = set.Description,

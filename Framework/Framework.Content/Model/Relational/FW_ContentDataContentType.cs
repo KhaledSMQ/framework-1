@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Property
+// Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 04/Oct/2015
 // Company: Coop4Creativity
@@ -11,14 +11,16 @@ using Newtonsoft.Json;
 using System;
 using Framework.Core.Patterns;
 
-namespace Framework.Content.Model.Schema
+namespace Framework.Content.Model.Relational
 {
-    public class FW_ContentDataField :
+    public class FW_ContentDataContentType :
         IID<int>,
         IVisible,
         ICreated<string>,
         IModified<string>,
-        IName<string>
+        IRef<string>,
+        IName<string>,
+        IDescription<string>
     {
         //
         // Base
@@ -31,26 +33,27 @@ namespace Framework.Content.Model.Schema
         // Audit
         //
 
-        public DateTime CreatedDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
         public string CreatedBy { get; set; }
+        public DateTime CreatedDate { get; set; }
         public string ModifiedBy { get; set; }
+        public DateTime ModifiedDate { get; set; }
 
         //
-        // Info.
+        // Info
         //
 
+        public string Ref { get; set; }
         public string Name { get; set; }
-        public string DisplayName { get; set; }
+        public string Description { get; set; }
 
         [JsonIgnore]
-        public virtual FW_ContentDataView Owner { get; set; }
+        public virtual FW_ContentDataCluster Owner { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public FW_ContentDataField()
+        public FW_ContentDataContentType()
         {
             //
             // Base
@@ -66,11 +69,12 @@ namespace Framework.Content.Model.Schema
             ModifiedBy = string.Empty;
 
             //
-            // Info.
+            // Info
             //
 
+            Ref = string.Empty;
             Name = string.Empty;
-            DisplayName = string.Empty;
+            Description = string.Empty;
             Owner = null;
         }
     }

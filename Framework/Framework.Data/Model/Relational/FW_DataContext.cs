@@ -2,19 +2,20 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 03/Aug/2015
+// Create date: 26/Nov/2015
 // Company: Coop4Creativity
-// Description: Service specification class.
+// Description: 
 // ============================================================================
 
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
+using Framework.Core.Types.Specialized;
 using System;
 using System.Collections.Generic;
 
-namespace Framework.Data.Model.Schema
+namespace Framework.Data.Model.Relational
 {
-    public class FW_DataQuery :
+    public class FW_DataContext : 
         IID<int>,
         IName<string>,
         IDescription<string>,
@@ -26,38 +27,17 @@ namespace Framework.Data.Model.Schema
 
         public int ID { get; set; }
 
-        public TypeOfDataQuery Kind { get; set; }
-
         public string Name { get; set; }
 
         public string Description { get; set; }
 
-        //
-        // Definition for query parameters.
-        // If empty then the query takes no
-        // parameters.
-        //
+        public FW_DataProvider Provider { get; set; }
 
-        public ICollection<FW_DataQueryParam> Params { get; set; }
+        public ICollection<FW_DataEntityRef> Entities { get; set; }
 
-        //
-        // In case the query is an expression,
-        // the following property contains the 
-        // expression.
-        //
+        public ICollection<FW_DataPartialModelRef> Models { get; set; }
 
-        public string Expression { get; set; }
-
-        //
-        // In case the query is a callback
-        // The following property contains
-        // The full name description, e.g.
-        // class and method of the static
-        // method to use. These methods
-        // have all the same signature.
-        //
-
-        public string Callback { get; set; }
+        public ICollection<FW_DataSetting> Settings { get; set; }
 
         //
         // AUDITS
@@ -75,19 +55,19 @@ namespace Framework.Data.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public FW_DataQuery()
+        public FW_DataContext()
         {
             //
             // INFO
             //
 
             ID = -1;
-            Kind = TypeOfDataQuery.UNKNOWN;
             Name = string.Empty;
             Description = string.Empty;
-            Expression = string.Empty;
-            Params = null;
-            Callback = string.Empty;
+            Provider = null;
+            Entities = null;
+            Models = null;
+            Settings = null;
 
             //
             // AUDITS

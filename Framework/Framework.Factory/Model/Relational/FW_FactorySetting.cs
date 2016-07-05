@@ -2,29 +2,23 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 03/Aug/2015
+// Create date: 26/Nov/2015
 // Company: Coop4Creativity
 // Description: 
 // ============================================================================
 
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
-using Framework.Core.Types.Specialized;
-using Framework.Data.Patterns;
 using System;
-using System.Collections.Generic;
 
-namespace Framework.Data.Model.Schema
+namespace Framework.Factory.Model.Relational
 {
-    public class FW_DataPartialModel : 
-        IID<int>,
-        IName<string>,
-        IDescription<string>,
-        ITypeName<string>,
+    public class FW_FactorySetting : 
+        IConfigSetting<int, string, string, string>, 
         IAuditable<string>
     {
         //
-        // PROPERTIES
+        // INFO
         //
 
         public int ID { get; set; }
@@ -33,9 +27,7 @@ namespace Framework.Data.Model.Schema
 
         public string Description { get; set; }
 
-        public string TypeName { get; set; }
-
-        public ICollection<FW_DataSetting> Settings { get; set; }
+        public string Value { get; set; }
 
         //
         // AUDITS
@@ -53,20 +45,19 @@ namespace Framework.Data.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public FW_DataPartialModel()
+        public FW_FactorySetting()
         {
             //
-            // Info
+            // INFO
             //
 
             ID = -1;
             Name = string.Empty;
             Description = string.Empty;
-            TypeName = string.Empty;
-            Settings = null;
+            Value = string.Empty;
 
             //
-            // Audits
+            // AUDITS
             //
 
             AuditableExtensions.Init(this, string.Empty);

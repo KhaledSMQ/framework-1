@@ -7,7 +7,7 @@
 // Description: 
 // ============================================================================
 
-using Framework.Data.Model.Schema;
+using Framework.Data.Model.Relational;
 using Newtonsoft.Json;
 
 namespace Framework.Data.Model.Mem

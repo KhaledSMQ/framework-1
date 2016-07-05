@@ -4,18 +4,19 @@
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 03/Aug/2015
 // Company: Coop4Creativity
-// Description: Service specification class.
+// Description: 
 // ============================================================================
 
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
+using Framework.Data.Patterns;
 using System;
 using System.Collections.Generic;
 
-namespace Framework.Data.Model.Schema
+namespace Framework.Data.Model.Relational
 {
-    public class FW_DataEntity :
+    public class FW_DataPartialModel : 
         IID<int>,
         IName<string>,
         IDescription<string>,
@@ -23,20 +24,16 @@ namespace Framework.Data.Model.Schema
         IAuditable<string>
     {
         //
-        // INFO
+        // PROPERTIES
         //
 
         public int ID { get; set; }
-
-        public TypeOfDataEntity Kind { get; set; }
 
         public string Name { get; set; }
 
         public string Description { get; set; }
 
         public string TypeName { get; set; }
-
-        public ICollection<FW_DataQuery> Queries { get; set; }
 
         public ICollection<FW_DataSetting> Settings { get; set; }
 
@@ -56,22 +53,20 @@ namespace Framework.Data.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public FW_DataEntity()
+        public FW_DataPartialModel()
         {
             //
-            // INFO
+            // Info
             //
 
             ID = -1;
-            Kind = TypeOfDataEntity.DATA_SET;
             Name = string.Empty;
             Description = string.Empty;
             TypeName = string.Empty;
-            Queries = null;
             Settings = null;
 
             //
-            // AUDITS
+            // Audits
             //
 
             AuditableExtensions.Init(this, string.Empty);

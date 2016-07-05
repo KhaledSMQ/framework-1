@@ -1,10 +1,10 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: 
+// Name/Class: Service
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 26/Nov/2015
+// Create date: 03/Aug/2015
 // Company: Coop4Creativity
-// Description: 
+// Description: Service specification class.
 // ============================================================================
 
 using Framework.Core.Extensions;
@@ -13,34 +13,33 @@ using Framework.Core.Types.Specialized;
 using System;
 using System.Collections.Generic;
 
-namespace Framework.Data.Model.Schema
+namespace Framework.Factory.Model.Relational
 {
-    public class FW_DataCluster :
-        IOwner<int>,
-        IID<int>,
-        IName<string>,
-        IDescription<string>,
+    public class FW_FactoryServiceEntry : 
+        IID<int>, 
+        IName<string>, 
+        ITypeName<string>, 
         IAuditable<string>
     {
         //
-        // Info
+        // PROPERTIES
         //
 
-        public int Owner { get; set; }
-
         public int ID { get; set; }
+
+        public bool Unique { get; set; }
+
+        public bool Default { get; set; }
 
         public string Name { get; set; }
 
         public string Description { get; set; }
 
-        public ICollection<FW_DataContext> Contexts { get; set; }
+        public string Contract { get; set; }
 
-        public ICollection<FW_DataEntity> Entities { get; set; }
+        public string TypeName { get; set; }
 
-        public ICollection<FW_DataPartialModel> Models { get; set; }
-
-        public ICollection<FW_DataSetting> Settings { get; set; }
+        public virtual ICollection<FW_FactorySetting> Settings { get; set; }
 
         //
         // Audits
@@ -58,19 +57,19 @@ namespace Framework.Data.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public FW_DataCluster()
+        public FW_FactoryServiceEntry()
         {
             //
-            // Info
+            // Basic info.
             //
 
-            Owner = -1;
             ID = -1;
+            Unique = false;
+            Default = false;
             Name = string.Empty;
             Description = string.Empty;
-            Contexts = null;
-            Entities = null;
-            Models = null;
+            Contract = string.Empty;
+            TypeName = string.Empty;
             Settings = null;
 
             //

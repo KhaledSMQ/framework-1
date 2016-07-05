@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Service
+// Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 03/Aug/2015
 // Company: Coop4Creativity
@@ -13,36 +13,27 @@ using Framework.Core.Types.Specialized;
 using System;
 using System.Collections.Generic;
 
-namespace Framework.Factory.Model.Schema
+namespace Framework.Data.Model.Relational
 {
-    public class ServiceEntry : 
-        IID<int>, 
-        IName<string>, 
-        ITypeName<string>, 
+    public class FW_DataPartialModelRef :
+        IID<int>,
+        IName<string>,     
         IAuditable<string>
     {
         //
-        // PROPERTIES
+        // INFO
         //
 
         public int ID { get; set; }
-
-        public bool Unique { get; set; }
-
-        public bool Default { get; set; }
 
         public string Name { get; set; }
 
         public string Description { get; set; }
 
-        public string Contract { get; set; }
-
-        public string TypeName { get; set; }
-
-        public virtual ICollection<Setting> Settings { get; set; }
+        public ICollection<FW_DataSetting> Settings { get; set; }
 
         //
-        // Audits
+        // AUDITS
         //
 
         public string CreatedBy { get; set; }
@@ -57,23 +48,19 @@ namespace Framework.Factory.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public ServiceEntry()
+        public FW_DataPartialModelRef()
         {
             //
-            // Basic info.
+            // INFO
             //
 
             ID = -1;
-            Unique = false;
-            Default = false;
             Name = string.Empty;
             Description = string.Empty;
-            Contract = string.Empty;
-            TypeName = string.Empty;
             Settings = null;
 
             //
-            // Audits
+            // AUDITS
             //
 
             AuditableExtensions.Init(this, string.Empty);

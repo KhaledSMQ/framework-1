@@ -9,7 +9,7 @@
 
 using Framework.Core.Extensions;
 using Framework.Factory.Model.Config;
-using Framework.Factory.Model.Schema;
+using Framework.Factory.Model.Relational;
 using Owin;
 using System;
 using System.Collections.Generic;
@@ -68,7 +68,7 @@ namespace Framework.Factory.API
                     // Load the hub service entry into the hub... :-)
                     // 
 
-                    ServiceEntry __HubEntry = Transforms.Converter(config.Hub);
+                    FW_FactoryServiceEntry __HubEntry = Transforms.Converter(config.Hub);
                     __HubEntry.Unique = true;
 
                     __Hub = Core.Reflection.Activator.CreateGenericInstance<IHub>(__HubEntry.TypeName);
@@ -81,7 +81,7 @@ namespace Framework.Factory.API
                         // Load core services into hub.
                         //
                                                  
-                        __Hub.Load(config.Services.Map<ServiceElement, ServiceEntry>(new List<ServiceEntry>(), Transforms.Converter));                       
+                        __Hub.Load(config.Services.Map<ServiceElement, FW_FactoryServiceEntry>(new List<FW_FactoryServiceEntry>(), Transforms.Converter));                       
                     }
 
                     //

@@ -7,9 +7,9 @@
 // Description: 
 // ============================================================================
 
-using Framework.Data.Model.Schema;
+using Framework.Data.Model.Relational;
 using Framework.Data.Patterns;
-using Framework.Factory.Model.Schema;
+using Framework.Factory.Model.Relational;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ namespace Framework.Data.Model.Mem
 
         public FW_DataProvider Provider { get; set; }
 
-        public ServiceEntry ProviderServiceEntry { get; set; }
+        public FW_FactoryServiceEntry ProviderServiceEntry { get; set; }
 
         public Type ProviderServiceType { get { return null != ProviderService ? ProviderService.GetType() : null; } }
 
@@ -50,7 +50,7 @@ namespace Framework.Data.Model.Mem
             Entities = null;
             Models = null;
             Provider = default(FW_DataProvider);
-            ProviderServiceEntry = default(ServiceEntry);
+            ProviderServiceEntry = default(FW_FactoryServiceEntry);
             ProviderService = default(IProviderDataContext);
             Original = default(FW_DataContext);
         }

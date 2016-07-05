@@ -7,7 +7,7 @@
 // Description: Service specification class.
 // ============================================================================
 
-using Framework.Data.Model.Schema;
+using Framework.Data.Model.Relational;
 using System.Collections.Generic;
 
 namespace Framework.Data.Model.Import

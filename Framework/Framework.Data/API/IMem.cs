@@ -8,7 +8,7 @@
 // ============================================================================
 
 using Framework.Data.Model.Mem;
-using Framework.Data.Model.Schema;
+using Framework.Data.Model.Relational;
 using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
 using System;

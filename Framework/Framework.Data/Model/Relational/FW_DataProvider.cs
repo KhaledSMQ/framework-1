@@ -1,10 +1,10 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: 
+// Name/Class: Service
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 26/Nov/2015
+// Create date: 03/Aug/2015
 // Company: Coop4Creativity
-// Description: 
+// Description: Service specification class.
 // ============================================================================
 
 using Framework.Core.Extensions;
@@ -13,34 +13,29 @@ using Framework.Core.Types.Specialized;
 using System;
 using System.Collections.Generic;
 
-namespace Framework.Data.Model.Schema
+namespace Framework.Data.Model.Relational
 {
-    public class FW_DataContext : 
-        IID<int>,
-        IName<string>,
-        IDescription<string>,
+    public class FW_DataProvider : 
+        IID<int>, 
+        ITypeName<string>, 
         IAuditable<string>
     {
         //
-        // INFO
+        // PROPERTIES
         //
 
         public int ID { get; set; }
 
-        public string Name { get; set; }
+        public bool Unique { get; set; }
 
         public string Description { get; set; }
 
-        public FW_DataProvider Provider { get; set; }
+        public string TypeName { get; set; }
 
-        public ICollection<FW_DataEntityRef> Entities { get; set; }
-
-        public ICollection<FW_DataPartialModelRef> Models { get; set; }
-
-        public ICollection<FW_DataSetting> Settings { get; set; }
+        public virtual ICollection<FW_DataSetting> Settings { get; set; }
 
         //
-        // AUDITS
+        // Audits
         //
 
         public string CreatedBy { get; set; }
@@ -55,22 +50,20 @@ namespace Framework.Data.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public FW_DataContext()
+        public FW_DataProvider()
         {
             //
-            // INFO
+            // Basic info.
             //
 
             ID = -1;
-            Name = string.Empty;
+            Unique = false;
             Description = string.Empty;
-            Provider = null;
-            Entities = null;
-            Models = null;
+            TypeName = string.Empty;
             Settings = null;
 
             //
-            // AUDITS
+            // Audits
             //
 
             AuditableExtensions.Init(this, string.Empty);

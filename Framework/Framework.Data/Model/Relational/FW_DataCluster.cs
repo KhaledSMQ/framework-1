@@ -2,27 +2,30 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 03/Aug/2015
+// Create date: 26/Nov/2015
 // Company: Coop4Creativity
-// Description: Service specification class.
+// Description: 
 // ============================================================================
 
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
-using Framework.Core.Types.Specialized;
 using System;
 using System.Collections.Generic;
 
-namespace Framework.Data.Model.Schema
+namespace Framework.Data.Model.Relational
 {
-    public class FW_DataPartialModelRef :
+    public class FW_DataCluster :
+        IOwner<int>,
         IID<int>,
-        IName<string>,     
+        IName<string>,
+        IDescription<string>,
         IAuditable<string>
     {
         //
-        // INFO
+        // Info
         //
+
+        public int Owner { get; set; }
 
         public int ID { get; set; }
 
@@ -30,10 +33,16 @@ namespace Framework.Data.Model.Schema
 
         public string Description { get; set; }
 
+        public ICollection<FW_DataContext> Contexts { get; set; }
+
+        public ICollection<FW_DataEntity> Entities { get; set; }
+
+        public ICollection<FW_DataPartialModel> Models { get; set; }
+
         public ICollection<FW_DataSetting> Settings { get; set; }
 
         //
-        // AUDITS
+        // Audits
         //
 
         public string CreatedBy { get; set; }
@@ -48,19 +57,23 @@ namespace Framework.Data.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public FW_DataPartialModelRef()
+        public FW_DataCluster()
         {
             //
-            // INFO
+            // Info
             //
 
+            Owner = -1;
             ID = -1;
             Name = string.Empty;
             Description = string.Empty;
+            Contexts = null;
+            Entities = null;
+            Models = null;
             Settings = null;
 
             //
-            // AUDITS
+            // Audits
             //
 
             AuditableExtensions.Init(this, string.Empty);

@@ -10,7 +10,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Framework.Content.Model.Schema
+namespace Framework.Content.Model.Relational
 {
     //
     // Types of entity schema.

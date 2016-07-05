@@ -7,7 +7,7 @@
 // Description: 
 // ============================================================================
 
-using Framework.Factory.Model.Schema;
+using Framework.Factory.Model.Relational;
 using Framework.Factory.Patterns;
 using System.Collections.Generic;
 
@@ -15,12 +15,12 @@ namespace Framework.Factory.API
 {
     public interface IServiceEntry : ICommon
     {
-        object Create(ServiceEntry srv);
+        object Create(FW_FactoryServiceEntry srv);
 
-        ServiceEntry GetByName(string name);
+        FW_FactoryServiceEntry GetByName(string name);
 
-        IEnumerable<ServiceEntry> GetByContract(string contract);
+        IEnumerable<FW_FactoryServiceEntry> GetByContract(string contract);
 
-        ServiceEntry GetByTypeName(string type);
+        FW_FactoryServiceEntry GetByTypeName(string type);
     }
 }

@@ -10,7 +10,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Framework.Data.Model.Schema
+namespace Framework.Data.Model.Relational
 {
     //
     // Caracterization of a data entity.

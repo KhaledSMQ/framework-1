@@ -2,18 +2,24 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 26/Nov/2015
+// Create date: 03/Aug/2015
 // Company: Coop4Creativity
-// Description: 
+// Description: Service specification class.
 // ============================================================================
 
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
+using Framework.Core.Types.Specialized;
 using System;
+using System.Collections.Generic;
 
-namespace Framework.Data.Model.Schema
+namespace Framework.Data.Model.Relational
 {
-    public class FW_DataSetting : 
+    public class FW_DataEntity :
+        IID<int>,
+        IName<string>,
+        IDescription<string>,
+        ITypeName<string>,
         IAuditable<string>
     {
         //
@@ -22,11 +28,17 @@ namespace Framework.Data.Model.Schema
 
         public int ID { get; set; }
 
+        public TypeOfDataEntity Kind { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }
 
-        public string Value { get; set; }
+        public string TypeName { get; set; }
+
+        public ICollection<FW_DataQuery> Queries { get; set; }
+
+        public ICollection<FW_DataSetting> Settings { get; set; }
 
         //
         // AUDITS
@@ -44,16 +56,19 @@ namespace Framework.Data.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public FW_DataSetting()
+        public FW_DataEntity()
         {
             //
             // INFO
             //
 
             ID = -1;
+            Kind = TypeOfDataEntity.DATA_SET;
             Name = string.Empty;
             Description = string.Empty;
-            Value = string.Empty;
+            TypeName = string.Empty;
+            Queries = null;
+            Settings = null;
 
             //
             // AUDITS

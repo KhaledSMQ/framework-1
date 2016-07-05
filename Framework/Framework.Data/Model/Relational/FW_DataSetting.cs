@@ -1,41 +1,35 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Service
+// Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 03/Aug/2015
+// Create date: 26/Nov/2015
 // Company: Coop4Creativity
-// Description: Service specification class.
+// Description: 
 // ============================================================================
 
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
-using Framework.Core.Types.Specialized;
 using System;
-using System.Collections.Generic;
 
-namespace Framework.Data.Model.Schema
+namespace Framework.Data.Model.Relational
 {
-    public class FW_DataProvider : 
-        IID<int>, 
-        ITypeName<string>, 
+    public class FW_DataSetting : 
         IAuditable<string>
     {
         //
-        // PROPERTIES
+        // INFO
         //
 
         public int ID { get; set; }
 
-        public bool Unique { get; set; }
+        public string Name { get; set; }
 
         public string Description { get; set; }
 
-        public string TypeName { get; set; }
-
-        public virtual ICollection<FW_DataSetting> Settings { get; set; }
+        public string Value { get; set; }
 
         //
-        // Audits
+        // AUDITS
         //
 
         public string CreatedBy { get; set; }
@@ -50,20 +44,19 @@ namespace Framework.Data.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public FW_DataProvider()
+        public FW_DataSetting()
         {
             //
-            // Basic info.
+            // INFO
             //
 
             ID = -1;
-            Unique = false;
+            Name = string.Empty;
             Description = string.Empty;
-            TypeName = string.Empty;
-            Settings = null;
+            Value = string.Empty;
 
             //
-            // Audits
+            // AUDITS
             //
 
             AuditableExtensions.Init(this, string.Empty);

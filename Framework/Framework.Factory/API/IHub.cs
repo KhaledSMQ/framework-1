@@ -7,7 +7,7 @@
 // Description: Service hub interface.
 // ============================================================================
 
-using Framework.Factory.Model.Schema;
+using Framework.Factory.Model.Relational;
 using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;
@@ -40,29 +40,29 @@ namespace Framework.Factory.API
 
         IEnumerable<T> GetByContract<T>(IScope whatScope) where T : ICommon;
 
-        T Get<T>(ServiceEntry cfg) where T : ICommon;
+        T Get<T>(FW_FactoryServiceEntry cfg) where T : ICommon;
 
-        T Get<T>(ServiceEntry cfg, IScope whatScope) where T : ICommon;
+        T Get<T>(FW_FactoryServiceEntry cfg, IScope whatScope) where T : ICommon;
 
-        T New<T>(ServiceEntry cfg) where T : ICommon;
+        T New<T>(FW_FactoryServiceEntry cfg) where T : ICommon;
 
-        T New<T>(ServiceEntry cfg, IScope whatScope) where T : ICommon;
+        T New<T>(FW_FactoryServiceEntry cfg, IScope whatScope) where T : ICommon;
 
         //
         // LOAD-SECTION
         // Load service entries into memory.
         //
 
-        void Load(ServiceEntry entry);
+        void Load(FW_FactoryServiceEntry entry);
 
-        void Load(IEnumerable<ServiceEntry> lst);
+        void Load(IEnumerable<FW_FactoryServiceEntry> lst);
 
         //
         // RETRIEVE-SECTION
         //
 
-        IEnumerable<ServiceEntry> GetListOfInstances();
+        IEnumerable<FW_FactoryServiceEntry> GetListOfInstances();
 
-        IEnumerable<ServiceEntry> GetListOfLoaded();
+        IEnumerable<FW_FactoryServiceEntry> GetListOfLoaded();
     }
 }

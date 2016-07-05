@@ -7,63 +7,49 @@
 // Description:
 // ============================================================================
 
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using Framework.Core.Patterns;
 
-namespace Framework.Content.Model.Schema
+namespace Framework.Content.Model.Relational
 {
-    public class FW_ContentDataView :
-        IID<int>,
-        IVisible,
-        ICreated<string>,
-        IModified<string>,
-        IRef<string>,
-        IName<string>,
-        IDescription<string>
+    public class FW_ContentDataWebApi : IID<int>, ICreated<string>, IModified<string>
     {
         //
         // Base
         //
 
         public int ID { get; set; }
-        public TypeOfVisibility Visibility { get; set; }
 
         //
         // Audit
         //
 
         public DateTime CreatedDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
         public string CreatedBy { get; set; }
+        public DateTime ModifiedDate { get; set; }
         public string ModifiedBy { get; set; }
 
         //
         // Info.
         //
 
-        public string Ref { get; set; }
-        public bool IsDefault { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public virtual ICollection<FW_ContentDataField> Fields { get; set; }
-
-        [JsonIgnore]
-        public virtual FW_ContentDataEntity Owner { get; set; }
+        public string Create { get; set; }
+        public string Detail { get; set; }
+        public string List { get; set; }
+        public string Update { get; set; }
+        public string Delete { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public FW_ContentDataView()
+        public FW_ContentDataWebApi()
         {
             //
             // Base
             //
 
             ID = -1;
-            Visibility = TypeOfVisibility.ACTIVE;
 
             DateTime dateNow = DateTime.Now;
             CreatedDate = new DateTime(dateNow.Ticks);
@@ -75,12 +61,11 @@ namespace Framework.Content.Model.Schema
             // Info.
             //
 
-            Ref = string.Empty;
-            IsDefault = false;
-            Name = string.Empty;
-            Description = string.Empty;
-            Fields = null;
-            Owner = null;
+            Create = string.Empty;
+            Detail = string.Empty;
+            List = string.Empty;
+            Update = string.Empty;
+            Delete = string.Empty;
         }
     }
 }

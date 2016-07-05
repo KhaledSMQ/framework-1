@@ -130,17 +130,17 @@
     <Compile Include="Model\Mem\MemModel.cs" />
     <Compile Include="Model\Mem\MemEntity.cs" />
     <Compile Include="Model\Query\Expression.cs" />
-    <Compile Include="Model\Schema\FW_DataCluster.cs" />
-    <Compile Include="Model\Schema\FW_DataContext.cs" />
-    <Compile Include="Model\Schema\FW_DataPartialModelRef.cs" />
-    <Compile Include="Model\Schema\FW_DataEntityRef.cs" />
-    <Compile Include="Model\Schema\FW_DataQueryParam.cs" />
-    <Compile Include="Model\Schema\FW_DataQuery.cs" />
-    <Compile Include="Model\Schema\FW_DataProvider.cs" />
-    <Compile Include="Model\Schema\FW_DataSetting.cs" />
-    <Compile Include="Model\Schema\_Enums.cs" />
-    <Compile Include="Model\Schema\FW_DataEntity.cs" />
-    <Compile Include="Model\Schema\FW_DataPartialModel.cs" />
+    <Compile Include="Model\Relational\FW_DataCluster.cs" />
+    <Compile Include="Model\Relational\FW_DataContext.cs" />
+    <Compile Include="Model\Relational\FW_DataPartialModelRef.cs" />
+    <Compile Include="Model\Relational\FW_DataEntityRef.cs" />
+    <Compile Include="Model\Relational\FW_DataQueryParam.cs" />
+    <Compile Include="Model\Relational\FW_DataQuery.cs" />
+    <Compile Include="Model\Relational\FW_DataProvider.cs" />
+    <Compile Include="Model\Relational\FW_DataSetting.cs" />
+    <Compile Include="Model\Relational\_Enums.cs" />
+    <Compile Include="Model\Relational\FW_DataEntity.cs" />
+    <Compile Include="Model\Relational\FW_DataPartialModel.cs" />
     <Compile Include="Patterns\AProviderDataContext.cs" />
     <Compile Include="Patterns\AGenericDataSet.cs" />
     <Compile Include="Patterns\IDynamicDataSet.cs" />
@@ -159,7 +159,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Framework.Data.nuspec" />
-    <None Include="Model\Schema\__Model.cd" />
+    <None Include="Model\Relational\__Model.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

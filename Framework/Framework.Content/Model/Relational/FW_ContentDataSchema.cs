@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Property
+// Name/Class: Schema
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 04/Oct/2015
 // Company: Coop4Creativity
@@ -9,11 +9,12 @@
 
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using Framework.Core.Patterns;
 
-namespace Framework.Content.Model.Schema
+namespace Framework.Content.Model.Relational
 {
-    public class FW_ContentDataProperty :
+    public class FW_ContentDataSchema :
         IID<int>,
         IVisible,
         ICreated<string>,
@@ -41,22 +42,19 @@ namespace Framework.Content.Model.Schema
         // Info.
         //
 
-        public bool IsKey { get; set; }
+        public TypeOfEntitySchema Type { get; set; }
         public string Name { get; set; }
-        public string DisplayName { get; set; }
         public string Description { get; set; }
-        public string Type { get; set; }
-        public bool Required { get; set; }
-        public bool Editable { get; set; }
+        public virtual ICollection<FW_ContentDataProperty> Properties { get; set; }
 
         [JsonIgnore]
-        public virtual FW_ContentDataSchema Owner { get; set; }
+        public virtual FW_ContentDataEntity Owner { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public FW_ContentDataProperty()
+        public FW_ContentDataSchema()
         {
             //
             // Base
@@ -75,13 +73,10 @@ namespace Framework.Content.Model.Schema
             // Info.
             //
 
-            IsKey = false;
+            Type = TypeOfEntitySchema.UNKNOWN;
             Name = string.Empty;
-            DisplayName = string.Empty;
             Description = string.Empty;
-            Type = string.Empty;
-            Required = false;
-            Editable = true;
+            Properties = null;
             Owner = null;
         }
     }

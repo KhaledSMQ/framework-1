@@ -7,13 +7,14 @@
 // Description:
 // ============================================================================
 
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using Framework.Core.Patterns;
 
-namespace Framework.Content.Model.Schema
+namespace Framework.Content.Model.Relational
 {
-    public class FW_ContentDataCluster :
+    public class FW_ContentDataView :
         IID<int>,
         IVisible,
         ICreated<string>,
@@ -23,30 +24,39 @@ namespace Framework.Content.Model.Schema
         IDescription<string>
     {
         //
-        // PROPERTIES
+        // Base
         //
 
         public int ID { get; set; }
         public TypeOfVisibility Visibility { get; set; }
 
-        public string CreatedBy { get; set; }
+        //
+        // Audit
+        //
+
         public DateTime CreatedDate { get; set; }
-        public string ModifiedBy { get; set; }
         public DateTime ModifiedDate { get; set; }
+        public string CreatedBy { get; set; }
+        public string ModifiedBy { get; set; }
+
+        //
+        // Info.
+        //
 
         public string Ref { get; set; }
+        public bool IsDefault { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public virtual ICollection<FW_ContentDataField> Fields { get; set; }
 
-        public virtual ICollection<FW_ContentDataEntity> Entities { get; set; }
-
-        public virtual ICollection<FW_ContentDataContentType> ContentTypes { get; set; }
+        [JsonIgnore]
+        public virtual FW_ContentDataEntity Owner { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public FW_ContentDataCluster()
+        public FW_ContentDataView()
         {
             //
             // Base
@@ -66,10 +76,11 @@ namespace Framework.Content.Model.Schema
             //
 
             Ref = string.Empty;
+            IsDefault = false;
             Name = string.Empty;
             Description = string.Empty;
-            Entities = null;
-            ContentTypes = null;
+            Fields = null;
+            Owner = null;
         }
     }
 }

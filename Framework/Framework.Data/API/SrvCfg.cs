@@ -9,7 +9,7 @@
 
 using Framework.Core.Extensions;
 using Framework.Data.Model.Config;
-using Framework.Data.Model.Schema;
+using Framework.Data.Model.Relational;
 using Framework.Factory.Patterns;
 using System.Collections.Generic;
 

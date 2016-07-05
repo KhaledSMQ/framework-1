@@ -91,13 +91,14 @@
     <Compile Include="Model\Config\ManagerConfiguration.cs" />
     <Compile Include="Model\Config\SettingsConfiguration.cs" />
     <Compile Include="API\Transforms.cs" />
+    <Compile Include="Model\Relational\FW_FactorySetting.cs" />
     <Compile Include="Model\Runtime\Service.cs" />
     <Compile Include="Patterns\ACommon.cs" />
     <Compile Include="Patterns\AController.cs" />
     <Compile Include="Patterns\AControllerServiceWrapper.cs" />
     <Compile Include="Patterns\ICommon.cs" />
     <Compile Include="API\IHub.cs" />
-    <Compile Include="Model\Schema\ServiceEntry.cs" />
+    <Compile Include="Model\Relational\FW_FactoryServiceEntry.cs" />
     <Compile Include="API\IScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="API\SrvHub.cs" />

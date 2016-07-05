@@ -1,24 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Framework.Data.Model.Schema.FW_DataCluster" BaseTypeListCollapsed="true">
+  <Class Name="Framework.Data.Model.Relational.FW_DataCluster" BaseTypeListCollapsed="true">
     <Position X="4.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACACAAAAggAAAAAAAAAQAAgAAAAAAggkAAABAAAE=</HashCode>
-      <FileName>Model\Schema\FW_DataCluster.cs</FileName>
+      <FileName>Model\Relational\FW_DataCluster.cs</FileName>
     </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Property Name="Contexts" />
-      <Property Name="Entities" />
-      <Property Name="Models" />
-      <Property Name="Settings" />
-    </ShowAsCollectionAssociation>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Framework.Data.Model.Schema.FW_DataContext" BaseTypeListCollapsed="true">
+  <Class Name="Framework.Data.Model.Relational.FW_DataContext" BaseTypeListCollapsed="true">
     <Position X="9.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAkgAAAAAAAAAQAAgAAAAAAggkAAAAAAAE=</HashCode>
-      <FileName>Model\Schema\FW_DataContext.cs</FileName>
+      <FileName>Model\Relational\FW_DataContext.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Provider" />
@@ -30,19 +24,19 @@
     </ShowAsCollectionAssociation>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Framework.Data.Model.Schema.FW_DataSetting" BaseTypeListCollapsed="true">
+  <Class Name="Framework.Data.Model.Relational.FW_DataSetting" BaseTypeListCollapsed="true">
     <Position X="9.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAggAAAAAAAAAQAAgAAAAAAAgAgAAAAAAE=</HashCode>
-      <FileName>Model\Schema\FW_DataSetting.cs</FileName>
+      <FileName>Model\Relational\FW_DataSetting.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Framework.Data.Model.Schema.FW_DataEntity" BaseTypeListCollapsed="true">
+  <Class Name="Framework.Data.Model.Relational.FW_DataEntity" BaseTypeListCollapsed="true">
     <Position X="6.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAABggAAAAAAAAAQAAgAAABQAggAAAAAAAAE=</HashCode>
-      <FileName>Model\Schema\FW_DataEntity.cs</FileName>
+      <FileName>Model\Relational\FW_DataEntity.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Queries" />
@@ -50,63 +44,63 @@
     </ShowAsCollectionAssociation>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Framework.Data.Model.Schema.FW_DataEntityRef" BaseTypeListCollapsed="true">
+  <Class Name="Framework.Data.Model.Relational.FW_DataEntityRef" BaseTypeListCollapsed="true">
     <Position X="12.5" Y="2.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAggAAAAAAAAAQAAgAAAAAAggAAAAAAAAE=</HashCode>
-      <FileName>Model\Schema\FW_DataEntityRef.cs</FileName>
+      <FileName>Model\Relational\FW_DataEntityRef.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Settings" />
     </ShowAsCollectionAssociation>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Framework.Data.Model.Schema.FW_DataPartialModel" BaseTypeListCollapsed="true">
+  <Class Name="Framework.Data.Model.Relational.FW_DataPartialModel" BaseTypeListCollapsed="true">
     <Position X="6.5" Y="6.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAggAAAAAAAAAQAAgAAABAAggAAAAAAAAE=</HashCode>
-      <FileName>Model\Schema\FW_DataPartialModel.cs</FileName>
+      <FileName>Model\Relational\FW_DataPartialModel.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Settings" />
     </ShowAsCollectionAssociation>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Framework.Data.Model.Schema.FW_DataPartialModelRef" BaseTypeListCollapsed="true">
+  <Class Name="Framework.Data.Model.Relational.FW_DataPartialModelRef" BaseTypeListCollapsed="true">
     <Position X="12.5" Y="6.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAggAAAAAAAAAQAAgAAAAAAggAAAAAAAAE=</HashCode>
-      <FileName>Model\Schema\FW_DataPartialModelRef.cs</FileName>
+      <FileName>Model\Relational\FW_DataPartialModelRef.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Settings" />
     </ShowAsCollectionAssociation>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Framework.Data.Model.Schema.FW_DataProvider" BaseTypeListCollapsed="true">
+  <Class Name="Framework.Data.Model.Relational.FW_DataProvider" BaseTypeListCollapsed="true">
     <Position X="6.75" Y="11" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAggAAAAAAAAAAAggAAABAAggAAAAAAAAE=</HashCode>
-      <FileName>Model\Schema\FW_DataProvider.cs</FileName>
+      <FileName>Model\Relational\FW_DataProvider.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Framework.Data.Model.Schema.FW_DataQuery" BaseTypeListCollapsed="true">
+  <Class Name="Framework.Data.Model.Relational.FW_DataQuery" BaseTypeListCollapsed="true">
     <Position X="3.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAIAAABggAAAAAAAAAQAAgAAAAAQAgAAAAAAQAE=</HashCode>
-      <FileName>Model\Schema\FW_DataQuery.cs</FileName>
+      <FileName>Model\Relational\FW_DataQuery.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Params" />
     </ShowAsCollectionAssociation>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Framework.Data.Model.Schema.FW_DataQueryParam" BaseTypeListCollapsed="true">
+  <Class Name="Framework.Data.Model.Relational.FW_DataQueryParam" BaseTypeListCollapsed="true">
     <Position X="0.5" Y="1" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAEggAAAAAAAIAQAAAAAABAAAAAAAAAAAAA=</HashCode>
-      <FileName>Model\Schema\FW_DataQueryParam.cs</FileName>
+      <FileName>Model\Relational\FW_DataQueryParam.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>

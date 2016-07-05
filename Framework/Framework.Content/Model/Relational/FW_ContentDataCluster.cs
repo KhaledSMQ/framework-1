@@ -1,60 +1,52 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Schema
+// Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 04/Oct/2015
 // Company: Coop4Creativity
 // Description:
 // ============================================================================
 
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using Framework.Core.Patterns;
 
-namespace Framework.Content.Model.Schema
+namespace Framework.Content.Model.Relational
 {
-    public class FW_ContentDataSchema :
+    public class FW_ContentDataCluster :
         IID<int>,
         IVisible,
         ICreated<string>,
         IModified<string>,
+        IRef<string>,
         IName<string>,
         IDescription<string>
     {
         //
-        // Base
+        // PROPERTIES
         //
 
         public int ID { get; set; }
         public TypeOfVisibility Visibility { get; set; }
 
-        //
-        // Audit
-        //
-
-        public DateTime CreatedDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
         public string CreatedBy { get; set; }
+        public DateTime CreatedDate { get; set; }
         public string ModifiedBy { get; set; }
+        public DateTime ModifiedDate { get; set; }
 
-        //
-        // Info.
-        //
-
-        public TypeOfEntitySchema Type { get; set; }
+        public string Ref { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public virtual ICollection<FW_ContentDataProperty> Properties { get; set; }
 
-        [JsonIgnore]
-        public virtual FW_ContentDataEntity Owner { get; set; }
+        public virtual ICollection<FW_ContentDataEntity> Entities { get; set; }
+
+        public virtual ICollection<FW_ContentDataContentType> ContentTypes { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public FW_ContentDataSchema()
+        public FW_ContentDataCluster()
         {
             //
             // Base
@@ -73,11 +65,11 @@ namespace Framework.Content.Model.Schema
             // Info.
             //
 
-            Type = TypeOfEntitySchema.UNKNOWN;
+            Ref = string.Empty;
             Name = string.Empty;
             Description = string.Empty;
-            Properties = null;
-            Owner = null;
+            Entities = null;
+            ContentTypes = null;
         }
     }
 }

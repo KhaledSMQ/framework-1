@@ -9,7 +9,7 @@
 
 using Framework.Core.Patterns;
 
-namespace Framework.Data.Model.Schema
+namespace Framework.Data.Model.Relational
 {
     public class FW_DataQueryParam :
         IID<int>,

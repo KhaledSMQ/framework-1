@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Schema
+// Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 04/Oct/2015
 // Company: Coop4Creativity
@@ -9,15 +9,17 @@
 
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using Framework.Core.Patterns;
 
-namespace Framework.Content.Model.Schema
+namespace Framework.Content.Model.Relational
 {
-    public class FW_ContentDataForm :
+    public class FW_ContentDataEntity :
         IID<int>,
         IVisible,
         ICreated<string>,
         IModified<string>,
+        IRef<string>,
         IName<string>,
         IDescription<string>
     {
@@ -41,19 +43,24 @@ namespace Framework.Content.Model.Schema
         // Info.
         //
 
-        public TypeOfEntityForm Type { get; set; }
+        public string Ref { get; set; }
         public string Name { get; set; }
+        public string Icon { get; set; }
         public string Description { get; set; }
-        public string Url { get; set; }
+        public FW_ContentDataEntityDefinition Definition { get; set; }
+        public FW_ContentDataWebApi Api { get; set; }
+        public virtual ICollection<FW_ContentDataView> Views { get; set; }
+        public virtual ICollection<FW_ContentDataSchema> Schemas { get; set; }
+        public virtual ICollection<FW_ContentDataForm> Forms { get; set; }
 
         [JsonIgnore]
-        public virtual FW_ContentDataEntity Owner { get; set; }
+        public virtual FW_ContentDataCluster Owner { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public FW_ContentDataForm()
+        public FW_ContentDataEntity()
         {
             //
             // Base
@@ -72,10 +79,15 @@ namespace Framework.Content.Model.Schema
             // Info.
             //
 
-            Type = TypeOfEntityForm.UNKNOWN;
+            Ref = string.Empty;
             Name = string.Empty;
+            Icon = string.Empty;
             Description = string.Empty;
-            Url = null;
+            Definition = null;
+            Api = null;
+            Views = null;
+            Schemas = null;
+            Forms = null;
             Owner = null;
         }
     }

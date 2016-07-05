@@ -9,7 +9,7 @@
 
 using Framework.Core.Extensions;
 using Framework.Core.Types.Specialized;
-using Framework.Factory.Model.Schema;
+using Framework.Factory.Model.Relational;
 using Framework.Factory.Model.Config;
 using System.Collections.Generic;
 
@@ -21,15 +21,15 @@ namespace Framework.Factory.API
         // SERVICE
         //
       
-        public static ServiceEntry Converter(this ServiceElement elm)
+        public static FW_FactoryServiceEntry Converter(this ServiceElement elm)
         {
-            ServiceEntry service = new ServiceEntry();
+            FW_FactoryServiceEntry service = new FW_FactoryServiceEntry();
             service.Unique = elm.Unique;
             service.Name = elm.Name;
             service.Description = elm.Description;
             service.Contract = elm.Contract;
             service.TypeName = elm.Type;
-            service.Settings = elm.Settings.Map<SettingElement, Setting>(new List<Setting>(), Converter);
+            service.Settings = elm.Settings.Map<SettingElement, FW_FactorySetting>(new List<FW_FactorySetting>(), Converter);
             return service;
         }
 
@@ -37,9 +37,9 @@ namespace Framework.Factory.API
         // SETTING
         //     
 
-        public static Setting Converter(this SettingElement elm)
+        public static FW_FactorySetting Converter(this SettingElement elm)
         {
-            Setting ast = new Setting();
+            FW_FactorySetting ast = new FW_FactorySetting();
             ast.Name = elm.Name;
             ast.Value = elm.Value;
             return ast;

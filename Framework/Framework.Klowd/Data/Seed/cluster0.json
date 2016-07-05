@@ -36,7 +36,7 @@
       "Kind": "DATA_SET",
       "Name": "e0",
       "Description": "c0.e0 description",
-      "TypeName": "Framework.Data.Model.Schema.FW_DataCluster, Framework.Data",
+      "TypeName": "Framework.Data.Model.Relational.FW_DataCluster, Framework.Data",
       "Queries": [ ],
       "Settings": [ ]
     }

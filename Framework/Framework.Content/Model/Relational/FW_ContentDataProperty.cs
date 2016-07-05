@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: 
+// Name/Class: Property
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 04/Oct/2015
 // Company: Coop4Creativity
@@ -9,17 +9,15 @@
 
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using Framework.Core.Patterns;
 
-namespace Framework.Content.Model.Schema
+namespace Framework.Content.Model.Relational
 {
-    public class FW_ContentDataEntity :
+    public class FW_ContentDataProperty :
         IID<int>,
         IVisible,
         ICreated<string>,
         IModified<string>,
-        IRef<string>,
         IName<string>,
         IDescription<string>
     {
@@ -43,24 +41,22 @@ namespace Framework.Content.Model.Schema
         // Info.
         //
 
-        public string Ref { get; set; }
+        public bool IsKey { get; set; }
         public string Name { get; set; }
-        public string Icon { get; set; }
+        public string DisplayName { get; set; }
         public string Description { get; set; }
-        public FW_ContentDataEntityDefinition Definition { get; set; }
-        public FW_ContentDataWebApi Api { get; set; }
-        public virtual ICollection<FW_ContentDataView> Views { get; set; }
-        public virtual ICollection<FW_ContentDataSchema> Schemas { get; set; }
-        public virtual ICollection<FW_ContentDataForm> Forms { get; set; }
+        public string Type { get; set; }
+        public bool Required { get; set; }
+        public bool Editable { get; set; }
 
         [JsonIgnore]
-        public virtual FW_ContentDataCluster Owner { get; set; }
+        public virtual FW_ContentDataSchema Owner { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public FW_ContentDataEntity()
+        public FW_ContentDataProperty()
         {
             //
             // Base
@@ -79,15 +75,13 @@ namespace Framework.Content.Model.Schema
             // Info.
             //
 
-            Ref = string.Empty;
+            IsKey = false;
             Name = string.Empty;
-            Icon = string.Empty;
+            DisplayName = string.Empty;
             Description = string.Empty;
-            Definition = null;
-            Api = null;
-            Views = null;
-            Schemas = null;
-            Forms = null;
+            Type = string.Empty;
+            Required = false;
+            Editable = true;
             Owner = null;
         }
     }

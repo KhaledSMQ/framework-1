@@ -7,7 +7,7 @@
 // Description: Configuration objects.
 // ============================================================================
 
-using Framework.Data.Model.Schema;
+using Framework.Data.Model.Relational;
 using System.Configuration;
 
 namespace Framework.Data.Model.Config
