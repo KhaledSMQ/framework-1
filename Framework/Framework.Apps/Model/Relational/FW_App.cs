@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using Framework.Core.Patterns;
 
-namespace Framework.Apps.Model.Schema
+namespace Framework.Apps.Model.Relational
 {
     public class FW_App :
         IID<int>,

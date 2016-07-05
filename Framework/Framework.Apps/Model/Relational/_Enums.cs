@@ -10,6 +10,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Framework.Apps.Model.Schema
+namespace Framework.Apps.Model.Relational
 {
 }
