@@ -1,16 +1,16 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class:
+// Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 06/Jul/2016
+// Create date: 06/July/2016
 // Company: Coop4Creativity
 // Description: 
 // ============================================================================
 
-using Framework.Auth.Model.Config;
+using Framework.Code.Model.Config;
 using Framework.Factory.Patterns;
 
-namespace Framework.Auth.API
+namespace Framework.Code.API
 {
     public class SrvCfg : ACommon, ICfg
     {

@@ -1,18 +1,16 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class:
+// Name/Class: Constants
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 20/Mar/2016
+// Create date: 5/Jul/2016
 // Company: Coop4Creativity
-// Description:
+// Description: Constants.
 // ============================================================================
 
-namespace Framework.Code.Model
+namespace Framework.Code.Model.Config
 {
-    public enum Accessibility
+    public static class Constants
     {
-        PUBLIC,
-        PRIVATE,
-        PROTECTED
-    };
+        public const string SECTION = "framework.Code";
+    }
 }

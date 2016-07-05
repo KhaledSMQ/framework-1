@@ -1,18 +1,17 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class:
+// Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 20/Mar/2016
+// Create date: 05/Jul/2016
 // Company: Coop4Creativity
-// Description:
+// Description: Configuration objects.
 // ============================================================================
 
-namespace Framework.Code.Model
+using System.Configuration;
+
+namespace Framework.Code.Model.Config
 {
-    public enum Accessibility
-    {
-        PUBLIC,
-        PRIVATE,
-        PROTECTED
-    };
+    public class LibConfiguration : ConfigurationSection
+    {       
+    }
 }

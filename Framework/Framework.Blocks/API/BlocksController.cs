@@ -1,10 +1,10 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: 
+// Name/Class:
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 21/Mar/2016
+// Create date: 06/Jul/2016
 // Company: Coop4Creativity
-// Description:
+// Description: 
 // ============================================================================
 
 using Framework.Blocks.Model.Schema;
@@ -13,7 +13,7 @@ using System.Web.Http;
 
 namespace Framework.Blocks.API
 {
-    public class BlocksController : AController
+    public abstract class ABlocksController : AController
     {
         //
         // EVALUATE

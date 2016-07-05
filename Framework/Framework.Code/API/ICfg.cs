@@ -1,18 +1,18 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class:
+// Name/Class: ICfg
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 20/Mar/2016
+// Create date: 06/July/2016
 // Company: Coop4Creativity
 // Description:
 // ============================================================================
 
-namespace Framework.Code.Model
+using Framework.Factory.Patterns;
+
+namespace Framework.Code.API
 {
-    public enum Accessibility
+    public interface ICfg : ICommon
     {
-        PUBLIC,
-        PRIVATE,
-        PROTECTED
-    };
+        void Load();
+    }
 }
