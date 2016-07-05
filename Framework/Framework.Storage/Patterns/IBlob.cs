@@ -16,6 +16,7 @@ namespace Framework.Storage.Patterns
         //
 
         byte[] Content { get; set; }
+
         string MimeType { get; set; }
     }
 }

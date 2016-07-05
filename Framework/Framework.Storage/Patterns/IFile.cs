@@ -19,11 +19,17 @@ namespace Framework.Storage.Patterns
         //
 
         FileType Type { get; set; }
+
         string Filename { get; set; }
+
         string CreatedBy { get; set; }
+
         DateTime CreatedDate { get; set; }
+
         string ModifiedBy { get; set; }
+
         DateTime ModifiedDate { get; set; }
+
         string Path { get; set; }
     }
 }
