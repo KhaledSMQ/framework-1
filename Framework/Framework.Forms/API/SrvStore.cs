@@ -15,7 +15,7 @@ using Framework.Core.Extensions;
 
 namespace Framework.Forms.API
 {
-    public class SrvStore : ACommon, ICommon
+    public class SrvStore : ACommon, IStore
     {
         //
         // INIT/SHUTDOWN
