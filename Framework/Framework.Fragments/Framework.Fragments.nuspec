@@ -10,7 +10,7 @@
     <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
     <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
     -->
-    <iconUrl>http://nuget.cybermap.pt/m.ico</iconUrl>
+    <iconUrl>http://framework.coop4creativity.pt/logo.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes></releaseNotes>

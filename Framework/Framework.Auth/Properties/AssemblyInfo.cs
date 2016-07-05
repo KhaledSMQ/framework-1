@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Framework.Auth")]
 [assembly: AssemblyDescription("Framework Library")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("FW")]
+[assembly: AssemblyCompany("Coop4Creativity")]
 [assembly: AssemblyProduct("Framework.Auth")]
-[assembly: AssemblyCopyright("Copyright © FW 2015")]
+[assembly: AssemblyCopyright("Copyright © Coop4Creativity 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

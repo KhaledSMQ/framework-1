@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Framework.Data")]
 [assembly: AssemblyDescription("Framework Library")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("FW")]
+[assembly: AssemblyCompany("Coop4Creativity")]
 [assembly: AssemblyProduct("Framework.Data")]
 [assembly: AssemblyCopyright("Copyright © 2015")]
 [assembly: AssemblyTrademark("")]
