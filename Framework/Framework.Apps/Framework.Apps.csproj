@@ -62,6 +62,7 @@
     <Compile Include="Lib.cs" />
     <Compile Include="Model\Config\LibConfiguration.cs" />
     <Compile Include="Model\Config\_Const.cs" />
+    <Compile Include="Model\Objects\App.cs" />
     <Compile Include="Model\Relational\FW_App.cs" />
     <Compile Include="Model\Relational\_Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,9 +72,7 @@
     <None Include="Framework.Content.Data.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\Objects\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>

@@ -80,6 +80,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\AFactoryController.cs" />
+    <Compile Include="API\IEventHub.cs" />
+    <Compile Include="API\SrvEventHub.cs" />
     <Compile Include="API\SrvReflected.cs" />
     <Compile Include="API\IReflected.cs" />
     <Compile Include="API\IServiceEntry.cs" />
