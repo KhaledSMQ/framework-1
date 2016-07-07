@@ -36,26 +36,5 @@ namespace Framework.Data.API
 
             Config = (LibConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
         }
-
-        //
-        // Return the list of domains defined in the configuration section.
-        // 
-
-        public IEnumerable<ConfigCluster> GetListOfClusters()
-        {
-            IEnumerable<ConfigCluster> lstOfItems = null;
-
-            //
-            // Load the configuration clusters from config store 
-            // and load them into the runtime store service.
-            //
-
-            if (null != Config)
-            {
-                lstOfItems = Config.Clusters.Map<ConfigCluster, ConfigCluster>(new List<ConfigCluster>(), x => { return x; });
-            }
-
-            return lstOfItems;
-        }
     }
 }

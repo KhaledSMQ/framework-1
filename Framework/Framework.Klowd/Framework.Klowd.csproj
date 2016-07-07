@@ -554,7 +554,7 @@
     <Content Include="Packages\framework\fw\modules\mvc\engine\view.js" />
     <Content Include="Packages\framework\fw\modules\mvc\framework\content\rollup.js" />
     <Content Include="Packages\3party\jquery\112\jquery.min.js" />
-    <None Include="Data\Seed\cluster0.json" />
+    <None Include="Data\Seed\cluster.boot.json" />
     <Content Include="fw.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

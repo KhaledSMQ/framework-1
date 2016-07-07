@@ -17,16 +17,9 @@ namespace Framework.Data.API
     public interface ITransform : ICommon
     {
         //
-        // CONFIGURATION OBJECT ==> SCHEMA OBJECT
-        //
-
-        FW_DataCluster Convert(ConfigCluster cluster);
-
-        //
         // IMPORT OBJECT ==> SCHEMA OBJECT
         //
 
         FW_DataCluster Convert(ImportCluster cluster);
-
     }
 }

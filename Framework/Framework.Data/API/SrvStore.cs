@@ -60,7 +60,6 @@ namespace Framework.Data.API
         public void Schema_Load()
         {
             SrvCfg.Load();
-            Schema_Import(SrvCfg.GetListOfClusters());
         }
 
         public void Schema_Init()
@@ -81,17 +80,7 @@ namespace Framework.Data.API
         public void Schema_Import(ImportCluster cluster)
         {
             SrvMem.Cluster_Import(Scope.Hub.Get<ITransform>().Convert(cluster));
-        }
-
-        public void Schema_Import(IEnumerable<ConfigCluster> clusters)
-        {
-            clusters.Apply(Schema_Import);
-        }
-
-        public void Schema_Import(ConfigCluster cluster)
-        {
-            SrvMem.Cluster_Import(Scope.Hub.Get<ITransform>().Convert(cluster));
-        }
+        }    
 
         //
         // DATA-ACCESS-LAYER

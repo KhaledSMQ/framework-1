@@ -30,10 +30,6 @@ namespace Framework.Data.API
 
         void Schema_Import(ImportCluster cluster);
 
-        void Schema_Import(IEnumerable<ConfigCluster> clusters);
-
-        void Schema_Import(ConfigCluster cluster);
-
         //
         // DATA-ACCESS-LAYER
         //

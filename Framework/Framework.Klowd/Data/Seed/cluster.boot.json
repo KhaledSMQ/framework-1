@@ -1,0 +1,78 @@
+﻿{
+  "Name": "Boot",
+  "Description": "Base data cluster definition",
+  "Contexts": [
+    {
+      "Name": "Schema",
+      "Description": "Entity framework based data context for clowd data models",
+      "Provider": {
+        "Unique": true,
+        "Description": "Entity framework data context provider",
+        "TypeName": "Framework.Data.EntityFramework: Framework.Data.EntityFramework.Context.BaseDbContextProvider",
+        "Settings": [
+          {
+            "Name": "CONNECTION-STRING",
+            "Value": "Data Source=(LocalDB)\\v12.0;AttachDbFilename=|DataDirectory|\\c0.mdf;Integrated Security=True"
+          },
+          {
+            "Name": "INITIALIZER",
+            "Value": "CREATE_ALWAYS"
+          }
+        ]
+      },
+      "Entities": [
+        {
+          "Name": "Cluster"
+        },
+        {
+          "Name": "Entity"
+        },
+        {
+          "Name": "Query"
+        },
+        {
+          "Name": "Context"
+        },
+        {
+          "Name": "PartialModel"
+        }
+      ],
+      "Models": [ ],
+      "Settings": [ ]
+    }
+  ],
+  "Entities": [
+    {
+      "Kind": "DATA_SET",
+      "Name": "Cluster",
+      "TypeName": "Framework.Data.Model.Relational.FW_DataCluster, Framework.Data"
+    },
+    {
+      "Kind": "DATA_SET",
+      "Name": "Entity",
+      "TypeName": "Framework.Data.Model.Relational.FW_DataEntity, Framework.Data"
+    },
+    {
+      "Kind": "DATA_SET",
+      "Name": "Query",
+      "TypeName": "Framework.Data.Model.Relational.FW_DataQuery, Framework.Data"
+    },
+    {
+      "Kind": "DATA_SET",
+      "Name": "Context",
+      "TypeName": "Framework.Data.Model.Relational.FW_DataContext, Framework.Data"
+    },
+    {
+      "Kind": "DATA_SET",
+      "Name": "PartialModel",
+      "TypeName": "Framework.Data.Model.Relational.FW_DataPartialModel, Framework.Data"
+    },
+    {
+      "Kind": "DATA_SET",
+      "Name": "ServiceEntry",
+      "TypeName": "Framework.Factory.Model.Relational.FW_FactoryServiceEntry, Framework.Factory"
+    }
+  ],
+  "Models": [ ],
+  "Settings": [ ]
+}
