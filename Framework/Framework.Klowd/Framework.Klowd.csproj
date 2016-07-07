@@ -553,7 +553,7 @@
     <Content Include="Packages\framework\fw\modules\mvc\engine\config.js" />
     <Content Include="Packages\framework\fw\modules\mvc\engine\view.js" />
     <Content Include="Packages\framework\fw\modules\mvc\framework\content\rollup.js" />
-    <Content Include="Packages\jquery.min.js" />
+    <Content Include="Packages\3party\jquery\112\jquery.min.js" />
     <None Include="Data\Seed\cluster0.json" />
     <Content Include="fw.aspx" />
     <Content Include="Web.config">
