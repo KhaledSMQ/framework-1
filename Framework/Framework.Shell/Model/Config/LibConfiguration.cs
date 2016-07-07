@@ -1,17 +1,15 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: 
+// Name/Class: Library Configuration.
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 06/Jul/2016
+// Create date: 07/Jul/2016
 // Company: Coop4Creativity
-// Description: Configuration objects.
+// Description: Configuration for this module/library.
 // ============================================================================
-
-using System.Configuration;
 
 namespace Framework.Shell.Model.Config
 {
-    public class LibConfiguration : ConfigurationSection
-    {       
+    public class LibConfiguration : Configuration.Model.Config.ModuleConfiguration
+    {
     }
 }

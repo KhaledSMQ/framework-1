@@ -73,6 +73,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Framework.Configuration\Framework.Configuration.csproj">
+      <Project>{6c07c50f-a704-4eb1-b6bd-3b629f7f5729}</Project>
+      <Name>Framework.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>
       <Name>Framework.Core</Name>

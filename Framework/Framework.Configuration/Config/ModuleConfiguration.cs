@@ -1,17 +1,17 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Library Configuration.
+// Name/Class: Configuration for Manager.
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 07/Jul/2016
+// Create date: 26/Nov/2015
 // Company: Coop4Creativity
-// Description: Configuration for this module/library.
+// Description: Configuration objects.
 // ============================================================================
 
 using System.Configuration;
 
-namespace Framework.Maps.Model.Config
+namespace Framework.Configuration.Model.Config
 {
-    public class LibConfiguration : ConfigurationSection
+    public class ModuleConfiguration : ConfigurationSection
     {
         //
         // MODULE SERVICES

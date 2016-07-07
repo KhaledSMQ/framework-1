@@ -592,6 +592,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Apps\" />
     <Folder Include="Data\DB\" />
     <Folder Include="Packages\framework\angular\v1\engine\" />
     <Folder Include="Packages\framework\angular\v1\modules\" />
@@ -599,8 +600,13 @@
     <Folder Include="Packages\framework\aurelia\" />
     <Folder Include="Packages\framework\fw\modules\mvc\framework\forms\" />
     <Folder Include="Packages\framework\react\" />
+    <Folder Include="Servers\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Framework.Apps\Framework.Apps.csproj">
+      <Project>{41e965a3-a8bc-49cc-b209-598055d00b30}</Project>
+      <Name>Framework.Apps</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Framework.Auth\Framework.Auth.csproj">
       <Project>{13b3c667-c1d6-4736-bee7-70f608538914}</Project>
       <Name>Framework.Auth</Name>
@@ -613,13 +619,25 @@
       <Project>{8e8c0642-e92c-4fa3-b127-7a6383870d37}</Project>
       <Name>Framework.Charting</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Framework.Code\Framework.Code.csproj">
+      <Project>{dea74fd1-67ed-4684-8445-60358ab851df}</Project>
+      <Name>Framework.Code</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Framework.Comm\Framework.Comm.csproj">
       <Project>{df072c9d-45f4-4ee7-a243-a155e6a79a7b}</Project>
       <Name>Framework.Comm</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Framework.Compression\Framework.Compression.csproj">
+      <Project>{b7701d2a-54f2-430a-88c3-8ef5e4843732}</Project>
+      <Name>Framework.Compression</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Framework.Configuration\Framework.Configuration.csproj">
       <Project>{6c07c50f-a704-4eb1-b6bd-3b629f7f5729}</Project>
       <Name>Framework.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Content\Framework.Content.csproj">
+      <Project>{9244770a-f427-457f-88af-3be43bde999f}</Project>
+      <Name>Framework.Content</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>
@@ -657,6 +675,10 @@
       <Project>{12f96190-7bb7-4f01-bef0-03591d5ae9c1}</Project>
       <Name>Framework.Forms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Framework.Fragments\Framework.Fragments.csproj">
+      <Project>{c0e1e4dc-990d-4c07-aaa9-198615919cc2}</Project>
+      <Name>Framework.Fragments</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Framework.Localization\Framework.Localization.csproj">
       <Project>{4605e740-4e65-4be5-a191-834804595e8f}</Project>
       <Name>Framework.Localization</Name>
@@ -685,9 +707,29 @@
       <Project>{9201f213-d8e3-4f69-bf05-8b6540ae99e2}</Project>
       <Name>Framework.Search</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Framework.Server\Framework.Server.csproj">
+      <Project>{79546d64-66d8-4d9f-a68a-1f3db2bb5ed7}</Project>
+      <Name>Framework.Server</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Framework.Shell\Framework.Shell.csproj">
       <Project>{4d8bc1f3-1d0a-436f-8e79-2fcb51cad64a}</Project>
       <Name>Framework.Shell</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Storage.EntityFramework\Framework.Storage.EntityFramework.csproj">
+      <Project>{279d483a-e474-4926-9ce9-891babbb4dd5}</Project>
+      <Name>Framework.Storage.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Storage.FileSystem\Framework.Storage.FileSystem.csproj">
+      <Project>{8058f1f7-331b-4a10-8958-a1fda7e9fd6c}</Project>
+      <Name>Framework.Storage.FileSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Storage.GoogleClowd\Framework.Storage.GoogleClowd.csproj">
+      <Project>{5504a171-d447-4268-9f67-6b503091579e}</Project>
+      <Name>Framework.Storage.GoogleClowd</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Storage\Framework.Storage.csproj">
+      <Project>{ba222fac-b415-4a78-936a-1a5d27e71f0b}</Project>
+      <Name>Framework.Storage</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Templates\Framework.Templates.csproj">
       <Project>{b4935fcb-76e7-4ac6-9f6d-89a6e97f3ce3}</Project>
@@ -720,6 +762,10 @@
     <ProjectReference Include="..\Framework.Watcher\Framework.Watcher.csproj">
       <Project>{2ae5048a-e359-4de7-9223-f0d9cf4e97d3}</Project>
       <Name>Framework.Watcher</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.WebAPI\Framework.WebAPI.csproj">
+      <Project>{d590ba6d-2425-4270-9201-d067fc59fb47}</Project>
+      <Name>Framework.WebAPI</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Web\Framework.Web.csproj">
       <Project>{ab6ab9f2-e765-4cb6-aede-a5cb3bcc8794}</Project>

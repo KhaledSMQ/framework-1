@@ -1,10 +1,10 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Configuration for Manager.
+// Name/Class: Library Configuration.
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 26/Nov/2015
+// Create date: 07/Jul/2016
 // Company: Coop4Creativity
-// Description: Configuration objects.
+// Description: Configuration for this module/library.
 // ============================================================================
 
 using System.Configuration;
