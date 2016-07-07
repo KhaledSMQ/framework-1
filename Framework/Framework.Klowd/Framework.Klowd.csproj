@@ -580,10 +580,8 @@
     <Content Include="Data\Seed\_seed.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="API\FormsController.cs" />
-    <Compile Include="API\FactoryController.cs" />
-    <Compile Include="API\DataController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.Debug.config">

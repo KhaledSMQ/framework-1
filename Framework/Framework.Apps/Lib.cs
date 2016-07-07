@@ -18,12 +18,12 @@ namespace Framework.Apps
         // Error prefix for error messages in this library.
         //
 
-        public static string DEFAULT_ERROR_MSG_PREFIX = Assembly.GetExecutingAssembly().GetName().Name;
+        public static readonly string DEFAULT_ERROR_MSG_PREFIX = Assembly.GetExecutingAssembly().GetName().Name;
 
         // 
         // Default Xml namespace.
         //
 
-        public static string DEFAULT_XML_NAMESPACE = Framework.Lib.DEFAULT_XML_NAMESPACE + "/" + DEFAULT_ERROR_MSG_PREFIX.RightOf(".").Replace('.', '/').ToLower();
+        public static readonly string DEFAULT_XML_NAMESPACE = Framework.Lib.DEFAULT_XML_NAMESPACE + "/" + DEFAULT_ERROR_MSG_PREFIX.RightOf(".").Replace('.', '/').ToLower();
     }
 }

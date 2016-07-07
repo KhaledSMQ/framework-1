@@ -44,12 +44,12 @@ namespace Framework.Core
         // Error prefix for error messages in this library.
         //
 
-        public static string DEFAULT_ERROR_MSG_PREFIX = Framework.Lib.GetDefaultErrorPrefix(Assembly.GetExecutingAssembly());
+        public static readonly string DEFAULT_ERROR_MSG_PREFIX = Framework.Lib.GetDefaultErrorPrefix(Assembly.GetExecutingAssembly());
 
         // 
         // Default Xml namespace.
         //
 
-        public static string DEFAULT_XML_NAMESPACE = Framework.Lib.GetDefaultXmlNamespace(Assembly.GetExecutingAssembly());
+        public static readonly string DEFAULT_XML_NAMESPACE = Framework.Lib.GetDefaultXmlNamespace(Assembly.GetExecutingAssembly());
     }
 }

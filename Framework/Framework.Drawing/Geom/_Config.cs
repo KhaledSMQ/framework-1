@@ -15,6 +15,6 @@ namespace Framework.Drawing.Geom
         // Default Xml namespace.
         //
 
-        public static string DEFAULT_XML_NAMESPACE = Framework.Drawing.Lib.DEFAULT_XML_NAMESPACE + "/geom";
+        public static readonly string DEFAULT_XML_NAMESPACE = Framework.Drawing.Lib.DEFAULT_XML_NAMESPACE + "/geom";
     }
 }
