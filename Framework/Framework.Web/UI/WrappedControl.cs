@@ -7,13 +7,12 @@
 // Description: Base control definition.
 // ============================================================================
 
-using Framework.Web.Controls;
 using System;
 using System.Web.UI;
 
-namespace Framework.Web.View
+namespace Framework.Web.UI
 {
-    public class WrappedControl : Framework.Web.View.Control
+    public class WrappedControl : Control
     {
         //
         // PROPERTIES

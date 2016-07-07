@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" Inherits="Framework.Web.View.Page" %>
+﻿<%@ Page Title="" Language="C#" Inherits="Framework.Web.UI.Page" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,10 +9,10 @@
 </head>
 <body>
 </body>
-    <framework:Include runat="server" Folder="Packages" Pattern="*.js" />
-    <framework:Include runat="server" Folder="Packages\framework\fw" Pattern="*.js" />
-    <framework:Include runat="server" Folder="Packages\framework\fw" Pattern="__*.js" Recursive="true" />
-    <framework:Include runat="server" Folder="Packages\framework\fw\modules" Pattern="*.js" Recursive="true" />
+    <fw:Include runat="server" Folder="Packages" Pattern="*.js" />
+    <fw:Include runat="server" Folder="Packages\framework\fw" Pattern="*.js" />
+    <fw:Include runat="server" Folder="Packages\framework\fw" Pattern="__*.js" Recursive="true" />
+    <fw:Include runat="server" Folder="Packages\framework\fw\modules" Pattern="*.js" Recursive="true" />
     <script>fw.debug(true);</script>
 </html>
 

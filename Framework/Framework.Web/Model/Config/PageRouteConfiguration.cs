@@ -10,7 +10,7 @@
 using System.Collections;
 using System.Configuration;
 
-namespace Framework.Web.Config.Routing
+namespace Framework.Web.Model.Config
 {
     public class PageRouteElementCollection : ConfigurationElementCollection, IEnumerable
     {
@@ -66,33 +66,33 @@ namespace Framework.Web.Config.Routing
         // NAME
         //
 
-        [ConfigurationProperty(Constants.NAME, DefaultValue = "", IsRequired = false)]
+        [ConfigurationProperty(Constants.ROUTING_NAME, DefaultValue = "", IsRequired = false)]
         public string Name
         {
-            get { return (string)this[Constants.NAME]; }
-            set { this[Constants.NAME] = value; }
+            get { return (string)this[Constants.ROUTING_NAME]; }
+            set { this[Constants.ROUTING_NAME] = value; }
         }
 
         //
         // FRIENDLY URL
         //
 
-        [ConfigurationProperty(Constants.FRIENDLY_URL, DefaultValue = "", IsRequired = true)]
+        [ConfigurationProperty(Constants.ROUTING_FRIENDLY_URL, DefaultValue = "", IsRequired = true)]
         public string FriendlyUrl
         {
-            get { return (string)this[Constants.FRIENDLY_URL]; }
-            set { this[Constants.FRIENDLY_URL] = value; }
+            get { return (string)this[Constants.ROUTING_FRIENDLY_URL]; }
+            set { this[Constants.ROUTING_FRIENDLY_URL] = value; }
         }
 
         //
         // LOCATION
         //
 
-        [ConfigurationProperty(Constants.LOCATION, DefaultValue = "", IsRequired = true)]
+        [ConfigurationProperty(Constants.ROUTING_LOCATION, DefaultValue = "", IsRequired = true)]
         public string Location
         {
-            get { return (string)this[Constants.LOCATION]; }
-            set { this[Constants.LOCATION] = value; }
+            get { return (string)this[Constants.ROUTING_LOCATION]; }
+            set { this[Constants.ROUTING_LOCATION] = value; }
         }
     }
 }

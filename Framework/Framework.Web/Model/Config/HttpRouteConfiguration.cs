@@ -10,7 +10,7 @@
 using System.Collections;
 using System.Configuration;
 
-namespace Framework.Web.Config.Routing
+namespace Framework.Web.Model.Config
 {
     public class HttpRouteElementCollection : ConfigurationElementCollection, IEnumerable
     {
@@ -66,22 +66,22 @@ namespace Framework.Web.Config.Routing
         // NAME
         //
 
-        [ConfigurationProperty(Constants.NAME, DefaultValue = "", IsRequired = false)]
+        [ConfigurationProperty(Constants.ROUTING_NAME, DefaultValue = "", IsRequired = false)]
         public string Name
         {
-            get { return (string)this[Constants.NAME]; }
-            set { this[Constants.NAME] = value; }
+            get { return (string)this[Constants.ROUTING_NAME]; }
+            set { this[Constants.ROUTING_NAME] = value; }
         }
 
         //
         // TEMPLATES
         //
 
-        [ConfigurationProperty(Constants.TEMPLATE, DefaultValue = "", IsRequired = true)]
+        [ConfigurationProperty(Constants.ROUTING_TEMPLATE, DefaultValue = "", IsRequired = true)]
         public string Template
         {
-            get { return (string)this[Constants.TEMPLATE]; }
-            set { this[Constants.TEMPLATE] = value; }
+            get { return (string)this[Constants.ROUTING_TEMPLATE]; }
+            set { this[Constants.ROUTING_TEMPLATE] = value; }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" Inherits="Framework.Web.View.Page" %>
+﻿<%@ Page Title="" Language="C#" Inherits="Framework.Web.UI.Page" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -6,11 +6,11 @@
     <title>react</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-    <framework:Include runat="server" Folder="Packages\framework\react" Pattern="*.css" Recursive="true" />
+    <fw:Include runat="server" Folder="Packages\framework\react" Pattern="*.css" Recursive="true" />
 </head>
 <body>
 </body>
-    <framework:Include runat="server" Folder="Packages\framework\react" Pattern="*.js" Recursive="true" />
+    <fw:Include runat="server" Folder="Packages\framework\react" Pattern="*.js" Recursive="true" />
     <script src="https://fb.me/react-with-addons-15.1.0.min.js"></script>
     <script src="https://fb.me/react-dom-15.1.0.min.js"></script>
 

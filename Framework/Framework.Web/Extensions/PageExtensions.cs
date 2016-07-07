@@ -1,11 +1,11 @@
 ﻿// ============================================================================
-// Project: Toolkit (Web)
-// Name/Class: PageExtensions
+// Project: Framework
+// Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 13/Jun/2013
+// Create date: 08/Mar/2016
 // Company: Coop4Creativity
-// Description: Set of extension methods for web pages.
-// ============================================================================                    
+// Description:
+// ============================================================================            
 
 using Framework.Core.Extensions;
 using System;

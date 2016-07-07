@@ -1,18 +1,18 @@
 ﻿// ============================================================================
-// Project: Framework
-// Name/Class: Control
+// Project: FRamework
+// Name/Class: Page
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 15/Abr/2014
+// Create date: 26/Nov/2015
 // Company: Coop4Creativity
-// Description: Base control definition.
+// Description: Base page definition.
 // ============================================================================
 
 using Framework.Factory.API;
 using System;
 
-namespace Framework.Web.View
+namespace Framework.Web.UI
 {
-    public class Control : System.Web.UI.Control
+    public class Page : System.Web.UI.Page
     {
         //
         // PROPERTIES

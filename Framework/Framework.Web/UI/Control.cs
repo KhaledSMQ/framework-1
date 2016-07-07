@@ -1,18 +1,18 @@
 ﻿// ============================================================================
-// Project: Toolkit - Apps
-// Name/Class: UserControl
+// Project: Framework
+// Name/Class: Control
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 26/Nov/2015
+// Create date: 15/Abr/2014
 // Company: Coop4Creativity
-// Description: Base user control definition.
+// Description: Base control definition.
 // ============================================================================
 
 using Framework.Factory.API;
 using System;
 
-namespace Framework.Web.View
+namespace Framework.Web.UI
 {
-    public class UserControl : System.Web.UI.UserControl
+    public class Control : System.Web.UI.Control
     {
         //
         // PROPERTIES
@@ -35,10 +35,10 @@ namespace Framework.Web.View
             base.OnInit(e);
 
             //
-            // Set the context scope for the control.
+            // Get the context for the control.
             //
 
-            Scope = Factory.API.Runtime.Hub.GetUnique<IScope>().New();
+            Scope = Runtime.Hub.GetUnique<IScope>().New();
         }
     }
 }

@@ -9,8 +9,7 @@
 
 using Framework.Core.Extensions;
 using Framework.Factory.Patterns;
-using Framework.Web.Config;
-using Framework.Web.Config.Routing;
+using Framework.Web.Model.Config;
 using Framework.Web.Model.Routing;
 using System;
 using System.Collections.Generic;
@@ -74,7 +73,7 @@ namespace Framework.Web.API
             // Load from configuration settings.
             //
 
-            LibConfiguration config = (LibConfiguration)System.Configuration.ConfigurationManager.GetSection(Config.Constants.SECTION);
+            LibConfiguration config = (LibConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
             if (null != config)
             {
                 if (null != config.Routing)

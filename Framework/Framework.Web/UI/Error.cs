@@ -10,10 +10,10 @@
 using System;
 using System.Web.UI;
 
-namespace Framework.Web.Controls
+namespace Framework.Web.UI
 {
     [ToolboxData("<{0}:Error runat=\"server\"></{0}:Error>")]
-    public class Error : View.Control
+    public class Error : Control
     {
         //
         // PROPERTIES
@@ -22,12 +22,6 @@ namespace Framework.Web.Controls
         public string CssClass { get; set; }
 
         public Exception Exception { get; set; }
-
-        //
-        // CONSTRUCTORS
-        //
-
-        public Error() : base() { }
 
         //
         // ON-INIT

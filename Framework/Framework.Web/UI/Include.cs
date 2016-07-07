@@ -18,10 +18,10 @@ using System.IO;
 using System.Web;
 using System.Web.UI;
 
-namespace Framework.Web.Controls
+namespace Framework.Web.UI
 {
     [ToolboxData("<{0}:Include runat=\"server\"></{0}:Include>")]
-    public class Include : View.Control
+    public class Include : UI.Control
     {
         //
         // PROPERTIES

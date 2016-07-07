@@ -1,10 +1,10 @@
 ﻿// ============================================================================
-// Project: Toolkit
-// Name/Class: ErrorExtensions
+// Project: Framework
+// Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 29/July/2013
+// Create date: 08/Mar/2016
 // Company: Coop4Creativity
-// Description: Extensions methods for Error handling in a ASP.NET environment
+// Description:
 // ============================================================================
 
 using Framework.Core.Extensions;

@@ -7,10 +7,9 @@
 // Description: Configuration for this module/library.
 // ============================================================================
 
-using Framework.Web.Config.Routing;
 using System.Configuration;
 
-namespace Framework.Web.Config
+namespace Framework.Web.Model.Config
 {
     public class LibConfiguration : Configuration.Model.Config.ModuleConfiguration    
     {

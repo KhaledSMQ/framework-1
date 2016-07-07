@@ -1,18 +1,18 @@
 ﻿// ============================================================================
-// Project: FRamework
-// Name/Class: Page
+// Project: Toolkit - Apps
+// Name/Class: UserControl
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 26/Nov/2015
 // Company: Coop4Creativity
-// Description: Base page definition.
+// Description: Base user control definition.
 // ============================================================================
 
 using Framework.Factory.API;
 using System;
 
-namespace Framework.Web.View
+namespace Framework.Web.UI
 {
-    public class Page : System.Web.UI.Page
+    public class UserControl : System.Web.UI.UserControl
     {
         //
         // PROPERTIES
@@ -35,7 +35,7 @@ namespace Framework.Web.View
             base.OnInit(e);
 
             //
-            // Get the context for the control.
+            // Set the context scope for the control.
             //
 
             Scope = Factory.API.Runtime.Hub.GetUnique<IScope>().New();
