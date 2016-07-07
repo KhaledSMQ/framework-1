@@ -54,6 +54,8 @@ namespace Framework.Apps.Model.Objects
 
         public string Description { get; set; }
 
+        public Meta Meta { get; set; }
+
         //
         // CONSTRUCTORS
         //
@@ -81,6 +83,7 @@ namespace Framework.Apps.Model.Objects
             Ref = default(string);
             Name = default(string);
             Description = default(string);
+            Meta = default(Meta);
         }
     }
 }

@@ -2,11 +2,12 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 25/Mar/2016
+// Create date: 04/Oct/2015
 // Company: Coop4Creativity
-// Description: 
+// Description:
 // ============================================================================
 
-namespace Framework.Packages.Model
+namespace Framework.Klowd.API
 {
+    public class FactoryController : Factory.API.AFactoryController { }
 }

@@ -64,6 +64,7 @@
     <Compile Include="Model\Config\_Const.cs" />
     <Compile Include="Model\Objects\App.cs" />
     <Compile Include="Model\Objects\Domain.cs" />
+    <Compile Include="Model\Objects\Meta.cs" />
     <Compile Include="Model\Relational\FW_Domain.cs" />
     <Compile Include="Model\Relational\FW_App.cs" />
     <Compile Include="Model\Relational\_Enums.cs" />

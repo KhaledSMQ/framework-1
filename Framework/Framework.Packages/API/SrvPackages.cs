@@ -10,7 +10,7 @@
 using Framework.Configuration.API;
 using Framework.Core.Extensions;
 using Framework.Factory.Patterns;
-using Framework.Packages.Model;
+using Framework.Packages.Model.Objects;
 using Framework.Web.API;
 using System;
 using System.Collections.Generic;
@@ -35,7 +35,7 @@ namespace Framework.Packages.API
         private const string PACKAGE_FILE_NAME_DESCRIPTION = "_description.txt";
         private const string PACKAGE_FILE_NAME_EXTERNALS = "_external.json";
 
-        private string[] PACKAGE_RESERVED_FILE_NAMES = { 
+        private readonly string[] PACKAGE_RESERVED_FILE_NAMES = { 
             PACKAGE_FILE_NAME_DESCRIPTION, 
             PACKAGE_FILE_NAME_EXTERNALS 
         };
@@ -44,6 +44,7 @@ namespace Framework.Packages.API
         // Type of information to extract for package.
         //
 
+        [Flags]
         public enum TypeOfPackageInfo
         {
             NONE = 0,           // 0000 -> 0
@@ -338,11 +339,11 @@ namespace Framework.Packages.API
                 // filtering the supplied mime type.
                 //
 
-                string fileMimeType = Framework.Core.MimeTypes.TYPE_TXT;
+                string fileMimeType = Core.MimeTypes.TYPE_TXT;
 
                 try
                 {
-                    fileMimeType = Framework.Core.MimeTypes.GetMimeTypeFromFilename(filename);
+                    fileMimeType = Core.MimeTypes.GetMimeTypeFromFilename(filename);
                 }
                 catch (Exception) { }
 
@@ -414,7 +415,7 @@ namespace Framework.Packages.API
 
                             doc.Files.Apply(file =>
                             {
-                                string currFileMimeType = file.MimeType.isNullOrEmpty() ? Framework.Core.MimeTypes.TYPE_TXT : file.MimeType.Trim();
+                                string currFileMimeType = file.MimeType.isNullOrEmpty() ? Core.MimeTypes.TYPE_TXT : file.MimeType.Trim();
                                 bool currMimeTypeMatchs = Regex.IsMatch(currFileMimeType, mimeTypeRegex);
                                 if (currMimeTypeMatchs)
                                 {

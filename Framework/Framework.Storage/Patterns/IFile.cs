@@ -20,7 +20,7 @@ namespace Framework.Storage.Patterns
 
         FileType Type { get; set; }
 
-        string Filename { get; set; }
+        string Name { get; set; }
 
         string CreatedBy { get; set; }
 

@@ -7,7 +7,7 @@
 // Description:
 // ============================================================================
 
-namespace Framework.Klowd.Server.API
+namespace Framework.Klowd.API
 {
-    public class DataController : Data.API.ADataController { }
+    public class FormsController : Forms.API.AFormsController { }
 }

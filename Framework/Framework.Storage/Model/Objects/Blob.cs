@@ -1,32 +1,38 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Folder
+// Name/Class: Blob
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 03/Aug/2015
 // Company: Coop4Creativity
-// Description: Data folder modelling class.
+// Description: Data blob modelling class.
 // ============================================================================
 
 using Framework.Storage.Patterns;
 
-namespace Framework.Storage.Model
+namespace Framework.Storage.Model.Objects
 {
-    public class Folder : File, IFolder
+    public class Blob : File, IBlob
     {
         //
         // PROPERTIES
         //
 
-        public IFileSet Files { get; set; }
+        public string MimeType { get; set; }
+
+        public string Encoding { get; set; }
+
+        public byte[] Content { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public Folder()
-            : base(FileType.FOLDER)
+        public Blob()
+            : base(FileType.BLOB)
         {
-            Files = null;
+            MimeType = default(string);
+            Encoding = default(string);
+            Content = null;
         }
     }
 }

@@ -70,16 +70,15 @@
     <Compile Include="Lib.cs" />
     <Compile Include="Model\Config\LibConfiguration.cs" />
     <Compile Include="Model\Config\_Const.cs" />
-    <Compile Include="Model\Dependency.cs" />
-    <Compile Include="Model\DependencySet.cs" />
-    <Compile Include="Model\Document.cs" />
-    <Compile Include="Model\DocumentSet.cs" />
-    <Compile Include="Model\File.cs" />
-    <Compile Include="Model\FileSet.cs" />
-    <Compile Include="Model\Package.cs" />
-    <Compile Include="Model\PackageSet.cs" />
-    <Compile Include="Model\UrlSet.cs" />
-    <Compile Include="Model\_Enums.cs" />
+    <Compile Include="Model\Objects\Dependency.cs" />
+    <Compile Include="Model\Objects\DependencySet.cs" />
+    <Compile Include="Model\Objects\Document.cs" />
+    <Compile Include="Model\Objects\DocumentSet.cs" />
+    <Compile Include="Model\Objects\File.cs" />
+    <Compile Include="Model\Objects\FileSet.cs" />
+    <Compile Include="Model\Objects\Package.cs" />
+    <Compile Include="Model\Objects\PackageSet.cs" />
+    <Compile Include="Model\Objects\UrlSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

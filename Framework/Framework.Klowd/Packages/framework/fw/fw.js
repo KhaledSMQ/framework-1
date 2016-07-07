@@ -200,7 +200,7 @@ window.fw.core = jQuery.extend(true, window.fw.core, {
     },
 
     //
-    // Verify that a list of condition hold true,
+    // Verify that a list of conditions hold true,
     // if not throw a message, also defined in the
     // list of arguments.
     //

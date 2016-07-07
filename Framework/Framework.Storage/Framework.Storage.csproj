@@ -57,17 +57,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\IDrive.cs" />
+    <Compile Include="API\IStore.cs" />
     <Compile Include="API\IBlobSet.cs" />
     <Compile Include="API\ICfg.cs" />
     <Compile Include="API\SrvCfg.cs" />
     <Compile Include="Lib.cs" />
-    <Compile Include="Model\Blob.cs" />
+    <Compile Include="Model\Objects\Blob.cs" />
     <Compile Include="Model\Config\LibConfiguration.cs" />
     <Compile Include="Model\Config\_Const.cs" />
-    <Compile Include="Model\Drive.cs" />
-    <Compile Include="Model\File.cs" />
-    <Compile Include="Model\FileSet.cs" />
-    <Compile Include="Model\Folder.cs" />
+    <Compile Include="Model\Objects\Drive.cs" />
+    <Compile Include="Model\Objects\File.cs" />
+    <Compile Include="Model\Objects\Folder.cs" />
     <Compile Include="Patterns\Enums.cs" />
     <Compile Include="Patterns\IBlob.cs" />
     <Compile Include="Patterns\IDrive.cs" />
@@ -81,9 +82,7 @@
     <None Include="Framework.Storage.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>

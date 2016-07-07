@@ -1,48 +1,53 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: File
+// Name/Class: Drive
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 03/Aug/2015
 // Company: Coop4Creativity
-// Description: Data file modelling class.
+// Description: A drive is a set of files/folders.
 // ============================================================================
 
 using Framework.Storage.Patterns;
 using System;
 
-namespace Framework.Storage.Model
+namespace Framework.Storage.Model.Objects
 {
-    public class File : IFile
+    public class Drive : IDrive
     {
         //
         // PROPERTIES
         //
 
+        public int Owner { get; set; }
+
         public int ID { get; set; }
-        public FileType Type { get; set; }
-        public string Filename { get; set; }
+
+        public string Name { get; set; }
+
         public DateTime CreatedDate { get; set; }
+
         public DateTime ModifiedDate { get; set; }
+
         public string CreatedBy { get; set; }
+
         public string ModifiedBy { get; set; }
-        public string Path { get; set; }
+
+        public IFileSet Files { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public File(FileType type)
+        public Drive(FileType type)
         {
             ID = -1;
-            Type = type;
-            Filename = string.Empty;
+            Name = string.Empty;
+
             CreatedDate = DateTime.Now;
             ModifiedDate = DateTime.Now;
             CreatedBy = string.Empty;
             ModifiedBy = string.Empty;
-            Path = string.Empty;
+            Files = null;
         }
-
-        public File() : this(FileType.UNKNOWN) { }
     }
 }
