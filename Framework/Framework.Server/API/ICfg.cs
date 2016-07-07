@@ -1,15 +1,18 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: 
+// Name/Class: ICfg
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 04/Oct/2015
+// Create date: 06/July/2016
 // Company: Coop4Creativity
 // Description:
 // ============================================================================
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using Framework.Factory.Patterns;
 
-namespace Framework.Apps.Model.Relational
+namespace Framework.Server.API
 {
+    public interface ICfg : ICommon
+    {
+        void Load();
+    }
 }
