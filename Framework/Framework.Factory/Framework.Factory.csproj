@@ -81,6 +81,8 @@
   <ItemGroup>
     <Compile Include="API\AFactoryController.cs" />
     <Compile Include="API\IEventHub.cs" />
+    <Compile Include="API\IModule.cs" />
+    <Compile Include="API\SrvModule.cs" />
     <Compile Include="API\SrvEventHub.cs" />
     <Compile Include="API\SrvReflected.cs" />
     <Compile Include="API\IReflected.cs" />
@@ -88,13 +90,14 @@
     <Compile Include="Attributes\ServiceDependencyAttribute.cs" />
     <Compile Include="Attributes\ServicePropertyAttribute.cs" />
     <Compile Include="Model\Config\BaseConfiguration.cs" />
+    <Compile Include="Model\Config\ModuleConfiguration.cs" />
     <Compile Include="Model\Config\ServiceConfiguration.cs" />
     <Compile Include="Model\Config\_Const.cs" />
     <Compile Include="Model\Config\LibConfiguration.cs" />
     <Compile Include="Model\Config\SettingsConfiguration.cs" />
     <Compile Include="API\Transforms.cs" />
     <Compile Include="Model\Relational\FW_FactorySetting.cs" />
-    <Compile Include="Model\Runtime\Service.cs" />
+    <Compile Include="Model\Runtime\ServiceEntry.cs" />
     <Compile Include="Patterns\ACommon.cs" />
     <Compile Include="Patterns\AController.cs" />
     <Compile Include="Patterns\AControllerServiceWrapper.cs" />

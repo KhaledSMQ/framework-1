@@ -23,8 +23,6 @@ namespace Framework.Data.API
         // Service dependencies.
         //
 
-        protected ICfg SrvCfg { get; set; }
-
         protected IMem SrvMem { get; set; }
 
         protected IDAL SrvDAL { get; set; }
@@ -48,7 +46,6 @@ namespace Framework.Data.API
             // do not have dependencies that are circular to this service.
             //
 
-            SrvCfg = Scope.Hub.GetUnique<ICfg>();
             SrvMem = Scope.Hub.GetUnique<IMem>();
             SrvDAL = Scope.Hub.GetUnique<IDAL>();           
         }
@@ -59,7 +56,6 @@ namespace Framework.Data.API
 
         public void Schema_Load()
         {
-            SrvCfg.Load();
         }
 
         public void Schema_Init()

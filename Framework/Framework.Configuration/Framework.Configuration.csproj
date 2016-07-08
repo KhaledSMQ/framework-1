@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\IModule.cs" />
     <Compile Include="API\SrvStartup.cs" />
     <Compile Include="API\SrvHost.cs" />
     <Compile Include="API\IHost.cs" />

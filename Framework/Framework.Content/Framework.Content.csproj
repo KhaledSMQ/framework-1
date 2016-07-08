@@ -57,8 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\ICfg.cs" />
-    <Compile Include="API\SrvCfg.cs" />
+    <Compile Include="API\SrvModule.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="Model\Config\LibConfiguration.cs" />
     <Compile Include="Model\Config\_Const.cs" />

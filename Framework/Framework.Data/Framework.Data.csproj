@@ -76,12 +76,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\IDAL.cs" />
-    <Compile Include="API\ICfg.cs" />
     <Compile Include="API\ITransform.cs" />
     <Compile Include="API\SrvLinqQueryProcessor.cs" />
     <Compile Include="API\IQueryProcessor.cs" />
     <Compile Include="API\IStore.cs" />
     <Compile Include="API\SrvDAL.cs" />
+    <Compile Include="API\SrvModule.cs" />
     <Compile Include="API\SrvStore.cs" />
     <Compile Include="API\ADataController.cs" />
     <Compile Include="API\IDynamicStoreDataScope.cs" />
@@ -94,7 +94,6 @@
     <Compile Include="API\SrvGenericClusterDataScope.cs" />
     <Compile Include="API\SrvServiceEntry.cs" />
     <Compile Include="API\IMem.cs" />
-    <Compile Include="API\SrvCfg.cs" />
     <Compile Include="API\SrvTransform.cs" />
     <Compile Include="Model\Config\_Const.cs" />
     <Compile Include="Extensions\TypeNameExtensions.cs" />

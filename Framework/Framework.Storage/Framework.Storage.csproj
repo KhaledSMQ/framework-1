@@ -60,8 +60,7 @@
     <Compile Include="API\IDrive.cs" />
     <Compile Include="API\IStore.cs" />
     <Compile Include="API\IBlobSet.cs" />
-    <Compile Include="API\ICfg.cs" />
-    <Compile Include="API\SrvCfg.cs" />
+    <Compile Include="API\SrvModule.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="Model\Objects\Blob.cs" />
     <Compile Include="Model\Config\LibConfiguration.cs" />

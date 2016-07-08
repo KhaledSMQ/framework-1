@@ -59,12 +59,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\IBundles.cs" />
-    <Compile Include="API\ICfg.cs" />
     <Compile Include="API\IMinifier.cs" />
     <Compile Include="API\IPackages.cs" />
     <Compile Include="API\APackagesController.cs" />
     <Compile Include="API\SrvBundles.cs" />
-    <Compile Include="API\SrvCfg.cs" />
+    <Compile Include="API\SrvModule.cs" />
     <Compile Include="API\SrvPackages.cs" />
     <Compile Include="API\_Enums.cs" />
     <Compile Include="Lib.cs" />

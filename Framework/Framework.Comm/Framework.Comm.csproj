@@ -57,8 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\ICfg.cs" />
-    <Compile Include="API\SrvCfg.cs" />
+    <Compile Include="API\SrvModule.cs" />
     <Compile Include="API\SrvSMSBulk.cs" />
     <Compile Include="API\SrvSMSUSendIt.cs" />
     <Compile Include="API\SrvSMSLuso.cs" />

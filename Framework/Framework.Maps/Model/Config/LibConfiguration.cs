@@ -11,17 +11,7 @@ using System.Configuration;
 
 namespace Framework.Maps.Model.Config
 {
-    public class LibConfiguration : ConfigurationSection
-    {
-        //
-        // MODULE SERVICES
-        //
-
-        [ConfigurationProperty(Factory.Model.Config.Constants.SERVICES, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(Factory.Model.Config.ServiceElementCollection))]
-        public Factory.Model.Config.ServiceElementCollection Services
-        {
-            get { return (Factory.Model.Config.ServiceElementCollection)this[Factory.Model.Config.Constants.SERVICES]; }
-        }
+    public class LibConfiguration : Factory.Model.Config.ModuleConfiguration
+    {  
     }
 }
