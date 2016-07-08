@@ -13,8 +13,6 @@ namespace Framework.Factory.Model.Config
 {
     public class ServiceElementCollection : ConfigurationElementCollection
     {
-        public ServiceElementCollection() { }
-
         public ServiceElement this[int index]
         {
             get { return (ServiceElement)BaseGet(index); }

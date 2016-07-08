@@ -8,10 +8,11 @@
 // ============================================================================
 
 using Framework.Core.Extensions;
-using Framework.Core.Types.Specialized;
 using Framework.Factory.Model.Relational;
 using Framework.Factory.Model.Config;
 using System.Collections.Generic;
+using Framework.Factory.Model.Runtime;
+using Framework.Factory.Config;
 
 namespace Framework.Factory.API
 {
@@ -43,6 +44,25 @@ namespace Framework.Factory.API
             ast.Name = elm.Name;
             ast.Value = elm.Value;
             return ast;
+        }
+
+        //
+        // STARTUP-SEQUENCE
+        //
+
+        public static IEnumerable<MethodCall> ToSequence(this MethodCallElementCollection lst)
+        {
+            List<MethodCall> output = new List<MethodCall>();
+            foreach (MethodCallElement elm in lst) { output.Add(elm.ToSequence()); }
+            return output;
+        }
+
+        public static MethodCall ToSequence(this MethodCallElement elm)
+        {
+            MethodCall output = new MethodCall();
+            output.Service = elm.Service;
+            output.Method = elm.Method;
+            return output;
         }
     }
 }

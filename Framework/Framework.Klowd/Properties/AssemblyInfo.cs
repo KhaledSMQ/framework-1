@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 // Owin application startup class.
 //
 
-[assembly: OwinStartup(typeof(Framework.Configuration.Startup))]
+[assembly: OwinStartup(typeof(Framework.Factory.Startup))]
 
 //
 // Setting ComVisible to false makes the types in this assembly not visible 

@@ -24,7 +24,7 @@ namespace Framework.Factory.Model.Config
         }
 
         //
-        // CORE SERVICES
+        // SERVICES
         //
 
         [ConfigurationProperty(Constants.SERVICES, IsDefaultCollection = false)]
@@ -32,6 +32,16 @@ namespace Framework.Factory.Model.Config
         public ServiceElementCollection Services
         {
             get { return (ServiceElementCollection)this[Constants.SERVICES]; }
+        }
+
+        //
+        // Startup sequence.
+        //
+
+        [ConfigurationProperty(Constants.SECTION_STARTUP)]
+        public ServiceElement Startup
+        {
+            get { return (ServiceElement)this[Constants.SECTION_STARTUP]; }
         }
     }
 }

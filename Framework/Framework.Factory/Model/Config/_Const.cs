@@ -21,5 +21,17 @@ namespace Framework.Factory.Model.Config
         public const string TYPE = "type";
         public const string VALUE = "value";
         public const string SETTINGS = "settings";
+
+        public const string SECTION_HOST = "framework.Host";
+        public const string SECTION_STARTUP = "framework.Startup";
+
+        public const string META = "meta";
+        public const string SERVICE = "service";
+        public const string METHOD = "method";
+        public const string SEQUENCE = "sequence";
+
+        public const string VERSION = "version";
+        public const string ICON = "icon";
+        public const string AUTHORS = "authors";
     }
 }
