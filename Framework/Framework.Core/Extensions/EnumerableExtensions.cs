@@ -24,7 +24,7 @@ namespace Framework.Core.Extensions
 
         public static bool NotEmpty<T>(this IEnumerable<T> list)
         {
-            return ((null != list) && (list.Count() > 0));
+            return ((null != list) && (list.Any()));
         }
 
         //
@@ -190,6 +190,12 @@ namespace Framework.Core.Extensions
             return output;
         }
 
+        public static IList<O> Map<I, O>(this IEnumerable list, Func<I, O> handler)
+        {
+            IList<O> output = new List<O>();
+            return Map<I, O>(list, output, handler);
+        }
+
         //
         // Map a enumeration to a list instance, applying to each item in 
         // the enumeration a particular function.
@@ -198,6 +204,12 @@ namespace Framework.Core.Extensions
         public static IList<O> Map<I, O>(this IEnumerable<I> list, IList<O> output, Func<I, O> handler)
         {
             return Map(list, output, (value, ctx) => { return handler(value); }, null);
+        }
+
+        public static IList<O> Map<I, O>(this IEnumerable<I> list, Func<I, O> handler)
+        {
+            IList<O> output = new List<O>();
+            return Map(list, output, handler);
         }
 
         //
@@ -209,6 +221,12 @@ namespace Framework.Core.Extensions
         {
             Apply(list, (value, ctx) => output.Add(handler(value, ctx)), context);
             return output;
+        }
+
+        public static IList<O> Map<I, O>(this IEnumerable<I> list, Func<I, object, O> handler, object context)
+        {
+            IList<O> output = new List<O>();
+            return Map<I, O>(list, output, handler, context);
         }
 
         //

@@ -62,7 +62,7 @@ namespace Framework.Data.API
 
             if (null != cluster)
             {
-                if (cluster.Name.isNotNullAndEmpty())
+                if (cluster.Name.IsNotNullAndEmpty())
                 {
                     if (VerifyParcel(cluster.Name))
                     {
@@ -170,7 +170,7 @@ namespace Framework.Data.API
                         // Try to get the instance.
                         // 
 
-                        context.ProviderService = Scope.Hub.New<IProviderDataContext>(context.ProviderServiceEntry);
+                        context.ProviderService = Scope.Hub.New<IProviderDataContext>(Factory.API.Transforms.ServiceEntry2Service(context.ProviderServiceEntry));
 
                         if (null != context.ProviderService)
                         {
@@ -178,8 +178,8 @@ namespace Framework.Data.API
                             // Get the context entities and model definitions.
                             //
 
-                            IEnumerable<FW_DataEntity> entities = context.Entities.Map(new List<FW_DataEntity>(), e => { return Entity_Get(e).Instance; });
-                            IEnumerable<FW_DataPartialModel> models = context.Models.Map(new List<FW_DataPartialModel>(), e => { return Model_Get(e).Instance; });
+                            IEnumerable<FW_DataEntity> entities = context.Entities.Map(e => { return Entity_Get(e).Instance; });
+                            IEnumerable<FW_DataPartialModel> models = context.Models.Map(e => { return Model_Get(e).Instance; });
 
                             //
                             // Load the entities and partial models in data context provider.
@@ -465,7 +465,7 @@ namespace Framework.Data.API
         {
             string entityID = default(string);
 
-            if ((null != entity) && (entity.Name.isNotNullAndEmpty()) && (entity.TypeName.isNotNullAndEmpty()))
+            if ((null != entity) && (entity.Name.IsNotNullAndEmpty()) && (entity.TypeName.IsNotNullAndEmpty()))
             {
                 if (VerifyParcel(entity.Name))
                 {
@@ -571,7 +571,7 @@ namespace Framework.Data.API
         {
             string modelID = default(string);
 
-            if ((null != model) && (model.Name.isNotNullAndEmpty()) && (model.TypeName.isNotNullAndEmpty()))
+            if ((null != model) && (model.Name.IsNotNullAndEmpty()) && (model.TypeName.IsNotNullAndEmpty()))
             {
                 if (VerifyParcel(model.Name))
                 {

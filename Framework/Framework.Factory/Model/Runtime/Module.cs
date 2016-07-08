@@ -1,17 +1,23 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Meta
+// Name/Class: Service
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 07/Mar/2016
+// Create date: 03/Aug/2015
 // Company: Coop4Creativity
-// Description: Application meta information.
+// Description: Service specification class.
 // ============================================================================
 
+using Framework.Core.Extensions;
+using Framework.Core.Patterns;
+using Framework.Core.Types.Specialized;
+using System;
 using System.Collections.Generic;
 
 namespace Framework.Factory.Model.Runtime
 {
-    public class Meta
+    public class Module : 
+        IName<string>, 
+        ITypeName<string>
     {
         //
         // PROPERTIES
@@ -21,26 +27,24 @@ namespace Framework.Factory.Model.Runtime
 
         public string Description { get; set; }
 
-        public string Version { get; set; }
+        public string TypeName { get; set; }
 
-        public string Build { get; set; }
-
-        public IList<string> Authors { get; set; }
-
-        public string Icon { get; set; }
+        public virtual ICollection<Setting> Settings { get; set; }      
 
         //
-        // CONSTRUCTOR
+        // CONSTRUCTORS
         // 
 
-        public Meta()
+        public Module()
         {
+            //
+            // Basic info.
+            //
+
             Name = string.Empty;
             Description = string.Empty;
-            Version = string.Empty;
-            Build = string.Empty;
-            Authors = new List<string>();
-            Icon = string.Empty;
+            TypeName = string.Empty;
+            Settings = null;
         }
     }
 }

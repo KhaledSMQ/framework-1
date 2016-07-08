@@ -42,7 +42,7 @@ namespace Framework.Factory.API
 
             srvMethodList.Apply(method =>
             {
-                if (null == methodToRun)
+                if (methodToRun.IsNull())
                 {
                     ParameterInfo[] parameters = method.GetParameters();
 

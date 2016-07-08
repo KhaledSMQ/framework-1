@@ -7,6 +7,7 @@
 // Description: Base page definition.
 // ============================================================================
 
+using Framework.Factory;
 using Framework.Factory.API;
 using System;
 
@@ -38,7 +39,7 @@ namespace Framework.Web.UI
             // Get the context for the control.
             //
 
-            Scope = Factory.API.Runtime.Hub.GetUnique<IScope>().New();
+            Scope = Manager.Hub.GetUnique<IScope>().New();
         }
     }
 }

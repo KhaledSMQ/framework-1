@@ -16,6 +16,24 @@ namespace Framework.Core.Extensions
     public static class ObjectExtensions
     {
         //
+        // Check if object is not null.
+        //
+
+        public static bool IsNotNull(this object val)
+        {
+            return !IsNull(val);
+        }
+
+        //
+        // Check if object is null.
+        //
+
+        public static bool IsNull(this object val)
+        {
+            return null == val;
+        }
+
+        //
         // INSTANTIATE
         // Take an object value and a string template and replace in the string
         // the textual value of each property found. Names for properties in string
@@ -27,8 +45,6 @@ namespace Framework.Core.Extensions
 
         public static string Instantiate(this object input, string template)
         {
-            string output = string.Empty;
-
             //
             // setup an lambda function to perform the substitutions.
             //
@@ -39,7 +55,7 @@ namespace Framework.Core.Extensions
             // Substitute the input string template with the property names.
             //
 
-            output = StringHelper.Substitute(template, subfunc);
+            string output = StringHelper.Substitute(template, subfunc);
 
             //
             // Return output to caller.

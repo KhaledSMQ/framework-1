@@ -99,7 +99,7 @@ namespace Framework.Core.Helpers
 
         public static void IsNotNullAndEmpty(string obj)
         {
-            if (obj.isNullOrEmpty())
+            if (obj.IsNullOrEmpty())
             {
                 throw new ArgumentNullException("The argument provided cannot be null or empty.");
             }
@@ -111,7 +111,7 @@ namespace Framework.Core.Helpers
 
         public static void IsNotNullAndEmpty(string obj, string msg)
         {
-            if (obj.isNullOrEmpty())
+            if (obj.IsNullOrEmpty())
             {
                 throw new ArgumentNullException(msg);
             }

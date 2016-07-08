@@ -8,16 +8,18 @@
 // ============================================================================
 
 using Framework.Core.Extensions;
+using Framework.Factory.API;
 using Framework.Factory.Model.Config;
 using Framework.Factory.Model.Relational;
 using Framework.Factory.Model.Runtime;
+using Framework.Factory.Patterns;
 using Owin;
 using System;
 using System.Collections.Generic;
 
-namespace Framework.Factory.API
+namespace Framework.Factory
 {
-    public static class Runtime
+    public static class Manager
     {
         //
         // PROPERTIES
@@ -27,11 +29,19 @@ namespace Framework.Factory.API
 
         public static IScope Scope { get { return __Scope; } }
 
+        public static IHost Host { get { return __Host; } }
+
+        public static IModuleEntry Modules { get { return __Modules; } }
+
+        //
+        //
+        //
+
         //
         // CONSTRUCTORS
         //
 
-        static Runtime() { }
+        static Manager() { }
 
         //
         // Initialize the data manager services.
@@ -40,6 +50,7 @@ namespace Framework.Factory.API
         public static void Init(IAppBuilder app)
         {
             LoadConfig();
+            LoadModules(app);
             Startup(app);
         }
 
@@ -53,7 +64,7 @@ namespace Framework.Factory.API
             // Load from the system configuration.
             //
 
-            LibConfiguration config = (LibConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
+            Config = (LibConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
 
             //
             // Load configuration for the service hub.
@@ -61,29 +72,27 @@ namespace Framework.Factory.API
             // This class will be the heart of the framework services.
             //            
 
-            if (null != config)
+            if (null != Config)
             {
-                if (null != config.Hub)
+                if (null != Config.Hub)
                 {
                     //
                     // Instantiate the hub service.
                     // Load the hub service entry into the hub... :-)
                     // 
 
-                    FW_FactoryServiceEntry __HubEntry = Transforms.Converter(config.Hub);
-                    __HubEntry.Unique = true;
-
-                    __Hub = Core.Reflection.Activator.CreateGenericInstance<IHub>(__HubEntry.TypeName);
+                    Service hubService = Transforms.Config2Service(Config.Hub);
+                    __Hub = Core.Reflection.Activator.CreateGenericInstance<IHub>(hubService.TypeName);
                     __Hub.Init();
-                    __Hub.Load(__HubEntry);
+                    __Hub.Load(hubService);
 
-                    if (null != config.Services)
+                    //
+                    // Load core services into hub.
+                    //
+
+                    if (null != Config.Services)
                     {
-                        //
-                        // Load core services into hub.
-                        //
-
-                        __Hub.Load(config.Services.Map<ServiceElement, FW_FactoryServiceEntry>(new List<FW_FactoryServiceEntry>(), Transforms.Converter));
+                        __Hub.Load(Config.Services.Map<ServiceElement, Service>(Transforms.Config2Service));
                     }
 
                     //
@@ -94,11 +103,19 @@ namespace Framework.Factory.API
                     __Scope = __Hub.GetUnique<IScope>();
                     __Hub.Scope = __Scope;
 
+
                     //
-                    // Load boot sequence.
+                    // Setup the host service.
                     //
 
-                    __Sequence = Transforms.ToSequence(config.Sequence);
+                    __Host = __Hub.GetUnique<IHost>();
+
+                    //
+                    // Setup the module manager service.
+                    //
+
+                    __Modules = __Hub.GetUnique<IModuleEntry>();                   
+
                 }
                 else
                 {
@@ -131,19 +148,39 @@ namespace Framework.Factory.API
             // Run all services and all methods defined in sequence.
             //         
 
-            __Sequence.Apply(call =>
+            if (null != Config.Sequence)
             {
-                __Scope.Hub.GetUnique<IReflected>().Run(call.Service, call.Method);
-            });
+                IEnumerable<MethodCall> bootSequence = Config.Sequence.Map<MethodCallElement, MethodCall>(Transforms.Config2MethodCall);
+
+                bootSequence.Apply(call =>
+                {
+                    __Scope.Hub.GetUnique<IReflected>().Run(call.Service, call.Method);
+                });
+            }
+        }
+
+        //
+        // Method to load all the modules into the module manager.
+        // The module manager will load the inport artifacts into
+        // the runtime syste,
+        //
+
+        public static void LoadModules(IAppBuilder app)
+        {
+            if (null != Config.Modules)
+            {
+                __Modules.Load(Config.Modules.Map<ModuleImportElement, Module>(Transforms.Config2Module));
+            }
         }
 
         //
         // HELPERS 
         //     
 
-        private static IHub __Hub = null;
-        private static IScope __Scope = null;
-        private static IEnumerable<MethodCall> __Sequence = null;
-
+        private static IHub __Hub;
+        private static IScope __Scope;
+        private static IHost __Host;
+        private static IModuleEntry __Modules;
+        private static LibConfiguration Config;
     }
 }

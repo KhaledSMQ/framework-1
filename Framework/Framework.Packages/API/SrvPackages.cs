@@ -63,7 +63,7 @@ namespace Framework.Packages.API
         {
             DocumentSet set = new DocumentSet();
 
-            if (names.isNotNullAndEmpty())
+            if (names.IsNotNullAndEmpty())
             {
                 //
                 // Get the package names from argument.
@@ -200,7 +200,7 @@ namespace Framework.Packages.API
         {
             PackageSet set = new PackageSet();
 
-            string safeName = name.isNullOrEmpty() ? string.Empty : name;
+            string safeName = name.IsNullOrEmpty() ? string.Empty : name;
 
             string absPath = _GetPackagePathFromName(safeName);
 
@@ -210,7 +210,7 @@ namespace Framework.Packages.API
 
                 if (!dirName.StartsWith(PACKAGE_FOLDER_IGNORE))
                 {
-                    if (dirName.isNotNullAndEmpty())
+                    if (dirName.IsNotNullAndEmpty())
                     {
                         //
                         // Add the package to set.
@@ -319,7 +319,7 @@ namespace Framework.Packages.API
             // Prepare the mime type match regular expression.
             //
 
-            string mimeTypeRegex = mimeType.isNullOrEmpty() ? @".*" : mimeType.Trim();
+            string mimeTypeRegex = mimeType.IsNullOrEmpty() ? @".*" : mimeType.Trim();
 
             //
             // Extract the documents. documents are sets
@@ -415,7 +415,7 @@ namespace Framework.Packages.API
 
                             doc.Files.Apply(file =>
                             {
-                                string currFileMimeType = file.MimeType.isNullOrEmpty() ? Core.MimeTypes.TYPE_TXT : file.MimeType.Trim();
+                                string currFileMimeType = file.MimeType.IsNullOrEmpty() ? Core.MimeTypes.TYPE_TXT : file.MimeType.Trim();
                                 bool currMimeTypeMatchs = Regex.IsMatch(currFileMimeType, mimeTypeRegex);
                                 if (currMimeTypeMatchs)
                                 {
@@ -500,7 +500,7 @@ namespace Framework.Packages.API
 
         private string _GetNormalizedPath(string path)
         {
-            string normalized = path.isNullOrEmpty() ? string.Empty : path.Trim();
+            string normalized = path.IsNullOrEmpty() ? string.Empty : path.Trim();
             normalized = normalized.StartsWith("/") || normalized.StartsWith("\\") ? normalized.ChopStart(1) : normalized;
             normalized = normalized.EndsWith("/") || normalized.EndsWith("\\") ? normalized.ChopEnd(1) : normalized;
             return normalized;

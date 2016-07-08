@@ -60,16 +60,16 @@ namespace Framework.Core.Types.Specialized
 
         public virtual string UnparseForType(string typename)
         {
-            return this.Unparse() + (typename.isNotNullAndEmpty() ? ", " + typename : string.Empty);
+            return this.Unparse() + (typename.IsNotNullAndEmpty() ? ", " + typename : string.Empty);
         }
 
         public virtual string Unparse()
         {
             string fullname = string.Empty;
-            fullname += Name.isNotNullAndEmpty() ? Name : string.Empty;
-            fullname += Version.isNotNullAndEmpty() ? ", Version=" + Version : string.Empty;
-            fullname += Culture.isNotNullAndEmpty() ? ", Culture=" + Culture : string.Empty;
-            fullname += PublicKeyToken.isNotNullAndEmpty() ? ", PublicKeyToken=" + PublicKeyToken : string.Empty;
+            fullname += Name.IsNotNullAndEmpty() ? Name : string.Empty;
+            fullname += Version.IsNotNullAndEmpty() ? ", Version=" + Version : string.Empty;
+            fullname += Culture.IsNotNullAndEmpty() ? ", Culture=" + Culture : string.Empty;
+            fullname += PublicKeyToken.IsNotNullAndEmpty() ? ", PublicKeyToken=" + PublicKeyToken : string.Empty;
             return fullname;
         }
 
@@ -99,7 +99,7 @@ namespace Framework.Core.Types.Specialized
                     value = pair[1];
                 }
 
-                if (property.isNotNullAndEmpty() && value.isNotNullAndEmpty())
+                if (property.IsNotNullAndEmpty() && value.IsNotNullAndEmpty())
                 {
                     comps.Add(property, value);
                 }

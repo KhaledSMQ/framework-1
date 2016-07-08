@@ -153,15 +153,33 @@ namespace Framework.Core.Extensions
             return Map(list, output, (value, index, ctx) => { return handler(value); }, null);
         }
 
+        public static IList<O> Map<I, O>(this IList<I> list, Func<I, O> handler)
+        {
+            IList<O> output = new List<O>();
+            return Map(list, output, handler);
+        }
+
         public static IList<O> Map<I, O>(this IList<I> list, IList<O> output, Func<I, int, O> handler)
         {
             return Map(list, output, (value, index, ctx) => { return handler(value, index); }, null);
+        }
+
+        public static IList<O> Map<I, O>(this IList<I> list, Func<I, int, O> handler)
+        {
+            IList<O> output = new List<O>();
+            return Map(list, output, handler);
         }
 
         public static IList<O> Map<I, O>(this IList<I> list, IList<O> output, Func<I, int, object, O> handler, object context)
         {
             Apply(list, (value, index, ctx) => { output.Add(handler(value, index, ctx)); }, context);
             return output;
+        }
+
+        public static IList<O> Map<I, O>(this IList<I> list, Func<I, int, object, O> handler, object context)
+        {
+            IList<O> output = new List<O>();
+            return Map(list, output, handler, context);
         }
 
         //

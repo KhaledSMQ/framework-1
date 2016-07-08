@@ -8,26 +8,44 @@
 // ============================================================================
 
 using Framework.Factory.Model.Config;
+using Framework.Factory.Model.Runtime;
 using Framework.Factory.Patterns;
+using System.Collections.Generic;
+using System.Reflection;
+using Framework.Core.Extensions;
 
 namespace Framework.Factory.API
 {
-    public class SrvModule<TConfig> : ACommon, IModule where TConfig : ModuleConfiguration
+    public class SrvModule<TConfig> : ACommon, IModuleProtocol where TConfig : ModuleConfiguration
     {
         //
-        // Internal state.
+        // PROPERTIES
         //
 
-        protected TConfig Config;
-        protected string ConfigSectionName;
+        public IEnumerable<Service> Services { get { return __GetListOfUserModuleServices(); } }
 
-        public SrvModule(string configSectionName)
+        //
+        // PROPERTIES (INTERNAL)
+        //
+
+        protected TConfig Config { get; set; }
+
+        protected string ConfigSectionName { get; set; }
+
+        protected Assembly Assembly { get; set; }
+
+        //
+        // CONSTRUCTOR
+        //
+
+        public SrvModule(string configSectionName, Assembly executingAssembly)
         {
             ConfigSectionName = configSectionName;
+            Assembly = executingAssembly;
         }
 
         //
-        // Load configuration.
+        // API
         //
 
         public void LoadConfig()
@@ -37,6 +55,11 @@ namespace Framework.Factory.API
             //
 
             Config = (TConfig)System.Configuration.ConfigurationManager.GetSection(ConfigSectionName);
+        }
+
+        private IEnumerable<Service> __GetListOfUserModuleServices()
+        {
+            return null != Config ? Config.Services.Map<ServiceElement, Service>(Transforms.Config2Service) : null;
         }
     }
 }

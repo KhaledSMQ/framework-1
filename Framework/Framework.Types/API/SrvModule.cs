@@ -11,12 +11,12 @@ using Framework.Types.Model.Config;
 
 namespace Framework.Types.API
 {
-    public class SrvModule : Factory.API.SrvModule<LibConfiguration>, Factory.API.IModule
+    public class SrvModule : Factory.API.SrvModule<LibConfiguration>, Factory.API.IModuleProtocol
     {
         //
         // CONSTRUCTOR
         //    
 
-        public SrvModule() : base(Constants.SECTION) { }
+        public SrvModule() : base(Constants.SECTION, System.Reflection.Assembly.GetExecutingAssembly()) { }
     }
 }

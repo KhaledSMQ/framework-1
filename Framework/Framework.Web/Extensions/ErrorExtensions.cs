@@ -42,7 +42,7 @@ namespace Framework.Web.Extensions
                 html += "<div class=\"method\">" + sf.GetMethod() + "</div>";
 
                 // file and line 
-                if (sf.GetFileName().isNotNullAndEmpty())
+                if (sf.GetFileName().IsNotNullAndEmpty())
                 {
                     html += "<div class=\"file\">" + sf.GetFileName() + "[" + sf.GetFileLineNumber() + "]" + "</div>";
                 }

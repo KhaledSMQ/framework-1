@@ -118,7 +118,7 @@ namespace Framework.Web.API
         {
             if (null != route)
             {
-                route.Name = route.Name.isNullOrEmpty() ? PageRouteBaseName + PageRoutes.Count : route.Name;
+                route.Name = route.Name.IsNullOrEmpty() ? PageRouteBaseName + PageRoutes.Count : route.Name;
 
                 if (!PageRoutes.ContainsKey(route.Name))
                 {
@@ -154,7 +154,7 @@ namespace Framework.Web.API
         {
             if (null != route)
             {
-                route.Name = route.Name.isNullOrEmpty() ? HttpRouteBaseName + HttpRoutes.Count : route.Name;
+                route.Name = route.Name.IsNullOrEmpty() ? HttpRouteBaseName + HttpRoutes.Count : route.Name;
 
                 if (!HttpRoutes.ContainsKey(route.Name))
                 {
@@ -182,7 +182,7 @@ namespace Framework.Web.API
             // Register http routes.
             //
 
-            string baseUrl = HttpRouteBaseUrl.isNullOrEmpty() ? string.Empty : HttpRouteBaseUrl + "/";
+            string baseUrl = HttpRouteBaseUrl.IsNullOrEmpty() ? string.Empty : HttpRouteBaseUrl + "/";
 
             HttpRoutes.Values.Apply(route =>
             {

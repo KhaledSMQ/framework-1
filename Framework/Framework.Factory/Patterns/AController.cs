@@ -38,7 +38,7 @@ namespace Framework.Factory.Patterns
         protected override void Initialize(HttpControllerContext controllerContext)
         {
             base.Initialize(controllerContext);
-            Scope = Runtime.Scope.New();
+            Scope = Manager.Scope.New();
         }
 
         //

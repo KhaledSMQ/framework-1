@@ -72,7 +72,7 @@ namespace Framework.Core.Helpers
                 else
                     if (responseString.StartsWith("["))
                     {
-                        output = JArray.Parse(responseString).Map(new List<T>(), token => token.ToObject<T>());
+                        output = JArray.Parse(responseString).Map(token => token.ToObject<T>());
                     }
                     else
                     {
@@ -94,7 +94,7 @@ namespace Framework.Core.Helpers
             else
                 if (value.StartsWith("["))
                 {
-                    output = JArray.Parse(value).Map(new List<T>(), token => token.ToObject<T>());
+                    output = JArray.Parse(value).Map(token => token.ToObject<T>());
                 }
                 else
                 {

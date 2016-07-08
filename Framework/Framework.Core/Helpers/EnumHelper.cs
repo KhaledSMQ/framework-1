@@ -120,7 +120,7 @@ namespace Framework.Core.Helpers
 
         public static IList<object> GetListOfValues(Type enumType)
         {
-            return GetListOfFields(enumType).Map(new List<object>(), field => field.GetValue(enumType));
+            return GetListOfFields(enumType).Map(field => field.GetValue(enumType));
         }
 
         //

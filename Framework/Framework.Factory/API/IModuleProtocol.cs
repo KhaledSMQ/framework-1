@@ -7,12 +7,16 @@
 // Description:
 // ============================================================================
 
+using Framework.Factory.Model.Runtime;
 using Framework.Factory.Patterns;
+using System.Collections.Generic;
 
 namespace Framework.Factory.API
 {
-    public interface IModule : ICommon
+    public interface IModuleProtocol : ICommon
     {
+        IEnumerable<Service> Services { get; }
+
         void LoadConfig();
     }
 }

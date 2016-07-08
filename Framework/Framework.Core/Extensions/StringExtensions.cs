@@ -81,7 +81,7 @@ namespace Framework.Core.Extensions
         // Returns true is string is null or empty, or false otherwise.        
         //
 
-        public static bool isNullOrEmpty(this string s)
+        public static bool IsNullOrEmpty(this string s)
         {
             return string.IsNullOrEmpty(s);
         }
@@ -92,7 +92,7 @@ namespace Framework.Core.Extensions
         // Returns true is string is not null and not empty, false otherwise.
         //
 
-        public static bool isNotNullAndEmpty(this string s)
+        public static bool IsNotNullAndEmpty(this string s)
         {
             return !string.IsNullOrEmpty(s);
         }
@@ -968,7 +968,7 @@ namespace Framework.Core.Extensions
         /// valid hexadecimal characters.</remarks>
         public static bool IsHex(this string txt)
         {
-            return (!txt.isNullOrEmpty()) && (txt.ReplaceChars("0123456789ABCDEFabcdef", "                      ").Trim().isNullOrEmpty());
+            return (!txt.IsNullOrEmpty()) && (txt.ReplaceChars("0123456789ABCDEFabcdef", "                      ").Trim().IsNullOrEmpty());
         }
 
 
@@ -981,7 +981,7 @@ namespace Framework.Core.Extensions
         /// valid binary characters.</remarks>
         public static bool IsBinary(this string txt)
         {
-            return (!txt.isNullOrEmpty()) && (txt.ReplaceChars("01", "  ").Trim().isNullOrEmpty());
+            return (!txt.IsNullOrEmpty()) && (txt.ReplaceChars("01", "  ").Trim().IsNullOrEmpty());
         }
 
         /// <summary>

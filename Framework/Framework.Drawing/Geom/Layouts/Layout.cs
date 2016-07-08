@@ -172,7 +172,7 @@ namespace Framework.Drawing.Geom.Layouts
 
                 // check the name of the region, if no name is 
                 // supplied, then we need to generate one.
-                if (region.Name.isNullOrEmpty())
+                if (region.Name.IsNullOrEmpty())
                 {
                     region.Name = KeyGenerator.GetKey();
                 }

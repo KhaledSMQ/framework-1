@@ -13,6 +13,7 @@ namespace Framework.Factory.Model.Config
     {
         public const string SECTION = "framework.Factory";
         public const string SERVICES = "services";
+        public const string MODULES = "modules";
         public const string HUB = "hub";
         public const string NAME = "name";
         public const string CONTRACT = "contract";
@@ -21,7 +22,6 @@ namespace Framework.Factory.Model.Config
         public const string TYPE = "type";
         public const string VALUE = "value";
         public const string SETTINGS = "settings";
-
         public const string STARTUP = "startup";
         public const string SERVICE = "service";
         public const string METHOD = "method";

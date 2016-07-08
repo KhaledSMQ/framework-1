@@ -47,7 +47,7 @@ namespace Framework.Core.Extensions
             {
                 foreach (string key in coll.Keys)
                 {
-                    if (key.isNotNullAndEmpty())
+                    if (key.IsNotNullAndEmpty())
                     {
                         dict.Add(key, coll[key]);
                     }

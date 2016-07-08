@@ -8,6 +8,7 @@
 // ============================================================================
 
 using Framework.Factory.Model.Relational;
+using Framework.Factory.Model.Runtime;
 using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;
@@ -40,29 +41,32 @@ namespace Framework.Factory.API
 
         IEnumerable<T> GetByContract<T>(IScope whatScope) where T : ICommon;
 
-        T Get<T>(FW_FactoryServiceEntry cfg) where T : ICommon;
+        T Get<T>(Service cfg) where T : ICommon;
 
-        T Get<T>(FW_FactoryServiceEntry cfg, IScope whatScope) where T : ICommon;
+        T Get<T>(Service cfg, IScope whatScope) where T : ICommon;
 
-        T New<T>(FW_FactoryServiceEntry cfg) where T : ICommon;
+        T New<T>(Service cfg) where T : ICommon;
 
-        T New<T>(FW_FactoryServiceEntry cfg, IScope whatScope) where T : ICommon;
+        T New<T>(Service cfg, IScope whatScope) where T : ICommon;
 
         //
         // LOAD-SECTION
         // Load service entries into memory.
         //
 
-        void Load(FW_FactoryServiceEntry entry);
+        void Load(Service entry);
 
-        void Load(IEnumerable<FW_FactoryServiceEntry> lst);
+
+        void Load(IEnumerable<Service> lst);
 
         //
         // RETRIEVE-SECTION
         //
 
-        IEnumerable<FW_FactoryServiceEntry> GetListOfInstances();
+        IEnumerable<Service> GetList();
 
-        IEnumerable<FW_FactoryServiceEntry> GetListOfLoaded();
+        IEnumerable<Service> GetListOfInstances();
+
+        IEnumerable<Service> GetListByModule(string moduleName);       
     }
 }

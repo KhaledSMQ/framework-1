@@ -21,13 +21,13 @@ namespace Framework.Factory
             // Initialize framework services.
             //
 
-            Factory.API.Runtime.Init(app);
+            Manager.Init(app);
 
             //
             // Set a new data directory path.
             //
 
-            AppDomain.CurrentDomain.SetData("DataDirectory", Factory.API.Runtime.Hub.GetUnique<IHost>().GetAbsolutePhysicalPath("Data\\DB\\"));
+            AppDomain.CurrentDomain.SetData("DataDirectory", Manager.Hub.GetUnique<IHost>().GetAbsolutePhysicalPath("Data\\DB\\"));
         }
     }
 }

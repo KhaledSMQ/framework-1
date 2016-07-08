@@ -1158,18 +1158,8 @@ namespace Framework.Core.Extensions
 
         public static void UnparseAttribute<T>(this XElement elm, string prefix, string name, T value, bool required, Func<T, string> unparseDelegate)
         {
-            string objValue = string.Empty;
-
-            // generate string representation for value
-            if (null == unparseDelegate)
-            {
-                objValue = value.ToString();
-            }
-            else
-            {
-                objValue = unparseDelegate(value);
-            }
-
+            string objValue = unparseDelegate.IsNull() ? value.ToString() : unparseDelegate(value);
+            
             // add attribute to element
             if (required)
             {

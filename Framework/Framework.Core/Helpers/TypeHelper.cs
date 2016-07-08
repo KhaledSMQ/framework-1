@@ -138,7 +138,7 @@ namespace Framework.Core.Helpers
                 }
             }
 
-            if (tail.isNotNullAndEmpty())
+            if (tail.IsNotNullAndEmpty())
             {
                 throw new Exception(String.Format("{0} invalid type definition, invalid characters at the end '{1}'", Lib.DEFAULT_ERROR_MSG_PREFIX, tail));
             }

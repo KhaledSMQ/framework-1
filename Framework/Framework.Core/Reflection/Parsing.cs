@@ -178,7 +178,7 @@ namespace Framework.Core.Reflection
                     }
                 }
 
-                if (genericTypeName.isNotNullAndEmpty())
+                if (genericTypeName.IsNotNullAndEmpty())
                 {
                     listOfGenericTypeName.Add(genericTypeName);
                 }
@@ -190,7 +190,7 @@ namespace Framework.Core.Reflection
 
             Assembly typeAssembly = Assembly.GetExecutingAssembly();
 
-            if (assemblyName.isNotNullAndEmpty())
+            if (assemblyName.IsNotNullAndEmpty())
             {
                 typeAssembly = Assembly.Load(assemblyName);
             }
@@ -206,7 +206,7 @@ namespace Framework.Core.Reflection
                 // parse all the generic types into type specifications.
                 //
 
-                IList<Type> listOfType = listOfGenericTypeName.Map(new List<Type>(), _ParseTypeName);
+                IList<Type> listOfType = listOfGenericTypeName.Map(_ParseTypeName);
 
                 string genericTypeName = typeName + "`" + listOfType.Count;
 

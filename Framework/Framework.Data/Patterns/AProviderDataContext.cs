@@ -57,7 +57,7 @@ namespace Framework.Data.Patterns
         {
             if (null != entity)
             {
-                if (entity.Name.isNotNullAndEmpty())
+                if (entity.Name.IsNotNullAndEmpty())
                 {
                     if (!__Entities.ContainsKey(entity.Name))
                     {
@@ -94,7 +94,7 @@ namespace Framework.Data.Patterns
         {
             if (null != model)
             {
-                if (model.Name.isNotNullAndEmpty())
+                if (model.Name.IsNotNullAndEmpty())
                 {
                     if (!__Models.ContainsKey(model.Name))
                     {

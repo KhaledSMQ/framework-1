@@ -12,7 +12,7 @@ using Framework.Factory.Model.Relational;
 using Framework.Factory.Model.Config;
 using System.Collections.Generic;
 using Framework.Factory.Model.Runtime;
-using Framework.Factory.Config;
+using Framework.Core.Types.Specialized;
 
 namespace Framework.Factory.API
 {
@@ -21,48 +21,92 @@ namespace Framework.Factory.API
         //
         // SERVICE
         //
-      
-        public static FW_FactoryServiceEntry Converter(this ServiceElement elm)
+
+        public static FW_FactoryServiceEntry Config2ServiceEntry(this ServiceElement elm)
         {
-            FW_FactoryServiceEntry service = new FW_FactoryServiceEntry();
-            service.Unique = elm.Unique;
-            service.Name = elm.Name;
-            service.Description = elm.Description;
-            service.Contract = elm.Contract;
-            service.TypeName = elm.Type;
-            service.Settings = elm.Settings.Map<SettingElement, FW_FactorySetting>(new List<FW_FactorySetting>(), Converter);
-            return service;
+            return new FW_FactoryServiceEntry()
+            {
+                Unique = elm.Unique,
+                Name = elm.Name,
+                Description = elm.Description,
+                Contract = elm.Contract,
+                TypeName = elm.Type,
+                Settings = elm.Settings.Map<SettingElement, FW_FactorySetting>(s => { return new FW_FactorySetting() { Name = s.Name, Value = s.Value }; })
+            };
         }
 
-        //
-        // SETTING
-        //     
-
-        public static FW_FactorySetting Converter(this SettingElement elm)
+        public static Service Config2Service(this ServiceElement elm)
         {
-            FW_FactorySetting ast = new FW_FactorySetting();
-            ast.Name = elm.Name;
-            ast.Value = elm.Value;
-            return ast;
+            return new Service()
+            {
+                Unique = elm.Unique,
+                Name = elm.Name,
+                Description = elm.Description,
+                Contract = elm.Contract,
+                TypeName = elm.Type,
+                Settings = elm.Settings.Map<SettingElement, Setting>(s => { return new Setting() { Name = s.Name, Value = s.Value }; })
+            };
+        }
+
+        public static Service ServiceEntry2Service(this FW_FactoryServiceEntry elm)
+        {
+            return new Service()
+            {
+                ID = elm.ID,
+                Module = elm.Module,
+                Unique = elm.Unique,
+                Name = elm.Name,
+                Default = elm.Default,
+                Description = elm.Description,
+                Contract = elm.Contract,
+                TypeName = elm.TypeName,
+                Settings = elm.Settings.Map(new List<Setting>(), s => { return new Setting() {  ID=s.ID, Name = s.Name, Value = s.Value }; })
+            };
+        }
+
+        public static FW_FactoryServiceEntry ServiceEntry2Service(this Service elm)
+        {
+            return new FW_FactoryServiceEntry()
+            {
+                ID = elm.ID,
+                Module = elm.Module,
+                Unique = elm.Unique,
+                Name = elm.Name,
+                Default = elm.Default,
+                Description = elm.Description,
+                Contract = elm.Contract,
+                TypeName = elm.TypeName,
+                Settings = elm.Settings.Map(new List<FW_FactorySetting>(), s => { return new FW_FactorySetting() { ID = s.ID, Name = s.Name, Value = s.Value }; })
+            };
         }
 
         //
         // STARTUP-SEQUENCE
         //
 
-        public static IEnumerable<MethodCall> ToSequence(this MethodCallElementCollection lst)
+
+        public static MethodCall Config2MethodCall(this MethodCallElement elm)
         {
-            List<MethodCall> output = new List<MethodCall>();
-            foreach (MethodCallElement elm in lst) { output.Add(elm.ToSequence()); }
-            return output;
+            return new MethodCall()
+            {
+                Service = elm.Service,
+                Method = elm.Method
+            };
         }
 
-        public static MethodCall ToSequence(this MethodCallElement elm)
+        //
+        // MODULE IMPORT
+        //
+
+        public static Module Config2Module(this ModuleImportElement elm)
         {
-            MethodCall output = new MethodCall();
-            output.Service = elm.Service;
-            output.Method = elm.Method;
-            return output;
+            return new Module()
+            {
+                Name = elm.Name,
+                Description = elm.Description,
+                TypeName = elm.Type,
+                Settings = elm.Settings.Map<SettingElement, Setting>(s => { return new Setting() { Name = s.Name, Value = s.Value }; })
+            };
         }
     }
 }

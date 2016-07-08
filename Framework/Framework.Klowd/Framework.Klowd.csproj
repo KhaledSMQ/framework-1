@@ -594,6 +594,7 @@
   <ItemGroup>
     <Folder Include="Apps\" />
     <Folder Include="Data\DB\" />
+    <Folder Include="Modules\" />
     <Folder Include="Packages\framework\angular\v1\engine\" />
     <Folder Include="Packages\framework\angular\v1\modules\" />
     <Folder Include="Packages\framework\angular\v2\" />

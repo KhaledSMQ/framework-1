@@ -80,7 +80,7 @@ namespace Framework.Web.UI
 
             string baseUrl = VirtualPathUtility.AppendTrailingSlash(Folder);
 
-            IList<string> urls = files.Map(new List<string>(), file =>
+            IList<string> urls = files.Map(file =>
             {
                 string relative = file.Substring(basePath.Length).ReplaceChars("\\", "/");
                 return Scope.Hub.Get<IResolver>().ResolveUrl("~/" + relative);

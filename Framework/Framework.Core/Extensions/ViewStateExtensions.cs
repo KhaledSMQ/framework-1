@@ -8,6 +8,7 @@
 // ============================================================================
 
 using System.Web.UI;
+using Framework.Core.Extensions;
 
 namespace Framework.Web.Extensions
 {
@@ -29,14 +30,7 @@ namespace Framework.Web.Extensions
         public static T Get<T>(this StateBag vs, string property, T dftValue)
         {
             object value = vs[property];
-            if (null == value)
-            {
-                return dftValue;
-            }
-            else
-            {
-                return (T)value;
-            }
+            return value.IsNull() ? dftValue : (T)value;           
         }
     }
 }

@@ -84,7 +84,7 @@ namespace Framework.Core.Types.Specialized
 
         public Id Add(string parcel)
         {
-            if (parcel.isNullOrEmpty())
+            if (parcel.IsNullOrEmpty())
             {
                 return this;
             }

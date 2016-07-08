@@ -133,10 +133,10 @@ namespace Framework.Blocks.API
         public object Block_GetListByDomain(Id domainID)
         {
             return srvMemStore.Cluster_Get(domainID).Modules
-                .Map(new List<MemModule>(), srvMemStore.Module_Get)
+                .Map(srvMemStore.Module_Get)
                 .Catamorphism<IList<MemBlockDef>, MemModule>(new List<MemBlockDef>(), (module, tail) =>
                 {
-                    tail.AddRange(module.Blocks.Map(new List<MemBlockDef>(), srvMemStore.Block_Get));
+                    tail.AddRange(module.Blocks.Map(srvMemStore.Block_Get));
                     return tail;
                 });
               
@@ -149,7 +149,7 @@ namespace Framework.Blocks.API
 
         public object Block_GetListByModule(Id moduleID)
         {
-            return srvMemStore.Module_Get(moduleID).Blocks.Map(new List<MemBlockDef>(), srvMemStore.Block_Get);
+            return srvMemStore.Module_Get(moduleID).Blocks.Map(srvMemStore.Block_Get);
         }
     }
 }

@@ -61,7 +61,7 @@ namespace Framework.Core.Types.Specialized
 
         public override string Unparse()
         {
-            return base.Unparse() + (Namespace.isNotNullAndEmpty() ? ", Namespace=" + Namespace : string.Empty);
+            return base.Unparse() + (Namespace.IsNotNullAndEmpty() ? ", Namespace=" + Namespace : string.Empty);
         }
 
         //

@@ -124,7 +124,7 @@ namespace Framework.Core.Objects
             // First check if the key generator is valid
             //
 
-            if (null == KeyGenerator)
+            if (KeyGenerator.IsNull())
             {
                 throw new ArgumentException("key generator is null or invalid!");
             }

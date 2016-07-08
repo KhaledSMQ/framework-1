@@ -7,6 +7,7 @@
 // Description: Base user control definition.
 // ============================================================================
 
+using Framework.Factory;
 using Framework.Factory.API;
 using System;
 
@@ -38,7 +39,7 @@ namespace Framework.Web.UI
             // Set the context scope for the control.
             //
 
-            Scope = Factory.API.Runtime.Hub.GetUnique<IScope>().New();
+            Scope = Manager.Hub.GetUnique<IScope>().New();
         }
     }
 }

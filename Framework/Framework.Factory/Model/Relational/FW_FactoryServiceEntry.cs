@@ -9,7 +9,6 @@
 
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
-using Framework.Core.Types.Specialized;
 using System;
 using System.Collections.Generic;
 
@@ -26,6 +25,8 @@ namespace Framework.Factory.Model.Relational
         //
 
         public int ID { get; set; }
+
+        public string Module { get; set; }
 
         public bool Unique { get; set; }
 
@@ -63,20 +64,21 @@ namespace Framework.Factory.Model.Relational
             // Basic info.
             //
 
-            ID = -1;
-            Unique = false;
-            Default = false;
-            Name = string.Empty;
-            Description = string.Empty;
-            Contract = string.Empty;
-            TypeName = string.Empty;
-            Settings = null;
+            ID = default(int);
+            Module = default(string);
+            Unique = default(bool);
+            Default = default(bool);
+            Name = default(string);
+            Description = default(string);
+            Contract = default(string);
+            TypeName = default(string);
+            Settings = default(ICollection<FW_FactorySetting>);
 
             //
             // Audits
             //
 
-            AuditableExtensions.Init(this, string.Empty);
+            AuditableExtensions.Init(this, default(string));
         }
     }
 }

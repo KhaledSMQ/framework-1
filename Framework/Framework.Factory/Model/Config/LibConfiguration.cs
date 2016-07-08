@@ -35,6 +35,17 @@ namespace Framework.Factory.Model.Config
         }
 
         //
+        // MODULES
+        //
+
+        [ConfigurationProperty(Constants.MODULES, IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(ServiceElementCollection))]
+        public ServiceElementCollection Modules
+        {
+            get { return (ServiceElementCollection)this[Constants.MODULES]; }
+        }
+
+        //
         // Startup sequence.
         //
 

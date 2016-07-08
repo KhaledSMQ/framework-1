@@ -212,7 +212,7 @@ namespace Framework.Blocks.API
                 // Process: TYPE
                 //
 
-                Type defBlock_Type = fwBlockDef.TypeName.isNotNullAndEmpty() ? Type.GetType(fwBlockDef.TypeName) : default(Type);
+                Type defBlock_Type = fwBlockDef.TypeName.IsNotNullAndEmpty() ? Type.GetType(fwBlockDef.TypeName) : default(Type);
 
                 //
                 // Process: PORTS
@@ -236,7 +236,7 @@ namespace Framework.Blocks.API
                         // Process: TYPE
                         //
 
-                        Type memPort_Type = port.TypeName.isNotNullAndEmpty() ? Type.GetType(port.TypeName) : default(Type);
+                        Type memPort_Type = port.TypeName.IsNotNullAndEmpty() ? Type.GetType(port.TypeName) : default(Type);
 
                         //
                         // Put together the port definition and add 
@@ -276,7 +276,7 @@ namespace Framework.Blocks.API
                         // Process: TYPE
                         //
 
-                        Type defProperty_Type = property.TypeName.isNotNullAndEmpty() ? Type.GetType(property.TypeName) : default(Type);
+                        Type defProperty_Type = property.TypeName.IsNotNullAndEmpty() ? Type.GetType(property.TypeName) : default(Type);
 
                         //
                         // Put together the property definition
@@ -368,7 +368,7 @@ namespace Framework.Blocks.API
                         // Process: NAME
                         //
 
-                        Id conn_Name = new Id(conn.Name.isNotNullAndEmpty() ? conn.Name : "__C" + idxGeneratedConnName++);
+                        Id conn_Name = new Id(conn.Name.IsNotNullAndEmpty() ? conn.Name : "__C" + idxGeneratedConnName++);
 
                         //
                         // Process: SOURCE

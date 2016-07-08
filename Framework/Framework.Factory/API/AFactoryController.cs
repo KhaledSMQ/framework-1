@@ -21,7 +21,7 @@ namespace Framework.Factory.API
         [ActionName("hub.loaded"), HttpGet]
         public IHttpActionResult HUB_GetLoaded()
         {
-            return ApplyAndReturn(() => { return Scope.Hub.GetListOfLoaded(); });
+            return ApplyAndReturn(() => { return Scope.Hub.GetList(); });
         }
 
         [ActionName("hub.instances"), HttpGet]
