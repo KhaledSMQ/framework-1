@@ -49,7 +49,7 @@ namespace Framework.Factory
 
         public static void Init(IAppBuilder app)
         {
-            LoadConfig();
+            LoadConfig(app);
             LoadModules(app);
             Startup(app);
         }
@@ -58,13 +58,13 @@ namespace Framework.Factory
         // Load the initial configuration for factory library.
         //
 
-        public static void LoadConfig()
+        public static void LoadConfig(IAppBuilder app)
         {
             //
             // Load from the system configuration.
             //
 
-            Config = (LibConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
+            __Config = (LibConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
 
             //
             // Load configuration for the service hub.
@@ -72,16 +72,16 @@ namespace Framework.Factory
             // This class will be the heart of the framework services.
             //            
 
-            if (null != Config)
+            if (null != __Config)
             {
-                if (null != Config.Hub)
+                if (null != __Config.Hub)
                 {
                     //
                     // Instantiate the hub service.
                     // Load the hub service entry into the hub... :-)
                     // 
 
-                    Service hubService = Transforms.Config2Service(Config.Hub);
+                    Service hubService = Transforms.Config2Service(__Config.Hub);
                     __Hub = Core.Reflection.Activator.CreateGenericInstance<IHub>(hubService.TypeName);
                     __Hub.Init();
                     __Hub.Load(hubService);
@@ -90,9 +90,9 @@ namespace Framework.Factory
                     // Load core services into hub.
                     //
 
-                    if (null != Config.Services)
+                    if (null != __Config.Services)
                     {
-                        __Hub.Load(Config.Services.Map<ServiceElement, Service>(Transforms.Config2Service));
+                        __Hub.Load(__Config.Services.Map<ServiceElement, Service>(Transforms.Config2Service));
                     }
 
                     //
@@ -102,7 +102,6 @@ namespace Framework.Factory
 
                     __Scope = __Hub.GetUnique<IScope>();
                     __Hub.Scope = __Scope;
-
 
                     //
                     // Setup the host service.
@@ -148,9 +147,9 @@ namespace Framework.Factory
             // Run all services and all methods defined in sequence.
             //         
 
-            if (null != Config.Sequence)
+            if (null != __Config.Sequence)
             {
-                IEnumerable<MethodCall> bootSequence = Config.Sequence.Map<MethodCallElement, MethodCall>(Transforms.Config2MethodCall);
+                IEnumerable<MethodCall> bootSequence = __Config.Sequence.Map<MethodCallElement, MethodCall>(Transforms.Config2MethodCall);
 
                 bootSequence.Apply(call =>
                 {
@@ -167,9 +166,9 @@ namespace Framework.Factory
 
         public static void LoadModules(IAppBuilder app)
         {
-            if (null != Config.Modules)
+            if (null != __Config.Modules)
             {
-                __Modules.Load(Config.Modules.Map<ModuleImportElement, Module>(Transforms.Config2Module));
+                __Modules.Load(__Config.Modules.Map<ModuleElement, Module>(Transforms.Config2Module));
             }
         }
 
@@ -181,6 +180,6 @@ namespace Framework.Factory
         private static IScope __Scope;
         private static IHost __Host;
         private static IModuleEntry __Modules;
-        private static LibConfiguration Config;
+        private static LibConfiguration __Config;
     }
 }

@@ -11,7 +11,7 @@ using Framework.Apps.Model.Config;
 
 namespace Framework.Apps.API
 {
-    public class SrvModule : Factory.API.SrvModule<LibConfiguration>, Factory.API.IModuleProtocol
+    public class SrvModule : Factory.API.SrvModuleProtocol<LibConfiguration>, Factory.API.IModuleProtocol
     {
         //
         // CONSTRUCTOR

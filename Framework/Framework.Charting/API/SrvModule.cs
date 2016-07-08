@@ -11,7 +11,7 @@ using Framework.Charting.Model.Config;
 
 namespace Framework.Charting.API
 {
-    public class SrvModule : Factory.API.SrvModule<LibConfiguration>, Factory.API.IModuleProtocol
+    public class SrvModule : Factory.API.SrvModuleProtocol<LibConfiguration>, Factory.API.IModuleProtocol
     {
         //
         // CONSTRUCTOR

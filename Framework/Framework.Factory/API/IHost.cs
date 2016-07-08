@@ -7,7 +7,6 @@
 // Description: Host related properties and features.
 // ============================================================================
 
-using Framework.Factory.Model;
 using Framework.Factory.Patterns;
 
 namespace Framework.Factory.API

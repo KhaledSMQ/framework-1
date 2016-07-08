@@ -16,13 +16,13 @@ using Framework.Core.Extensions;
 
 namespace Framework.Factory.API
 {
-    public class SrvModule<TConfig> : ACommon, IModuleProtocol where TConfig : ModuleConfiguration
+    public class SrvModuleProtocol<TConfig> : ACommon, IModuleProtocol where TConfig : ModuleProtocolConfiguration
     {
         //
         // PROPERTIES
         //
 
-        public IEnumerable<Service> Services { get { return __GetListOfUserModuleServices(); } }
+        public IEnumerable<Service> Services { get { return GetListOfUserServices(); } }
 
         //
         // PROPERTIES (INTERNAL)
@@ -38,7 +38,7 @@ namespace Framework.Factory.API
         // CONSTRUCTOR
         //
 
-        public SrvModule(string configSectionName, Assembly executingAssembly)
+        public SrvModuleProtocol(string configSectionName, Assembly executingAssembly)
         {
             ConfigSectionName = configSectionName;
             Assembly = executingAssembly;
@@ -57,7 +57,7 @@ namespace Framework.Factory.API
             Config = (TConfig)System.Configuration.ConfigurationManager.GetSection(ConfigSectionName);
         }
 
-        private IEnumerable<Service> __GetListOfUserModuleServices()
+        protected IEnumerable<Service> GetListOfUserServices()
         {
             return null != Config ? Config.Services.Map<ServiceElement, Service>(Transforms.Config2Service) : null;
         }

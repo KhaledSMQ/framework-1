@@ -9,7 +9,7 @@
 
 namespace Framework.Search.Model.Config
 {
-    public class LibConfiguration : Factory.Model.Config.ModuleConfiguration
+    public class LibConfiguration : Factory.Model.Config.ModuleProtocolConfiguration
     {
     }
 }

@@ -39,15 +39,11 @@ namespace Framework.Factory.Model.Config
         //
 
         [ConfigurationProperty(Constants.MODULES, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(ServiceElementCollection))]
-        public ServiceElementCollection Modules
+        [ConfigurationCollection(typeof(ModuleElementCollection))]
+        public ModuleElementCollection Modules
         {
-            get { return (ServiceElementCollection)this[Constants.MODULES]; }
+            get { return (ModuleElementCollection)this[Constants.MODULES]; }
         }
-
-        //
-        // Startup sequence.
-        //
 
         //
         // BOOT-SEQUENCE

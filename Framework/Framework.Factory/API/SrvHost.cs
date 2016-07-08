@@ -19,11 +19,11 @@ namespace Framework.Factory.API
         // Computed values.
         //
 
-        public string PhysicalPath { get { return __GetHostPhysicalPath(); } }
+        public string PhysicalPath { get { return HostingEnvironment.ApplicationPhysicalPath; } }
 
-        public string VirtualPath { get { return __GetHostVirtualPath(); } }
+        public string VirtualPath { get { return HostingEnvironment.ApplicationVirtualPath; } }
 
-        public bool IsInDevelopmentMode { get { return __IsInDevelopmentMode(); } }    
+        public bool IsInDevelopmentMode { get { return HostingEnvironment.IsDevelopmentEnvironment; } }    
       
         //
         // Get the complete absolute physical path for a file.
@@ -33,34 +33,5 @@ namespace Framework.Factory.API
         {
             return System.IO.Path.Combine(PhysicalPath, relPath);
         }    
-
-        //
-        // HELPER
-        // Return the application absolute physical path.
-        // The location on disk.
-        //
-
-        private string __GetHostPhysicalPath()
-        {
-            return HostingEnvironment.ApplicationPhysicalPath;
-        }
-
-        //
-        // HELPER
-        // Return the application virtual path.
-        //
-        private string __GetHostVirtualPath()
-        {
-            return HostingEnvironment.ApplicationVirtualPath;
-        }
-
-        //
-        // HELPER
-        // Check if we are in development mode.
-        //
-        private bool __IsInDevelopmentMode()
-        {
-            return HostingEnvironment.IsDevelopmentEnvironment;
-        }
     }
 }

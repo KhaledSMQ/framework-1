@@ -98,7 +98,7 @@ namespace Framework.Factory.API
         // MODULE IMPORT
         //
 
-        public static Module Config2Module(this ModuleImportElement elm)
+        public static Module Config2Module(this ModuleElement elm)
         {
             return new Module()
             {

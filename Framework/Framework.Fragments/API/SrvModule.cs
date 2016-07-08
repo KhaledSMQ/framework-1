@@ -9,9 +9,9 @@
 
 using Framework.Fragments.Model.Config;
 
-namespace Framework.Faagments.API
+namespace Framework.Fragments.API
 {
-    public class SrvModule : Factory.API.SrvModule<LibConfiguration>, Factory.API.IModuleProtocol
+    public class SrvModule : Factory.API.SrvModuleProtocol<LibConfiguration>, Factory.API.IModuleProtocol
     {
         //
         // CONSTRUCTOR

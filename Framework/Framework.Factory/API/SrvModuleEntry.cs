@@ -148,9 +148,8 @@ namespace Framework.Factory.API
             Unload(GetList());
         }
 
-
         //
-        //
+        // In-memory area for storing modules.
         //
 
         private IDictionary<string, Module> __Modules = null;

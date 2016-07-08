@@ -9,7 +9,7 @@
 
 namespace Framework.Types.Model.Config
 {
-    public class LibConfiguration : Factory.Model.Config.ModuleConfiguration
+    public class LibConfiguration : Factory.Model.Config.ModuleProtocolConfiguration
     {
     }
 }

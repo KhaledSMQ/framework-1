@@ -11,7 +11,7 @@ using System.Configuration;
 
 namespace Framework.Web.Model.Config
 {
-    public class LibConfiguration : Factory.Model.Config.ModuleConfiguration    
+    public class LibConfiguration : Factory.Model.Config.ModuleProtocolConfiguration    
     {
         //
         // ROUTING
