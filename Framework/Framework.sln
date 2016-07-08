@@ -53,8 +53,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Maps", "Framework
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Comm", "Framework.Comm\Framework.Comm.csproj", "{DF072C9D-45F4-4EE7-A243-A155E6A79A7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Configuration", "Framework.Configuration\Framework.Configuration.csproj", "{6C07C50F-A704-4EB1-B6BD-3B629F7F5729}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Auth", "Framework.Auth\Framework.Auth.csproj", "{13B3C667-C1D6-4736-BEE7-70F608538914}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Data.EntityFramework", "Framework.Data.EntityFramework\Framework.Data.EntityFramework.csproj", "{5E629E67-AE42-49D3-8A92-A89F756457B4}"
@@ -348,16 +346,6 @@ Global
 		{DF072C9D-45F4-4EE7-A243-A155E6A79A7B}.NuGet|Any CPU.Build.0 = Release|Any CPU
 		{DF072C9D-45F4-4EE7-A243-A155E6A79A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF072C9D-45F4-4EE7-A243-A155E6A79A7B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6C07C50F-A704-4EB1-B6BD-3B629F7F5729}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C07C50F-A704-4EB1-B6BD-3B629F7F5729}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C07C50F-A704-4EB1-B6BD-3B629F7F5729}.Deploy [DEBUG]|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C07C50F-A704-4EB1-B6BD-3B629F7F5729}.Deploy [DEBUG]|Any CPU.Build.0 = Debug|Any CPU
-		{6C07C50F-A704-4EB1-B6BD-3B629F7F5729}.Deploy [RELEASE]|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C07C50F-A704-4EB1-B6BD-3B629F7F5729}.Deploy [RELEASE]|Any CPU.Build.0 = Debug|Any CPU
-		{6C07C50F-A704-4EB1-B6BD-3B629F7F5729}.NuGet|Any CPU.ActiveCfg = Release|Any CPU
-		{6C07C50F-A704-4EB1-B6BD-3B629F7F5729}.NuGet|Any CPU.Build.0 = Release|Any CPU
-		{6C07C50F-A704-4EB1-B6BD-3B629F7F5729}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C07C50F-A704-4EB1-B6BD-3B629F7F5729}.Release|Any CPU.Build.0 = Release|Any CPU
 		{13B3C667-C1D6-4736-BEE7-70F608538914}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{13B3C667-C1D6-4736-BEE7-70F608538914}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13B3C667-C1D6-4736-BEE7-70F608538914}.Deploy [DEBUG]|Any CPU.ActiveCfg = Debug|Any CPU

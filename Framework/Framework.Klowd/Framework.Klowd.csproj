@@ -631,10 +631,6 @@
       <Project>{b7701d2a-54f2-430a-88c3-8ef5e4843732}</Project>
       <Name>Framework.Compression</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Framework.Configuration\Framework.Configuration.csproj">
-      <Project>{6c07c50f-a704-4eb1-b6bd-3b629f7f5729}</Project>
-      <Name>Framework.Configuration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Framework.Content\Framework.Content.csproj">
       <Project>{9244770a-f427-457f-88af-3be43bde999f}</Project>
       <Name>Framework.Content</Name>

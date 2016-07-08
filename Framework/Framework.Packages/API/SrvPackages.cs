@@ -7,8 +7,8 @@
 // Description: 
 // ============================================================================
 
-using Framework.Configuration.API;
 using Framework.Core.Extensions;
+using Framework.Factory.API;
 using Framework.Factory.Patterns;
 using Framework.Packages.Model.Objects;
 using Framework.Web.API;

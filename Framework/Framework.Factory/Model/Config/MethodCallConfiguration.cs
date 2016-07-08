@@ -7,10 +7,9 @@
 // Description:
 // ============================================================================
 
-using Framework.Factory.Model.Config;
 using System.Configuration;
 
-namespace Framework.Factory.Config
+namespace Framework.Factory.Model.Config
 {
     public class MethodCallElementCollection : ConfigurationElementCollection
     {

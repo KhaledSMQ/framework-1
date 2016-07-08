@@ -38,10 +38,16 @@ namespace Framework.Factory.Model.Config
         // Startup sequence.
         //
 
-        [ConfigurationProperty(Constants.SECTION_STARTUP)]
-        public ServiceElement Startup
+        //
+        // BOOT-SEQUENCE
+        // Ordered list of services and method to run at startup.
+        //
+
+        [ConfigurationProperty(Constants.STARTUP, IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(MethodCallElementCollection))]
+        public MethodCallElementCollection Sequence
         {
-            get { return (ServiceElement)this[Constants.SECTION_STARTUP]; }
+            get { return (MethodCallElementCollection)this[Constants.STARTUP]; }
         }
     }
 }

@@ -10,6 +10,7 @@
 using Framework.Core.Extensions;
 using Framework.Factory.Model.Config;
 using Framework.Factory.Model.Relational;
+using Framework.Factory.Model.Runtime;
 using Owin;
 using System;
 using System.Collections.Generic;
@@ -37,8 +38,9 @@ namespace Framework.Factory.API
         // 
 
         public static void Init(IAppBuilder app)
-        {   
+        {
             LoadConfig();
+            Startup(app);
         }
 
         //
@@ -80,8 +82,8 @@ namespace Framework.Factory.API
                         //
                         // Load core services into hub.
                         //
-                                                 
-                        __Hub.Load(config.Services.Map<ServiceElement, FW_FactoryServiceEntry>(new List<FW_FactoryServiceEntry>(), Transforms.Converter));                       
+
+                        __Hub.Load(config.Services.Map<ServiceElement, FW_FactoryServiceEntry>(new List<FW_FactoryServiceEntry>(), Transforms.Converter));
                     }
 
                     //
@@ -91,6 +93,12 @@ namespace Framework.Factory.API
 
                     __Scope = __Hub.GetUnique<IScope>();
                     __Hub.Scope = __Scope;
+
+                    //
+                    // Load boot sequence.
+                    //
+
+                    __Sequence = Transforms.ToSequence(config.Sequence);
                 }
                 else
                 {
@@ -112,10 +120,30 @@ namespace Framework.Factory.API
         }
 
         //
+        // Method to boot the application.
+        // This will be called only one time.
+        // When the application starts.
+        //
+
+        public static void Startup(IAppBuilder app)
+        {
+            //
+            // Run all services and all methods defined in sequence.
+            //         
+
+            __Sequence.Apply(call =>
+            {
+                __Scope.Hub.GetUnique<IReflected>().Run(call.Service, call.Method);
+            });
+        }
+
+        //
         // HELPERS 
         //     
 
         private static IHub __Hub = null;
         private static IScope __Scope = null;
+        private static IEnumerable<MethodCall> __Sequence = null;
+
     }
 }

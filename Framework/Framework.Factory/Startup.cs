@@ -28,12 +28,6 @@ namespace Framework.Factory
             //
 
             AppDomain.CurrentDomain.SetData("DataDirectory", Factory.API.Runtime.Hub.GetUnique<IHost>().GetAbsolutePhysicalPath("Data\\DB\\"));
-
-            //
-            // Boot application.
-            //
-
-            Factory.API.Runtime.Hub.GetUnique<IStartup>().Startup(app);
         }
     }
 }
