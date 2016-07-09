@@ -13,6 +13,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using Framework.Core.Extensions;
 using Framework.Factory.API;
+using Framework.Core.Reflection;
+using System;
 
 namespace Framework.Factory.Patterns
 {
@@ -22,7 +24,7 @@ namespace Framework.Factory.Patterns
         // PROPERTIES
         //
 
-        public IEnumerable<Service> Services { get { return GetListOfUserServices(); } }
+        public IEnumerable<Service> Services { get { return GetListOfAvailableServices(); } }
 
         //
         // PROPERTIES (INTERNAL)
@@ -40,6 +42,7 @@ namespace Framework.Factory.Patterns
 
         public AModule(string configSectionName, Assembly executingAssembly)
         {
+            Config = default(TConfig);
             ConfigSectionName = configSectionName;
             Assembly = executingAssembly;
         }
@@ -57,9 +60,35 @@ namespace Framework.Factory.Patterns
             Config = (TConfig)System.Configuration.ConfigurationManager.GetSection(ConfigSectionName);
         }
 
+        protected IEnumerable<Service> GetListOfAvailableServices()
+        {
+            List<Service> lst = new List<Service>();
+            lst.AddRange(GetListOfUserServices());
+            lst.AddRange(ExtractServicesFromAssembly());
+            return lst;
+        }
+
         protected IEnumerable<Service> GetListOfUserServices()
         {
-            return null != Config ? Config.Services.Map<ServiceElement, Service>(Transforms.Config2Service) : null;
+            return Config.IsNotNull() ? Config.Services.Map<ServiceElement, Service>(Transforms.Config2Service) : new List<Service>();
+        }
+
+        //
+        // Get from the module assembly the list of types that are services.
+        // Services follow the ICommon interface pattern.
+        //
+
+        protected IEnumerable<Service> ExtractServicesFromAssembly()
+        {
+            return Assembly.GetTypesWithInterface(typeof(ICommon)).Map(typ =>
+            {
+                return new Service()
+                {
+                    Name = typ.FullName,
+                    TypeName = Assembly.GetName() + ":" + typ.FullName,
+                    Contract = "C"
+                };
+            });
         }
     }
 }

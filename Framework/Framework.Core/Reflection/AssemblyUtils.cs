@@ -7,7 +7,12 @@
 // Description: Assembly related utils.
 // ============================================================================
 
+using Framework.Core.Extensions;
+using Framework.Core.Helpers;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace Framework.Core.Reflection
@@ -32,6 +37,27 @@ namespace Framework.Core.Reflection
             StreamReader reader = new StreamReader(stream);
             string content = reader.ReadToEnd();
             return content;
+        }
+
+        public static IEnumerable<Type> GetLoadableTypes(this Assembly assembly)
+        {
+            Guard.IsNotNull(assembly);
+
+            try
+            {
+                return assembly.GetTypes();
+            }
+            catch (ReflectionTypeLoadException e)
+            {
+                return e.Types.Where(t => t != null);
+            }
+        }
+
+        public static IEnumerable<Type> GetTypesWithInterface(this Assembly assembly, Type typeOfInterface)
+        {
+            Guard.IsNotNull(assembly);
+
+            return assembly.GetLoadableTypes().Where(typeOfInterface.IsAssignableFrom).ToList();
         }
     }
 }

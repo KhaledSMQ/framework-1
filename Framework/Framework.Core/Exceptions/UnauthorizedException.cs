@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: 
+// Name/Class: UnauthorizedException
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 13/Mar/2016
 // Company: Coop4Creativity
