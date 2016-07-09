@@ -81,7 +81,7 @@
     <Compile Include="API\IQueryProcessor.cs" />
     <Compile Include="API\IStore.cs" />
     <Compile Include="API\SrvDAL.cs" />
-    <Compile Include="API\SrvModule.cs" />
+    <Compile Include="Module.cs" />
     <Compile Include="API\SrvStore.cs" />
     <Compile Include="API\ADataController.cs" />
     <Compile Include="API\IDynamicStoreDataScope.cs" />

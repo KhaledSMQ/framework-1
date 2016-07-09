@@ -18,7 +18,7 @@ namespace Framework
         // Default Xml namespace for the base namespace.
         //
 
-        public const string DEFAULT_XML_NAMESPACE = "http://framework.coop4creativity.pt/";
+        public const string DEFAULT_XML_NAMESPACE = "http://framework.coop4creativity.pt";
 
         //
         // Static methods for assembly/lib values.
@@ -32,6 +32,12 @@ namespace Framework
         public static string GetDefaultXmlNamespace(Assembly executingAssembly)
         {
             return DEFAULT_XML_NAMESPACE + "/" + GetDefaultErrorPrefix(executingAssembly).RightOf(".").Replace('.', '/').ToLower();
+        }
+
+        public static string GetConfigSectionName(Assembly executingAssembly)
+        {
+            string assemblyName = GetDefaultErrorPrefix(executingAssembly);
+            return assemblyName.IsNotNullAndEmpty() ? char.ToLower(assemblyName[0]) + assemblyName.Substring(1) : assemblyName;
         }
     }
 }
@@ -51,5 +57,11 @@ namespace Framework.Core
         //
 
         public static readonly string DEFAULT_XML_NAMESPACE = Framework.Lib.GetDefaultXmlNamespace(Assembly.GetExecutingAssembly());
+
+        //
+        // Default config section name for library.
+        //
+
+        public static readonly string DEFAULT_CONFIG_SECTION_NAME = Framework.Lib.GetConfigSectionName(Assembly.GetExecutingAssembly());
     }
 }

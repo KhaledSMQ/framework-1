@@ -9,7 +9,7 @@
 </head>
 <body>
 </body>
-    <fw:Include runat="server" Folder="Packages" Pattern="*.js" />
+    <fw:Include runat="server" Folder="Packages\3party\jquery\112" Pattern="*.js" />
     <fw:Include runat="server" Folder="Packages\framework\fw" Pattern="*.js" />
     <fw:Include runat="server" Folder="Packages\framework\fw" Pattern="__*.js" Recursive="true" />
     <fw:Include runat="server" Folder="Packages\framework\fw\modules" Pattern="*.js" Recursive="true" />

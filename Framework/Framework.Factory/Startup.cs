@@ -18,7 +18,7 @@ namespace Framework.Factory
         public void Configuration(IAppBuilder app)
         {
             //
-            // Initialize framework services.
+            // Initialize framework.
             //
 
             Manager.Init(app);

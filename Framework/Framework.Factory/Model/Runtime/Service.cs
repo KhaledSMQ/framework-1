@@ -7,17 +7,16 @@
 // Description: Service specification class.
 // ============================================================================
 
-using Framework.Core.Extensions;
 using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
-using System;
 using System.Collections.Generic;
 
 namespace Framework.Factory.Model.Runtime
 {
     public class Service : 
         IID<int>, 
-        IName<string>, 
+        IName<string>,
+        IDescription<string>,
         ITypeName<string>
     {
         //
@@ -50,8 +49,8 @@ namespace Framework.Factory.Model.Runtime
         {   
             ID = -1;
             Module = default(string);
-            Unique = false;
-            Default = false;
+            Unique = default(bool);
+            Default = default(bool);
             Name = default(string);
             Description = default(string);
             Contract = default(string);

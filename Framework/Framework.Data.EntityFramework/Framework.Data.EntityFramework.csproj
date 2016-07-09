@@ -81,6 +81,7 @@
     <Compile Include="Context\UserBasedDbContext.cs" />
     <Compile Include="Context\_Enums.cs" />
     <Compile Include="Lib.cs" />
+    <Compile Include="Module.cs" />
     <Compile Include="Objects\ADataSetWithKey.cs" />
     <Compile Include="Objects\BaseDynamicDataSet.cs" />
     <Compile Include="Objects\BaseGenericDataSet.cs" />

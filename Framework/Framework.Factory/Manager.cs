@@ -64,7 +64,7 @@ namespace Framework.Factory
             // Load from the system configuration.
             //
 
-            __Config = (LibConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
+            __Config = (LibConfiguration)System.Configuration.ConfigurationManager.GetSection(Lib.DEFAULT_CONFIG_SECTION_NAME);
 
             //
             // Load configuration for the service hub.
@@ -168,7 +168,7 @@ namespace Framework.Factory
         {
             if (null != __Config.Modules)
             {
-                __Modules.Load(__Config.Modules.Map<ModuleElement, Module>(Transforms.Config2Module));
+                __Modules.Load(__Config.Modules.Map<ModuleImportElement, Module>(Transforms.Config2Module));
             }
         }
 

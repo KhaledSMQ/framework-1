@@ -40,7 +40,7 @@ namespace Framework.Factory.API
                 // Import all the supported services and such.
                 //
 
-                IModuleProtocol moduleProtocol = Core.Reflection.Activator.CreateGenericInstance<IModuleProtocol>(module.TypeName);
+                IModule moduleProtocol = Core.Reflection.Activator.CreateGenericInstance<IModule>(module.TypeName);
 
                 //
                 // Load module configuration.

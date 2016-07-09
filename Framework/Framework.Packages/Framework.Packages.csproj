@@ -63,7 +63,7 @@
     <Compile Include="API\IPackages.cs" />
     <Compile Include="API\APackagesController.cs" />
     <Compile Include="API\SrvBundles.cs" />
-    <Compile Include="API\SrvModule.cs" />
+    <Compile Include="Module.cs" />
     <Compile Include="API\SrvPackages.cs" />
     <Compile Include="API\_Enums.cs" />
     <Compile Include="Lib.cs" />

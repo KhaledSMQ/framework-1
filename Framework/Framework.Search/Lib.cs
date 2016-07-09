@@ -22,5 +22,11 @@ namespace Framework.Search
         //
 
         public static readonly string DEFAULT_XML_NAMESPACE = Framework.Lib.GetDefaultXmlNamespace(System.Reflection.Assembly.GetExecutingAssembly());
+
+        //
+        // Default config section name for library.
+        //
+
+        public static readonly string DEFAULT_CONFIG_SECTION_NAME = Framework.Lib.GetConfigSectionName(System.Reflection.Assembly.GetExecutingAssembly());
     }
 }

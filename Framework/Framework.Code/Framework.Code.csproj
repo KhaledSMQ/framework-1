@@ -61,7 +61,7 @@
     <Compile Include="API\IClassGenerator.cs" />
     <Compile Include="API\SrvCompiler.cs" />
     <Compile Include="API\SrvClassGenerator.cs" />
-    <Compile Include="API\SrvModule.cs" />
+    <Compile Include="Module.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="Model\Config\LibConfiguration.cs" />
     <Compile Include="Model\Config\_Const.cs" />

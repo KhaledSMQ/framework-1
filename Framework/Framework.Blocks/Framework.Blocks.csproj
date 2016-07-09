@@ -63,7 +63,7 @@
     <Compile Include="API\IStore.cs" />
     <Compile Include="API\SrvMem.cs" />
     <Compile Include="API\SrvEval.cs" />
-    <Compile Include="API\SrvModule.cs" />
+    <Compile Include="Module.cs" />
     <Compile Include="API\SrvStore.cs" />
     <Compile Include="API\ABlocksController.cs" />
     <Compile Include="Lib.cs" />

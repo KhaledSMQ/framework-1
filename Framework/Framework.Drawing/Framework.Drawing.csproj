@@ -101,6 +101,7 @@
     <Compile Include="Geom\Shapes\pRect.cs" />
     <Compile Include="Geom\_Config.cs" />
     <Compile Include="Extensions\ImageExtension.cs" />
+    <Compile Include="Module.cs" />
     <Compile Include="SVG\DOM\Basic Shapes\SvgCircle.cs" />
     <Compile Include="SVG\DOM\Basic Shapes\SvgEllipse.cs" />
     <Compile Include="SVG\DOM\Basic Shapes\SvgLine.cs" />
@@ -255,6 +256,10 @@
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>
       <Name>Framework.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Factory\Framework.Factory.csproj">
+      <Project>{5a0032b0-780a-43c0-8cc0-04f3cd77336a}</Project>
+      <Name>Framework.Factory</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

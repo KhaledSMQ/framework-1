@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\AFormsController.cs" />
-    <Compile Include="API\SrvModule.cs" />
+    <Compile Include="Module.cs" />
     <Compile Include="API\SrvStore.cs" />
     <Compile Include="API\SrvMem.cs" />
     <Compile Include="API\IMem.cs" />

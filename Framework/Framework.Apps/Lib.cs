@@ -7,9 +7,6 @@
 // Description: 
 // ============================================================================
 
-using Framework.Core.Extensions;
-using System.Reflection;
-
 namespace Framework.Apps
 {
     public static class Lib
@@ -18,12 +15,18 @@ namespace Framework.Apps
         // Error prefix for error messages in this library.
         //
 
-        public static readonly string DEFAULT_ERROR_MSG_PREFIX = Assembly.GetExecutingAssembly().GetName().Name;
+        public static readonly string DEFAULT_ERROR_MSG_PREFIX = Framework.Lib.GetDefaultErrorPrefix(System.Reflection.Assembly.GetExecutingAssembly());
 
         // 
         // Default Xml namespace.
         //
 
-        public static readonly string DEFAULT_XML_NAMESPACE = Framework.Lib.DEFAULT_XML_NAMESPACE + "/" + DEFAULT_ERROR_MSG_PREFIX.RightOf(".").Replace('.', '/').ToLower();
+        public static readonly string DEFAULT_XML_NAMESPACE = Framework.Lib.GetDefaultXmlNamespace(System.Reflection.Assembly.GetExecutingAssembly());
+
+        //
+        // Default config section name for library.
+        //
+
+        public static readonly string DEFAULT_CONFIG_SECTION_NAME = Framework.Lib.GetConfigSectionName(System.Reflection.Assembly.GetExecutingAssembly());
     }
 }

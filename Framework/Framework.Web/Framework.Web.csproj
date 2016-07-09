@@ -58,7 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\SrvModule.cs" />
+    <Compile Include="Module.cs" />
     <Compile Include="API\SrvResolver.cs" />
     <Compile Include="API\SrvRouting.cs" />
     <Compile Include="API\IResolver.cs" />

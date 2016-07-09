@@ -82,11 +82,11 @@
     <Compile Include="API\AFactoryController.cs" />
     <Compile Include="API\IEventHub.cs" />
     <Compile Include="API\IHost.cs" />
-    <Compile Include="API\IModuleProtocol.cs" />
+    <Compile Include="Patterns\IModule.cs" />
     <Compile Include="API\SrvModuleEntry.cs" />
     <Compile Include="API\IModuleEntry.cs" />
     <Compile Include="API\SrvHost.cs" />
-    <Compile Include="API\SrvModuleProtocol.cs" />
+    <Compile Include="Patterns\AModule.cs" />
     <Compile Include="API\SrvEventHub.cs" />
     <Compile Include="API\SrvReflected.cs" />
     <Compile Include="API\IReflected.cs" />
@@ -95,8 +95,8 @@
     <Compile Include="Attributes\ServicePropertyAttribute.cs" />
     <Compile Include="Model\Config\BaseConfiguration.cs" />
     <Compile Include="Model\Config\MethodCallConfiguration.cs" />
-    <Compile Include="Model\Config\ModuleProtocolConfiguration.cs" />
     <Compile Include="Model\Config\ModuleConfiguration.cs" />
+    <Compile Include="Model\Config\ModuleImportConfiguration.cs" />
     <Compile Include="Model\Config\ServiceConfiguration.cs" />
     <Compile Include="Model\Config\_Const.cs" />
     <Compile Include="Model\Config\LibConfiguration.cs" />

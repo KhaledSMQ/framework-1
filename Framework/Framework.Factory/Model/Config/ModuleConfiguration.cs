@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Configuration base element.
+// Name/Class: Configuration for Manager.
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 26/Nov/2015
 // Company: Coop4Creativity
@@ -11,56 +11,17 @@ using System.Configuration;
 
 namespace Framework.Factory.Model.Config
 {
-    public class ModuleElementCollection : ConfigurationElementCollection
+    public class ModuleConfiguration : ConfigurationSection
     {
-        public ModuleElement this[int index]
-        {
-            get { return (ModuleElement)BaseGet(index); }
-            set
-            {
-                if (BaseGet(index) != null)
-                {
-                    BaseRemoveAt(index);
-                }
-                BaseAdd(index, value);
-            }
-        }
+        //
+        // MODULE SERVICES
+        //
 
-        public void Add(ModuleElement itemConfig)
+        [ConfigurationProperty(Constants.SERVICES, IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(ServiceElementCollection))]
+        public ServiceElementCollection Services
         {
-            BaseAdd(itemConfig);
-        }
-
-        public void Clear()
-        {
-            BaseClear();
-        }
-
-        protected override ConfigurationElement CreateNewElement()
-        {
-            return new ModuleElement();
-        }
-
-        protected override object GetElementKey(ConfigurationElement element)
-        {
-            return ((ModuleElement)element).Name;
-        }
-
-        public void Remove(ModuleElement itemConfig)
-        {
-            BaseRemove(itemConfig.Name);
-        }
-
-        public void RemoveAt(int index)
-        {
-            BaseRemoveAt(index);
-        }
-
-        public void Remove(string name)
-        {
-            BaseRemove(name);
+            get { return (ServiceElementCollection)this[Constants.SERVICES]; }
         }
     }
-
-    public class ModuleElement : BaseElementWithTypeAndSettings { }
 }

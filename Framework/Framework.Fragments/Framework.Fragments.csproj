@@ -57,7 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\SrvModule.cs" />
+    <Compile Include="Module.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="Model\Config\LibConfiguration.cs" />
     <Compile Include="Model\Config\_Const.cs" />
@@ -69,6 +69,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="API\" />
     <Folder Include="Model\Objects\" />
     <Folder Include="Model\Relational\" />
   </ItemGroup>

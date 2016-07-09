@@ -39,10 +39,10 @@ namespace Framework.Factory.Model.Config
         //
 
         [ConfigurationProperty(Constants.MODULES, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(ModuleElementCollection))]
-        public ModuleElementCollection Modules
+        [ConfigurationCollection(typeof(ModuleImportElementCollection))]
+        public ModuleImportElementCollection Modules
         {
-            get { return (ModuleElementCollection)this[Constants.MODULES]; }
+            get { return (ModuleImportElementCollection)this[Constants.MODULES]; }
         }
 
         //
