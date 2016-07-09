@@ -50,7 +50,7 @@ namespace Framework.Core.Reflection
                 typename = segments[segments.Length - 1];
             }
 
-            return Activator.CreateInstance<T>(assembly, typename);
+            return CreateInstance<T>(assembly, typename);
         }
 
         //

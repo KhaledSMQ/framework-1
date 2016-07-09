@@ -12,7 +12,7 @@ using System.Reflection;
 
 namespace Framework.Core.Reflection
 {
-    public class AssemblyUtils
+    public static class AssemblyUtils
     {
         //
         // Get the some content from the current assembly.

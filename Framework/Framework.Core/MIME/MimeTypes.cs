@@ -94,7 +94,7 @@ namespace Framework.Core
         // Mapping between mime type and extension.
         //
 
-        public static IDictionary<string, string> MimeTypeToFileExtension = new SortedDictionary<string, string>() 
+        public static readonly IDictionary<string, string> MimeTypeToFileExtension = new SortedDictionary<string, string>() 
         {
             {TYPE_PNG, EXT_PNG},
             {TYPE_JAVASCRIPT, EXT_JAVASCRIPT},
@@ -127,7 +127,7 @@ namespace Framework.Core
         // Mapping between file extension and mime type.
         //
 
-        public static IDictionary<string, string> FileExtensionToMimeType = new SortedDictionary<string, string>() 
+        public static readonly IDictionary<string, string> FileExtensionToMimeType = new SortedDictionary<string, string>() 
         {
             {".png", TYPE_PNG},
             {".js", TYPE_JAVASCRIPT},
