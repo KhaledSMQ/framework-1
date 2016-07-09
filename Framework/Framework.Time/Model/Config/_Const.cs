@@ -11,6 +11,5 @@ namespace Framework.Time.Model.Config
 {
     public static class Constants
     {
-        public const string SECTION = "framework.Time";
     }
 }

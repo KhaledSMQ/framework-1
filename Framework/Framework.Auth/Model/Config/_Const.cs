@@ -11,6 +11,5 @@ namespace Framework.Auth.Model.Config
 {
     public static class Constants
     {
-        public const string SECTION = "framework.Auth";
     }
 }

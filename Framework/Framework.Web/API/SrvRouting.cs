@@ -73,30 +73,28 @@ namespace Framework.Web.API
             // Load from configuration settings.
             //
 
-            LibConfiguration config = (LibConfiguration)System.Configuration.ConfigurationManager.GetSection(Constants.SECTION);
-            if (null != config)
+            LibConfiguration config = (LibConfiguration)System.Configuration.ConfigurationManager.GetSection(Lib.DEFAULT_CONFIG_SECTION_NAME);
+            if (config.IsNotNull() && config.Routing.IsNotNull())
             {
-                if (null != config.Routing)
-                {
-                    //
-                    // Page routes.
-                    //
+                //
+                // Page routes.
+                //
 
-                    config.Routing.Pages.Apply<PageRouteElement>(elm => { Add(new PageRoute(elm.Name, elm.FriendlyUrl, elm.Location)); });
+                config.Routing.Pages.Apply<PageRouteElement>(elm => { Add(new PageRoute(elm.Name, elm.FriendlyUrl, elm.Location)); });
 
-                    //
-                    // Http routes.
-                    //
+                //
+                // Http routes.
+                //
 
-                    config.Routing.Http.Apply<HttpRouteElement>(elm => { Add(new HttpRoute(elm.Name, elm.Template)); });
+                config.Routing.Http.Apply<HttpRouteElement>(elm => { Add(new HttpRoute(elm.Name, elm.Template)); });
 
-                    //
-                    // Http base route url.
-                    //
+                //
+                // Http base route url.
+                //
 
-                    HttpRouteBaseUrl = config.Routing.HttpRouteBaseUrl;
-                }
+                HttpRouteBaseUrl = config.Routing.HttpRouteBaseUrl;
             }
+
         }
 
         //

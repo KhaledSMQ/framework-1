@@ -11,6 +11,5 @@ namespace Framework.Shell.Model.Config
 {
     public static class Constants
     {
-        public const string SECTION = "framework.Shell";
     }
 }

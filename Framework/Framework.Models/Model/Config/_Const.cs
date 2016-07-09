@@ -11,6 +11,5 @@ namespace Framework.Models.Model.Config
 {
     public static class Constants
     {
-        public const string SECTION = "framework.Models";
     }
 }

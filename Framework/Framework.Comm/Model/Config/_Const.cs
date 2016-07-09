@@ -10,7 +10,6 @@
 namespace Framework.Comm.Model.Config
 {
     public static class Constants
-    {
-        public const string SECTION = "framework.Comm";
+    {        
     }
 }

@@ -11,6 +11,5 @@ namespace Framework.Text.Model.Config
 {
     public static class Constants
     {
-        public const string SECTION = "framework.Text";
     }
 }
