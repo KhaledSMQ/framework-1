@@ -10,7 +10,7 @@
 using Framework.Core.Patterns;
 using System.Collections.Generic;
 
-namespace Framework.Apps.Model.Objects
+namespace Framework.Cloud.Model.Objects
 {
     public class Meta :
         IName<string>,

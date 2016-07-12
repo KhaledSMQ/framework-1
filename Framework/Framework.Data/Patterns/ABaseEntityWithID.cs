@@ -11,22 +11,18 @@ using System;
 using Framework.Core.Patterns;
 using Framework.Core.Extensions;
 
-namespace Framework.Server.Model.Objects
+namespace Framework.Data.Patterns
 {
-    public class Backend :
-        IOwner<int>,
-        IID<int>,
+    public class ABaseEntityWithID<TID, TUser> :
+        IID<TID>,
         IVisible,
-        IAuditable<string>,
-        IRef<string>
+        IAuditable<TUser>
     {
         //
-        // PROPERTIES
+        // BASE
         //
 
-        public int Owner { get; set; }
-
-        public int ID { get; set; }
+        public TID ID { get; set; }
 
         public TypeOfVisibility Visibility { get; set; }
 
@@ -34,48 +30,32 @@ namespace Framework.Server.Model.Objects
         // AUDITABLE
         //
 
-        public string CreatedBy { get; set; }
+        public TUser CreatedBy { get; set; }
 
         public DateTime CreatedDate { get; set; }
 
-        public string ModifiedBy { get; set; }
+        public TUser ModifiedBy { get; set; }
 
         public DateTime ModifiedDate { get; set; }
-
-        //
-        // REF/NAME/DESCRIPTION
-        //
-
-        public string Ref { get; set; }
-
-        public Meta Meta { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public Backend()
+        public ABaseEntityWithID()
         {
             //
-            // Base
+            // BASE
             //
 
-            Owner = default(int);
-            ID = default(int);
+            ID = default(TID);
             Visibility = TypeOfVisibility.ACTIVE;
 
             //
-            // Auditable
+            // AUDITABLE
             //
 
-            AuditableExtensions.Init(this, null);
-
-            //
-            // Ref/Name/Description
-            //
-
-            Ref = default(string);
-            Meta = default(Meta);
+            AuditableExtensions.Init(this, default(TUser));
         }
     }
 }

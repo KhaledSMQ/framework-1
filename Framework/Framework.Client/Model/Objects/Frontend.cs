@@ -10,15 +10,14 @@
 using System;
 using Framework.Core.Patterns;
 using Framework.Core.Extensions;
-using Framework.Server.Model.Objects;
-using Framework.Client.Model.Objects;
-using System.Collections.Generic;
-using Framework.Data.Patterns;
 
-namespace Framework.Apps.Model.Objects
+namespace Framework.Client.Model.Objects
 {
-    public class App : ABaseEntityWithID<int, string>,
+    public class Frontend :
         IOwner<int>,
+        IID<int>,
+        IVisible,
+        IAuditable<string>,
         IRef<string>
     {
         //
@@ -27,34 +26,49 @@ namespace Framework.Apps.Model.Objects
 
         public int Owner { get; set; }
 
+        public int ID { get; set; }
+
+        public TypeOfVisibility Visibility { get; set; }
+
+        //
+        // AUDITABLE
+        //
+
+        public string CreatedBy { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+
+        public string ModifiedBy { get; set; }
+
+        public DateTime ModifiedDate { get; set; }
+
         //
         // REF/NAME/DESCRIPTION
         //
 
         public string Ref { get; set; }
 
-
         public Meta Meta { get; set; }
-
-        //
-        //   
-        //
-
-        public ICollection<Backend> Servers { get; set; }
-
-        public ICollection<Frontend> Clients { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public App() 
+        public Frontend()
         {
             //
             // Base
             //
 
             Owner = default(int);
+            ID = default(int);
+            Visibility = TypeOfVisibility.ACTIVE;
+
+            //
+            // Auditable
+            //
+
+            AuditableExtensions.Init(this, null);
 
             //
             // Ref/Name/Description

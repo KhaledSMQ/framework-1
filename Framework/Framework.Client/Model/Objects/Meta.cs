@@ -7,14 +7,11 @@
 // Description: Application meta information.
 // ============================================================================
 
-using Framework.Core.Patterns;
 using System.Collections.Generic;
 
-namespace Framework.Apps.Model.Objects
+namespace Framework.Client.Model.Objects
 {
-    public class Meta :
-        IName<string>,
-        IDescription<string>
+    public class Meta
     {
         //
         // PROPERTIES
@@ -30,8 +27,6 @@ namespace Framework.Apps.Model.Objects
 
         public ICollection<string> Authors { get; set; }
 
-        public string Icon { get; set; }
-
         //
         // CONSTRUCTOR
         // 
@@ -43,7 +38,6 @@ namespace Framework.Apps.Model.Objects
             Version = default(string);
             Build = default(string);
             Authors = default(ICollection<string>);
-            Icon = default(string);
         }
     }
 }

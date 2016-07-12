@@ -131,6 +131,7 @@
     <Compile Include="Model\Relational\FW_DataPartialModel.cs" />
     <Compile Include="Patterns\AProviderDataContext.cs" />
     <Compile Include="Patterns\AGenericDataSet.cs" />
+    <Compile Include="Patterns\ABaseEntityWithID.cs" />
     <Compile Include="Patterns\IDynamicDataSet.cs" />
     <Compile Include="Patterns\ADynamicDataSet.cs" />
     <Compile Include="Patterns\IDynamicDataObject.cs" />

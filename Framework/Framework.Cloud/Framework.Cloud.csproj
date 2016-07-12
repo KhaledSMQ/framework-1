@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{41E965A3-A8BC-49CC-B209-598055D00B30}</ProjectGuid>
+    <ProjectGuid>{D7D0B269-CA59-41F3-A566-8148D5CD4621}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Framework.Apps</RootNamespace>
-    <AssemblyName>Framework.Apps</AssemblyName>
+    <RootNamespace>Framework.Cloud</RootNamespace>
+    <AssemblyName>Framework.Cloud</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -57,23 +57,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Objects\Domain.cs" />
+    <Compile Include="Model\Objects\Meta.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="Model\Config\LibConfiguration.cs" />
     <Compile Include="Model\Config\_Const.cs" />
-    <Compile Include="Model\Objects\App.cs" />
-    <Compile Include="Model\Objects\Meta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Framework.Apps.nuspec" />
+    <None Include="Framework.Cloud.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="API\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Framework.Apps\Framework.Apps.csproj">
+      <Project>{41e965a3-a8bc-49cc-b209-598055d00b30}</Project>
+      <Name>Framework.Apps</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Framework.Client\Framework.Client.csproj">
       <Project>{f9ef6ebb-b11b-4fdd-b88a-c4bbc08fbcb7}</Project>
       <Name>Framework.Client</Name>
@@ -89,6 +93,10 @@
     <ProjectReference Include="..\Framework.Factory\Framework.Factory.csproj">
       <Project>{5a0032b0-780a-43c0-8cc0-04f3cd77336a}</Project>
       <Name>Framework.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Fragments\Framework.Fragments.csproj">
+      <Project>{c0e1e4dc-990d-4c07-aaa9-198615919cc2}</Project>
+      <Name>Framework.Fragments</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Server\Framework.Server.csproj">
       <Project>{79546d64-66d8-4d9f-a68a-1f3db2bb5ed7}</Project>
