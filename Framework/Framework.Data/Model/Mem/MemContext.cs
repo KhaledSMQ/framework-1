@@ -8,7 +8,7 @@
 // ============================================================================
 
 using Framework.Data.Model.Relational;
-using Framework.Data.Patterns;
+using Framework.Data.API;
 using Framework.Factory.Model.Relational;
 using Newtonsoft.Json;
 using System;
@@ -31,7 +31,7 @@ namespace Framework.Data.Model.Mem
         public Type ProviderServiceType { get { return null != ProviderService ? ProviderService.GetType() : null; } }
 
         [JsonIgnore]
-        public IProviderDataContext ProviderService { get; set; }
+        public IDataContext ProviderService { get; set; }
 
         //
         // Original context specification.
@@ -51,7 +51,7 @@ namespace Framework.Data.Model.Mem
             Models = null;
             Provider = default(FW_DataProvider);
             ProviderServiceEntry = default(FW_FactoryServiceEntry);
-            ProviderService = default(IProviderDataContext);
+            ProviderService = default(IDataContext);
             Original = default(FW_DataContext);
         }
     }  

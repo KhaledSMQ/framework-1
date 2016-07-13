@@ -10,7 +10,7 @@
 using Framework.Factory.Patterns;
 using System.Linq;
 
-namespace Framework.Data.Patterns
+namespace Framework.Data.API
 {
     public interface IGenericDataSet<TItem> : ICommon
     {

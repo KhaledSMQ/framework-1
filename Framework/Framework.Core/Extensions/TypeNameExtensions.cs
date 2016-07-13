@@ -10,17 +10,17 @@
 using Framework.Core.Patterns;
 using System.Linq;
 
-namespace Framework.Data.Extensions
+namespace Framework.Core.Extensions
 {
-    public static class NameExtensions
+    public static class TypeNameExtensions
     {
         //
-        // By Name.
+        // By TypeName.
         //
 
-        public static IQueryable<T> ByName<T>(this IQueryable<T> queryable, string name) where T : class, IName<string>
+        public static IQueryable<T> ByTypeName<T>(this IQueryable<T> queryable, string typeName) where T : class, ITypeName<string>
         {
-            return queryable.Where(c => c.Name.Equals(name));
+            return queryable.Where(c => c.TypeName.Equals(typeName));
         }
     }
 }

@@ -10,7 +10,7 @@
 using Framework.Factory.Patterns;
 using System;
 
-namespace Framework.Data.Patterns
+namespace Framework.Data.API
 {
     public interface IDynamicDataObject : ICommon
     {

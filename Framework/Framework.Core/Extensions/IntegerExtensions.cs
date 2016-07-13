@@ -8,10 +8,6 @@
 // ============================================================================
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Framework.Core.Helpers;
 
 namespace Framework.Core.Extensions
 {

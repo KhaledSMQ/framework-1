@@ -7,6 +7,7 @@
 // Description:
 // ============================================================================
 
+using Framework.Data.API;
 using Framework.Data.EntityFramework.Objects;
 using Framework.Data.Patterns;
 using Framework.Factory.Attributes;
@@ -15,7 +16,7 @@ using System.Data.Entity;
 
 namespace Framework.Data.EntityFramework.Context
 {
-    public class BaseDbContextProvider : AProviderDataContext, IProviderDataContext
+    public class BaseDbContextProvider : AProviderDataContext, IDataContext
     {
         //
         // PROPERTIES

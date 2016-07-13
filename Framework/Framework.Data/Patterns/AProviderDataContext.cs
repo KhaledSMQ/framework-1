@@ -8,6 +8,7 @@
 // ============================================================================
 
 using Framework.Core.Extensions;
+using Framework.Data.API;
 using Framework.Data.Model.Relational;
 using Framework.Factory.Patterns;
 using System;
@@ -16,7 +17,7 @@ using System.Linq;
 
 namespace Framework.Data.Patterns
 {
-    public abstract class AProviderDataContext : ACommon, IProviderDataContext
+    public abstract class AProviderDataContext : ACommon, IDataContext
     {
         //
         // IMPLEMENTATION SPECIFIC

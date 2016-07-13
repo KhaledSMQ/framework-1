@@ -13,9 +13,9 @@ using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;
 
-namespace Framework.Data.Patterns
+namespace Framework.Data.API
 {
-    public interface IProviderDataContext : ICommon
+    public interface IDataContext : ICommon
     {
         //
         // CRUDs

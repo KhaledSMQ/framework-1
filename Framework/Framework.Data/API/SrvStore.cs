@@ -84,14 +84,14 @@ namespace Framework.Data.API
 
         public object Dal_Create(string entityID, object value)
         {
-            IProviderDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
+            IDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
             MemEntity entity = SrvMem.Entity_Get(entityID);
             return SrvDAL.Create(provider, entity, value);
         }
 
         public object Dal_Query(string entityID, string name, object args)
         {
-            IProviderDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
+            IDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
             MemQuery query = SrvMem.Query_Get(entityID, name);
             MemEntity entity = SrvMem.Entity_Get(entityID);
             return SrvDAL.Query(provider, query, entity, args);
@@ -99,14 +99,14 @@ namespace Framework.Data.API
 
         public object Dal_Update(string entityID, object value)
         {
-            IProviderDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
+            IDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
             MemEntity entity = SrvMem.Entity_Get(entityID);
             return SrvDAL.Update(provider, entity, value);
         }
 
         public object Dal_Delete(string entityID, object value)
         {
-            IProviderDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
+            IDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
             MemEntity entity = SrvMem.Entity_Get(entityID);
             return SrvDAL.Delete(provider, entity, value);
         }

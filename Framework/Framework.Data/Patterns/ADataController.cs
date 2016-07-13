@@ -7,11 +7,12 @@
 // Description:
 // ============================================================================
 
+using Framework.Data.API;
 using Framework.Data.Model.Import;
 using Framework.Factory.Patterns;
 using System.Web.Http;
 
-namespace Framework.Data.API
+namespace Framework.Data.Patterns
 {
     public abstract class ADataController : AController
     {

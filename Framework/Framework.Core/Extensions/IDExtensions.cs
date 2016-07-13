@@ -10,7 +10,7 @@
 using Framework.Core.Patterns;
 using System.Linq;
 
-namespace Framework.Data.Extensions
+namespace Framework.Core.Extensions
 {
     public static class IDExtensions
     {

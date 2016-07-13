@@ -18,7 +18,7 @@ namespace Framework.Data.API
 {
     public class SrvDAL : ACommon, IDAL
     {    
-        public object Create(IProviderDataContext provider, MemEntity entity, object value)
+        public object Create(IDataContext provider, MemEntity entity, object value)
         {
             //
             // Get the item to to process.
@@ -46,7 +46,7 @@ namespace Framework.Data.API
             return output;
         }
 
-        public object Query(IProviderDataContext provider, MemQuery query, MemEntity entity, object args)
+        public object Query(IDataContext provider, MemQuery query, MemEntity entity, object args)
         {
             //
             // Process arguments.
@@ -70,7 +70,7 @@ namespace Framework.Data.API
             return dataSet.Queryable().Where(query.Query);
         }
 
-        public object Update(IProviderDataContext provider, MemEntity entity, object value)
+        public object Update(IDataContext provider, MemEntity entity, object value)
         {
             //
             // Get the item to to process.
@@ -98,7 +98,7 @@ namespace Framework.Data.API
             return output;
         }
 
-        public object Delete(IProviderDataContext provider, MemEntity entity, object value)
+        public object Delete(IDataContext provider, MemEntity entity, object value)
         {
             //
             // Get the item to to process.
@@ -147,7 +147,7 @@ namespace Framework.Data.API
             return item;
         }    
 
-        private IDynamicDataSet __GetDynamicDataSet(IProviderDataContext provider, MemEntity entity)
+        private IDynamicDataSet __GetDynamicDataSet(IDataContext provider, MemEntity entity)
         {
             //
             // Default return value for entity data set.
@@ -179,7 +179,7 @@ namespace Framework.Data.API
             return dataSet;
         }
 
-        private IDynamicDataObject __GetDynamicDataObject(IProviderDataContext provider, MemEntity entity)
+        private IDynamicDataObject __GetDynamicDataObject(IDataContext provider, MemEntity entity)
         {
             //
             // Default return value for entity data set.

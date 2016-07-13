@@ -56,7 +56,7 @@ namespace Framework.Data.API
 
         IEnumerable<MemEntity> Entity_GetList();
 
-        IProviderDataContext Entity_GetProviderDataContext(params string[] parcels);
+        IDataContext Entity_GetProviderDataContext(params string[] parcels);
 
         //
         // PARTIAL-MODEL

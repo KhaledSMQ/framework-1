@@ -9,7 +9,7 @@
 
 using Framework.Factory.Patterns;
 
-namespace Framework.Data.Patterns
+namespace Framework.Data.API
 {
     public interface IGenericDataObject<TItem> : ICommon
     {

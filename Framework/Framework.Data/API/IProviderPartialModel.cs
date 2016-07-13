@@ -1,27 +1,18 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: 
+// Name/Class: IProviderPartialModel
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 10/Mar/2016
+// Create date: 26/Nov/2015
 // Company: Coop4Creativity
-// Description:
+// Description: Data partial model.
 // ============================================================================
 
 using Framework.Factory.Patterns;
-using System.Linq;
 
 namespace Framework.Data.API
 {
-    public interface IGenericClusterDataScope : ICommon
+    public interface IProviderPartialModel : ICommon
     {
-        object Create<T>(T item);
-
-        IQueryable<T> Queryable<T>();
-
-        object Query<T>(string name, params object[] args);
-
-        object Update<T>(T item);
-
-        object Delete<T>(T item);
+        void CreateModel(object dataContext);
     }
 }

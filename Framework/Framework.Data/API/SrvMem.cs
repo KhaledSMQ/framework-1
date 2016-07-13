@@ -170,7 +170,7 @@ namespace Framework.Data.API
                         // Try to get the instance.
                         // 
 
-                        context.ProviderService = Scope.Hub.New<IProviderDataContext>(Factory.API.Transforms.ServiceEntry2Service(context.ProviderServiceEntry));
+                        context.ProviderService = Scope.Hub.New<IDataContext>(Factory.API.Transforms.ServiceEntry2Service(context.ProviderServiceEntry));
 
                         if (null != context.ProviderService)
                         {
@@ -273,7 +273,7 @@ namespace Framework.Data.API
                         FW_FactoryServiceEntry providerSrvEntry = new FW_FactoryServiceEntry()
                         {
                             Name = string.Empty,
-                            Contract = typeof(IProviderDataContext).FullName,
+                            Contract = typeof(IDataContext).FullName,
                             TypeName = context.Provider.TypeName,
 
                             //
@@ -558,7 +558,7 @@ namespace Framework.Data.API
             return __Entities.Values;
         }
 
-        public IProviderDataContext Entity_GetProviderDataContext(params string[] parcels)
+        public IDataContext Entity_GetProviderDataContext(params string[] parcels)
         {
             return Context_Get(Entity_Get(parcels).Context).ProviderService;
         }

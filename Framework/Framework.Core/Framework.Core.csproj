@@ -76,9 +76,13 @@
     <Compile Include="Exceptions\UnauthorizedException.cs" />
     <Compile Include="Extensions\AuditableExtensions.cs" />
     <Compile Include="Extensions\CreatedExtensions.cs" />
+    <Compile Include="Extensions\IDExtensions.cs" />
     <Compile Include="Extensions\ModifiedExtensions.cs" />
+    <Compile Include="Extensions\NameExtensions.cs" />
+    <Compile Include="Extensions\TypeNameExtensions.cs" />
     <Compile Include="Extensions\UrlExtensions.cs" />
     <Compile Include="Extensions\ViewStateExtensions.cs" />
+    <Compile Include="Extensions\VisibleExtensions.cs" />
     <Compile Include="Extensions\XslQueryStringExtension.cs" />
     <Compile Include="Extensions\XslUrlExtension.cs" />
     <Compile Include="Helpers\PathHelper.cs" />
