@@ -57,8 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\IStore.cs" />
+    <Compile Include="Model\Relational\Domain.cs" />
+    <Compile Include="Model\Relational\Platform.cs" />
+    <Compile Include="Model\Relational\Settings.cs" />
+    <Compile Include="Model\Objects\Platform.cs" />
+    <Compile Include="Model\Objects\Settings.cs" />
     <Compile Include="Model\Objects\Domain.cs" />
-    <Compile Include="Model\Objects\Meta.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="Model\Config\LibConfiguration.cs" />
@@ -70,9 +75,7 @@
     <None Include="Framework.Cloud.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="API\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Framework.Apps\Framework.Apps.csproj">
       <Project>{41e965a3-a8bc-49cc-b209-598055d00b30}</Project>

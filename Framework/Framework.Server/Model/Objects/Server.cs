@@ -8,12 +8,12 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
-using System.Collections.Generic;
 using Framework.Data.Patterns;
+using System.Collections.Generic;
 
-namespace Framework.Apps.Model.Objects
+namespace Framework.Server.Model.Objects
 {
-    public class App : ABaseEntityWithID<string, string>, IOwner<string>
+    public class Server : ABaseEntityWithID<string, string>, IOwner<string>
     {
         //
         // PROPERTIES
@@ -21,22 +21,19 @@ namespace Framework.Apps.Model.Objects
 
         public string Owner { get; set; }
 
-        public Meta Meta { get; set; }
+        public string Description { get; set; }
 
-        public ICollection<Server.Model.Objects.Server> Servers { get; set; }
-
-        public ICollection<Client.Model.Objects.Client> Clients { get; set; }
+        public ICollection<Module> Modules { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public App() 
+        public Server()
         {
             Owner = default(string);
-            Meta = default(Meta);
-            Servers = default(ICollection<Server.Model.Objects.Server>);
-            Clients = default(ICollection<Client.Model.Objects.Client>);
+            Description = default(string);
+            Modules = default(ICollection<Module>);
         }
     }
 }

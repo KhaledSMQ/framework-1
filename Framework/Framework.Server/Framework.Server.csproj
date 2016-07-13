@@ -57,12 +57,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\IStore.cs" />
+    <Compile Include="Model\Relational\Module.cs" />
+    <Compile Include="Model\Relational\Server.cs" />
+    <Compile Include="Model\Objects\Module.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="Model\Config\LibConfiguration.cs" />
     <Compile Include="Model\Config\_Const.cs" />
-    <Compile Include="Model\Objects\Backend.cs" />
-    <Compile Include="Model\Objects\Meta.cs" />
+    <Compile Include="Model\Objects\Server.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,9 +73,7 @@
     <None Include="Framework.Server.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="API\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>

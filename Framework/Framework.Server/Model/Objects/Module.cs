@@ -9,30 +9,25 @@
 
 using Framework.Core.Patterns;
 using Framework.Data.Patterns;
-using System.Collections.Generic;
 
-namespace Framework.Cloud.Model.Objects
+namespace Framework.Server.Model.Objects
 {
-    public class Domain : ABaseEntityWithID<string, string>, IOwner<string>
+    public class Module : ABaseEntityWithID<int, string>,
+        IOwner<int>
     {
         //
         // PROPERTIES
         //
 
-        public string Owner { get; set; }
-
-        public Settings Settings { get; set; }
-
-        public ICollection<Apps.Model.Objects.App> Apps { get; set; }
+        public int Owner { get; set; }        
 
         //
         // CONSTRUCTORS
         //
 
-        public Domain()
+        public Module()
         {
-            Settings = default(Settings);
-            Apps = default(ICollection<Apps.Model.Objects.App>);
+            Owner = default(int);
         }
     }
 }

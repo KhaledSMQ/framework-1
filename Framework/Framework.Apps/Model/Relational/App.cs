@@ -11,7 +11,7 @@ using Framework.Core.Patterns;
 using System.Collections.Generic;
 using Framework.Data.Patterns;
 
-namespace Framework.Apps.Model.Objects
+namespace Framework.Apps.Model.Relational
 {
     public class App : ABaseEntityWithID<string, string>, IOwner<string>
     {
@@ -23,9 +23,9 @@ namespace Framework.Apps.Model.Objects
 
         public Meta Meta { get; set; }
 
-        public ICollection<Server.Model.Objects.Server> Servers { get; set; }
+        public ICollection<Server.Model.Relational.Server> Servers { get; set; }
 
-        public ICollection<Client.Model.Objects.Client> Clients { get; set; }
+        public ICollection<Client.Model.Relational.Client> Clients { get; set; }
 
         //
         // CONSTRUCTORS
@@ -35,8 +35,8 @@ namespace Framework.Apps.Model.Objects
         {
             Owner = default(string);
             Meta = default(Meta);
-            Servers = default(ICollection<Server.Model.Objects.Server>);
-            Clients = default(ICollection<Client.Model.Objects.Client>);
+            Servers = default(ICollection<Server.Model.Relational.Server>);
+            Clients = default(ICollection<Client.Model.Relational.Client>);
         }
     }
 }

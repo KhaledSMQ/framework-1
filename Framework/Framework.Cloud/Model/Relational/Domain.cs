@@ -11,7 +11,7 @@ using Framework.Core.Patterns;
 using Framework.Data.Patterns;
 using System.Collections.Generic;
 
-namespace Framework.Cloud.Model.Objects
+namespace Framework.Cloud.Model.Relational
 {
     public class Domain : ABaseEntityWithID<string, string>, IOwner<string>
     {
@@ -23,7 +23,7 @@ namespace Framework.Cloud.Model.Objects
 
         public Settings Settings { get; set; }
 
-        public ICollection<Apps.Model.Objects.App> Apps { get; set; }
+        public ICollection<Apps.Model.Relational.App> Apps { get; set; }
 
         //
         // CONSTRUCTORS
@@ -32,7 +32,7 @@ namespace Framework.Cloud.Model.Objects
         public Domain()
         {
             Settings = default(Settings);
-            Apps = default(ICollection<Apps.Model.Objects.App>);
+            Apps = default(ICollection<Apps.Model.Relational.App>);
         }
     }
 }

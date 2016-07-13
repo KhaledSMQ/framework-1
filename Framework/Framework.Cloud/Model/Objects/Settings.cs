@@ -7,32 +7,23 @@
 // Description:
 // ============================================================================
 
-using Framework.Core.Patterns;
 using Framework.Data.Patterns;
-using System.Collections.Generic;
 
 namespace Framework.Cloud.Model.Objects
 {
-    public class Domain : ABaseEntityWithID<string, string>, IOwner<string>
+    public class Settings : ABaseEntityWithID<int, string>
     {
         //
         // PROPERTIES
         //
 
-        public string Owner { get; set; }
-
-        public Settings Settings { get; set; }
-
-        public ICollection<Apps.Model.Objects.App> Apps { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public Domain()
+        public Settings()
         {
-            Settings = default(Settings);
-            Apps = default(ICollection<Apps.Model.Objects.App>);
         }
     }
 }
