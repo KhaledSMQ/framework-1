@@ -7,25 +7,21 @@
 // Description: Data store service implementation.
 // ============================================================================
 
-using Framework.Data.Model.Config;
-using Framework.Data.Model.Import;
-using Framework.Data.Model.Mem;
-using Framework.Data.Patterns;
 using Framework.Factory.Patterns;
-using Framework.Core.Extensions;
-using System.Collections.Generic;
 
 namespace Framework.Data.API
 {
-    public class SrvStore : ACommon, IStore
+    public class SrvStore<TUser> : ACommon, IStore<TUser>
     {
         //
         // Service dependencies.
         //
 
-        protected IMem SrvMem { get; set; }
+        public ISchema<TUser> Schema { get { return SrvSchema; } }
 
-        protected IDAL SrvDAL { get; set; }
+        public IDal<TUser> Dal { get { return SrvDal; } }
+
+        public IRuntime<TUser> Runtime { get { return SrvRuntime; } }
 
         //
         // Service initialization. 
@@ -46,110 +42,28 @@ namespace Framework.Data.API
             // do not have dependencies that are circular to this service.
             //
 
-            SrvMem = Scope.Hub.GetUnique<IMem>();
-            SrvDAL = Scope.Hub.GetUnique<IDAL>();           
+            SrvSchema = Scope.Hub.GetUnique<ISchema<TUser>>();
+            SrvDal = Scope.Hub.GetUnique<IDal<TUser>>();
+            SrvRuntime = Scope.Hub.GetUnique<IRuntime<TUser>>();
+
+            //
+            // Setup dependent services.
+            //
+
+            SrvDal.Schema = SrvSchema;
+            SrvDal.Runtime = SrvRuntime;
+
+            SrvRuntime.Schema = SrvSchema;
+
+            SrvSchema.Dal = SrvDal;
         }
 
         //
-        // SCHEMA-ACCESS-LAYER
+        // Internal storage.
         //
 
-        public void Schema_Load()
-        {
-        }
-
-        public void Schema_Init()
-        {
-            SrvMem.Cluster_Init(SrvMem.Cluster_GetList());
-        }
-
-        public void Schema_Init(string cluster)
-        {
-            SrvMem.Cluster_Init(cluster);
-        }
-
-        public void Schema_Import(IEnumerable<ImportCluster> clusters)
-        {
-            clusters.Apply(Schema_Import);
-        }
-
-        public void Schema_Import(ImportCluster cluster)
-        {
-            SrvMem.Cluster_Import(Scope.Hub.Get<ITransform>().Convert(cluster));
-        }    
-
-        //
-        // DATA-ACCESS-LAYER
-        //
-
-        public object Dal_Create(string entityID, object value)
-        {
-            IDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
-            MemEntity entity = SrvMem.Entity_Get(entityID);
-            return SrvDAL.Create(provider, entity, value);
-        }
-
-        public object Dal_Query(string entityID, string name, object args)
-        {
-            IDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
-            MemQuery query = SrvMem.Query_Get(entityID, name);
-            MemEntity entity = SrvMem.Entity_Get(entityID);
-            return SrvDAL.Query(provider, query, entity, args);
-        }
-
-        public object Dal_Update(string entityID, object value)
-        {
-            IDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
-            MemEntity entity = SrvMem.Entity_Get(entityID);
-            return SrvDAL.Update(provider, entity, value);
-        }
-
-        public object Dal_Delete(string entityID, object value)
-        {
-            IDataContext provider = SrvMem.Entity_GetProviderDataContext(entityID);
-            MemEntity entity = SrvMem.Entity_Get(entityID);
-            return SrvDAL.Delete(provider, entity, value);
-        }
-
-        //
-        // DIAGNOSTICS
-        // Memory & Performance.
-        //
-
-        public object Mem_Dump()
-        {
-            return new {
-                Clusters = Mem_GetClusters(),
-                Contexts = Mem_GetContexts(),
-                Entities = Mem_GetEntities(),
-                Models = Mem_GetModels(),
-                Queries = Mem_GetQueries()
-            };
-        }
-
-        public object Mem_GetClusters()
-        {
-            return SrvMem.Cluster_GetList();
-        }
-
-        public object Mem_GetContexts()
-        {
-            return SrvMem.Context_GetList();
-        }
-
-        public object Mem_GetEntities()
-        {
-            return SrvMem.Entity_GetList();
-        }
-
-        public object Mem_GetModels()
-        {
-            return SrvMem.Model_GetList();
-        }
-
-        public object Mem_GetQueries()
-        {
-            return SrvMem.Query_GetList();
-        }
+        protected ISchema<TUser> SrvSchema;
+        protected IDal<TUser> SrvDal;
+        protected IRuntime<TUser> SrvRuntime;
     }
 }

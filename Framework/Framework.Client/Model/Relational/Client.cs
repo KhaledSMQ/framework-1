@@ -12,7 +12,7 @@ using Framework.Data.Patterns;
 
 namespace Framework.Client.Model.Relational
 {
-    public class Client : ABaseEntityWithID<string, int>, IOwner<string>
+    public class Client : ABaseClassWithID<string, int>, IOwner<string>
     {
         //
         // PROPERTIES

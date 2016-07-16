@@ -66,6 +66,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\Generic\DictId.cs" />
     <Compile Include="Collections\Generic\PagedIndexList.cs" />
     <Compile Include="Collections\Specialized\ConfigMap.cs" />
     <Compile Include="Collections\Specialized\Table.cs" />

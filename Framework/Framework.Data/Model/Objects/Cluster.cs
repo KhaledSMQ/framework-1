@@ -2,36 +2,35 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 03/Aug/2015
+// Create date: 13/Jul/2016
 // Company: Coop4Creativity
-// Description: Service specification class.
+// Description: 
 // ============================================================================
 
-using Framework.Core.Types.Specialized;
 using System.Collections.Generic;
 
-namespace Framework.Data.Model.Import
+namespace Framework.Data.Model.Objects
 {
-    public class ImportEntityRef
+    public class Cluster<TUser> : ASchemaObject<TUser>
     {
         //
         // PROPERTIES
         //
 
-        public string Name { get; set; }
+        public int Owner { get; set; }
 
-        public string Description { get; set; }
+        public ICollection<Context<TUser>> Contexts { get; set; }
 
-        public ICollection<ImportSetting> Settings { get; set; }
+        public ICollection<Setting<TUser>> Settings { get; set; }
 
         //
         // CONSTRUCTORS
         // 
 
-        public ImportEntityRef()
+        public Cluster()
         {
-            Name = string.Empty;
-            Description = string.Empty;
+            Owner = default(int);
+            Contexts = null;
             Settings = null;
         }
     }

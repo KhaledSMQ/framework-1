@@ -2,17 +2,17 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 03/Aug/2015
+// Create date: 13/Jul/2016
 // Company: Coop4Creativity
-// Description: Service specification class.
+// Description: 
 // ============================================================================
 
 using Framework.Data.Model.Relational;
 using System.Collections.Generic;
 
-namespace Framework.Data.Model.Import
+namespace Framework.Data.Model.Objects
 {
-    public class ImportQuery
+    public class Query<TUser> : ASchemaObject<TUser>
     {
         //
         // PROPERTIES
@@ -20,17 +20,13 @@ namespace Framework.Data.Model.Import
 
         public TypeOfDataQuery Kind { get; set; }
 
-        public string Name { get; set; }
-
-        public string Description { get; set; }
-
         //
         // Definition for query parameters.
         // If empty then the query takes no
         // parameters.
         //
 
-        public ICollection<ImportQueryParam> Params { get; set; }
+        public ICollection<QueryParam<TUser>> Params { get; set; }
 
         //
         // In case the query is an expression,
@@ -55,14 +51,12 @@ namespace Framework.Data.Model.Import
         // CONSTRUCTORS
         // 
 
-        public ImportQuery()
+        public Query()
         {
             Kind = TypeOfDataQuery.UNKNOWN;
-            Name = string.Empty;
-            Description = string.Empty;
-            Expression = string.Empty;
+            Expression = default(string);
             Params = null;
-            Callback = string.Empty;
+            Callback = default(string);
         }
     }
 }

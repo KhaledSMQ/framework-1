@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace Framework.Cloud.Model.Objects
 {
-    public class Domain : ABaseEntityWithID<string, string>, IOwner<string>
+    public class Domain : ABaseClassWithID<string, string>, IOwner<string>
     {
         //
         // PROPERTIES

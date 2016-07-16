@@ -2,37 +2,38 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 03/Aug/2015
+// Create date: 13/Jul/2016
 // Company: Coop4Creativity
 // Description: 
 // ============================================================================
 
-using Framework.Core.Extensions;
-using Framework.Core.Patterns;
-using Framework.Core.Types.Specialized;
-using Framework.Data.Patterns;
-using System;
 using System.Collections.Generic;
 
-namespace Framework.Data.Model.Relational
+namespace Framework.Data.Model.Objects
 {
-    public class FW_DataPartialModel : ABaseClassWithID<int, string>
+    public class Context<TUser> : ASchemaObject<TUser>
     {
         //
         // PROPERTIES
         //
 
-        public string TypeName { get; set; }
+        public Provider<TUser> Provider { get; set; }
 
-        public ICollection<FW_DataSetting> Settings { get; set; }    
+        public ICollection<Entity<TUser>> Entities { get; set; }
+
+        public ICollection<PartialModel<TUser>> Models { get; set; }
+
+        public ICollection<Setting<TUser>> Settings { get; set; }
 
         //
         // CONSTRUCTORS
         // 
 
-        public FW_DataPartialModel()
+        public Context()
         {
-            TypeName = default(string);
+            Provider = null;
+            Entities = null;
+            Models = null;
             Settings = null;
         }
     }

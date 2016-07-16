@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace Framework.Server.Model.Relational
 {
-    public class Server : ABaseEntityWithID<string, string>, IOwner<string>
+    public class Server : ABaseClassWithID<string, string>, IOwner<string>
     {
         //
         // PROPERTIES

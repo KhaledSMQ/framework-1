@@ -1,17 +1,17 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: IProviderPartialModel
+// Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 26/Nov/2015
+// Create date: 13/Jul/2016
 // Company: Coop4Creativity
-// Description: Data partial model.
+// Description:
 // ============================================================================
 
 using Framework.Factory.Patterns;
 
 namespace Framework.Data.API
 {
-    public interface IProviderPartialModel : ICommon
+    public interface IPartialModel : ICommon
     {
         void CreateModel(object dataContext);
     }

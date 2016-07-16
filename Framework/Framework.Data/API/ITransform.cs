@@ -7,19 +7,18 @@
 // Description: Transform configuration objects into runtime objects.
 // ============================================================================
 
-using Framework.Data.Model.Config;
-using Framework.Data.Model.Import;
+using Framework.Data.Model.Objects;
 using Framework.Data.Model.Relational;
 using Framework.Factory.Patterns;
 
 namespace Framework.Data.API
 {
-    public interface ITransform : ICommon
+    public interface ITransform<TUser> : ICommon
     {
         //
-        // IMPORT OBJECT ==> SCHEMA OBJECT
+        // OBJECT ==> RELATIONAL OBJECT
         //
 
-        FW_DataCluster Convert(ImportCluster cluster);
+        FW_DataCluster Convert(Cluster<TUser> cluster);
     }
 }

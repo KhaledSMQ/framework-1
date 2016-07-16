@@ -12,7 +12,7 @@ using Framework.Data.Patterns;
 
 namespace Framework.Server.Model.Objects
 {
-    public class Module : ABaseEntityWithID<int, string>,
+    public class Module : ABaseClassWithID<int, string>,
         IOwner<int>
     {
         //

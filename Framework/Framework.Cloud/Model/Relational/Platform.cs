@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 namespace Framework.Cloud.Model.Relational
 {
-    public class Platform : ABaseEntityWithID<string, string>
+    public class Platform : ABaseClassWithID<string, string>
     {
         //
         // PROPERTIES

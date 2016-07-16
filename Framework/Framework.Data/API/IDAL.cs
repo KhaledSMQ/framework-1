@@ -7,20 +7,37 @@
 // Description: Data Access Layer service contract.
 // ============================================================================
 
-using Framework.Data.Model.Mem;
-using Framework.Data.Patterns;
+using Framework.Core.Types.Specialized;
 using Framework.Factory.Patterns;
 
 namespace Framework.Data.API
 {
-    public interface IDAL : ICommon
+    public interface IDal<TUser> : ICommon
     {
-        object Create(IDataContext provider, MemEntity entity, object value);
+        //
+        // Schema Access Data Layer Service.
+        //
 
-        object Delete(IDataContext provider, MemEntity entity, object value);
+        ISchema<TUser> Schema { get; set; }
 
-        object Query(IDataContext provider, MemQuery query, MemEntity entity, object args);
+        IRuntime<TUser> Runtime { get; set; }
 
-        object Update(IDataContext provider, MemEntity entity, object value);
+        //
+        // Data Access Layer API
+        //
+
+        object Create(string entity, object value);
+
+        object Create(Id entity, object value);
+
+        object Query(string entity, string name, object args);
+
+        object Update(string entity, object value);
+
+        object Update(Id entity, object value);
+
+        object Delete(string entity, object value);
+
+        object Delete(Id entity, object value);
     }
 }

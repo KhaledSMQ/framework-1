@@ -11,7 +11,7 @@ using Framework.Data.Patterns;
 
 namespace Framework.Cloud.Model.Relational
 {
-    public class Settings : ABaseEntityWithID<int, string>
+    public class Settings : ABaseClassWithID<int, string>
     {
         //
         // PROPERTIES

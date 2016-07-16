@@ -15,38 +15,27 @@ using System.Data.Entity;
 
 namespace Framework.Data.EntityFramework.Context
 {
-    public class BaseDbContext : DbContext
+    public class BaseDbContext<TUser> : DbContext
     {
         //
         // CONSTRUCTORS
         //
 
-        public BaseDbContext(string connectionString, IEnumerable<FW_DataEntity> entities, IEnumerable<FW_DataPartialModel> models)
+        public BaseDbContext(string connectionString, Model.Objects.Context<TUser> dataContext)
             : base(connectionString)
         {
             //
             // Set the enitites and models for the context.
             //
 
-            _Entities = entities;
-            _Models = models;
+            _Context = dataContext;
 
             //
             // Ensure the the DLL is copied to the target bin folder.
             //
 
             var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
-        }
-
-        public BaseDbContext(string connectionString)
-            : base(connectionString)
-        {          
-            //
-            // Ensure the the DLL is copied to the target bin folder.
-            //
-
-            var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
-        }
+        }       
 
         //
         // MODEL-CONFIGURATION
@@ -65,7 +54,7 @@ namespace Framework.Data.EntityFramework.Context
             // These were setup by its constructor.
             //
 
-            _Entities.Apply(dataEntity =>
+            _Context.Entities.Apply(dataEntity =>
             {
                 //
                 // Register the entity with the model builder.
@@ -73,7 +62,7 @@ namespace Framework.Data.EntityFramework.Context
 
                 if (null != dataEntity)
                 {
-                    Type type = Type.GetType(dataEntity.TypeName);
+                    Type type = dataEntity.Type;
                     modelBuilder.RegisterEntityType(type);                    
                 }
             });
@@ -83,7 +72,6 @@ namespace Framework.Data.EntityFramework.Context
         // PRIVATE FIELDS
         //
 
-        private IEnumerable<FW_DataEntity> _Entities = null;
-        private IEnumerable<FW_DataPartialModel> _Models = null;
+        private Model.Objects.Context<TUser> _Context = null;
     }
 }

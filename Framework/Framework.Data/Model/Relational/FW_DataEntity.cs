@@ -10,29 +10,21 @@
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
+using Framework.Data.Patterns;
 using System;
 using System.Collections.Generic;
 
 namespace Framework.Data.Model.Relational
 {
-    public class FW_DataEntity :
-        IID<int>,
-        IName<string>,
-        IDescription<string>,
-        ITypeName<string>,
-        IAuditable<string>
+    public class FW_DataEntity : ABaseClassWithID<int, string>      
     {
         //
-        // INFO
+        // PROPERTIES
         //
-
-        public int ID { get; set; }
 
         public TypeOfDataEntity Kind { get; set; }
 
         public string Name { get; set; }
-
-        public string Description { get; set; }
 
         public string TypeName { get; set; }
 
@@ -41,40 +33,16 @@ namespace Framework.Data.Model.Relational
         public ICollection<FW_DataSetting> Settings { get; set; }
 
         //
-        // AUDITS
-        //
-
-        public string CreatedBy { get; set; }
-
-        public DateTime CreatedDate { get; set; }
-
-        public string ModifiedBy { get; set; }
-
-        public DateTime ModifiedDate { get; set; }
-
-        //
         // CONSTRUCTORS
         // 
 
         public FW_DataEntity()
         {
-            //
-            // INFO
-            //
-
-            ID = -1;
             Kind = TypeOfDataEntity.DATA_SET;
-            Name = string.Empty;
-            Description = string.Empty;
-            TypeName = string.Empty;
+            Name = default(string);
+            TypeName = default(string);
             Queries = null;
             Settings = null;
-
-            //
-            // AUDITS
-            //
-
-            AuditableExtensions.Init(this, string.Empty);
         }
     }
 }

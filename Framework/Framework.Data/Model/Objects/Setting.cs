@@ -2,24 +2,18 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 26/Nov/2015
+// Create date: 13/Jul/2016
 // Company: Coop4Creativity
 // Description: 
 // ============================================================================
 
-namespace Framework.Data.Model.Import
+namespace Framework.Data.Model.Objects
 {
-    public class ImportSetting 
+    public class Setting<TUser> : ASchemaObject<TUser>
     {
         //
         // INFO
         //
-
-        public int ID { get; set; }
-
-        public string Name { get; set; }
-
-        public string Description { get; set; }
 
         public string Value { get; set; }       
 
@@ -27,16 +21,9 @@ namespace Framework.Data.Model.Import
         // CONSTRUCTORS
         // 
 
-        public ImportSetting()
+        public Setting()
         {
-            //
-            // INFO
-            //
-
-            ID = -1;
-            Name = string.Empty;
-            Description = string.Empty;
-            Value = string.Empty;       
+            Value = default(string);  
         }
     }
 }

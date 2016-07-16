@@ -152,6 +152,25 @@ namespace Framework.Core.Types.Specialized
             return new Id(val);
         }
 
+        public static Id Get(params object[] parcels)
+        {
+            Id id = new Id();
+
+            parcels.Apply(p =>
+            {
+                if (p is string)
+                {
+                    id.Add(p as string);
+                }
+                else if (p is Id)
+                {
+                    id.Add(p as Id);
+                }
+            });
+
+            return id;
+        }
+
         //
         // PRIVATE-PROPERTIES
         // Array of the ID parcels.
@@ -159,6 +178,6 @@ namespace Framework.Core.Types.Specialized
         //
 
         private IList<string> _Parcels { get; set; }
-        private string _Separator = ".";
+        private readonly string _Separator = ".";
     }
 }

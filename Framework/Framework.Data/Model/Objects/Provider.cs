@@ -2,36 +2,32 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 03/Aug/2015
+// Create date: 13/Jul/2016
 // Company: Coop4Creativity
-// Description: Service specification class.
+// Description: 
 // ============================================================================
 
-using Framework.Core.Types.Specialized;
 using System.Collections.Generic;
 
-namespace Framework.Data.Model.Import
+namespace Framework.Data.Model.Objects
 {
-    public class ImportPartialModelRef
+    public class Provider<TUser> : ASchemaObject<TUser>
     {
         //
         // PROPERTIES
         //
 
-        public string Name { get; set; }
+        public string TypeName { get; set; }
 
-        public string Description { get; set; }
-
-        public ICollection<ImportSetting> Settings { get; set; }
+        public ICollection<Setting<TUser>> Settings { get; set; }
 
         //
         // CONSTRUCTORS
         // 
 
-        public ImportPartialModelRef()
-        {
-            Name = string.Empty;
-            Description = string.Empty;
+        public Provider()
+        {          
+            TypeName = string.Empty;
             Settings = null;
         }
     }

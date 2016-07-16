@@ -13,7 +13,7 @@ using Framework.Data.Patterns;
 
 namespace Framework.Apps.Model.Relational
 {
-    public class App : ABaseEntityWithID<string, string>, IOwner<string>
+    public class App : ABaseClassWithID<string, string>, IOwner<string>
     {
         //
         // PROPERTIES

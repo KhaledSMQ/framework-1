@@ -8,13 +8,13 @@
 // ============================================================================
 
 using Framework.Data.API;
-using Framework.Data.Model.Import;
+using Framework.Data.Model.Objects;
 using Framework.Factory.Patterns;
 using System.Web.Http;
 
 namespace Framework.Data.Patterns
 {
-    public abstract class ADataController : AController
+    public abstract class ADataController<TUser> : AController
     {
         //
         // SCHEMA-ACCESS-LAYER
@@ -24,13 +24,31 @@ namespace Framework.Data.Patterns
         [ActionName("schema.init"), HttpGet, HttpPost, HttpPut]
         public IHttpActionResult SCHEMA_InitCluster([FromUri] string id)
         {
-            return ApplyNoReturn(() => { Scope.Hub.GetUnique<IStore>().Schema_Init(id); });
+            return ApplyNoReturn(() => { Scope.Hub.GetUnique<IStore<TUser>>().Runtime.GetDataContext(id).CreateModel(); });
         }
 
-        [ActionName("schema.import"), HttpPost, HttpPut]
-        public IHttpActionResult SCHEMA_ImportCluster([FromBody] ImportCluster cluster)
+        [ActionName("schema.create"), HttpPost, HttpPut]
+        public IHttpActionResult SCHEMA_CreateCluster([FromBody] Cluster<TUser> cluster)
         {
-            return ApplyNoReturn(() => { Scope.Hub.GetUnique<IStore>().Schema_Import(cluster); });
+            return ApplyNoReturn(() => { Scope.Hub.GetUnique<IStore<TUser>>().Schema.Create(cluster); });
+        }
+
+        [ActionName("schema.get"), HttpPost, HttpPut]
+        public IHttpActionResult SCHEMA_GetCluster([FromBody] string id)
+        {
+            return ApplyNoReturn(() => { Scope.Hub.GetUnique<IStore<TUser>>().Schema.Get<Cluster<TUser>>(id); });
+        }
+
+        [ActionName("schema.update"), HttpPost, HttpPut]
+        public IHttpActionResult SCHEMA_UpdateCluster([FromBody] Cluster<TUser> cluster)
+        {
+            return ApplyNoReturn(() => { Scope.Hub.GetUnique<IStore<TUser>>().Schema.Update(cluster); });
+        }
+
+        [ActionName("schema.delete"), HttpPost, HttpPut]
+        public IHttpActionResult SCHEMA_DeleteCluster([FromBody] string cluster)
+        {
+            return ApplyNoReturn(() => { Scope.Hub.GetUnique<IStore<TUser>>().Schema.Delete<Cluster<TUser>>(cluster); });
         }
 
         //
@@ -41,65 +59,25 @@ namespace Framework.Data.Patterns
         [ActionName("dal.create"), HttpPost, HttpPut]
         public IHttpActionResult DAL_Create([FromUri] string id)
         {
-            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IStore>().Dal_Create(id, Request.Content.ReadAsStringAsync().Result); });
+            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IStore<TUser>>().Dal.Create(id, Request.Content.ReadAsStringAsync().Result); });
         }
 
         [ActionName("dal.query"), HttpGet]
         public IHttpActionResult DAL_Query([FromUri] string id, [FromUri] string name)
         {
-            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IStore>().Dal_Query(id, name, Request.Content.ReadAsStringAsync().Result); });
+            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IStore<TUser>>().Dal.Query(id, name, Request.Content.ReadAsStringAsync().Result); });
         }
 
         [ActionName("dal.update"), HttpPost]
         public IHttpActionResult DAL_Update([FromUri] string id)
         {
-            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IStore>().Dal_Update(id, Request.Content.ReadAsStringAsync().Result); });
+            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IStore<TUser>>().Dal.Update(id, Request.Content.ReadAsStringAsync().Result); });
         }
 
         [ActionName("dal.delete"), HttpDelete, HttpPost, HttpPut]
         public IHttpActionResult DAL_Delete([FromUri] string id)
         {
-            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IStore>().Dal_Delete(id, Request.Content.ReadAsStringAsync().Result); });
-        }
-
-        //
-        // DIAGNOSTICS
-        //
-
-        [ActionName("mem.dump"), HttpGet]
-        public IHttpActionResult Mem_Dump()
-        {
-            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IStore>().Mem_Dump(); });
-        }
-
-        [ActionName("mem.clusters"), HttpGet]
-        public IHttpActionResult Mem_Clusters()
-        {
-            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetClusters(); });
-        }
-
-        [ActionName("mem.contexts"), HttpGet]
-        public IHttpActionResult Mem_Contexts()
-        {
-            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetContexts(); });
-        }
-
-        [ActionName("mem.entities"), HttpGet]
-        public IHttpActionResult Mem_Entities()
-        {
-            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetEntities(); });
-        }
-
-        [ActionName("mem.models"), HttpGet]
-        public IHttpActionResult Mem_Models()
-        {
-            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetModels(); });
-        }
-
-        [ActionName("mem.queries"), HttpGet]
-        public IHttpActionResult Mem_Queries()
-        {
-            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IStore>().Mem_GetQueries(); });
+            return ApplyAndReturn(() => { return Scope.Hub.GetUnique<IStore<TUser>>().Dal.Delete(id, Request.Content.ReadAsStringAsync().Result); });
         }
     }
 }

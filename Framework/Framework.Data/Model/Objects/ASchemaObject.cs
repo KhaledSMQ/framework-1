@@ -1,22 +1,18 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class:
+// Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 20/Mar/2016
+// Create date: 06/July/2016
 // Company: Coop4Creativity
 // Description:
 // ============================================================================
 
-using Framework.Data.Model.Query;
-using Framework.Factory.Patterns;
+using Framework.Core.Types.Specialized;
+using Framework.Data.Patterns;
 
-namespace Framework.Data.API
+namespace Framework.Data.Model.Objects
 {
-    public class SrvLinqQueryProcessor : ACommon, IQueryProcessor
+    public class ASchemaObject<TUser> : ABaseClassWithID<Id, TUser>
     {
-        public Expression Parse(string input)
-        {
-            return null;
-        }
     }
 }

@@ -13,16 +13,13 @@ using Framework.Core.Extensions;
 
 namespace Framework.Data.Patterns
 {
-    public class ABaseEntityWithID<TID, TUser> :
-        IID<TID>,
+    public class ABaseClass<TUser> :
         IVisible,
         IAuditable<TUser>
     {
         //
         // BASE
         //
-
-        public TID ID { get; set; }
 
         public TypeOfVisibility Visibility { get; set; }
 
@@ -42,13 +39,12 @@ namespace Framework.Data.Patterns
         // CONSTRUCTORS
         //
 
-        public ABaseEntityWithID()
+        public ABaseClass()
         {
             //
             // BASE
             //
 
-            ID = default(TID);
             Visibility = TypeOfVisibility.ACTIVE;
 
             //

@@ -7,23 +7,25 @@
 // Description:
 // ============================================================================
 
-using Framework.Data.Patterns;
+using Framework.Core.Patterns;
 
-namespace Framework.Cloud.Model.Objects
+namespace Framework.Data.Patterns
 {
-    public class Settings : ABaseClassWithID<int, string>
+    public class ABaseClassWithID<TID, TUser> : ABaseClass<TUser>, IID<TID>
     {
         //
-        // PROPERTIES
+        // BASE
         //
 
+        public TID ID { get; set; }  
 
         //
         // CONSTRUCTORS
         //
 
-        public Settings()
+        public ABaseClassWithID()
         {
+            ID = default(TID);
         }
     }
 }

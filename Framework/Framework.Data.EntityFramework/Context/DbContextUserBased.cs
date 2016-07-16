@@ -13,13 +13,13 @@ using System.Data.Entity;
 
 namespace Framework.Data.EntityFramework.Context
 {
-    public class UserBasedDbContext<TUser> : IdentityDbContext<TUser> where TUser : IdentityUser
+    public class DbContextUserBased<TUser> : IdentityDbContext<TUser> where TUser : IdentityUser
     {
         //
         // CONSTRUCTORS
         //
 
-        public UserBasedDbContext(string connectionString, Action<object> seedHandler)
+        public DbContextUserBased(string connectionString, Action<object> seedHandler)
             : base("name=" + connectionString)
         {
             //

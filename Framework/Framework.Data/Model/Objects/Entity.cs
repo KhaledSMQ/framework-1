@@ -2,18 +2,18 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 03/Aug/2015
+// Create date: 13/Jul/2016
 // Company: Coop4Creativity
-// Description: Service specification class.
+// Description:
 // ============================================================================
 
-using Framework.Core.Types.Specialized;
 using Framework.Data.Model.Relational;
+using System;
 using System.Collections.Generic;
 
-namespace Framework.Data.Model.Import
+namespace Framework.Data.Model.Objects
 {
-    public class ImportEntity 
+    public class Entity<TUser> : ASchemaObject<TUser>
     {
         //
         // PROPERTIES
@@ -21,25 +21,21 @@ namespace Framework.Data.Model.Import
 
         public TypeOfDataEntity Kind { get; set; }
 
-        public string Name { get; set; }
-
-        public string Description { get; set; }
-
         public string TypeName { get; set; }
 
-        public ICollection<ImportQuery> Queries { get; set; }
+        public Type Type { get { return Type.GetType(TypeName); } }
 
-        public ICollection<ImportSetting> Settings { get; set; }
+        public ICollection<Query<TUser>> Queries { get; set; }
+
+        public ICollection<Setting<TUser>> Settings { get; set; }
 
         //
         // CONSTRUCTORS
         // 
 
-        public ImportEntity()
+        public Entity()
         {
             Kind = TypeOfDataEntity.DATA_SET;
-            Name = string.Empty;
-            Description = string.Empty;
             TypeName = string.Empty;
             Queries = null;
             Settings = null;

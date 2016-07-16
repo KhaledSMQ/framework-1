@@ -1,37 +1,23 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: IProviderDataContext
+// Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 26/Nov/2015
+// Create date: 13/Jul/2016
 // Company: Coop4Creativity
-// Description: Data context for a group of data sources.
+// Description: 
 // ============================================================================
 
-using Framework.Core.Patterns;
-using Framework.Data.Model.Relational;
+using Framework.Data.Model.Objects;
 using Framework.Factory.Patterns;
 using System;
-using System.Collections.Generic;
 
 namespace Framework.Data.API
 {
-    public interface IDataContext : ICommon
+    public interface IDataContext<TUser> : ICommon
     {
-        //
-        // CRUDs
-        //
+        Context<TUser> Context { get; set; }
 
-        void Load(IEnumerable<FW_DataEntity> entities);
-
-        void Load(IEnumerable<FW_DataPartialModel> models);
-
-        IEnumerable<FW_DataEntity> GetListOfEntities();
-
-        IEnumerable<FW_DataPartialModel> GetListOfPartialModels();
-
-        //
-        // DATA-SOURCE-FACTORIES
-        //
+        void CreateModel();
 
         IGenericDataSet<T> GetDataSet<T>();
 
@@ -40,11 +26,5 @@ namespace Framework.Data.API
         IDynamicDataSet GetDataSet(Type type);
 
         IDynamicDataObject GetDataObject(Type type);
-
-        //
-        // Model create handler.
-        //
-
-        void CreateModel();
     }
 }

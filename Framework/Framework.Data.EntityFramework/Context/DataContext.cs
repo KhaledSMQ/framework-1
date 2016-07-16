@@ -16,7 +16,7 @@ using System.Data.Entity;
 
 namespace Framework.Data.EntityFramework.Context
 {
-    public class BaseDbContextProvider : AProviderDataContext, IDataContext
+    public class DataContext<TUser> : ADataContext<TUser>, IDataContext<TUser>
     {
         //
         // PROPERTIES
@@ -38,23 +38,23 @@ namespace Framework.Data.EntityFramework.Context
 
         public override void CreateModel()
         {
-            _SetupDbInitializer();
-            BaseDbContext initialDbContext = new BaseDbContext(ConnectionString, GetListOfEntities(), GetListOfPartialModels());
+            SetupDbInitializer();
+            BaseDbContext<TUser> initialDbContext = new BaseDbContext<TUser>(ConnectionString, Context);
             initialDbContext.Database.Initialize(true);
         }
 
-        public void _SetupDbInitializer()
+        public void SetupDbInitializer()
         {
             switch (Initializer)
             {
                 case TypeOfDbInitializer.CREATE_ALWAYS:
-                    Database.SetInitializer(new DbCreateAlways<BaseDbContext>());
+                    Database.SetInitializer(new DbCreateAlways<BaseDbContext<TUser>>());
                     break;
                 case TypeOfDbInitializer.CREATE_IF_MODEL_CHANGES:
-                    Database.SetInitializer(new DbCreateIfModelChanges<BaseDbContext>());
+                    Database.SetInitializer(new DbCreateIfModelChanges<BaseDbContext<TUser>>());
                     break;
                 case TypeOfDbInitializer.CREATE_IF_NOT_EXISTS:
-                    Database.SetInitializer(new DbCreateIfNotExists<BaseDbContext>());
+                    Database.SetInitializer(new DbCreateIfNotExists<BaseDbContext<TUser>>());
                     break;
             }
         }
@@ -83,7 +83,7 @@ namespace Framework.Data.EntityFramework.Context
         {
             BaseDynamicDataSet dataSet = new BaseDynamicDataSet();
             dataSet.Entity = type;
-            dataSet.DataContext = new BaseDbContext(ConnectionString);
+            dataSet.DataContext = new BaseDbContext<TUser>(ConnectionString, Context);
 
             return dataSet;
         }
