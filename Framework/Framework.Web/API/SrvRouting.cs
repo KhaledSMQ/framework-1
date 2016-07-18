@@ -8,7 +8,7 @@
 // ============================================================================
 
 using Framework.Core.Extensions;
-using Framework.Factory.Patterns;
+using Framework.Core.Patterns;
 using Framework.Web.Model.Config;
 using Framework.Web.Model.Routing;
 using System;

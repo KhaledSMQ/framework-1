@@ -85,7 +85,7 @@
     <Compile Include="Module.cs" />
     <Compile Include="API\SrvStore.cs" />
     <Compile Include="Patterns\ABaseClass.cs" />
-    <Compile Include="Patterns\ADataController.cs" />
+    <Compile Include="Patterns\AController.cs" />
     <Compile Include="API\SrvTransform.cs" />
     <Compile Include="Model\Config\_Const.cs" />
     <Compile Include="Lib.cs" />
@@ -132,10 +132,6 @@
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>
       <Name>Framework.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Factory\Framework.Factory.csproj">
-      <Project>{5a0032b0-780a-43c0-8cc0-04f3cd77336a}</Project>
-      <Name>Framework.Factory</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

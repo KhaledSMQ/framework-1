@@ -9,7 +9,7 @@
 
 using Framework.Core.Types.Specialized;
 using Framework.Data.Model.Objects;
-using Framework.Factory.Patterns;
+using Framework.Core.API;
 
 namespace Framework.Data.API
 {

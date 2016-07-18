@@ -8,7 +8,7 @@
 // ============================================================================
 
 using Framework.Code.Model;
-using Framework.Factory.Patterns;
+using Framework.Core.Patterns;
 using System.CodeDom;
 using Framework.Core.Extensions;
 

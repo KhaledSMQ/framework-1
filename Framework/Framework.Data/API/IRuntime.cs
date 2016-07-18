@@ -8,14 +8,14 @@
 // ============================================================================
 
 using Framework.Core.Types.Specialized;
-using Framework.Factory.Patterns;
+using Framework.Core.API;
 
 namespace Framework.Data.API
 {
     public interface IRuntime<TUser> : ICommon
     {
         //
-        // Schema Access Data Layer Service.
+        // Data Schema Access Layer Service.
         //
 
         ISchema<TUser> Schema { get; set; }

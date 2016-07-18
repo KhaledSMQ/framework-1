@@ -8,8 +8,8 @@
 // ============================================================================
 
 using Framework.Data.API;
-using Framework.Factory.Patterns;
 using System.Linq;
+using Framework.Core.Patterns;
 
 namespace Framework.Data.Patterns
 {

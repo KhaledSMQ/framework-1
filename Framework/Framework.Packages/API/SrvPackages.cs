@@ -7,9 +7,9 @@
 // Description: 
 // ============================================================================
 
+using Framework.Core.API;
 using Framework.Core.Extensions;
-using Framework.Factory.API;
-using Framework.Factory.Patterns;
+using Framework.Core.Patterns;
 using Framework.Packages.Model.Objects;
 using Framework.Web.API;
 using System;
@@ -29,8 +29,8 @@ namespace Framework.Packages.API
         private string PACKAGE_NAME_SEPARATOR = ":";
         private string PACKAGE_FOLDER_IGNORE = "_";
         private string PACKAGE_FOLDER_BASE = "packages";
-        private string PACKAGE_DESCENDANTS = "*";
-        private string PACKAGE_DESCENDANTS_AND_SELF = "+";
+        // private string PACKAGE_DESCENDANTS = "*";
+        // private string PACKAGE_DESCENDANTS_AND_SELF = "+";
 
         private const string PACKAGE_FILE_NAME_DESCRIPTION = "_description.txt";
         private const string PACKAGE_FILE_NAME_EXTERNALS = "_external.json";

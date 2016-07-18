@@ -8,7 +8,7 @@
 // ============================================================================
 
 using Framework.Core.Types.Specialized;
-using Framework.Factory.Patterns;
+using Framework.Core.Patterns;
 using Framework.Forms.Model.Template;
 using System.Collections.Generic;
 using Framework.Core.Extensions;

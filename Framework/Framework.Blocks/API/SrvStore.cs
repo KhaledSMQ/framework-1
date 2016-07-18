@@ -7,10 +7,10 @@
 // Description: 
 // ============================================================================
 
-using Framework.Core.Types.Specialized;
-using Framework.Factory.Patterns;
-using Framework.Core.Extensions;
 using Framework.Blocks.Model.Mem;
+using Framework.Core.Extensions;
+using Framework.Core.Patterns;
+using Framework.Core.Types.Specialized;
 using System.Collections.Generic;
 
 namespace Framework.Blocks.API

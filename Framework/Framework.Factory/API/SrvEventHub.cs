@@ -7,12 +7,7 @@
 // Description: Reflected service implementation.
 // ============================================================================
 
-using Framework.Core.Extensions;
-using Framework.Factory.Patterns;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+using Framework.Core.Patterns;
 
 namespace Framework.Factory.API
 {

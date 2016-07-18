@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\IDomain.cs" />
     <Compile Include="API\IStore.cs" />
     <Compile Include="Model\Relational\Domain.cs" />
     <Compile Include="Model\Relational\Platform.cs" />

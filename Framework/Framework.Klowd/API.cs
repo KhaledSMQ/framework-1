@@ -9,11 +9,11 @@
 
 namespace Framework.Klowd.API
 {
-    public class DataController : Data.Patterns.ADataController<string> { }
+    public class DataController : Data.Patterns.AController<string> { }
 
-    public class FactoryController : Factory.API.AFactoryController { }
+    public class FactoryController : Factory.Patterns.AFactoryController { }
 
-    public class PackagesController : Packages.API.APackagesController { }
+    public class PackagesController : Packages.Patterns.AController { }
 
-    public class FormsController : Forms.API.AFormsController { }
+    public class FormsController : Forms.Patterns.AFormsController { }
 }

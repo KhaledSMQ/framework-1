@@ -8,9 +8,9 @@
 // ============================================================================
 
 using Framework.Data.API;
-using Framework.Factory.Patterns;
 using System;
 using Framework.Data.Model.Objects;
+using Framework.Core.Patterns;
 
 namespace Framework.Data.Patterns
 {

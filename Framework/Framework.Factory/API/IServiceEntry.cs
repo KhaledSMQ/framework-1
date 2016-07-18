@@ -8,7 +8,7 @@
 // ============================================================================
 
 using Framework.Factory.Model.Relational;
-using Framework.Factory.Patterns;
+using Framework.Core.API;
 using System.Collections.Generic;
 
 namespace Framework.Factory.API

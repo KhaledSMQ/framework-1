@@ -7,8 +7,7 @@
 // Description:
 // ============================================================================
 
-using Framework.Code.Model;
-using Framework.Factory.Patterns;
+using Framework.Core.API;
 using System.CodeDom;
 
 namespace Framework.Code.API

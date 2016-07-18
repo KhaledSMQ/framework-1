@@ -7,7 +7,7 @@
 // Description:
 // ============================================================================
 
-using Framework.Factory.Patterns;
+using Framework.Core.Patterns;
 using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.IO;

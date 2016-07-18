@@ -8,7 +8,7 @@
 // ============================================================================
 
 using Framework.Data.Model.Objects;
-using Framework.Factory.Patterns;
+using Framework.Core.API;
 using System;
 
 namespace Framework.Data.API

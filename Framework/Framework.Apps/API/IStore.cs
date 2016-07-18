@@ -7,7 +7,7 @@
 // Description: Service to manage the set of backend servers.
 // ============================================================================
 
-using Framework.Factory.Patterns;
+using Framework.Core.API;
 
 namespace Framework.Apps.API
 {

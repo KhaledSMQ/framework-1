@@ -7,10 +7,10 @@
 // Description: Generic blob data source.
 // ============================================================================
 
-using System.Collections.Generic;
+using Framework.Core.API;
 using Framework.Core.Patterns;
 using Framework.Storage.Patterns;
-using Framework.Factory.Patterns;
+using System.Collections.Generic;
 
 namespace Framework.Storage.API
 {

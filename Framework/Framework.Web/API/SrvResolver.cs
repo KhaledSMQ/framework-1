@@ -9,7 +9,7 @@
 
 using Framework.Core.Collections.Generic;
 using Framework.Core.Extensions;
-using Framework.Factory.Patterns;
+using Framework.Core.Patterns;
 using Framework.Web.Extensions;
 using System.Collections.Generic;
 using System.Linq;

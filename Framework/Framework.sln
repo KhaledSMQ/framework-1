@@ -91,6 +91,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Client", "Framewo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Cloud", "Framework.Cloud\Framework.Cloud.csproj", "{D7D0B269-CA59-41F3-A566-8148D5CD4621}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Design", "Framework.Design\Framework.Design.csproj", "{093FE48C-E0AF-4BBD-8AE8-9002C6DA076F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -540,6 +542,16 @@ Global
 		{D7D0B269-CA59-41F3-A566-8148D5CD4621}.NuGet|Any CPU.Build.0 = Release|Any CPU
 		{D7D0B269-CA59-41F3-A566-8148D5CD4621}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7D0B269-CA59-41F3-A566-8148D5CD4621}.Release|Any CPU.Build.0 = Release|Any CPU
+		{093FE48C-E0AF-4BBD-8AE8-9002C6DA076F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{093FE48C-E0AF-4BBD-8AE8-9002C6DA076F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{093FE48C-E0AF-4BBD-8AE8-9002C6DA076F}.Deploy [DEBUG]|Any CPU.ActiveCfg = Debug|Any CPU
+		{093FE48C-E0AF-4BBD-8AE8-9002C6DA076F}.Deploy [DEBUG]|Any CPU.Build.0 = Debug|Any CPU
+		{093FE48C-E0AF-4BBD-8AE8-9002C6DA076F}.Deploy [RELEASE]|Any CPU.ActiveCfg = Debug|Any CPU
+		{093FE48C-E0AF-4BBD-8AE8-9002C6DA076F}.Deploy [RELEASE]|Any CPU.Build.0 = Debug|Any CPU
+		{093FE48C-E0AF-4BBD-8AE8-9002C6DA076F}.NuGet|Any CPU.ActiveCfg = Release|Any CPU
+		{093FE48C-E0AF-4BBD-8AE8-9002C6DA076F}.NuGet|Any CPU.Build.0 = Release|Any CPU
+		{093FE48C-E0AF-4BBD-8AE8-9002C6DA076F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{093FE48C-E0AF-4BBD-8AE8-9002C6DA076F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,7 +7,7 @@
 // Description: 
 // ============================================================================
 
-using Framework.Factory.Patterns;
+using Framework.Core.API;
 using Framework.Packages.Model.Objects;
 
 namespace Framework.Packages.API

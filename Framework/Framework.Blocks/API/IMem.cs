@@ -10,8 +10,8 @@
 using Framework.Blocks.Model.Mem;
 using Framework.Blocks.Model.Schema;
 using Framework.Core.Types.Specialized;
-using Framework.Factory.Patterns;
 using System.Collections.Generic;
+using Framework.Core.API;
 
 namespace Framework.Blocks.API
 {

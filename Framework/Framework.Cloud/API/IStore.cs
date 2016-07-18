@@ -7,12 +7,15 @@
 // Description: Service to manage the set of domains.
 // ============================================================================
 
-using Framework.Factory.Patterns;
+using Framework.Core.API;
 
 namespace Framework.Cloud.API
 {
     public interface IStore : ICommon
     {
-        void DomainInit(string domainID);
+        //
+        // Domain Access Service Layer.
+        //
+        IDomain Domain { get; set; }
     }
 }

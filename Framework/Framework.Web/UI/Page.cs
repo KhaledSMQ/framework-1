@@ -7,8 +7,8 @@
 // Description: Base page definition.
 // ============================================================================
 
-using Framework.Factory;
-using Framework.Factory.API;
+using Framework.Core;
+using Framework.Core.API;
 using System;
 
 namespace Framework.Web.UI

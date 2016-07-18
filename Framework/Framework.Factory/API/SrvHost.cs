@@ -7,7 +7,8 @@
 // Description: Host related properties and features.
 // ============================================================================
 
-using Framework.Factory.Patterns;
+using Framework.Core.API;
+using Framework.Core.Patterns;
 using System.Web.Hosting;
 
 namespace Framework.Factory.API

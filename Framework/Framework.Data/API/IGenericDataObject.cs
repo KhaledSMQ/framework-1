@@ -7,7 +7,7 @@
 // Description: Generic single object data source.
 // ============================================================================
 
-using Framework.Factory.Patterns;
+using Framework.Core.API;
 
 namespace Framework.Data.API
 {

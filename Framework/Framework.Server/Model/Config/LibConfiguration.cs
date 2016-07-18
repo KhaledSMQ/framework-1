@@ -9,7 +9,7 @@
 
 namespace Framework.Server.Model.Config
 {
-    public class LibConfiguration : Factory.Model.Config.ModuleConfiguration
+    public class LibConfiguration : Core.Model.Config.ModuleConfiguration
     {
     }
 }

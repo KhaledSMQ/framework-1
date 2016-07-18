@@ -102,10 +102,6 @@
       <Project>{ec35466a-241c-4cbc-990c-c3695fd29a22}</Project>
       <Name>Framework.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Framework.Factory\Framework.Factory.csproj">
-      <Project>{5a0032b0-780a-43c0-8cc0-04f3cd77336a}</Project>
-      <Name>Framework.Factory</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,8 +8,8 @@
 // ============================================================================
 
 using System.Collections.Generic;
-using Framework.Factory.Patterns;
 using Framework.Web.Model.Routing;
+using Framework.Core.API;
 
 namespace Framework.Web.API
 {

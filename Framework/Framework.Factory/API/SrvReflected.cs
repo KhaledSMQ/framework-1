@@ -7,8 +7,9 @@
 // Description: Reflected service implementation.
 // ============================================================================
 
+using Framework.Core.API;
 using Framework.Core.Extensions;
-using Framework.Factory.Patterns;
+using Framework.Core.Patterns;
 using System;
 using System.Collections.Generic;
 using System.Linq;

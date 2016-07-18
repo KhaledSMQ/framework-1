@@ -7,8 +7,6 @@
 // Description:
 // ============================================================================
 
-using Framework.Factory.Patterns;
-
 namespace Framework.Data.Model.Query
 {
     public class Expression

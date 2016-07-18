@@ -7,9 +7,11 @@
 // Description:
 // ============================================================================
 
+using Framework.Core.API;
+
 namespace Framework.Data.API
 {
-    public interface IStore<TUser> : Factory.Patterns.ICommon
+    public interface IStore<TUser> : ICommon
     {
         //
         // Data Schema Access Layer Service.
@@ -22,7 +24,6 @@ namespace Framework.Data.API
         //
 
         IDal<TUser> Dal { get; }
-
 
         //
         // Runtime Layer Service.

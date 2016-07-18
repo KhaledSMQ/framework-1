@@ -43,22 +43,44 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -66,6 +88,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\IHost.cs" />
+    <Compile Include="API\IHub.cs" />
+    <Compile Include="API\IModule.cs" />
+    <Compile Include="API\IModuleEntry.cs" />
+    <Compile Include="API\IReflected.cs" />
+    <Compile Include="API\IScope.cs" />
+    <Compile Include="API\Transforms.cs" />
+    <Compile Include="Attributes\ServiceDependencyAttribute.cs" />
+    <Compile Include="Attributes\ServicePropertyAttribute.cs" />
     <Compile Include="Collections\Generic\DictId.cs" />
     <Compile Include="Collections\Generic\PagedIndexList.cs" />
     <Compile Include="Collections\Specialized\ConfigMap.cs" />
@@ -89,8 +120,23 @@
     <Compile Include="Helpers\PathHelper.cs" />
     <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Helpers\JSONHelper.cs" />
+    <Compile Include="Manager.cs" />
     <Compile Include="MIME\MimeTypes.cs" />
+    <Compile Include="Model\Config\LibConfiguration.cs" />
+    <Compile Include="Model\Config\MethodCallConfiguration.cs" />
+    <Compile Include="Model\Runtime\MethodCall.cs" />
+    <Compile Include="Patterns\ACommon.cs" />
+    <Compile Include="Model\Config\BaseConfiguration.cs" />
+    <Compile Include="Model\Config\ModuleConfiguration.cs" />
+    <Compile Include="Model\Config\ModuleImportConfiguration.cs" />
+    <Compile Include="Model\Config\ServiceConfiguration.cs" />
+    <Compile Include="Model\Config\SettingsConfiguration.cs" />
+    <Compile Include="Model\Config\_Const.cs" />
+    <Compile Include="Patterns\AController.cs" />
+    <Compile Include="Patterns\AControllerServiceWrapper.cs" />
+    <Compile Include="Patterns\AModule.cs" />
     <Compile Include="Patterns\IAuditable.cs" />
+    <Compile Include="API\ICommon.cs" />
     <Compile Include="Patterns\IConfigList.cs" />
     <Compile Include="Patterns\IConfigSetting.cs" />
     <Compile Include="Patterns\IOwner.cs" />
@@ -119,6 +165,9 @@
     <Compile Include="Reflection\ReflectionHelper.cs" />
     <Compile Include="Reflection\ReflectionTypeChecker.cs" />
     <Compile Include="Reflection\ReflectionUtils.cs" />
+    <Compile Include="Model\Runtime\Module.cs" />
+    <Compile Include="Model\Runtime\Service.cs" />
+    <Compile Include="Startup.cs" />
     <Compile Include="Types\Specialized\AssemblyInfo.cs" />
     <Compile Include="Types\Specialized\Id.cs" />
     <Compile Include="Serializers\IdJsonSerializer.cs" />
@@ -219,6 +268,7 @@
     <Compile Include="Helpers\XslHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Framework.Core.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>

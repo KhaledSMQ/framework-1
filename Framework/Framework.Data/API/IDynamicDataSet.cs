@@ -7,7 +7,7 @@
 // Description: Dynamic object data source.
 // ============================================================================
 
-using Framework.Factory.Patterns;
+using Framework.Core.API;
 using System;
 using System.Linq;
 

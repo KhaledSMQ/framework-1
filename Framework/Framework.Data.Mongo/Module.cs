@@ -9,7 +9,7 @@
 
 namespace Framework.Data.Mongo
 {
-    public class Module : Factory.Patterns.AModule<Factory.Model.Config.ModuleConfiguration>, Factory.Patterns.IModule
+    public class Module : Core.Patterns.AModule<Core.Model.Config.ModuleConfiguration>, Core.API.IModule
     {
         public Module() : base(Lib.DEFAULT_CONFIG_SECTION_NAME, System.Reflection.Assembly.GetExecutingAssembly()) { }
     }

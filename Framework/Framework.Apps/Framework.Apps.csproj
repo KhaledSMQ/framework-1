@@ -87,10 +87,6 @@
       <Project>{ec35466a-241c-4cbc-990c-c3695fd29a22}</Project>
       <Name>Framework.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Framework.Factory\Framework.Factory.csproj">
-      <Project>{5a0032b0-780a-43c0-8cc0-04f3cd77336a}</Project>
-      <Name>Framework.Factory</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Framework.Server\Framework.Server.csproj">
       <Project>{79546d64-66d8-4d9f-a68a-1f3db2bb5ed7}</Project>
       <Name>Framework.Server</Name>

@@ -9,7 +9,7 @@
 
 namespace Framework.Content
 {
-    public class Module : Factory.Patterns.AModule<Model.Config.LibConfiguration>, Factory.Patterns.IModule
+    public class Module : Core.Patterns.AModule<Model.Config.LibConfiguration>, Core.API.IModule
     {
         public Module() : base(Lib.DEFAULT_CONFIG_SECTION_NAME, System.Reflection.Assembly.GetExecutingAssembly()) { }
     }

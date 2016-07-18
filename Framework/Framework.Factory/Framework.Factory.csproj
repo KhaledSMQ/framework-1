@@ -79,53 +79,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\AFactoryController.cs" />
+    <Compile Include="Module.cs" />
+    <Compile Include="Patterns\AFactoryController.cs" />
     <Compile Include="API\IEventHub.cs" />
-    <Compile Include="API\IHost.cs" />
-    <Compile Include="Patterns\IModule.cs" />
     <Compile Include="API\SrvModuleEntry.cs" />
-    <Compile Include="API\IModuleEntry.cs" />
     <Compile Include="API\SrvHost.cs" />
-    <Compile Include="Patterns\AModule.cs" />
     <Compile Include="API\SrvEventHub.cs" />
     <Compile Include="API\SrvReflected.cs" />
-    <Compile Include="API\IReflected.cs" />
     <Compile Include="API\IServiceEntry.cs" />
-    <Compile Include="Attributes\ServiceDependencyAttribute.cs" />
-    <Compile Include="Attributes\ServicePropertyAttribute.cs" />
-    <Compile Include="Model\Config\BaseConfiguration.cs" />
-    <Compile Include="Model\Config\MethodCallConfiguration.cs" />
-    <Compile Include="Model\Config\ModuleConfiguration.cs" />
-    <Compile Include="Model\Config\ModuleImportConfiguration.cs" />
-    <Compile Include="Model\Config\ServiceConfiguration.cs" />
     <Compile Include="Model\Config\_Const.cs" />
     <Compile Include="Model\Config\LibConfiguration.cs" />
-    <Compile Include="Model\Config\SettingsConfiguration.cs" />
     <Compile Include="API\Transforms.cs" />
     <Compile Include="Model\Relational\FW_FactorySetting.cs" />
-    <Compile Include="Model\Runtime\MethodCall.cs" />
-    <Compile Include="Model\Runtime\Module.cs" />
-    <Compile Include="Model\Runtime\Service.cs" />
-    <Compile Include="Patterns\ACommon.cs" />
-    <Compile Include="Patterns\AController.cs" />
-    <Compile Include="Patterns\AControllerServiceWrapper.cs" />
-    <Compile Include="Patterns\ICommon.cs" />
-    <Compile Include="API\IHub.cs" />
     <Compile Include="Model\Relational\FW_FactoryServiceEntry.cs" />
-    <Compile Include="API\IScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="API\SrvHub.cs" />
-    <Compile Include="Manager.cs" />
     <Compile Include="API\SrvScope.cs" />
     <Compile Include="Lib.cs" />
-    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Framework.Factory.nuspec" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Model\Runtime\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>

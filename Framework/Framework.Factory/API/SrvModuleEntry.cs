@@ -7,10 +7,10 @@
 // Description: 
 // ============================================================================
 
-using Framework.Factory.Model.Runtime;
-using Framework.Factory.Patterns;
-using System.Collections.Generic;
+using Framework.Core.API;
 using Framework.Core.Extensions;
+using Framework.Core.Patterns;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Framework.Factory.API
@@ -20,10 +20,10 @@ namespace Framework.Factory.API
         public override void Init()
         {
             base.Init();
-            __Modules = new SortedDictionary<string, Module>();
+            __Modules = new SortedDictionary<string, Core.Model.Runtime.Module>();
         }
 
-        public void Load(Module module)
+        public void Load(Core.Model.Runtime.Module module)
         {
             if (null != module && module.Name.IsNotNullAndEmpty() && !__Modules.ContainsKey(module.Name))
             {
@@ -70,7 +70,7 @@ namespace Framework.Factory.API
             }
         }
 
-        public void Load(IEnumerable<Module> lst)
+        public void Load(IEnumerable<Core.Model.Runtime.Module> lst)
         {
             lst.Apply(Load);
         }
@@ -88,7 +88,7 @@ namespace Framework.Factory.API
             lst.Apply(Reload);
         }
 
-        public void Reload(Module module)
+        public void Reload(Core.Model.Runtime.Module module)
         {
             if (null != module && module.Name.IsNotNullAndEmpty())
             {
@@ -97,22 +97,22 @@ namespace Framework.Factory.API
             }
         }
 
-        public void Reload(IEnumerable<Module> lst)
+        public void Reload(IEnumerable<Core.Model.Runtime.Module> lst)
         {
             lst.Apply(Reload);
         }
 
-        public Module GetByName(string name)
+        public Core.Model.Runtime.Module GetByName(string name)
         {
             return name.IsNotNullAndEmpty() ? GetList().SingleOrDefault(m => m.Name == name) : null;
         }
 
-        public Module GetByTypName(string typeName)
+        public Core.Model.Runtime.Module GetByTypName(string typeName)
         {
             return typeName.IsNotNullAndEmpty() ? GetList().SingleOrDefault(m => m.TypeName == typeName) : null;
         }
 
-        public IEnumerable<Module> GetList()
+        public IEnumerable<Core.Model.Runtime.Module> GetList()
         {
             return __Modules.Values;
         }
@@ -130,7 +130,7 @@ namespace Framework.Factory.API
             lst.Apply(Unload);
         }
 
-        public void Unload(Module module)
+        public void Unload(Core.Model.Runtime.Module module)
         {
             if (null != module && module.Name.IsNotNullAndEmpty())
             {
@@ -138,7 +138,7 @@ namespace Framework.Factory.API
             }
         }
 
-        public void Unload(IEnumerable<Module> lst)
+        public void Unload(IEnumerable<Core.Model.Runtime.Module> lst)
         {
             lst.Apply(Unload);
         }
@@ -152,6 +152,6 @@ namespace Framework.Factory.API
         // In-memory area for storing modules.
         //
 
-        private IDictionary<string, Module> __Modules = null;
+        private IDictionary<string, Core.Model.Runtime.Module> __Modules = null;
     }
 }

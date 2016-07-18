@@ -7,7 +7,7 @@
 // Description:
 // ============================================================================
 
-using Framework.Factory.Patterns;
+using Framework.Core.API;
 
 namespace Framework.Data.API
 {

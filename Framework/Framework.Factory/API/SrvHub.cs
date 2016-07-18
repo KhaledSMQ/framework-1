@@ -7,12 +7,13 @@
 // Description: Runtime service set.
 // ============================================================================
 
+using Framework.Core.API;
+using Framework.Core.Attributes;
 using Framework.Core.Collections.Specialized;
 using Framework.Core.Extensions;
+using Framework.Core.Model.Runtime;
 using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
-using Framework.Factory.Model.Runtime;
-using Framework.Factory.Patterns;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -219,11 +220,11 @@ namespace Framework.Factory.API
 
         private void __LoadServiceSettings(ICommon service)
         {
-            IDictionary<string, KeyValuePair<Attributes.ServicePropertyAttribute, PropertyInfo>> setProperties = Core.Reflection.Attributes.GetPropsWithAttributes<Attributes.ServicePropertyAttribute>(service);
+            IDictionary<string, KeyValuePair<ServicePropertyAttribute, PropertyInfo>> setProperties = Core.Reflection.Attributes.GetPropsWithAttributes<ServicePropertyAttribute>(service);
 
             setProperties.Values.Apply(pair =>
             {
-                Attributes.ServicePropertyAttribute attr = pair.Key;
+                ServicePropertyAttribute attr = pair.Key;
                 PropertyInfo propInfo = pair.Value;
 
 

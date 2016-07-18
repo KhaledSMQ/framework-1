@@ -10,7 +10,7 @@
 using Framework.Data.API;
 using Framework.Data.EntityFramework.Objects;
 using Framework.Data.Patterns;
-using Framework.Factory.Attributes;
+using Framework.Core.Attributes;
 using System;
 using System.Data.Entity;
 

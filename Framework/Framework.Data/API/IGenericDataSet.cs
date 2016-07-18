@@ -7,7 +7,7 @@
 // Description: Generic object data source.
 // ============================================================================
 
-using Framework.Factory.Patterns;
+using Framework.Core.API;
 using System.Linq;
 
 namespace Framework.Data.API

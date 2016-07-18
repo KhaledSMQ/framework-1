@@ -7,7 +7,7 @@
 // Description: Data store service implementation.
 // ============================================================================
 
-using Framework.Factory.Patterns;
+using Framework.Core.Patterns;
 
 namespace Framework.Data.API
 {

@@ -7,10 +7,8 @@
 // Description:
 // ============================================================================
 
-using System;
 using Framework.Core.Types.Specialized;
-using Framework.Data.Model.Objects;
-using Framework.Factory.Patterns;
+using System;
 
 namespace Framework.Data.API
 {

@@ -10,8 +10,8 @@
 using Framework.Core.Extensions;
 using Framework.Data.Model.Objects;
 using Framework.Data.Model.Relational;
-using Framework.Factory.Patterns;
 using System.Collections.Generic;
+using Framework.Core.Patterns;
 
 namespace Framework.Data.API
 {
