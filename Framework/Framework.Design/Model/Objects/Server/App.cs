@@ -2,31 +2,31 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 20/Mar/2016
+// Create date: 18/Jul/2016
 // Company: Coop4Creativity
 // Description: 
 // ============================================================================
 
-using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
+using Framework.Data.Patterns;
 
-namespace Framework.Blocks.Model.Mem
+namespace Framework.Design.Model.Objects.Server
 {
-    public class MemConnector
+    public class App<TUser> : ABaseClassWithID<Id, TUser>
     {
         //
         // PROPERTIES
         //
 
-        public Id Name { get; set; }
+        public string Description { get; set; }
 
         //
         // CONSTRUCTORS
-        //
+        // 
 
-        public MemConnector()
-        {
-            Name = default(Id);
+        public App()
+        {          
+            Description = string.Empty;
         }
     }
 }

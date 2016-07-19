@@ -58,40 +58,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\IBlock.cs" />
-    <Compile Include="API\IMem.cs" />
     <Compile Include="API\IEval.cs" />
     <Compile Include="API\IStore.cs" />
-    <Compile Include="API\SrvMem.cs" />
     <Compile Include="API\SrvEval.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="API\SrvStore.cs" />
-    <Compile Include="Patterns\ABlocksController.cs" />
+    <Compile Include="Patterns\AController.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="Model\Config\LibConfiguration.cs" />
     <Compile Include="Model\Config\_Const.cs" />
-    <Compile Include="Model\Eval\Ref.cs" />
-    <Compile Include="Model\Eval\Connector.cs" />
-    <Compile Include="Model\Eval\Port.cs" />
-    <Compile Include="Model\Eval\Property.cs" />
-    <Compile Include="Model\Mem\MemBlockUse.cs" />
-    <Compile Include="Model\Mem\MemConnector.cs" />
-    <Compile Include="Model\Mem\MemCluster.cs" />
-    <Compile Include="Model\Mem\MemPort.cs" />
-    <Compile Include="Model\Mem\MemProperty.cs" />
-    <Compile Include="Model\Mem\MemBlockDef.cs" />
-    <Compile Include="Model\Mem\MemModule.cs" />
-    <Compile Include="Model\Eval\Context.cs" />
-    <Compile Include="Model\Eval\Block.cs" />
-    <Compile Include="Model\Schema\FW_BlkBlockRef.cs" />
-    <Compile Include="Model\Schema\FW_BlkBlockDef.cs" />
-    <Compile Include="Model\Schema\FW_BlkConnDef.cs" />
-    <Compile Include="Model\Schema\FW_BlkClusterDef.cs" />
-    <Compile Include="Model\Schema\FW_BlkModuleDef.cs" />
-    <Compile Include="Model\Schema\FW_BlkPortDef.cs" />
-    <Compile Include="Model\Schema\FW_BlkPortRef.cs" />
-    <Compile Include="Model\Schema\FW_BlkPropertyRef.cs" />
-    <Compile Include="Model\Schema\FW_BlkPropertyDef.cs" />
-    <Compile Include="Model\Schema\_Enums.cs" />
+    <Compile Include="Model\Objects\BlockUse.cs" />
+    <Compile Include="Model\Objects\Connector.cs" />
+    <Compile Include="Model\Objects\Port.cs" />
+    <Compile Include="Model\Objects\Property.cs" />
+    <Compile Include="Model\Objects\BlockDef.cs" />
+    <Compile Include="Model\Objects\Module.cs" />
+    <Compile Include="Model\Objects\_Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -57,15 +57,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Objects\Client\Component.cs" />
+    <Compile Include="Model\Objects\Client\BlockDef.cs" />
     <Compile Include="Model\Objects\Client\Controller.cs" />
+    <Compile Include="Model\Objects\Client\Model.cs" />
+    <Compile Include="Model\Objects\Client\PropertySet.cs" />
+    <Compile Include="Model\Objects\Client\Property.cs" />
+    <Compile Include="Model\Objects\Client\_Enums.cs" />
     <Compile Include="Model\Objects\Client\View.cs" />
     <Compile Include="Model\Objects\Client\ParamSet.cs" />
     <Compile Include="Model\Objects\Client\Param.cs" />
-    <Compile Include="Model\Objects\Client\Surface.cs" />
     <Compile Include="Model\Objects\Client\Fragment.cs" />
-    <Compile Include="Model\Objects\Client\Component.cs" />
-    <Compile Include="Model\Objects\Client\FrontEnd.cs" />
-    <Compile Include="Model\Objects\Server\BackEnd.cs" />
+    <Compile Include="Model\Objects\Client\ComponentDef.cs" />
+    <Compile Include="Model\Objects\Client\App.cs" />
+    <Compile Include="Model\Objects\Server\App.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Lib.cs" />
     <Compile Include="Model\Config\LibConfiguration.cs" />

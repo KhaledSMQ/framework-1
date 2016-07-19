@@ -80,7 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Module.cs" />
-    <Compile Include="Patterns\AFactoryController.cs" />
+    <Compile Include="Patterns\AController.cs" />
     <Compile Include="API\IEventHub.cs" />
     <Compile Include="API\SrvModuleEntry.cs" />
     <Compile Include="API\SrvHost.cs" />

@@ -8,24 +8,28 @@
 // ============================================================================
 
 using Framework.Core.Types.Specialized;
+using System.Collections.Generic;
 
-namespace Framework.Blocks.Model.Eval
+namespace Framework.Blocks.Model.Objects
 {
-    public class Connector
+    public class BlockUse 
     {
         //
         // PROPERTIES
         //
+     
+        public Id Def { get; set; }
 
-        public Id Name { get; set; }
-
+        public IDictionary<Id, object> Properties { get; set; }
+      
         //
-        // CONSTRUCTORS
+        // CONSTRUCTORS 
         //
 
-        public Connector()
+        public BlockUse()
         {
-            Name = default(Id);
+            Def = default(Id);
+            Properties = default(IDictionary<Id, object>);
         }
     }
 }

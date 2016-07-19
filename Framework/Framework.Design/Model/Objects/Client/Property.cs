@@ -7,21 +7,26 @@
 // Description: 
 // ============================================================================
 
+using Framework.Core.Types.Specialized;
+using Framework.Data.Patterns;
+
 namespace Framework.Design.Model.Objects.Client
 {
-    public class Surface<TUser> : Fragment<TUser>
+    public class Property<TUser> : ABaseClassWithID<Id, TUser>
     {
         //
         // PROPERTIES
         //
-  
 
+        public string Description { get; set; }
+        
         //
         // CONSTRUCTORS
         // 
 
-        public Surface() : base()
+        public Property() : base()
         {
+            Description = default(string);
         }
     }
 }

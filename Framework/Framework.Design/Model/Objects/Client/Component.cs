@@ -12,24 +12,21 @@ using Framework.Data.Patterns;
 
 namespace Framework.Design.Model.Objects.Client
 {
-    public class Component<TUser> : ABaseClassWithID<Id, TUser>
+    public class Block<TUser> : ABaseClassWithID<Id, TUser>
     {
         //
         // PROPERTIES
         //
 
-        public string Description { get; set; }
-
-        public ParamSet<TUser> Properties { get; set; }
+        public Id Type { get; set; }
 
         //
         // CONSTRUCTORS
         // 
 
-        public Component()
+        public Block() : base()
         {
-            Description = default(string);
-            Properties = default(ParamSet<TUser>);
+            Type = default(Id);
         }
     }
 }

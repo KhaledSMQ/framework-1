@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace Framework.Design.Model.Objects.Client
 {
-    public class FrontEnd<TUser> : ABaseClassWithID<Id, TUser>
+    public class App<TUser> : ABaseClassWithID<Id, TUser>
     {
         //
         // PROPERTIES
@@ -21,19 +21,22 @@ namespace Framework.Design.Model.Objects.Client
 
         public string Description { get; set; }
 
-        public ICollection<Component<TUser>> Components { get; set; }
+        public ICollection<ComponentDef<TUser>> Components { get; set; }
 
-        public ICollection<Surface<TUser>> Surfaces { get; set; }
+        public ICollection<BlockDef<TUser>> Blocks { get; set; }
+
+        public ICollection<Fragment<TUser>> Fragments { get; set; }
 
         //
         // CONSTRUCTORS
         // 
 
-        public FrontEnd()
+        public App() : base()
         {
             Description = default(string);
-            Components = default(ICollection<Component<TUser>>);
-            Surfaces = default(ICollection<Surface<TUser>>);
+            Components = default(ICollection<ComponentDef<TUser>>);
+            Blocks = default(ICollection<BlockDef<TUser>>);
+            Fragments = default(ICollection<Fragment<TUser>>);
         }
     }
 }

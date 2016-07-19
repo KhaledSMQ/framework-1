@@ -10,7 +10,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Framework.Blocks.Model.Schema
+namespace Framework.Blocks.Model.Objects
 {
     //
     // Caracterization of the connection port.
@@ -21,6 +21,7 @@ namespace Framework.Blocks.Model.Schema
     {
         UNKNOWN,
         IN,
-        OUT
+        OUT,
+        IN_OUT
     }
 }

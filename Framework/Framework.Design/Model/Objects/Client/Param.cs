@@ -18,14 +18,17 @@ namespace Framework.Design.Model.Objects.Client
         // PROPERTIES
         //
 
-        public string Description { get; set; }
+        public KindOfParam Kind { get; set; }
 
+        public string Description { get; set; }
+        
         //
         // CONSTRUCTORS
         // 
 
-        public Param()
+        public Param() : base()
         {
+            Kind = default(KindOfParam);
             Description = default(string);
         }
     }

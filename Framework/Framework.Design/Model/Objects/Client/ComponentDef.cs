@@ -2,34 +2,29 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 20/Mar/2016
+// Create date: 18/Jul/2016
 // Company: Coop4Creativity
 // Description: 
 // ============================================================================
 
 using Framework.Core.Types.Specialized;
-using System.Collections.Generic;
+using Framework.Data.Patterns;
 
-namespace Framework.Blocks.Model.Eval
+namespace Framework.Design.Model.Objects.Client
 {
-    public class Ref
+    public class ComponentDef<TUser> : ABaseClassWithID<Id, TUser>
     {
         //
         // PROPERTIES
-        //   
+        //
 
-        public Id Def { get; set; }
-
-        public IDictionary<Id, Property> Properties { get; set; }     
 
         //
         // CONSTRUCTORS
-        //
+        // 
 
-        public Ref()
-        {
-            Def = default(Id);
-            Properties = default(IDictionary<Id, Property>);         
+        public ComponentDef() : base()
+        {        
         }
     }
 }

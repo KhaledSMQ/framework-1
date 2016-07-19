@@ -2,37 +2,28 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 20/Mar/2016
+// Create date: 18/Jul/2016
 // Company: Coop4Creativity
 // Description: 
 // ============================================================================
 
-using Framework.Blocks.Model.Schema;
-using System;
+using Framework.Core.Types.Specialized;
+using Framework.Data.Patterns;
 
-namespace Framework.Blocks.Model.Eval
+namespace Framework.Design.Model.Objects.Client
 {
-    public class Port
+    public class Model<TUser> : ABaseClassWithID<Id, TUser>
     {
         //
         // PROPERTIES
         //
 
-        public TypeOfPort Kind { get; set; }
-
-        public Type Type { get; set; }
-
-        public bool Required { get; set; }
-
         //
         // CONSTRUCTORS
-        //
+        // 
 
-        public Port()
+        public Model() : base()
         {
-            Kind = TypeOfPort.UNKNOWN;
-            Type = default(Type);
-            Required = default(bool);
         }
     }
 }

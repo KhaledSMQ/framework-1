@@ -22,7 +22,7 @@ namespace Framework.Design.Model.Objects.Client
         // CONSTRUCTORS
         // 
 
-        public View()
+        public View() : base()
         {
         }
     }

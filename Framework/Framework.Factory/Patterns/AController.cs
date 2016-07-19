@@ -12,7 +12,7 @@ using System.Web.Http;
 
 namespace Framework.Factory.Patterns
 {
-    public abstract class AFactoryController : AController
+    public abstract class AController : Core.Patterns.AController
     {
         //
         // HUB

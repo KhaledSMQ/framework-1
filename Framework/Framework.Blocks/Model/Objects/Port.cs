@@ -7,30 +7,31 @@
 // Description: 
 // ============================================================================
 
-using Framework.Core.Patterns;
-using Framework.Core.Types.Specialized;
-using System.Collections.Generic;
+using System;
 
-namespace Framework.Blocks.Model.Mem
+namespace Framework.Blocks.Model.Objects
 {
-    public class MemModule : IID<Id>
+    public class Port
     {
         //
         // PROPERTIES
         //
 
-        public Id ID { get; set; }
+        public TypeOfPort Kind { get; set; }
 
-        public IList<Id> Blocks { get; set; }
+        public Type Type { get; set; }
+
+        public bool Required { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public MemModule()
+        public Port()
         {
-            ID = default(Id);
-            Blocks = default(IList<Id>);
+            Kind = TypeOfPort.UNKNOWN;
+            Type = default(Type);
+            Required = default(bool);
         }
     }
 }

@@ -1,19 +1,21 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class:
+// Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 21/Mar/2016
+// Create date: 18/Jul/2016
 // Company: Coop4Creativity
-// Description:
+// Description: 
 // ============================================================================
 
 using Framework.Core.Types.Specialized;
-using Framework.Core.API;
+using Framework.Data.Patterns;
 
-namespace Framework.Blocks.API
+namespace Framework.Design.Model.Objects.Client
 {
-    public interface IStore : ICommon
+    public enum KindOfParam
     {
-     
+        IN,
+        OUT,
+        IN_OUT
     }
 }

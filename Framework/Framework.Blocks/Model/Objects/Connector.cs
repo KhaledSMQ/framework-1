@@ -9,28 +9,24 @@
 
 using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
-using System.Collections.Generic;
 
-namespace Framework.Blocks.Model.Mem
+namespace Framework.Blocks.Model.Objects
 {
-    public class MemCluster : IID<Id>
+    public class Connector
     {
         //
         // PROPERTIES
         //
 
-        public Id ID { get; set; }
-
-        public IList<Id> Modules { get; set; }
+        public Id Name { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public MemCluster()
+        public Connector()
         {
-            ID = default(Id);
-            Modules = default(IList<Id>);
+            Name = default(Id);
         }
     }
 }

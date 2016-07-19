@@ -22,6 +22,8 @@ namespace Framework.Design.Model.Objects.Client
 
         public ParamSet<TUser> Params { get; set; }
 
+        public Model<TUser> Model { get; set; }
+
         public View<TUser> View { get; set; }
 
         public Controller<TUser> Controller { get; set; }
@@ -30,10 +32,11 @@ namespace Framework.Design.Model.Objects.Client
         // CONSTRUCTORS
         // 
 
-        public Fragment()
+        public Fragment() : base()
         {
             Description = default(string);
             Params = default(ParamSet<TUser>);
+            Model = default(Model<TUser>);
             View = default(View<TUser>);
             Controller = default(Controller<TUser>);
         }

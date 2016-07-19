@@ -13,7 +13,7 @@ using System.Web.Http;
 
 namespace Framework.Forms.Patterns
 {
-    public abstract class AFormsController : AController
+    public abstract class AController : Core.Patterns.AController
     {
         //
         // TEMPLATE-ACCESS-LAYER

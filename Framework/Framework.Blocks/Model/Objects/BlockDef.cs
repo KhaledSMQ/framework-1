@@ -7,13 +7,14 @@
 // Description: 
 // ============================================================================
 
+using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
 using System;
 using System.Collections.Generic;
 
-namespace Framework.Blocks.Model.Eval
+namespace Framework.Blocks.Model.Objects
 {
-    public class Block
+    public class BlockDef : IID<Id>
     {
         //
         // PROPERTIES
@@ -21,13 +22,13 @@ namespace Framework.Blocks.Model.Eval
 
         public Id ID { get; set; }
 
-        public Type Type { get; set; }
+        public Id Base { get; set; }
 
         public IDictionary<Id, Property> Properties { get; set; }
 
         public IDictionary<Id, Port> Ports { get; set; }
 
-        public IDictionary<Id, Ref> Blocks { get; set; }
+        public IDictionary<Id, BlockUse> Blocks { get; set; }
 
         public IDictionary<Id, IDictionary<Id, Connector>> Flow { get; set; }
 
@@ -35,13 +36,13 @@ namespace Framework.Blocks.Model.Eval
         // CONSTRUCTORS
         //
 
-        public Block()
+        public BlockDef()
         {
             ID = default(Id);
-            Type = default(Type);
+            Base = default(Id);
             Properties = default(IDictionary<Id, Property>);
             Ports = default(IDictionary<Id, Port>);
-            Blocks = default(IDictionary<Id, Ref>);
+            Blocks = default(IDictionary<Id, BlockUse>);
             Flow = default(IDictionary<Id, IDictionary<Id, Connector>>);
         }
     }

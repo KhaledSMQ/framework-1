@@ -11,9 +11,9 @@ namespace Framework.Klowd.API
 {
     public class DataController : Data.Patterns.AController<string> { }
 
-    public class FactoryController : Factory.Patterns.AFactoryController { }
+    public class FactoryController : Factory.Patterns.AController { }
 
     public class PackagesController : Packages.Patterns.AController { }
 
-    public class FormsController : Forms.Patterns.AFormsController { }
+    public class FormsController : Forms.Patterns.AController { }
 }

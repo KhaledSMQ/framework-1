@@ -1,19 +1,16 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class:
+// Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 21/Mar/2016
+// Create date: 18/Jul/2016
 // Company: Coop4Creativity
-// Description:
+// Description: 
 // ============================================================================
 
 using Framework.Core.Types.Specialized;
-using Framework.Core.API;
+using System.Collections.Generic;
 
-namespace Framework.Blocks.API
+namespace Framework.Design.Model.Objects.Client
 {
-    public interface IStore : ICommon
-    {
-     
-    }
+    public class PropertySet<TUser> : SortedDictionary<Id, Property<TUser>> { }
 }

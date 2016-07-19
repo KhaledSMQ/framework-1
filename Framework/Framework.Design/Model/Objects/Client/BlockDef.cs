@@ -12,24 +12,30 @@ using Framework.Data.Patterns;
 
 namespace Framework.Design.Model.Objects.Client
 {
-    public class BackEnd<TUser> : ABaseClassWithID<Id, TUser>
+    public class BlockDef<TUser> : ABaseClassWithID<Id, TUser>
     {
         //
         // PROPERTIES
         //
 
-        public string Name { get; set; }
-
         public string Description { get; set; }
+
+        public PropertySet<TUser> Properties { get; set; }
+
+        public ParamSet<TUser> In { get; set; }
+
+        public ParamSet<TUser> Out { get; set; }
 
         //
         // CONSTRUCTORS
         // 
 
-        public BackEnd()
+        public BlockDef() : base()
         {
-            Name = string.Empty;
-            Description = string.Empty;
+            Description = default(string);
+            Properties = default(PropertySet<TUser>);
+            In = default(ParamSet<TUser>);
+            Out = default(ParamSet<TUser>);
         }
     }
 }

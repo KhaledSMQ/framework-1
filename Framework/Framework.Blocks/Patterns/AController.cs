@@ -1,15 +1,20 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: 
+// Name/Class:
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 20/Mar/2016
+// Create date: 06/Jul/2016
 // Company: Coop4Creativity
 // Description: 
 // ============================================================================
 
-using System.Collections.Generic;
+using Framework.Blocks.API;
+using Framework.Blocks.Model.Objects;
+using Framework.Core.Patterns;
+using System.Web.Http;
 
-namespace Framework.Blocks.Model.Eval
+namespace Framework.Blocks.Patterns
 {
-    public class Context { }
+    public abstract class AController : Core.Patterns.AController
+    {
+    }
 }

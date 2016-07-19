@@ -7,18 +7,19 @@
 // Description: 
 // ============================================================================
 
-using Framework.Blocks.Model.Schema;
+using Framework.Core.Patterns;
+using Framework.Core.Types.Specialized;
 using System;
 
-namespace Framework.Blocks.Model.Mem
+namespace Framework.Blocks.Model.Objects
 {
-    public class MemPort
+    public class Property : IID<Id>
     {
         //
         // PROPERTIES
         //
 
-        public TypeOfPort Kind { get; set; }
+        public Id ID { get; set; }     
 
         public Type Type { get; set; }
 
@@ -28,9 +29,9 @@ namespace Framework.Blocks.Model.Mem
         // CONSTRUCTORS
         //
 
-        public MemPort()
+        public Property()
         {
-            Kind = TypeOfPort.UNKNOWN;
+            ID = default(Id);
             Type = default(Type);
             Required = default(bool);
         }
