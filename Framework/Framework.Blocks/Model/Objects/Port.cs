@@ -11,7 +11,7 @@ using System;
 
 namespace Framework.Blocks.Model.Objects
 {
-    public class Port
+    public class Port<TType>
     {
         //
         // PROPERTIES
@@ -19,9 +19,7 @@ namespace Framework.Blocks.Model.Objects
 
         public TypeOfPort Kind { get; set; }
 
-        public Type Type { get; set; }
-
-        public bool Required { get; set; }
+        public TType Type { get; set; }
 
         //
         // CONSTRUCTORS
@@ -30,8 +28,7 @@ namespace Framework.Blocks.Model.Objects
         public Port()
         {
             Kind = TypeOfPort.UNKNOWN;
-            Type = default(Type);
-            Required = default(bool);
+            Type = default(TType);
         }
     }
 }

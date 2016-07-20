@@ -13,7 +13,7 @@ using System;
 
 namespace Framework.Blocks.Model.Objects
 {
-    public class Property : IID<Id>
+    public class Property<TType> : IID<Id>
     {
         //
         // PROPERTIES
@@ -21,7 +21,7 @@ namespace Framework.Blocks.Model.Objects
 
         public Id ID { get; set; }     
 
-        public Type Type { get; set; }
+        public TType Type { get; set; }
 
         public bool Required { get; set; }
 
@@ -32,7 +32,7 @@ namespace Framework.Blocks.Model.Objects
         public Property()
         {
             ID = default(Id);
-            Type = default(Type);
+            Type = default(TType);
             Required = default(bool);
         }
     }

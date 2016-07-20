@@ -7,29 +7,33 @@
 // Description: 
 // ============================================================================
 
+using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
 using System.Collections.Generic;
 
 namespace Framework.Blocks.Model.Objects
 {
-    public class BlockUse 
+    public class Block<TValue> : IID<Id>
     {
         //
         // PROPERTIES
         //
-     
-        public Id Def { get; set; }
 
-        public IDictionary<Id, object> Properties { get; set; }
-      
+        public Id ID { get; set; }
+
+        public Id Type { get; set; }
+
+        public IDictionary<Id, TValue> Args { get; set; }
+
         //
         // CONSTRUCTORS 
         //
 
-        public BlockUse()
+        public Block()
         {
-            Def = default(Id);
-            Properties = default(IDictionary<Id, object>);
+            ID = default(Id);
+            Type = default(Id);
+            Args = default(IDictionary<Id, TValue>);
         }
     }
 }

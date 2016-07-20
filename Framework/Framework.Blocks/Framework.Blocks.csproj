@@ -67,12 +67,11 @@
     <Compile Include="Lib.cs" />
     <Compile Include="Model\Config\LibConfiguration.cs" />
     <Compile Include="Model\Config\_Const.cs" />
-    <Compile Include="Model\Objects\BlockUse.cs" />
+    <Compile Include="Model\Objects\Block.cs" />
     <Compile Include="Model\Objects\Connector.cs" />
     <Compile Include="Model\Objects\Port.cs" />
     <Compile Include="Model\Objects\Property.cs" />
     <Compile Include="Model\Objects\BlockDef.cs" />
-    <Compile Include="Model\Objects\Module.cs" />
     <Compile Include="Model\Objects\_Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

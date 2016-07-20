@@ -9,12 +9,11 @@
 
 using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
-using System;
 using System.Collections.Generic;
 
 namespace Framework.Blocks.Model.Objects
 {
-    public class BlockDef : IID<Id>
+    public class BlockDef<TType, TValue> : IID<Id>
     {
         //
         // PROPERTIES
@@ -24,11 +23,11 @@ namespace Framework.Blocks.Model.Objects
 
         public Id Base { get; set; }
 
-        public IDictionary<Id, Property> Properties { get; set; }
+        public IDictionary<Id, Property<TType>> Properties { get; set; }
 
-        public IDictionary<Id, Port> Ports { get; set; }
+        public IDictionary<Id, Port<TType>> Ports { get; set; }
 
-        public IDictionary<Id, BlockUse> Blocks { get; set; }
+        public IDictionary<Id, Block<TValue>> Blocks { get; set; }
 
         public IDictionary<Id, IDictionary<Id, Connector>> Flow { get; set; }
 
@@ -40,9 +39,9 @@ namespace Framework.Blocks.Model.Objects
         {
             ID = default(Id);
             Base = default(Id);
-            Properties = default(IDictionary<Id, Property>);
-            Ports = default(IDictionary<Id, Port>);
-            Blocks = default(IDictionary<Id, BlockUse>);
+            Properties = default(IDictionary<Id, Property<TType>>);
+            Ports = default(IDictionary<Id, Port<TType>>);
+            Blocks = default(IDictionary<Id, Block<TValue>>);
             Flow = default(IDictionary<Id, IDictionary<Id, Connector>>);
         }
     }

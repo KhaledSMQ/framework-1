@@ -12,13 +12,13 @@ using Framework.Core.Types.Specialized;
 
 namespace Framework.Blocks.Model.Objects
 {
-    public class Connector
+    public class Connector : IID<Id>
     {
         //
         // PROPERTIES
         //
 
-        public Id Name { get; set; }
+        public Id ID { get; set; }
 
         //
         // CONSTRUCTORS
@@ -26,7 +26,7 @@ namespace Framework.Blocks.Model.Objects
 
         public Connector()
         {
-            Name = default(Id);
+            ID = default(Id);
         }
     }
 }
