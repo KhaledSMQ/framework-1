@@ -80,7 +80,7 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
 
     var _loadMaster = function (scope, done) {
 
-        if (toolkit.util.IsDefined(scope.fragment.original.master)) {
+        if (angular.isDefined(scope.fragment.original.master)) {
 
             //
             // Setup the url and request to load.
@@ -141,7 +141,7 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
 
                 $.each(child.view, function (idx, elm) {
 
-                    if ((toolkit.util.IsDefined(elm.options)) && (elm.options.placeholder == name)) {
+                    if ((angular.isDefined(elm.options)) && (elm.options.placeholder == name)) {
 
                         content = elm.content;
                         return false;
@@ -179,7 +179,7 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
                         var name = root.options.name;
                         var inst = _getContent(name);
 
-                        if (toolkit.util.IsDefined(inst)) {
+                        if (angular.isDefined(inst)) {
 
                             output = _merge(inst);
                         }
@@ -192,7 +192,7 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
 
                         output = $.extend(false, {}, root);
 
-                        if (toolkit.util.IsDefined(root.content)) {
+                        if (angular.isDefined(root.content)) {
                             
                             output.content = _merge(root.content);
                         }
@@ -217,7 +217,7 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
         // If no master is defined then do nothing.
         //
 
-        if (toolkit.util.IsDefined(scope.master)) {
+        if (angular.isDefined(scope.master)) {
 
             //
             // Merge the fragment with its master fragments.
@@ -278,7 +278,7 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
 
             function __traverse(value, objValue, propName) {
 
-                if (toolkit.util.IsDefined(value)) {
+                if (angular.isDefined(value)) {
 
                     //
                     // We are looking for string values with
@@ -308,7 +308,7 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
                                 var fun = trimmed.substring(0, sepIndex).trim().toLowerCase();
                                 var args = trimmed.substring(sepIndex + 1).split(',');
 
-                                if (toolkit.util.IsDefined(args) && args.length > 0) {
+                                if (angular.isDefined(args) && args.length > 0) {
 
                                     //
                                     // Preprocess the args.
@@ -398,7 +398,7 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
 
     var _processPrefixes = function (scope, done, error) {
 
-        if (toolkit.util.IsDefined(scope.fragment.merged.prefix)) {
+        if (angular.isDefined(scope.fragment.merged.prefix)) {
 
             $.each(scope.fragment.merged.prefix, function (prefix, ns) {
                 toolkit.xprefix.Set(scope.prefix, prefix, ns);
@@ -429,7 +429,7 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
         // Preprocess the fragment model bit.
         //
 
-        if (toolkit.util.IsDefined(model)) {
+        if (angular.isDefined(model)) {
 
             $.each(model, function (prop, value) {
 
@@ -440,9 +440,9 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
                 // When pages are updated to use new format.
                 //
 
-                newValue = toolkit.util.IsDefined(value)
+                newValue = angular.isDefined(value)
                     && (typeof value == 'object')
-                    && toolkit.util.IsDefined(value.dftValue)
+                    && angular.isDefined(value.dftValue)
                     ? value.dftValue : value;
 
                 //
@@ -590,7 +590,7 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
 
                     var template = parent.def.template;
 
-                    if (toolkit.util.IsDefined(template)) {
+                    if (angular.isDefined(template)) {
 
                         //
                         // Assemble the object to send to the 

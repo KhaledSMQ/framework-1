@@ -22,7 +22,6 @@
 <fw:Include runat="server" Folder="Packages\3party\angular\modules\loading-bar" Pattern="*.js" />
 <fw:Include runat="server" Folder="Packages\3party\angular\modules\local-storage" Pattern="*.js" />
 
-<fw:Include runat="server" Folder="Packages\framework" Pattern="*.js" Recursive="false" />
 <fw:Include runat="server" Folder="Packages\framework\angular\v1\engine" Pattern="*.js" Recursive="true" />
 <fw:Include runat="server" Folder="Packages\framework\angular\v1\modules" Pattern="*.js" Recursive="true" />
 
@@ -72,8 +71,6 @@
     };
 
     var ngApp = angular.injector(['fw.engine']).get('fw.engine.app').create(app);
-
-
 
 </script>
 </html>

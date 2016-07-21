@@ -14,7 +14,8 @@ angular.module('fw.auth').factory('fw.auth.login', [
     '$q',
     'localStorageService',
     'fw.engine.settings',
-    function ($http, $q, localStorageService, settings) {
+    'fw.engine.resolver',
+    function ($http, $q, localStorageService, settings, resolver) {
 
         //
         // DTO with authentication information.
@@ -76,7 +77,7 @@ angular.module('fw.auth').factory('fw.auth.login', [
 
             var output = { error: false, msg: '' };
 
-            if (!toolkit.util.AreDefined(loginData, loginData.userName, loginData.password)) {
+            if (!angular.isDefined(loginData) || !angular.isDefined(loginData.userName) || !angular.isDefined(loginData.password)) {
 
                 //
                 // ERROR: Invalid login data.
@@ -115,7 +116,7 @@ angular.module('fw.auth').factory('fw.auth.login', [
                 // Resolve the login url.
                 //
 
-                var loginUrl = toolkit.url.Resolve(_config.settings.loginUrl);
+                var loginUrl = resolver.resolve(_config.settings.loginUrl);
 
                 //
                 // Everything check outs, perform the login.
