@@ -10,8 +10,7 @@
     <fw:Include runat="server" Type="STYLE" Folder="Packages\3party\angular\modules\loading-bar" Pattern="*.css" />
     <fw:Include runat="server" Type="STYLE" Folder="Packages\3party\angular\modules\local-storage" Pattern="*.css" />
 
-    <fw:Include runat="server" Type="STYLE" Folder="Packages\framework\angular\v1\engine" Pattern="*.css" Recursive="true" />
-    <fw:Include runat="server" Type="STYLE" Folder="Packages\framework\angular\v1\modules" Pattern="*.css" Recursive="true" />
+    <fw:Include runat="server" Type="STYLE" Folder="Packages\framework\angular\v1" Pattern="*.css" Recursive="true" />
 </head>
 <body>
 </body>
@@ -22,8 +21,7 @@
 <fw:Include runat="server" Folder="Packages\3party\angular\modules\loading-bar" Pattern="*.js" />
 <fw:Include runat="server" Folder="Packages\3party\angular\modules\local-storage" Pattern="*.js" />
 
-<fw:Include runat="server" Folder="Packages\framework\angular\v1\engine" Pattern="*.js" Recursive="true" />
-<fw:Include runat="server" Folder="Packages\framework\angular\v1\modules" Pattern="*.js" Recursive="true" />
+<fw:Include runat="server" Folder="Packages\framework\angular\v1" Pattern="*.js" Recursive="true" />
 
 <script type="text/javascript">
 

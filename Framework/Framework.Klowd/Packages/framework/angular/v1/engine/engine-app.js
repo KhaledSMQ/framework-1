@@ -8,10 +8,6 @@
 // ============================================================================
 
 'use strict';
-
-angular.module('fw', ['ngRoute', 'ngResource']);
-angular.module('fw.engine', ['fw', 'ngRoute', 'ngResource']);
-
 angular.module('fw').config(function ($sceDelegateProvider) {
 
     //
@@ -65,7 +61,7 @@ angular.module('fw.engine').service('fw.engine.app', [
             pages.define(ngApp, app);
             components.define(ngApp, app);
             endpoints.define(ngApp, app);
-            start.define(ngApp, app);           
+            start.define(ngApp, app);
             templates.define(ngApp, app);
 
             _cors(ngApp, app);
@@ -170,7 +166,7 @@ angular.module('fw.engine').service('fw.engine.app', [
         };
 
         //
-        // Protocol
+        // API
         //
 
         return {

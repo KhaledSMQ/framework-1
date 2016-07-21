@@ -495,7 +495,7 @@
     <Content Include="Packages\framework\angular\v1\engine\engine-app.js" />
     <Content Include="Packages\framework\angular\v1\modules\auth\auth-interceptor.js" />
     <Content Include="Packages\framework\angular\v1\modules\auth\auth.js" />
-    <Content Include="Packages\framework\angular\v1\modules\_module.js" />
+    <Content Include="Packages\framework\angular\v1\_module.js" />
     <Content Include="react.aspx" />
     <Content Include="ngv1.aspx" />
     <Content Include="Packages\framework\fw\modules\core\debug.js" />
