@@ -482,6 +482,21 @@
     <Content Include="Packages\3party\_codemirror\theme\vibrant-ink.css" />
     <Content Include="Packages\3party\_codemirror\theme\xq-dark.css" />
     <Content Include="Packages\3party\_codemirror\theme\xq-light.css" />
+    <Content Include="Packages\framework\angular\v1\engine\engine-core.js" />
+    <Content Include="Packages\framework\angular\v1\engine\engine-locale.js" />
+    <Content Include="Packages\framework\angular\v1\engine\engine-resolver.js" />
+    <Content Include="Packages\framework\angular\v1\engine\engine-resx.js" />
+    <Content Include="Packages\framework\angular\v1\engine\engine-startup.js" />
+    <Content Include="Packages\framework\angular\v1\engine\engine-endpoints.js" />
+    <Content Include="Packages\framework\angular\v1\engine\engine-components.js" />
+    <Content Include="Packages\framework\angular\v1\engine\engine-settings.js" />
+    <Content Include="Packages\framework\angular\v1\engine\engine-templates.js" />
+    <Content Include="Packages\framework\angular\v1\engine\engine-pages.js" />
+    <Content Include="Packages\framework\angular\v1\engine\engine-app.js" />
+    <Content Include="Packages\framework\angular\v1\modules\auth\auth-interceptor.js" />
+    <Content Include="Packages\framework\angular\v1\modules\auth\auth.js" />
+    <Content Include="Packages\framework\angular\v1\modules\_module.js" />
+    <Content Include="Packages\framework\__lib.js" />
     <Content Include="react.aspx" />
     <Content Include="ngv1.aspx" />
     <Content Include="Packages\framework\fw\modules\core\debug.js" />
@@ -595,12 +610,8 @@
     <Folder Include="Apps\" />
     <Folder Include="Data\DB\" />
     <Folder Include="Modules\" />
-    <Folder Include="Packages\framework\angular\v1\engine\" />
-    <Folder Include="Packages\framework\angular\v1\modules\" />
     <Folder Include="Packages\framework\angular\v2\" />
-    <Folder Include="Packages\framework\aurelia\" />
     <Folder Include="Packages\framework\fw\modules\mvc\framework\forms\" />
-    <Folder Include="Packages\framework\react\" />
     <Folder Include="Servers\" />
   </ItemGroup>
   <ItemGroup>
