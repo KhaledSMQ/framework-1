@@ -35,6 +35,9 @@ fw.module('mvc.engine').service('scope', 'core.util', function ($util) {
 
     //
     // Get a new scope object based on am existing scope.
+    // @param parent
+    // @param container
+    // @param fragment
     //
 
     var _new = function (parent, container, fragment) {

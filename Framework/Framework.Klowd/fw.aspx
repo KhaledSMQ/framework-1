@@ -9,11 +9,29 @@
 </head>
 <body>
 </body>
-    <fw:Include runat="server" Folder="Packages\3party\jquery\112" Pattern="*.js" />
-    <fw:Include runat="server" Folder="Packages\framework\fw" Pattern="*.js" />
-    <fw:Include runat="server" Folder="Packages\framework\fw" Pattern="__*.js" Recursive="true" />
-    <fw:Include runat="server" Folder="Packages\framework\fw\modules" Pattern="*.js" Recursive="true" />
-    <script>fw.debug(true);</script>
+<fw:Include runat="server" Folder="Packages\3party\jquery\112" Pattern="*.js" />
+<fw:Include runat="server" Folder="Packages\framework\fw" Pattern="*.js" NoCache="true" />
+<fw:Include runat="server" Folder="Packages\framework\fw" Pattern="__*.js" Recursive="true" NoCache="true" />
+<fw:Include runat="server" Folder="Packages\framework\fw\modules" Pattern="*.js" Recursive="true" NoCache="true" />
+<script>
+
+    fw.debug(true);
+
+
+    var frag1 = {
+
+        model: {},
+
+        view: {
+            id: 'left',
+            name: 'mvc.framework.bootstrap.col1'
+        }
+    };
+
+    var frag1Str = '{"model": {}, "view": {"id": "left", "name": "mvc.framework.bootstrap.col1"}}';
+
+    var r = fw.get('mvc.engine.fragment');
+</script>
 </html>
 
 

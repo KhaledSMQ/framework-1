@@ -8,12 +8,24 @@
 
 'use strict';
 fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engine.config, mvc.engine.scope, mvc.engine.view', function ($util, $seq, $config, $scope, $view) {
-  
+
     //
     // Library name.
     //
 
     var __LIB = 'mvc.engine.fragment';
+    var _rootScope = null;
+
+    //
+    // Initialize the fragment rendering service.
+    // This function initialzes the fragment rendering
+    // pipeline.
+    //
+
+    var _init = function () {
+
+        _rootScope = $scope.root();
+    };
 
     //
     // Render a fragment bit on a specific container.
@@ -28,24 +40,22 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
         // Setup the rendering scope.
         //
 
-        var scope = $scope.new(parent, container, fragment);
+        var scope = $scope.new($util.isDefined(parent) ? parent : _rootScope, container, fragment);
 
         //
         // Build the render sequence.
         //
 
         var seq = [
-            _loadFragment,
-            _loadMaster,
-            _mergeFragments,
-            _applyPreprocessing,
-            _processPrefixes,
-            _processModel,
-            _normalizeView,
-            _buildTree,
-            _generateHtml,
-            _attachComponents,
-            _applyResize
+            _load,
+            _master,
+            _merge,
+            _preprocess,
+            _model,
+            _normalize,
+            _tree,
+            _html,
+            _resize
         ];
 
         //
@@ -53,193 +63,70 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
         //
 
         $seq.run(scope, seq);
+
+        return scope;
     };
 
     //
     // Load the fragment to render.
     //
 
-    var _loadFragment = function (scope, done) {
+    var _load = function (scope, done) {
 
-        if (typeof scope.fragment.original == 'string') {
+        let cFragment = _fCurrent(scope);
+        let nFragment = null;
 
+        //
+        // Transform the input fragment into an array
+        // of elements. This is the most generic data
+        // type for fragments.
+        //
+
+        if ($util.isString(cFragment)) {
+
+            nFragment = JSON.parse(cFragment);
+        }
+        else if ($util.isObject(scope.fragment)) {
+
+            nFragment = cFragment;
         }
         else {
 
             //
-            // Signal end of function.
+            // ERROR: Input data type for fragment is not supported.            
             //
-
-            done(scope);
         }
+
+        //
+        // Add the processed fragment to the pipeline.
+        // Also start the model/view/controller datatypes.
+        //
+
+        _mAdd(scope, nFragment.model);
+        _vAdd(scope, nFragment.view);
+        _fAdd(scope, nFragment);
+
+        //
+        // Proceed to next steps..
+        //
+
+        done(scope);
     };
 
     //
     // Load all master fragments.
     //
 
-    var _loadMaster = function (scope, done) {
+    var _master = function (scope, done) {
 
-        if (angular.isDefined(scope.fragment.original.master)) {
-
-            //
-            // Setup the url and request to load.
-            //
-
-            var absUrl = scope.app.factory.$resolver.resolve('[__MASTER_PAGES__]:' + scope.fragment.original.master + scope.app.config.pages.extension);
-            var webRequest = { url: absUrl, method: 'GET' };
-
-            //
-            // Load he master fragment.
-            //
-
-            scope.app.factory.$http.get(webRequest, function (master) {
-
-                //
-                // If fragment loads sucessfully,
-                // set the current master fragment.
-                //
-
-                scope.master = master;
-                done(scope);
-
-            }, error);
-
-        }
-        else {
-
-            //
-            // No master to load, signal end of function.
-            //
-
-            done(scope);
-        }
+        done(scope);
     };
 
     //
     // Merge all master fragments.
     //
 
-    var _mergeFragments = function (scope, done, error) {
-
-        //
-        // Function to merge two fragments, one
-        // master fragment and one child fragment.
-        // @return The merged fragment between the two.
-        //
-
-        var _merge = function (master, child) {
-
-            //
-            // Get from the child the content associated 
-            // with a  placeholder name.
-            //
-
-            var _getContent = function (name) {
-
-                var content = null;
-
-                $.each(child.view, function (idx, elm) {
-
-                    if ((angular.isDefined(elm.options)) && (elm.options.placeholder == name)) {
-
-                        content = elm.content;
-                        return false;
-                    }
-                })
-
-                return content;
-            };
-
-            var _merge = function (root) {
-
-                var output = null;
-
-                //
-                // List of elements, replace one at a time.
-                //
-
-                if (root instanceof Array) {
-
-                    output = [];
-
-                    $.each(root, function (idx, elm) {
-                        output.push(_merge(elm));
-                    });
-                }
-                else {
-
-                    //
-                    // Check if the current node is a placeholder,
-                    // if so, try to get the content for it.
-                    //
-
-                    if (root.name == "platform.placeholder") {
-
-                        var name = root.options.name;
-                        var inst = _getContent(name);
-
-                        if (angular.isDefined(inst)) {
-
-                            output = _merge(inst);
-                        }
-                        else {
-
-                            output = root;
-                        }
-                    }
-                    else {
-
-                        output = $.extend(false, {}, root);
-
-                        if (angular.isDefined(root.content)) {
-                            
-                            output.content = _merge(root.content);
-                        }
-                    }
-                }
-
-                return output;
-            }
-
-            //
-            // Compute merged fragment.
-            //
-
-            master.view = _merge(master.view);
-            master.model = $.extend(true, {}, child.model, master.model);
-
-            return master;
-        }
-
-        //
-        // Merge the master fragment and the main fragment.
-        // If no master is defined then do nothing.
-        //
-
-        if (angular.isDefined(scope.master)) {
-
-            //
-            // Merge the fragment with its master fragments.
-            //
-
-            scope.fragment.merged = _merge(scope.master, scope.fragment.original);
-
-        }
-        else {
-
-            scope.fragment.merged = scope.fragment.original;
-        }
-
-        //
-        // Change the view to match the merged fragment.
-        //
-
-        scope.view.original = scope.fragment.merged.view;
-
-        //
-        // Signal end of function.
-        //
+    var _merge = function (scope, done) {
 
         done(scope);
     };
@@ -248,166 +135,7 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
     // Apply the registered pre processing tokens.
     //
 
-    var _applyPreprocessing = function (scope, done, error) {
-
-        var _getFun = function (name) {
-
-            var funRepo = {
-
-                'http-get': function (scope, args, success, error) {
-
-                    var url = args[0];
-
-                    url = scope.app.factory.$resolver.resolve(url);
-
-                    var request = {
-                        url: url,
-                        type: 'json'
-                    };
-
-                    scope.app.factory.$http.get(request, function (value) { success(value); }, error);
-                }
-            };
-
-            return funRepo[name];
-        };
-
-        var _buildSeq = function (obj) {
-
-            var output = [];
-
-            function __traverse(value, objValue, propName) {
-
-                if (angular.isDefined(value)) {
-
-                    //
-                    // We are looking for string values with
-                    // a specific format.
-                    //
-
-                    if (typeof (value) === 'string') {
-
-                        var trimmed = value.trim();
-
-                        if (trimmed.startsWith('<<') && trimmed.endsWith('>>')) {
-
-                            //
-                            // Cutoff starting and ending brackets.
-                            //
-
-                            trimmed = trimmed.slice(2, trimmed.length - 2);
-
-                            //
-                            // Parse function name and arguments.
-                            //
-
-                            var sepIndex = trimmed.indexOf(':');
-
-                            if (-1 != sepIndex) {
-
-                                var fun = trimmed.substring(0, sepIndex).trim().toLowerCase();
-                                var args = trimmed.substring(sepIndex + 1).split(',');
-
-                                if (angular.isDefined(args) && args.length > 0) {
-
-                                    //
-                                    // Preprocess the args.
-                                    //
-
-                                    $.each(args, function (idx, val) { args[idx] = val.trim(); });
-                                }
-
-                                //
-                                // Build the function to run. 
-                                //
-
-                                var funToRun = function (scope, done, error) {
-
-                                    var repoFun = _getFun(fun);
-                                    repoFun(scope, args, function (val) {
-
-                                        //
-                                        // Change the value.
-                                        //
-
-                                        if (toolkit.util.AreDefined(objValue, propName)) {
-
-                                            objValue[propName] = val;
-                                        }
-
-                                        //
-                                        // Continue sequence.
-                                        //
-
-                                        done(scope);
-
-                                    }, error);
-                                }
-
-                                //
-                                // Push the function to the stack of functions to run.
-                                //
-
-                                output.push(funToRun);
-                            }
-                        }
-                    } else
-                        if (typeof (value) === 'object') {
-
-                            //
-                            // Mark this object as seen.
-                            // Traverse all properties.
-                            //
-
-                            $.each(value, function (property, val) { __traverse(val, value, property); });
-                        }
-                        else
-                            if (value instanceof Array) {
-
-                                //
-                                // Traverse all items of array.
-                                //
-
-                                $.each(value, function (index, val) { __traverse(val); });
-                            }
-                }
-            }
-
-            __traverse(obj);
-
-            return output;
-        };
-
-        //
-        // Build the sequence of functions to call in document order.
-        //
-
-        var seq = _buildSeq(scope.fragment.merged);
-
-        //
-        // Run the sequence, changing whatever is needed.
-        // At the end run the i'm done function.
-        //
-
-        toolkit.sequence.Run(scope, seq, { finish: done, error: scope.app.factory.$msg.error })
-    };
-
-    //
-    // Process prefixes.
-    //
-
-    var _processPrefixes = function (scope, done, error) {
-
-        if (angular.isDefined(scope.fragment.merged.prefix)) {
-
-            $.each(scope.fragment.merged.prefix, function (prefix, ns) {
-                toolkit.xprefix.Set(scope.prefix, prefix, ns);
-            });
-        }
-
-        //
-        // Signal end of function.
-        //
+    var _preprocess = function (scope, done) {
 
         done(scope);
     };
@@ -416,48 +144,13 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
     // Preprocess model structures.
     //
 
-    var _processModel = function (scope, done, error) {
+    var _model = function (scope, done) {
 
-        //
-        // Extract need properties for this function.
-        //
+        let cModel = _mCurrent(scope);
 
-        var model = scope.fragment.merged.model;
-        var processedModel = model;
+        let nModel = cModel;
 
-        //
-        // Preprocess the fragment model bit.
-        //
-
-        if (angular.isDefined(model)) {
-
-            $.each(model, function (prop, value) {
-
-                var newValue = value;
-
-                //
-                // TODO: Eventually remove this....
-                // When pages are updated to use new format.
-                //
-
-                newValue = angular.isDefined(value)
-                    && (typeof value == 'object')
-                    && angular.isDefined(value.dftValue)
-                    ? value.dftValue : value;
-
-                //
-                // Change processed value mapping.
-                // 
-
-                processedModel[prop] = newValue;
-            });
-
-            //
-            // Set the new page model bit.
-            // 
-
-            scope.model = processedModel;
-        }
+        _mAdd(scope, nModel);
 
         //
         // Signal end of function.
@@ -470,13 +163,17 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
     // Normalize the view to render.
     //
 
-    var _normalizeView = function (scope, done, error) {
+    var _normalize = function (scope, done) {
 
         //
         // Normalize the view.
         //
 
-        scope.view.normalized = fwr.view.normalize(scope.view.original, error);
+        let cView = _vCurrent(scope);
+
+        let nView = cView;
+
+        _vAdd(scope, nView);
 
         //
         // Signal end of function.
@@ -489,49 +186,7 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
     // Build component tree.
     //
 
-    var _buildTree = function (scope, done, error) {
-
-        //
-        // Build the scope component tree.
-        // this is the working fragment tree to use.
-        //
-
-        scope.tree = fwr.view.buildTree(scope.view.normalized, scope.app.factory.$msg.error);
-
-        //
-        // Generate the full node instance.
-        //
-
-        fwr.view.walk(
-            scope.tree,
-            {
-                action: function (node) {
-
-                    //
-                    // Node related.
-                    //
-
-                    node.id = scope.app.factory.$id.get();
-                    node.type = node.def.type;
-                    node.namespace = node.def.namespace;
-                    node.name = node.def.name;
-                    node.nativeName = node.def.nativeName,
-                    node.constants = node.def.constants;
-                    node.callbacks = node.def.callbacks;
-
-                    //
-                    // Context related.
-                    //
-
-                    node.app = scope.app;
-                    node.factory = scope.app.factory;
-                    node.scope = scope;
-
-                },
-                error: error
-            },
-            'PRE-ORDER'
-        );
+    var _tree = function (scope, done) {
 
         //
         // Signal end of function.
@@ -544,187 +199,7 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
     // Generate the HTML for the fragment.
     //
 
-    var _generateHtml =function (scope, done, error) {
-
-        //
-        // Push settings for template engine.
-        //
-
-        var currTemplateSettings = toolkit.util.Clone(_.templateSettings);
-        _.templateSettings = { interpolate: /\{\{(.+?)\}\}/g };
-
-        //
-        // Generate the HTML for the component tree.
-        //
-
-        var htmlPayLoad = fwr.view.cata(
-            scope.tree,
-            {
-                empty: function () {
-                    return '';
-                },
-
-                node: function (parent, placeholders) {
-
-                    var htmlView = '';
-
-                    //
-                    // Process component instance options.
-                    // Merge the defined options for the component
-                    // with the component instance options.
-                    //
-
-                    var mergedOptions = {};
-                    $.extend(true, mergedOptions, parent.def.options, parent.options);
-                    parent.options = mergedOptions;
-
-                    //
-                    // Process binding.
-                    //
-
-                    fwr.binding.bindComponent(scope, parent);
-
-                    //
-                    // Process template.
-                    //
-
-                    var template = parent.def.template;
-
-                    if (angular.isDefined(template)) {
-
-                        //
-                        // Assemble the object to send to the 
-                        // template engine.
-                        //
-
-                        var obj = {
-                            id: parent.id,
-                            namespace: parent.namespace,
-                            name: parent.name,
-                            constant: parent.constants,
-                            option: parent.options,
-                            nativeName: parent.nativeName,
-                            content: placeholders
-                        };
-
-                        var compiled = _.template(template);
-
-                        htmlView = compiled(obj);
-
-                        //
-                        // Attach framework information.
-                        //
-
-                        var wrapperObj = $(htmlView);
-
-                        if (0 == wrapperObj.length) {
-
-                            //
-                            // DO NOTHING... for know..
-                            //
-
-                            fwr.warn('component with namespace \'' + parent.namespace + '\' and name \'' + parent.name + '\' does not define a root element!');
-                        }
-                        else
-                            if (1 == wrapperObj.length) {
-
-                                //
-                                // One root element, process it.
-                                //
-
-                                wrapperObj.attr('id', parent.id);
-                                wrapperObj.attr('data-fw-id', parent.id);
-                                wrapperObj.attr('data-fw-namespace', parent.namespace);
-                                wrapperObj.attr('data-fw-name', parent.name);
-                                wrapperObj.attr('data-fw-native', parent.nativeName);
-
-                                //
-                                // Wrap the changed object and unwrap it to get its html.
-                                //
-
-                                htmlView = $('<div/>').append(wrapperObj).html();
-                            }
-                            else {
-
-                                //
-                                // ERROR: Components cannot have more than one root element.
-                                //
-
-                                scope.app.factory.$msg.error('component with namespace \'' + parent.namespace + '\' and name \'' + parent.name + '\' defines more than one root element!');
-                            }
-                    }
-                    else {
-
-                        //
-                        // TODO: This is possibly an error, no template for component.
-                        //
-
-                        scope.app.factory.$msg.error('component with namespace \'' + parent.namespace + '\' and name \'' + parent.name + '\' does not define a template!');
-                    }
-
-                    return htmlView;
-                },
-
-                placeholder: function (name, lst) {
-
-                    var htmlPayload = '';
-                    $.each(lst, function (idx, val) { htmlPayload += val; });
-                    return htmlPayload;
-                },
-
-                root: function (lst) {
-
-                    var htmlPayload = '';
-                    $.each(lst, function (idx, val) { htmlPayload += val; });
-                    return htmlPayload;
-                },
-
-                error: error
-            });
-
-        //
-        // Pop settings for template engine.
-        //
-
-        _.templateSettings = currTemplateSettings;
-
-        //
-        // Add the generated HTML to the scope.
-        //
-
-        scope.html = htmlPayLoad;
-
-        //
-        // Attach the generated HTML to the root element of fragment.
-        //
-
-        scope.container.html(htmlPayLoad);
-
-        //
-        // Signal end of function.
-        //
-
-        done(scope);
-    };
-
-    //
-    // Attach the components to DOM elements.
-    //
-
-    var _attachComponents = function (scope, done, error) {
-
-        fwr.view.walk(
-            scope.tree,
-            {
-                action: function (node) {
-                    if (node.type == 'PLUGIN') {
-                        toolkit.util.AttachPlugin(node.id, node.nativeName, node);
-                    }
-                },
-                error: error
-            },
-            'POST-ORDER'
-        );
+    var _html = function (scope, done) {
 
         //
         // Signal end of function.
@@ -737,32 +212,81 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
     // Apply the resize behaviour to the fragment. 
     //
 
-    var _applyResize = function (scope, done, error) {
-
-        fwr.view.walk(
-            scope.tree,
-            {
-                action: function (node) {
-                    if (node.type == 'PLUGIN') {
-                        toolkit.util.AttachPlugin(node.id, node.nativeName, 'resize');
-                    }
-                },
-                error: error
-            },
-            'PRE-ORDER'
-        );
-
-        //
-        // Signal end of function.
-        //
+    var _resize = function (scope, done) {
 
         done(scope);
+    };
+
+    //
+    // Fragment/Model/View related helpers.
+    //
+
+    var _fCurrent = function (scope) {
+        return _xCurrent(scope, 'fragment');
+    }
+
+    var _fAdd = function (scope, val) {
+        return _xAdd(scope, 'fragment', val);
+    }
+
+    var _mCurrent = function (scope) {
+        return _xCurrent(scope, 'model');
+    }
+
+    var _mAdd = function (scope, val) {
+        return _xAdd(scope, 'model', val);
+    }
+
+    var _vCurrent = function (scope) {
+        return _xCurrent(scope, 'view');
+    }
+
+    var _vAdd = function (scope, val) {
+        return _xAdd(scope, 'view', val);
+    }
+
+    var _xCurrent = function (scope, property) {
+
+        let curr = null;
+
+        if ($util.isArray(scope[property])) {
+
+            let len = scope[property].length;
+            if (len > 0) {
+
+                curr = scope[property][len - 1];
+            }
+        }
+        else if ($util.isDefined(scope[property])) {
+
+            curr = scope[property];
+        }
+
+        return curr;
+    };
+
+    var _xAdd = function (scope, property, val) {
+
+        if (!$util.isDefined(scope[property])) {
+
+            scope[property] = [];
+        }
+
+        if (!$util.isArray(scope[property])) {
+
+            let curr = scope[property];
+            scope[property] = [];
+            scope[property].push(curr);
+        }
+
+        scope[property].push(val);
     };
 
     //
     // API
     //
 
-    return {        
+    return {
+        'render': _render
     };
 });
