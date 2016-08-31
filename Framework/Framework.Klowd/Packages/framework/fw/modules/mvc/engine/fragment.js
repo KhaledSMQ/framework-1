@@ -166,14 +166,141 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
     var _normalize = function (scope, done) {
 
         //
-        // Normalize the view.
+        // Normalize the view. Worker function.
         //
 
-        let cView = _vCurrent(scope);
+        var _worker = function (view) {
 
-        let nView = cView;
+            let nView = null;
 
-        _vAdd(scope, nView);
+            if (view instanceof Array) {
+
+                //
+                // new view is an empty array.
+                //
+
+                nView = [];
+
+                //
+                // List of components.
+                //
+
+                $util.apply(view, function (_, componentInstance) {
+
+                    //
+                    // Get a valid component definition.
+                    //
+
+                    var component = fw.get(componentInstance[$config.PROPERTY_COMPONENT_TYPE]);
+
+                    if ($util.isDefined(component)) {
+
+                        var content = {};
+
+                        if ($util.isDefined(componentInstance.content)) {
+
+                            if (componentInstance.content instanceof Array ||
+                                $util.isDefined(componentInstance.content[$config.PROPERTY_COMPONENT_TYPE])) {
+
+                                //
+                                // Component must have a unique content placeholder 
+                                // definition, otherwise this wont work...
+                                //
+
+                                var placeholder = '';
+
+                                if ($util.isDefined(component.placeholders) && 1 == $util.count(component.placeholders)) {
+
+                                    //
+                                    // Get the name of the single placeholder.
+                                    //
+
+                                    $util.apply(component.placeholders, function (name, def) { placeholder = name; });
+
+                                    //
+                                    //
+                                    // CASE: Content is an array of component instances. 
+                                    //       generate each template and merge it. The component
+                                    //       definition must contain one and only one content
+                                    //       placeholder.
+                                    //
+                                    //
+                                    // CASE: Content is an object, a single instance.
+                                    //       and is *NOT* a content definition with placeholders.
+                                    //       The component definition must contain one and only 
+                                    //       one content placeholder.
+                                    //
+                                    //
+
+                                    content[placeholder] = _normalize(componentInstance.content);
+                                }
+                                else {
+
+                                    //
+                                    // ERROR: Component definition needs to define a single placeholder.
+                                    //
+
+                                    throw 'component with namespace \'' + component.namespace + '\' and name \'' + component.name + '\' does not define a single placeholder!';
+                                }
+                            }
+                            else {
+
+                                //
+                                // CASE: Content defines the placeholders.
+                                //
+
+                                $util.apply(componentInstance.content, function (placeholderName, placeholderContent) {
+
+                                    content[placeholderName] = _normalize(placeholderContent);
+                                });
+                            }
+
+                            //
+                            // Change object.
+                            //
+
+                            componentInstance.content = content;
+                        }
+                        //
+                        // else {
+                        //
+                        // Component instance does not have any content in it.
+                        // No need to normalize.
+                        //
+                        // }
+                    }
+                    else {
+
+                        throw 'component ' + componentInstance[$config.PROPERTY_COMPONENT_TYPE] + ' is not defined!';
+                    }
+                });
+            }
+            else
+                if ($util.isDefined(view[$config.PROPERTY_COMPONENT_TYPE])) {
+
+                    //
+                    // One component.
+                    //
+
+                    view = _normalize([view]);
+                }
+                else {
+
+                    //
+                    // Placeholders.
+                    //
+
+                    $util.apply(view, function (name, content) { view[name] = _normalize(content); })
+                }
+
+            return nView;
+        };
+        
+        //
+        // Normalize the view and add the normalized view to the pipe.
+        //
+
+        _vAdd(scope, _worker(_vCurrent(scope)));
 
         //
         // Signal end of function.

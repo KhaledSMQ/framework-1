@@ -18,7 +18,7 @@
     fw.debug(true);
 
 
-    var frag1 = {
+    var f = {
 
         model: {},
 
@@ -28,9 +28,10 @@
         }
     };
 
-    var frag1Str = '{"model": {}, "view": {"id": "left", "name": "mvc.framework.bootstrap.col1"}}';
+    var fJSON = '{"model": {}, "view": {"id": "left", "name": "mvc.framework.bootstrap.col1"}}';
 
     var r = fw.get('mvc.engine.fragment');
+
 </script>
 </html>
 
