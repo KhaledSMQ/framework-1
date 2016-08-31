@@ -1,13 +1,13 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Constants
+// Name/Class:
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 26/Nov/2015
+// Create date: 06/Jul/2016
 // Company: Coop4Creativity
-// Description: Constants.
+// Description: 
 // ============================================================================
 
-namespace Framework.Factory.Model.Config
+namespace Framework.GPKit.Model.Config
 {
     public static class Constants
     {

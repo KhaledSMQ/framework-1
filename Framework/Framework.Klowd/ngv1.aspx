@@ -9,7 +9,6 @@
 
     <fw:Include runat="server" Type="STYLE" Folder="Packages\3party\angular\modules\loading-bar" Pattern="*.css" />
     <fw:Include runat="server" Type="STYLE" Folder="Packages\3party\angular\modules\local-storage" Pattern="*.css" />
-
     <fw:Include runat="server" Type="STYLE" Folder="Packages\framework\angular\v1" Pattern="*.css" Recursive="true" />
 </head>
 <body>
@@ -20,7 +19,6 @@
 
 <fw:Include runat="server" Folder="Packages\3party\angular\modules\loading-bar" Pattern="*.js" />
 <fw:Include runat="server" Folder="Packages\3party\angular\modules\local-storage" Pattern="*.js" />
-
 <fw:Include runat="server" Folder="Packages\framework\angular\v1" Pattern="*.js" Recursive="true" />
 
 <script type="text/javascript">
@@ -42,15 +40,11 @@
         locales: [
             {
                 key: 'pt',
-                info: {
-                    name: "PT"
-                }
+                name: "PT"
             },
             {
                 key: 'en',
-                info: {
-                    name: 'EN'
-                }
+                name: 'EN'
             }],
 
         resx: {},

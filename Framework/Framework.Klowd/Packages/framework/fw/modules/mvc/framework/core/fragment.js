@@ -1,6 +1,6 @@
 ﻿
 //
-// mvc.framework.fragment
+// mvc.framework.core.fragment
 //
 
 fw.module('mvc.framework.core').component('fragment', 'core.util, mvc.engine.component', function ($util, $c) {

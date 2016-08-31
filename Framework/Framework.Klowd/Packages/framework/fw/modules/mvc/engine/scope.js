@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: mvc.config
+// Name/Class: mvc.engine.scope
 // Created On: 28/Mar/2016
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Company: Coop4Creativity
@@ -13,7 +13,7 @@ fw.module('mvc.engine').service('scope', 'core.util', function ($util) {
     // Library name.
     //
 
-    var __LIB = 'mvc.scope';
+    var __LIB = 'mvc.engine.scope';
 
     //
     // Get the root scope for app.
@@ -98,7 +98,7 @@ fw.module('mvc.engine').service('scope', 'core.util', function ($util) {
     //
 
     return {
-        root: _root,
+        'root': _root,
         'new': _new
     };
 });

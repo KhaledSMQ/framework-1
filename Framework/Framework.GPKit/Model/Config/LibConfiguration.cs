@@ -1,15 +1,15 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Constants
+// Name/Class: Library Configuration.
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 26/Nov/2015
+// Create date: 07/Jul/2016
 // Company: Coop4Creativity
-// Description: Constants.
+// Description: Configuration for this module/library.
 // ============================================================================
 
-namespace Framework.Factory.Model.Config
+namespace Framework.GPKit.Model.Config
 {
-    public static class Constants
+    public class LibConfiguration : Core.Model.Config.ModuleConfiguration
     {
     }
 }

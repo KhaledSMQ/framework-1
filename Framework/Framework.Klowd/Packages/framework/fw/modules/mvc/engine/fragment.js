@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: mvc.fragment
+// Name/Class: mvc.engine.fragment
 // Created On: 28/Mar/2016
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Company: Coop4Creativity
@@ -13,7 +13,7 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
     // Library name.
     //
 
-    var __LIB = 'mvc.fragment';
+    var __LIB = 'mvc.engine.fragment';
 
     //
     // Render a fragment bit on a specific container.

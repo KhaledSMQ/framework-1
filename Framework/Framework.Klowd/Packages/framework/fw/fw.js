@@ -42,7 +42,8 @@ window.fw = jQuery.extend(true, window.fw, {
     __CONFIG: {
 
         IDENTIFIER_SEPARATOR: '.',
-        IDENTIFIER_PARCEL_RE: ''
+        IDENTIFIER_PARCEL_RE: '',
+        PROPERTY_FEATURE_MARKER: '__feature'
     }
 });
 
@@ -659,6 +660,13 @@ window.fw = jQuery.extend(true, window.fw, {
                                 //
 
                                 value = feature.value(feature, id, deps, value);
+
+                                //
+                                // Mark the feature object with a property
+                                // thats states what feature it is.
+                                //
+
+                                value[fw.__CONFIG.PROPERTY_FEATURE_MARKER] = feature.id;
                             }
 
                             //

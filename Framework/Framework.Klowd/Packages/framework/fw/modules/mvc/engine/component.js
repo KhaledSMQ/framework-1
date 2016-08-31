@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: mvc.engine.instance
+// Name/Class: mvc.engine.component
 // Created On: 09/Abr/2016
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Company: Coop4Creativity

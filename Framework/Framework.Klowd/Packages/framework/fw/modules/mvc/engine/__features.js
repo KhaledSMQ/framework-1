@@ -130,8 +130,7 @@ fw.feature('component', function () {
                 model: {},
 
                 //
-                // Resources. Mapping between 
-                // name and its value.
+                // Resources. Mapping between name and value.
                 //
 
                 resources: {},
@@ -229,7 +228,6 @@ fw.feature('component', function () {
     return {
 
         singleton: false,
-
         value: _value
     };
 });

@@ -1,6 +1,6 @@
 ﻿
 //
-// mvc.framework.view
+// mvc.framework.core.view
 //
 
 fw.module('mvc.framework.core').component('view', 'core.util, core.string, mvc.engine.component', function ($util, $string, $c) {
@@ -26,9 +26,8 @@ fw.module('mvc.framework.core').component('view', 'core.util, core.string, mvc.e
                 // HTML Generation
                 // ===============
                 //
-                // Generate the html for component.
-                // Check if component defines an html
-                // render method.
+                // Generate the html for component. Check if component 
+                // defines an html render method.
                 //
 
                 var _html = '';
@@ -44,15 +43,19 @@ fw.module('mvc.framework.core').component('view', 'core.util, core.string, mvc.e
                         var htmlContent = {};
 
                         $util.map($this.content, function (holderName, holderContent) {
-
-
                         });
                     }
                     else if ($util.isArray($this.content)) {
 
+                        //
+                        //
+                        //
                     }
                     else if ($util.isString($this.content)) {
 
+                        //
+                        //
+                        //
                     }
                 }
 

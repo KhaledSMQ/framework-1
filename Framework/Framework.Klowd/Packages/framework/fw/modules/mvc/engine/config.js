@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: mvc.config
+// Name/Class: mvc.engine.config
 // Created On: 28/Mar/2016
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Company: Coop4Creativity
