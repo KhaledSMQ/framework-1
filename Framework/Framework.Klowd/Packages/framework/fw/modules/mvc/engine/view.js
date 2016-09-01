@@ -28,7 +28,7 @@ fw.module('mvc.engine').service('view', 'core.util, mvc.engine.config', function
                 // Get a valid component definition.
                 //
 
-                var component = fw.get(componentInstance[$config.PROPERTY_COMPONENT_TYPE]);
+                var component = fw.get(componentInstance[$config.PROPERTY_INSTANCE_TYPE]);
 
                 if ($util.isDefined(component)) {
 
@@ -37,7 +37,7 @@ fw.module('mvc.engine').service('view', 'core.util, mvc.engine.config', function
                     if ($util.isDefined(componentInstance.content)) {
 
                         if (componentInstance.content instanceof Array ||
-                            $util.isDefined(componentInstance.content[$config.PROPERTY_COMPONENT_TYPE])) {
+                            $util.isDefined(componentInstance.content[$config.PROPERTY_INSTANCE_TYPE])) {
 
                             //
                             // Component must have a unique content placeholder 
@@ -108,12 +108,12 @@ fw.module('mvc.engine').service('view', 'core.util, mvc.engine.config', function
                 }
                 else {
 
-                    throw 'component ' + componentInstance[$config.PROPERTY_COMPONENT_TYPE] + ' is not defined!';
+                    throw 'component ' + componentInstance[$config.PROPERTY_INSTANCE_TYPE] + ' is not defined!';
                 }
             });
         }
         else
-            if ($util.isDefined(view[$config.PROPERTY_COMPONENT_TYPE])) {
+            if ($util.isDefined(view[$config.PROPERTY_INSTANCE_TYPE])) {
 
                 //
                 // One component.

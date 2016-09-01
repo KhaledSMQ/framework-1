@@ -24,11 +24,11 @@
 
         view: {
             id: 'left',
-            name: 'mvc.framework.bootstrap.col1'
+            type: 'mvc.framework.bootstrap.col1'
         }
     };
 
-    var fJSON = '{"model": {}, "view": {"id": "left", "name": "mvc.framework.bootstrap.col1"}}';
+    var fJSON = '{"model": {}, "view": {"id": "left", "type": "mvc.framework.bootstrap.col1"}}';
 
     var r = fw.get('mvc.engine.fragment');
 

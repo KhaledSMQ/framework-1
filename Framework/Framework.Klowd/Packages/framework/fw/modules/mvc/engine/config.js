@@ -17,10 +17,22 @@ fw.module('mvc.engine').service('config', 'core.util', function ($util) {
     var _DEFAULT_MANIFEST_URL = 'manifest.url';
 
     //
-    // Property name where the component type is defined.
+    // Property name where the component instance ID is defined.
     //
 
-    var _PROPERTY_COMPONENT_TYPE = 'name';
+    var _PROPERTY_INSTANCE_ID = 'id';
+
+    //
+    // Property name where the component instance TYPE is defined.
+    //
+
+    var _PROPERTY_INSTANCE_TYPE = 'type';
+
+    //
+    // Property name where the component instance MODEL is defined.
+    //
+
+    var _PROPERTY_INSTANCE_MODEL = 'model';
 
     //
     // Base name for native jQuery plugins.
@@ -34,7 +46,8 @@ fw.module('mvc.engine').service('config', 'core.util', function ($util) {
 
     return {
         DEFAULT_MANIFEST_URL: _DEFAULT_MANIFEST_URL,
-        PROPERTY_COMPONENT_TYPE: _PROPERTY_COMPONENT_TYPE,
+        PROPERTY_INSTANCE_TYPE: _PROPERTY_INSTANCE_TYPE,
+        PROPERTY_INSTANCE_ID: _PROPERTY_INSTANCE_ID,
         PLUGIN_BASE_NAME: _PLUGIN_BASE_NAME
     };
 });

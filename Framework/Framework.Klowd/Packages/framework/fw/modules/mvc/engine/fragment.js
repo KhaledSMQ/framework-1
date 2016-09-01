@@ -7,7 +7,7 @@
 // ============================================================================
 
 'use strict';
-fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engine.config, mvc.engine.scope, mvc.engine.view', function ($util, $seq, $config, $scope, $view) {
+fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, core.dom, mvc.engine.config, mvc.engine.scope, mvc.engine.view', function ($util, $seq, $dom, $config, $scope, $view) {
 
     //
     // Library name.
@@ -176,113 +176,87 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
             if (view instanceof Array) {
 
                 //
-                // new view is an empty array.
-                //
-
-                nView = [];
-
-                //
                 // List of components.
                 //
 
-                $util.apply(view, function (_, componentInstance) {
+                nView = $util.map(view, function (_, def) {
 
                     //
-                    // Get a valid component definition.
+                    // Component instances are defined by:
+                    //
+                    //     id........: user defined instance identifier 
+                    //     type......: the type of the component
+                    //     model.....: the model definition, object with the model property instances
+                    //     content...: optional component instances that are chldren to this instance.
                     //
 
-                    var component = fw.get(componentInstance[$config.PROPERTY_COMPONENT_TYPE]);
+                    //
+                    // Process identifier.
+                    // No two identifier can be of the same value.
+                    //
 
-                    if ($util.isDefined(component)) {
+                    var id = def[$config.PROPERTY_INSTANCE_ID];
+                    if ($util.isDefined(id)) {
 
-                        var content = {};
-
-                        if ($util.isDefined(componentInstance.content)) {
-
-                            if (componentInstance.content instanceof Array ||
-                                $util.isDefined(componentInstance.content[$config.PROPERTY_COMPONENT_TYPE])) {
-
-                                //
-                                // Component must have a unique content placeholder 
-                                // definition, otherwise this wont work...
-                                //
-
-                                var placeholder = '';
-
-                                if ($util.isDefined(component.placeholders) && 1 == $util.count(component.placeholders)) {
-
-                                    //
-                                    // Get the name of the single placeholder.
-                                    //
-
-                                    $util.apply(component.placeholders, function (name, def) { placeholder = name; });
-
-                                    //
-                                    //
-                                    // CASE: Content is an array of component instances. 
-                                    //       generate each template and merge it. The component
-                                    //       definition must contain one and only one content
-                                    //       placeholder.
-                                    //
-                                    //
-                                    // CASE: Content is an object, a single instance.
-                                    //       and is *NOT* a content definition with placeholders.
-                                    //       The component definition must contain one and only 
-                                    //       one content placeholder.
-                                    //
-                                    //
-
-                                    content[placeholder] = _normalize(componentInstance.content);
-                                }
-                                else {
-
-                                    //
-                                    // ERROR: Component definition needs to define a single placeholder.
-                                    //
-
-                                    throw 'component with namespace \'' + component.namespace + '\' and name \'' + component.name + '\' does not define a single placeholder!';
-                                }
-                            }
-                            else {
-
-                                //
-                                // CASE: Content defines the placeholders.
-                                //
-
-                                $util.apply(componentInstance.content, function (placeholderName, placeholderContent) {
-
-                                    content[placeholderName] = _normalize(placeholderContent);
-                                });
-                            }
-
-                            //
-                            // Change object.
-                            //
-
-                            componentInstance.content = content;
-                        }
                         //
-                        // else {
+                        // TODO: Check if identifier was already used in
+                        // this view.
                         //
-                        // Component instance does not have any content in it.
-                        // No need to normalize.
-                        //
-                        // }
                     }
                     else {
 
-                        throw 'component ' + componentInstance[$config.PROPERTY_COMPONENT_TYPE] + ' is not defined!';
+                        //
+                        // User did not specify an identifier, generate
+                        // a random, unique identiifer for component instance.
+                        //
+
+                        id = $dom.getID();
+                    }
+
+                    var type = def[$config.PROPERTY_INSTANCE_TYPE];
+                    if ($util.isDefined(type)) {
+
+                        //
+                        // TODO: Check if type defines a component
+                        // that actually exists.
+                        //
+                    }
+                    else {
+
+                        //
+                        // ERROR: type for component instance is a required property.
+                        //
+
+                        throw 'component instance property \'' + $config.PROPERTY_INSTANCE_TYPE + '\' is not defined!';
+                    }
+
+                    var model = def[$config.PROPERTY_INSTANCE_MODEL];
+                    if ($util.isDefined(model)) {
+
+                    }
+                    else {
+                        model = null;
+                    }
+
+                    //
+                    // Build the resulting normalized component instance.
+                    //
+
+                    return {
+                        id: id,
+                        type: type,
+                        model: model
                     }
                 });
             }
             else
-                if ($util.isDefined(view[$config.PROPERTY_COMPONENT_TYPE])) {
+                if ($util.isDefined(view[$config.PROPERTY_INSTANCE_TYPE])) {
 
                     //
                     // One component.
                     //
 
-                    view = _normalize([view]);
+                    nView = _worker([view]);
                 }
                 else {
 
@@ -290,12 +264,12 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, mvc.engin
                     // Placeholders.
                     //
 
-                    $util.apply(view, function (name, content) { view[name] = _normalize(content); })
+                    nView = $util.map(view, function (_, content) { return _worker(content); })
                 }
 
             return nView;
         };
-        
+
         //
         // Normalize the view and add the normalized view to the pipe.
         //
