@@ -191,8 +191,7 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, core.dom,
                     //
 
                     //
-                    // Process identifier.
-                    // No two identifier can be of the same value.
+                    // ID
                     //
 
                     var id = def[$config.PROPERTY_INSTANCE_ID];
@@ -200,7 +199,7 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, core.dom,
 
                         //
                         // TODO: Check if identifier was already used in
-                        // this view.
+                        // this view/fragment.
                         //
                     }
                     else {
@@ -212,6 +211,10 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, core.dom,
 
                         id = $dom.getID();
                     }
+
+                    //
+                    // TYPE
+                    //
 
                     var type = def[$config.PROPERTY_INSTANCE_TYPE];
                     if ($util.isDefined(type)) {
@@ -230,6 +233,10 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, core.dom,
                         throw 'component instance property \'' + $config.PROPERTY_INSTANCE_TYPE + '\' is not defined!';
                     }
 
+                    //
+                    // MODEL
+                    //
+
                     var model = def[$config.PROPERTY_INSTANCE_MODEL];
                     if ($util.isDefined(model)) {
 
@@ -239,13 +246,26 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, core.dom,
                     }
 
                     //
+                    // CONTENT
+                    //
+
+                    var content = def[$config.PROPERTY_INSTANCE_CONTENT];
+                    if ($util.isDefined(content)) {
+                        content = _worker(content);
+                    }
+                    else {
+                        content = null;
+                    }
+
+                    //
                     // Build the resulting normalized component instance.
                     //
 
                     return {
                         id: id,
                         type: type,
-                        model: model
+                        model: model,
+                        content: content
                     }
                 });
             }
@@ -290,6 +310,85 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, core.dom,
     var _tree = function (scope, done) {
 
         //
+        // Internal function to generate the tree
+        // of nodes. Each node corresponds to a 
+        // component instance. This function assumes
+        // that all instances have an id and the view
+        // is an array of instances.
+        //
+
+        var _worker = function (view, instanceHashAPI) {
+
+            var tree = null;
+
+            tree = $util.map(view, function (_, def) {
+                
+                //
+                // CONTENT
+                //
+
+                var content = null;
+
+                if ($util.isDefined(def.content)) {
+
+                    content = $util.map(def.content, function (_, phContent) {
+                        return _worker(phContent, instanceHashAPI);
+                    });
+                }
+
+                //
+                // INSTANCE
+                //
+
+                var instance = fw.get(def.type);
+
+                instanceHashAPI.set(def.id, instance);
+
+                //
+                // NODE
+                //
+
+                var node = {
+
+                    //
+                    // From view.
+                    //
+
+                    id: def.id,
+                    type: def.type,
+                    model: def.model,
+
+                    //
+                    // Runtime values.
+                    //
+
+                    instance: instance,
+                    content: content
+                };
+
+                return node;
+
+            });
+
+            return tree;
+        }
+
+        //
+        // Tree structure:
+        //   instance......: data for instance mapping.
+        //   $instance.....: hash API (check fw.core.hash) with the mapping between ID and instances.
+        //   tree..........: the node tree structure for view/fragment.
+        //
+
+        var output = {};
+
+        output.instance = {};
+        output.$instance = fw.core.hash(output.instance);
+        output.tree = _worker(_vCurrent(scope), output.$instance);
+
+        _vAdd(scope, output);
+
+        //
         // Signal end of function.
         //
 
@@ -322,29 +421,14 @@ fw.module('mvc.engine').service('fragment', 'core.util, core.sequence, core.dom,
     // Fragment/Model/View related helpers.
     //
 
-    var _fCurrent = function (scope) {
-        return _xCurrent(scope, 'fragment');
-    }
+    var _fCurrent = function (scope) { return _xCurrent(scope, 'fragment'); }
+    var _fAdd = function (scope, val) { return _xAdd(scope, 'fragment', val); }
 
-    var _fAdd = function (scope, val) {
-        return _xAdd(scope, 'fragment', val);
-    }
+    var _mCurrent = function (scope) { return _xCurrent(scope, 'model'); }
+    var _mAdd = function (scope, val) { return _xAdd(scope, 'model', val); }
 
-    var _mCurrent = function (scope) {
-        return _xCurrent(scope, 'model');
-    }
-
-    var _mAdd = function (scope, val) {
-        return _xAdd(scope, 'model', val);
-    }
-
-    var _vCurrent = function (scope) {
-        return _xCurrent(scope, 'view');
-    }
-
-    var _vAdd = function (scope, val) {
-        return _xAdd(scope, 'view', val);
-    }
+    var _vCurrent = function (scope) { return _xCurrent(scope, 'view'); }
+    var _vAdd = function (scope, val) { return _xAdd(scope, 'view', val); }
 
     var _xCurrent = function (scope, property) {
 

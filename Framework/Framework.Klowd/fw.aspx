@@ -24,7 +24,16 @@
 
         view: {
             id: 'left',
-            type: 'mvc.framework.bootstrap.col1'
+            type: 'mvc.framework.bootstrap.col1',
+            content: {
+                'ph0': [
+                    {
+                        id: 'id0',
+                        type: 'mvc.framework.bootstrap.col3',
+                    }
+                ]
+            }
+
         }
     };
 

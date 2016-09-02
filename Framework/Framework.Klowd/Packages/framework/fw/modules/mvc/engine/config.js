@@ -35,6 +35,12 @@ fw.module('mvc.engine').service('config', 'core.util', function ($util) {
     var _PROPERTY_INSTANCE_MODEL = 'model';
 
     //
+    // Property name where the component instance CONTENT is defined.
+    //
+
+    var _PROPERTY_INSTANCE_CONTENT = 'content';
+
+    //
     // Base name for native jQuery plugins.
     //
 
@@ -48,6 +54,7 @@ fw.module('mvc.engine').service('config', 'core.util', function ($util) {
         DEFAULT_MANIFEST_URL: _DEFAULT_MANIFEST_URL,
         PROPERTY_INSTANCE_TYPE: _PROPERTY_INSTANCE_TYPE,
         PROPERTY_INSTANCE_ID: _PROPERTY_INSTANCE_ID,
+        PROPERTY_INSTANCE_CONTENT: _PROPERTY_INSTANCE_CONTENT,
         PLUGIN_BASE_NAME: _PLUGIN_BASE_NAME
     };
 });
