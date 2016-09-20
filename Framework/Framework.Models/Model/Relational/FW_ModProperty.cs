@@ -10,12 +10,10 @@
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
 using System;
-using System.Collections.Generic;
 
-namespace Framework.Models.Model.Schema
+namespace Framework.Models.Model.Relational
 {
-    public class FW_ModCluster :
-        IOwner<int>,
+    public class FW_ModProperty :
         IID<int>,
         IName<string>,
         IDescription<string>,
@@ -25,15 +23,17 @@ namespace Framework.Models.Model.Schema
         // Info
         //
 
-        public int Owner { get; set; }
-
         public int ID { get; set; }
 
         public string Name { get; set; }
 
+        public string DisplayName { get; set; }
+
         public string Description { get; set; }
 
-        public ICollection<FW_ModEntity> Entities { get; set; }
+        public bool Localizable { get; set; }
+
+        public bool Nullable { get; set; }
 
         //
         // Audits
@@ -51,17 +51,18 @@ namespace Framework.Models.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public FW_ModCluster()
+        public FW_ModProperty()
         {
             //
             // Info
             //
 
-            Owner = -1;
             ID = -1;
-            Name = string.Empty;
-            Description = string.Empty;
-            Entities = null;
+            Name = default(string);
+            DisplayName = default(string);
+            Description = default(string);
+            Localizable = default(bool);
+            Nullable = default(bool);
 
             //
             // Audits

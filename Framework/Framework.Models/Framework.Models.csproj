@@ -66,9 +66,9 @@
     <Compile Include="Model\Import\Value.cs" />
     <Compile Include="Model\Import\Entity.cs" />
     <Compile Include="Model\Import\Property.cs" />
-    <Compile Include="Model\Schema\FW_ModProperty.cs" />
-    <Compile Include="Model\Schema\FW_ModEntity.cs" />
-    <Compile Include="Model\Schema\FW_ModCluster.cs" />
+    <Compile Include="Model\Relational\FW_ModProperty.cs" />
+    <Compile Include="Model\Relational\FW_ModEntity.cs" />
+    <Compile Include="Model\Relational\FW_ModCluster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

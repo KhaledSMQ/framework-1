@@ -10,10 +10,11 @@
 using Framework.Core.Extensions;
 using Framework.Core.Patterns;
 using System;
+using System.Collections.Generic;
 
-namespace Framework.Models.Model.Schema
+namespace Framework.Models.Model.Relational
 {
-    public class FW_ModProperty :
+    public class FW_ModEntity :
         IID<int>,
         IName<string>,
         IDescription<string>,
@@ -27,13 +28,9 @@ namespace Framework.Models.Model.Schema
 
         public string Name { get; set; }
 
-        public string DisplayName { get; set; }
-
         public string Description { get; set; }
 
-        public bool Localizable { get; set; }
-
-        public bool Nullable { get; set; }
+        public ICollection<FW_ModProperty> Properties { get; set; }
 
         //
         // Audits
@@ -51,18 +48,16 @@ namespace Framework.Models.Model.Schema
         // CONSTRUCTORS
         // 
 
-        public FW_ModProperty()
+        public FW_ModEntity()
         {
             //
             // Info
             //
 
             ID = -1;
-            Name = default(string);
-            DisplayName = default(string);
-            Description = default(string);
-            Localizable = default(bool);
-            Nullable = default(bool);
+            Name = string.Empty;
+            Description = string.Empty;
+            Properties = null;
 
             //
             // Audits

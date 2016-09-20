@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="API\" />
+    <Folder Include="Model\Relational\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
