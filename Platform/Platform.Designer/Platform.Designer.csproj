@@ -75,10 +75,20 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Client\Main\Assets\Images\android-desktop.png" />
+    <Content Include="Client\Main\Assets\Images\dog.png" />
+    <Content Include="Client\Main\Assets\Images\favicon.png" />
+    <Content Include="Client\Main\Assets\Images\ios-desktop.png" />
+    <Content Include="Client\Main\Assets\Images\user.jpg" />
+    <Content Include="Client\Main\index.html" />
+    <Content Include="Client\Main\Assets\styles.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Client\Modules\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -95,7 +105,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51154</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51154/</IISUrl>
+          <IISUrl>http://localhost:60000/designer</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

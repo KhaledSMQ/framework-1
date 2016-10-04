@@ -75,6 +75,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Client\Assets\Images\android-desktop.png" />
+    <Content Include="Client\Assets\Images\dog.png" />
+    <Content Include="Client\Assets\Images\favicon.png" />
+    <Content Include="Client\Assets\Images\ios-desktop.png" />
+    <Content Include="Client\Assets\Images\user.jpg" />
+    <Content Include="Client\Assets\styles.css" />
+    <Content Include="Client\index.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -95,7 +102,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51518</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51518/</IISUrl>
+          <IISUrl>http://localhost:60000/apanel</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
