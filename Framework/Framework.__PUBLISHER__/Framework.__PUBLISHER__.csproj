@@ -66,10 +66,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Framework.Apps\Framework.Apps.csproj">
-      <Project>{41e965a3-a8bc-49cc-b209-598055d00b30}</Project>
-      <Name>Framework.Apps</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Framework.App\Framework.App.csproj">
       <Project>{da4959af-8107-4894-a99f-b3956625f2fd}</Project>
       <Name>Framework.App</Name>

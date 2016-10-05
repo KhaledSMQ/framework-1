@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AE265438-E5D0-4353-8D64-4C1F1D972A4E}</ProjectGuid>
+    <ProjectGuid>{047AF7FC-A7BF-4DC6-8147-CE3E663D8233}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Framework.Klowd</RootNamespace>
-    <AssemblyName>Framework.Klowd</AssemblyName>
+    <RootNamespace>Platform.Runtime</RootNamespace>
+    <AssemblyName>Platform.Runtime</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort>44305</IISExpressSSLPort>
@@ -42,8 +42,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DotLiquid, Version=1.8.0.0, Culture=neutral, PublicKeyToken=82e46016ecf9f07c, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotLiquid.1.8.0\lib\NET45\DotLiquid.dll</HintPath>
+    <Reference Include="DotLiquid, Version=2.0.55.0, Culture=neutral, PublicKeyToken=82e46016ecf9f07c, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotLiquid.2.0.55\lib\net451\DotLiquid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -53,6 +53,141 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Framework.App">
+      <HintPath>..\..\DIST\Debug\Framework.App.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Auth">
+      <HintPath>..\..\DIST\Debug\Framework.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Blocks">
+      <HintPath>..\..\DIST\Debug\Framework.Blocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Charting">
+      <HintPath>..\..\DIST\Debug\Framework.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Client">
+      <HintPath>..\..\DIST\Debug\Framework.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Cloud">
+      <HintPath>..\..\DIST\Debug\Framework.Cloud.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Code">
+      <HintPath>..\..\DIST\Debug\Framework.Code.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Comm">
+      <HintPath>..\..\DIST\Debug\Framework.Comm.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Compression">
+      <HintPath>..\..\DIST\Debug\Framework.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Content">
+      <HintPath>..\..\DIST\Debug\Framework.Content.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Core">
+      <HintPath>..\..\DIST\Debug\Framework.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Cryptography">
+      <HintPath>..\..\DIST\Debug\Framework.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Data">
+      <HintPath>..\..\DIST\Debug\Framework.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Data.EntityFramework">
+      <HintPath>..\..\DIST\Debug\Framework.Data.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Data.GoogleCloud">
+      <HintPath>..\..\DIST\Debug\Framework.Data.GoogleCloud.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Data.Mongo">
+      <HintPath>..\..\DIST\Debug\Framework.Data.Mongo.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Design">
+      <HintPath>..\..\DIST\Debug\Framework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Drawing">
+      <HintPath>..\..\DIST\Debug\Framework.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Factory">
+      <HintPath>..\..\DIST\Debug\Framework.Factory.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Forms">
+      <HintPath>..\..\DIST\Debug\Framework.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Fragments">
+      <HintPath>..\..\DIST\Debug\Framework.Fragments.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.GPKit">
+      <HintPath>..\..\DIST\Debug\Framework.GPKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Localization">
+      <HintPath>..\..\DIST\Debug\Framework.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Logging">
+      <HintPath>..\..\DIST\Debug\Framework.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Maps">
+      <HintPath>..\..\DIST\Debug\Framework.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Models">
+      <HintPath>..\..\DIST\Debug\Framework.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Packages">
+      <HintPath>..\..\DIST\Debug\Framework.Packages.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Reporting">
+      <HintPath>..\..\DIST\Debug\Framework.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Search">
+      <HintPath>..\..\DIST\Debug\Framework.Search.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Server">
+      <HintPath>..\..\DIST\Debug\Framework.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Shell">
+      <HintPath>..\..\DIST\Debug\Framework.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Storage">
+      <HintPath>..\..\DIST\Debug\Framework.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Storage.EntityFramework">
+      <HintPath>..\..\DIST\Debug\Framework.Storage.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Storage.FileSystem">
+      <HintPath>..\..\DIST\Debug\Framework.Storage.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Storage.GoogleClowd">
+      <HintPath>..\..\DIST\Debug\Framework.Storage.GoogleClowd.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Templates">
+      <HintPath>..\..\DIST\Debug\Framework.Templates.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Text">
+      <HintPath>..\..\DIST\Debug\Framework.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Ticker">
+      <HintPath>..\..\DIST\Debug\Framework.Ticker.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Time">
+      <HintPath>..\..\DIST\Debug\Framework.Time.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Types">
+      <HintPath>..\..\DIST\Debug\Framework.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Users">
+      <HintPath>..\..\DIST\Debug\Framework.Users.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Utils">
+      <HintPath>..\..\DIST\Debug\Framework.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Watcher">
+      <HintPath>..\..\DIST\Debug\Framework.Watcher.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.Web">
+      <HintPath>..\..\DIST\Debug\Framework.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework.WebAPI">
+      <HintPath>..\..\DIST\Debug\Framework.WebAPI.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -103,8 +238,8 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
@@ -584,7 +719,7 @@
     <Content Include="Packages\3party\jquery\1112\_external.json" />
     <Content Include="Packages\3party\jquery\1113\_external.json" />
     <Content Include="Packages\3party\jquery\ui\1113\_external.json" />
-    <None Include="Properties\PublishProfiles\LOCALE-FILESYSTEM.pubxml" />
+    <None Include="Properties\PublishProfiles\SmarterASP.NET [debug].pubxml" />
     <None Include="Web.Deploy [DEBUG].config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -606,194 +741,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Apps\" />
     <Folder Include="Data\DB\" />
-    <Folder Include="Modules\" />
     <Folder Include="Packages\framework\angular\v2\" />
     <Folder Include="Packages\framework\fw\modules\mvc\framework\forms\" />
-    <Folder Include="Servers\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Framework.App\Framework.App.csproj">
-      <Project>{da4959af-8107-4894-a99f-b3956625f2fd}</Project>
-      <Name>Framework.App</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Auth\Framework.Auth.csproj">
-      <Project>{13b3c667-c1d6-4736-bee7-70f608538914}</Project>
-      <Name>Framework.Auth</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Blocks\Framework.Blocks.csproj">
-      <Project>{a3f65f3e-d617-4a75-82b8-4e31731545ff}</Project>
-      <Name>Framework.Blocks</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Charting\Framework.Charting.csproj">
-      <Project>{8e8c0642-e92c-4fa3-b127-7a6383870d37}</Project>
-      <Name>Framework.Charting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Client\Framework.Client.csproj">
-      <Project>{f9ef6ebb-b11b-4fdd-b88a-c4bbc08fbcb7}</Project>
-      <Name>Framework.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Cloud\Framework.Cloud.csproj">
-      <Project>{d7d0b269-ca59-41f3-a566-8148d5cd4621}</Project>
-      <Name>Framework.Cloud</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Code\Framework.Code.csproj">
-      <Project>{dea74fd1-67ed-4684-8445-60358ab851df}</Project>
-      <Name>Framework.Code</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Comm\Framework.Comm.csproj">
-      <Project>{df072c9d-45f4-4ee7-a243-a155e6a79a7b}</Project>
-      <Name>Framework.Comm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Compression\Framework.Compression.csproj">
-      <Project>{b7701d2a-54f2-430a-88c3-8ef5e4843732}</Project>
-      <Name>Framework.Compression</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Content\Framework.Content.csproj">
-      <Project>{9244770a-f427-457f-88af-3be43bde999f}</Project>
-      <Name>Framework.Content</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
-      <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>
-      <Name>Framework.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Cryptography\Framework.Cryptography.csproj">
-      <Project>{d13e3047-98b2-47b0-a9d6-35dedb8459ed}</Project>
-      <Name>Framework.Cryptography</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Data.EntityFramework\Framework.Data.EntityFramework.csproj">
-      <Project>{5e629e67-ae42-49d3-8a92-a89f756457b4}</Project>
-      <Name>Framework.Data.EntityFramework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Data.GoogleCloud\Framework.Data.GoogleCloud.csproj">
-      <Project>{1c5594d7-63c5-4d6f-a64a-5dbd40ec97c5}</Project>
-      <Name>Framework.Data.GoogleCloud</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Data.Mongo\Framework.Data.Mongo.csproj">
-      <Project>{0792e995-dd6c-4cfd-9b2f-c4b6f4665e1e}</Project>
-      <Name>Framework.Data.Mongo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Data\Framework.Data.csproj">
-      <Project>{ec35466a-241c-4cbc-990c-c3695fd29a22}</Project>
-      <Name>Framework.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Design\Framework.Design.csproj">
-      <Project>{093fe48c-e0af-4bbd-8ae8-9002c6da076f}</Project>
-      <Name>Framework.Design</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Drawing\Framework.Drawing.csproj">
-      <Project>{a6a024f6-4b1c-44a3-a66b-c73edd58b3fc}</Project>
-      <Name>Framework.Drawing</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Factory\Framework.Factory.csproj">
-      <Project>{5a0032b0-780a-43c0-8cc0-04f3cd77336a}</Project>
-      <Name>Framework.Factory</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Forms\Framework.Forms.csproj">
-      <Project>{12f96190-7bb7-4f01-bef0-03591d5ae9c1}</Project>
-      <Name>Framework.Forms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Fragments\Framework.Fragments.csproj">
-      <Project>{c0e1e4dc-990d-4c07-aaa9-198615919cc2}</Project>
-      <Name>Framework.Fragments</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.GPKit\Framework.GPKit.csproj">
-      <Project>{1854dd26-146b-40d8-9873-bb0cb6533316}</Project>
-      <Name>Framework.GPKit</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Localization\Framework.Localization.csproj">
-      <Project>{4605e740-4e65-4be5-a191-834804595e8f}</Project>
-      <Name>Framework.Localization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Logging\Framework.Logging.csproj">
-      <Project>{a14645c3-44da-491d-b290-5b9b3497bd9e}</Project>
-      <Name>Framework.Logging</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Maps\Framework.Maps.csproj">
-      <Project>{3de7d102-2d04-410d-9110-9d805e649979}</Project>
-      <Name>Framework.Maps</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Models\Framework.Models.csproj">
-      <Project>{eefd71d7-df7a-46b2-b31a-e66cdd14ab5e}</Project>
-      <Name>Framework.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Packages\Framework.Packages.csproj">
-      <Project>{5d3c5a1a-f582-4c50-9036-e466d3f79446}</Project>
-      <Name>Framework.Packages</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Reporting\Framework.Reporting.csproj">
-      <Project>{89bb6ad5-6b06-415c-b460-965dc5e39b8b}</Project>
-      <Name>Framework.Reporting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Search\Framework.Search.csproj">
-      <Project>{9201f213-d8e3-4f69-bf05-8b6540ae99e2}</Project>
-      <Name>Framework.Search</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Server\Framework.Server.csproj">
-      <Project>{79546d64-66d8-4d9f-a68a-1f3db2bb5ed7}</Project>
-      <Name>Framework.Server</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Shell\Framework.Shell.csproj">
-      <Project>{4d8bc1f3-1d0a-436f-8e79-2fcb51cad64a}</Project>
-      <Name>Framework.Shell</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Storage.EntityFramework\Framework.Storage.EntityFramework.csproj">
-      <Project>{279d483a-e474-4926-9ce9-891babbb4dd5}</Project>
-      <Name>Framework.Storage.EntityFramework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Storage.FileSystem\Framework.Storage.FileSystem.csproj">
-      <Project>{8058f1f7-331b-4a10-8958-a1fda7e9fd6c}</Project>
-      <Name>Framework.Storage.FileSystem</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Storage.GoogleClowd\Framework.Storage.GoogleClowd.csproj">
-      <Project>{5504a171-d447-4268-9f67-6b503091579e}</Project>
-      <Name>Framework.Storage.GoogleClowd</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Storage\Framework.Storage.csproj">
-      <Project>{ba222fac-b415-4a78-936a-1a5d27e71f0b}</Project>
-      <Name>Framework.Storage</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Templates\Framework.Templates.csproj">
-      <Project>{b4935fcb-76e7-4ac6-9f6d-89a6e97f3ce3}</Project>
-      <Name>Framework.Templates</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Text\Framework.Text.csproj">
-      <Project>{348a49f2-9ab0-4d0f-9804-6582cf60f6f4}</Project>
-      <Name>Framework.Text</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Ticker\Framework.Ticker.csproj">
-      <Project>{4e959e29-14f4-425f-9002-dcfcf95da0e4}</Project>
-      <Name>Framework.Ticker</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Time\Framework.Time.csproj">
-      <Project>{7106be6f-a03c-4fc0-b812-283b35dd6957}</Project>
-      <Name>Framework.Time</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Types\Framework.Types.csproj">
-      <Project>{88175eb3-3748-45dd-86db-5c226f642c53}</Project>
-      <Name>Framework.Types</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Users\Framework.Users.csproj">
-      <Project>{b8a2f462-1a60-4028-a136-0fdc817f60cf}</Project>
-      <Name>Framework.Users</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Utils\Framework.Utils.csproj">
-      <Project>{0eae41ad-8a59-40e1-9ce4-5627ed7d77df}</Project>
-      <Name>Framework.Utils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Watcher\Framework.Watcher.csproj">
-      <Project>{2ae5048a-e359-4de7-9223-f0d9cf4e97d3}</Project>
-      <Name>Framework.Watcher</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.WebAPI\Framework.WebAPI.csproj">
-      <Project>{d590ba6d-2425-4270-9201-d067fc59fb47}</Project>
-      <Name>Framework.WebAPI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Web\Framework.Web.csproj">
-      <Project>{ab6ab9f2-e765-4cb6-aede-a5cb3bcc8794}</Project>
-      <Name>Framework.Web</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -23,7 +23,7 @@ namespace Framework.Cloud.Model.Relational
 
         public Settings Settings { get; set; }
 
-        public ICollection<Apps.Model.Relational.App> Apps { get; set; }
+        public ICollection<App.Model.Relational.App> Apps { get; set; }
 
         //
         // CONSTRUCTORS
@@ -32,7 +32,7 @@ namespace Framework.Cloud.Model.Relational
         public Domain()
         {
             Settings = default(Settings);
-            Apps = default(ICollection<Apps.Model.Relational.App>);
+            Apps = default(ICollection<App.Model.Relational.App>);
         }
     }
 }
