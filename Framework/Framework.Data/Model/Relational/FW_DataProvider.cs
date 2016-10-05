@@ -7,7 +7,7 @@
 // Description: Service specification class.
 // ============================================================================
 
-using Framework.Data.Patterns;
+using Framework.Core.Patterns;
 using System.Collections.Generic;
 
 namespace Framework.Data.Model.Relational

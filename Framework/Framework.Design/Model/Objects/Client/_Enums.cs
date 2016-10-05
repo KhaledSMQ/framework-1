@@ -7,9 +7,6 @@
 // Description: 
 // ============================================================================
 
-using Framework.Core.Types.Specialized;
-using Framework.Data.Patterns;
-
 namespace Framework.Design.Model.Objects.Client
 {
     public enum KindOfParam

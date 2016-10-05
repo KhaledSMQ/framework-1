@@ -8,7 +8,6 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
-using Framework.Data.Patterns;
 using System.Collections.Generic;
 
 namespace Framework.Server.Model.Relational

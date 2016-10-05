@@ -7,7 +7,7 @@
 // Description: 
 // ============================================================================
 
-using Framework.Data.Patterns;
+using Framework.Core.Patterns;
 
 namespace Framework.Data.Model.Relational
 {

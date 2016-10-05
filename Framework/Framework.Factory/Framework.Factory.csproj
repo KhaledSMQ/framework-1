@@ -102,9 +102,7 @@
     <None Include="packages.config" />
     <None Include="Framework.Factory.nuspec" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\Runtime\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>

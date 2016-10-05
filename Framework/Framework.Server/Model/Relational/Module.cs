@@ -8,7 +8,6 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
-using Framework.Data.Patterns;
 
 namespace Framework.Server.Model.Relational
 {

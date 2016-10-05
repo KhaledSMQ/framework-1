@@ -125,6 +125,9 @@
     <Compile Include="Model\Config\LibConfiguration.cs" />
     <Compile Include="Model\Config\MethodCallConfiguration.cs" />
     <Compile Include="Model\Runtime\MethodCall.cs" />
+    <Compile Include="Patterns\ABaseClass.cs" />
+    <Compile Include="Patterns\ABaseClassWithID.cs" />
+    <Compile Include="Patterns\ABaseClassWithIDAndOwner.cs" />
     <Compile Include="Patterns\ACommon.cs" />
     <Compile Include="Model\Config\BaseConfiguration.cs" />
     <Compile Include="Model\Config\ModuleConfiguration.cs" />

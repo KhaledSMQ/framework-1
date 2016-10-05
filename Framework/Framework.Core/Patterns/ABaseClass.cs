@@ -11,7 +11,7 @@ using System;
 using Framework.Core.Patterns;
 using Framework.Core.Extensions;
 
-namespace Framework.Data.Patterns
+namespace Framework.Core.Patterns
 {
     public class ABaseClass<TUser> :
         IVisible,

@@ -84,8 +84,6 @@
     <Compile Include="Model\Objects\ASchemaObject.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="API\SrvStore.cs" />
-    <Compile Include="Patterns\ABaseClass.cs" />
-    <Compile Include="Patterns\ABaseClassWithIDAndOwner.cs" />
     <Compile Include="Patterns\AController.cs" />
     <Compile Include="API\SrvTransform.cs" />
     <Compile Include="Model\Config\_Const.cs" />
@@ -110,7 +108,6 @@
     <Compile Include="Model\Relational\FW_DataPartialModel.cs" />
     <Compile Include="Patterns\ADataContext.cs" />
     <Compile Include="Patterns\AGenericDataSet.cs" />
-    <Compile Include="Patterns\ABaseClassWithID.cs" />
     <Compile Include="API\IDynamicDataSet.cs" />
     <Compile Include="Patterns\ADynamicDataSet.cs" />
     <Compile Include="API\IDynamicDataObject.cs" />

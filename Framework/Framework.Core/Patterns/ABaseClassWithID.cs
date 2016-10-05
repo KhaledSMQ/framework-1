@@ -7,23 +7,25 @@
 // Description:
 // ============================================================================
 
-namespace Framework.Data.Patterns
+using Framework.Core.Patterns;
+
+namespace Framework.Core.Patterns
 {
-    public class ABaseClassWithIDAndOwner<TID, TUser, TOwner> : ABaseClassWithID<TID, TUser>
+    public class ABaseClassWithID<TID, TUser> : ABaseClass<TUser>, IID<TID>
     {
         //
-        // PROPERTIES
+        // BASE
         //
 
-        public TOwner Owner { get; set; }  
+        public TID ID { get; set; }  
 
         //
         // CONSTRUCTORS
         //
 
-        public ABaseClassWithIDAndOwner() : base()
+        public ABaseClassWithID()
         {
-            Owner = default(TOwner);
+            ID = default(TID);
         }
     }
 }

@@ -8,7 +8,7 @@
 // ============================================================================
 
 using Framework.Core.Types.Specialized;
-using Framework.Data.Patterns;
+using Framework.Core.Patterns;
 
 namespace Framework.Data.Model.Objects
 {
