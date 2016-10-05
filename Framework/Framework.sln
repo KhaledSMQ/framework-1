@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Core", "Framework.Core\Framework.Core.csproj", "{A9AAE087-D85E-4042-B5B7-C1DA7315DF28}"
 EndProject
@@ -94,11 +94,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Design", "Framework.Design\Framework.Design.csproj", "{093FE48C-E0AF-4BBD-8AE8-9002C6DA076F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.GPKit", "Framework.GPKit\Framework.GPKit.csproj", "{1854DD26-146B-40D8-9873-BB0CB6533316}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analysis", "Analysis", "{3B080951-616F-45DE-B48D-338F471969D4}"
-	ProjectSection(SolutionItems) = preProject
-		Dependencies.dgml = Dependencies.dgml
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
