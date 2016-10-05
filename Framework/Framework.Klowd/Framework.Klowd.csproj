@@ -614,9 +614,9 @@
     <Folder Include="Servers\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Framework.Apps\Framework.Apps.csproj">
-      <Project>{41e965a3-a8bc-49cc-b209-598055d00b30}</Project>
-      <Name>Framework.Apps</Name>
+    <ProjectReference Include="..\Framework.App\Framework.App.csproj">
+      <Project>{da4959af-8107-4894-a99f-b3956625f2fd}</Project>
+      <Name>Framework.App</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Auth\Framework.Auth.csproj">
       <Project>{13b3c667-c1d6-4736-bee7-70f608538914}</Project>
@@ -629,6 +629,14 @@
     <ProjectReference Include="..\Framework.Charting\Framework.Charting.csproj">
       <Project>{8e8c0642-e92c-4fa3-b127-7a6383870d37}</Project>
       <Name>Framework.Charting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Client\Framework.Client.csproj">
+      <Project>{f9ef6ebb-b11b-4fdd-b88a-c4bbc08fbcb7}</Project>
+      <Name>Framework.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Cloud\Framework.Cloud.csproj">
+      <Project>{d7d0b269-ca59-41f3-a566-8148d5cd4621}</Project>
+      <Name>Framework.Cloud</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Code\Framework.Code.csproj">
       <Project>{dea74fd1-67ed-4684-8445-60358ab851df}</Project>
@@ -670,6 +678,10 @@
       <Project>{ec35466a-241c-4cbc-990c-c3695fd29a22}</Project>
       <Name>Framework.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Framework.Design\Framework.Design.csproj">
+      <Project>{093fe48c-e0af-4bbd-8ae8-9002c6da076f}</Project>
+      <Name>Framework.Design</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Framework.Drawing\Framework.Drawing.csproj">
       <Project>{a6a024f6-4b1c-44a3-a66b-c73edd58b3fc}</Project>
       <Name>Framework.Drawing</Name>
@@ -685,6 +697,10 @@
     <ProjectReference Include="..\Framework.Fragments\Framework.Fragments.csproj">
       <Project>{c0e1e4dc-990d-4c07-aaa9-198615919cc2}</Project>
       <Name>Framework.Fragments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.GPKit\Framework.GPKit.csproj">
+      <Project>{1854dd26-146b-40d8-9873-bb0cb6533316}</Project>
+      <Name>Framework.GPKit</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Localization\Framework.Localization.csproj">
       <Project>{4605e740-4e65-4be5-a191-834804595e8f}</Project>

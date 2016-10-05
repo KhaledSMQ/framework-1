@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0FC259D3-6A2D-4334-B366-3F9ABB41AF3D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Framework.__PUBLISHER__</RootNamespace>
+    <AssemblyName>Framework.__PUBLISHER__</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\DIST\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Lib.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Framework.Apps\Framework.Apps.csproj">
+      <Project>{41e965a3-a8bc-49cc-b209-598055d00b30}</Project>
+      <Name>Framework.Apps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.App\Framework.App.csproj">
+      <Project>{da4959af-8107-4894-a99f-b3956625f2fd}</Project>
+      <Name>Framework.App</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Auth\Framework.Auth.csproj">
+      <Project>{13b3c667-c1d6-4736-bee7-70f608538914}</Project>
+      <Name>Framework.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Blocks\Framework.Blocks.csproj">
+      <Project>{a3f65f3e-d617-4a75-82b8-4e31731545ff}</Project>
+      <Name>Framework.Blocks</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Charting\Framework.Charting.csproj">
+      <Project>{8e8c0642-e92c-4fa3-b127-7a6383870d37}</Project>
+      <Name>Framework.Charting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Client\Framework.Client.csproj">
+      <Project>{f9ef6ebb-b11b-4fdd-b88a-c4bbc08fbcb7}</Project>
+      <Name>Framework.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Cloud\Framework.Cloud.csproj">
+      <Project>{d7d0b269-ca59-41f3-a566-8148d5cd4621}</Project>
+      <Name>Framework.Cloud</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Code\Framework.Code.csproj">
+      <Project>{dea74fd1-67ed-4684-8445-60358ab851df}</Project>
+      <Name>Framework.Code</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Comm\Framework.Comm.csproj">
+      <Project>{df072c9d-45f4-4ee7-a243-a155e6a79a7b}</Project>
+      <Name>Framework.Comm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Compression\Framework.Compression.csproj">
+      <Project>{b7701d2a-54f2-430a-88c3-8ef5e4843732}</Project>
+      <Name>Framework.Compression</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Content\Framework.Content.csproj">
+      <Project>{9244770a-f427-457f-88af-3be43bde999f}</Project>
+      <Name>Framework.Content</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
+      <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>
+      <Name>Framework.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Cryptography\Framework.Cryptography.csproj">
+      <Project>{d13e3047-98b2-47b0-a9d6-35dedb8459ed}</Project>
+      <Name>Framework.Cryptography</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Data.EntityFramework\Framework.Data.EntityFramework.csproj">
+      <Project>{5e629e67-ae42-49d3-8a92-a89f756457b4}</Project>
+      <Name>Framework.Data.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Data.GoogleCloud\Framework.Data.GoogleCloud.csproj">
+      <Project>{1c5594d7-63c5-4d6f-a64a-5dbd40ec97c5}</Project>
+      <Name>Framework.Data.GoogleCloud</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Data.Mongo\Framework.Data.Mongo.csproj">
+      <Project>{0792e995-dd6c-4cfd-9b2f-c4b6f4665e1e}</Project>
+      <Name>Framework.Data.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Data\Framework.Data.csproj">
+      <Project>{ec35466a-241c-4cbc-990c-c3695fd29a22}</Project>
+      <Name>Framework.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Design\Framework.Design.csproj">
+      <Project>{093fe48c-e0af-4bbd-8ae8-9002c6da076f}</Project>
+      <Name>Framework.Design</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Drawing\Framework.Drawing.csproj">
+      <Project>{a6a024f6-4b1c-44a3-a66b-c73edd58b3fc}</Project>
+      <Name>Framework.Drawing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Factory\Framework.Factory.csproj">
+      <Project>{5a0032b0-780a-43c0-8cc0-04f3cd77336a}</Project>
+      <Name>Framework.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Forms\Framework.Forms.csproj">
+      <Project>{12f96190-7bb7-4f01-bef0-03591d5ae9c1}</Project>
+      <Name>Framework.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Fragments\Framework.Fragments.csproj">
+      <Project>{c0e1e4dc-990d-4c07-aaa9-198615919cc2}</Project>
+      <Name>Framework.Fragments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.GPKit\Framework.GPKit.csproj">
+      <Project>{1854dd26-146b-40d8-9873-bb0cb6533316}</Project>
+      <Name>Framework.GPKit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Localization\Framework.Localization.csproj">
+      <Project>{4605e740-4e65-4be5-a191-834804595e8f}</Project>
+      <Name>Framework.Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Logging\Framework.Logging.csproj">
+      <Project>{a14645c3-44da-491d-b290-5b9b3497bd9e}</Project>
+      <Name>Framework.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Maps\Framework.Maps.csproj">
+      <Project>{3de7d102-2d04-410d-9110-9d805e649979}</Project>
+      <Name>Framework.Maps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Models\Framework.Models.csproj">
+      <Project>{eefd71d7-df7a-46b2-b31a-e66cdd14ab5e}</Project>
+      <Name>Framework.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Packages\Framework.Packages.csproj">
+      <Project>{5d3c5a1a-f582-4c50-9036-e466d3f79446}</Project>
+      <Name>Framework.Packages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Reporting\Framework.Reporting.csproj">
+      <Project>{89bb6ad5-6b06-415c-b460-965dc5e39b8b}</Project>
+      <Name>Framework.Reporting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Search\Framework.Search.csproj">
+      <Project>{9201f213-d8e3-4f69-bf05-8b6540ae99e2}</Project>
+      <Name>Framework.Search</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Server\Framework.Server.csproj">
+      <Project>{79546d64-66d8-4d9f-a68a-1f3db2bb5ed7}</Project>
+      <Name>Framework.Server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Shell\Framework.Shell.csproj">
+      <Project>{4d8bc1f3-1d0a-436f-8e79-2fcb51cad64a}</Project>
+      <Name>Framework.Shell</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Storage.EntityFramework\Framework.Storage.EntityFramework.csproj">
+      <Project>{279d483a-e474-4926-9ce9-891babbb4dd5}</Project>
+      <Name>Framework.Storage.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Storage.FileSystem\Framework.Storage.FileSystem.csproj">
+      <Project>{8058f1f7-331b-4a10-8958-a1fda7e9fd6c}</Project>
+      <Name>Framework.Storage.FileSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Storage.GoogleClowd\Framework.Storage.GoogleClowd.csproj">
+      <Project>{5504a171-d447-4268-9f67-6b503091579e}</Project>
+      <Name>Framework.Storage.GoogleClowd</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Storage\Framework.Storage.csproj">
+      <Project>{ba222fac-b415-4a78-936a-1a5d27e71f0b}</Project>
+      <Name>Framework.Storage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Templates\Framework.Templates.csproj">
+      <Project>{b4935fcb-76e7-4ac6-9f6d-89a6e97f3ce3}</Project>
+      <Name>Framework.Templates</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Text\Framework.Text.csproj">
+      <Project>{348a49f2-9ab0-4d0f-9804-6582cf60f6f4}</Project>
+      <Name>Framework.Text</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Ticker\Framework.Ticker.csproj">
+      <Project>{4e959e29-14f4-425f-9002-dcfcf95da0e4}</Project>
+      <Name>Framework.Ticker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Time\Framework.Time.csproj">
+      <Project>{7106be6f-a03c-4fc0-b812-283b35dd6957}</Project>
+      <Name>Framework.Time</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Types\Framework.Types.csproj">
+      <Project>{88175eb3-3748-45dd-86db-5c226f642c53}</Project>
+      <Name>Framework.Types</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Users\Framework.Users.csproj">
+      <Project>{b8a2f462-1a60-4028-a136-0fdc817f60cf}</Project>
+      <Name>Framework.Users</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Utils\Framework.Utils.csproj">
+      <Project>{0eae41ad-8a59-40e1-9ce4-5627ed7d77df}</Project>
+      <Name>Framework.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Watcher\Framework.Watcher.csproj">
+      <Project>{2ae5048a-e359-4de7-9223-f0d9cf4e97d3}</Project>
+      <Name>Framework.Watcher</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.WebAPI\Framework.WebAPI.csproj">
+      <Project>{d590ba6d-2425-4270-9201-d067fc59fb47}</Project>
+      <Name>Framework.WebAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Web\Framework.Web.csproj">
+      <Project>{ab6ab9f2-e765-4cb6-aede-a5cb3bcc8794}</Project>
+      <Name>Framework.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

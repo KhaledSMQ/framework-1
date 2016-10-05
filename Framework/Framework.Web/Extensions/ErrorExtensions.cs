@@ -19,7 +19,7 @@ namespace Framework.Web.Extensions
         // Generate a HTML code fragment for an exception
         //
 
-        public static string GenerateHTMLErrorMessage(this Exception ex)
+        public static string GenerateHtmlErrorMessage(this Exception ex)
         {
             // exception
             string html = "<div class=\"exception\">";

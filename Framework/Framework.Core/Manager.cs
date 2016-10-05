@@ -32,10 +32,6 @@ namespace Framework.Core
         public static IModuleEntry Modules { get { return __Modules; } }
 
         //
-        //
-        //
-
-        //
         // CONSTRUCTORS
         //
 

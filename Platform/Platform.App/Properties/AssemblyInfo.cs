@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Platform.Runtime")]
-[assembly: AssemblyDescription("Runtime environment for platform applications.")]
+[assembly: AssemblyTitle("Platform.App")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Coop4Creativity")]
-[assembly: AssemblyProduct("Platform.Runtime")]
-[assembly: AssemblyCopyright("Copyright © Coop4Creativity 2016")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Platform.App")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d38c9f82-7c34-47ca-8439-3a71f46b45c0")]
+[assembly: Guid("d029e4a5-eda7-4ca4-8e2e-d86b2f62cd22")]
 
 // Version information for an assembly consists of the following four values:
 //
