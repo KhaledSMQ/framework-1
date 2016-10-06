@@ -71,6 +71,7 @@
     <Folder Include="Api\" />
     <Folder Include="Model\Objects\" />
     <Folder Include="Model\Relational\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">

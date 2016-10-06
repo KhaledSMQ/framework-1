@@ -28,6 +28,12 @@ namespace Framework.App.Runtime
             //
 
             AppDomain.CurrentDomain.SetData("DataDirectory", Manager.Hub.GetUnique<IHost>().GetAbsolutePhysicalPath("Data\\DB\\"));
+
+            //
+            //
+            //
+
+
         }
     }
 }

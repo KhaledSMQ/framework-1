@@ -57,7 +57,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Patterns\AController.cs" />
     <Compile Include="Config\Module.cs" />
     <Compile Include="Services\SrvStore.cs" />
     <Compile Include="Services\SrvMem.cs" />

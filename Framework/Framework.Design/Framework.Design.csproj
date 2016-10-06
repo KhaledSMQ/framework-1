@@ -71,9 +71,9 @@
     <Compile Include="Model\Objects\Client\ComponentDef.cs" />
     <Compile Include="Model\Objects\Client\App.cs" />
     <Compile Include="Model\Objects\Server\App.cs" />
-    <Compile Include="Model\Config\Module.cs" />
-    <Compile Include="Model\Config\Lib.cs" />
-    <Compile Include="Model\Config\Constants.cs" />
+    <Compile Include="Config\Module.cs" />
+    <Compile Include="Config\Lib.cs" />
+    <Compile Include="Config\Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +84,7 @@
   <ItemGroup>
     <Folder Include="Api\" />
     <Folder Include="Model\Relational\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
