@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Framework
 // Name/Class: 
-// Author: João Carreiro (joaopaulocarreiro@gmail.com)
+// Author: João Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 05/Apr/2016
 // Company: Coop4Creativity
 // Description: 

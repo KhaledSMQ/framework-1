@@ -89,7 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\IHost.cs" />
-    <Compile Include="Api\IHub.cs" />
+    <Compile Include="Api\IContainer.cs" />
     <Compile Include="Patterns\IModule.cs" />
     <Compile Include="Api\IScope.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />

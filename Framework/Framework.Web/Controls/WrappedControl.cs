@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Framework - Apps
 // Name/Class: Control
-// Author: João Carreiro (joaopaulocarreiro@gmail.com)
+// Author: João Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 15/Abr/2014
 // Company: Coop4Creativity
 // Description: Base control definition.
@@ -14,11 +14,6 @@ namespace Framework.Web.Controls
 {
     public class WrappedControl : Control
     {
-        //
-        // PROPERTIES
-        // Control properties for subclasses.
-        //
-
         //
         // Wrapped Event handlers
         // To be overridden by control instances.

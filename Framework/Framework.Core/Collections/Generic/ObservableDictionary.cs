@@ -2,7 +2,7 @@
 // Project: Framework
 // Name/Class: ObservableDictionary
 // Author: Dr. WPF
-//         Integrated by joao carreiro (joaopaulocarreiro@gmail.com)
+//         Integrated by joao carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 26/Nov/2015
 // Company: Coop4Creativity
 // Description: Observable collection datatype.

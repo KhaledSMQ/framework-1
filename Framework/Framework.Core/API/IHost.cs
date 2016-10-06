@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Framework
 // Name/Class: IHost
-// Author: João Carreiro (joaopaulocarreiro@gmail.com)
+// Author: João Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 07/Mar/2016
 // Company: Coop4Creativity
 // Description: Host related properties and features.

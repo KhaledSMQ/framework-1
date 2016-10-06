@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Framework
 // Name/Class: IScope
-// Author: João Carreiro (joaopaulocarreiro@gmail.com)
+// Author: João Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 26/Nov/2015
 // Company: Coop4Creativity
 // Description: 
@@ -15,7 +15,7 @@ namespace Framework.Core.Api
         // PROPERTIES
         //
 
-        IHub Hub { get; }
+        IContainer Hub { get; }
 
         //
         // Method to return a new scope based on the current scope.

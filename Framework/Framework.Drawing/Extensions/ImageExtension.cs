@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Framework
 // Name/Class: ImageExtension
-// Author: João Carreiro (joaopaulocarreiro@gmail.com)
+// Author: João Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 17/Jun/2013
 // Company: Coop4Creativity
 // Description: Image extension methods.

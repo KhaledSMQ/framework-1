@@ -1,22 +1,21 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Runtime
-// Author: João Carreiro (joaopaulocarreiro@gmail.com)
+// Name/Class: 
+// Author: João Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 26/Nov/2015
 // Company: Coop4Creativity
 // Description: Factory runtime static object.
 // ============================================================================
 
-using Framework.App.Config;
-using Framework.App.Runtime;
 using Framework.App.Api;
+using Framework.App.Config;
+using Framework.Core.Api;
 using Framework.Core.Extensions;
 using Framework.Core.Types.Specialized;
+using Framework.Utils.Api;
 using Owin;
 using System;
 using System.Collections.Generic;
-using Framework.Core.Api;
-using Framework.Utils.Api;
 
 namespace Framework.App.Runtime
 {
@@ -26,7 +25,7 @@ namespace Framework.App.Runtime
         // PROPERTIES
         //
 
-        public static IHub Hub { get { return __Hub; } }
+        public static IContainer Container { get { return __Container; } }
 
         public static IScope Scope { get { return __Scope; } }
 
@@ -78,10 +77,10 @@ namespace Framework.App.Runtime
                     // Load the hub service entry into the hub... :-)
                     // 
 
-                    Service hubService = Core.Helpers.ConfigHelper.Config2Service(__Config.Hub);
-                    __Hub = Core.Reflection.Activator.CreateGenericInstance<IHub>(hubService.TypeName);
-                    __Hub.Init();
-                    __Hub.Load(hubService);
+                    Service container = Core.Helpers.ConfigHelper.Config2Service(__Config.Hub);
+                    __Container = Core.Reflection.Activator.CreateGenericInstance<IContainer>(container.TypeName);
+                    __Container.Init();
+                    __Container.Load(container);
 
                     //
                     // Load core services into hub.
@@ -89,7 +88,7 @@ namespace Framework.App.Runtime
 
                     if (null != __Config.Services)
                     {
-                        __Hub.Load(__Config.Services.Map<Core.Config.ServiceElement, Service>(Core.Helpers.ConfigHelper.Config2Service));
+                        __Container.Load(__Config.Services.Map<Core.Config.ServiceElement, Service>(Core.Helpers.ConfigHelper.Config2Service));
                     }
 
                     //
@@ -97,20 +96,20 @@ namespace Framework.App.Runtime
                     // and set it on the hub.
                     //
 
-                    __Scope = __Hub.GetUnique<IScope>();
-                    __Hub.Scope = __Scope;
+                    __Scope = __Container.GetUnique<IScope>();
+                    __Container.Scope = __Scope;
 
                     //
                     // Setup the host service.
                     //
 
-                    __Host = __Hub.GetUnique<IHost>();
+                    __Host = __Container.GetUnique<IHost>();
 
                     //
                     // Setup the module manager service.
                     //
 
-                    __Modules = __Hub.GetUnique<IModuleEntry>();                   
+                    __Modules = __Container.GetUnique<IModuleEntry>();                   
 
                 }
                 else
@@ -119,7 +118,7 @@ namespace Framework.App.Runtime
                     // ERROR: Hub service specification was not found in factory configuration!
                     //
 
-                    throw new Exception("Hub service specification was not found in factory configuration!");
+                    throw new Exception("Container service specification was not found in factory configuration!");
                 }
             }
             else
@@ -173,7 +172,7 @@ namespace Framework.App.Runtime
         // HELPERS 
         //     
 
-        private static IHub __Hub;
+        private static IContainer __Container;
         private static IScope __Scope;
         private static IHost __Host;
         private static IModuleEntry __Modules;

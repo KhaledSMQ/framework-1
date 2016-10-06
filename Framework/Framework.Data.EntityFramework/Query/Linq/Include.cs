@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project:
 // Name/Class: 
-// Author: Joao Carreiro (joaopaulocarreiro@gmail.com)
+// Author: Joao Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 26/Nov/2016
 // Company: Coop4Creativity
 // Description:

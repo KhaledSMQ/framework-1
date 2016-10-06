@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Framework
 // Name/Class: IHub
-// Author: João Carreiro (joaopaulocarreiro@gmail.com)
+// Author: João Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 26/Nov/2015
 // Company: Coop4Creativity
 // Description: Service hub interface.
@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace Framework.Core.Api
 {
-    public interface IHub : ICommon
+    public interface IContainer : ICommon
     {
         T GetUnique<T>() where T : ICommon;
 

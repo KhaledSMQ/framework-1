@@ -1,7 +1,7 @@
 // ============================================================================
 // Project: Framework
 // Name/Class: ReflectionUtils
-// Author: João Carreiro (joaopaulocarreiro@gmail.com)
+// Author: João Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 26/Nov/2015
 // Company: Coop4Creativity
 // Description: Helper methods for reflection on instances.

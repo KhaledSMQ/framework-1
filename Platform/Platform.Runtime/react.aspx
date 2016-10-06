@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" Inherits="Framework.Web.UI.Page" %>
+﻿<%@ Page Title="" Language="C#" Inherits="Framework.Web.Controls.Page" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">

@@ -1,6 +1,6 @@
 ﻿// Framework Library
 // Description: C# based library of reusable components and software. 
-// Author(s): João Paulo Carreiro (joaopaulocarreiro@gmail.com)
+// Author(s): João Paulo Carreiro (joao.carreiro@coop4creativity.com)
 
 using System;
 using System.Xml.Linq;

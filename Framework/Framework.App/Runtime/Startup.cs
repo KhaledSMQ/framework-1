@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Framework
 // Name/Class: Startup
-// Author: João Carreiro (joaopaulocarreiro@gmail.com)
+// Author: João Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 08/Mar/2016
 // Company: Coop4Creativity
 // Description: Application startup class.
@@ -27,7 +27,7 @@ namespace Framework.App.Runtime
             // Set a new data directory path.
             //
 
-            AppDomain.CurrentDomain.SetData("DataDirectory", Manager.Hub.GetUnique<IHost>().GetAbsolutePhysicalPath("Data\\DB\\"));
+            AppDomain.CurrentDomain.SetData("DataDirectory", Manager.Container.GetUnique<IHost>().GetAbsolutePhysicalPath("Data\\DB\\"));
 
             //
             //

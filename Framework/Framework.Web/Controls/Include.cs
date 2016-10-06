@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Framework
 // Name/Class: 
-// Author: João Carreiro (joaopaulocarreiro@gmail.com)
+// Author: João Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 26/Mar/2016
 // Company: Coop4Creativity
 // Description: 
@@ -70,7 +70,7 @@ namespace Framework.Web.Controls
             // Get all the files (their paths that is) that are to be included..
             //
 
-            string basePath = Scope.Hub.Get<IHost>().PhysicalPath;
+            string basePath = Container.Get<IHost>().PhysicalPath;
             string baseFolder = Path.Combine(basePath, Folder);
             IList<string> files = Core.Helpers.DirectoryHelper.GetFiles(baseFolder, Pattern, Recursive);
 
@@ -83,7 +83,7 @@ namespace Framework.Web.Controls
             IList<string> urls = files.Map(file =>
             {
                 string relative = file.Substring(basePath.Length).ReplaceChars("\\", "/");
-                return Scope.Hub.Get<IResolver>().ResolveUrl("~/" + relative);
+                return Container.Get<IResolver>().ResolveUrl("~/" + relative);
             });
 
 
@@ -100,7 +100,7 @@ namespace Framework.Web.Controls
                 WebResource webResx = new WebResource();
                 webResx.Type = Type;
                 webResx.Source = WebResource.TypeOfSource.REMOTE;
-                webResx.Value = __ProcessCacheUrl(Scope.Hub.Get<IResolver>().ResolveUrl(url), currDateInString);
+                webResx.Value = __ProcessCacheUrl(Container.Get<IResolver>().ResolveUrl(url), currDateInString);
 
                 //
                 // Generate the tag.

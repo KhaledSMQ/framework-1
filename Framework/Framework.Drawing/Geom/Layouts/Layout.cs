@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Framework
 // Name/Class: Layout
-// Author: João Carreiro (joaopaulocarreiro@gmail.com)
+// Author: João Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 17/Oct/2013
 // Company: Coop4Creativity
 // Description: Layout concrete class. Layouts are sets of regions.

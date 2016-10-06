@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Framework
 // Name/Class: Hub
-// Author: João Carreiro (joaopaulocarreiro@gmail.com)
+// Author: João Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 26/Nov/2015
 // Company: Coop4Creativity
 // Description: Runtime service set.
@@ -20,7 +20,7 @@ using System.Reflection;
 
 namespace Framework.App.Services
 {
-    public class SrvHub : ACommon, IHub
+    public class SrvHub : ACommon, IContainer
     {
         //
         // INIT

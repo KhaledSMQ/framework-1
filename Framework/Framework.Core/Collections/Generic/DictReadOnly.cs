@@ -1,7 +1,7 @@
 // ============================================================================
 // Project: Framework
 // Name/Class: DictReadOnly
-// Author: João Carreiro (joaopaulocarreiro@gmail.com)
+// Author: João Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 26/Nov/2015
 // Company: Coop4Creativity
 // Description: Read only wrapper for generics based dictionary.

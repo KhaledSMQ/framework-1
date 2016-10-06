@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Toolkit - Apps
 // Name/Class: UserControl
-// Author: João Carreiro (joaopaulocarreiro@gmail.com)
+// Author: João Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 26/Nov/2015
 // Company: Coop4Creativity
 // Description: Base user control definition.
@@ -18,11 +18,9 @@ namespace Framework.Web.Controls
         //
         // PROPERTIES
         // Control properties for subclasses.
-        //
+        //  
 
-        public IHub Hub { get; set; }
-
-        public IScope Scope { get; protected set; }
+        public IContainer Container { get; set; }
 
         //
         // ONINIT
@@ -36,12 +34,6 @@ namespace Framework.Web.Controls
             //
 
             base.OnInit(e);
-
-            //
-            // Set the context scope for the control.
-            //
-
-            Scope = Hub.GetUnique<IScope>().New();
         }
     }
 }

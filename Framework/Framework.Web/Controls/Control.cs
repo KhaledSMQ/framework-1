@@ -1,7 +1,7 @@
 ﻿// ============================================================================
 // Project: Framework
 // Name/Class: Control
-// Author: João Carreiro (joaopaulocarreiro@gmail.com)
+// Author: João Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 15/Abr/2014
 // Company: Coop4Creativity
 // Description: Base control definition.
@@ -19,9 +19,7 @@ namespace Framework.Web.Controls
         // Control properties for subclasses.
         //
 
-        public IHub Hub { get; set; }
-
-        public IScope Scope { get; protected set; }
+        public IContainer Container { get; set; }
 
         //
         // ONINIT
@@ -35,12 +33,15 @@ namespace Framework.Web.Controls
             //
 
             base.OnInit(e);
+            GetContainerFromPage();
+        }
 
-            //
-            // Get the context for the control.
-            //
-
-            Scope = Hub.GetUnique<IScope>().New();
+        protected void GetContainerFromPage()
+        {
+            if (this.Page is Controls.Page)
+            {
+                Container = ((Controls.Page)this.Page).Container;
+            }
         }
     }
 }

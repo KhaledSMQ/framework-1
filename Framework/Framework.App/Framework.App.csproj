@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\IModuleEntry.cs" />
+    <Compile Include="Runtime\IoCPageHandlerFactory.cs" />
     <Compile Include="Services\SrvHost.cs" />
     <Compile Include="Services\SrvHub.cs" />
     <Compile Include="Services\SrvModuleEntry.cs" />
@@ -110,6 +111,10 @@
     <ProjectReference Include="..\Framework.Utils\Framework.Utils.csproj">
       <Project>{0eae41ad-8a59-40e1-9ce4-5627ed7d77df}</Project>
       <Name>Framework.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Web\Framework.Web.csproj">
+      <Project>{ab6ab9f2-e765-4cb6-aede-a5cb3bcc8794}</Project>
+      <Name>Framework.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
