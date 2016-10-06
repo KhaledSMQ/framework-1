@@ -7,15 +7,17 @@
 // Description: Factory runtime static object.
 // ============================================================================
 
-using Framework.Core.API;
+using Framework.App.Config;
+using Framework.App.Runtime;
+using Framework.App.API;
 using Framework.Core.Extensions;
-using Framework.Core.Model.Config;
-using Framework.Core.Model.Runtime;
+using Framework.Core.Types.Specialized;
 using Owin;
 using System;
 using System.Collections.Generic;
+using Framework.Core.API;
 
-namespace Framework.Core
+namespace Framework.App
 {
     public static class Manager
     {
@@ -75,7 +77,7 @@ namespace Framework.Core
                     // Load the hub service entry into the hub... :-)
                     // 
 
-                    Service hubService = Core.API.Transforms.Config2Service(__Config.Hub);
+                    Service hubService = Core.Helpers.ConfigHelper.Config2Service(__Config.Hub);
                     __Hub = Core.Reflection.Activator.CreateGenericInstance<IHub>(hubService.TypeName);
                     __Hub.Init();
                     __Hub.Load(hubService);
@@ -86,7 +88,7 @@ namespace Framework.Core
 
                     if (null != __Config.Services)
                     {
-                        __Hub.Load(__Config.Services.Map<ServiceElement, Service>(Core.API.Transforms.Config2Service));
+                        __Hub.Load(__Config.Services.Map<Core.Config.ServiceElement, Service>(Core.Helpers.ConfigHelper.Config2Service));
                     }
 
                     //
@@ -143,7 +145,7 @@ namespace Framework.Core
 
             if (null != __Config.Sequence)
             {
-                IEnumerable<MethodCall> bootSequence = __Config.Sequence.Map<MethodCallElement, MethodCall>(Core.API.Transforms.Config2MethodCall);
+                IEnumerable<MethodCall> bootSequence = __Config.Sequence.Map<MethodCallElement, MethodCall>(App.API.Transforms.Config2MethodCall);
 
                 bootSequence.Apply(call =>
                 {
@@ -162,7 +164,7 @@ namespace Framework.Core
         {
             if (null != __Config.Modules)
             {
-                __Modules.Load(__Config.Modules.Map<ModuleImportElement, Module>(Core.API.Transforms.Config2Module));
+                __Modules.Load(__Config.Modules.Map<ModuleImportElement, Core.Types.Specialized.Module>(App.API.Transforms.Config2Module));
             }
         }
 

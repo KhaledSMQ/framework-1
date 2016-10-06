@@ -1,18 +1,16 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: ICfg
+// Name/Class: 
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 06/July/2016
 // Company: Coop4Creativity
-// Description:
+// Description: 
 // ============================================================================
 
-namespace Framework.Core.API
+namespace Framework.Core
 {
-    public interface IModule : ICommon
+    public class Module : Core.Patterns.AModule<Config.LibConfiguration>, Core.Patterns.IModule
     {
-        System.Collections.Generic.IEnumerable<Model.Runtime.Service> Services { get; }
-
-        void LoadConfig();
+        public Module() : base(Lib.DEFAULT_CONFIG_SECTION_NAME, System.Reflection.Assembly.GetExecutingAssembly()) { }
     }
 }

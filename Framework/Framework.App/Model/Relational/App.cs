@@ -9,7 +9,6 @@
 
 using Framework.Core.Patterns;
 using System.Collections.Generic;
-using Framework.Data.Patterns;
 
 namespace Framework.App.Model.Relational
 {

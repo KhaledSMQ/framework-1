@@ -7,8 +7,6 @@
 // Description: Host related properties and features.
 // ============================================================================
 
-using Framework.Core.API;
-
 namespace Framework.Core.API
 {
     public interface IHost : ICommon

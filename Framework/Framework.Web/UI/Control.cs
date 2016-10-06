@@ -20,6 +20,8 @@ namespace Framework.Web.UI
         // Control properties for subclasses.
         //
 
+        public IHub Hub { get; set; }
+
         public IScope Scope { get; protected set; }
 
         //
@@ -39,7 +41,7 @@ namespace Framework.Web.UI
             // Get the context for the control.
             //
 
-            Scope = Manager.Hub.GetUnique<IScope>().New();
+            Scope = Hub.GetUnique<IScope>().New();
         }
     }
 }

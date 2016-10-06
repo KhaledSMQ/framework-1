@@ -7,11 +7,10 @@
 // Description: Scope service implementation..
 // ============================================================================
 
-using Framework.Core;
 using Framework.Core.API;
 using Framework.Core.Patterns;
 
-namespace Framework.Factory.API
+namespace Framework.App.API
 {
     public class SrvScope : ACommon, IScope
     {

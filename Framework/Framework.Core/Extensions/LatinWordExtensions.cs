@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: 
+// Name/Class: LatinWordExtensions
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 26/Nov/2015
 // Company: Coop4Creativity
@@ -14,8 +14,7 @@ using System.Text;
 namespace Framework.Core.Extensions
 {
     /// <summary>
-    /// Collection of extension utility methods useful for processing latin
-    /// text.
+    /// Collection of extension utility methods useful for processing latin text.
     /// </summary>
     public static class LatinWordExtensions
     {
@@ -76,7 +75,10 @@ namespace Framework.Core.Extensions
         /// </returns>
         private static bool IsDelimiter(char c, char[] delimiters)
         {
-            // if no delimators are provided, use unicode list
+            //
+            // if no delimiters are provided, use unicode list
+            //
+
             if (delimiters == null)
             {
                 delimiters = WhiteSpaceCharacters;
@@ -149,6 +151,7 @@ namespace Framework.Core.Extensions
                 var msg = "Can't process null string";
                 throw new ArgumentNullException("phrase", msg);
             }
+
             // Use the default value for delimiters - whitespace
             if (delimiters == null)
             {

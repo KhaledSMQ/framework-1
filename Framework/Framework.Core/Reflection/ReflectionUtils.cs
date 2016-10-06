@@ -987,8 +987,8 @@ namespace Framework.Core.Reflection
             if (attributeProvider is MemberInfo)
                 return (T[])Attribute.GetCustomAttributes((MemberInfo)attributeProvider, typeof(T), inherit);
 
-            if (attributeProvider is Module)
-                return (T[])Attribute.GetCustomAttributes((Module)attributeProvider, typeof(T), inherit);
+            if (attributeProvider is System.Reflection.Module)
+                return (T[])Attribute.GetCustomAttributes((System.Reflection.Module)attributeProvider, typeof(T), inherit);
 
             if (attributeProvider is ParameterInfo)
                 return (T[])Attribute.GetCustomAttributes((ParameterInfo)attributeProvider, typeof(T), inherit);

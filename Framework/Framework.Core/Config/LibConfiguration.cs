@@ -7,9 +7,9 @@
 // Description: Configuration for this module/library.
 // ============================================================================
 
-namespace Framework.App.Model.Config
+namespace Framework.Core.Config
 {
-    public class LibConfiguration : Core.Model.Config.ModuleConfiguration
+    public class LibConfiguration : ModuleConfiguration
     {
     }
 }

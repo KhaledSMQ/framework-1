@@ -7,7 +7,7 @@
 // Description: Service hub interface.
 // ============================================================================
 
-using Framework.Core.Model.Runtime;
+using Framework.Core.Types.Specialized;
 using System;
 using System.Collections.Generic;
 

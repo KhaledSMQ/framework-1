@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Configuration base element.
+// Name/Class: Configuration for Settings.
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 26/Nov/2015
 // Company: Coop4Creativity
@@ -9,13 +9,15 @@
 
 using System.Configuration;
 
-namespace Framework.Core.Model.Config
+namespace Framework.Core.Config
 {
-    public class ModuleImportElementCollection : ConfigurationElementCollection
+    public class SettingElementCollection : ConfigurationElementCollection
     {
-        public ModuleImportElement this[int index]
+        public SettingElementCollection() { }
+
+        public SettingElement this[int index]
         {
-            get { return (ModuleImportElement)BaseGet(index); }
+            get { return (SettingElement)BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -26,9 +28,9 @@ namespace Framework.Core.Model.Config
             }
         }
 
-        public void Add(ModuleImportElement itemConfig)
+        public void Add(SettingElement serviceConfig)
         {
-            BaseAdd(itemConfig);
+            BaseAdd(serviceConfig);
         }
 
         public void Clear()
@@ -38,17 +40,17 @@ namespace Framework.Core.Model.Config
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new ModuleImportElement();
+            return new SettingElement();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((ModuleImportElement)element).Name;
+            return ((SettingElement)element).Name;
         }
 
-        public void Remove(ModuleImportElement itemConfig)
+        public void Remove(SettingElement serviceConfig)
         {
-            BaseRemove(itemConfig.Name);
+            BaseRemove(serviceConfig.Name);
         }
 
         public void RemoveAt(int index)
@@ -62,5 +64,17 @@ namespace Framework.Core.Model.Config
         }
     }
 
-    public class ModuleImportElement : BaseElementWithTypeAndSettings { }
+    public class SettingElement : BaseElement {
+
+        //
+        // Value
+        //
+
+        [ConfigurationProperty(Constants.VALUE, DefaultValue = "", IsRequired = true)]
+        public string Value
+        {
+            get { return (string)this[Constants.VALUE]; }
+            set { this[Constants.VALUE] = value; }
+        }
+    }
 }

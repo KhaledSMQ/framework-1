@@ -9,9 +9,10 @@
 
 using Framework.Core.API;
 using Framework.Core.Extensions;
-using Framework.Core.Model.Config;
-using Framework.Core.Model.Runtime;
+using Framework.Core.Config;
+using Framework.Core.Helpers;
 using Framework.Core.Reflection;
+using Framework.Core.Types.Specialized;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -69,7 +70,7 @@ namespace Framework.Core.Patterns
 
         protected IEnumerable<Service> GetListOfUserServices()
         {
-            return Config.IsNotNull() ? Config.Services.Map<ServiceElement, Service>(Transforms.Config2Service) : new List<Service>();
+            return Config.IsNotNull() ? Config.Services.Map<ServiceElement, Service>(ConfigHelper.Config2Service) : new List<Service>();
         }
 
         //

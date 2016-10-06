@@ -9,13 +9,13 @@
 
 using System.Configuration;
 
-namespace Framework.Core.Model.Config
+namespace Framework.App.Config
 {
-    public class ServiceElementCollection : ConfigurationElementCollection
+    public class ModuleImportElementCollection : ConfigurationElementCollection
     {
-        public ServiceElement this[int index]
+        public ModuleImportElement this[int index]
         {
-            get { return (ServiceElement)BaseGet(index); }
+            get { return (ModuleImportElement)BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -26,7 +26,7 @@ namespace Framework.Core.Model.Config
             }
         }
 
-        public void Add(ServiceElement itemConfig)
+        public void Add(ModuleImportElement itemConfig)
         {
             BaseAdd(itemConfig);
         }
@@ -38,15 +38,15 @@ namespace Framework.Core.Model.Config
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new ServiceElement();
+            return new ModuleImportElement();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((ServiceElement)element).Name;
+            return ((ModuleImportElement)element).Name;
         }
 
-        public void Remove(ServiceElement itemConfig)
+        public void Remove(ModuleImportElement itemConfig)
         {
             BaseRemove(itemConfig.Name);
         }
@@ -62,24 +62,5 @@ namespace Framework.Core.Model.Config
         }
     }
 
-    public class ServiceElement : BaseElementWithTypeAndSettings
-    { 
-        //
-        // CONTRACT
-        //
-
-        [ConfigurationProperty(Constants.CONTRACT, DefaultValue = "", IsRequired = true)]
-        public string Contract
-        {
-            get { return (string)this[Constants.CONTRACT]; }
-            set { this[Constants.CONTRACT] = value; }
-        }
-
-        [ConfigurationProperty(Constants.UNIQUE, DefaultValue = false, IsRequired = false)]
-        public bool Unique
-        {
-            get { return (bool)this[Constants.UNIQUE]; }
-            set { this[Constants.UNIQUE] = value; }
-        }
-    }
+    public class ModuleImportElement : BaseElementWithTypeAndSettings { }
 }

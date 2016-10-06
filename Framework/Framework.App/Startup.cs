@@ -11,7 +11,7 @@ using Framework.Core.API;
 using Owin;
 using System;
 
-namespace Framework.Core
+namespace Framework.App
 {
     public class Startup
     {

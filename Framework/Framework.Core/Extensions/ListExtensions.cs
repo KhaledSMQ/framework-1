@@ -86,7 +86,7 @@ namespace Framework.Core.Extensions
 
         public static bool AddRangeDistinct<T>(this IList<T> list, IList<T> items, IEqualityComparer<T> comparer = null)
         {
-            return AddRangeDistinct(list, items, comparer);
+            return AddRangeDistinct(list, (IEnumerable<T>)items, comparer);
         }
 
         //

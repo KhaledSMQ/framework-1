@@ -7,8 +7,8 @@
 // Description: Simple validations for code.
 //
 // Adapted from: CommonLibrary.NET
-//                        Kishore Reddy
-//                        http://commonlibrarynet.codeplex.com/
+//               Kishore Reddy
+//               http://commonlibrarynet.codeplex.com/
 // ============================================================================
 
 using Framework.Core.Extensions;
@@ -18,7 +18,7 @@ using System.Globalization;
 
 namespace Framework.Core.Helpers
 {
-    public sealed class Guard
+    public static class Guard
     {
         //
         // Check that the condition is true.

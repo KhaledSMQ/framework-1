@@ -7,12 +7,12 @@
 // Description: Configuration for this module/library.
 // ============================================================================
 
-using Framework.Core.Model.Config;
+using Framework.Core.Config;
 using System.Configuration;
 
-namespace Framework.Core.Model.Config
+namespace Framework.App.Config
 {
-    public class LibConfiguration : ConfigurationSection
+    public class LibConfiguration : Core.Config.ModuleConfiguration
     {
         //
         // HUB
@@ -23,18 +23,7 @@ namespace Framework.Core.Model.Config
         {
             get { return (ServiceElement)this[Constants.HUB]; }
         }
-
-        //
-        // SERVICES
-        //
-
-        [ConfigurationProperty(Constants.SERVICES, IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(ServiceElementCollection))]
-        public ServiceElementCollection Services
-        {
-            get { return (ServiceElementCollection)this[Constants.SERVICES]; }
-        }
-
+      
         //
         // MODULES
         //

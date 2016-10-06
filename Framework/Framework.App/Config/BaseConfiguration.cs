@@ -9,7 +9,7 @@
 
 using System.Configuration;
 
-namespace Framework.Core.Model.Config
+namespace Framework.App.Config
 {
     public class BaseElement : ConfigurationElement
     { 

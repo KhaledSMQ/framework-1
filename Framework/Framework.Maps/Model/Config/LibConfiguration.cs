@@ -11,7 +11,7 @@ using System.Configuration;
 
 namespace Framework.Maps.Model.Config
 {
-    public class LibConfiguration : Core.Model.Config.ModuleConfiguration
+    public class LibConfiguration : Core.Config.ModuleConfiguration
     {  
     }
 }

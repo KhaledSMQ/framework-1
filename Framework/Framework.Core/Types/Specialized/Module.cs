@@ -11,7 +11,7 @@ using Framework.Core.Patterns;
 using Framework.Core.Types.Specialized;
 using System.Collections.Generic;
 
-namespace Framework.Core.Model.Runtime
+namespace Framework.Core.Types.Specialized
 {
     public class Module : 
         IName<string>, 

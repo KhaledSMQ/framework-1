@@ -9,7 +9,7 @@
 
 namespace Framework.Data
 {
-    public class Module : Core.Patterns.AModule<Model.Config.LibConfiguration>, Core.API.IModule
+    public class Module : Core.Patterns.AModule<Model.Config.LibConfiguration>, Core.Patterns.IModule
     {
         public Module() : base(Lib.DEFAULT_CONFIG_SECTION_NAME, System.Reflection.Assembly.GetExecutingAssembly()) { }
     }

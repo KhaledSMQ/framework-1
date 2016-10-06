@@ -9,7 +9,7 @@
 
 namespace Framework.Storage.EntityFramework
 {
-    public class Module : Core.Patterns.AModule<Core.Model.Config.ModuleConfiguration>, Core.API.IModule
+    public class Module : Core.Patterns.AModule<Core.Config.ModuleConfiguration>, Core.Patterns.IModule
     {
         public Module() : base(Lib.DEFAULT_CONFIG_SECTION_NAME, System.Reflection.Assembly.GetExecutingAssembly()) { }
     }

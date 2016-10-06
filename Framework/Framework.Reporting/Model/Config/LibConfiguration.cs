@@ -9,7 +9,7 @@
 
 namespace Framework.Reporting.Model.Config
 {
-    public class LibConfiguration : Core.Model.Config.ModuleConfiguration
+    public class LibConfiguration : Core.Config.ModuleConfiguration
     {
     }
 }

@@ -1,15 +1,20 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class:
+// Name/Class: ICfg
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
-// Create date: 06/Jul/2016
+// Create date: 06/July/2016
 // Company: Coop4Creativity
-// Description: 
+// Description:
 // ============================================================================
 
-namespace Framework.App.Model.Config
+using Framework.Core.Types.Specialized;
+
+namespace Framework.Core.Patterns
 {
-    public static class Constants
+    public interface IModule
     {
+        System.Collections.Generic.IEnumerable<Service> Services { get; }
+
+        void LoadConfig();
     }
 }

@@ -8,8 +8,7 @@
 // ============================================================================
 
 using Framework.Core.Extensions;
-using Framework.Core.Model.Config;
-using Framework.Core.Model.Runtime;
+using Framework.Core.Config;
 using Framework.Core.Types.Specialized;
 using Framework.Factory.Model.Relational;
 

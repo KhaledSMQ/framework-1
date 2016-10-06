@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Configuration for Settings.
+// Name/Class: Configuration base element.
 // Author: João Carreiro (joaopaulocarreiro@gmail.com)
 // Create date: 26/Nov/2015
 // Company: Coop4Creativity
@@ -9,15 +9,13 @@
 
 using System.Configuration;
 
-namespace Framework.Core.Model.Config
+namespace Framework.Core.Config
 {
-    public class SettingElementCollection : ConfigurationElementCollection
+    public class ServiceElementCollection : ConfigurationElementCollection
     {
-        public SettingElementCollection() { }
-
-        public SettingElement this[int index]
+        public ServiceElement this[int index]
         {
-            get { return (SettingElement)BaseGet(index); }
+            get { return (ServiceElement)BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -28,9 +26,9 @@ namespace Framework.Core.Model.Config
             }
         }
 
-        public void Add(SettingElement serviceConfig)
+        public void Add(ServiceElement itemConfig)
         {
-            BaseAdd(serviceConfig);
+            BaseAdd(itemConfig);
         }
 
         public void Clear()
@@ -40,17 +38,17 @@ namespace Framework.Core.Model.Config
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new SettingElement();
+            return new ServiceElement();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((SettingElement)element).Name;
+            return ((ServiceElement)element).Name;
         }
 
-        public void Remove(SettingElement serviceConfig)
+        public void Remove(ServiceElement itemConfig)
         {
-            BaseRemove(serviceConfig.Name);
+            BaseRemove(itemConfig.Name);
         }
 
         public void RemoveAt(int index)
@@ -64,17 +62,24 @@ namespace Framework.Core.Model.Config
         }
     }
 
-    public class SettingElement : BaseElement {
-
+    public class ServiceElement : BaseElementWithTypeAndSettings
+    { 
         //
-        // Value
+        // CONTRACT
         //
 
-        [ConfigurationProperty(Constants.VALUE, DefaultValue = "", IsRequired = true)]
-        public string Value
+        [ConfigurationProperty(Constants.CONTRACT, DefaultValue = "", IsRequired = true)]
+        public string Contract
         {
-            get { return (string)this[Constants.VALUE]; }
-            set { this[Constants.VALUE] = value; }
+            get { return (string)this[Constants.CONTRACT]; }
+            set { this[Constants.CONTRACT] = value; }
+        }
+
+        [ConfigurationProperty(Constants.UNIQUE, DefaultValue = false, IsRequired = false)]
+        public bool Unique
+        {
+            get { return (bool)this[Constants.UNIQUE]; }
+            set { this[Constants.UNIQUE] = value; }
         }
     }
 }

@@ -7,7 +7,7 @@
 // Description: 
 // ============================================================================
 
-namespace Framework.Core.Model.Runtime
+namespace Framework.App.Runtime
 {
     public class MethodCall
     {
