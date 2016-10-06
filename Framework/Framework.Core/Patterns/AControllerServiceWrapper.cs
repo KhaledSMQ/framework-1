@@ -7,7 +7,7 @@
 // Description: Service wrapper base controller.
 // ============================================================================
 
-using Framework.Core.API;
+using Framework.Core.Api;
 
 namespace Framework.Core.Patterns
 {

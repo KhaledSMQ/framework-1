@@ -8,10 +8,10 @@
 // ============================================================================
 
 using Framework.Code.Model;
-using Framework.Core.API;
+using Framework.Core.Api;
 using System.CodeDom;
 
-namespace Framework.Code.API
+namespace Framework.Code.Api
 {
     public interface IClassGenerator : ICommon
     {

@@ -7,12 +7,12 @@
 // Description: Generic blob data source.
 // ============================================================================
 
-using Framework.Core.API;
+using Framework.Core.Api;
 using Framework.Core.Patterns;
 using Framework.Storage.Patterns;
 using System.Collections.Generic;
 
-namespace Framework.Storage.API
+namespace Framework.Storage.Api
 {
     public interface IBlobSourceContext : ICommon, IID<string>, IStringReady, IXmlReadyParameterized, IXmlReady
     {

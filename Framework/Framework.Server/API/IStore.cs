@@ -7,9 +7,9 @@
 // Description: Service to manage the set of backend servers.
 // ============================================================================
 
-using Framework.Core.API;
+using Framework.Core.Api;
 
-namespace Framework.Server.API
+namespace Framework.Server.Api
 {
     public interface IStore : ICommon
     {

@@ -57,16 +57,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\IBlock.cs" />
-    <Compile Include="API\IEval.cs" />
-    <Compile Include="API\IStore.cs" />
-    <Compile Include="API\SrvEval.cs" />
-    <Compile Include="Module.cs" />
-    <Compile Include="API\SrvStore.cs" />
-    <Compile Include="Patterns\AController.cs" />
-    <Compile Include="Lib.cs" />
-    <Compile Include="Model\Config\LibConfiguration.cs" />
-    <Compile Include="Model\Config\_Const.cs" />
+    <Compile Include="Api\IBlock.cs" />
+    <Compile Include="Api\IEval.cs" />
+    <Compile Include="Api\IStore.cs" />
+    <Compile Include="Services\SrvEval.cs" />
+    <Compile Include="Config\Module.cs" />
+    <Compile Include="Services\SrvStore.cs" />
+    <Compile Include="Config\Lib.cs" />
+    <Compile Include="Config\Constants.cs" />
     <Compile Include="Model\Objects\Block.cs" />
     <Compile Include="Model\Objects\Connector.cs" />
     <Compile Include="Model\Objects\Port.cs" />

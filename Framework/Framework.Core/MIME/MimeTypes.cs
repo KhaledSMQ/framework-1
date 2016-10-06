@@ -177,7 +177,7 @@ namespace Framework.Core
             {
                 if (!silent)
                 {
-                    throw new Exception(string.Format("{0} unable to determine mime type for filename '{1}'", Lib.DEFAULT_ERROR_MSG_PREFIX, filename));
+                    throw new Exception(string.Format("{0} unable to determine mime type for filename '{1}'", Config.Lib.DEFAULT_ERROR_MSG_PREFIX, filename));
                 }
             }
 
@@ -263,7 +263,7 @@ namespace Framework.Core
             {
                 if (!silent)
                 {
-                    throw new Exception(string.Format("{0} unable to determine file extension from mime type '{1}'", Lib.DEFAULT_ERROR_MSG_PREFIX, mimetype));
+                    throw new Exception(string.Format("{0} unable to determine file extension from mime type '{1}'", Config.Lib.DEFAULT_ERROR_MSG_PREFIX, mimetype));
                 }
             }
 

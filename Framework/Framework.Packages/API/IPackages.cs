@@ -7,10 +7,10 @@
 // Description: 
 // ============================================================================
 
-using Framework.Core.API;
+using Framework.Core.Api;
 using Framework.Packages.Model.Objects;
 
-namespace Framework.Packages.API
+namespace Framework.Packages.Api
 {
     public interface IPackages : ICommon
     {

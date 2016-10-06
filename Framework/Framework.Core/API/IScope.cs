@@ -7,7 +7,7 @@
 // Description: 
 // ============================================================================
 
-namespace Framework.Core.API
+namespace Framework.Core.Api
 {
     public interface IScope : ICommon
     {

@@ -56,7 +56,7 @@ namespace Framework.Core.Helpers
             }
             else
             {
-                Throw.WithPrefix(Lib.DEFAULT_ERROR_MSG_PREFIX, "Enum type {0} is not a set of flags.", enumType);
+                Throw.WithPrefix(Config.Lib.DEFAULT_ERROR_MSG_PREFIX, "Enum type {0} is not a set of flags.", enumType);
             }
 
             return selectedFlagsValues;
@@ -103,7 +103,7 @@ namespace Framework.Core.Helpers
                 catch (OverflowException)
                 {
                     Throw.WithPrefix(
-                        Lib.DEFAULT_ERROR_MSG_PREFIX,
+                        Config.Lib.DEFAULT_ERROR_MSG_PREFIX,
                         "Value from enum with the underlying type of {0} cannot be added to dictionary with a value type of {1}. Value was too large: {2}",
                         Enum.GetUnderlyingType(enumType), typeof(TUnderlyingType), Convert.ToUInt64(value, CultureInfo.InvariantCulture));
                 }

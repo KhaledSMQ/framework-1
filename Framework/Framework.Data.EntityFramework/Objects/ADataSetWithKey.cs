@@ -8,7 +8,7 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
-using Framework.Data.API;
+using Framework.Data.Api;
 using System;
 
 namespace Framework.Data.EntityFramework.Objects

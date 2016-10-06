@@ -7,9 +7,9 @@
 // Description: Generic single object data source.
 // ============================================================================
 
-using Framework.Core.API;
+using Framework.Core.Api;
 
-namespace Framework.Data.API
+namespace Framework.Data.Api
 {
     public interface IGenericDataObject<TItem> : ICommon
     {

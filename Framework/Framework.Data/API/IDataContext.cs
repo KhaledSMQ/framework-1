@@ -8,10 +8,10 @@
 // ============================================================================
 
 using Framework.Data.Model.Objects;
-using Framework.Core.API;
+using Framework.Core.Api;
 using System;
 
-namespace Framework.Data.API
+namespace Framework.Data.Api
 {
     public interface IDataContext<TUser> : ICommon
     {

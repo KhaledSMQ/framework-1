@@ -7,9 +7,9 @@
 // Description: Generic blob data source.
 // ============================================================================
 
-using Framework.Core.API;
+using Framework.Core.Api;
 
-namespace Framework.Storage.API
+namespace Framework.Storage.Api
 {
     public interface IStore : ICommon
     {

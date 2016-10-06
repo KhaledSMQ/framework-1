@@ -26,7 +26,7 @@ namespace Framework.Core.Collections.Generic
             }
             else
             {
-                Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, ERR_DUPLICATE_MESSAGE, key);
+                Throw.Fatal(Config.Lib.DEFAULT_ERROR_MSG_PREFIX, ERR_DUPLICATE_MESSAGE, key);
             }
         }
 
@@ -36,7 +36,7 @@ namespace Framework.Core.Collections.Generic
 
             if (val.IsNull())
             {
-                Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, ERR_UNDEFINED_MESSAGE, key);
+                Throw.Fatal(Config.Lib.DEFAULT_ERROR_MSG_PREFIX, ERR_UNDEFINED_MESSAGE, key);
             }
 
             return val;
@@ -95,7 +95,7 @@ namespace Framework.Core.Collections.Generic
                     // ERROR: value key already exists.
                     //
 
-                    Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, ERR_DUPLICATE_MESSAGE, value.ID);
+                    Throw.Fatal(Config.Lib.DEFAULT_ERROR_MSG_PREFIX, ERR_DUPLICATE_MESSAGE, value.ID);
                 }
             }
             else
@@ -104,7 +104,7 @@ namespace Framework.Core.Collections.Generic
                 // ERROR: value or value key is invalid.
                 //
 
-                Throw.Fatal(Lib.DEFAULT_ERROR_MSG_PREFIX, ERR_INVALID_MESSAGE, value.ID);
+                Throw.Fatal(Config.Lib.DEFAULT_ERROR_MSG_PREFIX, ERR_INVALID_MESSAGE, value.ID);
             }
         }
     }

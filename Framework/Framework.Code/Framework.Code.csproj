@@ -57,14 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\ICompiler.cs" />
-    <Compile Include="API\IClassGenerator.cs" />
-    <Compile Include="API\SrvCompiler.cs" />
-    <Compile Include="API\SrvClassGenerator.cs" />
-    <Compile Include="Module.cs" />
-    <Compile Include="Lib.cs" />
-    <Compile Include="Model\Config\LibConfiguration.cs" />
-    <Compile Include="Model\Config\_Const.cs" />
+    <Compile Include="Api\ICompiler.cs" />
+    <Compile Include="Api\IClassGenerator.cs" />
+    <Compile Include="Services\SrvCompiler.cs" />
+    <Compile Include="Services\SrvClassGenerator.cs" />
+    <Compile Include="Config\Module.cs" />
+    <Compile Include="Config\Lib.cs" />
+    <Compile Include="Config\Constants.cs" />
     <Compile Include="Model\_Enums.cs" />
     <Compile Include="Model\Property.cs" />
     <Compile Include="Model\SimpleClass.cs" />

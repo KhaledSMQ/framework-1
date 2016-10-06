@@ -11,7 +11,7 @@ using Framework.Core.Types.Specialized;
 using System;
 using System.Collections.Generic;
 
-namespace Framework.Core.API
+namespace Framework.Core.Api
 {
     public interface IHub : ICommon
     {

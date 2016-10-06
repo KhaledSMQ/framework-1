@@ -59,12 +59,12 @@ namespace Framework.Core.Collections.Generic
                 }
                 else
                 {
-                    Throw.WithPrefix(Lib.DEFAULT_ERROR_MSG_PREFIX, "'{0}' y index does not exist in table", y);
+                    Throw.WithPrefix(Config.Lib.DEFAULT_ERROR_MSG_PREFIX, "'{0}' y index does not exist in table", y);
                 }
             }
             else
             {
-                Throw.WithPrefix(Lib.DEFAULT_ERROR_MSG_PREFIX, "'{0}' x index does not exist in table", x);
+                Throw.WithPrefix(Config.Lib.DEFAULT_ERROR_MSG_PREFIX, "'{0}' x index does not exist in table", x);
             }
 
             return value;
@@ -86,7 +86,7 @@ namespace Framework.Core.Collections.Generic
             }
             else
             {
-                Throw.WithPrefix(Lib.DEFAULT_ERROR_MSG_PREFIX, "'{0}' x index does not exist in table", x);
+                Throw.WithPrefix(Config.Lib.DEFAULT_ERROR_MSG_PREFIX, "'{0}' x index does not exist in table", x);
             }
 
             return values;

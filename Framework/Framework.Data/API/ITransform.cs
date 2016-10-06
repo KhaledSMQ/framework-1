@@ -9,9 +9,9 @@
 
 using Framework.Data.Model.Objects;
 using Framework.Data.Model.Relational;
-using Framework.Core.API;
+using Framework.Core.Api;
 
-namespace Framework.Data.API
+namespace Framework.Data.Api
 {
     public interface ITransform<TUser> : ICommon
     {

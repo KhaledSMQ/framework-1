@@ -13,7 +13,7 @@ using Framework.Core.Config;
 using Framework.Core.Types.Specialized;
 using Framework.App.Runtime;
 
-namespace Framework.App.API
+namespace Framework.App.Api
 {
     public static class Transforms
     {

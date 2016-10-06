@@ -88,11 +88,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\IHost.cs" />
-    <Compile Include="API\IHub.cs" />
+    <Compile Include="Api\IHost.cs" />
+    <Compile Include="Api\IHub.cs" />
     <Compile Include="Patterns\IModule.cs" />
-    <Compile Include="API\IReflected.cs" />
-    <Compile Include="API\IScope.cs" />
+    <Compile Include="Api\IScope.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />
     <Compile Include="Attributes\ServiceDependencyAttribute.cs" />
     <Compile Include="Attributes\ServicePropertyAttribute.cs" />
@@ -120,8 +119,8 @@
     <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Helpers\JSONHelper.cs" />
     <Compile Include="MIME\MimeTypes.cs" />
-    <Compile Include="Config\LibConfiguration.cs" />
-    <Compile Include="Module.cs" />
+    <Compile Include="Config\Lib.cs" />
+    <Compile Include="Config\Module.cs" />
     <Compile Include="Patterns\ABaseClass.cs" />
     <Compile Include="Patterns\ABaseClassWithID.cs" />
     <Compile Include="Patterns\ABaseClassWithIDAndOwner.cs" />
@@ -135,7 +134,7 @@
     <Compile Include="Patterns\AControllerServiceWrapper.cs" />
     <Compile Include="Patterns\AModule.cs" />
     <Compile Include="Patterns\IAuditable.cs" />
-    <Compile Include="API\ICommon.cs" />
+    <Compile Include="Api\ICommon.cs" />
     <Compile Include="Patterns\IConfigList.cs" />
     <Compile Include="Patterns\IConfigSetting.cs" />
     <Compile Include="Patterns\IOwner.cs" />
@@ -270,7 +269,9 @@
     <None Include="Framework.Core.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

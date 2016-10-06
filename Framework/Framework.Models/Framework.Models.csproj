@@ -57,18 +57,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Module.cs" />
-    <Compile Include="Lib.cs" />
-    <Compile Include="Model\Config\LibConfiguration.cs" />
-    <Compile Include="Model\Config\_Const.cs" />
+    <Compile Include="Config\Module.cs" />
+    <Compile Include="Config\Lib.cs" />
+    <Compile Include="Config\Constants.cs" />
     <Compile Include="Model\Import\Cluster.cs" />
     <Compile Include="Model\Import\Query.cs" />
     <Compile Include="Model\Import\Value.cs" />
     <Compile Include="Model\Import\Entity.cs" />
     <Compile Include="Model\Import\Property.cs" />
-    <Compile Include="Model\Relational\FW_ModProperty.cs" />
-    <Compile Include="Model\Relational\FW_ModEntity.cs" />
-    <Compile Include="Model\Relational\FW_ModCluster.cs" />
+    <Compile Include="Model\Relational\FwModProperty.cs" />
+    <Compile Include="Model\Relational\FwModEntity.cs" />
+    <Compile Include="Model\Relational\FwModCluster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -77,7 +76,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="API\" />
+    <Folder Include="Api\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">

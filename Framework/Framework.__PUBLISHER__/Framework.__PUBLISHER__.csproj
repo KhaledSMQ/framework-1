@@ -57,7 +57,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lib.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -137,10 +136,6 @@
     <ProjectReference Include="..\Framework.Drawing\Framework.Drawing.csproj">
       <Project>{a6a024f6-4b1c-44a3-a66b-c73edd58b3fc}</Project>
       <Name>Framework.Drawing</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Factory\Framework.Factory.csproj">
-      <Project>{5a0032b0-780a-43c0-8cc0-04f3cd77336a}</Project>
-      <Name>Framework.Factory</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Forms\Framework.Forms.csproj">
       <Project>{12f96190-7bb7-4f01-bef0-03591d5ae9c1}</Project>

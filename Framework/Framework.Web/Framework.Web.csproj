@@ -58,34 +58,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Module.cs" />
-    <Compile Include="API\SrvResolver.cs" />
-    <Compile Include="API\SrvRouting.cs" />
-    <Compile Include="API\IResolver.cs" />
-    <Compile Include="Model\Config\HttpRouteConfiguration.cs" />
-    <Compile Include="Model\Config\RoutingConfiguration.cs" />
-    <Compile Include="Model\Config\PageRouteConfiguration.cs" />
-    <Compile Include="Model\Config\_Const.cs" />
-    <Compile Include="Model\Config\LibConfiguration.cs" />
-    <Compile Include="UI\Include.cs" />
+    <Compile Include="Config\Module.cs" />
+    <Compile Include="Services\SrvResolver.cs" />
+    <Compile Include="Services\SrvRouting.cs" />
+    <Compile Include="Api\IResolver.cs" />
+    <Compile Include="Config\HttpRouteConfiguration.cs" />
+    <Compile Include="Config\RoutingConfiguration.cs" />
+    <Compile Include="Config\PageRouteConfiguration.cs" />
+    <Compile Include="Config\Constants.cs" />
+    <Compile Include="Config\Lib.cs" />
+    <Compile Include="Controls\Include.cs" />
     <Compile Include="Extensions\ErrorExtensions.cs" />
     <Compile Include="Extensions\PageExtensions.cs" />
     <Compile Include="Extensions\ViewStateExtensions.cs" />
     <Compile Include="Extensions\WebResourceExtensions.cs" />
-    <Compile Include="Lib.cs" />
-    <Compile Include="UI\Error.cs" />
-    <Compile Include="API\IRouting.cs" />
-    <Compile Include="Model\Routing\HttpRoute.cs" />
-    <Compile Include="Model\Routing\PageRoute.cs" />
+    <Compile Include="Controls\Error.cs" />
+    <Compile Include="Api\IRouting.cs" />
+    <Compile Include="Model\HttpRoute.cs" />
+    <Compile Include="Model\PageRoute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\Control.cs" />
-    <Compile Include="UI\Page.cs">
+    <Compile Include="Controls\Control.cs" />
+    <Compile Include="Controls\Page.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UI\UserControl.cs">
+    <Compile Include="Controls\UserControl.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UI\WrappedControl.cs" />
+    <Compile Include="Controls\WrappedControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

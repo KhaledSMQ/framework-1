@@ -71,19 +71,18 @@
     <Compile Include="Model\Objects\Client\ComponentDef.cs" />
     <Compile Include="Model\Objects\Client\App.cs" />
     <Compile Include="Model\Objects\Server\App.cs" />
-    <Compile Include="Module.cs" />
-    <Compile Include="Lib.cs" />
-    <Compile Include="Model\Config\LibConfiguration.cs" />
-    <Compile Include="Model\Config\_Const.cs" />
+    <Compile Include="Model\Config\Module.cs" />
+    <Compile Include="Model\Config\Lib.cs" />
+    <Compile Include="Model\Config\Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Framework.Shell.nuspec" />
+    <None Include="Framework.Design.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="API\" />
+    <Folder Include="Api\" />
     <Folder Include="Model\Relational\" />
   </ItemGroup>
   <ItemGroup>

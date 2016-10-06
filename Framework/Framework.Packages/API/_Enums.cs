@@ -7,7 +7,7 @@
 // Description: 
 // ============================================================================
 
-namespace Framework.Packages.API
+namespace Framework.Packages.Api
 {
     //
     // Enumeration for the format 

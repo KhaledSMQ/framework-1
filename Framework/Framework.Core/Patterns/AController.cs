@@ -8,7 +8,7 @@
 // ============================================================================
 
 using Framework.Core.Exceptions;
-using Framework.Core.API;
+using Framework.Core.Api;
 using System;
 using System.Web.Http;
 using System.Web.Http.Controllers;

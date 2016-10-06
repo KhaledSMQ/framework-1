@@ -58,17 +58,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\IBundles.cs" />
-    <Compile Include="API\IMinifier.cs" />
-    <Compile Include="API\IPackages.cs" />
+    <Compile Include="Api\IBundles.cs" />
+    <Compile Include="Api\IMinifier.cs" />
+    <Compile Include="Api\IPackages.cs" />
     <Compile Include="Patterns\AController.cs" />
-    <Compile Include="API\SrvBundles.cs" />
-    <Compile Include="Module.cs" />
-    <Compile Include="API\SrvPackages.cs" />
-    <Compile Include="API\_Enums.cs" />
-    <Compile Include="Lib.cs" />
-    <Compile Include="Model\Config\LibConfiguration.cs" />
-    <Compile Include="Model\Config\_Const.cs" />
+    <Compile Include="Services\SrvBundles.cs" />
+    <Compile Include="Config\Module.cs" />
+    <Compile Include="Services\SrvPackages.cs" />
+    <Compile Include="Api\_Enums.cs" />
+    <Compile Include="Config\Lib.cs" />
+    <Compile Include="Config\Constants.cs" />
     <Compile Include="Model\Objects\Dependency.cs" />
     <Compile Include="Model\Objects\DependencySet.cs" />
     <Compile Include="Model\Objects\Document.cs" />

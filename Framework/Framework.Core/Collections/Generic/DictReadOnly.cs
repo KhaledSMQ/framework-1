@@ -203,7 +203,7 @@ namespace Framework.Core.Collections.Generic
         {
             if (_ThrowOnWritableAction)
             {
-                Throw.WithPrefix(typeof(InvalidOperationException), Lib.DEFAULT_ERROR_MSG_PREFIX, "Can not perform action '{0}' on this read-only collection.", action);
+                Throw.WithPrefix(typeof(InvalidOperationException), Config.Lib.DEFAULT_ERROR_MSG_PREFIX, "Can not perform action '{0}' on this read-only collection.", action);
             }
         }
 

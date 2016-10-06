@@ -22,7 +22,7 @@ namespace Framework.App.Model.Relational
 
         public Meta Meta { get; set; }
 
-        public ICollection<Server.Model.Relational.Server> Servers { get; set; }
+        public ICollection<Server.Model.Relational.FwServServer> Servers { get; set; }
 
         public ICollection<Client.Model.Relational.Client> Clients { get; set; }
 
@@ -34,7 +34,7 @@ namespace Framework.App.Model.Relational
         {
             Owner = default(string);
             Meta = default(Meta);
-            Servers = default(ICollection<Server.Model.Relational.Server>);
+            Servers = default(ICollection<Server.Model.Relational.FwServServer>);
             Clients = default(ICollection<Client.Model.Relational.Client>);
         }
     }

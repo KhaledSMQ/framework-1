@@ -8,7 +8,7 @@
 // ============================================================================
 
 using Framework.Core.Patterns;
-using Framework.Forms.API;
+using Framework.Forms.Api;
 using System.Web.Http;
 
 namespace Framework.Forms.Patterns

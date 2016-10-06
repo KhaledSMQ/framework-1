@@ -7,11 +7,10 @@
 // Description: 
 // ============================================================================
 
-using Framework.Core.API;
-using Framework.Core.Types.Specialized;
+using Framework.Core.Api;
 using System.Collections.Generic;
 
-namespace Framework.App.API
+namespace Framework.App.Api
 {
     public interface IModuleEntry : ICommon
     {

@@ -8,10 +8,10 @@
 // ============================================================================
 
 using System.Collections.Generic;
-using Framework.Web.Model.Routing;
-using Framework.Core.API;
+using Framework.Web.Model;
+using Framework.Core.Api;
 
-namespace Framework.Web.API
+namespace Framework.Web.Api
 {
     public interface IRouting : ICommon
     {

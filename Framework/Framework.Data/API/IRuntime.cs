@@ -8,9 +8,9 @@
 // ============================================================================
 
 using Framework.Core.Types.Specialized;
-using Framework.Core.API;
+using Framework.Core.Api;
 
-namespace Framework.Data.API
+namespace Framework.Data.Api
 {
     public interface IRuntime<TUser> : ICommon
     {

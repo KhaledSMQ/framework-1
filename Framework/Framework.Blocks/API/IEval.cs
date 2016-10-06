@@ -8,9 +8,9 @@
 // ============================================================================
 
 using Framework.Core.Types.Specialized;
-using Framework.Core.API;
+using Framework.Core.Api;
 
-namespace Framework.Blocks.API
+namespace Framework.Blocks.Api
 {
     public interface IEval : ICommon
     {  

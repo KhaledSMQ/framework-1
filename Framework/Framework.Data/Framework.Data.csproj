@@ -75,19 +75,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\IRuntime.cs" />
-    <Compile Include="API\SrvSchemaMem.cs" />
-    <Compile Include="API\IDal.cs" />
-    <Compile Include="API\ISchema.cs" />
-    <Compile Include="API\ITransform.cs" />
-    <Compile Include="API\IStore.cs" />
+    <Compile Include="Api\IRuntime.cs" />
+    <Compile Include="Services\SrvSchemaMem.cs" />
+    <Compile Include="Api\IDal.cs" />
+    <Compile Include="Api\ISchema.cs" />
+    <Compile Include="Api\ITransform.cs" />
+    <Compile Include="Api\IStore.cs" />
     <Compile Include="Model\Objects\ASchemaObject.cs" />
-    <Compile Include="Module.cs" />
-    <Compile Include="API\SrvStore.cs" />
+    <Compile Include="Config\Module.cs" />
+    <Compile Include="Services\SrvStore.cs" />
     <Compile Include="Patterns\AController.cs" />
-    <Compile Include="API\SrvTransform.cs" />
-    <Compile Include="Model\Config\_Const.cs" />
-    <Compile Include="Lib.cs" />
+    <Compile Include="Services\SrvTransform.cs" />
+    <Compile Include="Config\Constants.cs" />
     <Compile Include="Model\Objects\Setting.cs" />
     <Compile Include="Model\Objects\Cluster.cs" />
     <Compile Include="Model\Objects\Context.cs" />
@@ -108,16 +107,16 @@
     <Compile Include="Model\Relational\FW_DataPartialModel.cs" />
     <Compile Include="Patterns\ADataContext.cs" />
     <Compile Include="Patterns\AGenericDataSet.cs" />
-    <Compile Include="API\IDynamicDataSet.cs" />
+    <Compile Include="Api\IDynamicDataSet.cs" />
     <Compile Include="Patterns\ADynamicDataSet.cs" />
-    <Compile Include="API\IDynamicDataObject.cs" />
-    <Compile Include="API\IDataContext.cs" />
-    <Compile Include="API\IPartialModel.cs" />
-    <Compile Include="API\IGenericDataObject.cs" />
-    <Compile Include="API\IGenericDataSet.cs" />
+    <Compile Include="Api\IDynamicDataObject.cs" />
+    <Compile Include="Api\IDataContext.cs" />
+    <Compile Include="Api\IPartialModel.cs" />
+    <Compile Include="Api\IGenericDataObject.cs" />
+    <Compile Include="Api\IGenericDataSet.cs" />
     <Compile Include="Patterns\ASchema.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\Config\LibConfiguration.cs" />
+    <Compile Include="Config\Lib.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

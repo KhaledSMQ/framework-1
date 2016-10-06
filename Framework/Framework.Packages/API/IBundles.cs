@@ -7,9 +7,9 @@
 // Description: 
 // ============================================================================
 
-using Framework.Core.API;
+using Framework.Core.Api;
 
-namespace Framework.Packages.API
+namespace Framework.Packages.Api
 {
     public interface IBundles : ICommon
     {

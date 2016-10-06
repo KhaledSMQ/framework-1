@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Core", "Framework
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Data", "Framework.Data\Framework.Data.csproj", "{EC35466A-241C-4CBC-990C-C3695FD29A22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Factory", "Framework.Factory\Framework.Factory.csproj", "{5A0032B0-780A-43C0-8CC0-04F3CD77336A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Blocks", "Framework.Blocks\Framework.Blocks.csproj", "{A3F65F3E-D617-4A75-82B8-4E31731545FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Charting", "Framework.Charting\Framework.Charting.csproj", "{8E8C0642-E92C-4FA3-B127-7A6383870D37}"
@@ -124,16 +122,6 @@ Global
 		{EC35466A-241C-4CBC-990C-C3695FD29A22}.NuGet|Any CPU.Build.0 = Release|Any CPU
 		{EC35466A-241C-4CBC-990C-C3695FD29A22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC35466A-241C-4CBC-990C-C3695FD29A22}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5A0032B0-780A-43C0-8CC0-04F3CD77336A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A0032B0-780A-43C0-8CC0-04F3CD77336A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5A0032B0-780A-43C0-8CC0-04F3CD77336A}.Deploy [DEBUG]|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A0032B0-780A-43C0-8CC0-04F3CD77336A}.Deploy [DEBUG]|Any CPU.Build.0 = Debug|Any CPU
-		{5A0032B0-780A-43C0-8CC0-04F3CD77336A}.Deploy [RELEASE]|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A0032B0-780A-43C0-8CC0-04F3CD77336A}.Deploy [RELEASE]|Any CPU.Build.0 = Debug|Any CPU
-		{5A0032B0-780A-43C0-8CC0-04F3CD77336A}.NuGet|Any CPU.ActiveCfg = Release|Any CPU
-		{5A0032B0-780A-43C0-8CC0-04F3CD77336A}.NuGet|Any CPU.Build.0 = Release|Any CPU
-		{5A0032B0-780A-43C0-8CC0-04F3CD77336A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5A0032B0-780A-43C0-8CC0-04F3CD77336A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A3F65F3E-D617-4A75-82B8-4E31731545FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A3F65F3E-D617-4A75-82B8-4E31731545FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3F65F3E-D617-4A75-82B8-4E31731545FF}.Deploy [DEBUG]|Any CPU.ActiveCfg = Debug|Any CPU

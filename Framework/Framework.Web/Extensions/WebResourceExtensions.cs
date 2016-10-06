@@ -15,7 +15,7 @@ namespace Framework.Web.Extensions
 {
     public static class WebResourceExtensions
     {
-        public static string GenerateHTML(this WebResource resx)
+        public static string GenerateHtml(this WebResource resx)
         {
             StringBuilder htmlString = new StringBuilder();
 

@@ -57,18 +57,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\IDomain.cs" />
-    <Compile Include="API\IStore.cs" />
+    <Compile Include="Api\IDomain.cs" />
+    <Compile Include="Api\IStore.cs" />
     <Compile Include="Model\Relational\Domain.cs" />
     <Compile Include="Model\Relational\Platform.cs" />
     <Compile Include="Model\Relational\Settings.cs" />
     <Compile Include="Model\Objects\Platform.cs" />
     <Compile Include="Model\Objects\Settings.cs" />
     <Compile Include="Model\Objects\Domain.cs" />
-    <Compile Include="Module.cs" />
-    <Compile Include="Lib.cs" />
-    <Compile Include="Model\Config\LibConfiguration.cs" />
-    <Compile Include="Model\Config\_Const.cs" />
+    <Compile Include="Config\Module.cs" />
+    <Compile Include="Config\Lib.cs" />
+    <Compile Include="Config\Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -76,7 +75,9 @@
     <None Include="Framework.Cloud.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.App\Framework.App.csproj">
       <Project>{da4959af-8107-4894-a99f-b3956625f2fd}</Project>
@@ -93,10 +94,6 @@
     <ProjectReference Include="..\Framework.Data\Framework.Data.csproj">
       <Project>{ec35466a-241c-4cbc-990c-c3695fd29a22}</Project>
       <Name>Framework.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Factory\Framework.Factory.csproj">
-      <Project>{5a0032b0-780a-43c0-8cc0-04f3cd77336a}</Project>
-      <Name>Framework.Factory</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Fragments\Framework.Fragments.csproj">
       <Project>{c0e1e4dc-990d-4c07-aaa9-198615919cc2}</Project>

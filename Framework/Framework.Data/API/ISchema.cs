@@ -9,9 +9,9 @@
 
 using Framework.Core.Types.Specialized;
 using Framework.Data.Model.Objects;
-using Framework.Core.API;
+using Framework.Core.Api;
 
-namespace Framework.Data.API
+namespace Framework.Data.Api
 {
     public interface ISchema<TUser> : ICommon
     {

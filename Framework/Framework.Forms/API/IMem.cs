@@ -8,11 +8,11 @@
 // ============================================================================
 
 using Framework.Core.Types.Specialized;
-using Framework.Core.API;
+using Framework.Core.Api;
 using Framework.Forms.Model.Template;
 using System.Collections.Generic;
 
-namespace Framework.Forms.API
+namespace Framework.Forms.Api
 {
     public interface IMem : ICommon
     {

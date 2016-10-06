@@ -7,9 +7,9 @@
 // Description:
 // ============================================================================
 
-using Framework.Core.API;
+using Framework.Core.Api;
 
-namespace Framework.Web.API
+namespace Framework.Web.Api
 {
     public interface IResolver : ICommon
     {

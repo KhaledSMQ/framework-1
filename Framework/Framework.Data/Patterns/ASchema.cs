@@ -11,7 +11,7 @@ using Framework.Core.Types.Specialized;
 using Framework.Data.Model.Objects;
 using Framework.Core.Patterns;
 
-namespace Framework.Data.API
+namespace Framework.Data.Api
 {
     public abstract class ASchema<TUser> : ACommon
     {

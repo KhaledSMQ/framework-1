@@ -7,10 +7,10 @@
 // Description: Generic single object data source.
 // ============================================================================
 
-using Framework.Core.API;
+using Framework.Core.Api;
 using System;
 
-namespace Framework.Data.API
+namespace Framework.Data.Api
 {
     public interface IDynamicDataObject : ICommon
     {

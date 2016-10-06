@@ -275,7 +275,7 @@ namespace Framework.Core.Reflection
                 // ERROR: Type is not supported.
                 // 
 
-                throw new Exception(string.Format("{0}: ParseTypeValue does not support type '{1}'!", Lib.DEFAULT_ERROR_MSG_PREFIX, type.FullName));
+                throw new Exception(string.Format("{0}: ParseTypeValue does not support type '{1}'!", Config.Lib.DEFAULT_ERROR_MSG_PREFIX, type.FullName));
             }
 
             return value;

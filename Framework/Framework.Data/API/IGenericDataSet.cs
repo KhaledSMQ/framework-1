@@ -7,10 +7,10 @@
 // Description: Generic object data source.
 // ============================================================================
 
-using Framework.Core.API;
+using Framework.Core.Api;
 using System.Linq;
 
-namespace Framework.Data.API
+namespace Framework.Data.Api
 {
     public interface IGenericDataSet<TItem> : ICommon
     {

@@ -57,14 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\IDrive.cs" />
-    <Compile Include="API\IStore.cs" />
-    <Compile Include="API\IBlobSet.cs" />
-    <Compile Include="Module.cs" />
-    <Compile Include="Lib.cs" />
+    <Compile Include="Api\IDrive.cs" />
+    <Compile Include="Api\IStore.cs" />
+    <Compile Include="Api\IBlobSet.cs" />
+    <Compile Include="Config\Module.cs" />
     <Compile Include="Model\Objects\Blob.cs" />
-    <Compile Include="Model\Config\LibConfiguration.cs" />
-    <Compile Include="Model\Config\_Const.cs" />
+    <Compile Include="Config\Lib.cs" />
+    <Compile Include="Config\Constants.cs" />
     <Compile Include="Model\Objects\Drive.cs" />
     <Compile Include="Model\Objects\File.cs" />
     <Compile Include="Model\Objects\Folder.cs" />
@@ -81,7 +80,9 @@
     <None Include="Framework.Storage.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
       <Project>{a9aae087-d85e-4042-b5b7-c1da7315df28}</Project>

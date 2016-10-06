@@ -57,14 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Module.cs" />
-    <Compile Include="API\SrvSMSBulk.cs" />
-    <Compile Include="API\SrvSMSUSendIt.cs" />
-    <Compile Include="API\SrvSMSLuso.cs" />
-    <Compile Include="API\ISMS.cs" />
-    <Compile Include="Lib.cs" />
-    <Compile Include="Model\Config\LibConfiguration.cs" />
-    <Compile Include="Model\Config\_Const.cs" />
+    <Compile Include="Config\Module.cs" />
+    <Compile Include="Services\SrvSmsBulk.cs" />
+    <Compile Include="Services\SrvSmsUSendIt.cs" />
+    <Compile Include="Services\SrvSmsLuso.cs" />
+    <Compile Include="Api\ISms.cs" />
+    <Compile Include="Config\Lib.cs" />
+    <Compile Include="Config\Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,11 +7,11 @@
 // Description: 
 // ============================================================================
 
-using Framework.Core.API;
+using Framework.Core.Api;
 
-namespace Framework.Comm.API
+namespace Framework.Comm.Api
 {
-    public interface ISMS : ICommon
+    public interface ISms : ICommon
     {
         //
         // Send a SMS message to a mobile number.

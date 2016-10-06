@@ -9,7 +9,7 @@
 
 using Framework.Core.Patterns;
 
-namespace Framework.Core.API
+namespace Framework.Core.Api
 {
     public interface ICommon : IProvider
     {

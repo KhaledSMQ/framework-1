@@ -7,7 +7,7 @@
 // Description: Base service implementation.
 // ============================================================================
 
-using Framework.Core.API;
+using Framework.Core.Api;
 
 namespace Framework.Core.Patterns
 {

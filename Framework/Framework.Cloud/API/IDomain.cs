@@ -7,9 +7,9 @@
 // Description: Service to manage the set of domains.
 // ============================================================================
 
-using Framework.Core.API;
+using Framework.Core.Api;
 
-namespace Framework.Cloud.API
+namespace Framework.Cloud.Api
 {
     public interface IDomain : ICommon
     {

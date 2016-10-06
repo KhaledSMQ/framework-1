@@ -41,27 +41,3 @@ namespace Framework
         }
     }
 }
-
-namespace Framework.Core
-{
-    public static class Lib
-    {
-        // 
-        // Error prefix for error messages in this library.
-        //
-
-        public static readonly string DEFAULT_ERROR_MSG_PREFIX = Framework.Lib.GetDefaultErrorPrefix(Assembly.GetExecutingAssembly());
-
-        // 
-        // Default Xml namespace.
-        //
-
-        public static readonly string DEFAULT_XML_NAMESPACE = Framework.Lib.GetDefaultXmlNamespace(Assembly.GetExecutingAssembly());
-
-        //
-        // Default config section name for library.
-        //
-
-        public static readonly string DEFAULT_CONFIG_SECTION_NAME = Framework.Lib.GetConfigSectionName(Assembly.GetExecutingAssembly());
-    }
-}
