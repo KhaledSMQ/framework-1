@@ -72,7 +72,7 @@ namespace Framework.Utils.Services
             // Run method if it was found!
             //
 
-            if (methodToRun != null)
+            if (methodToRun.IsNotNull())
             {
                 output = methodToRun.Invoke(srvImpl, args);
             }

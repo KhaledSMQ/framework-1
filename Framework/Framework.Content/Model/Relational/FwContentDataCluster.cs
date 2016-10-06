@@ -7,13 +7,13 @@
 // Description:
 // ============================================================================
 
-using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using Framework.Core.Patterns;
 
 namespace Framework.Content.Model.Relational
 {
-    public class FW_ContentDataContentType :
+    public class FwContentDataCluster :
         IID<int>,
         IVisible,
         ICreated<string>,
@@ -23,37 +23,30 @@ namespace Framework.Content.Model.Relational
         IDescription<string>
     {
         //
-        // Base
+        // PROPERTIES
         //
 
         public int ID { get; set; }
         public TypeOfVisibility Visibility { get; set; }
-
-        //
-        // Audit
-        //
 
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime ModifiedDate { get; set; }
 
-        //
-        // Info
-        //
-
         public string Ref { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
-        [JsonIgnore]
-        public virtual FW_ContentDataCluster Owner { get; set; }
+        public virtual ICollection<FwContentDataEntity> Entities { get; set; }
+
+        public virtual ICollection<FwContentDataContentType> ContentTypes { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public FW_ContentDataContentType()
+        public FwContentDataCluster()
         {
             //
             // Base
@@ -69,13 +62,14 @@ namespace Framework.Content.Model.Relational
             ModifiedBy = string.Empty;
 
             //
-            // Info
+            // Info.
             //
 
             Ref = string.Empty;
             Name = string.Empty;
             Description = string.Empty;
-            Owner = null;
+            Entities = null;
+            ContentTypes = null;
         }
     }
 }

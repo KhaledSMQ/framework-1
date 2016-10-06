@@ -12,7 +12,7 @@ using System.Reflection;
 
 namespace Framework.Core.Reflection
 {
-    public class ReflectionTypeChecker
+    public class TypeChecker
     {
         //
         // Checks whether or not the supplied text can be converted

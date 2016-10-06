@@ -64,8 +64,7 @@ namespace Framework.Core.Reflection
         {
             if (!string.IsNullOrEmpty(assembly))
             {
-                Assembly assemblyObj = Assembly.Load(assembly);
-                string fullName = assemblyObj.FullName;
+                Assembly.Load(assembly);
             }
 
             return (T)System.Activator.CreateInstance(assembly, typename).Unwrap();
@@ -73,7 +72,7 @@ namespace Framework.Core.Reflection
 
         //
         // Create a new instance of an object. Method tries to match
-        // the best constrcutor given a list of arguments. If no 
+        // the best constructor given a list of arguments. If no 
         // arguments are defined then use the default constructor.
         // @param type The type definition.
         // @param args The list of arguments to send to the constructor.

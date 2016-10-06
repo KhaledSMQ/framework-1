@@ -49,7 +49,7 @@ namespace Framework.Core.Helpers
             // return list.
             //
 
-            while (currentLine != null)
+            while (currentLine.IsNotNull())
             {
                 lines.Add(currentLine);
                 currentLine = reader.ReadLine();
@@ -278,7 +278,7 @@ namespace Framework.Core.Helpers
             StringBuilder buffer = new StringBuilder();
             foreach (object arg in args)
             {
-                if (arg != null)
+                if (arg.IsNotNull())
                     buffer.Append(arg.ToString());
             }
             return buffer.ToString();

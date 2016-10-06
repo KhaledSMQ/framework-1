@@ -163,7 +163,7 @@ namespace Framework.Core.Extensions
             foreach (string word in phrase.Split(delimiters))
             {
                 // Skip all excluded words
-                if (exclusions != null && exclusions.Contains(word)) { continue; }
+                if (exclusions.IsNotNull() && exclusions.Contains(word)) { continue; }
                 // Append the first character of every word to the buffer
                 if (word.Length > 0) { buffer.Append(word[0]); }
             }

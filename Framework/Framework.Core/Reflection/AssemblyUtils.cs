@@ -7,41 +7,47 @@
 // Description: Assembly related utils.
 // ============================================================================
 
-using Framework.Core.Extensions;
 using Framework.Core.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Framework.Core.Extensions;
 
 namespace Framework.Core.Reflection
 {
     public static class AssemblyUtils
     {
         //
-        // Get the some content from the current assembly.
+        // Get some content from the current assembly.
         // Returns the content as a string of characters.
         //
 
-        public static string GetInternalFileContent(string assemblyFolderPath, string fileName)
+        public static string GetInternalFileContent(string folderPath, string fileName)
         {
-            Assembly current = Assembly.GetExecutingAssembly();
+            return GetInternalFileContent(Assembly.GetExecutingAssembly(), folderPath, fileName);
+        }
 
-            Stream stream = current.GetManifestResourceStream(assemblyFolderPath + fileName);
-            if (null == stream)
-            {
-                return string.Empty;
-            }
+        //
+        // Get the content, as a string, of an internal file of an assembly.
+        // @param assembly The assembly where to get the content.
+        // @param folderPath The folder path where the file is located.
+        // @param fileName The name for the file.
+        // @return The file content if exists, empty string otherwise.
+        // 
 
-            StreamReader reader = new StreamReader(stream);
-            string content = reader.ReadToEnd();
-            return content;
+        public static string GetInternalFileContent(this Assembly assembly, string folderPath, string fileName)
+        {
+            Guard.ArgumentNotNull(assembly, "assembly");
+
+            Stream stream = assembly.GetManifestResourceStream(folderPath + fileName);
+            return stream.IsNotNull() ? new StreamReader(stream).ReadToEnd() : string.Empty;
         }
 
         public static IEnumerable<Type> GetLoadableTypes(this Assembly assembly)
         {
-            Guard.IsNotNull(assembly);
+            Guard.ArgumentNotNull(assembly, "assembly");
 
             try
             {
@@ -49,13 +55,14 @@ namespace Framework.Core.Reflection
             }
             catch (ReflectionTypeLoadException e)
             {
-                return e.Types.Where(t => t != null);
+                return e.Types.Where(t => t.IsNotNull());
             }
         }
 
         public static IEnumerable<Type> GetTypesWithInterface(this Assembly assembly, Type typeOfInterface)
         {
-            Guard.IsNotNull(assembly);
+            Guard.ArgumentNotNull(assembly, "assembly");
+            Guard.ArgumentNotNull(typeOfInterface, "typeOfInterface");
 
             return assembly.GetLoadableTypes().Where(typeOfInterface.IsAssignableFrom).ToList();
         }

@@ -14,7 +14,7 @@ using Framework.Core.Patterns;
 
 namespace Framework.Content.Model.Relational
 {
-    public class FW_ContentDataView :
+    public class FwContentDataView :
         IID<int>,
         IVisible,
         ICreated<string>,
@@ -47,16 +47,16 @@ namespace Framework.Content.Model.Relational
         public bool IsDefault { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public virtual ICollection<FW_ContentDataField> Fields { get; set; }
+        public virtual ICollection<FwContentDataField> Fields { get; set; }
 
         [JsonIgnore]
-        public virtual FW_ContentDataEntity Owner { get; set; }
+        public virtual FwContentDataEntity Owner { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public FW_ContentDataView()
+        public FwContentDataView()
         {
             //
             // Base

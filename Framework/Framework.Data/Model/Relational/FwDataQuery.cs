@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 namespace Framework.Data.Model.Relational
 {
-    public class FW_DataQuery : ABaseClassWithID<int, string>
+    public class FwDataQuery : ABaseClassWithID<int, string>
     {
         //
         // PROPERTIES
@@ -28,7 +28,7 @@ namespace Framework.Data.Model.Relational
         // parameters.
         //
 
-        public ICollection<FW_DataQueryParam> Params { get; set; }
+        public ICollection<FwDataQueryParam> Params { get; set; }
 
         //
         // In case the query is an expression,
@@ -53,7 +53,7 @@ namespace Framework.Data.Model.Relational
         // CONSTRUCTORS
         // 
 
-        public FW_DataQuery()
+        public FwDataQuery()
         {
             Kind = TypeOfDataQuery.UNKNOWN;
             Name = string.Empty;

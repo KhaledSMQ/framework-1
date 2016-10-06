@@ -8,6 +8,7 @@
 // ============================================================================
 
 using System.Configuration;
+using Framework.Core.Extensions;
 
 namespace Framework.Core.Config
 {
@@ -18,7 +19,7 @@ namespace Framework.Core.Config
             get { return (ServiceElement)BaseGet(index); }
             set
             {
-                if (BaseGet(index) != null)
+                if (BaseGet(index).IsNotNull())
                 {
                     BaseRemoveAt(index);
                 }

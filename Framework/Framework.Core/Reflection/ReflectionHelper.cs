@@ -10,6 +10,7 @@
 using System;
 using System.Reflection;
 using Framework.Core.Helpers;
+using Framework.Core.Extensions;
 
 namespace Framework.Core.Reflection
 {
@@ -30,14 +31,10 @@ namespace Framework.Core.Reflection
             Guard.IsNotNull(prop, "Property not supplied.");
 
             // Correct property with write access 
-            if (prop != null && prop.CanWrite)
+            if (prop.IsNotNull() && prop.CanWrite && Converter.CanConvertToCorrectType(prop, propVal))
             {
-                // Check same Type
-                if (Converter.CanConvertToCorrectType(prop, propVal))
-                {
-                    object convertedVal = Converter.ConvertToSameType(prop, propVal);
-                    prop.SetValue(obj, convertedVal, null);
-                }
+                object convertedVal = Converter.ConvertToSameType(prop, propVal);
+                prop.SetValue(obj, convertedVal, null);
             }
         }
 

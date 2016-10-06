@@ -39,6 +39,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Framework.Core.Extensions;
 
 namespace Framework.Core.Collections.Generic
 {
@@ -177,7 +178,7 @@ namespace Framework.Core.Collections.Generic
 
         public override void OnDeserialization(object sender)
         {
-            if (_SiInfo != null)
+            if (_SiInfo.IsNotNull())
             {
                 _Comparer = (IComparer<DictionaryEntry>)_SiInfo.GetValue("_comparer", typeof(IComparer<DictionaryEntry>));
             }

@@ -2,9 +2,9 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joao.carreiro@coop4creativity.com)
-// Create date: 03/Aug/2015
+// Create date: 26/Nov/2015
 // Company: Coop4Creativity
-// Description: Service specification class.
+// Description: 
 // ============================================================================
 
 using Framework.Core.Extensions;
@@ -16,32 +16,32 @@ using System.Collections.Generic;
 
 namespace Framework.Data.Model.Relational
 {
-    public class FW_DataEntity : ABaseClassWithID<int, string>      
+    public class FwDataContext : ABaseClassWithID<int, string>
     {
         //
-        // PROPERTIES
+        // INFO
         //
 
-        public TypeOfDataEntity Kind { get; set; }
+        public string Name { get; set; }  
 
-        public string Name { get; set; }
+        public FwDataProvider Provider { get; set; }
 
-        public string TypeName { get; set; }
+        public ICollection<FwDataEntity> Entities { get; set; }
 
-        public ICollection<FW_DataQuery> Queries { get; set; }
+        public ICollection<FwDataPartialModel> Models { get; set; }
 
-        public ICollection<FW_DataSetting> Settings { get; set; }
+        public ICollection<FwDataSetting> Settings { get; set; }  
 
         //
         // CONSTRUCTORS
         // 
 
-        public FW_DataEntity()
+        public FwDataContext()
         {
-            Kind = TypeOfDataEntity.DATA_SET;
             Name = default(string);
-            TypeName = default(string);
-            Queries = null;
+            Provider = null;
+            Entities = null;
+            Models = null;
             Settings = null;
         }
     }

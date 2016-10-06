@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 namespace Framework.Data.Model.Relational
 {
-    public class FW_DataProvider : ABaseClassWithID<int, string>
+    public class FwDataProvider : ABaseClassWithID<int, string>
     {
         //
         // PROPERTIES
@@ -20,13 +20,13 @@ namespace Framework.Data.Model.Relational
 
         public string TypeName { get; set; }
 
-        public virtual ICollection<FW_DataSetting> Settings { get; set; }      
+        public virtual ICollection<FwDataSetting> Settings { get; set; }      
 
         //
         // CONSTRUCTORS
         // 
 
-        public FW_DataProvider()
+        public FwDataProvider()
         {
             TypeName = default(string);
             Settings = null;

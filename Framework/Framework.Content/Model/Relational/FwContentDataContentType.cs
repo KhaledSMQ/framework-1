@@ -7,49 +7,60 @@
 // Description:
 // ============================================================================
 
+using Newtonsoft.Json;
 using System;
 using Framework.Core.Patterns;
 
 namespace Framework.Content.Model.Relational
 {
-    public class FW_ContentDataWebApi : IID<int>, ICreated<string>, IModified<string>
+    public class FwContentDataContentType :
+        IID<int>,
+        IVisible,
+        ICreated<string>,
+        IModified<string>,
+        IRef<string>,
+        IName<string>,
+        IDescription<string>
     {
         //
         // Base
         //
 
         public int ID { get; set; }
+        public TypeOfVisibility Visibility { get; set; }
 
         //
         // Audit
         //
 
-        public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
-        public DateTime ModifiedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         public string ModifiedBy { get; set; }
+        public DateTime ModifiedDate { get; set; }
 
         //
-        // Info.
+        // Info
         //
 
-        public string Create { get; set; }
-        public string Detail { get; set; }
-        public string List { get; set; }
-        public string Update { get; set; }
-        public string Delete { get; set; }
+        public string Ref { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+
+        [JsonIgnore]
+        public virtual FwContentDataCluster Owner { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public FW_ContentDataWebApi()
+        public FwContentDataContentType()
         {
             //
             // Base
             //
 
             ID = -1;
+            Visibility = TypeOfVisibility.ACTIVE;
 
             DateTime dateNow = DateTime.Now;
             CreatedDate = new DateTime(dateNow.Ticks);
@@ -58,14 +69,13 @@ namespace Framework.Content.Model.Relational
             ModifiedBy = string.Empty;
 
             //
-            // Info.
+            // Info
             //
 
-            Create = string.Empty;
-            Detail = string.Empty;
-            List = string.Empty;
-            Update = string.Empty;
-            Delete = string.Empty;
+            Ref = string.Empty;
+            Name = string.Empty;
+            Description = string.Empty;
+            Owner = null;
         }
     }
 }

@@ -22,18 +22,18 @@ namespace Framework.Data.Services
         // OBJECT ==> RELATIONAL OBJECT
         //
 
-        public FW_DataCluster Convert(Cluster<TUser> elm)
+        public FwDataCluster Convert(Cluster<TUser> elm)
         {
-            FW_DataCluster ast = new FW_DataCluster();
+            FwDataCluster ast = new FwDataCluster();
             ast.Name = elm.ID.ToString();
             ast.Contexts = elm.Contexts.Map(__Convert);
             ast.Settings = elm.Settings.Map(__Convert);
             return ast;
         }
 
-        private FW_DataContext __Convert(Context<TUser> elm)
+        private FwDataContext __Convert(Context<TUser> elm)
         {
-            FW_DataContext ast = new FW_DataContext();
+            FwDataContext ast = new FwDataContext();
             ast.Name = elm.ID.ToString();
             ast.Provider = __Convert(elm.Provider);
             ast.Entities = elm.Entities.Map(__Convert);
@@ -42,9 +42,9 @@ namespace Framework.Data.Services
             return ast;
         }
 
-        private FW_DataEntity __Convert(Entity<TUser> elm)
+        private FwDataEntity __Convert(Entity<TUser> elm)
         {
-            FW_DataEntity ast = new FW_DataEntity();
+            FwDataEntity ast = new FwDataEntity();
             ast.Name = elm.ID.ToString();
             ast.Kind = elm.Kind;
             ast.TypeName = elm.TypeName;
@@ -53,9 +53,9 @@ namespace Framework.Data.Services
             return ast;
         }
 
-        private FW_DataQuery __Convert(Model.Objects.Query<TUser> elm)
+        private FwDataQuery __Convert(Model.Objects.Query<TUser> elm)
         {
-            FW_DataQuery ast = new FW_DataQuery();
+            FwDataQuery ast = new FwDataQuery();
             ast.Name = elm.ID.ToString();
             ast.Kind = elm.Kind;
             ast.Params = elm.Params.Map(__Convert);
@@ -64,9 +64,9 @@ namespace Framework.Data.Services
             return ast;
         }
 
-        private FW_DataQueryParam __Convert(QueryParam<TUser> elm)
+        private FwDataQueryParam __Convert(QueryParam<TUser> elm)
         {
-            FW_DataQueryParam ast = new FW_DataQueryParam();
+            FwDataQueryParam ast = new FwDataQueryParam();
             ast.Name = elm.ID.ToString();
             ast.Required = elm.Required;
             ast.Default = elm.Default;
@@ -74,25 +74,25 @@ namespace Framework.Data.Services
             return ast;
         }
 
-        private FW_DataPartialModel __Convert(PartialModel<TUser> elm)
+        private FwDataPartialModel __Convert(PartialModel<TUser> elm)
         {
-            FW_DataPartialModel ast = new FW_DataPartialModel();
+            FwDataPartialModel ast = new FwDataPartialModel();
             ast.TypeName = elm.TypeName;
-            ast.Settings = elm.Settings.Map(new List<FW_DataSetting>(), __Convert);
+            ast.Settings = elm.Settings.Map(new List<FwDataSetting>(), __Convert);
             return ast;
         }
 
-        private FW_DataProvider __Convert(Provider<TUser> elm)
+        private FwDataProvider __Convert(Provider<TUser> elm)
         {
-            FW_DataProvider ast = new FW_DataProvider();
+            FwDataProvider ast = new FwDataProvider();
             ast.TypeName = elm.TypeName;
             ast.Settings = elm.Settings.Map(__Convert);
             return ast;
         }
 
-        private FW_DataSetting __Convert(Setting<TUser> elm)
+        private FwDataSetting __Convert(Setting<TUser> elm)
         {
-            FW_DataSetting ast = new FW_DataSetting();
+            FwDataSetting ast = new FwDataSetting();
             ast.Name = elm.ID.ToString();
             ast.Value = elm.Value;
             return ast;

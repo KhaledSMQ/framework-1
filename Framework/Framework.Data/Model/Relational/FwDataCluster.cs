@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace Framework.Data.Model.Relational
 {
-    public class FW_DataCluster : ABaseClassWithID<int, string>, IOwner<int>
+    public class FwDataCluster : ABaseClassWithID<int, string>, IOwner<int>
     {
         //
         // Info
@@ -23,15 +23,15 @@ namespace Framework.Data.Model.Relational
 
         public string Name { get; set; }
 
-        public ICollection<FW_DataContext> Contexts { get; set; }
+        public ICollection<FwDataContext> Contexts { get; set; }
 
-        public ICollection<FW_DataSetting> Settings { get; set; }     
+        public ICollection<FwDataSetting> Settings { get; set; }     
 
         //
         // CONSTRUCTORS
         // 
 
-        public FW_DataCluster()
+        public FwDataCluster()
         { 
             Owner = default(int);
             Name = default(string);

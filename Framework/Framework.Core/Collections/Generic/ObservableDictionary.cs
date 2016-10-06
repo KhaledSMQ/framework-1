@@ -43,6 +43,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
+using Framework.Core.Extensions;
 
 namespace Framework.Core.Collections.Generic
 {
@@ -230,7 +231,7 @@ namespace Framework.Core.Collections.Generic
 
         protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs args)
         {
-            if (CollectionChanged != null)
+            if (CollectionChanged.IsNotNull())
             {
                 CollectionChanged(this, args);
             }
@@ -238,7 +239,7 @@ namespace Framework.Core.Collections.Generic
 
         protected virtual void OnPropertyChanged(string name)
         {
-            if (PropertyChanged != null)
+            if (PropertyChanged.IsNotNull())
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
@@ -567,7 +568,7 @@ namespace Framework.Core.Collections.Generic
 
         public virtual void OnDeserialization(object sender)
         {
-            if (_siInfo != null)
+            if (_siInfo.IsNotNull())
             {
                 Collection<DictionaryEntry> entries = (Collection<DictionaryEntry>)
                     _siInfo.GetValue("entries", typeof(Collection<DictionaryEntry>));

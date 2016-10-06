@@ -12,17 +12,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Framework.Core.Helpers;
+using Framework.Core.Extensions;
 
 namespace Framework.Core.Reflection
 {
     public static class Properties
     {
-        //
-        // GET-METHODS
-        //
-
-        #region Get Methods
-
         //
         // Return a list of the object properties that are instance and public.
         //
@@ -128,14 +123,6 @@ namespace Framework.Core.Reflection
             return obj.GetPropertyValueSafely(obj.GetType().GetProperty(name));
         }
 
-        #endregion
-
-        //
-        // SET-METHODS
-        //
-
-        #region Set Methods
-
         //
         // Set object properties on T using the properties collection supplied.
         // The properties collection is the collection of "property" to value.
@@ -185,17 +172,10 @@ namespace Framework.Core.Reflection
             // Correct property with write access.
             //
 
-            if (propertyInfo != null && propertyInfo.CanWrite)
+            if (propertyInfo.IsNotNull() && propertyInfo.CanWrite && TypeChecker.CanConvertToCorrectType(propertyInfo, propVal))
             {
-                // 
-                // Check same Type
-                //
-
-                if (ReflectionTypeChecker.CanConvertToCorrectType(propertyInfo, propVal))
-                {
-                    object convertedVal = ReflectionTypeChecker.ConvertToSameType(propertyInfo, propVal);
-                    propertyInfo.SetValue(obj, convertedVal, null);
-                }
+                object convertedVal = TypeChecker.ConvertToSameType(propertyInfo, propVal);
+                propertyInfo.SetValue(obj, convertedVal, null);
             }
         }
 
@@ -219,7 +199,7 @@ namespace Framework.Core.Reflection
             // Correct property with write access 
             //
 
-            if (propertyInfo != null && propertyInfo.CanWrite)
+            if (propertyInfo.IsNotNull() && propertyInfo.CanWrite)
             {
                 propertyInfo.SetValue(obj, propVal, null);
             }
@@ -235,7 +215,7 @@ namespace Framework.Core.Reflection
             // Correct property with write access.
             //
 
-            if (prop != null && prop.CanWrite)
+            if (prop.IsNotNull() && prop.CanWrite)
             {
                 if (!catchException)
                 {
@@ -269,17 +249,11 @@ namespace Framework.Core.Reflection
             // Correct property with write access.
             //
 
-            if (prop != null && prop.CanWrite)
+            if (prop.IsNotNull() && prop.CanWrite && TypeChecker.CanConvertToCorrectType(prop, propVal))
             {
-                // 
-                // Check same Type.
-                //
+                object convertedVal = TypeChecker.ConvertToSameType(prop, propVal);
+                prop.SetValue(obj, convertedVal, null);
 
-                if (ReflectionTypeChecker.CanConvertToCorrectType(prop, propVal))
-                {
-                    object convertedVal = ReflectionTypeChecker.ConvertToSameType(prop, propVal);
-                    prop.SetValue(obj, convertedVal, null);
-                }
             }
         }
 
@@ -367,7 +341,5 @@ namespace Framework.Core.Reflection
                 }
             }
         }
-
-        #endregion
     }
 }

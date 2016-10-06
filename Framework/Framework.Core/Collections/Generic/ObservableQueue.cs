@@ -10,6 +10,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using Framework.Core.Extensions;
 
 namespace Framework.Core.Collections.Generic
 {
@@ -32,7 +33,7 @@ namespace Framework.Core.Collections.Generic
         {
             _Queue.Enqueue(item);
 
-            if (CollectionChanged != null)
+            if (CollectionChanged.IsNotNull())
             {
                 CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item));
             }
@@ -42,7 +43,7 @@ namespace Framework.Core.Collections.Generic
         {
             var item = _Queue.Dequeue();
 
-            if (CollectionChanged != null)
+            if (CollectionChanged.IsNotNull())
             {
                 CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, item));
             }

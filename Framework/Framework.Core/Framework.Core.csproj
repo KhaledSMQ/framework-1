@@ -161,7 +161,7 @@
     <Compile Include="Reflection\Properties.cs" />
     <Compile Include="Reflection\ReflectionAttributeUtils.cs" />
     <Compile Include="Reflection\ReflectionHelper.cs" />
-    <Compile Include="Reflection\ReflectionTypeChecker.cs" />
+    <Compile Include="Reflection\TypeChecker.cs" />
     <Compile Include="Reflection\ReflectionUtils.cs" />
     <Compile Include="Types\Specialized\Module.cs" />
     <Compile Include="Types\Specialized\Service.cs" />

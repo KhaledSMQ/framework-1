@@ -52,12 +52,7 @@ namespace Framework.Core.Reflection
 
             PropertyInfo property = obj.GetType().GetProperty(propName);
 
-            if (property == null)
-            {
-                return null;
-            }
-
-            return property.GetValue(obj, null);
+            return property.IsNotNull() ? property.GetValue(obj, null) : null;
         }
 
         //
@@ -373,11 +368,11 @@ namespace Framework.Core.Reflection
             Guard.ArgumentNotNull(propertyInfo, "propertyInfo");
 
             MethodInfo m = propertyInfo.GetGetMethod();
-            if (m != null && m.IsVirtual)
+            if (m.IsNotNull() && m.IsVirtual)
                 return true;
 
             m = propertyInfo.GetSetMethod();
-            if (m != null && m.IsVirtual)
+            if (m.IsNotNull() && m.IsVirtual)
                 return true;
 
             return false;
@@ -385,7 +380,7 @@ namespace Framework.Core.Reflection
 
         public static Type GetObjectType(object v)
         {
-            return (v != null) ? v.GetType() : null;
+            return (v.IsNotNull()) ? v.GetType() : null;
         }
 
         public static string GetTypeName(Type t, FormatterAssemblyStyle assemblyFormat)
@@ -398,7 +393,7 @@ namespace Framework.Core.Reflection
             string fullyQualifiedTypeName;
             // #if !(NET20 || NET35)
             /**
-            if (binder != null)
+            if (binder.IsNotNull())
             {
                 string assemblyName, typeName;
                 binder.BindToName(t, out assemblyName, out typeName);
@@ -491,7 +486,7 @@ namespace Framework.Core.Reflection
             if (t.IsValueType)
                 return true;
 
-            return (GetDefaultConstructor(t, nonPublic) != null);
+            return (GetDefaultConstructor(t, nonPublic).IsNotNull());
         }
 
         public static ConstructorInfo GetDefaultConstructor(Type t)
@@ -583,7 +578,7 @@ namespace Framework.Core.Reflection
         {
             Type current = type;
 
-            while (current != null)
+            while (current.IsNotNull())
             {
                 if (string.Equals(current.FullName, fullTypeName, StringComparison.Ordinal))
                 {
@@ -764,7 +759,7 @@ namespace Framework.Core.Reflection
 
             PropertyInfo propertyInfo = member as PropertyInfo;
 
-            if (propertyInfo != null)
+            if (propertyInfo.IsNotNull())
                 return IsIndexedProperty(propertyInfo);
             else
                 return false;
@@ -864,7 +859,7 @@ namespace Framework.Core.Reflection
                         return false;
                     if (nonPublic)
                         return true;
-                    return (propertyInfo.GetGetMethod(nonPublic) != null);
+                    return (propertyInfo.GetGetMethod(nonPublic).IsNotNull());
                 default:
                     return false;
             }

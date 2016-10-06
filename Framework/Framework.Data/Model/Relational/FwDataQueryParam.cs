@@ -11,7 +11,7 @@ using Framework.Core.Patterns;
 
 namespace Framework.Data.Model.Relational
 {
-    public class FW_DataQueryParam : ABaseClassWithID<int, string>      
+    public class FwDataQueryParam : ABaseClassWithID<int, string>      
     {
         //
         // INFO
@@ -29,7 +29,7 @@ namespace Framework.Data.Model.Relational
         // CONSTRUCTORS
         // 
 
-        public FW_DataQueryParam()
+        public FwDataQueryParam()
         {
             Name = default(string);
             TypeName = default(string);

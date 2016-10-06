@@ -14,7 +14,7 @@ namespace Framework.Core.Attributes
     {
         //
         // Name for service property.
-        // This is the user defnied property and not
+        // This is the user defined property and not
         // the actual name of the property in the service 
         // implementation.
         //

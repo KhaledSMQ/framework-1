@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: Property
+// Name/Class: 
 // Author: João Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 04/Oct/2015
 // Company: Coop4Creativity
@@ -9,16 +9,19 @@
 
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using Framework.Core.Patterns;
 
 namespace Framework.Content.Model.Relational
 {
-    public class FW_ContentDataField :
+    public class FwContentDataEntity :
         IID<int>,
         IVisible,
         ICreated<string>,
         IModified<string>,
-        IName<string>
+        IRef<string>,
+        IName<string>,
+        IDescription<string>
     {
         //
         // Base
@@ -40,17 +43,24 @@ namespace Framework.Content.Model.Relational
         // Info.
         //
 
+        public string Ref { get; set; }
         public string Name { get; set; }
-        public string DisplayName { get; set; }
+        public string Icon { get; set; }
+        public string Description { get; set; }
+        public FwContentDataEntityDefinition Definition { get; set; }
+        public FwContentDataWebApi Api { get; set; }
+        public virtual ICollection<FwContentDataView> Views { get; set; }
+        public virtual ICollection<FwContentDataSchema> Schemas { get; set; }
+        public virtual ICollection<FwContentDataForm> Forms { get; set; }
 
         [JsonIgnore]
-        public virtual FW_ContentDataView Owner { get; set; }
+        public virtual FwContentDataCluster Owner { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public FW_ContentDataField()
+        public FwContentDataEntity()
         {
             //
             // Base
@@ -69,8 +79,15 @@ namespace Framework.Content.Model.Relational
             // Info.
             //
 
+            Ref = string.Empty;
             Name = string.Empty;
-            DisplayName = string.Empty;
+            Icon = string.Empty;
+            Description = string.Empty;
+            Definition = null;
+            Api = null;
+            Views = null;
+            Schemas = null;
+            Forms = null;
             Owner = null;
         }
     }

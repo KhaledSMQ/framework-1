@@ -206,8 +206,10 @@ namespace Framework.Core.Helpers
 
         public static void ArgumentNotNull(object value, string parameterName)
         {
-            if (value == null)
+            if (value.IsNull())
+            {
                 throw new ArgumentNullException(parameterName);
+            }
         }
 
         //

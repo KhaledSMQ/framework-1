@@ -14,6 +14,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Xsl;
+using Framework.Core.Extensions;
 
 namespace Framework.Core.Helpers
 {
@@ -165,7 +166,7 @@ namespace Framework.Core.Helpers
 
             public override Uri ResolveUri(Uri baseUri, string relativeUri)
             {
-                if (baseUri != null)
+                if (baseUri.IsNotNull())
                 {
                     return base.ResolveUri(baseUri, relativeUri);
                 }

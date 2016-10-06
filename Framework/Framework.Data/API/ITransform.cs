@@ -19,6 +19,6 @@ namespace Framework.Data.Api
         // OBJECT ==> RELATIONAL OBJECT
         //
 
-        FW_DataCluster Convert(Cluster<TUser> cluster);
+        FwDataCluster Convert(Cluster<TUser> cluster);
     }
 }

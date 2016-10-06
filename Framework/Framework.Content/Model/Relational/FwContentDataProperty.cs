@@ -1,52 +1,62 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: 
+// Name/Class: Property
 // Author: João Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 04/Oct/2015
 // Company: Coop4Creativity
 // Description:
 // ============================================================================
 
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using Framework.Core.Patterns;
 
 namespace Framework.Content.Model.Relational
 {
-    public class FW_ContentDataCluster :
+    public class FwContentDataProperty :
         IID<int>,
         IVisible,
         ICreated<string>,
         IModified<string>,
-        IRef<string>,
         IName<string>,
         IDescription<string>
     {
         //
-        // PROPERTIES
+        // Base
         //
 
         public int ID { get; set; }
         public TypeOfVisibility Visibility { get; set; }
 
-        public string CreatedBy { get; set; }
+        //
+        // Audit
+        //
+
         public DateTime CreatedDate { get; set; }
-        public string ModifiedBy { get; set; }
         public DateTime ModifiedDate { get; set; }
+        public string CreatedBy { get; set; }
+        public string ModifiedBy { get; set; }
 
-        public string Ref { get; set; }
+        //
+        // Info.
+        //
+
+        public bool IsKey { get; set; }
         public string Name { get; set; }
+        public string DisplayName { get; set; }
         public string Description { get; set; }
+        public string Type { get; set; }
+        public bool Required { get; set; }
+        public bool Editable { get; set; }
 
-        public virtual ICollection<FW_ContentDataEntity> Entities { get; set; }
-
-        public virtual ICollection<FW_ContentDataContentType> ContentTypes { get; set; }
+        [JsonIgnore]
+        public virtual FwContentDataSchema Owner { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public FW_ContentDataCluster()
+        public FwContentDataProperty()
         {
             //
             // Base
@@ -65,11 +75,14 @@ namespace Framework.Content.Model.Relational
             // Info.
             //
 
-            Ref = string.Empty;
+            IsKey = false;
             Name = string.Empty;
+            DisplayName = string.Empty;
             Description = string.Empty;
-            Entities = null;
-            ContentTypes = null;
+            Type = string.Empty;
+            Required = false;
+            Editable = true;
+            Owner = null;
         }
     }
 }

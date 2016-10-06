@@ -49,7 +49,7 @@ namespace Framework.Core.Helpers
                     }
                 }
 
-                if (selectedFlagsValues.Count == 0 && enumNameValues.SingleOrDefault(v => v.Value == 0) != null)
+                if (selectedFlagsValues.Count == 0 && enumNameValues.SingleOrDefault(v => v.Value == 0).IsNotNull())
                 {
                     selectedFlagsValues.Add(default(T));
                 }

@@ -2,33 +2,38 @@
 // Project: Framework
 // Name/Class: 
 // Author: João Carreiro (joao.carreiro@coop4creativity.com)
-// Create date: 26/Nov/2015
+// Create date: 03/Aug/2015
 // Company: Coop4Creativity
 // Description: 
 // ============================================================================
 
+using Framework.Core.Extensions;
 using Framework.Core.Patterns;
+using Framework.Core.Types.Specialized;
+using Framework.Data.Patterns;
+using System;
+using System.Collections.Generic;
 
 namespace Framework.Data.Model.Relational
 {
-    public class FW_DataSetting : ABaseClassWithID<int, string>
+    public class FwDataPartialModel : ABaseClassWithID<int, string>
     {
         //
-        // INFO
+        // PROPERTIES
         //
 
-        public string Name { get; set; }
+        public string TypeName { get; set; }
 
-        public string Value { get; set; }
+        public ICollection<FwDataSetting> Settings { get; set; }    
 
         //
         // CONSTRUCTORS
         // 
 
-        public FW_DataSetting()
+        public FwDataPartialModel()
         {
-            Name = default(string);
-            Value = default(string);
+            TypeName = default(string);
+            Settings = null;
         }
     }
 }

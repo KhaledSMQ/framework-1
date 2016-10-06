@@ -1,6 +1,6 @@
 ﻿// ============================================================================
 // Project: Framework
-// Name/Class: 
+// Name/Class: Schema
 // Author: João Carreiro (joao.carreiro@coop4creativity.com)
 // Create date: 04/Oct/2015
 // Company: Coop4Creativity
@@ -9,17 +9,15 @@
 
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using Framework.Core.Patterns;
 
 namespace Framework.Content.Model.Relational
 {
-    public class FW_ContentDataEntity :
+    public class FwContentDataForm :
         IID<int>,
         IVisible,
         ICreated<string>,
         IModified<string>,
-        IRef<string>,
         IName<string>,
         IDescription<string>
     {
@@ -43,24 +41,19 @@ namespace Framework.Content.Model.Relational
         // Info.
         //
 
-        public string Ref { get; set; }
+        public TypeOfEntityForm Type { get; set; }
         public string Name { get; set; }
-        public string Icon { get; set; }
         public string Description { get; set; }
-        public FW_ContentDataEntityDefinition Definition { get; set; }
-        public FW_ContentDataWebApi Api { get; set; }
-        public virtual ICollection<FW_ContentDataView> Views { get; set; }
-        public virtual ICollection<FW_ContentDataSchema> Schemas { get; set; }
-        public virtual ICollection<FW_ContentDataForm> Forms { get; set; }
+        public string Url { get; set; }
 
         [JsonIgnore]
-        public virtual FW_ContentDataCluster Owner { get; set; }
+        public virtual FwContentDataEntity Owner { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public FW_ContentDataEntity()
+        public FwContentDataForm()
         {
             //
             // Base
@@ -79,15 +72,10 @@ namespace Framework.Content.Model.Relational
             // Info.
             //
 
-            Ref = string.Empty;
+            Type = TypeOfEntityForm.UNKNOWN;
             Name = string.Empty;
-            Icon = string.Empty;
             Description = string.Empty;
-            Definition = null;
-            Api = null;
-            Views = null;
-            Schemas = null;
-            Forms = null;
+            Url = null;
             Owner = null;
         }
     }

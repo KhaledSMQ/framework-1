@@ -60,16 +60,16 @@
     <Compile Include="Config\Module.cs" />
     <Compile Include="Config\Lib.cs" />
     <Compile Include="Config\Constants.cs" />
-    <Compile Include="Model\Relational\FW_ContentDataCluster.cs" />
-    <Compile Include="Model\Relational\FW_ContentDataContentType.cs" />
-    <Compile Include="Model\Relational\FW_ContentDataEntityDefinition.cs" />
-    <Compile Include="Model\Relational\FW_ContentDataEntity.cs" />
-    <Compile Include="Model\Relational\FW_ContentDataField.cs" />
-    <Compile Include="Model\Relational\FW_ContentDataForm.cs" />
-    <Compile Include="Model\Relational\FW_ContentDataProperty.cs" />
-    <Compile Include="Model\Relational\FW_ContentDataSchema.cs" />
-    <Compile Include="Model\Relational\FW_ContentDataView.cs" />
-    <Compile Include="Model\Relational\FW_ContentDataWebApi.cs" />
+    <Compile Include="Model\Relational\FwContentDataCluster.cs" />
+    <Compile Include="Model\Relational\FwContentDataContentType.cs" />
+    <Compile Include="Model\Relational\FwContentDataEntityDefinition.cs" />
+    <Compile Include="Model\Relational\FwContentDataEntity.cs" />
+    <Compile Include="Model\Relational\FwContentDataField.cs" />
+    <Compile Include="Model\Relational\FwContentDataForm.cs" />
+    <Compile Include="Model\Relational\FwContentDataProperty.cs" />
+    <Compile Include="Model\Relational\FwContentDataSchema.cs" />
+    <Compile Include="Model\Relational\FwContentDataView.cs" />
+    <Compile Include="Model\Relational\FwContentDataWebApi.cs" />
     <Compile Include="Model\Relational\_Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

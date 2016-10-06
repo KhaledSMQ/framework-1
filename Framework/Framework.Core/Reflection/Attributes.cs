@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Framework.Core.Extensions;
 
 namespace Framework.Core.Reflection
 {
@@ -35,7 +36,7 @@ namespace Framework.Core.Reflection
                 AssemblyDescriptionAttribute adAttr = (AssemblyDescriptionAttribute)Attribute.GetCustomAttribute(assembly,
                     typeof(AssemblyDescriptionAttribute));
 
-                if (adAttr != null) description = adAttr.Description;
+                if (adAttr.IsNotNull()) description = adAttr.Description;
             }
             return description;
 
@@ -82,7 +83,7 @@ namespace Framework.Core.Reflection
             foreach (var type in types)
             {
                 var attributes = type.GetCustomAttributes(typeof(T), false);
-                if (attributes != null && attributes.Length > 0)
+                if (attributes.IsNotNull() && attributes.Length > 0)
                 {
                     var pair = new KeyValuePair<Type, T>(type, (T)attributes[0]);
                     widgets.Add(pair);
@@ -110,7 +111,7 @@ namespace Framework.Core.Reflection
             foreach (PropertyInfo prop in props)
             {
                 object[] attrs = prop.GetCustomAttributes(typeof(T), true);
-                if (attrs != null && attrs.Length > 0)
+                if (attrs.IsNotNull() && attrs.Length > 0)
                     map[prop.Name] = new KeyValuePair<T, PropertyInfo>(attrs[0] as T, prop);
             }
             return map;
@@ -133,7 +134,7 @@ namespace Framework.Core.Reflection
             foreach (PropertyInfo prop in props)
             {
                 object[] attrs = prop.GetCustomAttributes(typeof(T), true);
-                if (attrs != null && attrs.Length > 0)
+                if (attrs.IsNotNull() && attrs.Length > 0)
                     matchedProps.Add(prop);
             }
             return matchedProps;
@@ -156,7 +157,7 @@ namespace Framework.Core.Reflection
             foreach (PropertyInfo prop in props)
             {
                 object[] attrs = prop.GetCustomAttributes(typeof(T), true);
-                if (attrs != null && attrs.Length > 0)
+                if (attrs.IsNotNull() && attrs.Length > 0)
                     map.Add(new KeyValuePair<T, PropertyInfo>(attrs[0] as T, prop));
             }
             return map;
@@ -179,7 +180,7 @@ namespace Framework.Core.Reflection
                 foreach (var prop in properties)
                 {
                     var attributes = prop.GetCustomAttributes(typeof(TPropAttrib), true);
-                    if (attributes != null && attributes.Length > 0)
+                    if (attributes.IsNotNull() && attributes.Length > 0)
                     {
                         var pair = new KeyValuePair<PropertyInfo, TPropAttrib>(prop, attributes[0] as TPropAttrib);
                         propertyAttributes.Add(pair);

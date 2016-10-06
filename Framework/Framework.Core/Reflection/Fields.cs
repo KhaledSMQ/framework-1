@@ -23,7 +23,7 @@ namespace Framework.Core.Reflection
 
         public static FieldInfo[] GetPublicAndInstance<T>(T obj)
         {
-            return Fields.Get<T>(obj, BindingFlags.Public | BindingFlags.Instance);
+            return Get(obj, BindingFlags.Public | BindingFlags.Instance);
         }
 
         //
@@ -43,7 +43,7 @@ namespace Framework.Core.Reflection
 
         public static List<FieldInfo> GetWithAttribute<T>(T item, Type attribute)
         {
-            return Fields.GetWithAttribute(typeof(T), attribute, BindingFlags.Public | BindingFlags.Instance);
+            return GetWithAttribute(typeof(T), attribute, BindingFlags.Public | BindingFlags.Instance);
         }
 
         //
@@ -53,8 +53,7 @@ namespace Framework.Core.Reflection
 
         public static List<FieldInfo> GetWithAttribute(Type type, Type attribute)
         {
-            return Fields.GetWithAttribute(type, attribute,
-                BindingFlags.Public | BindingFlags.Instance);
+            return GetWithAttribute(type, attribute, BindingFlags.Public | BindingFlags.Instance);
         }
 
         //
@@ -64,7 +63,7 @@ namespace Framework.Core.Reflection
 
         public static List<FieldInfo> GetWithAttribute<T>(T item, Type attribute, BindingFlags flags)
         {
-            return Fields.GetWithAttribute(typeof(T), attribute, flags);
+            return GetWithAttribute(typeof(T), attribute, flags);
         }
 
         public static List<FieldInfo> GetWithAttribute(Type type, Type attribute, BindingFlags flags)

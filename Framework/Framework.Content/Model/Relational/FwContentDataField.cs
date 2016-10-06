@@ -13,13 +13,12 @@ using Framework.Core.Patterns;
 
 namespace Framework.Content.Model.Relational
 {
-    public class FW_ContentDataProperty :
+    public class FwContentDataField :
         IID<int>,
         IVisible,
         ICreated<string>,
         IModified<string>,
-        IName<string>,
-        IDescription<string>
+        IName<string>
     {
         //
         // Base
@@ -41,22 +40,17 @@ namespace Framework.Content.Model.Relational
         // Info.
         //
 
-        public bool IsKey { get; set; }
         public string Name { get; set; }
         public string DisplayName { get; set; }
-        public string Description { get; set; }
-        public string Type { get; set; }
-        public bool Required { get; set; }
-        public bool Editable { get; set; }
 
         [JsonIgnore]
-        public virtual FW_ContentDataSchema Owner { get; set; }
+        public virtual FwContentDataView Owner { get; set; }
 
         //
         // CONSTRUCTORS
         //
 
-        public FW_ContentDataProperty()
+        public FwContentDataField()
         {
             //
             // Base
@@ -75,13 +69,8 @@ namespace Framework.Content.Model.Relational
             // Info.
             //
 
-            IsKey = false;
             Name = string.Empty;
             DisplayName = string.Empty;
-            Description = string.Empty;
-            Type = string.Empty;
-            Required = false;
-            Editable = true;
             Owner = null;
         }
     }
