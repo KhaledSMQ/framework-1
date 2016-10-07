@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\Constants.cs" />
+    <Compile Include="Config\Error.cs" />
     <Compile Include="Config\Lib.cs" />
     <Compile Include="Config\Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

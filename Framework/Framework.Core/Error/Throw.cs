@@ -66,10 +66,20 @@ namespace Framework.Core.Error
 
         public static void WithPrefix(string prefix, params object[] args)
         {
-            WithPrefix(typeof(Exception), prefix, args);  
+            throw ExceptionWithPrefix(prefix, args);  
         }
 
         public static void WithPrefix(Type exType, string prefix, params object[] args)
+        {
+            throw ExceptionWithPrefix(exType, prefix, args);
+        }
+
+        public static Exception ExceptionWithPrefix(string prefix, params object[] args)
+        {
+            return ExceptionWithPrefix(typeof(Exception), prefix, args);
+        }
+
+        public static Exception ExceptionWithPrefix(Type exType, string prefix, params object[] args)
         {
             //
             // Reshape the message text.
@@ -81,11 +91,7 @@ namespace Framework.Core.Error
                 args[0] = reshapedMessage;
             }
 
-            //
-            // Throw message.
-            //
-
-            Error(exType, args);
+            return Exception(exType, args);
         }
 
         //
@@ -100,17 +106,22 @@ namespace Framework.Core.Error
 
         public static void Error(Type exType, params object[] args)
         {
+            throw Exception(exType, args);
+        }
+
+        public static Exception Exception(Type exType, params object[] args)
+        {
             //
             // Preprocess message
             //
-            
+
             string msg = default(string);
-            object[] msgArgs = null;
+            object[] msgArgs;
 
             if (null != args && args.Length > 0)
             {
                 msgArgs = new string[args.Length - 1];
-                msg = (string) args[0];
+                msg = (string)args[0];
 
                 //
                 // Copy all values that are not the exception message.
@@ -118,7 +129,7 @@ namespace Framework.Core.Error
 
                 Array.Copy(args, 1, msgArgs, 0, args.Length - 1);
 
-                if (null != msgArgs && msgArgs.Length > 0)
+                if (msgArgs.Length > 0)
                 {
                     msg = string.Format(msg, msgArgs);
                 }
@@ -128,15 +139,9 @@ namespace Framework.Core.Error
             // Build exception object.
             //
 
-            Exception ex = string.IsNullOrWhiteSpace(msg) 
-                ? Reflection.Activator.CreateInstance<Exception>(exType) 
+            return string.IsNullOrWhiteSpace(msg)
+                ? Reflection.Activator.CreateInstance<Exception>(exType)
                 : Reflection.Activator.CreateInstance<Exception>(exType, msg);
-
-            //
-            // Throw the exception.
-            //
-
-            throw ex;
         }
     }
 }

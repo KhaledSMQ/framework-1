@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\IRuntime.cs" />
+    <Compile Include="Config\Error.cs" />
     <Compile Include="Services\SrvSchemaMem.cs" />
     <Compile Include="Api\IDal.cs" />
     <Compile Include="Api\ISchema.cs" />

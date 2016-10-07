@@ -61,6 +61,7 @@
     <Compile Include="Api\IBundles.cs" />
     <Compile Include="Api\IMinifier.cs" />
     <Compile Include="Api\IPackages.cs" />
+    <Compile Include="Config\Error.cs" />
     <Compile Include="Patterns\AController.cs" />
     <Compile Include="Services\SrvBundles.cs" />
     <Compile Include="Config\Module.cs" />

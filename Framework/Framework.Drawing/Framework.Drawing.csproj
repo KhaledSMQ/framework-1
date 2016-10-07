@@ -65,6 +65,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\Error.cs" />
     <Compile Include="Config\Lib.cs" />
     <Compile Include="Dot\DOM\dotAssign.cs" />
     <Compile Include="Dot\DOM\dotGraph.cs" />

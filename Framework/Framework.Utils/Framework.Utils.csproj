@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Api\IEventHub.cs" />
     <Compile Include="Api\IReflected.cs" />
+    <Compile Include="Config\Error.cs" />
     <Compile Include="Services\SrvEventHub.cs" />
     <Compile Include="Services\SrvReflected.cs" />
     <Compile Include="Config\Module.cs" />

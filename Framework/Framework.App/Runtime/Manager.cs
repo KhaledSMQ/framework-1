@@ -25,13 +25,15 @@ namespace Framework.App.Runtime
         // PROPERTIES
         //
 
-        public static IContainer Container { get { return __Container; } }
+        public static IContainer Container { get; private set; }
 
-        public static IScope Scope { get { return __Scope; } }
+        public static IModuleContainer ModuleContainer { get; private set; }
 
-        public static IHost Host { get { return __Host; } }
+        public static IScope Scope { get; private set; }
 
-        public static IModuleEntry Modules { get { return __Modules; } }
+        public static IHost Host { get; private set; }
+
+        public static Lib Config { get; private set; }
 
         //
         // CONSTRUCTORS
@@ -60,7 +62,7 @@ namespace Framework.App.Runtime
             // Load from the system configuration.
             //
 
-            __Config = (Config.Lib)System.Configuration.ConfigurationManager.GetSection(Config.Lib.DEFAULT_CONFIG_SECTION_NAME);
+            Config = (Lib)System.Configuration.ConfigurationManager.GetSection(Lib.DEFAULT_CONFIG_SECTION_NAME);
 
             //
             // Load configuration for the service hub.
@@ -68,27 +70,27 @@ namespace Framework.App.Runtime
             // This class will be the heart of the framework services.
             //            
 
-            if (null != __Config)
+            if (Config.IsNotNull())
             {
-                if (null != __Config.Hub)
+                if (Config.Hub.IsNotNull())
                 {
                     //
                     // Instantiate the hub service.
                     // Load the hub service entry into the hub... :-)
                     // 
 
-                    Service container = Core.Helpers.ConfigHelper.Config2Service(__Config.Hub);
-                    __Container = Core.Reflection.Activator.CreateGenericInstance<IContainer>(container.TypeName);
-                    __Container.Init();
-                    __Container.Load(container);
+                    Service container = Core.Helpers.ConfigHelper.Config2Service(Config.Hub);
+                    Container = Core.Reflection.Activator.CreateGenericInstance<IContainer>(container.TypeName);
+                    Container.Init();
+                    Container.Load(container);
 
                     //
                     // Load core services into hub.
                     //
 
-                    if (null != __Config.Services)
+                    if (null != Config.Services)
                     {
-                        __Container.Load(__Config.Services.Map<Core.Config.ServiceElement, Service>(Core.Helpers.ConfigHelper.Config2Service));
+                        Container.Load(Config.Services.Map<Core.Config.ServiceElement, Service>(Core.Helpers.ConfigHelper.Config2Service));
                     }
 
                     //
@@ -96,21 +98,19 @@ namespace Framework.App.Runtime
                     // and set it on the hub.
                     //
 
-                    __Scope = __Container.GetUnique<IScope>();
-                    __Container.Scope = __Scope;
+                    Scope = Container.Get<IScope>();
 
                     //
                     // Setup the host service.
                     //
 
-                    __Host = __Container.GetUnique<IHost>();
+                    Host = Container.Get<IHost>(Scope);
 
                     //
                     // Setup the module manager service.
                     //
 
-                    __Modules = __Container.GetUnique<IModuleEntry>();                   
-
+                    ModuleContainer = Container.Get<IModuleContainer>(Scope);
                 }
                 else
                 {
@@ -143,13 +143,13 @@ namespace Framework.App.Runtime
             // Run all services and all methods defined in sequence.
             //         
 
-            if (null != __Config.Sequence)
+            if (null != Config.Sequence)
             {
-                IEnumerable<MethodCall> bootSequence = __Config.Sequence.Map<MethodCallElement, MethodCall>(App.Api.Transforms.Config2MethodCall);
+                IEnumerable<MethodCall> bootSequence = Config.Sequence.Map<MethodCallElement, MethodCall>(App.Api.Transforms.Config2MethodCall);
 
                 bootSequence.Apply(call =>
                 {
-                    __Scope.Hub.GetUnique<IReflected>().Run(call.Service, call.Method);
+                    Scope.Hub.GetUnique<IReflected>().Run(call.Service, call.Method);
                 });
             }
         }
@@ -162,20 +162,13 @@ namespace Framework.App.Runtime
 
         public static void LoadModules(IAppBuilder app)
         {
-            if (null != __Config.Modules)
+            if (Config.Modules.IsNotNull())
             {
-                __Modules.Load(__Config.Modules.Map<ModuleImportElement, Core.Types.Specialized.Module>(App.Api.Transforms.Config2Module));
+                ModuleContainer.Load(Config.Modules.Map<ModuleImportElement, Type>(modImport =>
+                {
+                    return Core.Reflection.Parsing.ParseTypeName(modImport.Type);
+                }));
             }
         }
-
-        //
-        // HELPERS 
-        //     
-
-        private static IContainer __Container;
-        private static IScope __Scope;
-        private static IHost __Host;
-        private static IModuleEntry __Modules;
-        private static Config.Lib __Config;
     }
 }

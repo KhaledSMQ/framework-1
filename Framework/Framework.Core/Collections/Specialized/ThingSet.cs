@@ -54,7 +54,7 @@ namespace Framework.Core.Collections.Specialized
             // Verifiy the namespace and name for thing set.
             //
 
-            elm.VerifyName(Lib.DEFAULT_XML_NAMESPACE, XML_ELM_THING_SET);
+            elm.VerifyName(Base.DEFAULT_XML_NAMESPACE, XML_ELM_THING_SET);
 
             //
             // Clear current list of thing items.
@@ -76,7 +76,7 @@ namespace Framework.Core.Collections.Specialized
 
         public XElement UnparseToXml()
         {
-            XElement elm = new XElement((XNamespace)Lib.DEFAULT_XML_NAMESPACE + XML_ELM_THING_SET);
+            XElement elm = new XElement((XNamespace)Base.DEFAULT_XML_NAMESPACE + XML_ELM_THING_SET);
             this.Apply(thing => elm.Add(thing.UnparseToXml()));
             return elm;
         }

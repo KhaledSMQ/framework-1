@@ -25,9 +25,7 @@ namespace Framework.Core.Types.Specialized
 
         public string Description { get; set; }
 
-        public string TypeName { get; set; }
-
-        public virtual ICollection<Setting> Settings { get; set; }      
+        public string TypeName { get; set; }    
 
         //
         // CONSTRUCTORS
@@ -38,7 +36,6 @@ namespace Framework.Core.Types.Specialized
             Name = default(string);
             Description = default(string); 
             TypeName = default(string);
-            Settings = default(ICollection<Setting>);
         }
     }
 }

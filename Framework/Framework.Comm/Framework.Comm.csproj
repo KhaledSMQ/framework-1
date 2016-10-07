@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\Error.cs" />
     <Compile Include="Config\Module.cs" />
     <Compile Include="Services\SrvSmsBulk.cs" />
     <Compile Include="Services\SrvSmsUSendIt.cs" />

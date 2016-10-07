@@ -90,6 +90,8 @@
   <ItemGroup>
     <Compile Include="Api\IHost.cs" />
     <Compile Include="Api\IContainer.cs" />
+    <Compile Include="Config\Error.cs" />
+    <Compile Include="Error\Bag.cs" />
     <Compile Include="Patterns\IModule.cs" />
     <Compile Include="Api\IScope.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />
@@ -207,7 +209,7 @@
     <Compile Include="Types\Specialized\Percentage.cs" />
     <Compile Include="Patterns\IXmlReady.cs" />
     <Compile Include="Types\Specialized\XRef.cs" />
-    <Compile Include="Lib.cs" />
+    <Compile Include="Base.cs" />
     <Compile Include="Collections\Generic\EnumCountable.cs" />
     <Compile Include="Collections\Generic\DictBidirectional.cs" />
     <Compile Include="Collections\Generic\DictMultiValue.cs" />

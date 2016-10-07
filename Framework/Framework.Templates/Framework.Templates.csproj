@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\Error.cs" />
     <Compile Include="Config\Module.cs" />
     <Compile Include="Config\Lib.cs" />
     <Compile Include="Config\Constants.cs" />

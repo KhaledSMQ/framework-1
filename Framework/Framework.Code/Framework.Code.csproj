@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Api\ICompiler.cs" />
     <Compile Include="Api\IClassGenerator.cs" />
+    <Compile Include="Config\Error.cs" />
     <Compile Include="Services\SrvCompiler.cs" />
     <Compile Include="Services\SrvClassGenerator.cs" />
     <Compile Include="Config\Module.cs" />

@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\IStore.cs" />
+    <Compile Include="Config\Error.cs" />
     <Compile Include="Helpers\Transforms.cs" />
     <Compile Include="Model\Relational\FwServService.cs" />
     <Compile Include="Model\Relational\FwServSetting.cs" />

@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\IStore.cs" />
+    <Compile Include="Config\Error.cs" />
     <Compile Include="Model\Objects\Client.cs" />
     <Compile Include="Model\Relational\Client.cs" />
     <Compile Include="Config\Module.cs" />

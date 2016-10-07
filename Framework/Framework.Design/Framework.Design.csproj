@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\Error.cs" />
     <Compile Include="Model\Objects\Client\Component.cs" />
     <Compile Include="Model\Objects\Client\BlockDef.cs" />
     <Compile Include="Model\Objects\Client\Controller.cs" />

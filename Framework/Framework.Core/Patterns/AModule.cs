@@ -8,12 +8,13 @@
 // ============================================================================
 
 using Framework.Core.Api;
-using Framework.Core.Extensions;
 using Framework.Core.Config;
+using Framework.Core.Extensions;
 using Framework.Core.Helpers;
 using Framework.Core.Reflection;
 using Framework.Core.Types.Specialized;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 
 namespace Framework.Core.Patterns
@@ -24,10 +25,12 @@ namespace Framework.Core.Patterns
         // PROPERTIES
         //
 
+        public string Name { get { return GetName(); } }
+
         public IEnumerable<Service> Services { get { return GetListOfAvailableServices(); } }
 
         //
-        // PROPERTIES (INTERNAL)
+        // PROPERTIES (Protected)
         //
 
         protected TConfig Config { get; set; }
@@ -58,6 +61,11 @@ namespace Framework.Core.Patterns
             //
 
             Config = (TConfig)System.Configuration.ConfigurationManager.GetSection(ConfigSectionName);
+        }
+
+        public virtual string GetName()
+        {
+            return Base.GetConfigSectionName(Assembly).ToLower(CultureInfo.InvariantCulture);
         }
 
         protected IEnumerable<Service> GetListOfAvailableServices()

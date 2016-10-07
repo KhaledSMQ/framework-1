@@ -67,12 +67,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\IModuleEntry.cs" />
+    <Compile Include="Api\IModuleContainer.cs" />
+    <Compile Include="Config\Error.cs" />
     <Compile Include="Runtime\IoCPageHandlerFactory.cs" />
-    <Compile Include="Services\SrvHost.cs" />
-    <Compile Include="Services\SrvHub.cs" />
-    <Compile Include="Services\SrvModuleEntry.cs" />
-    <Compile Include="Services\SrvScope.cs" />
+    <Compile Include="Services\Host.cs" />
+    <Compile Include="Services\Container.cs" />
+    <Compile Include="Services\ModuleContainer.cs" />
+    <Compile Include="Services\Scope.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />
     <Compile Include="Config\BaseConfiguration.cs" />
     <Compile Include="Config\MethodCallConfiguration.cs" />

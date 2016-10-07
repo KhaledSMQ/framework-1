@@ -49,7 +49,7 @@ namespace Framework.Core.Reflection
             char closeGenericChar = ']';
 
             Type type = default(Type);
-
+            
             string assemblyName = string.Empty;
             string typeName = string.Empty;
             List<string> listOfGenericTypeName = null;

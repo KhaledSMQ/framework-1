@@ -8,12 +8,27 @@
 // ============================================================================
 
 using Framework.Core.Types.Specialized;
+using System.Collections.Generic;
 
 namespace Framework.Core.Patterns
 {
     public interface IModule
     {
-        System.Collections.Generic.IEnumerable<Service> Services { get; }
+        //
+        // Full qualified name for module.
+        //
+
+        string Name { get; }
+
+        //
+        // Complete list of available services.
+        //
+
+        IEnumerable<Service> Services { get; }
+
+        //
+        // Method for loading the module configuration settings.
+        //
 
         void LoadConfig();
     }

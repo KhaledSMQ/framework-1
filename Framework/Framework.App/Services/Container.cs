@@ -20,7 +20,7 @@ using System.Reflection;
 
 namespace Framework.App.Services
 {
-    public class SrvHub : ACommon, IContainer
+    public class Container : ACommon, IContainer
     {
         //
         // INIT

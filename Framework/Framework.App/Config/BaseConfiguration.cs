@@ -36,6 +36,20 @@ namespace Framework.App.Config
         }  
     }
 
+    public class TypeElement : ConfigurationElement
+    {
+        //
+        // TYPE-NAME
+        //
+
+        [ConfigurationProperty(Constants.TYPE, DefaultValue = "", IsRequired = true)]
+        public string Type
+        {
+            get { return (string)this[Constants.TYPE]; }
+            set { this[Constants.TYPE] = value; }
+        }
+    }
+
     public class BaseElementWithType : BaseElement
     {
         //

@@ -8,11 +8,12 @@
 // ============================================================================
 
 using Framework.Core.Extensions;
+using System.Globalization;
 using System.Reflection;
 
 namespace Framework
 {
-    public static class Lib
+    public static class Base
     {
         // 
         // Default Xml namespace for the base namespace.
@@ -31,7 +32,7 @@ namespace Framework
 
         public static string GetDefaultXmlNamespace(Assembly executingAssembly)
         {
-            return DEFAULT_XML_NAMESPACE + "/" + GetDefaultErrorPrefix(executingAssembly).RightOf(".").Replace('.', '/').ToLower();
+            return DEFAULT_XML_NAMESPACE + "/" + GetDefaultErrorPrefix(executingAssembly).RightOf(".").Replace('.', '/').ToLower(CultureInfo.InvariantCulture);
         }
 
         public static string GetConfigSectionName(Assembly executingAssembly)
@@ -39,5 +40,14 @@ namespace Framework
             string assemblyName = GetDefaultErrorPrefix(executingAssembly);
             return assemblyName.IsNotNullAndEmpty() ? char.ToLower(assemblyName[0]) + assemblyName.Substring(1) : assemblyName;
         }
+
+        //
+        // Error handling
+        //
+
+        public static Core.Error.ExceptionHandler GetExceptionHandler(Assembly executingAssembly, object[] bag)
+        {
+            return Core.Error.ErrorBag.GetExceptionHandler(executingAssembly, bag);
+        }        
     }
 }

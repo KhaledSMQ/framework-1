@@ -12,6 +12,7 @@ using Framework.Core.Extensions;
 using Framework.Core.Config;
 using Framework.Core.Types.Specialized;
 using Framework.App.Runtime;
+using System;
 
 namespace Framework.App.Api
 {
@@ -20,18 +21,7 @@ namespace Framework.App.Api
         //
         // MODULE IMPORT
         //
-
-        public static Core.Types.Specialized.Module Config2Module(this ModuleImportElement elm)
-        {
-            return new Core.Types.Specialized.Module()
-            {
-                Name = elm.Name,
-                Description = elm.Description,
-                TypeName = elm.Type,
-                Settings = elm.Settings.Map<SettingElement, Setting>(s => { return new Setting() { Name = s.Name, Value = s.Value }; })
-            };
-        }
-
+      
         //
         // STARTUP-SEQUENCE
         //

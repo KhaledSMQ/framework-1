@@ -7,9 +7,11 @@
 // Description: MimeTypes useful constants & methods.
 // ============================================================================                    
 
+using Framework.Core.Config;
 using Framework.Core.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 
 namespace Framework.Core
@@ -74,6 +76,7 @@ namespace Framework.Core
         public const string EXT_TEXT_PLAIN = ".txt";
         public const string EXT_XAML = ".xaml";
         public const string EXT_XSLT = ".xslt";
+        public const string EXT_XSL = ".xsl";
         public const string EXT_XML = ".xml";
         public const string EXT_CSS = ".css";
         public const string EXT_DOCX = ".docx";
@@ -94,7 +97,7 @@ namespace Framework.Core
         // Mapping between mime type and extension.
         //
 
-        public static readonly IDictionary<string, string> MimeTypeToFileExtension = new SortedDictionary<string, string>() 
+        private static readonly IDictionary<string, string> MimeTypeToFileExtension = new SortedDictionary<string, string>()
         {
             {TYPE_PNG, EXT_PNG},
             {TYPE_JAVASCRIPT, EXT_JAVASCRIPT},
@@ -110,7 +113,7 @@ namespace Framework.Core
             {TYPE_XLSX, EXT_XLSX},
             {TYPE_PPT, EXT_PPT},
             {TYPE_PPTX, EXT_PPTX},
-            {TYPE_JPEG, EXT_JPEG},            
+            {TYPE_JPEG, EXT_JPEG},
             {TYPE_XSLT, EXT_XSLT},
             {TYPE_TXT, EXT_TXT},
             {TYPE_CSV, EXT_CSV},
@@ -127,36 +130,45 @@ namespace Framework.Core
         // Mapping between file extension and mime type.
         //
 
-        public static readonly IDictionary<string, string> FileExtensionToMimeType = new SortedDictionary<string, string>() 
+        private static readonly IDictionary<string, string> FileExtensionToMimeType = new SortedDictionary<string, string>()
         {
-            {".png", TYPE_PNG},
-            {".js", TYPE_JAVASCRIPT},
-            {".css", TYPE_CSS},
-            {".xml", TYPE_XML},
-            {".bmp", TYPE_BMP},
-            {".gif", TYPE_GIF},
-            {".tiff", TYPE_TIFF},
-            {".pdf", TYPE_PDF},
-            {".doc", TYPE_DOC},
-            {".docx", TYPE_DOCX},
-            {".xls", TYPE_XLS},
-            {".xlsx", TYPE_XLSX},
-            {".ppt", TYPE_PPT},
-            {".pptx", TYPE_PPTX},
-            {".jpg", TYPE_JPEG},
-            {".jpeg", TYPE_JPEG},
-            {".xsl", TYPE_XSLT},
-            {".xslt", TYPE_XSLT},
-            {".txt", TYPE_TXT},
-            {".csv", TYPE_CSV},
-            {".json", TYPE_JSON},
-            {".woff", TYPE_WOFF},
-            {".eot", TYPE_EOT},
-            {".ttf", TYPE_TTF},
-            {".svg", TYPE_SVG},
-            {".zip", TYPE_ZIP},
-            {".rar", TYPE_RAR}
+            {EXT_PNG, TYPE_PNG},
+            {EXT_JAVASCRIPT, TYPE_JAVASCRIPT},
+            {EXT_CSS, TYPE_CSS},
+            {EXT_XML, TYPE_XML},
+            {EXT_BMP, TYPE_BMP},
+            {EXT_GIF, TYPE_GIF},
+            {EXT_TIFF, TYPE_TIFF},
+            {EXT_PDF, TYPE_PDF},
+            {EXT_DOC, TYPE_DOC},
+            {EXT_DOCX, TYPE_DOCX},
+            {EXT_XLS, TYPE_XLS},
+            {EXT_XLSX, TYPE_XLSX},
+            {EXT_PPT, TYPE_PPT},
+            {EXT_PPTX, TYPE_PPTX},
+            {EXT_JPG, TYPE_JPEG},
+            {EXT_JPEG, TYPE_JPEG},
+            {EXT_XSL, TYPE_XSLT},
+            {EXT_XSLT, TYPE_XSLT},
+            {EXT_TXT, TYPE_TXT},
+            {EXT_CSV, TYPE_CSV},
+            {EXT_JSON, TYPE_JSON},
+            {EXT_WOFF, TYPE_WOFF},
+            {EXT_EOT, TYPE_EOT},
+            {EXT_TTF, TYPE_TTF},
+            {EXT_SVG, TYPE_SVG},
+            {EXT_ZIP, TYPE_ZIP},
+            {EXT_RAR, TYPE_RAR}
         };
+
+        //
+        // Boolean constants used for API.
+        // SILENT for silent operations.
+        // THROW_ERROR_IF_NOT_FOUND used to singal that an error should be thrown.
+        //
+
+        public const bool SILENT = true;
+        public const bool THROW_ERROR_IF_NOT_FOUND = false;
 
         //
         // GET-MIMETYPE-FROM-FILENAME
@@ -164,24 +176,29 @@ namespace Framework.Core
         // mime type. The mime type is returned in the shape of a string.
         //
 
-        public static string GetMimeTypeFromFilename(string filename, bool silent = false)
+        public static string GetMimeTypeFromFilename(string fileName)
         {
-            string mime = string.Empty;
-            string ext = Path.GetExtension(filename).ToLower();
+            return GetMimeTypeFromFilename(fileName, THROW_ERROR_IF_NOT_FOUND);
+        }
 
-            if (FileExtensionToMimeType.ContainsKey(ext))
+        public static string GetMimeTypeFromFilename(string fileName, bool silent)
+        {
+            string mimeType = string.Empty;
+            string fileExtension = Path.GetExtension(fileName).ToLower(CultureInfo.InvariantCulture);
+
+            if (FileExtensionToMimeType.ContainsKey(fileExtension))
             {
-                mime = FileExtensionToMimeType[ext];
+                mimeType = FileExtensionToMimeType[fileExtension];
             }
             else
             {
                 if (!silent)
                 {
-                    throw new Exception(string.Format("{0} unable to determine mime type for filename '{1}'", Config.Lib.DEFAULT_ERROR_MSG_PREFIX, filename));
+                    throw Lib.Exception(Config.Error.UNABLE_TO_DETERMINE_MIME_TYPE_FROM_FILENAME, fileName);
                 }
             }
 
-            return mime;
+            return mimeType;
         }
 
         //
@@ -192,20 +209,9 @@ namespace Framework.Core
         //
 
         public static string GetMimeTypeFromFilenameWithDefault(string filename, string defaultMimeType)
-        {
-            string mime = string.Empty;
-            string ext = Path.GetExtension(filename).ToLower();
-
-            if (FileExtensionToMimeType.ContainsKey(ext))
-            {
-                mime = FileExtensionToMimeType[ext];
-            }
-            else
-            {
-                mime = defaultMimeType;
-            }
-
-            return mime;
+        {            
+            string fileExtension = Path.GetExtension(filename).ToLower(CultureInfo.InvariantCulture);
+            return FileExtensionToMimeType.ContainsKey(fileExtension) ? FileExtensionToMimeType[fileExtension] : defaultMimeType;
         }
 
         //
@@ -215,33 +221,33 @@ namespace Framework.Core
         // and anchors...
         //
 
-        public static string GetMimeTypeFromUrl(string url, bool silent = false)
+        public static string GetMimeTypeFromUrl(string url)
         {
-            string mime = string.Empty;
+            return GetMimeTypeFromUrl(url, THROW_ERROR_IF_NOT_FOUND);
+        }
+
+        public static string GetMimeTypeFromUrl(string url, bool silent)
+        {
+            //
+            // Trim the url from query strings and anchors.
+            // Start with the original Url value.
+            //
+
+            string trimmedUrl = url;
 
             //
             // Remove the query string.
-            //
-
-            string noQS = url;
-
-            if (noQS.Contains("?"))
-            {
-                noQS = noQS.LeftOf('?');
-            }
-
-            //
             // Remove anchors.
             //
 
-            string noAnchor = noQS;
+            trimmedUrl = trimmedUrl.Contains("?") ? trimmedUrl.LeftOf("?") : trimmedUrl;
+            trimmedUrl = trimmedUrl.Contains("#") ? trimmedUrl.LeftOf("#") : trimmedUrl;
+         
+            //
+            // Use the standard retrieve function.
+            //
 
-            if (noAnchor.Contains("#"))
-            {
-                noAnchor = noAnchor.LeftOf('#');
-            }
-
-            return GetMimeTypeFromFilename(noAnchor, silent);
+            return GetMimeTypeFromFilename(trimmedUrl, silent);
         }
 
         //
@@ -250,24 +256,29 @@ namespace Framework.Core
         // file extension.
         //
 
-        public static string GetFileExtensionFromMimeType(string mimetype, bool silent = false)
+        public static string GetFileExtensionFromMimeType(string mimeType)
         {
-            string mime = mimetype.ToLower();
-            string ext = string.Empty;
+            return GetFileExtensionFromMimeType(mimeType, THROW_ERROR_IF_NOT_FOUND);
+        }
+
+        public static string GetFileExtensionFromMimeType(string mimeType, bool silent)
+        {
+            string mime = mimeType.ToLower(CultureInfo.InvariantCulture);
+            string fileExtension = string.Empty;
 
             if (MimeTypeToFileExtension.ContainsKey(mime))
             {
-                ext = MimeTypeToFileExtension[mime];
+                fileExtension = MimeTypeToFileExtension[mime];
             }
             else
             {
                 if (!silent)
                 {
-                    throw new Exception(string.Format("{0} unable to determine file extension from mime type '{1}'", Config.Lib.DEFAULT_ERROR_MSG_PREFIX, mimetype));
+                    throw Lib.Exception(Config.Error.UNABLE_TO_DETERMINE_FILE_EXTENSION_FROM_MIME_TYPE, mimeType);
                 }
             }
 
-            return ext;
+            return fileExtension;
         }
     }
 }

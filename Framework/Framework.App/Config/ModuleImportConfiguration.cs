@@ -43,12 +43,12 @@ namespace Framework.App.Config
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((ModuleImportElement)element).Name;
+            return ((ModuleImportElement)element).Type;
         }
 
         public void Remove(ModuleImportElement itemConfig)
         {
-            BaseRemove(itemConfig.Name);
+            BaseRemove(itemConfig.Type);
         }
 
         public void RemoveAt(int index)
@@ -62,5 +62,5 @@ namespace Framework.App.Config
         }
     }
 
-    public class ModuleImportElement : BaseElementWithTypeAndSettings { }
+    public class ModuleImportElement : TypeElement { }
 }

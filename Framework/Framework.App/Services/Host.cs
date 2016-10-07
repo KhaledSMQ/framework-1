@@ -13,7 +13,7 @@ using System.Web.Hosting;
 
 namespace Framework.App.Services
 {
-    public class SrvHost : ACommon, IHost
+    public class Host : ACommon, IHost
     {
         //
         // PROPERTIES

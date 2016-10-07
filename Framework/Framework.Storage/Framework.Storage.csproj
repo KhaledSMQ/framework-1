@@ -60,6 +60,7 @@
     <Compile Include="Api\IDrive.cs" />
     <Compile Include="Api\IStore.cs" />
     <Compile Include="Api\IBlobSet.cs" />
+    <Compile Include="Config\Error.cs" />
     <Compile Include="Config\Module.cs" />
     <Compile Include="Model\Objects\Blob.cs" />
     <Compile Include="Config\Lib.cs" />

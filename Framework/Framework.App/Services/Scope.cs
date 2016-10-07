@@ -13,7 +13,7 @@ using Framework.Core.Patterns;
 
 namespace Framework.App.Services
 {
-    public class SrvScope : ACommon, IScope
+    public class Scope : ACommon, IScope
     {
         //
         // PROPERTIES

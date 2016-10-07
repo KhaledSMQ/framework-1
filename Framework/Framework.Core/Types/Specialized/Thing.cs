@@ -110,7 +110,7 @@ namespace Framework.Core.Types.Specialized
 
         public void ParseFromXml(XElement elm)
         {
-            ParseFromXml(elm, Lib.DEFAULT_XML_NAMESPACE, XML_ELM_THING);
+            ParseFromXml(elm, Base.DEFAULT_XML_NAMESPACE, XML_ELM_THING);
         }
 
         public void ParseFromXml(XElement elm, string ns, string tag)
@@ -150,7 +150,7 @@ namespace Framework.Core.Types.Specialized
 
         public XElement UnparseToXml()
         {
-            return UnparseToXml(Lib.DEFAULT_XML_NAMESPACE, XML_ELM_THING);
+            return UnparseToXml(Base.DEFAULT_XML_NAMESPACE, XML_ELM_THING);
         }
 
         public XElement UnparseToXml(string ns, string tag)

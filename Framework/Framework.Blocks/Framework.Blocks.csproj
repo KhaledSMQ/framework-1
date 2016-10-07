@@ -60,6 +60,7 @@
     <Compile Include="Api\IBlock.cs" />
     <Compile Include="Api\IEval.cs" />
     <Compile Include="Api\IStore.cs" />
+    <Compile Include="Config\Error.cs" />
     <Compile Include="Services\SrvEval.cs" />
     <Compile Include="Config\Module.cs" />
     <Compile Include="Services\SrvStore.cs" />

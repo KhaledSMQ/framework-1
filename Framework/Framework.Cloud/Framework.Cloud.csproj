@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Api\IDomain.cs" />
     <Compile Include="Api\IStore.cs" />
+    <Compile Include="Config\Error.cs" />
     <Compile Include="Model\Relational\Domain.cs" />
     <Compile Include="Model\Relational\Platform.cs" />
     <Compile Include="Model\Relational\Settings.cs" />
