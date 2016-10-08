@@ -16,10 +16,11 @@ using Framework.Core.Types.Specialized;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
+using System.Linq;
 
 namespace Framework.Core.Patterns
 {
-    public abstract class AModule<TConfig> : ACommon, IModule where TConfig : ModuleConfiguration
+    public abstract class AModule<TConfig> : IModule where TConfig : ModuleConfiguration
     {
         //
         // PROPERTIES
@@ -88,15 +89,26 @@ namespace Framework.Core.Patterns
 
         protected IEnumerable<Service> ExtractServicesFromAssembly()
         {
-            return Assembly.GetTypesWithInterface(typeof(ICommon)).Map(typ =>
-            {
-                return new Service()
+            List<Service> srvList = new List<Service>();
+
+            Assembly.GetTypesWithInterface(typeof(ICommon))
+                .Where(typ => typ.IsInterface)
+                .Apply(common =>
                 {
-                    Name = typ.FullName,
-                    TypeName = Assembly.GetName() + ":" + typ.FullName,
-                    Contract = "C"
-                };
-            });
+                    Assembly.GetTypesWithInterface(common)
+                        .Where(typ => typ.IsClass && !typ.IsAbstract)
+                        .Apply(typ =>
+                        {
+                            srvList.Add(new Service()
+                            {
+                                Name = typ.FullName,
+                                TypeName = typ.AssemblyQualifiedName,
+                                Contract = common.FullName
+                            });
+                        });
+                });
+
+            return srvList;
         }
     }
 }
