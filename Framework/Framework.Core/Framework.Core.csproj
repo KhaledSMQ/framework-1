@@ -127,11 +127,11 @@
     <Compile Include="Patterns\ABaseClassWithID.cs" />
     <Compile Include="Patterns\ABaseClassWithIDAndOwner.cs" />
     <Compile Include="Patterns\ACommon.cs" />
-    <Compile Include="Config\BaseConfiguration.cs" />
-    <Compile Include="Config\ModuleConfiguration.cs" />
-    <Compile Include="Config\ServiceConfiguration.cs" />
-    <Compile Include="Config\SettingsConfiguration.cs" />
-    <Compile Include="Config\_Const.cs" />
+    <Compile Include="Config\ConfigBase.cs" />
+    <Compile Include="Config\ConfigModule.cs" />
+    <Compile Include="Config\ConfigService.cs" />
+    <Compile Include="Config\ConfigSettings.cs" />
+    <Compile Include="Config\ConfigConstants.cs" />
     <Compile Include="Patterns\AController.cs" />
     <Compile Include="Patterns\AControllerServiceWrapper.cs" />
     <Compile Include="Patterns\AModule.cs" />

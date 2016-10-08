@@ -48,16 +48,6 @@ namespace Framework.App.Services
         // API
         //
 
-        public T GetUnique<T>() where T : ICommon
-        {
-            return GetUnique<T>(Scope);
-        }
-
-        public T GetUnique<T>(IScope whatScope) where T : ICommon
-        {
-            return GetByContract<T>(whatScope).FirstOrDefault();
-        }
-
         public T Get<T>() where T : ICommon
         {
             return Get<T>(Scope);
@@ -66,10 +56,8 @@ namespace Framework.App.Services
         public T Get<T>(IScope whatScope) where T : ICommon
         {
             Service srvEntry = default(Service);
-            ICollection<Service> srvEntryList = default(ICollection<Service>);
             string contractTypeName = typeof(T).FullName;
-
-            srvEntryList = _ByContract[contractTypeName];
+            ICollection<Service> srvEntryList = _ByContract[contractTypeName];
 
             if (srvEntryList.NotEmpty())
             {

@@ -99,6 +99,7 @@ namespace Framework.App.Runtime
                     //
 
                     Scope = Container.Get<IScope>();
+                    Container.Scope = Scope;
 
                     //
                     // Setup the host service.
@@ -147,10 +148,10 @@ namespace Framework.App.Runtime
             {
                 IEnumerable<MethodCall> bootSequence = Config.Sequence.Map<MethodCallElement, MethodCall>(App.Api.Transforms.Config2MethodCall);
 
-                bootSequence.Apply(call =>
+                bootSequence.Apply((Action<MethodCall>)(call =>
                 {
-                    Scope.Hub.GetUnique<IReflected>().Run(call.Service, call.Method);
-                });
+                    Scope.Hub.Get<IReflected>().Run(call.Service, call.Method);
+                }));
             }
         }
 

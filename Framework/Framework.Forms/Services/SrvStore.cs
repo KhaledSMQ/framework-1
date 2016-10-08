@@ -32,7 +32,7 @@ namespace Framework.Forms.Services
             // because they do not have circular dependencies.
             //
 
-            _SrvMem = Scope.Hub.GetUnique<IMem>();
+            _SrvMem = Scope.Hub.Get<IMem>();
         }
 
         //

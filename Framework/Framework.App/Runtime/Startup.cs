@@ -27,7 +27,7 @@ namespace Framework.App.Runtime
             // Set a new data directory path.
             //
 
-            AppDomain.CurrentDomain.SetData("DataDirectory", Manager.Container.GetUnique<IHost>().GetAbsolutePhysicalPath("Data\\DB\\"));
+            AppDomain.CurrentDomain.SetData("DataDirectory", Manager.Host.GetAbsolutePhysicalPath("Data\\DB\\"));
 
             //
             //

@@ -15,10 +15,6 @@ namespace Framework.Core.Api
 {
     public interface IContainer : ICommon
     {
-        T GetUnique<T>() where T : ICommon;
-
-        T GetUnique<T>(IScope whatScope) where T : ICommon;
-
         T Get<T>() where T : ICommon;
 
         T Get<T>(IScope whatScope) where T : ICommon;

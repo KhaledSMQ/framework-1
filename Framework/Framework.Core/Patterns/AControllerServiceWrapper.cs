@@ -37,7 +37,7 @@ namespace Framework.Core.Patterns
             // Service initialization.
             //
 
-            Srv = Scope.Hub.GetUnique<TSrv>();
+            Srv = Scope.Hub.Get<TSrv>();
         }
     }
 }

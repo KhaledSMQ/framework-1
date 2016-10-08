@@ -20,7 +20,7 @@ namespace Framework.App.Services
         public override void Init()
         {
             base.Init();
-            __ByType = new SortedDictionary<Type, IModule>();
+            __ByType = new SortedDictionary<string, IModule>();
             __ByName = new SortedDictionary<string, Type>();
         }
 
@@ -30,7 +30,7 @@ namespace Framework.App.Services
 
         public void Load(Type type)
         {
-            if (type.IsNotNull() && !__ByType.ContainsKey(type))
+            if (type.IsNotNull() && !__ByType.ContainsKey(type.FullName))
             {
                 //
                 // Instantiate the module export interface
@@ -38,14 +38,14 @@ namespace Framework.App.Services
                 // Import all the supported services and such.
                 //
 
-                IModule module = Core.Reflection.Activator.CreateGenericInstance<IModule>(type.FullName);
+                IModule module = Core.Reflection.Activator.CreateInstance<IModule>(type);
 
                 //
                 // Add the module item to the in-memory 
                 // module data structure.
                 //
 
-                __ByType.Add(type, module);
+                __ByType.Add(type.FullName, module);
                 __ByName.Add(module.Name, type);
 
                 //
@@ -136,12 +136,12 @@ namespace Framework.App.Services
 
         public IModule Get(Type type)
         {
-            return __ByType[type];
+            return __ByType[type.FullName];
         }
 
         public IEnumerable<Type> GetListOfTypes()
         {
-            return __ByType.Keys;
+            return __ByType.Values.Map(module => { return module.GetType(); }); ;
         }
 
         //
@@ -160,11 +160,11 @@ namespace Framework.App.Services
 
         public void Unload(Type type)
         {
-            if (type.IsNotNull() && __ByType.ContainsKey(type))
+            if (type.IsNotNull() && __ByType.ContainsKey(type.FullName))
             {
                 IModule module = Get(type);
 
-                __ByType.Remove(type);
+                __ByType.Remove(type.FullName);
                 __ByName.Remove(module.Name);
 
                 //
@@ -188,7 +188,7 @@ namespace Framework.App.Services
         // In-memory area for storing modules.
         //
 
-        private IDictionary<Type, IModule> __ByType;
+        private IDictionary<string, IModule> __ByType;
         private IDictionary<string, Type> __ByName;
     }
 }

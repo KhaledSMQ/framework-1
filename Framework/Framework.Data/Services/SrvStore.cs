@@ -43,9 +43,9 @@ namespace Framework.Data.Services
             // do not have dependencies that are circular to this service.
             //
 
-            SrvSchema = Scope.Hub.GetUnique<ISchema<TUser>>();
-            SrvDal = Scope.Hub.GetUnique<IDal<TUser>>();
-            SrvRuntime = Scope.Hub.GetUnique<IRuntime<TUser>>();
+            SrvSchema = Scope.Hub.Get<ISchema<TUser>>();
+            SrvDal = Scope.Hub.Get<IDal<TUser>>();
+            SrvRuntime = Scope.Hub.Get<IRuntime<TUser>>();
 
             //
             // Setup dependent services.

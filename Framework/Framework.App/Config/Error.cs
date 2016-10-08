@@ -11,14 +11,28 @@ namespace Framework.App.Config
 {
     public enum Error
     {
-        UNKNOWN
+        UNKNOWN,
+
+        //
+        // Container Service
+        //
+
+        CONTAINER_SERVICE_NOT_DEFINED,
+        CONTAINER_SERVICE_ALREADY_DEFINED
     }
 
     public static class ErrorMessages
     {
         public static readonly object[] DEFAULT = new object[] {
 
-            Error.UNKNOWN, "unknown error '{0}'"
+            Error.UNKNOWN, "unknown error '{0}'",
+
+            //
+            // Container service.
+            //
+
+            Error.CONTAINER_SERVICE_NOT_DEFINED, "service '{0}' is not defined!",
+            Error.CONTAINER_SERVICE_ALREADY_DEFINED, "service '{0}' was already defined!"
 
         };
     }
