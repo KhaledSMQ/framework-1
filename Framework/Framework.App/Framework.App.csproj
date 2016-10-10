@@ -67,12 +67,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\IConfig.cs" />
     <Compile Include="Api\IModuleContainer.cs" />
     <Compile Include="Config\Error.cs" />
     <Compile Include="Runtime\IoCPageHandlerFactory.cs" />
     <Compile Include="Services\Host.cs" />
     <Compile Include="Services\Container.cs" />
     <Compile Include="Services\ModuleContainer.cs" />
+    <Compile Include="Services\Config.cs" />
     <Compile Include="Services\Scope.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />
     <Compile Include="Config\BaseConfiguration.cs" />
@@ -95,7 +97,9 @@
     <None Include="Framework.App.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Model\Apps\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Client\Framework.Client.csproj">
       <Project>{f9ef6ebb-b11b-4fdd-b88a-c4bbc08fbcb7}</Project>
