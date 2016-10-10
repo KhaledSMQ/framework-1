@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using Framework.Core.Extensions;
+using System.Globalization;
 
 namespace Framework.Core.Types.Specialized
 {
@@ -20,8 +21,11 @@ namespace Framework.Core.Types.Specialized
         //
 
         public string Name { get; set; }
+
         public string Version { get; set; }
+
         public string Culture { get; set; }
+
         public string PublicKeyToken { get; set; }
 
         //
@@ -60,7 +64,7 @@ namespace Framework.Core.Types.Specialized
 
         public virtual string UnparseForType(string typename)
         {
-            return this.Unparse() + (typename.IsNotNullAndEmpty() ? ", " + typename : string.Empty);
+            return Unparse() + (typename.IsNotNullAndEmpty() ? ", " + typename : string.Empty);
         }
 
         public virtual string Unparse()
@@ -95,7 +99,7 @@ namespace Framework.Core.Types.Specialized
                 }
                 else if (pair.Length == 2)
                 {
-                    property = pair[0].ToLower().Trim();
+                    property = pair[0].ToLower(CultureInfo.InvariantCulture).Trim();
                     value = pair[1];
                 }
 

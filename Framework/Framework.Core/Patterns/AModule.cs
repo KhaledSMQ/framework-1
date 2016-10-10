@@ -89,7 +89,7 @@ namespace Framework.Core.Patterns
 
         protected IEnumerable<Service> ExtractServicesFromAssembly()
         {
-            List<Service> srvList = new List<Service>();
+            List<Service> output = new List<Service>();
 
             Assembly.GetTypesWithInterface(typeof(ICommon))
                 .Where(typ => typ.IsInterface)
@@ -99,7 +99,7 @@ namespace Framework.Core.Patterns
                         .Where(typ => typ.IsClass && !typ.IsAbstract)
                         .Apply(typ =>
                         {
-                            srvList.Add(new Service()
+                            output.Add(new Service()
                             {
                                 Name = typ.FullName,
                                 TypeName = typ.AssemblyQualifiedName,
@@ -108,7 +108,7 @@ namespace Framework.Core.Patterns
                         });
                 });
 
-            return srvList;
+            return output;
         }
     }
 }

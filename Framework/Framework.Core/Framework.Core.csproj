@@ -166,6 +166,8 @@
     <Compile Include="Reflection\TypeChecker.cs" />
     <Compile Include="Reflection\ReflectionUtils.cs" />
     <Compile Include="Types\Specialized\Module.cs" />
+    <Compile Include="Types\Specialized\TypeInfoParsingOptions.cs" />
+    <Compile Include="Types\Specialized\TypeInfo.cs" />
     <Compile Include="Types\Specialized\Service.cs" />
     <Compile Include="Types\Specialized\AssemblyInfo.cs" />
     <Compile Include="Types\Specialized\Id.cs" />

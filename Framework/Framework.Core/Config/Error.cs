@@ -31,8 +31,8 @@ namespace Framework.Core.Config
             // MimeTypes
             //
 
-            Error.UNABLE_TO_DETERMINE_MIME_TYPE_FROM_FILENAME, "unable to determine mime type for filename '{1}",
-            Error.UNABLE_TO_DETERMINE_FILE_EXTENSION_FROM_MIME_TYPE, "unable to determine file extension from mime type '{1}"
+            Error.UNABLE_TO_DETERMINE_MIME_TYPE_FROM_FILENAME, "unable to determine mime type for filename '{0}",
+            Error.UNABLE_TO_DETERMINE_FILE_EXTENSION_FROM_MIME_TYPE, "unable to determine file extension from mime type '{0}"
 
 
         };

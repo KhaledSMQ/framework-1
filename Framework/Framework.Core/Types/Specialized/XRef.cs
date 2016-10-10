@@ -21,6 +21,7 @@ namespace Framework.Core.Types.Specialized
         //
 
         public string Namespace { get; set; }
+
         public string Name { get; set; }
 
         //
