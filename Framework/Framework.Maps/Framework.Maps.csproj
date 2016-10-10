@@ -61,10 +61,11 @@
     <Compile Include="Config\Module.cs" />
     <Compile Include="Config\Lib.cs" />
     <Compile Include="Config\Constants.cs" />
-    <Compile Include="Model\GlobalPosition.cs" />
-    <Compile Include="Model\GPSMath.cs" />
+    <Compile Include="Model\GpsPoint.cs" />
+    <Compile Include="Model\GpsMath.cs" />
     <Compile Include="Model\LatLongBase.cs" />
-    <Compile Include="Model\LatLongObjects.cs" />
+    <Compile Include="Model\Latitude.cs" />
+    <Compile Include="Model\Longitude.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,485 +1,517 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// ============================================================================
+// Project: Framework
+// Name/Class: LatLongBase
+// Author: João Carreiro (joao.carreiro@coop4creativity.com)
+// Create date: 10/Oct/2016
+// Company: Coop4Creativity
+// Description: 
+// ============================================================================
+
+using System;
+using System.Globalization;
 
 namespace GPS
 {
-	public abstract class LatLongBase
-	{
-		#region enumerators
+    public abstract class LatLongBase
+    {
+        //
+        // DEFAULTS
+        //
 
-		/// <summary>
-		/// Compass point enumerator
-		/// </summary>
-		public enum CompassPoint { N,W,E,S }
+        public static int DEFAULT_MATH_PRECISION = 6;
 
-		///// <summary>
-		///// Coordinate type enumerator
-		///// </summary>
-		//public enum CoordType { Lat, Long }
+        //
+        // ENUMERATOR: Compass point enumerator
+        //
 
-		#endregion enumerators
+        public enum CompassPoint { N, W, E, S }
 
+        //
+        // Get/set the precision to be applied to calculated 
+        // values (mostly dealing withe the Value property).
+        //
 
-		#region properties
-		/// <summary>
-		/// Get/set the precision to be applied to calculated values (mostly dealing withe the Value 
-		/// property)
-		/// </summary>
-		public int          MathPrecision  { get; set; }
+        public int Precision { get; set; }
 
-		/// <summary>
-		/// Get/set the actual value of this coordintae part. This value is used to determine 
-		/// degrees/minutes/seconds when they're needed.
-		/// </summary>
-		public double       Value          { get; set; }
+        //
+        // Get/set the actual value of this coordintae part. 
+        // This value is used to determine  degrees/minutes
+        // seconds when they're needed.
+        //
 
-		/// <summary>
-		/// The compass point represented by this coordinate part
-		/// </summary>
-		public CompassPoint Direction      { get; set; }
+        public double Value { get; set; }
 
-		/// <summary>
-		/// Gets the radians represented by the Value
-		/// </summary>
-		public double Radians 
-		{ 
-			get { return Math.Round(GPSMath.DegreeToRadian(this.Value), this.MathPrecision); } 
-		}
+        //
+        // The compass point represented by this coordinate part.
+        //
 
-		/// <summary>
-		/// Gets the degrees rpresented by the Value.
-		/// </summary>
-		public double Degrees 
-		{ 
-			get { return Math.Round(GPSMath.RadianToDegree(this.Value), this.MathPrecision); } 
-		}
+        public CompassPoint Direction { get; set; }
 
-		#endregion properties
+        //
+        // Gets the radians represented by the Value
+        //
 
-		#region constructors
+        public double Radians
+        {
+            get { return Math.Round(GpsMath.DegreeToRadian(Value), this.Precision); }
+        }
 
-		/// <summary>
-		/// Creates an instance of this object using the specified degrees, minutes, and seconds
-		/// </summary>
-		/// <param name="degs">The degrees (can be a negative number, representing a west or south 
-		/// coordinate). The min/max value is determined by whether this is a longitude or latitude 
-		/// value.</param>
-		/// <param name="mins">The minutes. Value must be 0-60.</param>
-		/// <param name="secs">TYhe seconds. Value must be 0d-60d.</param>
-		/// <param name="mathPrecision">Precision used for math calculations.</param>
-		public LatLongBase(int degs, int mins, double secs, int mathPrecision = 6)
-		{
-			this.SanityCheck(degs, mins, secs, mathPrecision);
-			this.MathPrecision = mathPrecision;
-			this.DMSToValue(degs, mins, secs);
-			this.SetDirection();
-		}
+        //
+        // Gets the degrees rpresented by the Value.
+        //
 
-		/// <summary>
-		/// Creates an instance of this object using the specified degrees and minutes
-		/// </summary>
-		/// <param name="degs">The degrees (can be a negative number, representing a west or south 
-		/// coordinate). The min/max value is determined by whether this is a longitude or latitude 
-		/// value.</param>
-		/// <param name="mins">The minutes. Value must be 0d-60d.</param>
-		/// <param name="mathPrecision">Precision used for math calculations.</param>
-		public LatLongBase(int degs, double mins, int mathPrecision = 6)
-		{
-			this.SanityCheck(degs, mins, mathPrecision);
-			this.MathPrecision = mathPrecision;
-			int tempMins = (int)(Math.Floor(mins));
-			double secs  = 60d * (mins - tempMins);
-			this.DMSToValue(degs, tempMins, secs);
-			this.SetDirection();
-		}
+        public double Degrees
+        {
+            get { return Math.Round(GpsMath.RadianToDegree(Value), this.Precision); }
+        }
 
-		/// <summary>
-		/// Creates and instance of this object with the specified value
-		/// </summary>
-		/// <param name="value">The value (can be a negative number, representing a west or south 
-		/// coordinate). The min/max value is determined by whether this is a longitude or latitude 
-		/// value.</param>
-		/// <param name="mathPrecision">Precision used for math calculations.</param>
-		public LatLongBase(double value, int mathPrecision = 6)
-		{
-			this.SanityCheck(value, mathPrecision);
+        //
+        // CONSTRUCTORS
+        //
 
-			this.MathPrecision = mathPrecision;
-			this.Value = value;
-			this.SetDirection();
-		}
+        public LatLongBase(int degs, int mins, double secs) : this(degs, mins, secs, DEFAULT_MATH_PRECISION) { }
 
-		/// <summary>
-		/// Convert the specified string to a coordinate component. 
-		/// </summary>
-		/// <param name="coord">The coordinate as a string. Can be in one of the following formats 
-		/// (where X is the appropriate compass point and the minus is used to indicate W or S 
-		/// compass poiints):
-		///     - [X][-]dd mm ss.s 
-		///     - [X][-]dd* mm' ss.s" 
-		///     - [X][-]dd mm.m (degrees minutes.percentage of minute)
-		///     - [X][-]dd.d (degrees)
-		/// </param>
-		/// <param name="mathPrecision">Precision used for math calculations.</param>
-		public LatLongBase(string coord, int mathPrecision = 6)
-		{
-			// 1st sanity check - make sure the string isn't empty
-			this.SanityCheck(coord, mathPrecision);
+        public LatLongBase(int degs, int mins, double secs, int mathPrecision)
+        {
+            SanityCheck(degs, mins, secs, mathPrecision);
+            Precision = mathPrecision;
+            DmsToValue(degs, mins, secs);
+            SetDirection();
+        }
 
-			this.MathPrecision = mathPrecision;
+        public LatLongBase(int degs, double mins) : this(degs, mins, DEFAULT_MATH_PRECISION) { }
 
-			// Convert compass points to their appropriate sign - for easier manipulation, we remove 
-			// the compass points and if necessary, replace with a minus sign to indicate the 
-			// appropriate direction.
-			coord = coord.ToUpper();
-			coord = this.AdjustCoordDirection(coord);
+        public LatLongBase(int degs, double mins, int mathPrecision)
+        {
+            SanityCheck(degs, mins, mathPrecision);
+            Precision = mathPrecision;
+            int tempMins = (int)(Math.Floor(mins));
+            double secs = 60d * (mins - tempMins);
+            DmsToValue(degs, tempMins, secs);
+            SetDirection();
+        }
 
-			// Get rid of the expected segment markers (degree, minute, and second symbols) and 
-			// trim off any whitespace.
-			coord = coord.Replace("\"", "").Replace("'", "").Replace(GPSMath.DEGREE_SYMBOL, "").Trim();
+        public LatLongBase(double value) : this(value, DEFAULT_MATH_PRECISION) { }
 
-			// 2nd sanity check - Now that we've stripped all the unwanted stuff from the string, 
-			// let's make sure we still have a string with content.
-			this.SanityCheckString(coord);
+        public LatLongBase(double value, int mathPrecision)
+        {
+            SanityCheck(value, mathPrecision);
+            Precision = mathPrecision;
+            Value = value;
+            SetDirection();
+        }
 
-			// split the string at space characters
-			string[] parts = coord.Split(' ');
-			bool     valid = false;
-			int      degs  = 0;
-			int      mins  = 0;
-			double   secs  = 0d;
+        //
+        // Convert the specified string to a coordinate component. 
+        // @param coord The coordinate as a string. Can be in one of the following formats 
+        // (where X is the appropriate compass point and the minus is used to indicate W or S 
+        // compass poiints):
+        //     - [X][-]dd mm ss.s 
+        //     - [X][-]dd* mm' ss.s" 
+        //     - [X][-]dd mm.m (degrees minutes.percentage of minute)
+        //     - [X][-]dd.d (degrees)        
+        // @param mathPrecision Precision used for math calculations.
+        //
 
-			// depending on how many "parts" there are in the string, we try to parse the value(s).
-			switch (parts.Length)
-			{
-				case 1 :
-					{
-						// Assume that the part is a double value. that can merely be parsed and 
-						// assigned to the Value property.
-						double value;
-						if (double.TryParse(coord, out value))
-						{
-							this.SanityCheck(value, mathPrecision);
-							this.Value = value;
-						}
-						else
-						{
-							throw new ArgumentException("Could not parse coordinate value. Expected degreees (decimal).");
-						}
-					}
-					break;
-				case 2 :
-					{
-						// Assume that the parts are "degrees minutes". 
-						double minsTemp = 0d;
-						for (int i = 0; i < parts.Length; i++)
-						{
-							switch (i)
-							{
-								case 0 :
-									{
-										valid = (int.TryParse(parts[i], out degs));
-									}
-									break;
-								case 1 :
-									{
-										valid = (double.TryParse(parts[i], out minsTemp));
-									}
-									break;
-							}
-						}
-						if (!valid)
-						{
-							throw new ArgumentException("Could not parse coordinate value. Expected degrees (int), and minutes (double), i.e. 12 34.56.");
-						}
-						else
-						{
-							// if the values parsed as expected, we need to separate the minutes from the seconds.
-							mins = (int)(Math.Floor(minsTemp));
-							secs = Math.Round(60d * (minsTemp - mins), 3);
-							this.SanityCheck(degs, mins, secs, 3);
-						}
-					}
-					break;
-				case 3 :
-					{
-						// Assume that the parts are "degrees minutes seconds". 
-						for (int i = 0; i < parts.Length; i++)
-						{
-							switch (i)
-							{
-								case 0 :
-									{
-										valid = (int.TryParse(parts[i], out degs));
-									}
-									break;
-								case 1 :
-									{
-										valid = (int.TryParse(parts[i], out mins));
-									}
-									break;
-								case 2 :
-									{
-										valid = (double.TryParse(parts[i], out secs));
-									}
-									break;
-							}
-						}
-						if (!valid)
-						{
-							throw new ArgumentException("Could not parse coordinate value. Expected degrees (int), and minutes (int), and seconds (double), i.e. 12 34 56.789.");
-						}
-						else
-						{
-							this.SanityCheck(degs, mins, secs, mathPrecision);
-						}
-					}
-					break;
-			}
+        public LatLongBase(string coord) : this(coord, DEFAULT_MATH_PRECISION) { }
 
-			// If everything is valid and our we had more than one parameter, convert the parsed 
-			// degrees, minutes, and seconds, and assign the result to the Value property, and 
-			// finally, set the compass point.
-			if (valid && parts.Length > 1)
-			{
-				this.DMSToValue(degs, mins, secs);
-				this.SetDirection();
-			}
-		}
+        public LatLongBase(string coord, int mathPrecision)
+        {
+            // 
+            // 1st sanity check - make sure the string isn't empty
+            //
 
-		#endregion constructors
+            SanityCheck(coord, mathPrecision);
+            Precision = mathPrecision;
 
-		#region helper methods
+            //
+            // Convert compass points to their appropriate sign - for easier manipulation, we remove 
+            // the compass points and if necessary, replace with a minus sign to indicate the 
+            // appropriate direction.
+            //
 
-		/// <summary>
-		/// Returns the Value of this object as a GPS coordinate part.
-		/// </summary>
-		/// <param name="format"></param>
-		/// <returns></returns>
-		/// <remarks>
-		/// Valid format string values (anything else will generate an exception). If a null/empty 
-		/// string is specified, the "DA" format will be used.
-		///     - DA = "N0* 0' 0"", where N indicates the appropriate direction at the BEGINNING of the string
-		///     - da = "-0* 0' 0"", where "-" is prepended if the coordinate part is either west or south
-		///     - AD = "0* 0' 0"N", where N indicates the appropriate direction at the END of the string
-		///     - DV = "N0.00000", where N indicates the appropriate direction at the BEGINNING of the string
-		///     - dv = "-0.00000", where "-" is prepended if the coordinate part is either west or south
-		///     - VD = "0.00000N", where N indicates the appropriate direction at the END of the string
-		/// </remarks>
-		public string ToString(string format)
-		{
-			if (string.IsNullOrEmpty(format))
-			{
-				format = "DA";
-			}
-			string result = string.Empty;
-			switch (format)
-			{
-				case "DA" : // "N0* 0' 0"" where N indicates the appropriate direction at the BEGINNING of the string
-				case "da" : // "-0* 0' 0"", where "-" is prepended if the coordinate part is either west or south
-					{
-						result = this.AppendDirection(this.FormatAsDMS(), format);
-					}
-					break;
-				case "AD" : // "0* 0' 0"N", where N indicates the appropriate direction at the END of the string
-					{
-						result = this.AppendDirection(this.FormatAsDMS(), format);
-					}
-					break;
+            coord = coord.ToUpper(CultureInfo.InvariantCulture);
+            coord = AdjustCoordDirection(coord);
 
-				case "DV" : // "N0.00000", where N indicates the appropriate direction at the BEGINNING of the string
-				case "dv" : // "-0.00000", where "-" is prepended if the coordinate part is either west or south
-					{
-						result = this.AppendDirection(string.Format("{0:0.00000}",this.Value), format);
-					}
-					break;
-				case "VD" : // "0.00000N", where N indicates the appropriate direction at the END of the string
-					{
-						result = this.AppendDirection(string.Format("{0:0.00000}",this.Value), format);
-					}
-					break;
-				default :
-					throw new ArgumentException("Invalid GPS coordinate string format");
-			}
-			return result;
-		}
+            //
+            // Get rid of the expected segment markers (degree, minute, and second symbols) and 
+            // trim off any whitespace.
+            //
 
-		/// <summary>
-		/// Converts the current Value to degrees/minutes/seconds, and returns those calculated 
-		/// values via the "out" properties.
-		/// </summary>
-		/// <param name="degs">The calculated degrees.</param>
-		/// <param name="mins">The calculated minutes.</param>
-		/// <param name="secs">The calculated seconds.</param>
-		private void ValueToDMS(out int degs, out int mins, out double secs)
-		{
-			degs = (int)this.Value;
-			secs = (Math.Abs(this.Value) * 3600) % 3600;
-			mins = (int)(Math.Abs(secs / 60d));
-			secs = Math.Round(secs % 60d, 3);
-		}
+            coord = coord.Replace("\"", "").Replace("'", "").Replace(GpsMath.DEGREE_SYMBOL, "").Trim();
 
-		/// <summary>
-		/// Converts the specified degrees/minutes/seconds to a single value, and sets the Value 
-		/// property.
-		/// </summary>
-		/// <param name="degs">The degrees</param>
-		/// <param name="mins">The minutes</param>
-		/// <param name="secs">The seconds</param>
-		private void DMSToValue(int degs, int mins, double secs)
-		{
-			double adjuster  = (degs < 0) ? -1d : 1d;
-			this.Value = Math.Round((Math.Abs(degs) + (mins/60d) + (secs/3600d)) * adjuster, this.MathPrecision);
-		}
+            //
+            // 2nd sanity check - Now that we've stripped all the unwanted stuff from the string, 
+            // let's make sure we still have a string with content.
+            //
 
-		/// <summary>
-		/// Formats a string using the degrees, minutes and seconds of the coordinate.
-		/// </summary>
-		/// <returns>A string formatted as "0* 0' 0"".</returns>
-		private string FormatAsDMS()
-		{
-			string result = string.Empty;
-			int degs;
-			int mins;
-			double secs;
-			this.ValueToDMS(out degs, out mins, out secs);
-			result = string.Format("{0}{1} {2}' {3}\"", Math.Abs(degs), GPSMath.DEGREE_SYMBOL, mins, secs);
-			return result;
-		}
+            SanityCheckString(coord);
 
-		/// <summary>
-		/// Appends either the compass point, or a minus symbol (if appropriate, and indicated by the specified format).
-		/// </summary>
-		/// <param name="coord">The coordinate string</param>
-		/// <param name="format">The format indicator</param>
-		/// <returns>The adjusted coordinate string</returns>
-		private string AppendDirection(string coord, string format)
-		{
-			string result = string.Empty;
-			switch (format)
-			{
-				case "da" :
-				case "dv" :
-					result = string.Concat("-",coord);
-					break;
-				case "DA" :
-				case "DV" :
-					result = string.Concat(this.Direction.ToString(), coord.Replace("-", ""));
-					break;
-				case "AD" :
-				case "VD" :
-					result = string.Concat(coord, this.Direction.ToString());
-					break;
-			}
-			return result;
-		}
+            // 
+            // Split the string at space characters
+            //
 
-		#endregion helper methods
+            string[] parts = coord.Split(' ');
+            bool valid = false;
+            int degs = 0;
+            int mins = 0;
+            double secs = 0d;
 
-		#region abstract  methods (lat or long specific)
+            // 
+            // Depending on how many "parts" there are in the string, we try to parse the value(s).
+            //
 
-		/// <summary>
-		/// Sets the directionType for this object based on whether this object is a latitude or a 
-		/// longitude, and the Value of the coordinate.
-		/// </summary>
-		protected abstract void   SetDirection();
-		/// <summary>
-		/// Adjusts the direction based on whether this is a latitude or longitude
-		/// </summary>
-		/// <param name="coord">The string coordinate</param>
-		/// <returns>The adjusted coordinate string</returns>
-		protected abstract string AdjustCoordDirection(string coord);
-		/// <summary>
-		/// Gets the maximum value of the degrees based on whether or not this is a latitude or 
-		/// longitude.
-		/// </summary>
-		/// <returns>The maximum allowed degrees.</returns>
-		protected abstract int    GetMaxDegrees();
+            switch (parts.Length)
+            {
+                case 1:
+                    {
+                        //
+                        // Assume that the part is a double value. that can merely be parsed and 
+                        // assigned to the Value property.
+                        //
 
-		#endregion abstract  methods (lat or long specific)
+                        double value;
+                        if (double.TryParse(coord, out value))
+                        {
+                            SanityCheck(value, mathPrecision);
+                            Value = value;
+                        }
+                        else
+                        {
+                            throw new ArgumentException("Could not parse coordinate value. Expected degreees (decimal).");
+                        }
+                    }
+                    break;
+                case 2:
+                    {
+                        //
+                        // Assume that the parts are "degrees minutes". 
+                        //
 
-		#region sanity check methods (one for each constructor)
+                        double minsTemp = 0d;
+                        for (int i = 0; i < parts.Length; i++)
+                        {
+                            switch (i)
+                            {
+                                case 0:
+                                    {
+                                        valid = (int.TryParse(parts[i], out degs));
+                                    }
+                                    break;
+                                case 1:
+                                    {
+                                        valid = (double.TryParse(parts[i], out minsTemp));
+                                    }
+                                    break;
+                            }
+                        }
+                        if (!valid)
+                        {
+                            throw new ArgumentException("Could not parse coordinate value. Expected degrees (int), and minutes (double), i.e. 12 34.56.");
+                        }
+                        else
+                        {
+                            // 
+                            // if the values parsed as expected, we need to separate the minutes from the seconds.
+                            //
 
-		private void SanityCheck(int degs, int mins, double secs, int mathPrecision)
-		{
-			int maxDegrees = this.GetMaxDegrees();
-			int minDegrees = maxDegrees * -1;
+                            mins = (int)(Math.Floor(minsTemp));
+                            secs = Math.Round(60d * (minsTemp - mins), 3);
+                            SanityCheck(degs, mins, secs, 3);
+                        }
+                    }
+                    break;
+                case 3:
+                    {
+                        //
+                        // Assume that the parts are "degrees minutes seconds". 
+                        //
 
-			if (degs < minDegrees || degs > maxDegrees)
-			{
-				throw new ArgumentException(string.Format("Degrees MUST be {0} - {1}", minDegrees, maxDegrees));
-			}
-			if (mins < 0 || mins > 60)
-			{
-				throw new ArgumentException("Minutes MUST be 0 - 60");
-			}
-			if (secs < 0 || secs > 60)
-			{
-				throw new ArgumentException("Seconds MUST be 0 - 60");
-			}
-			this.SanityCheckPrecision(mathPrecision);
-		}
+                        for (int i = 0; i < parts.Length; i++)
+                        {
+                            switch (i)
+                            {
+                                case 0:
+                                    {
+                                        valid = (int.TryParse(parts[i], out degs));
+                                    }
+                                    break;
+                                case 1:
+                                    {
+                                        valid = (int.TryParse(parts[i], out mins));
+                                    }
+                                    break;
+                                case 2:
+                                    {
+                                        valid = (double.TryParse(parts[i], out secs));
+                                    }
+                                    break;
+                            }
+                        }
+                        if (!valid)
+                        {
+                            throw new ArgumentException("Could not parse coordinate value. Expected degrees (int), and minutes (int), and seconds (double), i.e. 12 34 56.789.");
+                        }
+                        else
+                        {
+                            SanityCheck(degs, mins, secs, mathPrecision);
+                        }
+                    }
+                    break;
+            }
 
-		private void SanityCheck(int degs, double mins, int mathPrecision)
-		{
-			int maxDegrees = this.GetMaxDegrees();
-			int minDegrees = maxDegrees * -1;
+            //
+            // If everything is valid and our we had more than one parameter, convert the parsed 
+            // degrees, minutes, and seconds, and assign the result to the Value property, and 
+            // finally, set the compass point.
+            //
 
-			if (degs < minDegrees || degs > maxDegrees)
-			{
-				throw new ArgumentException(string.Format("Degrees MUST be {0} - {1}", minDegrees, maxDegrees));
-			}
-			if (mins < 0d || mins > 60d)
-			{
-				throw new ArgumentException("Minutes MUST be 0.0 - 60.0");
-			}
-			this.SanityCheckPrecision(mathPrecision);
-		}
+            if (valid && parts.Length > 1)
+            {
+                DmsToValue(degs, mins, secs);
+                SetDirection();
+            }
+        }
 
-		private void SanityCheck(double value, int mathPrecision)
-		{
-			double maxValue = (double)this.GetMaxDegrees();
-			double minValue = maxValue * -1;
+        //
+        // HELPER METHODS
+        //
 
-			if (value < minValue || value > maxValue)
-			{
-				throw new ArgumentException(string.Format("Degrees MUST be {0} - {1}", minValue, maxValue));
-			}
-			this.SanityCheckPrecision(mathPrecision);
-		}
+        //
+        // Returns the Value of this object as a GPS coordinate part.
+        // @param format
+        // @returns
+        // @remarks
+        // Valid format string values (anything else will generate an exception). If a null/empty 
+        // string is specified, the "DA" format will be used.
+        //     - DA = "N0* 0' 0"", where N indicates the appropriate direction at the BEGINNING of the string
+        //     - da = "-0* 0' 0"", where "-" is prepended if the coordinate part is either west or south
+        //     - AD = "0* 0' 0"N", where N indicates the appropriate direction at the END of the string
+        //     - DV = "N0.00000", where N indicates the appropriate direction at the BEGINNING of the string
+        //     - dv = "-0.00000", where "-" is prepended if the coordinate part is either west or south
+        //     - VD = "0.00000N", where N indicates the appropriate direction at the END of the string
+        //
 
-		private void SanityCheck(string coord, int mathPrecision)
-		{
-			this.SanityCheckString(coord);
-			this.SanityCheckPrecision(mathPrecision);
-		}
+        public string ToString(string format)
+        {
+            if (string.IsNullOrEmpty(format))
+            {
+                format = "DA";
+            }
+            string result = string.Empty;
+            switch (format)
+            {
+                case "DA": // "N0* 0' 0"" where N indicates the appropriate direction at the BEGINNING of the string
+                case "da": // "-0* 0' 0"", where "-" is prepended if the coordinate part is either west or south
+                    {
+                        result = AppendDirection(FormatAsDms(), format);
+                    }
+                    break;
+                case "AD": // "0* 0' 0"N", where N indicates the appropriate direction at the END of the string
+                    {
+                        result = AppendDirection(FormatAsDms(), format);
+                    }
+                    break;
 
-		private void SanityCheckString(string coord)
-		{
-			if (string.IsNullOrEmpty(coord))
-			{
-				throw new ArgumentException("The coordinate string cannot be null/empty.");
-			}
-		}
+                case "DV": // "N0.00000", where N indicates the appropriate direction at the BEGINNING of the string
+                case "dv": // "-0.00000", where "-" is prepended if the coordinate part is either west or south
+                    {
+                        result = AppendDirection(string.Format("{0:0.00000}", Value), format);
+                    }
+                    break;
+                case "VD": // "0.00000N", where N indicates the appropriate direction at the END of the string
+                    {
+                        result = AppendDirection(string.Format("{0:0.00000}", Value), format);
+                    }
+                    break;
+                default:
+                    throw new ArgumentException("Invalid GPS coordinate string format");
+            }
+            return result;
+        }
 
-		private void SanityCheckPrecision(int mathPrecision)
-		{
-			// You can have a maximum of 17 digits to the right of the decimal point in a double 
-			// value, but when you do ANY math on the value, the 17th digit may or may not reflect 
-			// the actual value (research math and equality on doubles for more info). For this 
-			// reason, I recommend using a precision value of nothing higher than 16. The default 
-			// value is 6.
-			if (mathPrecision < 0 || mathPrecision > 17)
-			{
-				throw new ArgumentException("Math precision MUST be 0 - 17");
-			}
-		}
+        //
+        // Converts the current Value to degrees/minutes/seconds, and returns those calculated 
+        // values via the "out" properties.
+        // @param degs The calculated degrees.
+        // @param mins The calculated minutes.
+        // @param secs The calculated seconds.
+        //
 
-		#endregion sanity check methods (one for each constructor)
+        private void ValueToDms(out int degs, out int mins, out double secs)
+        {
+            degs = (int)Value;
+            secs = (Math.Abs(Value) * 3600) % 3600;
+            mins = (int)(Math.Abs(secs / 60d));
+            secs = Math.Round(secs % 60d, 3);
+        }
 
-	}
+        //
+        // Converts the specified degrees/minutes/seconds to a single value, 
+        // and sets the Value property.
+        // @param degs The degrees.
+        // @param mins The minutes
+        // @param secs The seconds
+        //
 
+        private void DmsToValue(int degs, int mins, double secs)
+        {
+            double adjuster = (degs < 0) ? -1d : 1d;
+            Value = Math.Round((Math.Abs(degs) + (mins / 60d) + (secs / 3600d)) * adjuster, this.Precision);
+        }
+
+        //
+        // Formats a string using the degrees, minutes and seconds of the coordinate.
+        // @returns A string formatted as "0* 0' 0"".
+        //
+
+        private string FormatAsDms()
+        {
+            int degs;
+            int mins;
+            double secs;
+            ValueToDms(out degs, out mins, out secs);
+            return string.Format("{0}{1} {2}' {3}\"", Math.Abs(degs), GpsMath.DEGREE_SYMBOL, mins, secs);
+        }
+
+        //
+        // Appends either the compass point, or a minus symbol (if appropriate, and indicated by the specified format).
+        // @param coord The coordinate string.
+        // @param format The format indicator
+        // @returns The adjusted coordinate string
+        //
+
+        private string AppendDirection(string coord, string format)
+        {
+            string result = string.Empty;
+            switch (format)
+            {
+                case "da":
+                case "dv":
+                    result = string.Concat("-", coord);
+                    break;
+                case "DA":
+                case "DV":
+                    result = string.Concat(this.Direction.ToString(), coord.Replace("-", ""));
+                    break;
+                case "AD":
+                case "VD":
+                    result = string.Concat(coord, this.Direction.ToString());
+                    break;
+            }
+            return result;
+        }
+
+        //
+        // ABSTRACT METHODS
+        //
+
+        //
+        // Sets the directionType for this object based on whether this object is a latitude or a 
+        // longitude, and the Value of the coordinate.
+        //
+
+        protected abstract void SetDirection();
+
+        //
+        // Adjusts the direction based on whether this is a latitude or longitude
+        // @param coord The string coordinate
+        // @return The adjusted coordinate string
+        //
+
+        protected abstract string AdjustCoordDirection(string coord);
+
+        //
+        // Gets the maximum value of the degrees based on whether or 
+        // not this is a latitude or longitude.
+        // @returns The maximum allowed degrees.
+        //
+
+        protected abstract int GetMaxDegrees();
+
+        //
+        // SANITY CHECKS
+        //
+
+        private void SanityCheck(int degs, int mins, double secs, int mathPrecision)
+        {
+            int maxDegrees = this.GetMaxDegrees();
+            int minDegrees = maxDegrees * -1;
+
+            if (degs < minDegrees || degs > maxDegrees)
+            {
+                throw new ArgumentException(string.Format("Degrees MUST be {0} - {1}", minDegrees, maxDegrees));
+            }
+            if (mins < 0 || mins > 60)
+            {
+                throw new ArgumentException("Minutes MUST be 0 - 60");
+            }
+            if (secs < 0 || secs > 60)
+            {
+                throw new ArgumentException("Seconds MUST be 0 - 60");
+            }
+
+            SanityCheckPrecision(mathPrecision);
+        }
+
+        private void SanityCheck(int degs, double mins, int mathPrecision)
+        {
+            int maxDegrees = GetMaxDegrees();
+            int minDegrees = maxDegrees * -1;
+
+            if (degs < minDegrees || degs > maxDegrees)
+            {
+                throw new ArgumentException(string.Format("Degrees MUST be {0} - {1}", minDegrees, maxDegrees));
+            }
+            if (mins < 0d || mins > 60d)
+            {
+                throw new ArgumentException("Minutes MUST be 0.0 - 60.0");
+            }
+
+            SanityCheckPrecision(mathPrecision);
+        }
+
+        private void SanityCheck(double value, int mathPrecision)
+        {
+            double maxValue = (double)this.GetMaxDegrees();
+            double minValue = maxValue * -1;
+
+            if (value < minValue || value > maxValue)
+            {
+                throw new ArgumentException(string.Format("Degrees MUST be {0} - {1}", minValue, maxValue));
+            }
+
+            SanityCheckPrecision(mathPrecision);
+        }
+
+        private void SanityCheck(string coord, int mathPrecision)
+        {
+            SanityCheckString(coord);
+            SanityCheckPrecision(mathPrecision);
+        }
+
+        private void SanityCheckString(string coord)
+        {
+            if (string.IsNullOrEmpty(coord))
+            {
+                throw new ArgumentException("The coordinate string cannot be null/empty.");
+            }
+        }
+
+        private void SanityCheckPrecision(int mathPrecision)
+        {
+            //
+            // You can have a maximum of 17 digits to the right of the decimal point in a double 
+            // value, but when you do ANY math on the value, the 17th digit may or may not reflect 
+            // the actual value (research math and equality on doubles for more info). For this 
+            // reason, I recommend using a precision value of nothing higher than 16. The default 
+            // value is 6.
+            //
+
+            if (mathPrecision < 0 || mathPrecision > 17)
+            {
+                throw new ArgumentException("Math precision MUST be 0 - 17");
+            }
+        }
+    }
 }
